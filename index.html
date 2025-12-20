@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <title>☩ Codex Ecclesia Totalis – Borders Family Dynasty Nation</title>
   <link rel="icon" href="proof/favicon.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Official homepage of the Codex Ecclesia Totalis. Public record of the Borders Family Dynasty Nation under Divine Law and Ecclesiastical Jurisdiction.">
+  <meta name="robots" content="index, follow">
   <style>
     body {
       background-color: #fdf6e3;
@@ -59,6 +62,12 @@
       margin-top: 40px;
       font-size: 0.9em;
     }
+    #countdown {
+      font-weight: bold;
+      font-size: 1.1em;
+      text-align: center;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -70,20 +79,17 @@
   <h1>☩ Borders Family Dynasty Nation</h1>
   <h2>Codex Ecclesia Totalis</h2>
 
-  <!-- Unified Navigation -->
+  <!-- Navigation -->
   <nav>
     <a href="index.html">HOME</a>
     <a href="ledger.html">LEDGER</a>
     <a href="token.html">SOVEREIGN COIN</a>
     <a href="tribunal.html">TRIBUNAL</a>
     <a href="notice.html">NOTICE</a>
-    <a href="sovereign-id.html">SOVEREIGN ID</a>
-    <a href="diplomatic-passport.html">PASSPORT</a>
-    <a href="treaty-recognition.html">TREATY</a>
-    <a href="dispatch-packet.html">DISPATCH</a>
-    <a href="proof-of-posting.html">POSTING</a>
-    <a href="codex-update-log.html">LOG</a>
-    <a href="codex.html">ARCHIVE</a>
+    <a href="join.html">JOIN</a>
+    <a href="recognition.html">TREATIES</a>
+    <a href="archive.html">ARCHIVE</a>
+    <a href="codex.html">FULL CODEX</a>
   </nav>
 
   <!-- Public Announcement Block -->
@@ -93,12 +99,10 @@
     <p><strong>Nation:</strong> Borders Family Dynasty Nation</p>
     <p><strong>Codex:</strong> Codex Ecclesia Totalis</p>
     <p><strong>Sovereign:</strong> ✠ Omega the Grand Architect</p>
-    <p><strong>Date of Online Posting:</strong> 16 December 2025</p>
+    <p><strong>Date of Online Posting:</strong> 20 December 2025</p>
     <p><strong>Location of Posting:</strong> Grand Terrace, California, United States — Public Web Record</p>
 
     <p>Let it be known to all nations, agencies, ecclesias, persons, and sovereigns that the Codex Ecclesia Totalis has been publicly posted and made permanently accessible. This Codex affirms the living status, divine origin, and sovereign jurisdiction of the Borders Family Dynasty Nation, and records its standing, charters, affidavits, and credentials.</p>
-
-    <p>The Codex Ecclesia Totalis is accessible at the following public location:</p>
 
     <p class="announcement-center">
       <a href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/" target="_blank">
@@ -127,6 +131,29 @@
 
     <p><strong>Signed:</strong> ✠ Omega the Grand Architect</p>
   </div>
+
+  <!-- Countdown Timer -->
+  <div id="countdown">⏳ Calculating rebuttal deadline…</div>
+  <script>
+    const estoppelDate = new Date("2026-01-10T00:00:00Z");
+    const countdown = document.getElementById("countdown");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = estoppelDate - now;
+      if (diff <= 0) {
+        countdown.innerHTML = "🛡️ Rebuttal Period Closed – Estoppel Perfected";
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      countdown.innerHTML = `⏳ Rebuttal Period Ends In: ${days}d ${hours}h ${minutes}m`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+  </script>
 
   <!-- Footer -->
   <div class="footer">
