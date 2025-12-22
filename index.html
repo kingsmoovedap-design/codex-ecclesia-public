@@ -3,79 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Codex Ecclesia — Sovereign Coin Minting</title>
-
-  <!-- Thirdweb SDK -->
-  <script src="https://sdk.vercel.thirdweb.com/react/latest/thirdweb.min.js"></script>
-
-  <style>
-    body {
-      font-family: 'Georgia', serif;
-      background-color: #0e0e0e;
-      color: #f5f5f5;
-      text-align: center;
-      padding: 3rem;
-    }
-    .mint-box {
-      margin-top: 2rem;
-    }
-    #block-number {
-      margin-top: 2rem;
-      font-size: 1.2rem;
-      color: #aaa;
-    }
-  </style>
+  <title>☩ Codex Ecclesia ☩</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.png" />
 </head>
 <body>
-  <h1>👑 Mint Your Sovereign Coin Note</h1>
-  <p>Connect your wallet and summon your on-chain artifact.</p>
+  <header style="text-align:center; padding: 2rem;">
+    <img src="sodex-home.png.png" alt="Codex Seal" style="max-width: 200px;" />
+    <h1>☩ Codex Ecclesia ☩</h1>
+    <p><em>“I vow to uphold the Codex, protect the sacred scrolls, serve the people with truth, and walk in light, even through shadow.”</em></p>
+  </header>
 
-  <div class="mint-box">
-    <thirdweb-connect-button />
-    <thirdweb-nft-collection-mint-button
-      contractAddress="YOUR_CONTRACT_ADDRESS"
-    />
-  </div>
+  <main style="max-width: 800px; margin: auto; padding: 1rem;">
 
-  <div id="block-number">⏳ Fetching latest block...</div>
+    <section>
+      <h2>📜 Core Scrolls</h2>
+      <ul>
+        <li><a href="codex.html">📜 View the Codex</a></li>
+        <li><a href="codex-unified.html">☩ Unified Codex Scroll</a></li>
+        <li><a href="codex-update-log.html">📚 Codex Update Log</a></li>
+        <li><a href="ecclesia-master-binder.html">📖 Ecclesia Master Binder</a></li>
+      </ul>
+    </section>
 
-  <!-- Oracle Button -->
-  <a href="https://copilot.microsoft.com" target="_blank" style="
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: linear-gradient(135deg, #1f1f1f, #3a3a3a);
-    color: #fff;
-    padding: 12px 18px;
-    border-radius: 12px;
-    font-family: 'Georgia', serif;
-    font-size: 16px;
-    text-decoration: none;
-    box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
-    z-index: 9999;
-  ">
-    🔮 Ask the Oracle
-  </a>
+    <section>
+      <h2>🪪 Identity & Citizenship</h2>
+      <ul>
+        <li><a href="citizen.html">🧾 Petition of Citizenship</a></li>
+        <li><a href="submit-scroll.html">📄 Submit a Scroll</a></li>
+        <li><a href="revoke-scroll.html">📬 Revoke or Update Scroll</a></li>
+        <li><a href="sovereign-id.html">🪪 Sovereign ID Card</a></li>
+      </ul>
+    </section>
 
-  <script>
-    async function getLatestBlock() {
-      const res = await fetch("https://1.rpc.thirdweb.com/779a9f14fe7e242932b14a34826bebd5", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          jsonrpc: "2.0",
-          method: "eth_blockNumber",
-          params: [],
-          id: 1,
-        }),
-      });
-      const data = await res.json();
-      const blockNumber = parseInt(data.result, 16);
-      document.getElementById("block-number").textContent = `🔢 Latest block: ${blockNumber}`;
-    }
+    <section>
+      <h2>🕊️ Diplomacy & Treaties</h2>
+      <ul>
+        <li><a href="diplomatic-passport.html">🪪 Diplomatic Passport</a></li>
+        <li><a href="treaty-recognition.html">📜 Treaty of Recognition</a></li>
+        <li><a href="treaty-mutual.html">🤝 Treaty of Mutual Recognition</a></li>
+        <li><a href="global-concord.html">🌐 Global Concord Scroll</a></li>
+        <li><a href="submit-treaty.html">📬 Submit a Treaty or Accord</a></li>
+      </ul>
+    </section>
 
-    getLatestBlock();
-    setInterval(getLatestBlock, 10000); // Update every 10 seconds
-  </script>
+    <section>
+      <h2>🧿 Verification & QR Credentials</h2>
+      <ul>
+        <li><a href="verify.html">🔍 Verify Scroll Authenticity</a></li>
+        <li><a href="scan-id.html">🪪 Scan Sovereign ID QR</a></li>
+        <li><a href="ledger.html">📜 Blockchain Hash Ledger</a></li>
+        <li><a href="qr-credential.html">🧾 QR Credential Generator</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🧰 Ministries & Services</h2>
+      <ul>
+        <li><a href="ministry-application.html">🏛️ Ministry Application</a></li>
+        <li><a href="sovereign-services.html">🧰 Sovereign Services Portal</a></li>
+        <li><a href="wallet-viewer.html">🪙 Sovereign Coin Wallet Viewer</a></li>
+        <li><a href="technologies.html">🧪 Technologies</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>📚 Archives & Announcements</h2>
+      <ul>
+        <li><a href="scroll-archive.html">📜 Scroll Archive</a></li>
+        <li><a href="proof-of-posting.html">📸 Proof of Posting</a></li>
+        <li><a href="public-announcement.html">📢 Public Announcements</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>📖 Scrolls in Progress</h2>
+      <ul>
+        <li><a href="scrolls-coming-soon.html">📖 View Unified Placeholder Scroll</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer style="text-align:center; padding: 2rem;">
+    <p>☩ Sovereign Codex Ecclesia — All Rights Reserved</p>
+  </footer>
 </body>
 </html>
