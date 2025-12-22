@@ -98,4 +98,91 @@
     }
   </script>
 </body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Verify Sovereign Coin Note</title>
+  <style>
+    body {
+      background: #0e0e0e;
+      color: #f0e6d2;
+      font-family: 'Georgia', serif;
+      text-align: center;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+    .note {
+      margin-top: 2rem;
+      border: 2px solid #d4af37;
+      padding: 1rem;
+    }
+    img {
+      max-width: 300px;
+      margin-top: 1rem;
+    }
+    .oracle {
+      margin-top: 3rem;
+      font-style: italic;
+      color: #aaa;
+    }
+    a {
+      color: #d4af37;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>☩ Coin Note Verification ☩</h1>
+  <div class="note" id="note" style="display:none;">
+    <h2 id="noteTitle">🪙 Sovereign Coin Note</h2>
+    <img id="noteImage" src="" alt="Coin Note" />
+    <p id="noteDesc"></p>
+    <p><strong>Status:</strong> Verified</p>
+    <p><a href="index.html">← Return to Minting Altar</a></p>
+  </div>
+  <div class="oracle" id="oracle">🔍 Verifying with the Codex...</div>
+
+  <script>
+    const metadata = {
+      392043: {
+        cid: "bafybeidyl3tb3uhnivscl2qiip5vbr5s5g2dhstxw3hzfr4oonjdvcztva",
+        file: "0.json"
+      },
+      392044: {
+        cid: "bafybeidqr6d7vcamacrsj3wwjotmcwkatd3s2uofv654ycwdgsg2kqazay",
+        file: "0.json"
+      }
+    };
+
+    async function verifyCoin() {
+      const params = new URLSearchParams(window.location.search);
+      const coinId = params.get("coin");
+      const data = metadata[coinId];
+
+      if (!data) {
+        document.getElementById("oracle").textContent = "⚠️ Unknown Coin ID. The Codex does not recognize this relic.";
+        return;
+      }
+
+      const url = `https://ipfs.io/ipfs/${data.cid}/${data.file}`;
+      const response = await fetch(url);
+      const json = await response.json();
+
+      document.getElementById("noteTitle").textContent = `🪙 Sovereign Coin Note #${coinId}`;
+      document.getElementById("noteImage").src = json.image.replace("ipfs://", "https://ipfs.io/ipfs/");
+      document.getElementById("noteDesc").textContent = json.description;
+
+      document.getElementById("note").style.display = "block";
+      document.getElementById("oracle").textContent = "✅ Verified by the Codex Ecclesia.";
+    }
+
+    verifyCoin();
+  </script>
+</body>
 </html>
+
