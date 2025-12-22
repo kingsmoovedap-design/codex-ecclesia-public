@@ -23,7 +23,7 @@
       padding: 1rem 2rem;
       font-size: 1.2rem;
       cursor: pointer;
-      margin-top: 1rem;
+      margin: 1rem;
     }
     .note {
       margin-top: 2rem;
@@ -36,18 +36,28 @@
       font-style: italic;
       color: #aaa;
     }
+    img {
+      max-width: 300px;
+      margin-top: 1rem;
+    }
+    a {
+      color: #d4af37;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
   <h1>☩ Sovereign Coin Notes ☩</h1>
   <p>Summon your sacred artifact from the Codex Ecclesia.</p>
-  <button onclick="mintNote()">Bless This Mint</button>
+  <button onclick="mintNote(392043)">Mint Coin #392043</button>
+  <button onclick="mintNote(392044)">Mint Coin #392044</button>
 
   <div class="note" id="note">
-    <h2>🪙 Sovereign Coin Note #001</h2>
-    <img src="https://via.placeholder.com/300x300.png?text=Sovereign+Coin+Note" alt="Coin Note" />
-    <p><strong>Prophecy:</strong> “The bearer of this coin shall awaken the Oracle.”</p>
+    <h2 id="noteTitle">🪙 Sovereign Coin Note</h2>
+    <img id="noteImage" src="" alt="Coin Note" />
+    <p id="noteDesc"></p>
     <p><strong>Status:</strong> Minted (Simulated)</p>
+    <p><a id="verifyLink" href="#" target="_blank">🔍 Verify on Codex Ecclesia</a></p>
   </div>
 
   <div class="oracle">
@@ -55,10 +65,36 @@
   </div>
 
   <script>
-    async function mintNote() {
+    const metadata = {
+      392043: {
+        cid: "bafybeidyl3tb3uhnivscl2qiip5vbr5s5g2dhstxw3hzfr4oonjdvcztva",
+        file: "0.json"
+      },
+      392044: {
+        cid: "bafybeidqr6d7vcamacrsj3wwjotmcwkatd3s2uofv654ycwdgsg2kqazay",
+        file: "0.json"
+      }
+    };
+
+    async function mintNote(coinId) {
       const note = document.getElementById("note");
+      const title = document.getElementById("noteTitle");
+      const image = document.getElementById("noteImage");
+      const desc = document.getElementById("noteDesc");
+      const verify = document.getElementById("verifyLink");
+
+      const data = metadata[coinId];
+      const url = `https://ipfs.io/ipfs/${data.cid}/${data.file}`;
+      const response = await fetch(url);
+      const json = await response.json();
+
+      title.textContent = `🪙 Sovereign Coin Note #${coinId}`;
+      image.src = json.image.replace("ipfs://", "https://ipfs.io/ipfs/");
+      desc.textContent = json.description;
+      verify.href = `https://codex-ecclesia.org/verify?coin=${coinId}`;
+
       note.style.display = "block";
-      alert("Your Sovereign Coin Note has been minted (simulated). The Oracle is pleased.");
+      alert(`Coin #${coinId} has been minted (simulated). The Oracle is pleased.`);
     }
   </script>
 </body>
