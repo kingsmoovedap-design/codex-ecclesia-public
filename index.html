@@ -3,79 +3,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Codex Ecclesia — Sovereign Coin Minting</title>
-
-  <!-- Thirdweb SDK -->
-  <script src="https://sdk.vercel.thirdweb.com/react/latest/thirdweb.min.js"></script>
-
+  <title>☩ Codex Ecclesia — Sovereign Home</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       font-family: 'Georgia', serif;
-      background-color: #0e0e0e;
-      color: #f5f5f5;
+      background-color: #fdf6e3;
+      color: #222;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h1, h2 {
       text-align: center;
-      padding: 3rem;
+      color: #b8860b;
     }
-    .mint-box {
-      margin-top: 2rem;
+    ul {
+      list-style: none;
+      padding: 0;
     }
-    #block-number {
-      margin-top: 2rem;
-      font-size: 1.2rem;
-      color: #aaa;
+    li {
+      margin: 0.75rem 0;
+    }
+    a {
+      color: #222;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      color: #b8860b;
+    }
+    section {
+      margin-bottom: 3rem;
     }
   </style>
 </head>
 <body>
-  <h1>👑 Mint Your Sovereign Coin Note</h1>
-  <p>Connect your wallet and summon your on-chain artifact.</p>
+  <h1>☩ Codex Ecclesia</h1>
+  <h2>Home of the Borders Family Dynasty Nation</h2>
+  <p style="text-align:center;"><em>“Let the scrolls speak, and the sovereign rise.”</em></p>
 
-  <div class="mint-box">
-    <thirdweb-connect-button />
-    <thirdweb-nft-collection-mint-button
-      contractAddress="YOUR_CONTRACT_ADDRESS"
-    />
-  </div>
+  <section>
+    <h2>📜 Core Scrolls</h2>
+    <ul>
+      <li><a href="codex-manifesto.html">Codex Manifesto</a></li>
+      <li><a href="codex-harmonica.html">Codex Harmonica — Divine Completion</a></li>
+      <li><a href="declaration-sovereign-status.html">Declaration of Sovereign Status</a></li>
+      <li><a href="codex-unified.html">Unified Scroll Index</a></li>
+      <li><a href="scroll-archive.html">Scroll Archive</a></li>
+      <li><a href="codex-update-log.html">Codex Update Log</a></li>
+    </ul>
+  </section>
 
-  <div id="block-number">⏳ Fetching latest block...</div>
+  <section>
+    <h2>🪪 Identity & Citizenship</h2>
+    <ul>
+      <li><a href="sovereign-id.html">Sovereign ID Scroll</a></li>
+      <li><a href="directory.html">Directory of Sovereigns</a></li>
+    </ul>
+  </section>
 
-  <!-- Oracle Button -->
-  <a href="https://copilot.microsoft.com" target="_blank" style="
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: linear-gradient(135deg, #1f1f1f, #3a3a3a);
-    color: #fff;
-    padding: 12px 18px;
-    border-radius: 12px;
-    font-family: 'Georgia', serif;
-    font-size: 16px;
-    text-decoration: none;
-    box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
-    z-index: 9999;
-  ">
-    🔮 Ask the Oracle
-  </a>
+  <section>
+    <h2>⚖️ Ministries & Justice</h2>
+    <ul>
+      <li><a href="tribunal.html">Ministry of Justice & Tribunal</a></li>
+      <li><a href="tribunal-petition.html">Petition for Remedy</a></li>
+      <li><a href="tribunal-judgments.html">Scroll of Judgments</a></li>
+    </ul>
+  </section>
 
-  <script>
-    async function getLatestBlock() {
-      const res = await fetch("https://1.rpc.thirdweb.com/779a9f14fe7e242932b14a34826bebd5", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          jsonrpc: "2.0",
-          method: "eth_blockNumber",
-          params: [],
-          id: 1,
-        }),
-      });
-      const data = await res.json();
-      const blockNumber = parseInt(data.result, 16);
-      document.getElementById("block-number").textContent = `🔢 Latest block: ${blockNumber}`;
-    }
+  <section>
+    <h2>🤝 Treaties & Diplomacy</h2>
+    <ul>
+      <li><a href="treaty-aurora-2025.html">Treaty of Recognition — Aurora Confederacy</a></li>
+    </ul>
+  </section>
 
-    getLatestBlock();
-    setInterval(getLatestBlock, 10000); // Update every 10 seconds
-  </script>
+  <section>
+    <h2>🔍 Tools & Verification</h2>
+    <ul>
+      <li><a href="verify-scroll.html">Verify Scroll Credentials</a></li>
+      <li><a href="ledger.html">Codex Ledger</a></li>
+      <li><a href="qr-generator.html">QR Credential Generator</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>📄 Ceremonial Scrolls</h2>
+    <ul>
+      <li><a href="codex-manifesto.pdf">Printable Codex Manifesto (PDF)</a></li>
+    </ul>
+  </section>
+
+  <footer style="text-align:center; margin-top: 4rem;">
+    <p>☩ Borders Family Dynasty Nation — Sovereign. Living. Eternal.</p>
+  </footer>
 </body>
 </html>
