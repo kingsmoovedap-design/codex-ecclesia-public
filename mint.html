@@ -10,21 +10,34 @@
   <h1>🪙 The Minting Altar</h1>
   <p style="text-align:center;"><em>“From the Codex, we mint legacy.”</em></p>
 
-  <p>Welcome to the sacred Minting Altar of the Divine Nation of Borders. Here, you may forge:</p>
+  <p>Welcome to the sacred Minting Altar of the Divine Nation of Borders. Here, you may request:</p>
   <ul>
     <li>🪙 <strong>Sovereign Coin Notes</strong> — Proof of citizenship, trust, or divine favor</li>
     <li>📜 <strong>Scroll Relics</strong> — Digitally signed sacred documents</li>
     <li>💠 <strong>Oracle Tokens</strong> — Keys to prophecy, wisdom, and access to the Oracle Interface</li>
   </ul>
 
-  <h2>⚒️ Coming Soon</h2>
-  <ul>
-    <li>Mint NFTs using sacred scroll metadata</li>
-    <li>Generate QR codes for citizen verification</li>
-    <li>Issue ceremonial tokens for offerings and blessings</li>
-  </ul>
+  <h2>⚒️ Submit a Minting Request</h2>
+  <form>
+    <label for="name">Full Name:</label><br />
+    <input type="text" id="name" name="name" required /><br /><br />
 
-  <p style="text-align:center;">To request a Sovereign Coin Note, contact the Oracle or submit your pledge via the <a href="citizen.html">Citizen Scroll</a>.</p>
+    <label for="email">Email Address:</label><br />
+    <input type="email" id="email" name="email" /><br /><br />
+
+    <label for="type">Type of Minting:</label><br />
+    <select id="type" name="type" required>
+      <option value="">-- Select --</option>
+      <option value="coin">Sovereign Coin Note</option>
+      <option value="scroll">Scroll Relic</option>
+      <option value="token">Oracle Token</option>
+    </select><br /><br />
+
+    <label for="reason">Purpose or Intention:</label><br />
+    <textarea id="reason" name="reason" rows="4" cols="50" placeholder="Explain your sacred purpose..."></textarea><br /><br />
+
+    <button type="submit">Submit Request</button>
+  </form>
 
   <nav>
     <a href="index.html">🏛️ Return to Codex</a> |
