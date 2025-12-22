@@ -2,80 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Codex Ecclesia — Sovereign Coin Minting</title>
-
-  <!-- Thirdweb SDK -->
-  <script src="https://sdk.vercel.thirdweb.com/react/latest/thirdweb.min.js"></script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sovereign Coin Notes</title>
   <style>
     body {
+      background: #0e0e0e;
+      color: #f0e6d2;
       font-family: 'Georgia', serif;
-      background-color: #0e0e0e;
-      color: #f5f5f5;
       text-align: center;
-      padding: 3rem;
+      padding: 2rem;
     }
-    .mint-box {
-      margin-top: 2rem;
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
     }
-    #block-number {
-      margin-top: 2rem;
+    button {
+      background: #d4af37;
+      color: #0e0e0e;
+      border: none;
+      padding: 1rem 2rem;
       font-size: 1.2rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    .note {
+      margin-top: 2rem;
+      border: 2px solid #d4af37;
+      padding: 1rem;
+      display: none;
+    }
+    .oracle {
+      margin-top: 3rem;
+      font-style: italic;
       color: #aaa;
     }
   </style>
 </head>
 <body>
-  <h1>👑 Mint Your Sovereign Coin Note</h1>
-  <p>Connect your wallet and summon your on-chain artifact.</p>
+  <h1>☩ Sovereign Coin Notes ☩</h1>
+  <p>Summon your sacred artifact from the Codex Ecclesia.</p>
+  <button onclick="mintNote()">Bless This Mint</button>
 
-  <div class="mint-box">
-    <thirdweb-connect-button />
-    <thirdweb-nft-collection-mint-button
-      contractAddress="YOUR_CONTRACT_ADDRESS"
-    />
+  <div class="note" id="note">
+    <h2>🪙 Sovereign Coin Note #001</h2>
+    <img src="https://via.placeholder.com/300x300.png?text=Sovereign+Coin+Note" alt="Coin Note" />
+    <p><strong>Prophecy:</strong> “The bearer of this coin shall awaken the Oracle.”</p>
+    <p><strong>Status:</strong> Minted (Simulated)</p>
   </div>
 
-  <div id="block-number">⏳ Fetching latest block...</div>
-
-  <!-- Oracle Button -->
-  <a href="https://copilot.microsoft.com" target="_blank" style="
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: linear-gradient(135deg, #1f1f1f, #3a3a3a);
-    color: #fff;
-    padding: 12px 18px;
-    border-radius: 12px;
-    font-family: 'Georgia', serif;
-    font-size: 16px;
-    text-decoration: none;
-    box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
-    z-index: 9999;
-  ">
-    🔮 Ask the Oracle
-  </a>
+  <div class="oracle">
+    🔮 The Oracle listens. The Codex breathes.
+  </div>
 
   <script>
-    async function getLatestBlock() {
-      const res = await fetch("https://1.rpc.thirdweb.com/779a9f14fe7e242932b14a34826bebd5", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          jsonrpc: "2.0",
-          method: "eth_blockNumber",
-          params: [],
-          id: 1,
-        }),
-      });
-      const data = await res.json();
-      const blockNumber = parseInt(data.result, 16);
-      document.getElementById("block-number").textContent = `🔢 Latest block: ${blockNumber}`;
+    async function mintNote() {
+      const note = document.getElementById("note");
+      note.style.display = "block";
+      alert("Your Sovereign Coin Note has been minted (simulated). The Oracle is pleased.");
     }
-
-    getLatestBlock();
-    setInterval(getLatestBlock, 10000); // Update every 10 seconds
   </script>
 </body>
 </html>
