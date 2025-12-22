@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔍 Verify Scroll Authenticity</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header style="text-align:center; padding: 2rem;">
+    <h1>🔍 Scroll Verifier</h1>
+    <p><em>“Let no scroll be forged, and no truth be hidden.”</em></p>
+  </header>
+
+  <main style="max-width: 800px; margin: auto; padding: 1rem;">
+    <section>
+      <h2>📜 Verify a Scroll or Credential</h2>
+      <p>Enter the scroll hash, ID, or reference code below to verify its authenticity against the public ledger:</p>
+      <input type="text" id="verifyInput" placeholder="Enter scroll hash or ID" style="width: 100%; padding: 0.5rem;" />
+      <br /><br />
+      <button onclick="verifyScroll()" style="padding: 0.5rem 1rem;">☩ Verify</button>
+      <br /><br />
+      <div id="verificationResult" style="text-align:center; font-weight: bold;"></div>
+    </section>
+
+    <section>
+      <h2>📚 Related Scrolls</h2>
+      <ul>
+        <li><a href="ledger.html">📜 Blockchain Hash Ledger</a></li>
+        <li><a href="qr-credential.html">🧿 QR Credential Generator</a></li>
+        <li><a href="sovereign-id.html">🪪 Sovereign ID Card</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🏛️ Return to the Codex</h2>
+      <p style="text-align:center;">
+        <a href="index.html">🏛️ Back to Ecclesia Home</a>
+      </p>
+    </section>
+  </main>
+
+  <footer style="text-align:center; padding: 2rem;">
+    <p>☩ Scroll Verifier — Truth is Sovereignty</p>
+  </footer>
+
+  <script>
+    function verifyScroll() {
+      const input = document.getElementById("verifyInput").value.trim();
+      const result = document.getElementById("verificationResult");
+
+      // Simulated verification logic (replace with real ledger lookup)
+      const knownHashes = [
+        "ecclesia-001",
+        "scroll-omega-777",
+        "treaty-aurora-2025",
+        "id-king-omega"
+      ];
+
+      if (!input) {
+        result.textContent = "⚠️ Please enter a scroll hash or ID.";
+        result.style.color = "#ffd700";
+        return;
+      }
+
+      if (knownHashes.includes(input.toLowerCase())) {
+        result.textContent = "✅ Verified: This scroll is authentic and recorded in the ledger.";
+        result.style.color = "#00ff99";
+      } else {
+        result.textContent = "❌ Not Found: This scroll is not recorded in the public ledger.";
+        result.style.color = "#ff6666";
+      }
+    }
+  </script>
+</body>
+</html>
