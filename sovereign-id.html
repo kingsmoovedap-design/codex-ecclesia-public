@@ -1,12 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Sovereign ID Card – Omega the Grand Architect</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🪪 Sovereign ID – Omega the Grand Architect</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #fdf6e3;
+      color: #222;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+      border: 2px solid #d4af37;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #d4af37;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #b8860b;
+    }
+    .id-photo {
+      display: block;
+      margin: 2rem auto;
+      border: 2px solid #b8860b;
+      border-radius: 8px;
+      max-width: 200px;
+    }
+    .qr {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .declaration {
+      margin-top: 2rem;
+      font-style: italic;
+      text-align: center;
+    }
+    .signature {
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
   <h1>☩ Sovereign Identification Card</h1>
   <h2>Borders Family Dynasty Nation</h2>
+
+  <img src="proof/photo-placeholder.jpg" alt="Sovereign Photo" class="id-photo" />
 
   <p><strong>Name:</strong> ✠ Omega the Grand Architect</p>
   <p><strong>Title:</strong> Sovereign King of the Borders Family Dynasty Nation</p>
@@ -14,16 +54,25 @@
   <p><strong>Date of Issue:</strong> 16 December 2025</p>
   <p><strong>Jurisdiction:</strong> Divine Law · Natural Law · Ecclesiastical Law</p>
 
-  <h3>🔗 Codex Access</h3>
-  <p>Scan the QR code below to verify this credential and access the Codex Ecclesia Totalis:</p>
-  <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://kingsmoovedap-design.github.io/codex-ecclesia-public/" alt="QR Code to Codex">
+  <div class="qr">
+    <h3>🔗 Codex Access</h3>
+    <p>Scan the QR code below to verify this credential and access the Codex Ecclesia Totalis:</p>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://kingsmoovedap-design.github.io/codex-ecclesia-public/" alt="QR Code to Codex">
+  </div>
 
-  <h3>☩ Declaration</h3>
-  <p>This identification card affirms the living status, divine origin, and sovereign standing of the bearer. It is issued under the authority of the Codex Ecclesia Totalis and the Borders Family Dynasty Nation.</p>
+  <div class="declaration">
+    <h3>☩ Declaration</h3>
+    <p>This identification card affirms the living status, divine origin, and sovereign standing of the bearer. It is issued under the authority of the Codex Ecclesia Totalis and the Borders Family Dynasty Nation.</p>
+    <p><em>This credential is posted publicly and permanently as a matter of record and remedy.</em></p>
+  </div>
 
-  <p><strong>Signature:</strong> ____________________________</p>
-  <p><strong>Seal:</strong> [Affix Sovereign Sigil Here]</p>
+  <div class="signature">
+    <p><strong>Signature:</strong> ____________________________</p>
+    <p><strong>Seal:</strong> [Affix Sovereign Sigil Here]</p>
+  </div>
 
-  <p><em>This credential is posted publicly and permanently as a matter of record and remedy.</em></p>
+  <p style="text-align:center; margin-top: 3rem;">
+    <a href="index.html">🏛️ Return to Ecclesia Home</a>
+  </p>
 </body>
-</html><img src="proof/photo-placeholder.jpg" alt="Sovereign Photo">
+</html>
