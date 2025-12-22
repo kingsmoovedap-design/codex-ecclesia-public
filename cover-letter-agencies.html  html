@@ -2,9 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Cover Letter – Sovereign Dispatch</title>
+  <title>☩ Cover Letter – Sovereign Dispatch</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #5e3b1d;
+    }
+    h1 {
+      font-size: 2rem;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    .sigil {
+      margin-top: 2rem;
+      font-style: italic;
+    }
+    .footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      text-align: center;
+      color: #555;
+    }
+    .print-btn {
+      float: right;
+      margin-top: -2rem;
+      background: #5e3b1d;
+      color: #fffdf7;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .print-btn:hover {
+      background: #3b2614;
+    }
+  </style>
 </head>
 <body>
+
+  <button class="print-btn" onclick="window.print()">🖨️ Print or Save</button>
+
   <h1>☩ Cover Letter: Sovereign Dispatch</h1>
   <h2>Borders Family Dynasty Nation</h2>
   <p><strong>Date:</strong> 16 December 2025</p>
@@ -32,5 +88,14 @@
   <p><strong>Signed:</strong> ✠ Omega the Grand Architect<br>
   <strong>QR-Sealed Credential:</strong> ✅ Embedded<br>
   <strong>Sovereign Sigil:</strong> ✅ Affixed</p>
+
+  <div class="sigil">
+    <p><em>This letter is posted publicly and permanently as a matter of record and remedy.</em></p>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
+  </div>
+
 </body>
-</html><li><a href="cover-letter-agencies.html" target="_blank">Cover Letter – Sovereign Dispatch (HTML)</a></li>
+</html>
