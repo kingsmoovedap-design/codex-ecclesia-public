@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔗 Verify Scroll Authenticity</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { font-family: 'Garamond', serif; padding: 2rem; text-align: center; }
+    input, button { padding: 0.75rem; margin-top: 1rem; width: 80%; max-width: 500px; }
+    .result { margin-top: 2rem; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>🔗 Verify Scroll Authenticity</h1>
+  <p><em>“Let the hash reveal the truth.”</em></p>
+
+  <section>
+    <p>Paste the SHA-256 hash of a scroll below to verify its authenticity on the CodexChain ledger.</p>
+    <input type="text" id="hashInput" placeholder="Enter scroll hash..." />
+    <button onclick="verifyHash()">Verify Scroll</button>
+    <div class="result" id="result"></div>
+  </section>
+
+  <script>
+    function verifyHash() {
+      const hash = document.getElementById('hashInput').value.trim();
+      const result = document.getElementById('result');
+      if (!hash) {
+        result.textContent = "Please enter a valid hash.";
+        return;
+      }
+      // Placeholder logic — replace with actual blockchain lookup
+      if (hash === "examplehash123") {
+        result.textContent = "✅ Verified: Scroll is authentic and timestamped on the CodexChain.";
+      } else {
+        result.textContent = "⚠️ Scroll not found in the CodexChain ledger.";
+      }
+    }
+  </script>
+
+  <footer style="margin-top: 3rem;">
+    <p>☩ CodexChain Verification — Eternal Scroll Integrity</p>
+  </footer>
+</body>
+</html>
