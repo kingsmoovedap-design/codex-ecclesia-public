@@ -1,39 +1,63 @@
+/* ✨ Codex Ecclesia Styling ✨ */
+
 body {
-  background: #0e0e0e;
-  color: #f0e6d2;
-  font-family: 'Georgia', serif;
+  background: linear-gradient(to bottom, #0f0f0f, #1a1a1a);
+  color: #f5f5dc;
+  font-family: 'Garamond', serif;
+  line-height: 1.6;
   margin: 0;
-  padding: 2rem;
-  line-height: 1.7;
+  padding: 0;
 }
+
 h1, h2 {
+  color: #ffd700;
   text-align: center;
-  color: #d4af37;
-  margin-top: 2rem;
+  text-shadow: 0 0 5px #fff200;
 }
+
 ul {
-  max-width: 800px;
-  margin: auto;
-  padding-left: 1.5rem;
+  list-style-type: none;
+  padding-left: 0;
 }
-a {
-  color: #d4af37;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-nav {
+
+li {
+  margin: 0.5rem 0;
   text-align: center;
-  margin-top: 3rem;
 }
+
+a {
+  color: #f5f5dc;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: #ffd700;
+  text-shadow: 0 0 10px #ffd700;
+  transform: scale(1.05);
+}
+
+header, footer {
+  background-color: #111;
+  padding: 2rem;
+  border-top: 2px solid #ffd700;
+  border-bottom: 2px solid #ffd700;
+}
+
+section {
+  margin: 2rem 0;
+  padding: 1rem;
+  border: 1px solid #444;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
 nav a {
   margin: 0 1rem;
-  font-weight: bold;
+  color: #ccc;
 }
-.footer {
-  text-align: center;
-  margin-top: 4rem;
-  font-style: italic;
-  color: #aaa;
+
+nav a:hover {
+  color: #ffd700;
 }

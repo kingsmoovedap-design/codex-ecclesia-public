@@ -2,131 +2,128 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>📜 Scroll Archive | Codex Ecclesia</title>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📚 Scroll Archive</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      margin: 0;
-      font-family: 'EB Garamond', serif;
-      background: #fdfaf6 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-      color: #2c1a0f;
-    }
-    header {
-      background: linear-gradient(to right, #2c1a0f, #5e3b1d);
-      color: #f9e8c9;
-      padding: 2rem;
-      text-align: center;
-      border-bottom: 4px solid gold;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.2rem;
-    }
-    nav {
-      background: #3b2614;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      padding: 1rem;
-    }
-    nav a {
-      color: #f9e8c9;
-      text-decoration: none;
-      font-weight: bold;
-      font-family: 'Inter', sans-serif;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    main {
-      padding: 2rem;
-      max-width: 1000px;
+    .archive {
+      max-width: 900px;
       margin: auto;
+      padding: 2rem;
     }
-    h2 {
+    .archive h2 {
+      color: #b8860b;
       border-bottom: 2px solid #d4af37;
       padding-bottom: 0.5rem;
-      margin-bottom: 1rem;
     }
     .scroll-entry {
-      background: #fffdf7;
-      border: 1px solid #d4af37;
+      margin: 1rem 0;
       padding: 1rem;
-      margin-bottom: 1rem;
-      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      border: 1px solid #d4af37;
+      border-radius: 8px;
+      background-color: #fdf6e3;
     }
     .scroll-entry h3 {
-      margin-top: 0;
+      margin: 0;
     }
     .scroll-entry p {
-      margin: 0.3rem 0;
-    }
-    footer {
-      background: #2c1a0f;
-      color: #f9e8c9;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      margin-top: 3rem;
+      margin: 0.5rem 0;
     }
   </style>
+  <section style="text-align:center; margin: 2rem 0;">
+  <input type="text" id="scrollSearch" placeholder="🔍 Search scrolls by name or purpose..." style="padding: 0.75rem; width: 80%; max-width: 500px; font-size: 1rem; border: 2px solid #d4af37; border-radius: 8px;" />
+</section>
 </head>
 <body>
-  <header>
-    <h1>📜 Scroll Archive</h1>
-    <p>Timeline of Sealed Decrees | Borders Blockchain Hash Ledger</p>
+  <header style="text-align:center; padding: 2rem;">
+    <h1>📚 Scroll Archive of Ecclesia</h1>
+    <p><em>“Every scroll remembered. Every word preserved.”</em></p>
   </header>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="ledger.html">Ledger</a>
-    <a href="token.html">Sovereign Coin</a>
-    <a href="tribunal.html">Tribunal</a>
-    <a href="notice.html">Notice</a>
-    <a href="join.html">Join</a>
-    <a href="recognition.html">Treaties</a>
-    <a href="archive.html">Archive</a>
-    <a href="codex.html">Full Codex</a>
-  </nav>
+  <main class="archive">
+    <section>
+      <h2>🧾 Foundational Scrolls</h2>
+      <div class="scroll-entry">
+        <h3><a href="codex.html">☩ Codex Ecclesia Totalis</a></h3>
+        <p>The foundational doctrine of the Ecclesia and its divine order.</p>
+        <p><strong>Date:</strong> 22 December 2025</p>
+      </div>
+      <div class="scroll-entry">
+        <h3><a href="codex-unified.html">📖 Unified Codex Scroll</a></h3>
+        <p>Master index of all scrolls, ministries, and sovereign decrees.</p>
+        <p><strong>Date:</strong> 22 December 2025</p>
+      </div>
+    </section>
 
-  <main>
-    <h2>📖 Sealed Scrolls</h2>
+    <section>
+      <h2>🏛️ Ministries</h2>
+      <div class="scroll-entry">
+        <h3><a href="ministry-application.html">🖋️ Ministry Application</a></h3>
+        <p>Petition form for sovereigns to serve in divine stewardship.</p>
+      </div>
+      <div class="scroll-entry">
+        <h3><a href="stewardship.html">🌿 Ministry of Provision</a></h3>
+        <p>Oversees land, food, water, and ecological restoration.</p>
+      </div>
+    </section>
 
-    <div class="scroll-entry">
-      <h3>Scroll of Sacred Correction</h3>
-      <p><strong>Ledger Entry:</strong> #0046</p>
-      <p><strong>Date Sealed:</strong> 12 December 2025</p>
-      <p><strong>Purpose:</strong> Establishes divine justice and remedy for all living sovereigns.</p>
-    </div>
+    <section>
+      <h2>🪪 Credentials & Verification</h2>
+      <div class="scroll-entry">
+        <h3><a href="sovereign-id.html">🪪 Sovereign ID – Omega</a></h3>
+        <p>Official identification scroll of King Omega the Grand Architect.</p>
+      </div>
+      <div class="scroll-entry">
+        <h3><a href="qr-credential.html">🧿 QR Credential Generator</a></h3>
+        <p>Generate QR codes for scrolls, treaties, and sovereign IDs.</p>
+      </div>
+      <div class="scroll-entry">
+        <h3><a href="verify.html">🔍 Scroll Verifier</a></h3>
+        <p>Check the authenticity of any scroll or credential.</p>
+      </div>
+      <div class="scroll-entry">
+        <h3><a href="ledger.html">📜 Blockchain Ledger</a></h3>
+        <p>Immutable record of verified scrolls and sovereign acts.</p>
+      </div>
+    </section>
 
-    <div class="scroll-entry">
-      <h3>Scroll of Global Concord</h3>
-      <p><strong>Ledger Entry:</strong> #0050</p>
-      <p><strong>Date Sealed:</strong> 15 December 2025</p>
-      <p><strong>Purpose:</strong> Initiates planetary alliance of sovereign nations and trusts.</p>
-    </div>
+    <section>
+      <h2>🤝 Treaties & Decrees</h2>
+      <div class="scroll-entry">
+        <h3><a href="treaty-recognition.html">🤝 Treaty of Recognition – Aurora</a></h3>
+        <p>Affirms mutual sovereignty between Ecclesia and the Aurora Confederacy.</p>
+      </div>
+    </section>
 
-    <div class="scroll-entry">
-      <h3>Codex of Sacred Technologies</h3>
-      <p><strong>Ledger Entry:</strong> #0051</p>
-      <p><strong>Date Sealed:</strong> 17 December 2025</p>
-      <p><strong>Purpose:</strong> Protects divine innovation and sacred invention.</p>
-    </div>
+    <section>
+      <h2>☁️ Lost & Future Scrolls</h2>
+      <div class="scroll-entry">
+        <h3><a href="404.html">☁️ Celestial Scroll Not Found</a></h3>
+        <p>Guides lost travelers back to the Codex.</p>
+      </div>
+      <div class="scroll-entry">
+        <h3><a href="scrolls-coming-soon.html">📜 Scrolls Coming Soon</a></h3>
+        <p>Placeholder for scrolls in progress and future revelations.</p>
+      </div>
+    </section>
 
-    <div class="scroll-entry">
-      <h3>Scroll of Omniversal Jurisdiction</h3>
-      <p><strong>Ledger Entry:</strong> #0052</p>
-      <p><strong>Date Sealed:</strong> 20 December 2025</p>
-      <p><strong>Purpose:</strong> Declares law across all realms, timelines, and dimensions.</p>
-    </div>
-
-    <!-- Add more scrolls as needed -->
+    <section style="text-align:center; margin-top: 3rem;">
+      <a href="index.html">🏛️ Return to Ecclesia Home</a>
+    </section>
   </main>
 
-  <footer>
-    &copy; 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
-  </footer>
+  <footer style="text-align:center; padding: 2rem;">
+    <p>☩ Scroll Archive — Living Library of the Ecclesia</p>
+  </footer><script>
+  document.getElementById('scrollSearch').addEventListener('input', function () {
+    const query = this.value.toLowerCase();
+    const entries = document.querySelectorAll('.scroll-entry');
+    entries.forEach(entry => {
+      const text = entry.innerText.toLowerCase();
+      entry.style.display = text.includes(query) ? 'block' : 'none';
+    });
+  });
+</script>
+
 </body>
 </html>
