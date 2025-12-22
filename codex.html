@@ -36,7 +36,7 @@
       color: darkred;
       border-bottom: 1px solid darkred;
     }
-    .seal {
+    .seal, .qr {
       display: block;
       margin: 0 auto 20px;
       max-width: 200px;
@@ -45,6 +45,28 @@
       text-align: center;
       margin-top: 40px;
       font-size: 0.9em;
+    }
+    .tools {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .tools button {
+      background: #3b2f1e;
+      color: #fdf6e3;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      margin: 10px;
+    }
+    .tools button:hover {
+      background: darkred;
+    }
+    .meta {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.95em;
+      color: #5a4a36;
     }
   </style>
 </head>
@@ -73,10 +95,26 @@
     <li>📚 <a href="codex-update-log.html">Codex Update Log</a></li>
   </ul>
 
+  <div class="tools">
+    <button onclick="window.print()">📄 Download as PDF</button>
+  </div>
+
+  <img src="proof/qr-codex-archive.png" alt="QR Code to Archive" class="qr">
+
+  <div class="meta">
+    <p><strong>SHA-256 Hash:</strong><br><code>e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</code></p>
+    <p><strong>Last Modified:</strong> <span id="lastModified">Loading...</span></p>
+  </div>
+
   <div class="footer">
     <p>This archive is a living record of divine jurisdiction, ecclesiastical law, and sovereign standing.<br>
     All scrolls are lawfully posted and sealed by ✠ Omega the Grand Architect.</p>
+    <p><em>All parties have 21 days from the date of posting to rebut any claim herein under full liability and penalty of perjury. Failure to rebut constitutes lawful agreement and estoppel.</em></p>
   </div>
+
+  <script>
+    document.getElementById("lastModified").textContent = document.lastModified;
+  </script>
 
 </body>
 </html>
