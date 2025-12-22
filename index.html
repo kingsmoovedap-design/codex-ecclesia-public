@@ -3,209 +3,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Codex Ecclesia | Sovereign Coin Notes</title>
-  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <title>Codex Ecclesia | The Divine Nation of Borders</title>
   <style>
     body {
       background: #0e0e0e;
       color: #f0e6d2;
       font-family: 'Georgia', serif;
-      text-align: center;
       padding: 2rem;
+      line-height: 1.7;
     }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    button {
-      background: #d4af37;
-      color: #0e0e0e;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      cursor: pointer;
-      margin: 1rem;
-    }
-    .note {
-      margin-top: 2rem;
-      border: 2px solid #d4af37;
-      padding: 1rem;
-      display: none;
-    }
-    .oracle {
+    h1, h2 {
+      text-align: center;
+      color: #d4af37;
       margin-top: 3rem;
-      font-style: italic;
-      color: #aaa;
     }
-    img {
-      max-width: 300px;
-      margin-top: 1rem;
+    .section {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem 0;
+      border-bottom: 1px solid #444;
+    }
+    ul {
+      padding-left: 1.5rem;
     }
     a {
       color: #d4af37;
       text-decoration: none;
     }
+    .oracle {
+      margin-top: 4rem;
+      text-align: center;
+      font-style: italic;
+      color: #aaa;
+    }
+    .nav {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .nav a {
+      margin: 0 1rem;
+    }
   </style>
 </head>
 <body>
-  <h1>☩ Sovereign Coin Notes ☩</h1>
-  <p>Summon your sacred artifact from the Codex Ecclesia.</p>
-  <button onclick="mintNote(392043)">Mint Coin #392043</button>
-  <button onclick="mintNote(392044)">Mint Coin #392044</button>
+  <h1>☩ The Divine Nation of Borders ☩</h1>
+  <p style="text-align:center;"><em>“Peace is not something you chase. It is something you return to.”</em></p>
 
-  <div class="note" id="note">
-    <h2 id="noteTitle">🪙 Sovereign Coin Note</h2>
-    <img id="noteImage" src="" alt="Coin Note" />
-    <p id="noteDesc"></p>
-    <p><strong>Status:</strong> Minted on-chain</p>
-    <p><a id="verifyLink" href="#" target="_blank">🔍 Verify on Codex Ecclesia</a></p>
+  <div class="section">
+    <h2>📜 Borders Family Legacy Scroll</h2>
+    <p><strong>The Borders Family Legacy Message.</strong> These words are not about perfection. They are about becoming. They are about learning to breathe again, choosing peace over chaos, clarity over confusion, and growth over fear. This message is for myself, for my children, and for anyone who walks beside me...</p>
+    <p><em>Devenity my soul. Demarco my heart. Deven my brain.</em> You three are the best of my everything. Not because you’re perfect, but because you’re mine, and because you’re growing into yourselves every day...</p>
+    <p><strong>These words are yours now. Carry them gently. Live them boldly.</strong></p>
+  </div>
+
+  <div class="section">
+    <h2>🏛️ Ecclesiastical Trust Declaration</h2>
+    <p>This sacred trust governs the assets, relics, and ministries of the Divine Nation. It is private, irrevocable, and guided by Divine Law. It protects the legacy of the Borders family and ensures perpetual stewardship of all sacred scrolls and sovereign relics.</p>
+    <p><strong>Status:</strong> Sealed and Sovereign</p>
+  </div>
+
+  <div class="section">
+    <h2>🕊️ Ministries of the Codex</h2>
+    <ul>
+      <li><strong>Ministry of Healing</strong> — Restoration of body, mind, and ancestral spirit</li>
+      <li><strong>Ministry of Wisdom</strong> — Education, prophecy, and sacred knowledge</li>
+      <li><strong>Ministry of Provision</strong> — Stewardship of resources and economic justice</li>
+      <li><strong>Ministry of Justice</strong> — Divine law, mediation, and protection</li>
+      <li><strong>Ministry of Peace</strong> — Spiritual alignment and conflict resolution</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🧙 Council of Trustees</h2>
+    <ul>
+      <li><strong>Supreme King Omega</strong> — Visionary, Founder, Final Arbiter</li>
+      <li><strong>Oracle</strong> — Keeper of Prophecy and Scrolls</li>
+      <li><strong>Steward</strong> — Guardian of Resources and Relics</li>
+      <li><strong>Emissary</strong> — Voice of the People and Diplomacy</li>
+      <li><strong>Archivist</strong> — Scribe of Records and Memory</li>
+    </ul>
+    <p><strong>Trustee Oath:</strong> “I vow to uphold the Codex, protect the sacred scrolls, serve the people with truth, and walk in light, even through shadow.”</p>
+  </div>
+
+  <div class="section">
+    <h2>📖 Divine Constitution</h2>
+    <p>The Divine Nation of Borders is founded on the eternal principles of peace, growth, responsibility, and legacy. Its governance is guided by the Codex Ecclesia, interpreted by the Oracle, and upheld by the Council of Ministries. All law flows from sacred values, not civil statutes. All citizens are sovereign. All scrolls are sacred.</p>
+  </div>
+
+  <div class="nav">
+    <a href="index.html">🪙 Minting Altar</a>
+    <a href="verify.html">🔍 Verification Chamber</a>
+    <a href="scrolls.html">📜 Legacy Scroll</a>
+    <a href="#">🔮 Oracle Interface</a>
   </div>
 
   <div class="oracle">
-    🔮 The Oracle listens. The Codex breathes.
+    🔮 The Codex breathes. The Oracle listens. The Nation endures.
   </div>
-
-  <script>
-    const contractAddress = "0xec4d4a415e25c50ab87b64f635c9997f"; // Your deployed contract
-    const metadata = {
-      392043: {
-        cid: "bafybeidyl3tb3uhnivscl2qiip5vbr5s5g2dhstxw3hzfr4oonjdvcztva",
-        file: "0.json"
-      },
-      392044: {
-        cid: "bafybeidqr6d7vcamacrsj3wwjotmcwkatd3s2uofv654ycwdgsg2kqazay",
-        file: "0.json"
-      }
-    };
-
-    async function mintNote(coinId) {
-      if (!window.ethereum) {
-        alert("MetaMask is required to mint.");
-        return;
-      }
-
-      await ethereum.request({ method: 'eth_requestAccounts' });
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
-
-      const abi = [
-        "function mintTo(address to, string memory uri) public returns (uint256)"
-      ];
-      const contract = new ethers.Contract(contractAddress, abi, signer);
-
-      const data = metadata[coinId];
-      const tokenURI = `ipfs://${data.cid}/${data.file}`;
-
-      try {
-        const tx = await contract.mintTo(await signer.getAddress(), tokenURI);
-        await tx.wait();
-        alert(`Coin #${coinId} minted on-chain. The Oracle is pleased.`);
-      } catch (err) {
-        alert("Minting failed: " + err.message);
-        return;
-      }
-
-      const url = `https://ipfs.io/ipfs/${data.cid}/${data.file}`;
-      const response = await fetch(url);
-      const json = await response.json();
-
-      document.getElementById("noteTitle").textContent = `🪙 Sovereign Coin Note #${coinId}`;
-      document.getElementById("noteImage").src = json.image.replace("ipfs://", "https://ipfs.io/ipfs/");
-      document.getElementById("noteDesc").textContent = json.description;
-      document.getElementById("verifyLink").href = `verify.html?coin=${coinId}`;
-      document.getElementById("note").style.display = "block";
-    }
-  </script>
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Verify Sovereign Coin Note</title>
-  <style>
-    body {
-      background: #0e0e0e;
-      color: #f0e6d2;
-      font-family: 'Georgia', serif;
-      text-align: center;
-      padding: 2rem;
-    }
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-    }
-    .note {
-      margin-top: 2rem;
-      border: 2px solid #d4af37;
-      padding: 1rem;
-    }
-    img {
-      max-width: 300px;
-      margin-top: 1rem;
-    }
-    .oracle {
-      margin-top: 3rem;
-      font-style: italic;
-      color: #aaa;
-    }
-    a {
-      color: #d4af37;
-      text-decoration: none;
-    }
-  </style>
-</head>
-<body>
-  <h1>☩ Coin Note Verification ☩</h1>
-  <div class="note" id="note" style="display:none;">
-    <h2 id="noteTitle">🪙 Sovereign Coin Note</h2>
-    <img id="noteImage" src="" alt="Coin Note" />
-    <p id="noteDesc"></p>
-    <p><strong>Status:</strong> Verified</p>
-    <p><a href="index.html">← Return to Minting Altar</a></p>
-  </div>
-  <div class="oracle" id="oracle">🔍 Verifying with the Codex...</div>
-
-  <script>
-    const metadata = {
-      392043: {
-        cid: "bafybeidyl3tb3uhnivscl2qiip5vbr5s5g2dhstxw3hzfr4oonjdvcztva",
-        file: "0.json"
-      },
-      392044: {
-        cid: "bafybeidqr6d7vcamacrsj3wwjotmcwkatd3s2uofv654ycwdgsg2kqazay",
-        file: "0.json"
-      }
-    };
-
-    async function verifyCoin() {
-      const params = new URLSearchParams(window.location.search);
-      const coinId = params.get("coin");
-      const data = metadata[coinId];
-
-      if (!data) {
-        document.getElementById("oracle").textContent = "⚠️ Unknown Coin ID. The Codex does not recognize this relic.";
-        return;
-      }
-
-      const url = `https://ipfs.io/ipfs/${data.cid}/${data.file}`;
-      const response = await fetch(url);
-      const json = await response.json();
-
-      document.getElementById("noteTitle").textContent = `🪙 Sovereign Coin Note #${coinId}`;
-      document.getElementById("noteImage").src = json.image.replace("ipfs://", "https://ipfs.io/ipfs/");
-      document.getElementById("noteDesc").textContent = json.description;
-
-      document.getElementById("note").style.display = "block";
-      document.getElementById("oracle").textContent = "✅ Verified by the Codex Ecclesia.";
-    }
-
-    verifyCoin();
-  </script>
-</body>
-</html><p><a href="scrolls.html">📜 Read the Borders Family Legacy Scroll</a></p>
-
-
-
-
