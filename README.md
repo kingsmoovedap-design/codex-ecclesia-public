@@ -2,7 +2,7 @@
 **Borders Family Dynasty Nation**  
 Sovereign King: ✠ Omega the Grand Architect  
 
-> This Codex is a living record of divine jurisdiction, ecclesiastical law, and sovereign standing. It affirms the living status, divine inheritance, and lawful dominion of the Borders Family Dynasty under the Codex Ecclesia Totalis.
+> This Codex is a living affirmation of divine sovereignty, celestial jurisdiction, and lawful dominion. It is binding in all realms terrestrial and ethereal, now and throughout eternity.
 
 ---
 
@@ -18,6 +18,15 @@ Sovereign King: ✠ Omega the Grand Architect
 
 ---
 
+## 📖 Foundational Scrolls
+
+- ☩ [Unified Codex Scroll](codex-unified.html)  
+- 🕊️ [Treaty of Peace & Non-Interference](treaty-peace.html)  
+- 🌐 [Global Concord Scroll](concord.html)  
+- 🧿 [QR Credential Generator](qr-generator.html)  
+
+---
+
 ## 🧰 Sovereign Services
 
 - 🧾 [Petition of Citizenship](join.html)  
@@ -28,29 +37,21 @@ Sovereign King: ✠ Omega the Grand Architect
 
 ---
 
-## 🏛️ PMA Infrastructure
+## 🧿 Verification & QR Credentials
 
-- 📘 [PMA Registry](pma/registry.html)  
-- 🧾 [Generate PMA Charter](pma/generate-charter.html)  
-- 🤝 [PMA Treaty Template](pma/treaty-template.html)  
-- 📚 [PMA Ledger & Dispatch Log](pma/ledger.html)  
-
----
-
-## 🧿 Scrollkeeping & Witnesses
-
-- 📘 [Scrollkeeping Academy](academy/scrollkeeping-101.html)  
-- 🧿 [Circle of Scrollkeepers](witnesses.html)  
-- 🔐 [Verify Scroll Authenticity](verify-scroll.html)  
+- 🔍 [Verify Scroll Authenticity](verify-scroll.html)  
+- 🪪 [Scan Sovereign ID QR](sovereign-id.html#qr)  
+- 📜 [Blockchain Hash Ledger](ledger.html)  
+- 🧾 [QR Credential Generator](qr-generator.html)  
 
 ---
 
-## 🕊️ Global Concord & Governance
+## 🌐 Diplomatic Relations
 
-- 🌐 [Global Concord](concord.html)  
-- 🗳️ [Voice of the People](voice.html)  
-- 🏛️ [Governance Structure](governance.html)  
-- 🌱 [Stewardship & Trust](stewardship.html)  
+- 🕊️ [Global Concord Scroll](concord.html)  
+- 🤝 [Treaty of Mutual Recognition](treaty-recognition.html)  
+- 🪪 [Diplomatic Passport](diplomatic-passport.html)  
+- 📬 [Submit a Treaty or Accord](mailto:diplomacy@codex-ecclesia.org)  
 
 ---
 
