@@ -111,6 +111,16 @@
 
   <footer style="text-align:center; padding: 2rem;">
     <p>☩ Scroll Archive — Living Library of the Ecclesia</p>
-  </footer>
+  </footer><script>
+  document.getElementById('scrollSearch').addEventListener('input', function () {
+    const query = this.value.toLowerCase();
+    const entries = document.querySelectorAll('.scroll-entry');
+    entries.forEach(entry => {
+      const text = entry.innerText.toLowerCase();
+      entry.style.display = text.includes(query) ? 'block' : 'none';
+    });
+  });
+</script>
+
 </body>
 </html>
