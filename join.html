@@ -1,28 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="description" content="Join the Borders Family Dynasty Nation. Citizen onboarding, ministry enrollment, and sovereign declaration forms.">
-  <title>Join the Borders Family Dynasty Nation</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🧾 Join the Living Scroll | Codex Ecclesia</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      color: #2c1a0f;
+    }
+    header {
+      background: linear-gradient(to right, #2c1a0f, #5e3b1d);
+      color: #f9e8c9;
+      padding: 2rem;
+      text-align: center;
+      border-bottom: 4px solid gold;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+    nav {
+      background: #3b2614;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1rem;
+    }
+    nav a {
+      color: #f9e8c9;
+      text-decoration: none;
+      font-weight: bold;
+      font-family: 'Inter', sans-serif;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h2 {
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    form {
+      background: #fffdf7;
+      border: 1px solid #d4af37;
+      padding: 1.5rem;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 1.5rem;
+      padding: 0.7rem 1.5rem;
+      background: #2c1a0f;
+      color: #f9e8c9;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #5e3b1d;
+    }
+    footer {
+      background: #2c1a0f;
+      color: #f9e8c9;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+  </style>
 </head>
 <body>
-  <h1>🫱🏽‍🫲🏽 Join the Borders Family Dynasty Nation</h1>
-  <p>Welcome, sovereign soul. You are invited to enroll as a citizen, minister, or emissary of the Borders Family Dynasty Nation.</p>
+  <header>
+    <h1>🧾 Join the Living Scroll</h1>
+    <p>Petition of Citizenship | Borders Family Dynasty Nation</p>
+  </header>
 
-  <h2>📥 Download Enrollment Form</h2>
-  <p><a href="proof/BFDN-Citizen-Onboarding-Form.pdf" target="_blank">Download Citizen Onboarding Form (PDF)</a></p>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="ledger.html">Ledger</a>
+    <a href="token.html">Sovereign Coin</a>
+    <a href="tribunal.html">Tribunal</a>
+    <a href="notice.html">Notice</a>
+    <a href="join.html">Join</a>
+    <a href="recognition.html">Treaties</a>
+    <a href="archive.html">Archive</a>
+    <a href="codex.html">Full Codex</a>
+  </nav>
 
-  <h2>📤 Submission Instructions</h2>
-  <ol>
-    <li>Download and complete the form above</li>
-    <li>Sign and date the form with a witness</li>
-    <li>Email a scanned copy to: <strong>bordersdynasty@protonmail.com</strong></li>
-    <li>Or mail to: Borders Ecclesia Earth Trust, Grand Terrace, CA [ZIP]</li>
-  </ol>
+  <main>
+    <h2>📜 Petition of Citizenship</h2>
+    <p>To be entered into the Book of the Living Scroll, complete the form below. Your name shall be recorded in the Borders Blockchain Hash Ledger and your Sovereign Identity Scroll shall be issued.</p>
 
-  <h2>💠 Optional: Ministry & Volunteer Enrollment</h2>
-  <p>If you wish to serve as a Minister, Emissary, or Trustee, please indicate this on your form and include a short statement of purpose.</p>
+    <form name="petition" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="petition" />
+      <label for="name">Full Name (as you wish it to appear):</label>
+      <input type="text" id="name" name="name" required />
 
-  <p><a href="index.html">← Return to Home</a></p>
+      <label for="title">Sovereign Title (optional):</label>
+      <input type="text" id="title" name="title" placeholder="e.g., Guardian of the Fifth Seal" />
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="declaration">Declaration of Intent:</label>
+      <textarea id="declaration" name="declaration" rows="4" placeholder="I hereby affirm my living status and allegiance to the Codex Ecclesia Totalis..." required></textarea>
+
+      <button type="submit">Submit Petition</button>
+    </form>
+  </main>
+
+  <footer>
+    &copy; 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
+  </footer>
 </body>
 </html>
