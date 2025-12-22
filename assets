@@ -1,0 +1,8 @@
+.sigil, .flag, .emblem {
+  max-width: 300px;
+  display: block;
+  margin: 2rem auto;
+}<img src="assets/seal.png" alt="Sovereign Seal" class="sigil"/>
+<img src="assets/flag.png" alt="National Flag" class="flag"/>
+<img src="assets/emblem.png" alt="Identity Emblem" class="emblem"/>
+
