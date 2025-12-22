@@ -127,10 +127,43 @@
 </html><li>📜 <a href="codex-unified.html">Unified Codex Scroll</a></li><li>☩ <a href="codex-supreme.html">Supreme Codex Scroll</a></li>
 <li>☩ <a href="codex-infrastructure.html">Sovereign Infrastructure Portal</a></li>
 <li>☩ <a href="scroll-of-upgrades.html">Scroll of Upgrades</a></li>
-<thirdweb-connect-button />
-<thirdweb-nft-collection-mint-button
-  contractAddress="YOUR_CONTRACT_ADDRESS"
-/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sovereign Coin Minting Portal</title>
+
+  <!-- Thirdweb SDK Embed -->
+  <script src="https://sdk.vercel.thirdweb.com/react/latest/thirdweb.min.js"></script>
+
+  <!-- Optional: Styling -->
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #0e0e0e;
+      color: #f5f5f5;
+      text-align: center;
+      padding: 3rem;
+    }
+    .mint-box {
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>👑 Mint Your Sovereign Coin Note</h1>
+  <p>Connect your wallet and summon your on-chain artifact.</p>
+
+  <div class="mint-box">
+    <thirdweb-connect-button />
+    <thirdweb-nft-collection-mint-button
+      contractAddress="YOUR_CONTRACT_ADDRESS"
+    />
+  </div>
+</body>
+</html>
+
 
 
 
