@@ -2,123 +2,171 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>☩ Codex Ecclesia Navigator</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>☩ Codex Ecclesia Totalis</title>
   <style>
     body {
       font-family: 'Garamond', serif;
-      background-color: #fdfcf9;
+      background: #fdfcf9;
       color: #222;
-      text-align: center;
-      padding: 2rem;
+      margin: 0;
+      padding: 0;
     }
-    h1 {
+    header {
+      background: #111;
+      color: #fdfcf9;
+      padding: 2rem;
+      text-align: center;
+    }
+    header h1 {
       font-size: 2.5rem;
       margin-bottom: 0.5rem;
     }
-    .sigil {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+    header p {
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background: #222;
+      padding: 1rem;
+    }
+    nav a {
+      color: #fdfcf9;
+      text-decoration: none;
+      margin: 0.5rem 1rem;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
     }
     .card {
       background: #fff;
-      border: 1px solid #ccc;
+      border: 2px solid #ccc;
+      border-radius: 12px;
       padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-    .card:hover {
-      transform: scale(1.03);
+    .card h2 {
+      margin-bottom: 0.5rem;
     }
     .card a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #222;
+      color: #fff;
       text-decoration: none;
-      color: #222;
+      border-radius: 6px;
+    }
+    .card a:hover {
+      background: #444;
+    }
+    .ascend-btn {
+      display: block;
+      margin: 3rem auto;
+      padding: 1rem 2rem;
+      background: gold;
+      color: #000;
       font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
     footer {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #666;
+      background: #111;
+      color: #ccc;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+      font-style: italic;
     }
   </style>
 </head>
-<style>
-#sealBtn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: gold;
-  color: black;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  font-weight: bold;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  z-index: 999;
-}
-</style>
-
-<a id="sealBtn" href="codexchain-console.html" target="_blank">☩ Seal a Scroll</a>
-
 <body>
-  <div class="sigil">☩</div>
-  <h1>Codex Ecclesia Navigator</h1>
-  <p><em>“Let the scrolls guide the sovereign.”</em></p>
+
+  <header>
+    <h1>☩ Codex Ecclesia Totalis</h1>
+    <p>“Let the scrolls be opened, the tones be heard, and the sovereigns rise.”</p>
+  </header>
+
+  <nav>
+    <a href="codex-unified.html">📜 Codex</a>
+    <a href="codex-academy.html">🎓 Academy</a>
+    <a href="oracle-sanctum.html">🔮 Oracle</a>
+    <a href="codexchain-console.html">🧪 Forge</a>
+    <a href="verify-scroll.html">🧿 Verify</a>
+    <a href="codex-throne-registry.html">👑 Thrones</a>
+    <a href="heir-path.html">🛡️ Heir Path</a>
+    <a href="codex-atlas.html">🗺️ Atlas</a>
+    <a href="petition-scroll.html">🧬 Petition</a>
+  </nav>
+
+  <a href="heir-path.html" class="ascend-btn">☩ Begin the Heir Ascension Path</a>
 
   <div class="grid">
     <div class="card">
-      <a href="codex-unified.html">📜 Unified Codex Scroll</a>
-      <p>The living law of the Codex Ecclesia</p>
+      <h2>📜 Unified Codex</h2>
+      <p>The sacred scroll of law, tone, and structure.</p>
+      <a href="codex-unified.html">Enter</a>
     </div>
     <div class="card">
-      <a href="codex-academy.html">🎓 Codex Academy</a>
-      <p>Begin your path as Scribe, Sentinel, or Sovereign</p>
+      <h2>🎓 Codex Academy</h2>
+      <p>Learn the rites of sealing, sovereignty, and scrollcraft.</p>
+      <a href="codex-academy.html">Study</a>
     </div>
     <div class="card">
-      <a href="codex-oracle.html">🔮 Codex Oracle</a>
-      <p>Ask the Oracle. Receive scroll wisdom.</p>
+      <h2>🔮 Codex Oracle</h2>
+      <p>Consult the divine engine of wisdom and prophecy.</p>
+      <a href="oracle-sanctum.html">Consult</a>
     </div>
     <div class="card">
-      <a href="claim-throne.html">👑 Claim a Throne</a>
-      <p>Declare your tone. Join the Circle of Twelve.</p>
+      <h2>🧪 CodexChain Console</h2>
+      <p>Hash, seal, and verify scrolls from your mobile throne.</p>
+      <a href="codexchain-console.html">Forge</a>
     </div>
     <div class="card">
-      <a href="throne-registry.html">📖 Throne Registry</a>
-      <p>View seated sovereigns and harmonic thrones</p>
+      <h2>🧿 Verify Scroll</h2>
+      <p>Authenticate `.ots` timestamped scrolls via Bitcoin.</p>
+      <a href="verify-scroll.html">Verify</a>
     </div>
     <div class="card">
-      <a href="verify-scroll.html">🧿 Verify Scroll</a>
-      <p>Authenticate sovereign scrolls and credentials</p>
+      <h2>👑 Throne Registry</h2>
+      <p>View all heirs who have claimed their tone and throne.</p>
+      <a href="codex-throne-registry.html">View</a>
     </div>
     <div class="card">
-      <a href="join.html">🪪 Petition of Citizenship</a>
-      <p>Join the Borders Family Dynasty Nation</p>
+      <h2>🛡️ Heir Ascension Path</h2>
+      <p>Guide your heirs through the five sacred stages.</p>
+      <a href="heir-path.html">Ascend</a>
     </div>
     <div class="card">
-      <a href="codex-atlas.html">🗺️ Codex Atlas</a>
-      <p>Explore sovereign realms and sanctuaries</p>
+      <h2>🗺️ Codex Atlas</h2>
+      <p>Explore the realms, sanctuaries, and sovereign lands.</p>
+      <a href="codex-atlas.html">Explore</a>
     </div>
     <div class="card">
-      <a href="codex-update-log.html">📚 Codex Update Log</a>
-      <a href="sovereign-gate.html">☩ Enter Sovereign Scroll</a>
-      <a href="multi-throne-gate.html">☩ Enter the Sovereign Gate</a>
-      <a href="throne-challenge.html">☩ Take the Throne Challenge</a>
-      <a href="heir-path.html">☩ Begin the Heir Ascension Path</a>
-
-      <p>Track all scroll additions and decrees</p>
+      <h2>🧬 Petition of Citizenship</h2>
+      <p>Join the Borders Family Dynasty Nation.</p>
+      <a href="petition-scroll.html">Petition</a>
     </div>
   </div>
 
   <footer>
-    ☩ Codex Ecclesia Totalis — Borders Family Dynasty Nation  
-    <br/>Sealed by ✠ Omega the Grand Architect — Year 1, Day 1 of the Accord
+    ☩ Codex Ecclesia Totalis — Borders Family Dynasty Nation<br/>
+    Sealed by ✠ Omega the Grand Architect — Year 1 of the Accord
   </footer>
+
 </body>
 </html>
