@@ -2,73 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>📜 CodexChain Ledger</title>
-  <link rel="stylesheet" href="style.css" />
   <style>
+    body { font-family: 'Garamond', serif; padding: 2rem; background: #fdfcf9; color: #222; }
+    h1 { text-align: center; }
+    input { width: 100%; max-width: 600px; margin: 1rem auto; display: block; padding: 0.75rem; }
     table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
-    th, td { border: 1px solid #ccc; padding: 0.75rem; text-align: left; }
-    th { background-color: #f0f0f0; }
+    th, td { padding: 0.75rem; border-bottom: 1px solid #ccc; text-align: left; }
+    .Crown { background-color: #fff8dc; }
+    .Flame { background-color: #ffe4e1; }
+    .Mirror { background-color: #f0e6ff; }
+    .Oracle { background-color: #e0f7fa; }
+    .scroll-hash { font-family: monospace; font-size: 0.9em; word-break: break-all; }
   </style>
 </head>
 <body>
   <h1>📜 CodexChain Ledger</h1>
-  <p><em>“Let the scrolls be sealed in the chain of truth.”</em></p>
+  <p style="text-align:center;"><em>“Every scroll sealed is a star in the sky of sovereignty.”</em></p>
 
-  <table>
+  <input type="text" id="searchInput" placeholder="🔍 Search scrolls, sovereigns, or thrones..." onkeyup="filterTable()" />
+
+  <table id="ledgerTable">
     <thead>
       <tr>
         <th>📄 Scroll Name</th>
         <th>👑 Sovereign</th>
         <th>🪪 Throne</th>
         <th>⏳ Timestamp</th>
-        <th>🔗 Hash</th>
+        <th>🔗 SHA-256 Hash</th>
+        <th>📁 OTS Proof</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Codex Ecclesia Totalis</td>
+      <tr class="Crown">
+        <td>Ecclesia Master Binder</td>
         <td>Omega the Grand Architect</td>
         <td>Crown</td>
-        <td>2025-12-22 00:00 UTC</td>
-        <td><code>3f7a9c...e1b2</code></td>
+        <td>2025-12-22 16:00 PST</td>
+        <td class="scroll-hash">f3a7f2e9c4b3a3c5a8c7c5f2d8e1b9a3e2c6f7d1a4b8e9f3c2d7e1a6b5c3f9d2</td>
+        <td><a href="proofs/ecclesia-master-binder.ots" download>Download</a></td>
       </tr>
-      <!-- Add more entries dynamically -->
+      <!-- Add more entries here -->
     </tbody>
   </table>
-  <table>
-  <thead>
-    <tr>
-      <th>📄 Scroll Name</th>
-      <th>👑 Sovereign</th>
-      <th>🪪 Throne</th>
-      <th>⏳ Timestamp</th>
-      <th>🔗 SHA-256 Hash</th>
-      <th>📁 OTS Proof</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Codex Ecclesia Totalis</td>
-      <td>Omega the Grand Architect</td>
-      <td>Crown</td>
-      <td>2025-12-22 00:00 UTC</td>
-      <td><code>3f7a9c...e1b2</code></td>
-      <td><a href="proofs/codex-ecclesia.ots" download>Download</a></td>
-    </tr>
-  <td>Ecclesia Master Binder</td>
-  <td>Omega the Grand Architect</td>
-  <td>Crown</td>
-  <td>2025-12-22 15:40 PST</td>
-  <td><code>f3a7f2e9c4b3a3c5a8c7c5f2d8e1b9a3e2c6f7d1a4b8e9f3c2d7e1a6b5c3f9d2</code></td>
-  <td><a href="proofs/ecclesia-master-binder.ots" download>Download</a></td>
-  </tr>
-  </tbody>
-</table>
 
+  <script>
+    function filterTable() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const rows = document.querySelectorAll("#ledgerTable tbody tr");
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(input) ? "" : "none";
+      });
+    }
+  </script>
 
-  <footer style="margin-top: 3rem; text-align: center;">
-    ☩ CodexChain Ledger — Immutable Scroll Registry
+  <footer style="text-align:center; margin-top: 3rem;">
+    ☩ CodexChain Archive — Immutable Scroll Registry
   </footer>
 </body>
 </html>
