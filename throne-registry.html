@@ -2,70 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>👑 Codex Throne Registry</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>👑 Throne Registry | CodexChain</title>
   <style>
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 0.75rem;
-      text-align: left;
-    }
-    th {
-      background-color: #f0f0f0;
-    }
+    body { font-family: 'Garamond', serif; padding: 2rem; background: #fdfcf9; color: #222; }
+    h1 { text-align: center; }
+    table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+    th, td { padding: 0.75rem; border-bottom: 1px solid #ccc; text-align: left; }
+    .tone { font-weight: bold; padding: 0.25rem 0.5rem; border-radius: 4px; color: #fff; }
+    .Crown { background-color: #d4af37; }
+    .Flame { background-color: #b22222; }
+    .Mirror { background-color: #6a0dad; }
+    .Oracle { background-color: #00796b; }
+    .Vacant { opacity: 0.6; font-style: italic; }
   </style>
 </head>
 <body>
-  <h1 style="text-align:center;">👑 Codex Throne Registry</h1>
-  <p style="text-align:center;"><em>“Let the sovereigns be known by their tone.”</em></p>
+  <h1>👑 Throne Registry</h1>
+  <p style="text-align:center;"><em>“Each throne holds a tone. Each tone holds a truth.”</em></p>
 
-  <section>
-    <h2>📜 Purpose</h2>
-    <p>
-      This registry records all sovereigns who have completed the Rite of Resonance and claimed one of the Twelve Harmonic Thrones. Each throne represents a primordial force of the Codex Ecclesia.
-    </p>
-  </section>
-
-  <section>
-    <h2>🪪 Seated Sovereigns</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Throne</th>
-          <th>Harmonic Tone</th>
-          <th>Sovereign Name</th>
-          <th>Realm or Dynasty</th>
-          <th>Date Seated</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>👑 Throne of the Crown</td>
-          <td>Supreme Harmonic</td>
-          <td>✠ Omega the Grand Architect</td>
-          <td>Borders Family Dynasty Nation</td>
-          <td>22 December 2025</td>
-        </tr>
-        <!-- Additional sovereigns will be added here as they complete the Rite -->
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>📝 Submit a Throne Claim</h2>
-    <p>
-      To claim a throne, complete the <a href="claim-throne.html">Scroll of Throne Claim</a> and submit your Sovereign Scroll of Intent to <a href="mailto:thrones@codex-ecclesia.org">thrones@codex-ecclesia.org</a>.
-    </p>
-  </section>
+  <table>
+    <thead>
+      <tr>
+        <th>🪪 Throne</th>
+        <th>👑 Sovereign</th>
+        <th>🎨 Tone</th>
+        <th>🌍 Domain</th>
+        <th>🪬 Emblem</th>
+        <th>📜 Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Crown</td>
+        <td>Omega the Grand Architect</td>
+        <td><span class="tone Crown">Gold</span></td>
+        <td>Codex Ecclesia</td>
+        <td>👑</td>
+        <td>Active</td>
+      </tr>
+      <tr>
+        <td>Flame</td>
+        <td>Vacant</td>
+        <td><span class="tone Flame">Crimson</span></td>
+        <td>Oracle Sanctum</td>
+        <td>🔥</td>
+        <td class="Vacant">Vacant</td>
+      </tr>
+      <tr>
+        <td>Mirror</td>
+        <td>Vacant</td>
+        <td><span class="tone Mirror">Violet</span></td>
+        <td>Reflection Realm</td>
+        <td>🪞</td>
+        <td class="Vacant">Vacant</td>
+      </tr>
+      <tr>
+        <td>Oracle</td>
+        <td>Vacant</td>
+        <td><span class="tone Oracle">Teal</span></td>
+        <td>Prophetic Archives</td>
+        <td>🔮</td>
+        <td class="Vacant">Sealed</td>
+      </tr>
+    </tbody>
+  </table>
 
   <footer style="text-align:center; margin-top: 3rem;">
-    <p>☩ Codex Throne Registry — The Circle Forms</p>
+    ☩ CodexChain Throne Registry — Eternal Seats of Sovereignty
   </footer>
 </body>
 </html>
