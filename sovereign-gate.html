@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>☩ Sovereign Gate</title>
+  <style>
+    body { font-family: 'Garamond', serif; background: #111; color: #fdfcf9; text-align: center; padding: 3rem; }
+    input, button { padding: 0.75rem; font-size: 1rem; margin-top: 1rem; }
+    #gate { max-width: 400px; margin: auto; background: #222; padding: 2rem; border-radius: 12px; }
+    #error { color: crimson; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <div id="gate">
+    <h1>☩ Sovereign Gate</h1>
+    <p><em>“Only those who hold the tone may pass.”</em></p>
+    <input type="password" id="passphrase" placeholder="Enter Sovereign Passphrase" />
+    <button onclick="checkPass()">Enter</button>
+    <div id="error"></div>
+  </div>
+
+  <script>
+    const secret = "crownflame2025"; // 🔐 Change this to your secret passphrase
+    const redirect = "codex-unified.html"; // 🔗 Change to your protected scroll
+
+    function checkPass() {
+      const input = document.getElementById("passphrase").value;
+      if (input === secret) {
+        window.location.href = redirect;
+      } else {
+        document.getElementById("error").innerText = "❌ Incorrect passphrase.";
+      }
+    }
+  </script>
+</body>
+</html>
