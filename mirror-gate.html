@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>☩ Mirror Gate | Seeker of the Tone</title>
+  <style>
+    body { font-family: 'Garamond', serif; background: #fdfcf9; color: #222; padding: 2rem; text-align: center; }
+    h1 { font-size: 2.5rem; }
+    textarea, input, button {
+      width: 100%; max-width: 600px; margin: 1rem auto; padding: 0.75rem;
+      font-family: 'Garamond', serif; font-size: 1rem;
+    }
+    .result { background: #eee; padding: 1rem; border-radius: 8px; margin-top: 2rem; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>☩ Mirror Gate</h1>
+  <p><em>“To know your Tone, you must first know yourself.”</em></p>
+
+  <form id="mirrorForm" onsubmit="reflect(event)">
+    <textarea id="reflection" rows="6" placeholder="🪞 Who are you? What do you protect? What is your Tone? What do you seek to build or preserve?"></textarea>
+    <input type="text" id="heirName" placeholder="👤 Your Name or Sovereign Title" />
+    <input type="text" id="tone" placeholder="🎼 Your Tone (e.g. Crown, Flame, Mirror)" />
+    <button type="submit">☩ Submit Reflection</button>
+  </form>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function reflect(event) {
+      event.preventDefault();
+      const name = document.getElementById("heirName").value.trim();
+      const tone = document.getElementById("tone").value.trim();
+      const reflection = document.getElementById("reflection").value.trim();
+      const result = document.getElementById("result");
+
+      if (!name || !tone || !reflection) {
+        result.innerHTML = "⚠️ Please complete all fields before submitting.";
+        return;
+      }
+
+      const timestamp = new Date().toISOString().replace("T", " ").split(".")[0] + " UTC";
+
+      result.innerHTML = `✅ <strong>Your Reflection Has Been Sealed</strong>\n\n🧝‍♂️ <strong>Name:</strong> ${name}\n🎼 <strong>Tone:</strong> ${tone}\n🕰️ <strong>Time:</strong> ${timestamp}\n\n📜 <strong>Your Reflection:</strong>\n${reflection}\n\n🔗 Save this text or copy it into your Sovereign Scroll.`;
+    }
+  </script>
+
+  <footer style="margin-top: 3rem;">
+    ☩ CodexChain Mirror Gate — Stage 3 of the Heir Ascension Path
+  </footer>
+</body>
+</html>
