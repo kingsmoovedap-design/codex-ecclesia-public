@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>☩ Multi-Throne Gate</title>
+  <style>
+    body { font-family: 'Garamond', serif; background: #111; color: #fdfcf9; text-align: center; padding: 3rem; }
+    input, button { padding: 0.75rem; font-size: 1rem; margin-top: 1rem; }
+    #gate { max-width: 400px; margin: auto; background: #222; padding: 2rem; border-radius: 12px; }
+    #error { color: crimson; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <div id="gate">
+    <h1>☩ Multi-Throne Gate</h1>
+    <p><em>“Speak your tone and pass into your realm.”</em></p>
+    <input type="password" id="passphrase" placeholder="Enter Throne Passphrase" />
+    <button onclick="checkPass()">Enter</button>
+    <div id="error"></div>
+  </div>
+
+  <script>
+    const thrones = {
+      "crownflame2025": "codex-unified.html",
+      "mirrorlight": "reflection-scroll.html",
+      "oracletide": "oracle-sanctum.html",
+      "flamekeeper": "flame-scroll.html"
+    };
+
+    function checkPass() {
+      const input = document.getElementById("passphrase").value.trim().toLowerCase();
+      const redirect = thrones[input];
+      if (redirect) {
+        window.location.href = redirect;
+      } else {
+        document.getElementById("error").innerText = "❌ No throne recognizes that tone.";
+      }
+    }
+  </script>
+</body>
+</html>
