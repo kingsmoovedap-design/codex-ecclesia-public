@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>☩ Throne Challenge</title>
+  <style>
+    body { font-family: 'Garamond', serif; background: #111; color: #fdfcf9; padding: 2rem; text-align: center; }
+    .riddle-box { background: #222; padding: 2rem; border-radius: 12px; margin: 2rem auto; max-width: 600px; }
+    input, button { padding: 0.75rem; margin-top: 1rem; width: 100%; max-width: 400px; }
+    .error { color: crimson; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>☩ Throne Challenge Scroll</h1>
+  <p><em>“Only those who answer in truth may ascend.”</em></p>
+
+  <div class="riddle-box">
+    <h2>👑 Crown Throne</h2>
+    <p>I shine without fire, rule without sword.  
+    My tone is wealth, my weight is hoard.  
+    What am I?</p>
+    <input type="text" id="crownAnswer" placeholder="Your answer..." />
+    <button onclick="checkRiddle('crown')">Enter</button>
+    <div class="error" id="crownError"></div>
+  </div>
+
+  <div class="riddle-box">
+    <h2>🔥 Flame Throne</h2>
+    <p>I consume but give light,  
+    I dance in the dark, fierce and bright.  
+    What am I?</p>
+    <input type="text" id="flameAnswer" placeholder="Your answer..." />
+    <button onclick="checkRiddle('flame')">Enter</button>
+    <div class="error" id="flameError"></div>
+  </div>
+
+  <div class="riddle-box">
+    <h2>🪞 Mirror Throne</h2>
+    <p>I show you yourself, but I am not you.  
+    I reflect all, yet reveal nothing new.  
+    What am I?</p>
+    <input type="text" id="mirrorAnswer" placeholder="Your answer..." />
+    <button onclick="checkRiddle('mirror')">Enter</button>
+    <div class="error" id="mirrorError"></div>
+  </div>
+
+  <script>
+    const answers = {
+      crown: { answer: "gold", redirect: "codex-unified.html" },
+      flame: { answer: "fire", redirect: "flame-scroll.html" },
+      mirror: { answer: "mirror", redirect: "reflection-scroll.html" }
+    };
+
+    function checkRiddle(throne) {
+      const input = document.getElementById(`${throne}Answer`).value.trim().toLowerCase();
+      const errorDiv = document.getElementById(`${throne}Error`);
+      if (input === answers[throne].answer) {
+        window.location.href = answers[throne].redirect;
+      } else {
+        errorDiv.textContent = "❌ That is not the correct tone.";
+      }
+    }
+  </script>
+
+  <footer style="margin-top: 3rem;">
+    ☩ CodexChain Throne Challenge — Riddle Gate of the Sovereigns
+  </footer>
+</body>
+</html>
