@@ -1,73 +1,72 @@
-/* Typography & Base */
 body {
-  background-color: #fdfcf9;
-  color: #222;
-  font-family: 'Garamond', serif;
   margin: 0;
+  font-family: "Times New Roman", serif;
+  display: flex;
+  background: #f4f4f4;
+}
+
+.sidebar {
+  width: 220px;
+  background: #111;
+  color: #fff;
+  height: 100vh;
+  position: fixed;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
+
+.sidebar ul {
+  list-style: none;
   padding: 0;
 }
-h1, h2, h3 {
-  text-align: center;
+
+.sidebar li {
+  margin: 10px 0;
 }
-a {
-  color: #004488;
-  font-weight: bold;
+
+.sidebar a {
+  color: #ccc;
   text-decoration: none;
 }
-a:hover {
-  text-decoration: underline;
+
+.sidebar a:hover {
+  color: #fff;
 }
 
-/* Layout */
-header, footer {
-  background: #eae6dc;
-  padding: 1rem;
+.main-content {
+  margin-left: 240px;
+  padding: 40px;
+  width: 100%;
+}
+
+header {
   text-align: center;
-}
-main {
-  padding: 2rem;
-  max-width: 1000px;
-  margin: auto;
-}
-section {
-  margin-bottom: 3rem;
+  margin-bottom: 2em;
 }
 
-/* Navigation */
-nav {
-  margin-top: 1rem;
-}
-nav a {
-  margin: 0 1rem;
-}
-
-/* Cards */
 .card-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-}
-.card {
-  border: 1px solid #aaa;
-  border-radius: 8px;
-  padding: 1rem;
-  width: 280px;
-  background: #fff;
-  text-align: center;
-}
-.card a {
-  display: inline-block;
-  margin-top: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1em;
 }
 
-/* Trustees */
-ul.trustees {
-  list-style: none;
-  padding-left: 0;
-  text-align: center;
+.card {
+  background: #fff;
+  padding: 1em;
+  border-left: 4px solid #003366;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-ul.trustees li {
-  margin-bottom: 0.5rem;
-  font-weight: bold;
+
+.card h3 {
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.card a {
+  text-decoration: none;
+  color: #003366;
 }
