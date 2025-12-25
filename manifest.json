@@ -2,115 +2,75 @@
   "items": [
     {
       "section": "core",
-      "title": "Borders Earth Trust",
-      "path": "borders-earth-trust.html"
-    },
-    {
-      "section": "core",
-      "title": "Universal Trustee POA",
-      "path": "universal-trustee-poa.html"
-    },
-    {
-      "section": "core",
       "title": "Codex Constitution",
-      "path": "codex-constitution.html"
-    },
-
-    {
-      "section": "ministries",
-      "title": "Ministry of Commerce",
-      "path": "ministries/ministry-commerce.html"
+      "path": "codex-constitution.html",
+      "tags": ["core", "constitution", "law"],
+      "date": "2025-01-01",
+      "summary": "Foundational legal charter of the Ecclesia Public."
     },
     {
       "section": "ministries",
-      "title": "Ministry of the Hearth",
-      "path": "ministries/ministry-hearth.html"
-    },
-
-    {
-      "section": "scrolls",
-      "title": "Scroll of Claim",
-      "path": "scrolls/scroll-of-claim.html"
+      "title": "Ministry of Guardianship",
+      "path": "ministries/ministry-guardianship.html",
+      "tags": ["ministry", "guardianship", "protection"],
+      "date": "2025-01-02",
+      "summary": "Outlines the duties and structure of the Ministry of Guardianship."
     },
     {
       "section": "scrolls",
-      "title": "Scroll of Rights",
-      "path": "scrolls/scroll-of-rights.html"
-    },
-
-    {
-      "section": "codices",
-      "title": "Codex of Natural Law",
-      "path": "codices/codex-natural-law.html"
+      "title": "Scroll of Creation",
+      "path": "scrolls/scroll-of-creation.html",
+      "tags": ["scroll", "creation", "origin"],
+      "date": "2025-01-03",
+      "summary": "A sacred scroll detailing the origins of the Ecclesia."
     },
     {
       "section": "codices",
-      "title": "Codex of Divine Law",
-      "path": "codices/codex-divine-law.html"
-    },
-
-    {
-      "section": "identity",
-      "title": "Sovereign Identity Declaration",
-      "path": "pma/sovereign-identity.html"
+      "title": "Codex of Tribunal Law",
+      "path": "codices/codex-tribunal-law.html",
+      "tags": ["codex", "tribunal", "law"],
+      "date": "2025-01-04",
+      "summary": "Codified legal framework for tribunal proceedings."
     },
     {
       "section": "identity",
       "title": "Lineage Claim",
-      "path": "pma/lineage-claim.html"
-    },
-
-    {
-      "section": "verify",
-      "title": "Scroll Authentication",
-      "path": "verify/scroll-authentication.html"
+      "path": "pma/lineage-claim.html",
+      "tags": ["identity", "lineage", "ancestry"],
+      "date": "2025-01-05",
+      "summary": "Declaration of ancestral lineage and sovereign descent."
     },
     {
       "section": "verify",
-      "title": "QR Code Verification",
-      "path": "verify/qr-verification.html"
-    },
-
-    {
-      "section": "diplomacy",
-      "title": "Treaty of Recognition",
-      "path": "treaties/treaty-of-recognition.html"
+      "title": "Timestamp Ledger",
+      "path": "verify/timestamp-ledger.html",
+      "tags": ["verification", "timestamp", "ledger"],
+      "date": "2025-01-06",
+      "summary": "Immutable ledger for scroll timestamp verification."
     },
     {
       "section": "diplomacy",
-      "title": "Treaty of Peace",
-      "path": "treaties/treaty-of-peace.html"
+      "title": "Treaty of Trade",
+      "path": "treaties/treaty-of-trade.html",
+      "tags": ["treaty", "trade", "diplomacy"],
+      "date": "2025-01-07",
+      "summary": "Agreement outlining trade protocols between sovereign entities."
     },
-
     {
       "section": "tools",
       "title": "QR Code Maker",
-      "path": "tools/qr-maker.html"
-    },
-    {
-      "section": "tools",
-      "title": "Manifest Builder",
-      "path": "tools/manifest-builder.html"
-    },
-
-    {
-      "section": "media",
-      "title": "Introductory Video",
-      "path": "media/intro-video.html"
+      "path": "tools/qr-maker.html",
+      "tags": ["tool", "qr", "verification"],
+      "date": "2025-01-08",
+      "summary": "Tool for generating QR codes linked to verified scrolls."
     },
     {
       "section": "media",
       "title": "Scroll Gallery",
-      "path": "media/scroll-gallery.html"
+      "path": "media/scroll-gallery.html",
+      "tags": ["media", "gallery", "visual"],
+      "date": "2025-01-09",
+      "summary": "Visual archive of sacred scrolls and codices."
     }
   ]
-}
-
-{
-  "section": "scrolls",
-  "title": "Scroll of Divine Flame",
-  "path": "scrolls/scroll-of-divine-flame.html",
-  "tags": ["spiritual", "declaration", "fire"],
-  "date": "2025-12-25",
-  "summary": "A sacred proclamation invoking the eternal flame of divine sovereignty."
 }
