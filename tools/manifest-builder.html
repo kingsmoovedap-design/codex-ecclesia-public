@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>☩ Manifest Builder</title>
+  <style>
+    body { font-family: Georgia, serif; padding: 2em; background: #f4f4f4; color: #222; }
+    h1 { font-size: 2em; }
+    textarea, input, select { width: 100%; margin: 0.5em 0; padding: 0.5em; }
+    .entry { background: #fff; padding: 1em; margin: 1em 0; border-left: 4px solid #003366; }
+    .entry h3 { margin: 0 0 0.5em 0; }
+    button { padding: 0.5em 1em; background: #003366; color: white; border: none; cursor: pointer; }
+    pre { background: #eee; padding: 1em; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>☩ Manifest Builder</h1>
+  <p>Paste a list of scroll paths (e.g. <code>scrolls/scroll-of-rights.html</code>) below:</p>
+  <textarea id="fileList" rows="10" placeholder="scrolls/scroll-of-rights.html&#10;ministries/ministry-commerce.html"></textarea>
+  <button onclick="buildManifest()">Generate Manifest</button>
+
+  <h2>🧾 Manifest Preview</h2>
+  <pre id="output">{}</pre>
+
+  <script>
+    function buildManifest() {
+      const raw = document.getElementById('fileList').value.trim().split('\n');
+      const items = raw.map(path => {
+        const parts = path.split('/');
+        const file = parts.pop();
+        const section = parts[0] || 'core';
+        const title = file.replace('.html', '').replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        const tags = [section, ...file.replace('.html', '').split('-')].map(t => t.toLowerCase());
+        const summary = "Placeholder summary for " + title + ".";
+        return {
+          section,
+          title,
+          path,
+          tags,
+          date: "2025-01-01",
+          summary
+        };
+      });
+      const manifest = { items };
+      document.getElementById('output').textContent = JSON.stringify(manifest, null, 2);
+    }
+  </script>
+</body>
+</html>
