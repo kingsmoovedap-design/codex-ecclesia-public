@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🛠️ Filing Forge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>🛠️ Filing Forge</h1>
+    <p>Draft and seal sovereign scrolls, decrees, trusts, and divine filings</p>
+  </header>
+
+  <main>
+    <form action="submit-scroll.php" method="POST">
+      <label for="title"><strong>Scroll Title:</strong></label><br/>
+      <input type="text" id="title" name="title" required/><br/><br/>
+
+      <label for="type"><strong>Scroll Type:</strong></label><br/>
+      <select id="type" name="type">
+        <option>Decree</option>
+        <option>Trust Charter</option>
+        <option>PMA Filing</option>
+        <option>Heir Scroll</option>
+        <option>Commercial Notice</option>
+        <option>Custom Scroll</option>
+      </select><br/><br/>
+
+      <label for="author"><strong>Author:</strong></label><br/>
+      <input type="text" id="author" name="author" value="Omega (Deven Craig Borders)" required/><br/><br/>
+
+      <label for="body"><strong>Scroll Body:</strong></label><br/>
+      <textarea id="body" name="body" rows="12" style="width:100%;" placeholder="Begin your scroll here..." required></textarea><br/><br/>
+
+      <label for="seal"><strong>Seal Phrase:</strong></label><br/>
+      <input type="text" id="seal" name="seal" placeholder="Let this scroll be sealed in light" required/><br/><br/>
+
+      <label for="witnesses"><strong>Witnesses:</strong></label><br/>
+      <input type="text" id="witnesses" name="witnesses" placeholder="List names separated by commas"/><br/><br/>
+
+      <button type="submit">🔐 Seal & Submit Scroll</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>Filed under divine law • Borders Dynasty Nation</p>
+  </footer>
+
+</body>
+</html>
