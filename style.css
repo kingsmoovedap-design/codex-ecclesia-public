@@ -1,3 +1,12 @@
+body {
+  background-color: #fdfcf9;  /* light parchment */
+  color: #222222;             /* dark charcoal */
+  font-family: 'Garamond', serif;
+}
+a {
+  color: #004488;
+  font-weight: bold;
+}
 /* ✨ Codex Ecclesia Styling ✨ */
 
 body {
