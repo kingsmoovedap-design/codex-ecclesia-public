@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>☩ Codex Timeline</title>
+  <style>
+    body { font-family: Georgia, serif; padding: 2em; background: #f4f4f4; }
+    .timeline { border-left: 4px solid #003366; padding-left: 1em; }
+    .entry { margin: 1em 0; padding-left: 1em; border-left: 2px solid #ccc; }
+    .entry h3 { margin: 0; }
+    .entry time { font-size: 0.9em; color: #666; }
+  </style>
+</head>
+<body>
+  <h1>☩ Codex Timeline</h1>
+  <div class="timeline" id="timeline"></div>
+
+  <script>
+    async function loadTimeline() {
+      const res = await fetch('../manifest.json');
+      const data = await res.json();
+      const items = data.items || [];
+      const sorted = items.filter(i => i.date).sort((a, b) => new Date(a.date) - new Date(b.date));
+      const container = document.getElementById('timeline');
+
+      sorted.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'entry';
+        div.innerHTML = `
+          <time>${item.date}</time>
+          <h3><a href="../${item.path}">${item.title}</a></h3>
+          <p>${item.summary}</p>
+        `;
+        container.appendChild(div);
+      });
+    }
+    loadTimeline();
+  </script>
+</body>
+</html>
