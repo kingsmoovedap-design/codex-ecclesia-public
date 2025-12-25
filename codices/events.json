@@ -17,5 +17,15 @@
     "location": "Borders Sovereign House",
     "participants": ["Omega", "Miranda M. Eden"],
     "notes": "The birth of Princess Devenity Eden Borders, third heir of the Borders Dynasty."
+  },
+  {
+    "id": "003",
+    "title": "Filing of the Codex of Harmony",
+    "type": "Codex Filing",
+    "date": "2025-12-24",
+    "location": "Codex Ecclesia Harmony",
+    "participants": ["Omega"],
+    "scroll": "codices/codex-harmony.html",
+    "notes": "The Codex of Harmony was filed to define the 7 Harmonies of Sovereignty."
   }
 ]
