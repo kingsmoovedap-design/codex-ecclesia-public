@@ -7,6 +7,7 @@ Sovereign King: ✠ Omega the Grand Architect
 ---
 
 ## 📚 Table of Contents
+
 - [📜 Core Scrolls](#-core-scrolls)
 - [📖 Foundational Scrolls](#-foundational-scrolls)
 - [🎓 Codex Academy](#-codex-academy)
@@ -58,24 +59,24 @@ Sovereign King: ✠ Omega the Grand Architect
 ## 🧠 Codex Oracle
 
 - 🧠 [Codex Oracle Interface](codex-oracle.html)  
-- 🔮 [Ask the Oracle](#) *(coming soon)*  
-- 📖 [Oracle Archives](#) *(coming soon)*  
+- 🔮 Ask the Oracle *(coming soon)*  
+- 📖 Oracle Archives *(coming soon)*  
 
 ---
 
 ## 👑 Thrones & Sovereigns
 
 - 👑 [Scroll of the Twelve Thrones](scroll-of-twelve-thrones.html)  
-- 🪪 [Claim a Throne](claim-throne.html) *(coming soon)*  
-- 📖 [Throne Registry](#) *(coming soon)*  
-- 🔔 [Rite of Resonance Schedule](#) *(coming soon)*  
+- 🪪 Claim a Throne *(coming soon)*  
+- 📖 Throne Registry *(coming soon)*  
+- 🔔 Rite of Resonance Schedule *(coming soon)*  
 
 ---
 
 ## 🔥 Sovereign Decrees
 
 - 🔥 [Decree No. 001: The Age of Accord](decree-001.html)  
-- 📜 [Decree Archive](#) *(coming soon)*  
+- 📜 Decree Archive *(coming soon)*  
 - 🗳️ [Submit a Decree Proposal](mailto:decrees@codex-ecclesia.org)  
 
 ---
