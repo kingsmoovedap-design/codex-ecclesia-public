@@ -20,6 +20,7 @@
   }
 </style>
 <body>
+  <div class="dark-toggle" onclick="toggleDark()">🌙</div>
 
   <div class="sidebar">
     <h2>☩ Codex</h2>
@@ -96,5 +97,13 @@
 
   <!-- Attach the dynamic loader -->
  <script src="tools/codex-search.js"></script>
+  <script>
+  function toggleDark() {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('dark', document.body.classList.contains('dark-mode'));
+    document.querySelector('.dark-toggle').textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+  }
+  if (localStorage.getItem('dark') === 'true') toggleDark();
+</script>
 </body>
 </html>
