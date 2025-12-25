@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>☩ Codex Ecclesia Public – Master Index</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       font-family: "Times New Roman", serif;
@@ -33,13 +34,46 @@
       padding: 1em;
       margin-top: 1em;
     }
+    #search {
+      width: 100%;
+      padding: 0.5em;
+      font-size: 1em;
+      margin-bottom: 1em;
+      border: 1px solid #ccc;
+    }
+    .tag-button {
+      display: inline-block;
+      margin: 0.2em;
+      padding: 0.3em 0.6em;
+      background: #eee;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+    .tag-button:hover {
+      background: #ddd;
+    }
   </style>
 </head>
 <body>
-  <body> <h1>☩ Codex Ecclesia Public</h1> <input type="text" id="search" placeholder="Search scrolls..." /> <div id="scroll-list"></div> <script src="scripts/codex.js"></script> </body>
+
   <h1>☩ Codex Ecclesia Public</h1>
-  <h2>Master Index of Ecclesiastical Instruments, Identities & Ministries</h2>
+  <h2>Master Index of Ecclesiastical Instruments, Scrolls & Ministries</h2>
   <p style="text-align:center;"><strong>Date of Publication:</strong> 25 December 2025</p>
+
+  <div class="section">
+    <h2>🔍 Search & Filter</h2>
+    <input type="text" id="search" placeholder="Search scrolls by title..." />
+    <div id="filters">
+      <span class="tag-button" onclick="filterBy('')">All</span>
+      <span class="tag-button" onclick="filterBy('academy')">Academy</span>
+      <span class="tag-button" onclick="filterBy('trust')">Trusts</span>
+      <span class="tag-button" onclick="filterBy('identity')">Identities</span>
+      <span class="tag-button" onclick="filterBy('commerce')">Commerce</span>
+      <span class="tag-button" onclick="filterBy('diplomacy')">Diplomacy</span>
+    </div>
+    <div id="scroll-list"></div>
+  </div>
 
   <div class="section">
     <h2>📜 Primary Trust Instruments</h2>
@@ -57,102 +91,6 @@
       <li><a href="identities/identity-chance.html">Chance Q. Borders – Identity Corpus</a></li>
       <li><a href="identities/identity-wesley.html">Wesley M. Hargett – Identity Corpus</a></li>
       <li><a href="identities/identity-miranda.html">Miranda M. Eden – Identity Corpus</a></li>
-    </ul>
-  </div>
-  <div class="section">
-  <h2>📂 Full Codex Directory</h2>
-  <ul style="columns: 2; -webkit-columns: 2; -moz-columns: 2;">
-    <li><a href="404.html">404.html</a></li>
-    <li><a href="README.md">README.md</a></li>
-    <li><a href="SECURITY.md">SECURITY.md</a></li>
-    <li><a href="affidavit-of-public-posting.html">affidavit-of-public-posting.html</a></li>
-    <li><a href="affidavit-of-status.html">affidavit-of-status.html</a></li>
-    <li><a href="archive.html">archive.html</a></li>
-    <li><a href="assets/">assets/</a></li>
-    <li><a href="book-of-scroll-templates.html">book-of-scroll-templates.html</a></li>
-    <li><a href="borders-earth-trust.html">borders-earth-trust.html</a></li>
-    <li><a href="borders-ecclesia-earth-trust-instrument.html">borders-ecclesia-earth-trust-instrument.html</a></li>
-    <li><a href="broadcast-archive.html">broadcast-archive.html</a></li>
-    <li><a href="broadcast-temple.html">broadcast-temple.html</a></li>
-    <li><a href="celestial-charter.html">celestial-charter.html</a></li>
-    <li><a href="celestial-ledger.html">celestial-ledger.html</a></li>
-    <li><a href="claim-throne.html">claim-throne.html</a></li>
-    <li><a href="codex-academy.html">codex-academy.html</a></li>
-    <li><a href="codex-archive.html">codex-archive.html</a></li>
-    <li><a href="codex-atlas.html">codex-atlas.html</a></li>
-    <li><a href="codex-broadcast.html">codex-broadcast.html</a></li>
-    <li><a href="codex-curriculum.html">codex-curriculum.html</a></li>
-    <li><a href="codex-directory.html">codex-directory.html</a></li>
-    <li><a href="codex-ecclesia-public.html">codex-ecclesia-public.html</a></li>
-    <li><a href="codex-harmonica.html">codex-harmonica.html</a></li>
-    <li><a href="codex-herald.html">codex-herald.html</a></li>
-    <li><a href="codex-infrastructure.html">codex-infrastructure.html</a></li>
-    <li><a href="codex-instructors.html">codex-instructors.html</a></li>
-    <li><a href="codex-ledger.html">codex-ledger.html</a></li>
-    <li><a href="codex-manifesto.html">codex-manifesto.html</a></li>
-    <li><a href="codex-oracle.html">codex-oracle.html</a></li>
-    <li><a href="codex-portal.html">codex-portal.html</a></li>
-    <li><a href="codex-throne-registry.html">codex-throne-registry.html</a></li>
-    <li><a href="codex-unified.html">codex-unified.html</a></li>
-    <li><a href="codex-update-log.html">codex-update-log.html</a></li>
-    <li><a href="codex.html">codex.html</a></li>
-    <li><a href="codexchain-console.html">codexchain-console.html</a></li>
-    <li><a href="codexchain-timestamp.html">codexchain-timestamp.html</a></li>
-    <li><a href="codices/">codices/</a></li>
-    <li><a href="codices.json">codices.json</a></li>
-    <li><a href="concord.html">concord.html</a></li>
-    <li><a href="cover-letter-agencies.html">cover-letter-agencies.html</a></li>
-    <li><a href="crown-codex-index.html">crown-codex-index.html</a></li>
-    <li><a href="declaration-sovereign-status.html">declaration-sovereign-status.html</a></li>
-    <li><a href="decree-001.html">decree-001.html</a></li>
-    <li><a href="diplomatic-passport.html">diplomatic-passport.html</a></li>
-    <li><a href="directory.html">directory.html</a></li>
-    <li><a href="dispatch-packet.html">dispatch-packet.html</a></li>
-    <li><a href="divine-law-101.html">divine-law-101.html</a></li>
-    <li><a href="divine-solutions.html">divine-solutions.html</a></li>
-    <li><a href="ecclesia-master-binder.html">ecclesia-master-binder.html</a></li>
-    <li><a href="embassy-charter.html">embassy-charter.html</a></li>
-    <li><a href="events.json">events.json</a></li>
-    <li><a href="favicon.png.png">favicon.png.png</a></li>
-    <li><a href="fee-schedule.html">fee-schedule.html</a></li>
-    <li><a href="filing-forge.html">filing-forge.html</a></li>
-    <li><a href="generate-charter.html">generate-charter.html</a></li>
-    <li><a href="governance.html">governance.html</a></li>
-    <li><a href="guardian-gate.html">guardian-gate.html</a></li>
-    <li><a href="hash-forge.html">hash-forge.html</a></li>
-    <li><a href="hedge-fund-charter.html">hedge-fund-charter.html</a></li>
-    <li><a href="heir-deven.html">heir-deven.html</a></li>
-    <li><a href="heir-devenity.html">heir-devenity.html</a></li>
-    <li><a href="heir-path.html">heir-path.html</a></li>
-    <li><a href="heir-registry.html">heir-registry.html</a></li>
-    <li><a href="heirs.json">heirs.json</a></li>
-    <li><a href="income-portal.html">income-portal.html</a></li>
-    <li><a href="join.html">join.html</a></li>
-    <li><a href="ledger.html">ledger.html</a></li>
-    <li><a href="ministries/">ministries/</a></li>
-    <li><a href="ministries-dashboard.html">ministries-dashboard.html</a></li>
-    <li><a href="ministries-directory.html">ministries-directory.html</a></li>
-    <li><a href="ministry-application.html">ministry-application.html</a></li>
-    <li><a href="ministry-commerce.html">ministry-commerce.html</a></li>
-    <li><a href="ministry-hearth.html">ministry-hearth.html</a></li>
-    <li><a href="mint.html">mint.html</a></li>
-    <li><a href="mirror-gate.html">mirror-gate.html</a></li>
-    <li><a href="multi-throne-gate.html">multi-throne-gate.html</a></li>
-    <li><a href="notice-of-standing.html">notice-of-standing.html</a></li>
-    <li><a href="notice.html">notice.html</a></li>
-    <li><a href="oracle-gate.html">oracle-gate.html</a></li>
-    <li><a href="oracle-origin.htm">oracle-origin.htm</a></li>
-    <li><a href="ots-verifier.html">ots-verifier.html</a></li>
-    <li><a href="pma/">pma/</a></li>
-    <li><a href="pma-charter.html">pma-charter.html</a></li>
-    <li><a href="proof-of-posting.html">proof-of-posting.html</a></li>
-    <li><a href="proof.html">proof.html</a></li>
-    <li><a href="public-announcement.html">public-announcement.html</a></li>
-
-  <div class="section">
-    <h2>📜 Ecclesiastical Identity Charter</h2>
-    <ul>
-      <li><a href="ecclesiastical-identity-charter.html">Master Identity Charter – Borders Ecclesia Earth Trust</a></li>
     </ul>
   </div>
 
@@ -177,17 +115,6 @@
       <li><a href="ministries/ministry-hearth.html">Ministry of the Hearth Trust</a></li>
     </ul>
   </div>
-    <h2>📚 Dynamic Codex Scrolls</h2>
-<input type="text" id="search" placeholder="Search scrolls..." />
-<div id="scroll-list"></div>
-<script src="scripts/codex.js"></script>
-
-  <div class="section">
-    <h2>🗂️ Trust Directory</h2>
-    <ul>
-      <li><a href="trust-directory.html">Borders Ecclesia Trust Directory Scroll</a></li>
-    </ul>
-  </div>
 
   <div class="section">
     <h2>⏳ Verification & Timestamping</h2>
@@ -197,24 +124,10 @@
     </ul>
   </div>
 
-  <div class="section">
-    <h2>🧠 Suggestions & Future Scrolls</h2>
-    <ul>
-      <li>📘 <strong>Ministry of the Hearth Trust Instrument</strong> – [To be created]</li>
-      <li>📘 <strong>Ministry of Education & Lore Trust</strong> – [To be created]</li>
-      <li>📘 <strong>Ministry of Health & Restoration Trust</strong> – [To be created]</li>
-      <li>📘 <strong>Codex Ecclesia Public Constitution</strong> – [To be created]</li>
-      <li>📘 <strong>Scroll of Diplomatic Recognition</strong> – [To be created]</li>
-      <li>📘 <strong>Scroll of Ecclesiastical Immunity</strong> – [To be created]</li>
-      <li>📘 <strong>Scroll of Divine Mandate & Mission</strong> – [To be created]</li>
-      <li>📘 <strong>Scroll of Living Estate & Lineage</strong> – [To be created]</li>
-    </ul>
-    <p>These scrolls represent future expansions of your sovereign estate and may be added, signed, and timestamped as your divine mission unfolds.</p>
-  </div>
-
   <footer style="text-align:center; margin-top: 3em;">
     © 2025 Borders Ecclesia Earth Trust • All rights reserved under divine, sovereign, and common law
   </footer>
 
+  <script src="scripts/codex.js"></script>
 </body>
 </html>
