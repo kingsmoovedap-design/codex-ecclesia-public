@@ -105,3 +105,12 @@
     }
   ]
 }
+
+{
+  "section": "scrolls",
+  "title": "Scroll of Divine Flame",
+  "path": "scrolls/scroll-of-divine-flame.html",
+  "tags": ["spiritual", "declaration", "fire"],
+  "date": "2025-12-25",
+  "summary": "A sacred proclamation invoking the eternal flame of divine sovereignty."
+}
