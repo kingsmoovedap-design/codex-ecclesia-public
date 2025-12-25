@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>☩ Scroll Editor</title>
+  <style>
+    body { font-family: Georgia, serif; padding: 2em; background: #f4f4f4; }
+    textarea, input { width: 100%; margin: 1em 0; padding: 1em; font-size: 1em; }
+    button { padding: 0.75em 1.5em; background: #003366; color: white; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>☩ Scroll Editor</h1>
+  <input type="text" id="filename" placeholder="scrolls/scroll-of-light.html" />
+  <textarea id="content" rows="20" placeholder="Enter your sacred scroll content here..."></textarea>
+  <button onclick="download()">📥 Save Scroll</button>
+
+  <script>
+    function download() {
+      const filename = document.getElementById('filename').value || 'scroll.html';
+      const content = document.getElementById('content').value;
+      const blob = new Blob([content], { type: 'text/html' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      a.click();
+    }
+  </script>
+</body>
+</html>
