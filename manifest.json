@@ -1,32 +1,107 @@
-[
-  {
-    "title": "Codex Academy",
-    "filename": "codex-academy.html",
-    "category": "Academy",
-    "tags": ["education", "academy", "learning"]
-  },
-  {
-    "title": "Divine Law 101",
-    "filename": "divine-law-101.html",
-    "category": "Academy",
-    "tags": ["law", "divine", "education"]
-  },
-  {
-    "title": "Ministry of Commerce Trust",
-    "filename": "ministries/ministry-commerce.html",
-    "category": "Ministries",
-    "tags": ["commerce", "trust", "economy"]
-  },
-  {
-    "title": "Scroll of Enrollment",
-    "filename": "scrolls/scroll-of-enrollment.html",
-    "category": "Scrolls",
-    "tags": ["enrollment", "academy", "citizenship"]
-  },
-  {
-    "title": "Sovereign ID Card",
-    "filename": "sovereign-id.html",
-    "category": "Core",
-    "tags": ["identity", "sovereign", "credentials"]
-  }
-]
+{
+  "items": [
+    {
+      "section": "core",
+      "title": "Borders Earth Trust",
+      "path": "borders-earth-trust.html"
+    },
+    {
+      "section": "core",
+      "title": "Universal Trustee POA",
+      "path": "universal-trustee-poa.html"
+    },
+    {
+      "section": "core",
+      "title": "Codex Constitution",
+      "path": "codex-constitution.html"
+    },
+
+    {
+      "section": "ministries",
+      "title": "Ministry of Commerce",
+      "path": "ministries/ministry-commerce.html"
+    },
+    {
+      "section": "ministries",
+      "title": "Ministry of the Hearth",
+      "path": "ministries/ministry-hearth.html"
+    },
+
+    {
+      "section": "scrolls",
+      "title": "Scroll of Claim",
+      "path": "scrolls/scroll-of-claim.html"
+    },
+    {
+      "section": "scrolls",
+      "title": "Scroll of Rights",
+      "path": "scrolls/scroll-of-rights.html"
+    },
+
+    {
+      "section": "codices",
+      "title": "Codex of Natural Law",
+      "path": "codices/codex-natural-law.html"
+    },
+    {
+      "section": "codices",
+      "title": "Codex of Divine Law",
+      "path": "codices/codex-divine-law.html"
+    },
+
+    {
+      "section": "identity",
+      "title": "Sovereign Identity Declaration",
+      "path": "pma/sovereign-identity.html"
+    },
+    {
+      "section": "identity",
+      "title": "Lineage Claim",
+      "path": "pma/lineage-claim.html"
+    },
+
+    {
+      "section": "verify",
+      "title": "Scroll Authentication",
+      "path": "verify/scroll-authentication.html"
+    },
+    {
+      "section": "verify",
+      "title": "QR Code Verification",
+      "path": "verify/qr-verification.html"
+    },
+
+    {
+      "section": "diplomacy",
+      "title": "Treaty of Recognition",
+      "path": "treaties/treaty-of-recognition.html"
+    },
+    {
+      "section": "diplomacy",
+      "title": "Treaty of Peace",
+      "path": "treaties/treaty-of-peace.html"
+    },
+
+    {
+      "section": "tools",
+      "title": "QR Code Maker",
+      "path": "tools/qr-maker.html"
+    },
+    {
+      "section": "tools",
+      "title": "Manifest Builder",
+      "path": "tools/manifest-builder.html"
+    },
+
+    {
+      "section": "media",
+      "title": "Introductory Video",
+      "path": "media/intro-video.html"
+    },
+    {
+      "section": "media",
+      "title": "Scroll Gallery",
+      "path": "media/scroll-gallery.html"
+    }
+  ]
+}
