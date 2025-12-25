@@ -34,11 +34,11 @@
 ]
 {
   "id": "003",
-  "name": "Devenity Eden Borders",
+  "name": "Devenity Marie Borders",
   "title": "Princess",
   "birthdate": "2024-10-08",
   "crowning_date": "",
-  "scroll": "",
+  "scroll": "scrolls/scroll-devenity-heir.html",
   "father": "Omega",
   "mother": "Miranda M. Eden",
   "siblings": ["Deven Julian Borders", "Demarco C. Borders"],
