@@ -12,11 +12,21 @@
     "tags": ["law", "divine", "education"]
   },
   {
-    "title": "Ministry of Commerce",
+    "title": "Ministry of Commerce Trust",
     "filename": "ministries/ministry-commerce.html",
     "category": "Ministries",
     "tags": ["commerce", "trust", "economy"]
+  },
+  {
+    "title": "Scroll of Enrollment",
+    "filename": "scrolls/scroll-of-enrollment.html",
+    "category": "Scrolls",
+    "tags": ["enrollment", "academy", "citizenship"]
+  },
+  {
+    "title": "Sovereign ID Card",
+    "filename": "sovereign-id.html",
+    "category": "Core",
+    "tags": ["identity", "sovereign", "credentials"]
   }
-  // Add all other scrolls here
 ]
-🔹 Step 3: Create a Dynamic Index (index.html)
