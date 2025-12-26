@@ -1,65 +1,34 @@
-const fs = require('fs');
-const path = require('path');
+import path from 'path';
+import { fileURLToPath } from 'url';
+import {
+  loadManifest,
+  addScroll,
+  saveManifest
+} from './lib/scroll-utils.js';
 
-const ROOT = process.cwd();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const MANIFEST_PATH = path.join(__dirname, 'scrolls.json');
 
-// folders you want to scan
-const INCLUDE_DIRS = ['scrolls', 'ministries', 'treaties', 'codices', 'tools'];
+// Example scroll to add
+const NEW_SCROLL = {
+  section: 'core',
+  title: 'Codex Curriculum',
+  path: 'codex-curriculum.html',
+  tags: ['core', 'codex', 'curriculum', 'education', 'rites'],
+  date: '2025-12-25',
+  summary: 'The sacred syllabus of the Ecclesia — outlining sovereign studies, rites of passage, and the path of scribes, sentinels, and sovereigns.'
+};
 
-function walk(dir) {
-  const dirPath = path.join(ROOT, dir);
-  if (!fs.existsSync(dirPath)) return [];
-  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
-  let files = [];
-  for (const e of entries) {
-    const full = path.join(dir, e.name);
-    if (e.isDirectory()) {
-      files = files.concat(walk(full));
-    } else if (e.isFile() && e.name.endsWith('.html') && e.name !== 'index.html') {
-      files.push(full.replace(/\\/g, '/'));
-    }
+async function main() {
+  try {
+    const manifest = await loadManifest(MANIFEST_PATH);
+    const updated = addScroll(manifest, NEW_SCROLL);
+    await saveManifest(MANIFEST_PATH, updated);
+  } catch (err) {
+    console.error('❌ Manifest generation failed:', err.message);
+    process.exit(1);
   }
-  return files;
-}
-
-function makeTitle(file) {
-  return file
-    .replace('.html', '')
-    .split('/')
-    .pop()
-    .replace(/[-_]/g, ' ')
-    .replace(/\b\w/g, l => l.toUpperCase());
-}
-
-function sectionFromPath(p) {
-  const parts = p.split('/');
-  return parts[0] || 'core';
-}
-
-function tagsFromPath(p) {
-  const parts = p.split('/');
-  const file = parts.pop().replace('.html', '');
-  return [sectionFromPath(p), ...file.split('-')].map(t => t.toLowerCase());
-}
-
-function main() {
-  let paths = [];
-  for (const d of INCLUDE_DIRS) {
-    paths = paths.concat(walk(d));
-  }
-
-  const items = paths.map(p => ({
-    section: sectionFromPath(p),
-    title: makeTitle(p),
-    path: p,
-    tags: tagsFromPath(p),
-    date: '2025-01-01',
-    summary: `Placeholder summary for ${makeTitle(p)}.`
-  }));
-
-  const manifest = { items };
-  fs.writeFileSync(path.join(ROOT, 'manifest.json'), JSON.stringify(manifest, null, 2));
-  console.log(`Generated manifest.json with ${items.length} items.`);
 }
 
 main();
