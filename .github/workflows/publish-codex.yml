@@ -83,3 +83,11 @@ jobs:
     # The token used as Authorization header when fetching from the mirror
     mirror-token: # optional
           
+      - name: 📡 Generate codex.json API index
+        run: node generate-codex.js
+
+      - name: ✅ Commit and Push Updates
+        run: |
+          git add scrolls.json sitemap.xml robots.txt scrolls-feed.xml codex.json
+          git diff --cached --quiet || git commit -m "☩ Update scrolls.json, sitemap.xml, robots.txt, RSS feed, and codex.json"
+          git push
