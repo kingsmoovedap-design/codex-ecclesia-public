@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>☩ Codex Ecclesia Public</title>
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Dark Mode Styles -->
   <style>
     body.dark-mode {
       background: #111;
@@ -51,19 +49,72 @@
     .codex-oracle-button:hover {
       background: #001a33;
     }
+    .sovereign-tools-button {
+      position: fixed;
+      bottom: 1.5em;
+      left: 1.5em;
+      background: #003366;
+      color: white;
+      padding: 0.75em 1.25em;
+      border-radius: 999px;
+      font-family: Georgia, serif;
+      cursor: pointer;
+      z-index: 9999;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .sovereign-tools-button:hover {
+      background: #001a33;
+    }
+    .tools-menu {
+      display: none;
+      position: fixed;
+      bottom: 5em;
+      left: 1.5em;
+      background: #fff;
+      border: 2px solid #003366;
+      padding: 1em;
+      z-index: 9999;
+      font-family: Georgia, serif;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .tools-menu h3 {
+      margin-top: 0;
+    }
+    .tools-menu ul {
+      list-style: none;
+      padding: 0;
+    }
+    .tools-menu li {
+      margin: 0.5em 0;
+    }
+    .tools-menu a {
+      color: #003366;
+      text-decoration: none;
+    }
+    .tools-menu a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
 
-  <!-- 🌙 Dark Mode Toggle -->
   <div class="dark-toggle" onclick="toggleDark()">🌙</div>
-
-  <!-- 🤖 Ask the Codex Button -->
   <div class="codex-oracle-button" onclick="openCodexOracle()">Ask the Codex</div>
+  <div class="sovereign-tools-button" onclick="toggleToolsMenu()">🛠️ Tools</div>
+  <div class="tools-menu" id="toolsMenu">
+    <h3>☩ Sovereign Tools</h3>
+    <ul>
+      <li><a href="tools/scroll-editor.html">✍️ Scroll Editor</a></li>
+      <li><a href="tools/ipfs-notary.html">📡 IPFS Notary</a></li>
+      <li><a href="tools/qr-generator.html">🔗 QR Generator</a></li>
+      <li><a href="tools/timestamp-verifier.html">⏳ Timestamp Verifier</a></li>
+      <li><a href="tools/codex-timeline.html">📅 Codex Timeline</a></li>
+    </ul>
+  </div>
 
-  <!-- 🧭 Sidebar Navigation -->
   <div class="sidebar">
     <h2>☩ Codex</h2>
+    <a href="#heirs">Heirs</a>
     <a href="#core">Core</a>
     <a href="#scrolls">Scrolls</a>
     <a href="#ministries">Ministries</a>
@@ -72,32 +123,33 @@
     <a href="#tools">Tools</a>
   </div>
 
-  <!-- 📜 Main Content Area -->
   <div class="main-content">
     <h1>☩ Codex Ecclesia Public</h1>
     <p class="subheading">The living record of the Sovereign Order</p>
 
-    <!-- Sections for dynamic scrolls -->
+    <!-- 👑 Heirs & Trustees Learning Cards -->
     <section id="heirs">
-  <h2>👑 Heirs & Trustees</h2>
-  <div class="card-grid">
-    <div class="card">
-      <h3>📖 What Is the Codex?</h3>
-      <p>An introduction to the sacred scrolls, ministries, and sovereign law. Learn how the Codex preserves truth and order.</p>
-      <a href="scrolls/scroll-of-codex-foundation.html">Read the Scroll →</a>
-    </div>
-    <div class="card">
-      <h3>🧭 How to Navigate</h3>
-      <p>Learn how to search, explore, and contribute to the Codex using the tools of the Sovereign Order.</p>
-      <a href="tools/scroll-editor.html">Open the Scroll Editor →</a>
-    </div>
-    <div class="card">
-      <h3>🛡️ Becoming a Trustee</h3>
-      <p>Understand your role as a steward of knowledge and how to preserve scrolls through IPFS notarization.</p>
-      <a href="tools/ipfs-notary.html">Notarize a Scroll →</a>
-    </div>
-  </div>
-</section>
+      <h2>👑 Heirs & Trustees</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>📖 What Is the Codex?</h3>
+          <p>An introduction to the sacred scrolls, ministries, and sovereign law. Learn how the Codex preserves truth and order.</p>
+          <a href="scrolls/scroll-of-codex-foundation.html">Read the Scroll →</a>
+        </div>
+        <div class="card">
+          <h3>🧭 How to Navigate</h3>
+          <p>Learn how to search, explore, and contribute to the Codex using the tools of the Sovereign Order.</p>
+          <a href="tools/scroll-editor.html">Open the Scroll Editor →</a>
+        </div>
+        <div class="card">
+          <h3>🛡️ Becoming a Trustee</h3>
+          <p>Understand your role as a steward of knowledge and how to preserve scrolls through IPFS notarization.</p>
+          <a href="tools/ipfs-notary.html">Notarize a Scroll →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 📜 Dynamic Sections -->
     <section id="core"><h2>Core</h2><div class="card-grid" id="core-grid"></div></section>
     <section id="scrolls"><h2>Scrolls</h2><div class="card-grid" id="scrolls-grid"></div></section>
     <section id="ministries"><h2>Ministries</h2><div class="card-grid" id="ministries-grid"></div></section>
@@ -106,19 +158,18 @@
     <section id="tools"><h2>Tools</h2><div class="card-grid" id="tools-grid"></div></section>
   </div>
 
-  <!-- 🦶 Footer -->
   <footer>
     <p>☩ Codex Ecclesia Public — Sovereign Order of Kingsmoove</p>
   </footer>
 
-  <!-- 🔮 AI Companion Embed -->
+  <!-- 🔮 AI Companion -->
   <script>
     const copilot = document.createElement('script');
     copilot.src = "https://www.bing.com/copilot/embedded?theme=dark";
     document.body.appendChild(copilot);
   </script>
 
-  <!-- 🌙 Dark Mode Script -->
+  <!-- 🌙 Dark Mode -->
   <script>
     function toggleDark() {
       document.body.classList.toggle('dark-mode');
@@ -129,37 +180,19 @@
     if (localStorage.getItem('dark') === 'true') toggleDark();
   </script>
 
-  <!-- 🤖 Oracle Button Hook -->
+  <!-- 🤖 Oracle Hook -->
   <script>
     function openCodexOracle() {
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+    function toggleToolsMenu() {
+      const menu = document.getElementById('toolsMenu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
     }
   </script>
 
   <!-- 🔍 Codex Search Engine -->
   <script src="tools/codex-search.js"></script>
-
-  <!-- 🛠️ Sovereign Tools Button -->
-<div class="sovereign-tools-button" onclick="toggleToolsMenu()">🛠️ Tools</div>
-
-<!-- 🧰 Tools Menu -->
-<div class="tools-menu" id="toolsMenu">
-  <h3>☩ Sovereign Tools</h3>
-  <ul>
-    <li><a href="tools/scroll-editor.html">✍️ Scroll Editor</a></li>
-    <li><a href="tools/ipfs-notary.html">📡 IPFS Notary</a></li>
-    <li><a href="tools/qr-generator.html">🔗 QR Generator</a></li>
-    <li><a href="tools/timestamp-verifier.html">⏳ Timestamp Verifier</a></li>
-    <li><a href="tools/codex-timeline.html">📅 Codex Timeline</a></li>
-  </ul>
-</div>
-
-<script>
-  function toggleToolsMenu() {
-    const menu = document.getElementById('toolsMenu');
-    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-  }
-</script>
 
 </body>
 </html>
