@@ -4,26 +4,83 @@
   <meta charset="UTF-8" />
   <title>☩ Scroll Editor</title>
   <style>
-    body { font-family: Georgia, serif; padding: 2em; background: #f4f4f4; }
-    textarea, input { width: 100%; margin: 1em 0; padding: 1em; font-size: 1em; }
-    button { padding: 0.75em 1.5em; background: #003366; color: white; border: none; cursor: pointer; }
+    body {
+      font-family: Georgia, serif;
+      padding: 2em;
+      background: #fdf6e3;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1em;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 1em;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 1em;
+      font-size: 1em;
+      margin-top: 0.5em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #fff;
+    }
+    button {
+      margin-top: 1.5em;
+      padding: 0.75em 1.5em;
+      background: #003366;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0055aa;
+    }
+    .message {
+      margin-top: 1em;
+      font-style: italic;
+      color: green;
+    }
   </style>
 </head>
 <body>
   <h1>☩ Scroll Editor</h1>
+
+  <label for="filename">📜 Scroll Filename</label>
   <input type="text" id="filename" placeholder="scrolls/scroll-of-light.html" />
+
+  <label for="content">✍️ Scroll Content</label>
   <textarea id="content" rows="20" placeholder="Enter your sacred scroll content here..."></textarea>
+
   <button onclick="download()">📥 Save Scroll</button>
+  <div class="message" id="message"></div>
 
   <script>
     function download() {
-      const filename = document.getElementById('filename').value || 'scroll.html';
-      const content = document.getElementById('content').value;
+      const filename = document.getElementById('filename').value.trim();
+      const content = document.getElementById('content').value.trim();
+      const message = document.getElementById('message');
+
+      if (!filename || !content) {
+        message.textContent = '⚠️ Please enter both a filename and scroll content.';
+        message.style.color = 'darkred';
+        return;
+      }
+
       const blob = new Blob([content], { type: 'text/html' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
       a.download = filename;
       a.click();
+
+      message.textContent = `✅ Scroll "${filename}" has been saved.`;
+      message.style.color = 'green';
     }
   </script>
 </body>
