@@ -32,3 +32,10 @@ async function main() {
 }
 
 main();
+function slugify(title) {
+  return title
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')     // Remove punctuation
+    .trim()
+    .replace(/\s+/g, '-')         // Replace spaces with hyphens
+}
