@@ -26,11 +26,10 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Generate manifest.json
-        run: npm run generate:manifest
+        run: |
+          npm install
+          node generate-manifest.js
 
       - name: Commit manifest.json
         run: |
