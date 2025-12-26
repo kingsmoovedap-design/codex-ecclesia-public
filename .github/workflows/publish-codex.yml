@@ -41,3 +41,9 @@ jobs:
           git add scrolls.json sitemap.xml
           git diff --cached --quiet || git commit -m "☩ Update scrolls.json & sitemap.xml"
           git push
+
+      - name: ✅ Commit and Push Updates
+        run: |
+          git add scrolls.json sitemap.xml robots.txt
+          git diff --cached --quiet || git commit -m "☩ Update scrolls.json, sitemap.xml, and robots.txt"
+          git push
