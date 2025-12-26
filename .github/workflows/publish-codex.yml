@@ -1,0 +1,43 @@
+name: ☩ Publish Codex Scrolls
+
+on:
+  push:
+    branches:
+      - main
+      - dev-branch
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🧰 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 📦 Install Dependencies
+        run: npm install
+
+      - name: 🧾 Generate scrolls.json (Manifest)
+        run: node generate-manifest.js
+
+      - name: 🗺️ Generate sitemap.xml
+        run: node generate-sitemap.js
+
+      - name: 🔐 Configure Git
+        run: |
+          git config user.name "Codex Bot"
+          git config user.email "bot@codex-ecclesia.org"
+
+      - name: ✅ Commit and Push Updates
+        run: |
+          git add scrolls.json sitemap.xml
+          git diff --cached --quiet || git commit -m "☩ Update scrolls.json & sitemap.xml"
+          git push
