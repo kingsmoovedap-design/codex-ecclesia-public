@@ -1,0 +1,5 @@
+fetch('https://codex-ecclesia.org/codex.json')
+  .then(res => res.json())
+  .then(data => {
+    console.log('Codex entries:', data);
+  });
