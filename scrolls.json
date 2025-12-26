@@ -1,5 +1,23 @@
 [
   {
+    "title": "The Book of Light",
+    "slug": "book-of-light",
+    "path": "scrolls/book-of-light.html",
+    "date": "2025-12-25",
+    "tags": ["prophecy", "illumination"],
+    "summary": "A sacred scroll revealing the first glyphs of the Codex."
+  },
+  {
+    "title": "Rites of the Sovereign Flame",
+    "slug": "sovereign-flame",
+    "path": "scrolls/sovereign-flame.html",
+    "date": "2025-12-20",
+    "tags": ["ritual", "fire"],
+    "summary": "Instructions for invoking the eternal flame of the Ecclesia."
+  }
+]
+[
+  {
     "section": "core",
     "title": "Scroll CXVII: Return of the Dead Fiction",
     "path": "scroll-cxvii-return-of-dead-fiction.html",
