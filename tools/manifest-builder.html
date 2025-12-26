@@ -1,49 +1,1863 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>☩ Manifest Builder</title>
-  <style>
-    body { font-family: Georgia, serif; padding: 2em; background: #f4f4f4; color: #222; }
-    h1 { font-size: 2em; }
-    textarea, input, select { width: 100%; margin: 0.5em 0; padding: 0.5em; }
-    .entry { background: #fff; padding: 1em; margin: 1em 0; border-left: 4px solid #003366; }
-    .entry h3 { margin: 0 0 0.5em 0; }
-    button { padding: 0.5em 1em; background: #003366; color: white; border: none; cursor: pointer; }
-    pre { background: #eee; padding: 1em; white-space: pre-wrap; }
-  </style>
-</head>
-<body>
-  <h1>☩ Manifest Builder</h1>
-  <p>Paste a list of scroll paths (e.g. <code>scrolls/scroll-of-rights.html</code>) below:</p>
-  <textarea id="fileList" rows="10" placeholder="scrolls/scroll-of-rights.html&#10;ministries/ministry-commerce.html"></textarea>
-  <button onclick="buildManifest()">Generate Manifest</button>
-
-  <h2>🧾 Manifest Preview</h2>
-  <pre id="output">{}</pre>
-
-  <script>
-    function buildManifest() {
-      const raw = document.getElementById('fileList').value.trim().split('\n');
-      const items = raw.map(path => {
-        const parts = path.split('/');
-        const file = parts.pop();
-        const section = parts[0] || 'core';
-        const title = file.replace('.html', '').replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-        const tags = [section, ...file.replace('.html', '').split('-')].map(t => t.toLowerCase());
-        const summary = "Placeholder summary for " + title + ".";
-        return {
-          section,
-          title,
-          path,
-          tags,
-          date: "2025-01-01",
-          summary
-        };
-      });
-      const manifest = { items };
-      document.getElementById('output').textContent = JSON.stringify(manifest, null, 2);
+{
+  "items": [
+    {
+      "section": "core",
+      "title": "Affidavit Of Public Posting",
+      "path": "affidavit-of-public-posting.html",
+      "tags": [
+        "core",
+        "affidavit",
+        "of",
+        "public",
+        "posting"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Affidavit Of Public Posting."
+    },
+    {
+      "section": "core",
+      "title": "Affidavit Of Status",
+      "path": "affidavit-of-status.html",
+      "tags": [
+        "core",
+        "affidavit",
+        "of",
+        "status"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Affidavit Of Status."
+    },
+    {
+      "section": "core",
+      "title": "Archive",
+      "path": "archive.html",
+      "tags": [
+        "core",
+        "archive"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Archive."
+    },
+    {
+      "section": "core",
+      "title": "Assets",
+      "path": "assets",
+      "tags": [
+        "core",
+        "assets"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Assets."
+    },
+    {
+      "section": "core",
+      "title": "Book Of Scroll Templates",
+      "path": "book-of-scroll-templates.html",
+      "tags": [
+        "core",
+        "book",
+        "of",
+        "scroll",
+        "templates"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Book Of Scroll Templates."
+    },
+    {
+      "section": "core",
+      "title": "Borders Earth Trust",
+      "path": "borders-earth-trust.html",
+      "tags": [
+        "core",
+        "borders",
+        "earth",
+        "trust"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Borders Earth Trust."
+    },
+    {
+      "section": "core",
+      "title": "Borders Ecclesia Earth Trust Instrument",
+      "path": "borders-ecclesia-earth-trust-instrument.html",
+      "tags": [
+        "core",
+        "borders",
+        "ecclesia",
+        "earth",
+        "trust",
+        "instrument"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Borders Ecclesia Earth Trust Instrument."
+    },
+    {
+      "section": "core",
+      "title": "Broadcast Archive",
+      "path": "broadcast-archive.html",
+      "tags": [
+        "core",
+        "broadcast",
+        "archive"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Broadcast Archive."
+    },
+    {
+      "section": "core",
+      "title": "Broadcast Temple",
+      "path": "broadcast-temple.html",
+      "tags": [
+        "core",
+        "broadcast",
+        "temple"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Broadcast Temple."
+    },
+    {
+      "section": "core",
+      "title": "Celestial Charter",
+      "path": "celestial-charter.html",
+      "tags": [
+        "core",
+        "celestial",
+        "charter"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Celestial Charter."
+    },
+    {
+      "section": "core",
+      "title": "Celestial Ledger",
+      "path": "celestial-ledger.html",
+      "tags": [
+        "core",
+        "celestial",
+        "ledger"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Celestial Ledger."
+    },
+    {
+      "section": "core",
+      "title": "Claim Throne",
+      "path": "claim-throne.html",
+      "tags": [
+        "core",
+        "claim",
+        "throne"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Claim Throne."
+    },
+    {
+      "section": "core",
+      "title": "Codex Academy",
+      "path": "codex-academy.html",
+      "tags": [
+        "core",
+        "codex",
+        "academy"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Academy."
+    },
+    {
+      "section": "core",
+      "title": "Codex Archive",
+      "path": "codex-archive.html",
+      "tags": [
+        "core",
+        "codex",
+        "archive"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Archive."
+    },
+    {
+      "section": "core",
+      "title": "Codex Atlas",
+      "path": "codex-atlas.html",
+      "tags": [
+        "core",
+        "codex",
+        "atlas"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Atlas."
+    },
+    {
+      "section": "core",
+      "title": "Codex Broadcast",
+      "path": "codex-broadcast.html",
+      "tags": [
+        "core",
+        "codex",
+        "broadcast"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Broadcast."
+    },
+    {
+      "section": "core",
+      "title": "Codex Constitution",
+      "path": "codex-constitution.html",
+      "tags": [
+        "core",
+        "codex",
+        "constitution"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Constitution."
+    },
+    {
+      "section": "core",
+      "title": "Codex Curriculum",
+      "path": "codex-curriculum.html",
+      "tags": [
+        "core",
+        "codex",
+        "curriculum"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Curriculum."
+    },
+    {
+      "section": "core",
+      "title": "Codex Directory",
+      "path": "codex-directory.html",
+      "tags": [
+        "core",
+        "codex",
+        "directory"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Directory."
+    },
+    {
+      "section": "core",
+      "title": "Codex Enhancer.Js",
+      "path": "codex-enhancer.js",
+      "tags": [
+        "core",
+        "codex",
+        "enhancer.js"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Enhancer.Js."
+    },
+    {
+      "section": "core",
+      "title": "Codex Harmonica",
+      "path": "codex-harmonica.html",
+      "tags": [
+        "core",
+        "codex",
+        "harmonica"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Harmonica."
+    },
+    {
+      "section": "core",
+      "title": "Codex Herald",
+      "path": "codex-herald.html",
+      "tags": [
+        "core",
+        "codex",
+        "herald"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Herald."
+    },
+    {
+      "section": "core",
+      "title": "Codex Infrastructure",
+      "path": "codex-infrastructure.html",
+      "tags": [
+        "core",
+        "codex",
+        "infrastructure"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Infrastructure."
+    },
+    {
+      "section": "core",
+      "title": "Codex Instructors",
+      "path": "codex-instructors.html",
+      "tags": [
+        "core",
+        "codex",
+        "instructors"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Instructors."
+    },
+    {
+      "section": "core",
+      "title": "Codex Ledger",
+      "path": "codex-ledger.html",
+      "tags": [
+        "core",
+        "codex",
+        "ledger"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Ledger."
+    },
+    {
+      "section": "core",
+      "title": "Codex Manifesto",
+      "path": "codex-manifesto.html",
+      "tags": [
+        "core",
+        "codex",
+        "manifesto"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Manifesto."
+    },
+    {
+      "section": "core",
+      "title": "Codex Oracle",
+      "path": "codex-oracle.html",
+      "tags": [
+        "core",
+        "codex",
+        "oracle"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Oracle."
+    },
+    {
+      "section": "core",
+      "title": "Codex Portal",
+      "path": "codex-portal.html",
+      "tags": [
+        "core",
+        "codex",
+        "portal"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Portal."
+    },
+    {
+      "section": "core",
+      "title": "Codex Throne Registry",
+      "path": "codex-throne-registry.html",
+      "tags": [
+        "core",
+        "codex",
+        "throne",
+        "registry"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Throne Registry."
+    },
+    {
+      "section": "core",
+      "title": "Codex Unified",
+      "path": "codex-unified.html",
+      "tags": [
+        "core",
+        "codex",
+        "unified"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Unified."
+    },
+    {
+      "section": "core",
+      "title": "Codex Update Log",
+      "path": "codex-update-log.html",
+      "tags": [
+        "core",
+        "codex",
+        "update",
+        "log"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Update Log."
+    },
+    {
+      "section": "core",
+      "title": "Codex",
+      "path": "codex.html",
+      "tags": [
+        "core",
+        "codex"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex."
+    },
+    {
+      "section": "core",
+      "title": "Codexchain Console",
+      "path": "codexchain-console.html",
+      "tags": [
+        "core",
+        "codexchain",
+        "console"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codexchain Console."
+    },
+    {
+      "section": "core",
+      "title": "Codexchain Timestamp",
+      "path": "codexchain-timestamp.html",
+      "tags": [
+        "core",
+        "codexchain",
+        "timestamp"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codexchain Timestamp."
+    },
+    {
+      "section": "core",
+      "title": "Codices.Json",
+      "path": "codices.json",
+      "tags": [
+        "core",
+        "codices.json"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codices.Json."
+    },
+    {
+      "section": "core",
+      "title": "Concord",
+      "path": "concord.html",
+      "tags": [
+        "core",
+        "concord"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Concord."
+    },
+    {
+      "section": "core",
+      "title": "Cover Letter Agencies Html",
+      "path": "cover-letter-agencies.html html",
+      "tags": [
+        "core",
+        "cover",
+        "letter",
+        "agencies html"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Cover Letter Agencies Html."
+    },
+    {
+      "section": "core",
+      "title": "Crown Codex Index",
+      "path": "crown-codex-index.html",
+      "tags": [
+        "core",
+        "crown",
+        "codex",
+        "index"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Crown Codex Index."
+    },
+    {
+      "section": "core",
+      "title": "Declaration Sovereign Status",
+      "path": "declaration-sovereign-status.html",
+      "tags": [
+        "core",
+        "declaration",
+        "sovereign",
+        "status"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Declaration Sovereign Status."
+    },
+    {
+      "section": "core",
+      "title": "Decree 001",
+      "path": "decree-001.html",
+      "tags": [
+        "core",
+        "decree",
+        "001"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Decree 001."
+    },
+    {
+      "section": "core",
+      "title": "Diplomatic Passport",
+      "path": "diplomatic-passport.html",
+      "tags": [
+        "core",
+        "diplomatic",
+        "passport"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Diplomatic Passport."
+    },
+    {
+      "section": "core",
+      "title": "Directory",
+      "path": "directory.html",
+      "tags": [
+        "core",
+        "directory"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Directory."
+    },
+    {
+      "section": "core",
+      "title": "Dispatch Packet",
+      "path": "dispatch-packet.html",
+      "tags": [
+        "core",
+        "dispatch",
+        "packet"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Dispatch Packet."
+    },
+    {
+      "section": "core",
+      "title": "Divine Solutions",
+      "path": "divine-solutions.html",
+      "tags": [
+        "core",
+        "divine",
+        "solutions"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Divine Solutions."
+    },
+    {
+      "section": "core",
+      "title": "Ecclesia Master Binder",
+      "path": "ecclesia-master-binder.html",
+      "tags": [
+        "core",
+        "ecclesia",
+        "master",
+        "binder"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Ecclesia Master Binder."
+    },
+    {
+      "section": "core",
+      "title": "Embassy Charter",
+      "path": "embassy-charter.html",
+      "tags": [
+        "core",
+        "embassy",
+        "charter"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Embassy Charter."
+    },
+    {
+      "section": "core",
+      "title": "Favicon.Png.Png",
+      "path": "favicon.png.png",
+      "tags": [
+        "core",
+        "favicon.png.png"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Favicon.Png.Png."
+    },
+    {
+      "section": "core",
+      "title": "Fee Schedule",
+      "path": "fee-schedule.html",
+      "tags": [
+        "core",
+        "fee",
+        "schedule"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Fee Schedule."
+    },
+    {
+      "section": "core",
+      "title": "Filing Forge",
+      "path": "filing-forge.html",
+      "tags": [
+        "core",
+        "filing",
+        "forge"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Filing Forge."
+    },
+    {
+      "section": "core",
+      "title": "Governance",
+      "path": "governance.html",
+      "tags": [
+        "core",
+        "governance"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Governance."
+    },
+    {
+      "section": "core",
+      "title": "Guardian Gate",
+      "path": "guardian-gate.html",
+      "tags": [
+        "core",
+        "guardian",
+        "gate"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Guardian Gate."
+    },
+    {
+      "section": "core",
+      "title": "Hash Forge",
+      "path": "hash-forge.html",
+      "tags": [
+        "core",
+        "hash",
+        "forge"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Hash Forge."
+    },
+    {
+      "section": "core",
+      "title": "Hedge Fund Charter",
+      "path": "hedge-fund-charter.html",
+      "tags": [
+        "core",
+        "hedge",
+        "fund",
+        "charter"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Hedge Fund Charter."
+    },
+    {
+      "section": "core",
+      "title": "Heir Deven",
+      "path": "heir-deven.html",
+      "tags": [
+        "core",
+        "heir",
+        "deven"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Heir Deven."
+    },
+    {
+      "section": "core",
+      "title": "Heir Devenity",
+      "path": "heir-devenity.html",
+      "tags": [
+        "core",
+        "heir",
+        "devenity"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Heir Devenity."
+    },
+    {
+      "section": "core",
+      "title": "Heir Path",
+      "path": "heir-path.html",
+      "tags": [
+        "core",
+        "heir",
+        "path"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Heir Path."
+    },
+    {
+      "section": "core",
+      "title": "Heir Registry",
+      "path": "heir-registry.html",
+      "tags": [
+        "core",
+        "heir",
+        "registry"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Heir Registry."
+    },
+    {
+      "section": "core",
+      "title": "Heirs.Json",
+      "path": "heirs.json",
+      "tags": [
+        "core",
+        "heirs.json"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Heirs.Json."
+    },
+    {
+      "section": "core",
+      "title": "Income Portal",
+      "path": "income-portal.html",
+      "tags": [
+        "core",
+        "income",
+        "portal"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Income Portal."
+    },
+    {
+      "section": "core",
+      "title": "Index",
+      "path": "index.html",
+      "tags": [
+        "core",
+        "index"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Index."
+    },
+    {
+      "section": "core",
+      "title": "Join",
+      "path": "join.html",
+      "tags": [
+        "core",
+        "join"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Join."
+    },
+    {
+      "section": "core",
+      "title": "Ledger",
+      "path": "ledger.html",
+      "tags": [
+        "core",
+        "ledger"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Ledger."
+    },
+    {
+      "section": "core",
+      "title": "Manifest.Json",
+      "path": "manifest.json",
+      "tags": [
+        "core",
+        "manifest.json"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Manifest.Json."
+    },
+    {
+      "section": "core",
+      "title": "Ministries Dashboard",
+      "path": "ministries-dashboard.html",
+      "tags": [
+        "core",
+        "ministries",
+        "dashboard"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Ministries Dashboard."
+    },
+    {
+      "section": "core",
+      "title": "Ministries Directory",
+      "path": "ministries-directory.html",
+      "tags": [
+        "core",
+        "ministries",
+        "directory"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Ministries Directory."
+    },
+    {
+      "section": "core",
+      "title": "Ministry Application",
+      "path": "ministry-application.html",
+      "tags": [
+        "core",
+        "ministry",
+        "application"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Ministry Application."
+    },
+    {
+      "section": "core",
+      "title": "Ministry Commerce",
+      "path": "ministry-commerce.html",
+      "tags": [
+        "core",
+        "ministry",
+        "commerce"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Ministry Commerce."
+    },
+    {
+      "section": "core",
+      "title": "Mint",
+      "path": "mint.html",
+      "tags": [
+        "core",
+        "mint"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Mint."
+    },
+    {
+      "section": "core",
+      "title": "Mirror Gate",
+      "path": "mirror-gate.html",
+      "tags": [
+        "core",
+        "mirror",
+        "gate"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Mirror Gate."
+    },
+    {
+      "section": "core",
+      "title": "Multi Throne Gate",
+      "path": "multi-throne-gate.html",
+      "tags": [
+        "core",
+        "multi",
+        "throne",
+        "gate"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Multi Throne Gate."
+    },
+    {
+      "section": "core",
+      "title": "Notice Of Standing",
+      "path": "notice-of-standing.html",
+      "tags": [
+        "core",
+        "notice",
+        "of",
+        "standing"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Notice Of Standing."
+    },
+    {
+      "section": "core",
+      "title": "Notice",
+      "path": "notice.html",
+      "tags": [
+        "core",
+        "notice"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Notice."
+    },
+    {
+      "section": "core",
+      "title": "Oracle Gate",
+      "path": "oracle-gate.html",
+      "tags": [
+        "core",
+        "oracle",
+        "gate"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Oracle Gate."
+    },
+    {
+      "section": "core",
+      "title": "Oracle Origin.Htm",
+      "path": "oracle-origin.htm",
+      "tags": [
+        "core",
+        "oracle",
+        "origin.htm"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Oracle Origin.Htm."
+    },
+    {
+      "section": "core",
+      "title": "Ots Verifier",
+      "path": "ots-verifier.html",
+      "tags": [
+        "core",
+        "ots",
+        "verifier"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Ots Verifier."
+    },
+    {
+      "section": "core",
+      "title": "Pma Charter",
+      "path": "pma-charter.html",
+      "tags": [
+        "core",
+        "pma",
+        "charter"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Pma Charter."
+    },
+    {
+      "section": "core",
+      "title": "Proof Of Posting",
+      "path": "proof-of-posting.html",
+      "tags": [
+        "core",
+        "proof",
+        "of",
+        "posting"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Proof Of Posting."
+    },
+    {
+      "section": "core",
+      "title": "Proof.Htlm",
+      "path": "proof.htlm",
+      "tags": [
+        "core",
+        "proof.htlm"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Proof.Htlm."
+    },
+    {
+      "section": "core",
+      "title": "Public Announcement",
+      "path": "public-announcement.html",
+      "tags": [
+        "core",
+        "public",
+        "announcement"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Public Announcement."
+    },
+    {
+      "section": "core",
+      "title": "Qr Codex Home.Png.Png",
+      "path": "qr-codex-home.png.png",
+      "tags": [
+        "core",
+        "qr",
+        "codex",
+        "home.png.png"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Qr Codex Home.Png.Png."
+    },
+    {
+      "section": "core",
+      "title": "Qr Credential",
+      "path": "qr-credential.html",
+      "tags": [
+        "core",
+        "qr",
+        "credential"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Qr Credential."
+    },
+    {
+      "section": "core",
+      "title": "Qr Generator",
+      "path": "qr-generator.html",
+      "tags": [
+        "core",
+        "qr",
+        "generator"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Qr Generator."
+    },
+    {
+      "section": "core",
+      "title": "Recognition",
+      "path": "recognition.html",
+      "tags": [
+        "core",
+        "recognition"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Recognition."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Convocation 1",
+      "path": "scroll-convocation-1.html",
+      "tags": [
+        "core",
+        "scroll",
+        "convocation",
+        "1"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Convocation 1."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Convocation 2",
+      "path": "scroll-convocation-2.html",
+      "tags": [
+        "core",
+        "scroll",
+        "convocation",
+        "2"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Convocation 2."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Cxvii Return Of Dead Fiction",
+      "path": "scroll-cxvii-return-of-dead-fiction.html",
+      "tags": [
+        "core",
+        "scroll",
+        "cxvii",
+        "return",
+        "of",
+        "dead",
+        "fiction"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Cxvii Return Of Dead Fiction."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Cxxiv Entity Formation",
+      "path": "scroll-cxxiv-entity-formation.html",
+      "tags": [
+        "core",
+        "scroll",
+        "cxxiv",
+        "entity",
+        "formation"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Cxxiv Entity Formation."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Cxxv Dispatch Protocol",
+      "path": "scroll-cxxv-dispatch-protocol.html",
+      "tags": [
+        "core",
+        "scroll",
+        "cxxv",
+        "dispatch",
+        "protocol"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Cxxv Dispatch Protocol."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Cxxvi Total Embedding",
+      "path": "scroll-cxxvi-total-embedding.html",
+      "tags": [
+        "core",
+        "scroll",
+        "cxxvi",
+        "total",
+        "embedding"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Cxxvi Total Embedding."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Cxxvii Embassy Protocols",
+      "path": "scroll-cxxvii-embassy-protocols.html",
+      "tags": [
+        "core",
+        "scroll",
+        "cxxvii",
+        "embassy",
+        "protocols"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Cxxvii Embassy Protocols."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Demarco Heir",
+      "path": "scroll-demarco-heir.html",
+      "tags": [
+        "core",
+        "scroll",
+        "demarco",
+        "heir"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Demarco Heir."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Forge",
+      "path": "scroll-forge.html",
+      "tags": [
+        "core",
+        "scroll",
+        "forge"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Forge."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Of Coronation",
+      "path": "scroll-of-coronation.html",
+      "tags": [
+        "core",
+        "scroll",
+        "of",
+        "coronation"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Of Coronation."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Of Enforcement",
+      "path": "scroll-of-enforcement.html",
+      "tags": [
+        "core",
+        "scroll",
+        "of",
+        "enforcement"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Of Enforcement."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Of Enrollment",
+      "path": "scroll-of-enrollment.html",
+      "tags": [
+        "core",
+        "scroll",
+        "of",
+        "enrollment"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Of Enrollment."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Of Eternal Flame",
+      "path": "scroll-of-eternal-flame.html",
+      "tags": [
+        "core",
+        "scroll",
+        "of",
+        "eternal",
+        "flame"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Of Eternal Flame."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Of Invocation",
+      "path": "scroll-of-invocation.html",
+      "tags": [
+        "core",
+        "scroll",
+        "of",
+        "invocation"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Of Invocation."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Of Prophecy",
+      "path": "scroll-of-prophecy.html",
+      "tags": [
+        "core",
+        "scroll",
+        "of",
+        "prophecy"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Of Prophecy."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Of Twelve Thrones",
+      "path": "scroll-of-twelve-thrones.html",
+      "tags": [
+        "core",
+        "scroll",
+        "of",
+        "twelve",
+        "thrones"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Of Twelve Thrones."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Of Twelve",
+      "path": "scroll-of-twelve.html",
+      "tags": [
+        "core",
+        "scroll",
+        "of",
+        "twelve"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Of Twelve."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Of Upgrades",
+      "path": "scroll-of-upgrades.html",
+      "tags": [
+        "core",
+        "scroll",
+        "of",
+        "upgrades"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Of Upgrades."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Registry",
+      "path": "scroll-registry.html",
+      "tags": [
+        "core",
+        "scroll",
+        "registry"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Registry."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Template",
+      "path": "scroll-template.html",
+      "tags": [
+        "core",
+        "scroll",
+        "template"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Template."
+    },
+    {
+      "section": "core",
+      "title": "Scrolls Coming Soon",
+      "path": "scrolls-coming-soon.html",
+      "tags": [
+        "core",
+        "scrolls",
+        "coming",
+        "soon"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scrolls Coming Soon."
+    },
+    {
+      "section": "core",
+      "title": "Scrolls",
+      "path": "scrolls.html",
+      "tags": [
+        "core",
+        "scrolls"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scrolls."
+    },
+    {
+      "section": "core",
+      "title": "Scrolls.Json",
+      "path": "scrolls.json",
+      "tags": [
+        "core",
+        "scrolls.json"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scrolls.Json."
+    },
+    {
+      "section": "core",
+      "title": "Services",
+      "path": "services.html",
+      "tags": [
+        "core",
+        "services"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Services."
+    },
+    {
+      "section": "core",
+      "title": "Sitemap.Xml",
+      "path": "sitemap.xml",
+      "tags": [
+        "core",
+        "sitemap.xml"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Sitemap.Xml."
+    },
+    {
+      "section": "core",
+      "title": "Sovereign Gate",
+      "path": "sovereign-gate.html",
+      "tags": [
+        "core",
+        "sovereign",
+        "gate"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Sovereign Gate."
+    },
+    {
+      "section": "core",
+      "title": "Sovereign Id",
+      "path": "sovereign-id.html",
+      "tags": [
+        "core",
+        "sovereign",
+        "id"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Sovereign Id."
+    },
+    {
+      "section": "core",
+      "title": "Sovereign Treasury Charter",
+      "path": "sovereign-treasury-charter.html",
+      "tags": [
+        "core",
+        "sovereign",
+        "treasury",
+        "charter"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Sovereign Treasury Charter."
+    },
+    {
+      "section": "core",
+      "title": "Sovergein.Ledger",
+      "path": "sovergein.ledger.html",
+      "tags": [
+        "core",
+        "sovergein.ledger"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Sovergein.Ledger."
+    },
+    {
+      "section": "core",
+      "title": "Stewardship",
+      "path": "stewardship.html",
+      "tags": [
+        "core",
+        "stewardship"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Stewardship."
+    },
+    {
+      "section": "core",
+      "title": "Style.Css",
+      "path": "style.css",
+      "tags": [
+        "core",
+        "style.css"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Style.Css."
+    },
+    {
+      "section": "core",
+      "title": "Subscribe",
+      "path": "subscribe.html",
+      "tags": [
+        "core",
+        "subscribe"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Subscribe."
+    },
+    {
+      "section": "core",
+      "title": "Technologies",
+      "path": "technologies.html",
+      "tags": [
+        "core",
+        "technologies"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Technologies."
+    },
+    {
+      "section": "core",
+      "title": "Throne Challenge",
+      "path": "throne-challenge.html",
+      "tags": [
+        "core",
+        "throne",
+        "challenge"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Throne Challenge."
+    },
+    {
+      "section": "core",
+      "title": "Throne Registry",
+      "path": "throne-registry.html",
+      "tags": [
+        "core",
+        "throne",
+        "registry"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Throne Registry."
+    },
+    {
+      "section": "core",
+      "title": "Token",
+      "path": "token.html",
+      "tags": [
+        "core",
+        "token"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Token."
+    },
+    {
+      "section": "core",
+      "title": "Treaty Aurora 2025",
+      "path": "treaty-aurora-2025.html",
+      "tags": [
+        "core",
+        "treaty",
+        "aurora",
+        "2025"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Treaty Aurora 2025."
+    },
+    {
+      "section": "core",
+      "title": "Treaty Covenant Of 12",
+      "path": "treaty-covenant-of-12.html",
+      "tags": [
+        "core",
+        "treaty",
+        "covenant",
+        "of",
+        "12"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Treaty Covenant Of 12."
+    },
+    {
+      "section": "core",
+      "title": "Treaty Invitation",
+      "path": "treaty-invitation.html",
+      "tags": [
+        "core",
+        "treaty",
+        "invitation"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Treaty Invitation."
+    },
+    {
+      "section": "core",
+      "title": "Treaty Recognition",
+      "path": "treaty-recognition.html",
+      "tags": [
+        "core",
+        "treaty",
+        "recognition"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Treaty Recognition."
+    },
+    {
+      "section": "core",
+      "title": "Tribunal",
+      "path": "tribunal.html",
+      "tags": [
+        "core",
+        "tribunal"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Tribunal."
+    },
+    {
+      "section": "core",
+      "title": "Trust Charter",
+      "path": "trust-charter.html",
+      "tags": [
+        "core",
+        "trust",
+        "charter"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Trust Charter."
+    },
+    {
+      "section": "core",
+      "title": "Trustee Portal",
+      "path": "trustee-portal.html",
+      "tags": [
+        "core",
+        "trustee",
+        "portal"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Trustee Portal."
+    },
+    {
+      "section": "core",
+      "title": "Universal Trustee Poa",
+      "path": "universal-trustee-poa.html",
+      "tags": [
+        "core",
+        "universal",
+        "trustee",
+        "poa"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Universal Trustee Poa."
+    },
+    {
+      "section": "core",
+      "title": "Verify Scroll",
+      "path": "verify-scroll.html",
+      "tags": [
+        "core",
+        "verify",
+        "scroll"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Verify Scroll."
+    },
+    {
+      "section": "core",
+      "title": "Verify",
+      "path": "verify.html",
+      "tags": [
+        "core",
+        "verify"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Verify."
+    },
+    {
+      "section": "core",
+      "title": "Voice.Htm",
+      "path": "voice.htm",
+      "tags": [
+        "core",
+        "voice.htm"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Voice.Htm."
+    },
+    {
+      "section": "core",
+      "title": "Codex Academy",
+      "path": "codex-academy.html",
+      "tags": [
+        "core",
+        "codex",
+        "academy"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Academy."
+    },
+    {
+      "section": "core",
+      "title": "Divine Law 101",
+      "path": "divine-law-101.html",
+      "tags": [
+        "core",
+        "divine",
+        "law",
+        "101"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Divine Law 101."
+    },
+    {
+      "section": "core",
+      "title": "Index",
+      "path": "index.html",
+      "tags": [
+        "core",
+        "index"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Index."
+    },
+    {
+      "section": "core",
+      "title": "Scrollkeeping 101",
+      "path": "scrollkeeping-101.html",
+      "tags": [
+        "core",
+        "scrollkeeping",
+        "101"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scrollkeeping 101."
+    },
+    {
+      "section": "core",
+      "title": "Ceremonial Calendar",
+      "path": "ceremonial-calendar.html",
+      "tags": [
+        "core",
+        "ceremonial",
+        "calendar"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Ceremonial Calendar."
+    },
+    {
+      "section": "core",
+      "title": "Codex Academy",
+      "path": "codex-academy.html",
+      "tags": [
+        "core",
+        "codex",
+        "academy"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Academy."
+    },
+    {
+      "section": "core",
+      "title": "Codex Broadcast",
+      "path": "codex-broadcast.html",
+      "tags": [
+        "core",
+        "codex",
+        "broadcast"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Broadcast."
+    },
+    {
+      "section": "core",
+      "title": "Codex Ecclesia Public",
+      "path": "codex-ecclesia-public.html",
+      "tags": [
+        "core",
+        "codex",
+        "ecclesia",
+        "public"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Ecclesia Public."
+    },
+    {
+      "section": "core",
+      "title": "Codex Harmony",
+      "path": "codex-harmony.html",
+      "tags": [
+        "core",
+        "codex",
+        "harmony"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Harmony."
+    },
+    {
+      "section": "core",
+      "title": "Codex Infrastructure",
+      "path": "codex-infrastructure.html",
+      "tags": [
+        "core",
+        "codex",
+        "infrastructure"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex Infrastructure."
+    },
+    {
+      "section": "core",
+      "title": "Events.Json",
+      "path": "events.json",
+      "tags": [
+        "core",
+        "events.json"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Events.Json."
+    },
+    {
+      "section": "core",
+      "title": "Ministries",
+      "path": "ministries",
+      "tags": [
+        "core",
+        "ministries"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Ministries."
+    },
+    {
+      "section": "core",
+      "title": "Ministry Commerce",
+      "path": "ministry-commerce.html",
+      "tags": [
+        "core",
+        "ministry",
+        "commerce"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Ministry Commerce."
+    },
+    {
+      "section": "core",
+      "title": "Ministry Hearth",
+      "path": "ministry-hearth.html",
+      "tags": [
+        "core",
+        "ministry",
+        "hearth"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Ministry Hearth."
+    },
+    {
+      "section": "core",
+      "title": "Generate Charter",
+      "path": "generate-charter.html",
+      "tags": [
+        "core",
+        "generate",
+        "charter"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Generate Charter."
+    },
+    {
+      "section": "core",
+      "title": "Codex.Jsscroll Crown Authority",
+      "path": "codex.jsscroll-crown-authority.html",
+      "tags": [
+        "core",
+        "codex.jsscroll",
+        "crown",
+        "authority"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Codex.Jsscroll Crown Authority."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Deven Heir",
+      "path": "scroll-deven-heir.html",
+      "tags": [
+        "core",
+        "scroll",
+        "deven",
+        "heir"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Deven Heir."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Matriarch",
+      "path": "scroll-matriarch.html",
+      "tags": [
+        "core",
+        "scroll",
+        "matriarch"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Matriarch."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Omega",
+      "path": "scroll-omega.html",
+      "tags": [
+        "core",
+        "scroll",
+        "omega"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Omega."
+    },
+    {
+      "section": "core",
+      "title": "Scroll Queen Miranda",
+      "path": "scroll-queen-miranda.html",
+      "tags": [
+        "core",
+        "scroll",
+        "queen",
+        "miranda"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Scroll Queen Miranda."
+    },
+    {
+      "section": "core",
+      "title": "Trustee Charter)",
+      "path": "trustee-charter.html)",
+      "tags": [
+        "core",
+        "trustee",
+        "charter)"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Trustee Charter)."
+    },
+    {
+      "section": "core",
+      "title": "Tools",
+      "path": "tools",
+      "tags": [
+        "core",
+        "tools"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Tools."
+    },
+    {
+      "section": "core",
+      "title": "Manifest Builder",
+      "path": "manifest-builder.html",
+      "tags": [
+        "core",
+        "manifest",
+        "builder"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for Manifest Builder."
     }
-  </script>
-</body>
-</html>
+  ]
+}
