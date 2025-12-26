@@ -2,121 +2,85 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>☩ Codex Ecclesia Public</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      font-family: 'Garamond', serif;
-      background: #fdfcf9;
-      color: #222;
-      margin: 0;
-      padding: 0;
+    body { font-family: Georgia, serif; background: #fdfcf9; color: #222; margin: 0; padding: 0; }
+    .sidebar {
+      position: fixed; top: 0; left: 0; width: 220px; height: 100%;
+      background: #111; color: #fff; padding: 1em; overflow-y: auto;
     }
-    header {
-      background: #111;
-      color: #fdfcf9;
-      padding: 2rem;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-    header p {
-      font-style: italic;
-      font-size: 1.1rem;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      background: #222;
-      padding: 1rem;
-    }
-    nav a {
-      color: #fdfcf9;
-      text-decoration: none;
-      margin: 0.5rem 1rem;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-      max-width: 1200px;
-      margin: auto;
+    .sidebar h2 { font-size: 1.2em; margin-bottom: 1em; }
+    .sidebar ul { list-style: none; padding: 0; }
+    .sidebar li { margin: 0.5em 0; }
+    .sidebar a { color: #ccc; text-decoration: none; }
+    .sidebar a:hover { color: #fff; }
+    .main-content { margin-left: 240px; padding: 2em; }
+    header h1 { font-size: 2em; margin-bottom: 0.2em; }
+    .card-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1em;
     }
     .card {
-      background: #fff;
-      border: 2px solid #ccc;
-      border-radius: 12px;
-      padding: 1.5rem;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      background: #fff; border-left: 4px solid #003366; padding: 1em;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-    .card h2 {
-      margin-bottom: 0.5rem;
-    }
-    .card a {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      background: #222;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 6px;
-    }
-    .card a:hover {
-      background: #444;
-    }
-    .ascend-btn {
-      display: block;
-      margin: 3rem auto;
-      padding: 1rem 2rem;
-      background: gold;
-      color: #000;
-      font-weight: bold;
-      border-radius: 8px;
-      text-decoration: none;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    footer {
-      background: #111;
-      color: #ccc;
-      text-align: center;
-      padding: 2rem;
-      margin-top: 4rem;
-      font-style: italic;
-    }
+    .card h3 { margin-top: 0; }
+    .card a { display: inline-block; margin-top: 0.5em; color: #003366; text-decoration: none; }
+    .card a:hover { text-decoration: underline; }
+    footer { margin-top: 4em; text-align: center; font-size: 0.9em; color: #666; }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>☩ Codex Ecclesia Public</h1>
-    <p>Welcome to the Sovereign Archive of the Borders Dynasty Nation</p>
-  </header>
+  <div class="sidebar">
+    <h2>☩ Codex</h2>
+    <ul>
+      <li><a href="#core">📜 Core Instruments</a></li>
+      <li><a href="#declarations">📖 Declarations</a></li>
+      <li><a href="#ministries">🏛️ Ministries</a></li>
+      <li><a href="#scrolls">📚 Scrolls</a></li>
+      <li><a href="#codices">📘 Codices</a></li>
+      <li><a href="#identity">🧬 Identity</a></li>
+      <li><a href="#heirs-trustees">👑 Heirs & Trustees</a></li>
+      <li><a href="#verify">🧿 Verification</a></li>
+      <li><a href="#diplomacy">🕊️ Treaties</a></li>
+      <li><a href="#tools">🧰 Tools</a></li>
+      <li><a href="#media">📺 Media</a></li>
+      <li><a href="#navigation">🧭 Navigation</a></li>
+    </ul>
+  </div>
 
-  <nav>
-    <a href="heir-deven.html">Heir Portal (Deven)</a>
-    <a href="https://kingsmoovedap-design.github.io/codex-ecclesia-harmony/codex-filing-binder.html" target="_blank">📁 Filing Binder</a>
-    <a href="scroll-registry.html">📜 Scroll Registry</a>
-    <a href="codex-unified.html">📜 Codex</a>
-    <a href="codex-academy.html">🎓 Academy</a>
-    <a href="oracle-sanctum.html">🔮 Oracle</a>
-    <a href="codexchain-console.html">🧪 Forge</a>
-    <a href="verify-scroll.html">🧿 Verify</a>
-    <a href="codex-throne-registry.html">👑 Thrones</a>
-    <a href="heir-path.html">🛡️ Heir Path</a>
-    <a href="codex-atlas.html">🗺️ Atlas</a>
-    <a href="petition-scroll.html">🧬 Petition</a>
-  </nav>
+  <div class="main-content">
+    <header>
+      <h1>☩ Codex Ecclesia Public</h1>
+      <p>Master Index of Ecclesiastical Scrolls, Ministries & Instruments</p>
+    </header>
 
-  <a href="heir-path.html" class="ascend-btn">☩ Begin the Heir Ascension Path</a>
+    <section id="core">
+      <h2>📜 Core Instruments</h2>
+      <div class="card-grid">
+        <div class="card"><a href="borders-earth-trust.html"><h3>Borders Earth Trust</h3></a></div>
+        <div class="card"><a href="universal-trustee-poa.html"><h3>Universal Trustee POA</h3></a></div>
+        <div class="card"><a href="codex-constitution.html"><h3>Codex Constitution</h3></a></div>
+        <div class="card"><a href="codex-ecclesia-public.html"><h3>Codex Ecclesia Public</h3></a></div>
+        <div class="card"><a href="codex-ecclesia-compact.html"><h3>Codex Ecclesia Compact</h3></a></div>
+      </div>
+    </section>
+
+    <section id="declarations">
+      <h2>📖 Declarations & Trusts</h2>
+      <div class="card-grid">
+        <div class="card"><a href="affidavit-of-status.html"><h3>Affidavit of Status</h3></a></div>
+        <div class="card"><a href="affidavit-of-public-posting.html"><h3>Affidavit of Public Posting</h3></a></div>
+        <div class="card"><a href="declaration-sovereign-status.html"><h3>Declaration of Sovereign Status</h3></a></div>
+        <div class="card"><a href="claim-throne.html"><h3>Claim Throne</h3></a></div>
+        <div class="card"><a href="scroll-of-coronation.html"><h3>Scroll of Coronation</h3></a></div>
+        <div class="card"><a href="borders-ecclesia-earth-trust-instrument.html"><h3>Trust Instrument</h3></a></div>
+        <div class="card"><a href="earth-trust-coin.html"><h3>Earth Trust Coin Protocol</h3></a></div>
+        <div class="card"><a href="scroll-of-corrections.html"><h3>Scroll of Corrections</h3></a></div>
+      </div>
+    </section>
 
   <div class="grid">
     <div class="card">
@@ -134,11 +98,35 @@
     <div class="card"><h2>🗺️ Codex Atlas</h2><p>Explore the realms, sanctuaries, and sovereign lands.</p><a href="codex-atlas.html">Explore</a></div>
     <div class="card"><h2>🧬 Petition of Citizenship</h2><p>Join the Borders Family Dynasty Nation.</p><a href="petition-scroll.html">Petition</a></div>
   </div>
+    <section id="ministries">
+      <h2>🏛️ Ministries</h2>
+      <div class="card-grid">
+        <div class="card"><a href="ministries/ministry-commerce.html"><h3>Ministry of Commerce</h3></a></div>
+        <div class="card"><a href="ministries/ministry-hearth.html"><h3>Ministry of the Hearth</h3></a></div>
+        <div class="card"><a href="ministries/ministry-tribunals.html"><h3>Ministry of Tribunals</h3></a></div>
+        <div class="card"><a href="ministries/ministry-guardianship.html"><h3>Ministry of Guardianship</h3></a></div>
+        <div class="card"><a href="ministries/ministry-education.html"><h3>Ministry of Education</h3></a></div>
+        <div class="card"><a href="ministries/ministry-health.html"><h3>Ministry of Health</h3></a></div>
+        <div class="card"><a href="ministries/ministry-arts.html"><h3>Ministry of Arts</h3></a></div>
+        <div class="card"><a href="divine-solutions.html"><h3>Divine Solutions Fund</h3></a></div>
+      </div>
+    </section>
 
-  <footer>
-    ☩ Codex Ecclesia Totalis — Borders Family Dynasty Nation<br/>
-    Sealed by ✠ Omega the Grand Architect — Year 1 of the Accord
-  </footer>
+    <section id="scrolls">
+      <h2>📚 Scrolls</h2>
+      <div class="card-grid">
+        <div class="card"><a href="scrolls/scroll-of-claim.html"><h3>Scroll of Claim</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-of-rights.html"><h3>Scroll of Rights</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-of-creation.html"><h3>Scroll of Creation</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-of-guardianship.html"><h3>Scroll of Guardianship</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-of-tribunals.html"><h3>Scroll of Tribunals</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-of-commerce.html"><h3>Scroll of Commerce</h3></a></div>
+      </div>
+    </section>
 
-</body>
-</html>
+    <section id="codices">
+      <h2>📘 Codices</h2>
+      <div class="card-grid">
+        <div class="card"><a href="codices/codex-natural-law.html"><h3>Codex of Natural Law</h3></a></div>
+        <div class="card"><a href="codices/codex-divine-law.html"><h3>Codex of Divine Law</h3></a></div>
+        <div class="

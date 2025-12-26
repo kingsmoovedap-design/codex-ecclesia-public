@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>☩ IPFS Notary</title>
+  <style>
+    body { font-family: Georgia, serif; padding: 2em; background: #f4f4f4; }
+    textarea, input { width: 100%; margin: 0.5em 0; padding: 0.75em; font-size: 1em; }
+    button { padding: 0.75em 1.5em; background: #003366; color: white; border: none; cursor: pointer; }
+    pre { background: #eee; padding: 1em; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>☩ IPFS Notary</h1>
+  <p>Paste your Web3.Storage API token (kept only in this browser):</p>
+  <input type="password" id="token" placeholder="web3.storage API token" />
+
+  <p>Paste scroll content to notarize:</p>
+  <textarea id="content" rows="12" placeholder="Paste scroll HTML or text..."></textarea>
+
+  <button onclick="upload()">📡 Notarize to IPFS</button>
+
+  <h2>Result</h2>
+  <pre id="output"></pre>
+
+  <script>
+    async function upload() {
+      const token = document.getElementById('token').value.trim();
+      const content = document.getElementById('content').value;
+
+      if (!token || !content) {
+        alert('Token and content are required.');
+        return;
+      }
+
+      const blob = new Blob([content], { type: "text/html" });
+      const file = new File([blob], "scroll.html");
+
+      const res = await fetch('https://api.web3.storage/upload', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        body: file
+      });
+
+      if (!res.ok) {
+        document.getElementById('output').textContent = `Error: ${res.status} ${res.statusText}`;
+        return;
+      }
+
+      const data = await res.json();
+      const cid = data.cid || data.cid || data['cid'];
+      document.getElementById('output').textContent =
+        `✅ Notarized!\n\nCID: ${cid}\n\nIPFS Gateway:\nhttps://w3s.link/ipfs/${cid}`;
+    }
+  </script>
+</body>
+</html>

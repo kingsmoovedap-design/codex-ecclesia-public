@@ -32,3 +32,18 @@
     "notes": "Younger brother of Deven. Future scroll to be authored. Witness to Scroll 031."
   }
 ]
+{
+  "id": "003",
+  "name": "Devenity Marie Borders",
+  "title": "Princess",
+  "birthdate": "2024-10-08",
+  "crowning_date": "",
+  "scroll": "scrolls/scroll-devenity-heir.html",
+  "father": "Omega",
+  "mother": "Miranda M. Eden",
+  "siblings": ["Deven Julian Borders", "Demarco C. Borders"],
+  "witnesses": [],
+  "status": "in preparation",
+  "notes": "Daughter of Omega and Miranda M. Eden. To be trained in the Harmonies of Sovereignty and prepared for future scroll authorship and ceremonial crowning."
+}
+"scroll": "scrolls/scroll-demarco-heir.html"
