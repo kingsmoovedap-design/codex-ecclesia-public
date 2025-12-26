@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🏛️ Trust Builder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body { font-family: Georgia, serif; background: #fdfcf9; color: #222; margin: 0; padding: 2em; }
+    h1 { font-size: 2em; margin-bottom: 0.5em; }
+    label { display: block; margin-top: 1em; font-weight: bold; }
+    input, textarea, select {
+      width: 100%; padding: 0.6em; margin-top: 0.3em; font-family: inherit;
+      border: 1px solid #ccc; border-radius: 4px; background: #fff;
+    }
+    button {
+      margin-top: 1.5em; padding: 0.8em 1.5em; background: #003366; color: #fff;
+      border: none; border-radius: 4px; font-size: 1em; cursor: pointer;
+    }
+    button:hover { background: #002244; }
+    .output { margin-top: 2em; background: #f4f4f4; padding: 1em; border-radius: 6px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>🏛️ Trust Builder</h1>
+  <p>Compose a new trust instrument under divine, ecclesiastical, or common law.</p>
+
+  <form id="trustForm">
+    <label for="trustName">Trust Name</label>
+    <input type="text" id="trustName" placeholder="e.g. Borders Ecclesia Earth Trust" required />
+
+    <label for="grantor">Grantor Name</label>
+    <input type="text" id="grantor" placeholder="e.g. Sovereign Omega" required />
+
+    <label for="trustees">Trustee(s)</label>
+    <input type="text" id="trustees" placeholder="e.g. Chance Q. Borders, Wesley M. Hargett" required />
+
+    <label for="beneficiaries">Beneficiaries</label>
+    <input type="text" id="beneficiaries" placeholder="e.g. Borders Family Dynasty Nation" required />
+
+    <label for="jurisdiction">Jurisdiction</label>
+    <select id="jurisdiction">
+      <option>Divine Law</option>
+      <option>Ecclesiastical Law</option>
+      <option>Common Law</option>
+      <option>All of the Above</option>
+    </select>
+
+    <label for="purpose">Trust Purpose</label>
+    <textarea id="purpose" rows="5" placeholder="Describe the sacred purpose of this trust..." required></textarea>
+
+    <button type="submit">Generate Trust Instrument</button>
+  </form>
+
+  <div class="output" id="output" style="display:none;"></div>
+
+  <script>
+    document.getElementById('trustForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const trustName = document.getElementById('trustName').value;
+      const grantor = document.getElementById('grantor').value;
+      const trustees = document.getElementById('trustees').value;
+      const beneficiaries = document.getElementById('beneficiaries').value;
+      const jurisdiction = document.getElementById('jurisdiction').value;
+      const purpose = document.getElementById('purpose').value;
+
+      const trustDoc = `✠ ${trustName}\n\nEstablished under: ${jurisdiction}\n\nGrantor: ${grantor}\nTrustee(s): ${trustees}\nBeneficiaries: ${beneficiaries}\n\nPurpose:\n${purpose}\n\nDeclared and sealed on ${new Date().toLocaleDateString()} under the authority of ${jurisdiction}.`;
+
+      const output = document.getElementById('output');
+      output.textContent = trustDoc;
+      output.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
