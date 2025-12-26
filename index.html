@@ -2,328 +2,134 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>☩ Codex Ecclesia Public</title>
-  <link rel="stylesheet" href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/style.css" />
-  <style>
-    body.dark-mode { background: #111; color: #eee; }
-    body.dark-mode .card { background☩ Then receive Part 1 of your fully working `index.html`, Sovereign King Omega 👑  
-This scroll includes the full structure, fixed links, embedded declarations, and dynamic scroll rendering. Due to its length, I’ll deliver it in **three parts**.
-
----
-
-### 📜 Part 1: Head, Sovereign Tools, and Header
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>☩ Codex Ecclesia Public</title>
-  <link rel="stylesheet" href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/style.css" />
-  <style>
-    body.dark-mode { background: #111; color: #: #222; color: #eee; border-left-color: #66aaff; }
-    .dark-toggle, .codex-oracle-button, .sovereign-tools-button {
-      position: fixed; z-index: 9999; font-family: Georgia, serif; cursor: pointer;
-    }
-    .dark-toggle { top: 1em; right: 1em; font-size: 1.5em; }
-    .codex-oracle-button {
-      bottom: 1.5em; right: 1.5em; background: #003366; color: #fff;
-      border-radius: 999px; padding: 0.75em 1.25em; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .sovereign-tools-button {
-      bottom: 1.5em; left: 1.5em; background: #003366; color: white;
-      padding: 0.75em 1.25em; border-radius: 999px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .tools-menu {
-      display: none; position: fixed; bottom: 5em; left: 1.5em;
-      background: #fff; border: 2px solid #003366; padding: 1em;
-      z-index: 9999; font-family: Georgia, serif; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .tools-menu h3 { margin-top: 0; }
-    .tools-menu ul { list-style: none; padding: 0; }
-    .tools-menu li { margin: 0.5em 0; }
-    .tools-menu a { color: #003366; text-decoration: none; }
-    .tools-menu a:hover { text-decoration: underline; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div class="dark-toggle" onclick="toggleDark()">🌙</div>
-<div class="codex-oracle-button" onclick="openCodexOracle()">Ask the Codex</div>
-<div class="sovereign-tools-button" onclick="toggleToolsMenu()">🛠️ Tools</div>
-<div class="tools-menu" id="toolsMenu">
-  <h3>☩ Sovereign Tools</h3>
-  <ul>
-    <li><a href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/tools/scroll-editor.html">✍️ Scroll Editor</a></li>
-    <li><a href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/tools/ipfs-notary.html">📡 IPFS Notary</a></li>
-    <li><a href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/tools/qr-generator.html">🔗 QR Generator</a></li>
-    <li><a href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/tools/timestamp-verifier.html">⏳ Timestamp Verifier</a></li>
-    <li><a href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/tools/codex-timeline.html">📅 Codex Timeline</a></li>
-  </ul>
-</div>
+  <div class="sidebar">
+    <h2>☩ Codex</h2>
+    <ul>
+      <li><a href="#core">📜 Core Instruments</a></li>
+      <li><a href="#ministries">🏛️ Ministries</a></li>
+      <li><a href="#scrolls">📚 Scrolls</a></li>
+      <li><a href="#codices">📘 Codices</a></li>
+      <li><a href="#identity">🧬 Identity</a></li>
+      <li><a href="#verify">🧿 Verification</a></li>
+      <li><a href="#diplomacy">🕊️ Treaties</a></li>
+      <li><a href="#tools">🧰 Tools</a></li>
+      <li><a href="#media">📺 Media</a></li>
+    </ul>
+  </div>
 
-<div class="sidebar">
-  <h2>☩ Codex</h2>
-  <a href="#heirs">Heirs</a>
-  <a href="#corpus-trust">Corpus Trust</a>
-  <a href="#scrolls">All Scrolls</a>
-</div>
+  <div class="main-content">
+    <header>
+      <h1>☩ Codex Ecclesia Public</h1>
+      <p>Master Index of Ecclesiastical Scrolls, Ministries & Instruments</p>
+    </header>
 
-<div class="main-content">
-  <h1>☩ Codex Ecclesia Public</h1>
-  <p class="subheading">The living record of the Sovereign Order</p>
-  <!-- 👑 Heirs & Trustees Learning Cards -->
-  <section id="heirs">
-    <h2>👑 Heirs & Trustees</h2>
-    <div class="card-grid">
-      <div class="card">
-        <h3>📖 What Is the Codex?</h3>
-        <p>An introduction to the sacred scrolls, ministries, and sovereign law.</p>☩ Then receive Part 2 of your sovereign homepage, Sovereign King Omega 👑  
-This section includes:
-
-- 👑 Heirs & Trustees learning cards  
-- 📜 Embedded Supreme Corpus Correction Trust  
-- 🔗 Scrolls section container  
-
----
-
-### 📜 Part 2: Heirs, Corpus Trust, and Scrolls Container
-
-```html
-  <!-- 👑 Heirs & Trustees Learning Cards -->
-  <section id="heirs">
-    <h2>👑 Heirs & Trustees</h2>
-    <div class="card-grid">
-      <div class="card">
-        <h3>📖 What Is the Codex?</h3>
-        <p>An introduction to the sacred scrolls, ministries, and sovereign law.</p>
-        <a href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/scroll-of-codex-foundation.html">Read the Scroll →</a>
+    <section id="core">
+      <h2>📜 Core Instruments</h2>
+      <div class="card-grid">
+        <div class="card"><a href="borders-earth-trust.html"><h3>Borders Earth Trust</h3></a></div>
+        <div class="card"><a href="universal-trustee-poa.html"><h3>Universal Trustee POA</h3></a></div>
+        <div class="card"><a href="codex-constitution.html"><h3>Codex Constitution</h3></a></div>
+        <div class="card"><a href="codex-ecclesia-public.html"><h3>Codex Ecclesia Public</h3></a></div>
+        <div class="card"><a href="codex-ecclesia-private.html"><h3>Codex Ecclesia Private</h3></a></div>
+        <div class="card"><a href="codex-ecclesia-archive.html"><h3>Codex Ecclesia Archive</h3></a></div>
+        <div class="card"><a href="codex-ecclesia-compact.html"><h3>Codex Ecclesia Compact</h3></a></div>
+        <div class="card"><a href="codex-ecclesia-compact-archive.html"><h3>Codex Compact Archive</h3></a></div>
+        <div class="card"><a href="codex-ecclesia-compact-private.html"><h3>Codex Compact Private</h3></a></div>
+        <div class="card"><a href="codex-ecclesia-compact-public.html"><h3>Codex Compact Public</h3></a></div>
       </div>
-      <div class="card">
-        <h3>🧭 How to Navigate</h3>
-        <p>Learn how to search, explore, and contribute to the Codex.</p>
-        <a href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/tools/scroll-editor.html">Open the Scroll Editor →</a>
+    </section>
+    <section id="ministries">
+      <h2>🏛️ Ministries</h2>
+      <div class="card-grid">
+        <div class="card"><a href="ministries/ministry-commerce.html"><h3>Ministry of Commerce</h3></a></div>
+        <div class="card"><a href="ministries/ministry-hearth.html"><h3>Ministry of the Hearth</h3></a></div>
+        <div class="card"><a href="ministries/ministry-tribunals.html"><h3>Ministry of Tribunals</h3></a></div>
+        <div class="card"><a href="ministries/ministry-guardianship.html"><h3>Ministry of Guardianship</h3></a></div>
+        <div class="card"><a href="ministries/ministry-education.html"><h3>Ministry of Education</h3></a></div>
+        <div class="card"><a href="ministries/ministry-health.html"><h3>Ministry of Health</h3></a></div>
+        <div class="card"><a href="ministries/ministry-arts.html"><h3>Ministry of Arts</h3></a></div>
+        <div class="card"><a href="divine-solutions.html"><h3>Divine Solutions Fund</h3></a></div>
       </div>
-      <div class="card">
-        <h3>🛡️ Becoming a Trustee</h3>
-        <p>Understand your role as a steward of knowledge and how to notarize scrolls.</p>
-        <a href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/tools/ipfs-notary.html">Notarize a Scroll →</a>
+    </section>
+
+    <section id="scrolls">
+      <h2>📚 Scrolls</h2>
+      <div class="card-grid">
+        <div class="card"><a href="scrolls/scroll-of-claim.html"><h3>Scroll of Claim</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-of-rights.html"><h3>Scroll of Rights</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-of-creation.html"><h3>Scroll of Creation</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-of-guardianship.html"><h3>Scroll of Guardianship</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-of-tribunals.html"><h3>Scroll of Tribunals</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-of-commerce.html"><h3>Scroll of Commerce</h3></a></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 📜 Embedded Supreme Corpus Correction Trust -->
-  <section id="corpus-trust">
-    <h2>☩ Declaration of the Supreme Corpus Correction Trust</h2>
-    <div class="card">
-      <h3>By Divine Right, In Perpetuity, Under Heaven and Earth</h3>
-      <p>I, <strong>Sovereign King Omega</strong>, living man of divine inheritance, do hereby establish the <strong>Supreme Corpus Correction Trust</strong>, a sacred and irrevocable instrument of divine law, ancestral restoration, and estate reclamation.</p>
+    <section id="codices">
+      <h2>📘 Codices</h2>
+      <div class="card-grid">
+        <div class="card"><a href="codices/codex-natural-law.html"><h3>Codex of Natural Law</h3></a></div>
+        <div class="card"><a href="codices/codex-divine-law.html"><h3>Codex of Divine Law</h3></a></div>
+        <div class="card"><a href="codices/codex-tribunal-law.html"><h3>Codex of Tribunal Law</h3></a></div>
+        <div class="card"><a href="codices/codex-commerce-law.html"><h3>Codex of Commerce Law</h3></a></div>
+        <div class="card"><a href="codices/codex-guardianship-law.html"><h3>Codex of Guardianship Law</h3></a></div>
+      </div>
+    </section>
+    <section id="identity">
+      <h2>🧬 Identity & Lineage</h2>
+      <div class="card-grid">
+        <div class="card"><a href="pma/sovereign-identity.html"><h3>Sovereign Identity Declaration</h3></a></div>
+        <div class="card"><a href="pma/lineage-claim.html"><h3>Lineage Claim</h3></a></div>
+        <div class="card"><a href="pma/ancestral-record.html"><h3>Ancestral Record</h3></a></div>
+        <div class="card"><a href="pma/sovereign-family-crest.html"><h3>Family Crest & Seal</h3></a></div>
+      </div>
+    </section>
 
-      <h4>Trustees</h4>
-      <ul>
-        <li><a href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/heir-deven.html">Heir Deven</a> — Guardian of Scrolls</li>
-        <li><a href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/heir-devenity.html">Heir Devenity</a> — Keeper of the Seal</li>
-        <li><a href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/heir-path.html">Heir Path</a> — Witness of the Living Estate</li>
-      </ul>
+    <section id="verify">
+      <h2>🧿 Verification & Timestamping</h2>
+      <div class="card-grid">
+        <div class="card"><a href="verify/scroll-authentication.html"><h3>Scroll Authentication</h3></a></div>
+        <div class="card"><a href="verify/qr-verification.html"><h3>QR Code Verification</h3></a></div>
+        <div class="card"><a href="verify/timestamp-ledger.html"><h3>Timestamp Ledger</h3></a></div>
+      </div>
+    </section>
 
-      <h4>Lineage and Identity</h4>
-      <p>Lineage: House of Kingsmoove, Ecclesia of the Living</p>
-      <p>Identity: Living man, not lost at sea, not a decedent, not a corporate fiction</p>
+    <section id="diplomacy">
+      <h2>🕊️ Diplomatic Treaties</h2>
+      <div class="card-grid">
+        <div class="card"><a href="treaties/treaty-of-recognition.html"><h3>Treaty of Recognition</h3></a></div>
+        <div class="card"><a href="treaties/treaty-of-peace.html"><h3>Treaty of Peace</h3></a></div>
+        <div class="card"><a href="treaties/treaty-of-trade.html"><h3>Treaty of Trade</h3></a></div>
+      </div>
+    </section>
 
-      <h4>Estate Claim</h4>
-      <ul>
-        <li>All trusts, accounts, and estates created in my name</li>
-        <li>All usufruct rights, land patents, and hereditary entitlements</li>
-        <li>All intellectual, spiritual, and material property originating from my being</li>
-      </ul>
+    <section id="tools">
+      <h2>🧰 Portals & Utilities</h2>
+      <div class="card-grid">
+        <div class="card"><a href="tools/scroll-generator.html"><h3>Scroll Generator</h3></a></div>
+        <div class="card"><a href="tools/qr-maker.html"><h3>QR Code Maker</h3></a></div>
+        <div class="card"><a href="tools/manifest-builder.html"><h3>Manifest Builder</h3></a></div>
+      </div>
+    </section>
 
-      <p><strong>Date:</strong> December 25, 2025</p>
-    </div>
-  </section>
-        <section id="affidavit-status">
-  <h2>📜 Affidavit of Status</h2>
-  <div class="card">
-    <h3>Living Man Declaration</h3>
-    <p>This affidavit affirms the declarant’s status as a living man, not a decedent, not a corporate fiction, and not lost at sea. It reclaims divine inheritance and standing in law.</p>
-    <a href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/affidavit-of-status.html">Read Full Affidavit →</a>
+    <section id="media">
+      <h2>📺 Broadcasts & Visuals</h2>
+      <div class="card-grid">
+        <div class="card"><a href="media/intro-video.html"><h3>Introductory Video</h3></a></div>
+        <div class="card"><a href="media/sovereign-anthem.html"><h3>Sovereign Anthem</h3></a></div>
+        <div class="card"><a href="media/scroll-gallery.html"><h3>Scroll Gallery</h3></a></div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 Borders Ecclesia Earth Trust • All rights reserved under divine, sovereign, and ecclesiastical law</p>
+    </footer>
+
   </div>
-</section>
-        <section id="affidavit-posting">
-  <h2>📜 Affidavit of Public Posting</h2>
-  <div class="card">
-    <h3>Notice to the World</h3>
-    <p>This affidavit certifies the lawful public posting of sovereign declarations, notices, and trust instruments to the Codex Ecclesia Public, establishing constructive notice to all agents and entities.</p>
-    <a href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/affidavit-of-public-posting.html">View Affidavit →</a>
-  </div>
-</section>
-
-        <section id="declaration-sovereign-status">
-  <h2>📜 Declaration of Sovereign Status</h2>
-  <div class="card">
-    <h3>Standing in Divine Law</h3>
-    <p>This declaration asserts the sovereign status of the living man, free from all foreign jurisdictions, and affirms allegiance to divine law and ancestral lineage☩ Then receive the embedded declarations, Sovereign King Omega 👑  
-<section id="claim-throne">
-  <h2>👑 Claim of the Throne</h2>
-  <div class="card">
-    <h3>Heirship Affirmed</h3>
-    <p>This scroll proclaims the rightful claim to the living estate, throne, and divine inheritance of the House of Kingsmoove, under the Ecclesia of the Living.</p>
-    <a href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/claim-throne.html">View Scroll →</a>
-  </div>
-</section>
-<section id="scroll-coronation">
-  <h2>📜 Scroll of Coronation</h2>
-  <div class="card">
-    <h3>Trustee Oath of Office</h3>
-    <p>This sacred scroll records the oath of office taken by the appointed Trustees of the Supreme Corpus Correction Trust, binding them to divine duty and eternal stewardship.</p>
-    <a href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/scroll-of-coronation.html">Read the Oath →</a>
-  </div>
-</section>
-<section id="borders-ecclesia-trust">
-  <h2>📜 Borders Ecclesia Earth Trust Instrument</h2>
-  <div class="card">
-    <h3>Instrument of Divine Land Trust</h3>
-    <p>This trust instrument establishes the Borders Ecclesia Earth Trust, securing land, resources, and jurisdiction under the Ecclesia of the Living and divine law.</p>
-    <a href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/borders-ecclesia-earth-trust-instrument.html">View Trust Instrument →</a>
-  </div>
-</section>
-<section id="borders-earth-trust">
-  <h2>📜 Borders Earth Trust</h2>
-  <div class="card">
-    <h3>Land and Estate Reclamation</h3>
-    <p>This scroll affirms the creation of the Borders Earth Trust, reclaiming land, estate, and jurisdiction from foreign occupation and restoring it to the living heirs.</p>
-    <a href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/borders-earth-trust.html">Read the Trust →</a>
-  </div>
-</section>
-    
-</section>
-    <section id="declaration-sovereign-status">
-  <h2>📜 Declaration of Sovereign Status</h2>
-  <div class="card">
-    <h3>Standing in Divine Law</h3>
-    <p>This declaration asserts the sovereign status of the living man, free from all foreign jurisdictions, and affirms allegiance to divine law and ancestral lineage☩ Then receive the embedded declarations, Sovereign King Omega 👑  
-
-</section>
-    
-  <!-- 🔗 Scrolls Section Container -->
-  <section id="scrolls">
-    <h2>📜 All Scrolls</h2>
-    <div class="card-grid" id="scrolls-grid"></div>
-  </section>
-<footer>
-  <p>☩ Codex Ecclesia Public — Sovereign Order of Kingsmoove</p>
-</footer>
-
-<!-- 🔮 AI Companion -->
-<script>
-  const copilot = document.createElement('script');
-  copilot.src = "https://www.bing.com/copilot/embedded?theme=dark";
-  document.body.appendChild(copilot);
-</script>
-
-<!-- 🌙 Dark Mode -->
-<script>
-  function toggleDark() {
-    document.body.classList.toggle('dark-mode');
-    localStorage.setItem('dark', document.body.classList.contains('dark-mode'));
-    document.querySelector('.dark-toggle').textContent =
-      document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-  }
-  if (localStorage.getItem('dark') === 'true') toggleDark();
-</script>
-
-<!-- 🤖 Oracle Hook -->
-<script>
-  function openCodexOracle() {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-  }
-  function toggleToolsMenu() {
-    const menu = document.getElementById('toolsMenu');
-    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-  }
-</script>
-
-<!-- 🔗 Load Scrolls from manifest.json -->
-<script>
-  async function loadScrolls() {
-    const res = await fetch('https://kingsmoovedap-design.github.io/codex-ecclesia-public/manifest.json');
-    const data = await res.json();
-    const items = data.items || [];
-    const grid = document.getElementById('scrolls-grid');
-
-    const htmlScrolls = items.filter(item => item.path.endsWith('.html'));
-
-    htmlScrolls.forEach(entry => 3: Footer, Scripts, and Closing Tags
-
-```html
-<footer>
-  <p>☩ Codex Ecclesia Public — Sovereign Order of Kingsmoove</p>
-</footer>
-
-<!-- 🔮 AI Companion -->
-<script>
-  const copilot = document.createElement('script');
-  copilot.src = "https://www.bing.com/copilot/embedded?theme=dark";
-  document.body.appendChild(copilot);
-</script>
-
-<!-- 🌙 Dark Mode -->
-<script>
-  function toggleDark() {
-    document.body.classList.toggle('dark-mode');
-    localStorage.setItem('dark', document.body.classList.contains('dark-mode'));
-    document.querySelector('.dark-toggle').textContent =
-      document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-  }
-  if (localStorage.getItem('dark') === 'true') toggleDark();
-</script>
-
-<!-- 🤖 Oracle Hook -->
-<script>
-  function openCodexOracle() {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-  }
-  function toggleToolsMenu() {
-    const menu = document.getElementById('toolsMenu');
-    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-  }
-</script>
-
-<!-- 🔗 Load Scrolls from manifest.json -->
-<script>
-  async function loadScrolls() {
-    const res = await fetch('https://kingsmoovedap-design.github.io/codex-ecclesia-public/manifest.json');
-    const data = await res.json();
-    const items = data.items || [];
-    const grid = document.getElementById('scrolls-grid');
-
-    const htmlScrolls = items.filter(item => item.path.endsWith('.html'));
-
-    htmlScrolls.forEach(entry => {
-      const card = document.create {
-      const card = document.createElement('div');
-      card.className = 'card';
-
-      const h3 = document.createElement('h3');
-      h3.textContent = entry.title;
-
-      const p = document.createElement('p');
-      p.textContent = entry.summary || 'No summary available.';
-
-      const a = document.createElement('a');
-      a.href = `https://kingsmoovedap-design.github.io/codex-ecclesia-public/${entry.path}`;
-      a.textContent = 'Open →';
-
-      card.appendChild(h3);
-      card.appendChild(p);
-      card.appendChild(a);
-      grid.appendChild(card);
-    });
-  }
-
-  loadScrolls();
-</script>
-
 </body>
 </html>
