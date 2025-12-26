@@ -2,117 +2,122 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>☩ Codex Ecclesia Public</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="style.css" />
-</head>
+
+  <!-- Dark Mode Styles -->
   <style>
-  body.dark-mode {
-    background: #111;
-    color: #eee;
-  }
-  .dark-toggle {
-    position: fixed;
-    top: 1em;
-    right: 1em;
-    cursor: pointer;
-    font-size: 1.5em;
-  }
-</style>
+    body.dark-mode {
+      background: #111;
+      color: #eee;
+    }
+    body.dark-mode .card {
+      background: #222;
+      color: #eee;
+      border-left-color: #66aaff;
+    }
+    body.dark-mode .sidebar {
+      background: #000;
+      color: #ccc;
+    }
+    body.dark-mode .sidebar a {
+      color: #aaa;
+    }
+    body.dark-mode .sidebar a:hover {
+      color: #fff;
+    }
+    .dark-toggle {
+      position: fixed;
+      top: 1em;
+      right: 1em;
+      cursor: pointer;
+      font-size: 1.5em;
+      z-index: 9999;
+    }
+    .codex-oracle-button {
+      position: fixed;
+      bottom: 1.5em;
+      right: 1.5em;
+      background: #003366;
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.75em 1.25em;
+      font-family: Georgia, serif;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 9999;
+    }
+    .codex-oracle-button:hover {
+      background: #001a33;
+    }
+  </style>
+</head>
 <body>
-  <div class="main-content">
-  <!-- Your scroll cards, search bar, or dynamic content will go here -->
-</div>
+
+  <!-- 🌙 Dark Mode Toggle -->
   <div class="dark-toggle" onclick="toggleDark()">🌙</div>
 
+  <!-- 🤖 Ask the Codex Button -->
+  <div class="codex-oracle-button" onclick="openCodexOracle()">Ask the Codex</div>
+
+  <!-- 🧭 Sidebar Navigation -->
   <div class="sidebar">
-    
     <h2>☩ Codex</h2>
-    <ul>
-      <li><a href="#core">📜 Core Instruments</a></li>
-      <li><a href="#ministries">🏛️ Ministries</a></li>
-      <li><a href="#scrolls">📚 Scrolls</a></li>
-      <li><a href="#codices">📘 Codices</a></li>
-      <li><a href="#identity">🧬 Identity</a></li>
-      <li><a href="#verify">🧿 Verification</a></li>
-      <li><a href="#diplomacy">🕊️ Treaties</a></li>
-      <li><a href="#tools">🧰 Tools</a></li>
-      <li><a href="#media">📺 Media</a></li>
-    </ul>
+    <a href="#core">Core</a>
+    <a href="#scrolls">Scrolls</a>
+    <a href="#ministries">Ministries</a>
+    <a href="#codices">Codices</a>
+    <a href="#treaties">Treaties</a>
+    <a href="#tools">Tools</a>
   </div>
 
+  <!-- 📜 Main Content Area -->
   <div class="main-content">
-    <header>
-      <h1>☩ Codex Ecclesia Public</h1>
-      <p>Master Index of Ecclesiastical Scrolls, Ministries & Instruments</p>
-    </header>
+    <h1>☩ Codex Ecclesia Public</h1>
+    <p class="subheading">The living record of the Sovereign Order</p>
 
-    <!-- Each section just has an EMPTY container; JS will fill them -->
-
-    <section id="core">
-      <h2>📜 Core Instruments</h2>
-      <div class="card-grid" id="core-list"></div>
-    </section>
-
-    <section id="ministries">
-      <h2>🏛️ Ministries</h2>
-      <div class="card-grid" id="ministries-list"></div>
-    </section>
-
-    <section id="scrolls">
-      <h2>📚 Scrolls</h2>
-      <div class="card-grid" id="scrolls-list"></div>
-    </section>
-
-    <section id="codices">
-      <h2>📘 Codices</h2>
-      <div class="card-grid" id="codices-list"></div>
-    </section>
-
-    <section id="identity">
-      <h2>🧬 Identity & Lineage</h2>
-      <div class="card-grid" id="identity-list"></div>
-    </section>
-
-    <section id="verify">
-      <h2>🧿 Verification & Timestamping</h2>
-      <div class="card-grid" id="verify-list"></div>
-    </section>
-
-    <section id="diplomacy">
-      <h2>🕊️ Diplomatic Treaties</h2>
-      <div class="card-grid" id="diplomacy-list"></div>
-    </section>
-
-    <section id="tools">
-      <h2>🧰 Portals & Utilities</h2>
-      <div class="card-grid" id="tools-list"></div>
-    </section>
-
-    <section id="media">
-      <h2>📺 Broadcasts & Visuals</h2>
-      <div class="card-grid" id="media-list"></div>
-    </section>
-
-    <footer>
-      <p>© 2025 Borders Ecclesia Earth Trust • All rights reserved under divine, sovereign, and ecclesiastical law</p>
-    </footer>
+    <!-- Sections for dynamic scrolls -->
+    <section id="core"><h2>Core</h2><div class="card-grid" id="core-grid"></div></section>
+    <section id="scrolls"><h2>Scrolls</h2><div class="card-grid" id="scrolls-grid"></div></section>
+    <section id="ministries"><h2>Ministries</h2><div class="card-grid" id="ministries-grid"></div></section>
+    <section id="codices"><h2>Codices</h2><div class="card-grid" id="codices-grid"></div></section>
+    <section id="treaties"><h2>Treaties</h2><div class="card-grid" id="treaties-grid"></div></section>
+    <section id="tools"><h2>Tools</h2><div class="card-grid" id="tools-grid"></div></section>
   </div>
 
-  <!-- Attach the dynamic loader -->
- <script src="tools/codex-search.js"></script>
+  <!-- 🦶 Footer -->
+  <footer>
+    <p>☩ Codex Ecclesia Public — Sovereign Order of Kingsmoove</p>
+  </footer>
+
+  <!-- 🔮 AI Companion Embed -->
   <script>
-  function toggleDark() {
-    document.body.classList.toggle('dark-mode');
-    localStorage.setItem('dark', document.body.classList.contains('dark-mode'));
-    document.querySelector('.dark-toggle').textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-  }
-  if (localStorage.getItem('dark') === 'true') toggleDark();
-</script>
+    const copilot = document.createElement('script');
+    copilot.src = "https://www.bing.com/copilot/embedded?theme=dark";
+    document.body.appendChild(copilot);
+  </script>
+
+  <!-- 🌙 Dark Mode Script -->
   <script>
-  const copilot = document.createElement('script');
-  copilot.src = "https://www.bing.com/copilot/embedded?theme=dark";
-  document.body.appendChild(copilot);
-</script>
+    function toggleDark() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('dark', document.body.classList.contains('dark-mode'));
+      document.querySelector('.dark-toggle').textContent =
+        document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    }
+    if (localStorage.getItem('dark') === 'true') toggleDark();
+  </script>
+
+  <!-- 🤖 Oracle Button Hook -->
+  <script>
+    function openCodexOracle() {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+  </script>
+
+  <!-- 🔍 Codex Search Engine -->
+  <script src="tools/codex-search.js"></script>
+
 </body>
 </html>
