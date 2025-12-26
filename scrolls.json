@@ -33,3 +33,11 @@
     "location": "Borders Family Dynasty Nation"
   }
 ]
+{
+  "section": "core",
+  "title": "Codex Curriculum",
+  "path": "codex-curriculum.html",
+  "tags": ["core", "codex", "curriculum", "education", "rites"],
+  "date": "2025-12-25",
+  "summary": "The sacred syllabus of the Ecclesia — outlining sovereign studies, rites of passage, and the path of scribes, sentinels, and sovereigns."
+}
