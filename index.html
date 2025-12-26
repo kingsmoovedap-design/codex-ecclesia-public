@@ -78,6 +78,26 @@
     <p class="subheading">The living record of the Sovereign Order</p>
 
     <!-- Sections for dynamic scrolls -->
+    <section id="heirs">
+  <h2>👑 Heirs & Trustees</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h3>📖 What Is the Codex?</h3>
+      <p>An introduction to the sacred scrolls, ministries, and sovereign law. Learn how the Codex preserves truth and order.</p>
+      <a href="scrolls/scroll-of-codex-foundation.html">Read the Scroll →</a>
+    </div>
+    <div class="card">
+      <h3>🧭 How to Navigate</h3>
+      <p>Learn how to search, explore, and contribute to the Codex using the tools of the Sovereign Order.</p>
+      <a href="tools/scroll-editor.html">Open the Scroll Editor →</a>
+    </div>
+    <div class="card">
+      <h3>🛡️ Becoming a Trustee</h3>
+      <p>Understand your role as a steward of knowledge and how to preserve scrolls through IPFS notarization.</p>
+      <a href="tools/ipfs-notary.html">Notarize a Scroll →</a>
+    </div>
+  </div>
+</section>
     <section id="core"><h2>Core</h2><div class="card-grid" id="core-grid"></div></section>
     <section id="scrolls"><h2>Scrolls</h2><div class="card-grid" id="scrolls-grid"></div></section>
     <section id="ministries"><h2>Ministries</h2><div class="card-grid" id="ministries-grid"></div></section>
@@ -118,6 +138,28 @@
 
   <!-- 🔍 Codex Search Engine -->
   <script src="tools/codex-search.js"></script>
+
+  <!-- 🛠️ Sovereign Tools Button -->
+<div class="sovereign-tools-button" onclick="toggleToolsMenu()">🛠️ Tools</div>
+
+<!-- 🧰 Tools Menu -->
+<div class="tools-menu" id="toolsMenu">
+  <h3>☩ Sovereign Tools</h3>
+  <ul>
+    <li><a href="tools/scroll-editor.html">✍️ Scroll Editor</a></li>
+    <li><a href="tools/ipfs-notary.html">📡 IPFS Notary</a></li>
+    <li><a href="tools/qr-generator.html">🔗 QR Generator</a></li>
+    <li><a href="tools/timestamp-verifier.html">⏳ Timestamp Verifier</a></li>
+    <li><a href="tools/codex-timeline.html">📅 Codex Timeline</a></li>
+  </ul>
+</div>
+
+<script>
+  function toggleToolsMenu() {
+    const menu = document.getElementById('toolsMenu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+  }
+</script>
 
 </body>
 </html>
