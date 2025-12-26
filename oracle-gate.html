@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🔮 Oracle Gate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>🔮 Oracle Gate</h1>
+    <p>Ask the Oracle. Receive divine insight. Seal the scroll.</p>
+  </header>
+
+  <main>
+    <form id="oracleForm">
+      <label for="question"><strong>Ask the Oracle:</strong></label><br/>
+      <textarea id="question" name="question" rows="6" style="width:100%;" placeholder="What is my next move, Oracle?" required></textarea><br/><br/>
+      <button type="submit">✨ Receive Insight</button>
+    </form>
+
+    <div id="oracleResponse" style="margin-top:2rem; display:none;">
+      <h2>📜 Oracle Response</h2>
+      <p id="responseText">Your divine insight will appear here...</p>
+      <button onclick="sealScroll()">🔐 Seal as Scroll</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>Oracle Gate • Borders Dynasty Nation</p>
+  </footer>
+
+  <script>
+    document.getElementById('oracleForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const question = document.getElementById('question').value;
+      document.getElementById('responseText').innerText = "“The Oracle sees your question... and responds: ‘Your path is already written. Walk it with fire.’”";
+      document.getElementById('oracleResponse').style.display = 'block';
+    });
+
+    function sealScroll() {
+      alert("Scroll sealed. Redirecting to Filing Forge...");
+      window.location.href = 'filing-forge.html';
+    }
+  </script>
+
+</body>
+</html>

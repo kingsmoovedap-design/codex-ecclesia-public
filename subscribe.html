@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📬 Subscribe to the Codex Herald</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { font-family: 'Garamond', serif; padding: 2rem; text-align: center; background: #fdfcf9; }
+    input, button {
+      padding: 0.75rem;
+      margin-top: 1rem;
+      width: 80%;
+      max-width: 500px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background-color: #222;
+      color: #fff;
+      cursor: pointer;
+    }
+    .confirmation {
+      margin-top: 2rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>📬 Scroll of Sovereign Subscription</h1>
+  <p><em>“Let the Herald find you, wherever you dwell.”</em></p>
+
+  <section>
+    <p>Enter your sacred email to receive the <strong>Codex Herald</strong>, throne announcements, scroll updates, and Oracle whispers.</p>
+    <input type="email" id="emailInput" placeholder="scribe@realm.org" />
+    <button onclick="subscribe()">Receive the Scroll</button>
+    <div class="confirmation" id="confirmation"></div>
+  </section>
+
+  <script>
+    function subscribe() {
+      const email = document.getElementById('emailInput').value.trim();
+      const confirmation = document.getElementById('confirmation');
+      if (!email || !email.includes('@')) {
+        confirmation.textContent = "⚠️ Please enter a valid sovereign email.";
+        return;
+      }
+      // Placeholder logic — replace with actual subscription backend
+      confirmation.textContent = `✅ Scroll received. You will now receive the Codex Herald at ${email}.`;
+    }
+  </script>
+
+  <footer style="margin-top: 3rem;">
+    <p>☩ Codex Ecclesia — Sovereign Scroll Registry</p>
+  </footer>
+</body>
+</html>

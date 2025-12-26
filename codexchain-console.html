@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🧰 CodexChain Console</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>🧰 CodexChain Console</h1>
+    <p>Seal your scrolls with cryptographic truth and eternal time</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>🔐 Hash Forge</h2>
+      <form>
+        <label for="scrollText">Paste your scroll text:</label><br/>
+        <textarea id="scrollText" rows="6" style="width:100%;"></textarea><br/><br/>
+        <button type="button" onclick="generateHash()">Forge Hash</button>
+      </form>
+      <p><strong>SHA-256 Hash:</strong> <span id="hashOutput"></span></p>
+    </section>
+
+    <section>
+      <h2>⏳ Timestamp</h2>
+      <p><strong>Current UTC Time:</strong> <span id="utcTime"></span></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>CodexChain Console • Borders Dynasty Nation</p>
+  </footer>
+
+  <script>
+    function generateHash() {
+      const text = document.getElementById('scrollText').value;
+      const encoder = new TextEncoder();
+      crypto.subtle.digest('SHA-256', encoder.encode(text)).then(hashBuffer => {
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        document.getElementById('hashOutput').innerText = hashHex;
+      });
+    }
+
+    document.getElementById('utcTime').innerText = new Date().toISOString();
+  </script>
+
+</body>
+</html>

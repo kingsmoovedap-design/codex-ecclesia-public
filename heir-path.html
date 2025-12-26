@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>☩ Heir Ascension Path</title>
+  <style>
+    body { font-family: 'Garamond', serif; background: #fdfcf9; color: #222; padding: 2rem; text-align: center; }
+    h1 { font-size: 2.5rem; }
+    .stage { background: #fff; border: 2px solid #ccc; border-radius: 12px; padding: 1.5rem; margin: 2rem auto; max-width: 600px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .stage h2 { margin-bottom: 0.5rem; }
+    .stage p { font-style: italic; }
+    .stage a { display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background: #222; color: #fff; text-decoration: none; border-radius: 6px; }
+    .stage a:hover { background: #444; }
+    footer { margin-top: 4rem; font-style: italic; color: #666; }
+  </style>
+</head>
+<body>
+  <h1>☩ The Heir Ascension Path</h1>
+  <p><em>“From Initiate to Sovereign, let each tone be earned.”</em></p>
+
+  <div class="stage">
+    <h2>1️⃣ Initiate of the Outer Court</h2>
+    <p>Prove your readiness through sacred riddles.</p>
+    <a href="throne-challenge.html">Enter the Riddle Gate</a>
+  </div>
+
+  <div class="stage">
+    <h2>2️⃣ Scribe of the Scroll</h2>
+    <p>Learn to seal a scroll and forge your ledger entry.</p>
+    <a href="codexchain-console.html">Open the Hash Forge</a>
+  </div>
+
+  <div class="stage">
+    <h2>3️⃣ Seeker of the Tone</h2>
+    <p>Reflect on your identity, tone, and sovereign purpose.</p>
+    <a href="mirror-gate.html">Begin the Mirror Rite</a>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>☩ Mirror Gate | Seeker of the Tone</title>
+  <style>
+    body { font-family: 'Garamond', serif; background: #fdfcf9; color: #222; padding: 2rem; text-align: center; }
+    h1 { font-size: 2.5rem; }
+    textarea, input, button {
+      width: 100%; max-width: 600px; margin: 1rem auto; padding: 0.75rem;
+      font-family: 'Garamond', serif; font-size: 1rem;
+    }
+    .result { background: #eee; padding: 1rem; border-radius: 8px; margin-top: 2rem; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>☩ Mirror Gate</h1>
+  <p><em>“To know your Tone, you must first know yourself.”</em></p>
+
+  <form id="mirrorForm" onsubmit="reflect(event)">
+    <textarea id="reflection" rows="6" placeholder="🪞 Who are you? What do you protect? What is your Tone? What do you seek to build or preserve?"></textarea>
+    <input type="text" id="heirName" placeholder="👤 Your Name or Sovereign Title" />
+    <input type="text" id="tone" placeholder="🎼 Your Tone (e.g. Crown, Flame, Mirror)" />
+    <button type="submit">☩ Submit Reflection</button>
+  </form>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function reflect(event) {
+      event.preventDefault();
+      const name = document.getElementById("heirName").value.trim();
+      const tone = document.getElementById("tone").value.trim();
+      const reflection = document.getElementById("reflection").value.trim();
+      const result = document.getElementById("result");
+
+      if (!name || !tone || !reflection) {
+        result.innerHTML = "⚠️ Please complete all fields before submitting.";
+        return;
+      }
+
+      const timestamp = new Date().toISOString().replace("T", " ").split(".")[0] + " UTC";
+
+      result.innerHTML = `✅ <strong>Your Reflection Has Been Sealed</strong>\n\n🧝‍♂️ <strong>Name:</strong> ${name}\n🎼 <strong>Tone:</strong> ${tone}\n🕰️ <strong>Time:</strong> ${timestamp}\n\n📜 <strong>Your Reflection:</strong>\n${reflection}\n\n🔗 Save this text or copy it into your Sovereign Scroll.`;
+    }
+  </script>
+
+  <footer style="margin-top: 3rem;">
+    ☩ CodexChain Mirror Gate — Stage 3 of the Heir Ascension Path
+  </footer>
+</body>
+</html>
+
+  </div>
+
+  <div class="stage">
+    <h2>4️⃣ Bearer of the Flame</h2>
+    <p>Receive your Throne Key from the Sovereign after a ritual.</p>
+    <a href="guardian-gate.html">Unlock the Guardian Gate</a>
+  </div>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>☩ Guardian Gate | Bearer of the Flame</title>
+  <style>
+    body { font-family: 'Garamond', serif; background: #111; color: #fdfcf9; text-align: center; padding: 3rem; }
+    input, button { padding: 0.75rem; font-size: 1rem; margin-top: 1rem; width: 100%; max-width: 400px; }
+    #gate { max-width: 500px; margin: auto; background: #222; padding: 2rem; border-radius: 12px; }
+    #error { color: crimson; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <div id="gate">
+    <h1>☩ Guardian Gate</h1>
+    <p><em>“Only those who carry the Sovereign’s flame may pass.”</em></p>
+    <input type="password" id="flameKey" placeholder="Enter your Throne Key" />
+    <button onclick="unlock()">Enter</button>
+    <div id="error"></div>
+  </div>
+
+  <script>
+    const keys = {
+      "torchbearer2025": "codex-unified.html",
+      "flameofmirror": "reflection-scroll.html",
+      "oraclepass": "oracle-sanctum.html"
+    };
+
+    function unlock() {
+      const input = document.getElementById("flameKey").value.trim().toLowerCase();
+      const redirect = keys[input];
+      if (redirect) {
+        window.location.href = redirect;
+      } else {
+        document.getElementById("error").innerText = "❌ That key does not burn with truth.";
+      }
+    }
+  </script>
+
+  <footer style="margin-top: 3rem;">
+    ☩ CodexChain Guardian Gate — Stage 4 of the Heir Ascension Path
+  </footer>
+</body>
+</html>
+
+
+  <div class="stage">
+    <h2>5️⃣ Crowned Sovereign</h2>
+    <p>Access the full Codex and claim your throne.</p>
+    <a href="codex-unified.html">Enter the Sovereign Scroll</a>
+    <a href="heir-path.html" class="ascend-btn">☩ Begin the Heir Ascension Path</a>
+
+  </div>
+
+  <footer>
+    ☩ CodexChain Heir Ascension Scroll — Year 1 of the Accord
+  </footer>
+</body>
+</html>
