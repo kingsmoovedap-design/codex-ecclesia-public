@@ -111,3 +111,44 @@ footer {
   padding-top: 2em;
   border-top: 1px solid #ccc;
 }
+
+body.dark-mode {
+  background: #111;
+  color: #eee;
+}
+
+body.dark-mode .card {
+  background: #222;
+  color: #eee;
+  border-left-color: #66aaff;
+}
+
+body.dark-mode .sidebar {
+  background: #000;
+  color: #ccc;
+}
+
+body.dark-mode .sidebar a {
+  color: #aaa;
+}
+
+body.dark-mode .sidebar a:hover {
+  color: #fff;
+}
+
+.codex-oracle-button {
+  position: fixed;
+  bottom: 1.5em;
+  right: 1.5em;
+  background: #003366;
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.75em 1.25em;
+  font-family: Georgia, serif;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 9999;
+}
+.codex-oracle-button:hover {
+  background: #001a33;
+}
