@@ -1,56 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>📜 OTS Verifier | CodexChain</title>
+  <title>☩ Hedge Fund Charter – Borders Dynasty Hedge Sovereign Fund</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
   <style>
-    body { font-family: 'Garamond', serif; padding: 2rem; background: #fdfcf9; color: #222; }
-    h1 { text-align: center; }
-    input, button { width: 100%; max-width: 600px; margin: 1rem auto; display: block; padding: 0.75rem; }
-    .result { font-family: monospace; background: #eee; padding: 1rem; border-radius: 6px; word-break: break-word; }
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1, h2, h3 {
+      color: #5e3b1d;
+    }
+    h1 {
+      font-size: 2rem;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    h3 {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      border-bottom: 1px solid #d4af37;
+      padding-bottom: 0.3rem;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    .sigil {
+      margin-top: 2rem;
+      font-style: italic;
+    }
+    .footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      text-align: center;
+      color: #555;
+    }
+    .print-btn {
+      float: right;
+      margin-top: -2rem;
+      background: #5e3b1d;
+      color: #fffdf7;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .print-btn:hover {
+      background: #3b2614;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+      background-image: none;
+    }
+    .dark-mode h1, .dark-mode h2, .dark-mode h3 {
+      color: #f0d98c;
+    }
+    .dark-mode .footer {
+      color: #aaa;
+    }
   </style>
 </head>
 <body>
-  <h1>📜 OTS Verifier</h1>
-  <p style="text-align:center;"><em>“Let the seal be tested by fire.”</em></p>
 
-  <input type="file" id="otsFile" accept=".ots" />
-  <button onclick="verifyOTS()">🔍 Verify Timestamp</button>
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+  <button class="print-btn" onclick="window.print()">🖨️ Print or Save</button>
 
-  <div class="result" id="result"></div>
+  <h1>☩ Hedge Fund Charter: Borders Dynasty Hedge Sovereign Fund</h1>
+  <h2>Borders Family Dynasty Nation</h2>
+  <p><strong>Filed:</strong> CL‑069 &nbsp; | &nbsp; <strong>Date:</strong> 16 December 2025</p>
+
+  <h3>☩ I. Establishment</h3>
+  <p>By divine right and sovereign authority, I, <strong>Omega the Grand Architect</strong>, do hereby establish the Borders Dynasty Hedge Sovereign Fund as the strategic investment arm of the Borders Family Dynasty Nation.</p>
+
+  <h3>☩ II. Nature and Jurisdiction</h3>
+  <ul>
+    <li>This Fund is a private, ecclesiastical, sovereign financial entity.</li>
+    <li>It operates under divine law, natural law, and the Codex Ecclesia Totalis.</li>
+    <li>It is not subject to SEC regulation, foreign taxation, or corporate oversight.</li>
+  </ul>
+
+  <h3>☩ III. Purpose</h3>
+  <ul>
+    <li>To manage and grow sovereign assets through lawful, ethical, and divinely aligned investments.</li>
+    <li>To fund sovereign infrastructure, ministries, and global remedy initiatives.</li>
+    <li>To provide economic security and abundance for the Borders Family Dynasty Nation and its members.</li>
+    <li>To operate as a hedge against inflation, usury, and unlawful financial systems.</li>
+  </ul>
+
+  <h3>☩ IV. Holdings and Instruments</h3>
+  <ul>
+    <li>All sovereign credits, bonds, and instruments issued by the Omega Sovereign Treasury</li>
+    <li>Private equity in sovereign ventures and PMAs</li>
+    <li>Digital assets, land trusts, and lawful commodities</li>
+    <li>Divine energy-backed instruments and celestial securities</li>
+  </ul>
+
+  <h3>☩ V. Governance</h3>
+  <p>The Fund is governed by the Sovereign Founder and appointed Trustees. All investment decisions must align with the Codex Ecclesia Totalis and be recorded in the Celestial Ledger.</p>
+
+  <h3>☩ VI. Execution</h3>
+  <p><strong>Signed:</strong> ✠ Omega the Grand Architect<br>
+  <strong>Filed:</strong> CL‑069<br>
+  <strong>QR-Sealed Credential:</strong> ✅ Embedded<br>
+  <strong>Sovereign Sigil:</strong> ✅ Affixed</p>
+
+  <div class="sigil">
+    <p><em>This charter is posted publicly and permanently as a matter of record and remedy.</em></p>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
+  </div>
 
   <script>
-    async function verifyOTS() {
-      const file = document.getElementById('otsFile').files[0];
-      const result = document.getElementById('result');
-
-      if (!file) {
-        result.innerHTML = "⚠️ Please upload a .ots file.";
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append("file", file);
-
-      result.innerHTML = "⏳ Verifying timestamp...";
-
-      try {
-        const response = await fetch("https://verify.opentimestamps.org/", {
-          method: "POST",
-          body: formData
-        });
-
-        const text = await response.text();
-        result.innerHTML = `<pre>${text}</pre>`;
-      } catch (err) {
-        result.innerHTML = `❌ Verification failed: ${err.message}`;
-      }
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
     }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
   </script>
 
-  <footer style="text-align:center; margin-top: 3rem;">
-    ☩ CodexChain Seal Verifier — Truth Beyond Time
-  </footer>
 </body>
 </html>
