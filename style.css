@@ -94,3 +94,43 @@ a:hover {
   outline: none;
   border-color: #c5a059;
 }
+
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5em;
+  margin-bottom: 2em;
+}
+.card {
+  background: #fff;
+  border: 2px solid #003366;
+  border-radius: 8px;
+  padding: 1em;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.card img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+.card h3 {
+  margin: 0.5em 0 0.2em;
+  color: #5d4037;
+}
+.card p {
+  font-size: 0.9em;
+  color: #555;
+}
+.card a {
+  display: inline-block;
+  margin-top: 0.5em;
+  color: #003366;
+  text-decoration: none;
+  font-weight: bold;
+}
+.card a:hover {
+  text-decoration: underline;
+}
