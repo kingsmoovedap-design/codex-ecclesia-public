@@ -403,12 +403,6 @@
       "created": "2025-12-28T23:01:37.282Z"
     },
     {
-      "url": "index.html",
-      "title": "Index",
-      "category": "Index",
-      "created": "2025-12-28T23:01:37.282Z"
-    },
-    {
       "url": "join.html",
       "title": "Join",
       "category": "Other",
@@ -1091,6 +1085,12 @@
       "title": "README",
       "category": "Other",
       "created": "2025-12-28T23:13:20.916Z"
+    },
+    {
+      "url": "index.html",
+      "title": "Index",
+      "category": "Index",
+      "created": "2025-12-28T23:15:05.810Z"
     }
   ]
 }
