@@ -1,238 +1,134 @@
 {
-  "title": "Scroll of Automation Integrity",
-  "url": "scroll-of-automation-integrity.html",
-  "category": "Protocols",
-  "created": "2025-12-28"
-}
-{
-  "title": "Scroll of Jubilee Declaration",
-  "url": "scroll-of-jubilee-declaration.html",
-  "category": "Declarations",
-  "created": "2025-12-28"
-}
-[
-  {
-    "title": "Scroll of Land Reclamation",
-    "url": "scroll-of-land-reclamation.html",
-    "category": "Declarations",
-    "created": "2025-12-28"
-  },
-  {
-    "title": "Scroll of Debt Forgiveness",
-    "url": "scroll-of-debt-forgiveness.html",
-    "category": "Declarations",
-    "created": "2025-12-28"
-  },
-  {
-    "title": "Scroll of Jubilee Census",
-    "url": "scroll-of-jubilee-census.html",
-    "category": "Declarations",
-    "created": "2025-12-28"
-  },
-  {
-    "title": "Scroll of Jubilee Proclamation",
-    "url": "scroll-of-jubilee-proclamation.html",
-    "category": "Declarations",
-    "created": "2025-12-28"
-  },
-  {
-    "title": "Scroll of Jubilee Covenant",
-    "url": "scroll-of-jubilee-covenant.html",
-    "category": "Declarations",
-    "created": "2025-12-28"
-  },
-  {
-    "title": "Jubilee Enforcement Notice",
-    "url": "jubilee-enforcement-notice.html",
-    "category": "Remedy Instruments",
-    "created": "2025-12-28"
-  },
-  {
-    "title": "Jubilee Public Posting Protocol",
-    "url": "jubilee-public-posting.html",
-    "category": "Remedy Instruments",
-    "created": "2025-12-28"
-  },
-  {
-    "title": "CodexChain Remedy Log",
-    "url": "codexchain-remedy-log.html",
-    "category": "Tools",
-    "created": "2025-12-28"
-  },
-  {
-    "title": "Jubilee Convocation Scroll",
-    "url": "jubilee-convocation-scroll.html",
-    "category": "Declarations",
-    "created": "2025-12-28"
-  },
-  {
-    "title": "Jubilee Coin Minting Scroll",
-    "url": "jubilee-coin-minting.html",
-    "category": "Trust Instruments",
-    "created": "2025-12-28"
-  }
-]
-{
-  "title": "Scroll of Jubilee Declaration",
-  "url": "scroll-of-jubilee-declaration.html",
-  "category": "Declarations",
-  "created": "2025-12-28"
-}
-[
-  {
-    "title": "Scroll of UCC Sovereign Perfection",
-    "url": "scroll-ucc-sovereign-perfection.html",
-    "category": "Declarations",
-    "created": "2025-12-28"
-  },
-  {
-    "title": "Scroll of Conditional Acceptance",
-    "url": "scroll-conditional-acceptance.html",
-    "category": "Remedy Instruments",
-    "created": "2025-12-28"
-  },
-  {
-    "title": "Scroll of Non-Response Default",
-    "url": "scroll-non-response-default.html",
-    "category": "Remedy Instruments",
-    "created": "2025-12-28"
-  },
-  {
-    "title": "Scroll of Final Judgment & Estoppel",
-    "url": "scroll-final-judgment.html",
-    "category": "Remedy Instruments",
-    "created": "2025-12-28"
-  },
-  {
-    "title": "Scroll of Fee Schedule",
-    "url": "scroll-fee-schedule.html",
-    "category": "Trust Instruments",
-    "created": "2025-12-28"
-  },
-  {
-    "title": "Scroll of Living Trust Collateral",
-    "url": "scroll-living-trust-collateral.html",
-    "category": "Trust Instruments",
-    "created": "2025-12-28"
-  }
-]
-[
-  {
-    "url": "scroll-of-sovereign-emergence.html",
-    "title": "Scroll of Sovereign Emergence",
-    "category": "Declarations",
-    "created": "2025-12-28T00:00:00Z"
-  },
-  {
-    "url": "scroll-of-sacred-navigation.html",
-    "title": "Scroll of Sacred Navigation",
-    "category": "Navigation",
-    "created": "2025-12-28T00:00:00Z"
-  },
-  {
-    "url": "scroll-of-invocation.html",
-    "title": "Scroll of Invocation",
-    "category": "Convocations",
-    "created": "2025-12-22T00:00:00Z"
-  },
-  {
-    "url": "scroll-of-enforcement.html",
-    "title": "Scroll of Enforcement",
-    "category": "Protocols",
-    "created": "2025-12-22T00:00:00Z"
-  },
-  {
-    "url": "trust-charter-borders-dynasty.html",
-    "title": "Trust Charter – Borders Dynasty Ecclesia Trust",
-    "category": "Trust Instruments",
-    "created": "2025-12-16T00:00:00Z"
-  },
-  {
-    "url": "universal-trustee-poa.html",
-    "title": "Universal Trustee Power of Attorney",
-    "category": "Trust Instruments",
-    "created": "2025-12-16T00:00:00Z"
-  },
-  {
-    "url": "sovereign-treasury-charter.html",
-    "title": "Treasury Charter – Omega Sovereign Treasury",
-    "category": "Trust Instruments",
-    "created": "2025-12-16T00:00:00Z"
-  },
-  {
-    "url": "borders-sovereign-coin.html",
-    "title": "Borders Sovereign Coin (BSC)",
-    "category": "Economy",
-    "created": "2025-12-28T00:00:00Z"
-  },
-  {
-    "url": "sacred-technologies.html",
-    "title": "Sacred Technologies",
-    "category": "Innovation",
-    "created": "2025-12-28T00:00:00Z"
-  },
-  {
-    "url": "ministry-provision-stewardship.html",
-    "title": "Ministry of Provision & Stewardship",
-    "category": "Ministries",
-    "created": "2025-12-28T00:00:00Z"
-  },
-  {
-    "url": "verify-scroll.html",
-    "title": "Verify Scroll Authenticity",
-    "category": "Tools",
-    "created": "2025-12-28T00:00:00Z"
-  },
-  {
-    "url": "subscribe-codex-herald.html",
-    "title": "Subscribe to the Codex Herald",
-    "category": "Communications",
-    "created": "2025-12-28T00:00:00Z"
-  },
-  {
-    "url": "borders-family-legacy-scroll.html",
-    "title": "Borders Family Legacy Scroll",
-    "category": "Legacy",
-    "created": "2025-12-28T00:00:00Z"
-  }
-]
-fetch('codex.json')
-  .then(res => res.json())
-  .then(data => {
-    const list = document.getElementById('scroll-list');
-    data.scrolls.forEach(item => {
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = item.url;
-      a.textContent = item.title || item.url;
-      li.appendChild(a);
-      list.appendChild(li);
-    });
-  });
-{
   "scrolls": [
-    "scroll-ecclesiastical-passport-20251227-013.md",
-    "scroll-naturalization-protocol-20251227-012.md",
-    "scroll-ministerial-appointments-20251227-005.md",
-    "scroll-succession-protocol-20251227-004.md",
-    "scroll-treasury-charter-20251227-010.md",
-    "scroll-covenant-of-the-crown-20251227-003.md",
-    "scroll-nationhood-declaration-20251227-002.md"
+    {
+      "title": "Scroll of Automation Integrity",
+      "url": "scroll-of-automation-integrity.html",
+      "category": "Protocols",
+      "created": "2025-12-28"
+    },
+    {
+      "title": "Scroll of Jubilee Declaration",
+      "url": "scroll-of-jubilee-declaration.html",
+      "category": "Declarations",
+      "created": "2025-12-28"
+    },
+    {
+      "title": "Scroll of Sovereign Emergence",
+      "url": "scroll-of-sovereign-emergence.html",
+      "category": "Declarations",
+      "created": "2025-12-28"
+    },
+    {
+      "title": "Scroll of Sacred Navigation",
+      "url": "scrolls/scrolls/scroll-of-sacred-navigation.html",
+      "category": "Navigation",
+      "created": "2025-12-28"
+    },
+    {
+      "title": "Scroll of Invocation",
+      "url": "scroll-of-invocation.html",
+      "category": "Convocations",
+      "created": "2025-12-22"
+    },
+    {
+      "title": "Scroll of Enforcement",
+      "url": "scroll-of-enforcement.html",
+      "category": "Protocols",
+      "created": "2025-12-22"
+    },
+    {
+      "title": "Scroll of UCC Sovereign Perfection",
+      "url": "scroll-ucc-sovereign-perfection.html",
+      "category": "Declarations",
+      "created": "2025-12-28"
+    },
+    {
+      "title": "Scroll of Conditional Acceptance",
+      "url": "scroll-conditional-acceptance.html",
+      "category": "Remedy Instruments",
+      "created": "2025-12-28"
+    },
+    {
+      "title": "Scroll of Non-Response Default",
+      "url": "scroll-non-response-default.html",
+      "category": "Remedy Instruments",
+      "created": "2025-12-28"
+    },
+    {
+      "title": "Scroll of Final Judgment & Estoppel",
+      "url": "scroll-final-judgment.html",
+      "category": "Remedy Instruments",
+      "created": "2025-12-28"
+    },
+    {
+      "title": "Scroll of Fee Schedule",
+      "url": "scroll-fee-schedule.html",
+      "category": "Trust Instruments",
+      "created": "2025-12-28"
+    },
+    {
+      "title": "Scroll of Living Trust Collateral",
+      "url": "scroll-living-trust-collateral.html",
+      "category": "Trust Instruments",
+      "created": "2025-12-28"
+    },
+    {
+      "title": "Universal Trustee Power of Attorney",
+      "url": "universal-trustee-poa.html",
+      "category": "Trust Instruments",
+      "created": "2025-12-16"
+    },
+    {
+      "title": "Sovereign Treasury Charter",
+      "url": "sovereign-treasury-charter.html",
+      "category": "Trust Instruments",
+      "created": "2025-12-16"
+    },
+    {
+      "title": "Verify Scroll Authenticity",
+      "url": "verify-scroll.html",
+      "category": "Tools",
+      "created": "2025-12-28"
+    }
   ],
   "heirs": [
-    "scroll-demarco-heir.html",
-    "scroll-deven-heir.html",
-    "scroll-matriarch.html",
-    "scroll-omega.html",
-    "scroll-queen-miranda.html"
+    {
+      "title": "Scroll of DeMarco Heir",
+      "url": "scroll-demarco-heir.html"
+    },
+    {
+      "title": "Scroll of Deven Heir",
+      "url": "scroll-deven-heir.html"
+    },
+    {
+      "title": "Scroll of Matriarch",
+      "url": "scroll-matriarch.html"
+    },
+    {
+      "title": "Scroll Omega",
+      "url": "scroll-omega.html"
+    },
+    {
+      "title": "Scroll of Queen Miranda",
+      "url": "scroll-queen-miranda.html"
+    }
   ],
   "treaties": [
-    "treaty-recognition.html",
-    "treaty-aurora-2025.html",
-    "treaty-covenant-of-12.html"
+    {
+      "title": "Treaty Recognition",
+      "url": "treaty-recognition.html"
+    },
+    {
+      "title": "Treaty Aurora 2025",
+      "url": "treaty-aurora-2025.html"
+    },
+    {
+      "title": "Treaty Covenant of 12",
+      "url": "treaty-covenant-of-12.html"
+    }
   ],
   "meta": {
-    "generated": "2025-12-27T21:47:00-08:00",
+    "generated": "2025-12-28",
     "sovereign": "Sovereign King Omega",
     "repository": "Borders Ecclesia Earth Trust"
   }

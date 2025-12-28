@@ -1,16 +1,12 @@
-"scripts": {
-  "inject": "node scripts/inject-metadata.js",
-  "generate": "node scripts/generate-manifest.js && node scripts/generate-codex-json.js && node scripts/generate-scroll-index.js"
-}
 {
   "name": "codex-ecclesia-public",
   "version": "1.2.0",
-  "description": "☩ The sovereign repository of the Codex Ecclesia — scrolls, ministries, and divine instruments.",
+  "description": "The sovereign repository of the Codex Ecclesia — scrolls, ministries, and divine instruments.",
   "author": "Borders Ecclesia Earth Trust",
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host 0.0.0.0 --port 5000",
     "build": "vite build && npm run generate:manifest && npm run generate:sitemap",
     "preview": "vite preview",
     "generate:manifest": "node scripts/generate-manifest.js",
