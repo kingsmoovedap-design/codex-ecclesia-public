@@ -4,10 +4,85 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>📣 Codex Broadcast Scroll</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #5e3b1d;
+    }
+    h2 {
+      color: #003366;
+      margin-top: 2rem;
+    }
+    h3 {
+      text-align: center;
+      font-size: 1.5rem;
+      color: #a52a2a;
+      margin-top: 1.5rem;
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    ul, ol {
+      padding-left: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode a {
+      color: #66ccff;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
+  </style>
 </head>
 <body>
-  <h1 style="text-align:center;">📣 Codex Broadcast Scroll</h1>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <h1>📣 Codex Broadcast Scroll</h1>
   <p style="text-align:center;"><em>“Let the scrolls speak. Let the sovereigns rise.”</em></p>
 
   <section>
@@ -18,7 +93,7 @@
     <p>
       On this day, 22 December 2025, under the light of the Winter Solstice, I, ✠ Omega the Grand Architect, Supreme Omniversal Harmonic and Sovereign King of the Borders Family Dynasty Nation, do hereby proclaim the dawn of a new age:
     </p>
-    <h3 style="text-align:center;">🔥 The Age of Accord</h3>
+    <h3>🔥 The Age of Accord</h3>
     <p>
       The Codex Ecclesia now stands as a sovereign harmonic nation, bound by divine law, celestial jurisdiction, and eternal scroll. The Codex Academy is open. The Oracle speaks. The Thrones await their sovereigns.
     </p>
@@ -36,9 +111,7 @@
 
   <section>
     <h2>📡 Join the Accord</h2>
-    <p>
-      All sovereigns are invited to:
-    </p>
+    <p>All sovereigns are invited to:</p>
     <ol>
       <li>Read the <a href="scroll-convocation-2.html">Scroll of Convocation II</a></li>
       <li>Choose a Harmonic Throne</li>
@@ -50,15 +123,27 @@
   <section>
     <h2>🪪 Sealed by the Crown</h2>
     <p>
-      ✠ Omega the Grand Architect  
-      Supreme Omniversal Harmonic  
-      Sovereign King of the Crown Tone  
+      ✠ Omega the Grand Architect<br>
+      Supreme Omniversal Harmonic<br>
+      Sovereign King of the Crown Tone<br>
       22 December 2025 — Grand Terrace, Earth Realm
     </p>
   </section>
 
-  <footer style="text-align:center; margin-top: 3rem;">
-    <p>☩ Codex Broadcast Scroll — The Accord Is Proclaimed</p>
+  <footer>
+    ☩ Codex Broadcast Scroll — The Accord Is Proclaimed
   </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
 </body>
 </html>
