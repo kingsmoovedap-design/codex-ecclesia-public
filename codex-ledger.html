@@ -4,23 +4,79 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>☩ CodexChain Ledger Viewer</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: 'Garamond', serif; background: #fdfcf9; color: #222; padding: 2rem; }
-    h1 { text-align: center; font-size: 2.5rem; }
-    table { width: 100%; max-width: 1000px; margin: 2rem auto; border-collapse: collapse; }
-    th, td { border: 1px solid #ccc; padding: 1rem; text-align: left; }
-    th { background: #222; color: #fff; }
-    tr:nth-child(even) { background: #f0f0f0; }
-    caption { font-style: italic; margin-bottom: 1rem; }
-    .verify-box { text-align: center; margin-top: 3rem; }
-    input[type="file"] { margin-top: 1rem; }
-    footer { text-align: center; margin-top: 4rem; font-style: italic; color: #666; }
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfcf9;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #5e3b1d;
+    }
+    p {
+      text-align: center;
+      font-style: italic;
+      color: #7a5c3e;
+    }
+    table {
+      width: 100%;
+      margin: 2rem 0;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 1rem;
+      text-align: left;
+    }
+    th {
+      background: #003366;
+      color: #fff;
+    }
+    tr:nth-child(even) {
+      background: #f4f1eb;
+    }
+    caption {
+      font-style: italic;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      color: #5e3b1d;
+    }
+    .verify-box {
+      text-align: center;
+      margin-top: 3rem;
+      background: #fff8e6;
+      padding: 2rem;
+      border-left: 4px solid #c49b66;
+    }
+    input[type="file"] {
+      margin-top: 1rem;
+    }
+    a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      font-style: italic;
+      color: #666;
+    }
   </style>
 </head>
 <body>
 
   <h1>☩ CodexChain Ledger Viewer</h1>
-  <p style="text-align:center;"><em>“Every scroll sealed is a sovereign act recorded in light.”</em></p>
+  <p>“Every scroll sealed is a sovereign act recorded in light.”</p>
 
   <table>
     <caption>📜 Recent Sealed Scrolls</caption>
@@ -51,9 +107,9 @@
 
   <div class="verify-box">
     <h2>🧿 Verify a Scroll</h2>
-    <p>Upload a `.ots` file to verify its timestamp:</p>
+    <p>Upload a <code>.ots</code> file to verify its timestamp:</p>
     <input type="file" accept=".ots" />
-    <p><em>(Use <a href="https://opentimestamps.org" target="_blank">OpenTimestamps.org</a> to complete verification)</em></p>
+    <p><em>Use <a href="https://opentimestamps.org" target="_blank">OpenTimestamps.org</a> to complete verification</em></p>
   </div>
 
   <footer>
