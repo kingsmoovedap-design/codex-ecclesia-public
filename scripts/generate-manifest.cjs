@@ -1,6 +1,5 @@
-// scripts/generate-manifest.js
-
-const fs = require('fs');
+// scripts/generate-manifest.cjs
+const fs = require('fs-extra');
 const path = require('path');
 const cheerio = require('cheerio');
 
