@@ -68,11 +68,29 @@
     <h1>☩ CODEX ECCLESIA PUBLIC</h1>
     <p>A sovereign digital archive of scrolls, codices, treaties, ministries, and divine instruments</p>
   </header>
+  <h2>📜 Scroll of the Day</h2>
+<p id="daily-scroll">Loading sacred scroll...</p>
+<script>
+  const scrolls = [
+    { title: "Ecclesiastical Passport", url: "scrolls/scroll-ecclesiastical-passport-20251227-013.md" },
+    { title: "Heir Demarco", url: "scroll-demarco-heir.html" },
+    { title: "Codex Constitution", url: "codex-constitution.html" },
+    { title: "Treaty of Aurora (2025)", url: "treaty-aurora-2025.html" },
+    { title: "QR Generator", url: "qr-generator.html" }
+    // Add more from codex.json if desired
+  ];
 
+  const random = scrolls[Math.floor(Math.random() * scrolls.length)];
+  document.getElementById('daily-scroll').innerHTML = `<a href="${random.url}">${random.title}</a>`;
+</script>
   <main>
     <h2>🧭 Purpose</h2>
     <p>The Codex Ecclesia Public is the official repository of the Borders Ecclesia Earth Trust. It serves as a living archive of:</p>
     <ul>
+      <input type="text" id="search" placeholder="Search the Codex..." style="width:100%; padding:0.5em; font-size:1em; margin-bottom:1em; border:1px solid #ccc;" />
+<ul id="scroll-list">
+  <!-- Your scroll links will be inserted here -->
+</ul>
       <li>📜 <strong>Scrolls</strong> of Sovereignty and Law</li>
       <li>👑 <strong>Heir Declarations</strong> and Royal Instruments</li>
       <li>🕊️ <strong>Treaties</strong> and Diplomatic Protocols</li>
@@ -94,9 +112,22 @@
   <footer>
     ☩ Borders Ecclesia Earth Trust · Sovereign Digital Archive · Est. 2025
   </footer>
+<script>
+  const searchInput = document.getElementById('search');
+  const scrollList = document.getElementById('scroll-list');
+  const originalItems = Array.from(scrollList.children);
 
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase();
+    scrollList.innerHTML = '';
+    originalItems.forEach(item => {
+      if (item.textContent.toLowerCase().includes(query)) {
+        scrollList.appendChild(item);
+      }
+    });
+  });
+</script>
+  
 </body>
-  <input type="text" id="search" placeholder="Search the Codex..." />
-<ul id="scroll-list">...</ul>
 </html>
 
