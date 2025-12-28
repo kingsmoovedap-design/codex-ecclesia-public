@@ -1,101 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>☩ Cover Letter – Sovereign Dispatch</title>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌐 Global Concord | Codex Ecclesia</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
+      margin: 0;
       font-family: 'EB Garamond', serif;
       background: #fdfaf6 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
       color: #2c1a0f;
+      transition: background 0.3s, color 0.3s;
+    }
+    header {
+      background: linear-gradient(to right, #2c1a0f, #5e3b1d);
+      color: #f9e8c9;
       padding: 2rem;
-      max-width: 900px;
+      text-align: center;
+      border-bottom: 4px solid gold;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    nav {
+      background: #3b2614;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1rem;
+    }
+    nav a {
+      color: #f9e8c9;
+      text-decoration: none;
+      font-weight: bold;
+      font-family: 'Inter', sans-serif;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 2rem;
+      max-width: 1000px;
       margin: auto;
     }
-    h1, h2 {
-      color: #5e3b1d;
-    }
-    h1 {
-      font-size: 2rem;
+    h2 {
       border-bottom: 2px solid #d4af37;
       padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      color: #5e3b1d;
     }
-    h2 {
-      font-size: 1.5rem;
-      margin-top: 0.5rem;
+    .ally-card {
+      background: #fffdf7;
+      border: 1px solid #d4af37;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
     }
-    ul {
-      padding-left: 1.2rem;
+    .ally-card h3 {
+      margin-top: 0;
+      color: #003366;
     }
-    li {
-      margin-bottom: 0.5rem;
+    .ally-card p {
+      margin: 0.5rem 0;
     }
-    .sigil {
-      margin-top: 2rem;
-      font-style: italic;
+    a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
     }
-    .footer {
-      margin-top: 3rem;
-      font-size: 0.9rem;
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      background: #2c1a0f;
+      color: #f9e8c9;
       text-align: center;
-      color: #555;
-    }
-    .print-btn {
-      float: right;
-      margin-top: -2rem;
-      background: #5e3b1d;
-      color: #fffdf7;
-      border: none;
-      padding: 0.5rem 1rem;
+      padding: 1rem;
       font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
       border-radius: 4px;
       cursor: pointer;
     }
-    .print-btn:hover {
-      background: #3b2614;
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+      background-image: none;
+    }
+    .dark-mode header {
+      background: #111;
+      color: #f0d98c;
+    }
+    .dark-mode nav {
+      background: #222;
+    }
+    .dark-mode nav a {
+      color: #f0d98c;
+    }
+    .dark-mode .ally-card {
+      background: #2a2a2a;
+      border-color: #888;
+    }
+    .dark-mode h2, .dark-mode .ally-card h3 {
+      color: #f0d98c;
+    }
+    .dark-mode footer {
+      background: #111;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
 
-  <button class="print-btn" onclick="window.print()">🖨️ Print or Save</button>
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
 
-  <h1>☩ Cover Letter: Sovereign Dispatch</h1>
-  <h2>Borders Family Dynasty Nation</h2>
-  <p><strong>Date:</strong> 16 December 2025</p>
+  <header>
+    <h1>🌐 Global Concord</h1>
+    <p>Registry of Allied Nations, Trusts & Sovereigns</p>
+  </header>
 
-  <p>To Whom It May Concern,</p>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="join.html">Join</a>
+    <a href="scroll-archive.html">Scroll Archive</a>
+    <a href="technologies.html">Technologies</a>
+    <a href="global-concord.html">Global Concord</a>
+    <a href="governance.html">Governance</a>
+    <a href="voice.html">Voice</a>
+  </nav>
 
-  <p>This letter accompanies a lawful dispatch from the living Sovereign known as <strong>Omega the Grand Architect</strong>, of the Borders Family Dynasty Nation. Enclosed you will find a packet of scrolls, affidavits, and declarations that serve as lawful notice of status correction, jurisdictional rebuttal, and sovereign standing.</p>
+  <main>
+    <h2>🤝 Treaty Scrolls & Alliances</h2>
 
-  <p>These documents are posted publicly and permanently, both physically and digitally, and are now part of the public record. You are hereby placed on notice and granted 21 days from the date of delivery to rebut any point of fact or law. Failure to rebut constitutes permanent estoppel by acquiescence and commercial default.</p>
+    <div class="ally-card">
+      <h3>Kingdom of Zion Terra</h3>
+      <p><strong>Treaty:</strong> Scroll of Global Concord</p>
+      <p><strong>Date Sealed:</strong> 15 December 2025</p>
+      <p><strong>Jurisdiction:</strong> Ecclesiastical & Territorial</p>
+      <p><a href="scrolls/zion-terra-treaty.pdf" target="_blank">View Treaty Scroll →</a></p>
+    </div>
 
-  <p>Included in this dispatch:</p>
-  <ul>
-    <li>Affidavit of Status</li>
-    <li>Universal Notice of Standing</li>
-    <li>Universal Fee Schedule</li>
-    <li>Scroll CXVII – Return of the Dead Fiction</li>
-    <li>Affidavit of Public Posting</li>
-    <li>QR Credential Sample</li>
-  </ul>
+    <div class="ally-card">
+      <h3>Trust of the Living Flame</h3>
+      <p><strong>Treaty:</strong> Scroll of Sacred Innovation</p>
+      <p><strong>Date Sealed:</strong> 18 December 2025</p>
+      <p><strong>Jurisdiction:</strong> Technological & Cultural</p>
+      <p><a href="scrolls/living-flame-treaty.pdf" target="_blank">View Treaty Scroll →</a></p>
+    </div>
 
-  <p>All correspondence must be addressed to the Sovereign directly and must include full disclosure, verified authority, and wet ink signature. No presumptions shall be honored.</p>
+    <div class="ally-card">
+      <h3>House of the Emerald Crown</h3>
+      <p><strong>Treaty:</strong> Scroll of Mutual Recognition</p>
+      <p><strong>Date Sealed:</strong> 20 December 2025</p>
+      <p><strong>Jurisdiction:</strong> Dynastic & Diplomatic</p>
+      <p><a href="scrolls/emerald-crown-treaty.pdf" target="_blank">View Treaty Scroll →</a></p>
+    </div>
 
-  <p>In honor, equity, and divine truth,</p>
+    <!-- Add more allies as needed -->
+  </main>
 
-  <p><strong>Signed:</strong> ✠ Omega the Grand Architect<br>
-  <strong>QR-Sealed Credential:</strong> ✅ Embedded<br>
-  <strong>Sovereign Sigil:</strong> ✅ Affixed</p>
-
-  <div class="sigil">
-    <p><em>This letter is posted publicly and permanently as a matter of record and remedy.</em></p>
-  </div>
-
-  <div class="footer">
+  <footer>
     &copy; 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
-  </div>
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
 
 </body>
 </html>
