@@ -4,16 +4,92 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>📜 Codex Herald — Issue I</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    body { font-family: 'Garamond', serif; padding: 2rem; background: #fefdf9; color: #222; }
-    h1, h2 { text-align: center; }
-    .section { margin: 2rem 0; }
-    .quote { font-style: italic; margin: 1rem 0; }
-    footer { text-align: center; margin-top: 3rem; font-size: 0.9rem; color: #666; }
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fefdf9;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #5e3b1d;
+    }
+    h2 {
+      text-align: center;
+      color: #003366;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      color: #5e3b1d;
+      margin-top: 2rem;
+    }
+    .section {
+      margin: 2rem 0;
+    }
+    .quote {
+      font-style: italic;
+      text-align: center;
+      color: #555;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.95rem;
+      color: #666;
+    }
+    .subscribe {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 1rem;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode h1, .dark-mode h2, .dark-mode h3 {
+      color: #f0d98c;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
   </style>
 </head>
 <body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
   <h1>📜 Codex Herald</h1>
   <h2>Issue I — The Accord Begins</h2>
   <p class="quote">“Let the scrolls breathe. Let the Thrones awaken.”</p>
@@ -66,10 +142,25 @@
     </p>
   </div>
 
+  <div class="subscribe">
+    📬 Want to receive the next issue? <a href="subscribe.html">Subscribe here</a>.
+  </div>
+
   <footer>
     ☩ Codex Herald — Volume I, Scroll I  
     <br/>Sealed by ✠ Omega the Grand Architect — 22 December 2025
   </footer>
-</body>
-</html><p>📬 Want to receive the next issue? <a href="subscribe.html">Subscribe here</a>.</p>
 
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+</body>
+</html>
