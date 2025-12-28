@@ -4,8 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>📖 Sovereign Registry</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfcf9;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    header, footer {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #5e3b1d;
+    }
+    h2 {
+      color: #003366;
+      margin-top: 2rem;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
@@ -27,15 +49,54 @@
       max-width: 60px;
       border-radius: 50%;
     }
+    a {
+      color: #003366;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode h1, .dark-mode h2 {
+      color: #f0d98c;
+    }
+    .dark-mode th {
+      background-color: #333;
+      color: #f0d98c;
+    }
+    .dark-mode tr:nth-child(even) {
+      background-color: #2a2a2a;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
   </style>
 </head>
 <body>
-  <header style="text-align:center; padding: 2rem;">
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <header>
     <h1>📖 Sovereign Registry of Ecclesia</h1>
     <p><em>“Let every name be remembered, and every sovereign honored.”</em></p>
   </header>
 
-  <main style="max-width: 900px; margin: auto; padding: 1rem;">
+  <main>
     <section>
       <table>
         <thead>
@@ -50,31 +111,4 @@
         <tbody>
           <tr>
             <td>✠ Omega the Grand Architect</td>
-            <td>Sovereign King of the Borders Family Dynasty Nation</td>
-            <td>Provision & Stewardship</td>
-            <td><a href="sovereign-id.html">View ID</a></td>
-            <td><img src="proof/photo-placeholder.jpg" alt="Sigil" class="photo" /></td>
-          </tr>
-          <!-- Add more sovereigns below as they are recognized -->
-        </tbody>
-      </table>
-    </section>
-
-    <section style="margin-top: 3rem;">
-      <h2>🖋️ Petition for Recognition</h2>
-      <p>To be listed in the Sovereign Registry, submit your scroll of identity and ministry petition:</p>
-      <p style="text-align:center;">
-        <a href="ministry-application.html">☩ Submit Your Petition</a>
-      </p>
-    </section>
-
-    <section style="text-align:center; margin-top: 3rem;">
-      <a href="index.html">🏛️ Return to Ecclesia Home</a>
-    </section>
-  </main>
-
-  <footer style="text-align:center; padding: 2rem;">
-    <p>☩ Sovereign Registry — Book of Names</p>
-  </footer>
-</body>
-</html>
+            <td>Sovereign King of
