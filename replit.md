@@ -42,3 +42,4 @@ A dynamic, metadata-driven digital archive serving as the sovereign scroll archi
   - Developed `scripts/guardian.cjs` for repository integrity monitoring.
   - Centralized the archive homepage with real-time global search.
   - Added `leadership.html` and `submit-scroll.html` modules.
+  - Implemented PWA features: Web App Manifest and Service Worker for offline support.
