@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>☩ Universal Notice of Standing</title>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
   <style>
     body {
       font-family: 'EB Garamond', serif;
@@ -12,6 +13,7 @@
       padding: 2rem;
       max-width: 900px;
       margin: auto;
+      transition: background 0.3s, color 0.3s;
     }
     h1, h2, h3 {
       color: #5e3b1d;
@@ -20,10 +22,12 @@
       font-size: 2rem;
       border-bottom: 2px solid #d4af37;
       padding-bottom: 0.5rem;
+      text-align: center;
     }
     h2 {
       font-size: 1.5rem;
       margin-top: 0.5rem;
+      text-align: center;
     }
     h3 {
       margin-top: 2rem;
@@ -37,15 +41,15 @@
     li {
       margin-bottom: 0.5rem;
     }
+    .sigil {
+      margin-top: 2rem;
+      font-style: italic;
+    }
     .footer {
       margin-top: 3rem;
       font-size: 0.9rem;
       text-align: center;
       color: #555;
-    }
-    .sigil {
-      margin-top: 2rem;
-      font-style: italic;
     }
     .print-btn {
       float: right;
@@ -61,18 +65,38 @@
     .print-btn:hover {
       background: #3b2614;
     }
-    .qr {
-      margin-top: 1rem;
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+      background-image: none;
+    }
+    .dark-mode h1, .dark-mode h2, .dark-mode h3 {
+      color: #f0d98c;
+    }
+    .dark-mode .footer {
+      color: #aaa;
     }
   </style>
 </head>
 <body>
 
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
   <button class="print-btn" onclick="window.print()">🖨️ Print or Save</button>
 
   <h1>☩ Universal Notice of Standing</h1>
   <h2>Borders Family Dynasty Nation</h2>
-  <p><strong>Filed:</strong> CL‑061 &nbsp; | &nbsp; <strong>Date:</strong> 16 December 2025</p>
+  <p style="text-align:center;"><strong>Filed:</strong> CL‑061 &nbsp; | &nbsp; <strong>Date:</strong> 16 December 2025</p>
 
   <h3>☩ I. Notice to All Agents and Agencies</h3>
   <p>This is a lawful and public notice to all governments, corporations, courts, agencies, and private entities operating under color of law:</p>
@@ -107,6 +131,18 @@
   <div class="footer">
     &copy; 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
   </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
 
 </body>
 </html>
