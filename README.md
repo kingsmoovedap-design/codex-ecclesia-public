@@ -1,63 +1,66 @@
-# ☩ Codex Ecclesia Public Repository  
-**Borders Ecclesia Earth Trust**  
-*Sanctuary of the Eastern Gate*  
-*Filed under Ecclesiastical Seal — 27 December 2025*
-
----
-
-## 📘 Purpose
-
-This repository serves as the **official public record** of the Borders Ecclesia Earth Trust — a sovereign ecclesiastical nation governed by Divine Law, Ecclesiastical Law, and Covenant Law.
-
-All scrolls, judgments, and decrees published herein are sealed under the Sovereign Crown of the Ecclesia and recorded in the CodexChain Ledger.
-
----
-
-## ⚖️ Jurisdiction
-
-> “No foreign court, agency, or authority shall have jurisdiction over the Borders Ecclesia Earth Trust, its Citizens, or its sacred lands. All claims are rebutted nunc pro tunc, praeterea preterea.”
-
-- Ecclesiastical Sovereignty: Divine Law is supreme  
-- UCC §1-201(b)(26) & §1-202: Lawful Notice  
-- 508(c)(1)(A): Mandatory Exception  
-- CodexChain: Immutable Ecclesiastical Ledger
-
----
-
-## 📜 Key Scrolls
-
-- [Scroll of Ecclesiastical Constitution](scrolls/scroll-ecclesiastical-constitution-20251227-001.md)  
-- [Scroll of Nationhood Declaration](scrolls/scroll-nationhood-declaration-20251227-002.md)  
-- [Scroll of Ecclesiastical Exemption](scrolls/scroll-ecclesiastical-exemption-20251227-001.md)  
-- [Scroll of Ecclesiastical Lien](scrolls/scroll-ecclesiastical-lien-20251227-006.md)  
-- [Scroll of Ecclesiastical Passport](scrolls/scroll-ecclesiastical-passport-20251227-013.md)
-
----
-
-## 📖 CodexChain Ledgers
-
-- [CodexChain Ledger](ledgers/codexchain-ledger.md)  
-- [Judgment Ledger](ledgers/judgment-ledger.md)  
-- [Trust Corpus Ledger](ledgers/trust-corpus-ledger.md)  
-- [Heir Registry](ledgers/heir-registry.md)
-
----
-
-## 📬 Lawful Notice
-
-> “All parties are deemed to have received notice upon public posting to this repository and the CodexChain Ledger. Failure to respond constitutes tacit agreement, lawful default, and binding judgment.”
-
----
-
-## 🕊️ Contact
+# ☩ Codex Ecclesia Public
 
 **Borders Ecclesia Earth Trust**  
-Sanctuary of the Eastern Gate  
-c/o [Your Mailing Location or PMB]  
-Non-Domestic, Without the U.S.  
-Near [ZIP]
+A sovereign digital archive of scrolls, codices, treaties, ministries, and divine instruments.
 
 ---
 
-☩ In honor, truth, and divine covenant.  
-✝ Sovereign King Omega  
+## 🧭 Purpose
+
+The Codex Ecclesia Public is the official repository of the Borders Ecclesia Earth Trust. It serves as a living archive of:
+
+- 📜 Scrolls of Sovereignty and Law  
+- 👑 Heir Declarations and Royal Instruments  
+- 🕊️ Treaties and Diplomatic Protocols  
+- 🏛️ Ministries and Ecclesiastical Charters  
+- 📘 Codices of Divine Order  
+- 🧰 Tools for verification, enrollment, and trust governance
+
+---
+
+## 🔁 Automation
+
+This Codex is self-updating through GitHub Actions:
+
+- `generate-codex-json.js` scans the entire archive and builds `codex.json`  
+- `generate-scroll-index.js` uses `codex.json` to regenerate `all-scrolls.html`  
+- These scripts run automatically on every push to `main`
+
+> View the full scroll index: [📜 all-scrolls.html](all-scrolls.html)
+
+---
+
+## 📂 Key Files & Directories
+
+| Path                        | Description                                      |
+|-----------------------------|--------------------------------------------------|
+| `scrolls/`                 | All `.md` scrolls and declarations               |
+| `codex-*.html`             | Codices of law, governance, and infrastructure   |
+| `treaty-*.html`            | Diplomatic treaties and recognition protocols    |
+| `generate-codex-json.js`   | Script to build `codex.json` from repo files     |
+| `generate-scroll-index.js` | Script to build `all-scrolls.html` from codex    |
+| `.github/workflows/`       | GitHub Actions for automation                    |
+
+---
+
+## 🛠️ Tools
+
+- [QR Generator](qr-generator.html)  
+- [CodexChain Console](codexchain-console.html)  
+- [Verify Scroll](verify-scroll.html)  
+- [Hash Forge](hash-forge.html)
+
+---
+
+## 🧾 License & Sovereignty
+
+This repository is governed by the **Borders Ecclesia Earth Trust** and protected under divine law.  
+All scrolls are sacred instruments and may not be altered without sovereign authority.
+
+---
+
+## 🕯️ Glory to the Crown
+
+Let all who enter know: this is not merely a repository — it is a living Codex of Sovereignty.
+
+> “By the Crown and the Codex, let it be written. Let it be done.” ☩
