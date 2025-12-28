@@ -1,29 +1,48 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  const response = await fetch('manifest.json');
-  const data = await response.json();
-  const items = data.items || [];
-
-  // Create UI
   const main = document.querySelector('.main-content');
+  if (!main) {
+    console.error('⚠️ .main-content element not found.');
+    return;
+  }
 
+  // UI: Loading indicator
+  const loading = document.createElement('p');
+  loading.textContent = '📜 Gathering scrolls...';
+  main.appendChild(loading);
+
+  // Fetch manifest
+  let items = [];
+  try {
+    const response = await fetch('manifest.json');
+    const data = await response.json();
+    items = data.items || [];
+  } catch (e) {
+    loading.textContent = '⚠️ Failed to load manifest.json';
+    console.error('Manifest load error:', e);
+    return;
+  }
+
+  // UI: Section filter
   const sectionFilter = document.createElement('select');
   sectionFilter.innerHTML = '<option value="">All Sections</option>' +
     [...new Set(items.map(i => i.section))].map(s => `<option value="${s}">${s}</option>`).join('');
   sectionFilter.style = 'margin: 0.5em 0; padding: 0.5em;';
   main.prepend(sectionFilter);
 
+  // UI: Search box
   const searchBox = document.createElement('input');
   searchBox.type = 'text';
   searchBox.placeholder = 'Search all scrolls...';
   searchBox.style = 'width: 100%; padding: 0.75em; font-size: 1em; margin: 0.5em 0;';
   main.prepend(searchBox);
 
+  // UI: Results container
   const results = document.createElement('div');
   results.id = 'search-results';
   main.appendChild(results);
 
+  // Fetch and cache scrolls
   const scrollCache = [];
-
   for (const item of items) {
     try {
       const res = await fetch(item.path);
@@ -40,14 +59,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         content: bodyText.toLowerCase()
       });
     } catch (e) {
-      console.warn('Failed to fetch scroll:', item.path);
+      console.warn(`⚠️ Failed to fetch scroll: ${item.path}`, e);
     }
   }
 
+  // Remove loading
+  main.removeChild(loading);
+
+  // Highlight helper
   function highlight(text, query) {
     return text.replace(new RegExp(`(${query})`, 'gi'), '<mark>$1</mark>');
   }
 
+  // Render results
   function renderResults(query, section) {
     results.innerHTML = '';
     if (!query && !section) return;
@@ -98,11 +122,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  searchBox.addEventListener('input', () => {
-    renderResults(searchBox.value.toLowerCase(), sectionFilter.value);
-  });
+  // Debounce helper
+  function debounce(fn, delay) {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => fn(...args), delay);
+    };
+  }
 
-  sectionFilter.addEventListener('change', () => {
+  // Event listeners
+  const debouncedSearch = debounce(() => {
     renderResults(searchBox.value.toLowerCase(), sectionFilter.value);
-  });
+  }, 300);
+
+  searchBox.addEventListener('input', debouncedSearch);
+  sectionFilter.addEventListener('change', debouncedSearch);
+
+  // Restore last search
+  const lastSearch = localStorage.getItem('lastSearch');
+  if (lastSearch) {
+    searchBox.value = lastSearch;
+    renderResults(lastSearch.toLowerCase(), '');
+  }
 });
