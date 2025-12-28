@@ -4,18 +4,85 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🗺️ Codex Atlas</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #5e3b1d;
+    }
+    h2 {
+      color: #003366;
+      margin-top: 2rem;
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
     iframe {
       width: 100%;
       height: 600px;
       border: none;
       margin-top: 1rem;
     }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode a {
+      color: #66ccff;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
   </style>
 </head>
 <body>
-  <h1 style="text-align:center;">🗺️ Codex Atlas</h1>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <h1>🗺️ Codex Atlas</h1>
   <p style="text-align:center;"><em>“Let the sovereign lands be known.”</em></p>
 
   <section>
@@ -30,10 +97,7 @@
     <p>
       Explore the Codex Atlas below. Click on each marker to view scrolls, treaties, or sovereign declarations tied to that location.
     </p>
-
-    <!-- Embed your interactive map here -->
     <iframe src="https://your-map-platform.com/embed/codex-atlas-map" title="Codex Atlas Map"></iframe>
-    <!-- Replace the src URL with your actual map embed link from MapHub, Flourish, or another platform -->
   </section>
 
   <section>
@@ -54,8 +118,20 @@
     </p>
   </section>
 
-  <footer style="text-align:center; margin-top: 3rem;">
-    <p>☩ Codex Atlas — The Realms Remember</p>
+  <footer>
+    ☩ Codex Atlas — The Realms Remember
   </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
 </body>
 </html>
