@@ -13,6 +13,8 @@ const CATEGORY_RULES = {
   Ministries: ['ministry'],
 };
 
+const SUPPORTED_EXTENSIONS = ['.html', '.md', '.pdf', '.txt'];
+
 function categorize(filename) {
   const lower = filename.toLowerCase();
   for (const [category, keywords] of Object.entries(CATEGORY_RULES)) {
@@ -23,10 +25,10 @@ function categorize(filename) {
 
 function formatTitle(filename) {
   return filename
-    .replace(/^.*[\\/]/, '') // remove path
-    .replace(/\.(html|md)$/, '') // remove extension
-    .replace(/[-_]/g, ' ') // replace dashes/underscores
-    .replace(/\b\w/g, c => c.toUpperCase()); // capitalize words
+    .replace(/^.*[\\/]/, '')
+    .replace(/\.(html|md|pdf|txt)$/, '')
+    .replace(/[-_]/g, ' ')
+    .replace(/\b\w/g, c => c.toUpperCase());
 }
 
 function walk(dir, fileList = []) {
@@ -38,8 +40,11 @@ function walk(dir, fileList = []) {
       if (!['node_modules', '.git', '.github', 'assets'].includes(file)) {
         walk(fullPath, fileList);
       }
-    } else if (file.endsWith('.html') || file.endsWith('.md')) {
-      fileList.push(fullPath.replace(/\\/g, '/').replace('./', ''));
+    } else if (SUPPORTED_EXTENSIONS.includes(path.extname(file))) {
+      fileList.push({
+        path: fullPath.replace(/\\/g, '/').replace('./', ''),
+        created: stat.birthtime.toISOString()
+      });
     }
   }
   return fileList;
@@ -48,9 +53,10 @@ function walk(dir, fileList = []) {
 function main() {
   const files = walk(ROOT_DIR);
   const scrolls = files.map(file => ({
-    url: file,
-    title: formatTitle(file),
-    category: categorize(file)
+    url: file.path,
+    title: formatTitle(file.path),
+    category: categorize(file.path),
+    created: file.created
   }));
 
   const codex = { scrolls };
