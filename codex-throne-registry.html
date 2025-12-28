@@ -4,19 +4,96 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>☩ CodexChain Throne Registry</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
   <style>
-    body { font-family: 'Garamond', serif; background: #fdfcf9; color: #222; padding: 2rem; }
-    h1 { text-align: center; font-size: 2.5rem; }
-    table { width: 100%; max-width: 1000px; margin: 2rem auto; border-collapse: collapse; }
-    th, td { border: 1px solid #ccc; padding: 1rem; text-align: left; }
-    th { background: #222; color: #fff; }
-    tr:nth-child(even) { background: #f0f0f0; }
-    caption { font-style: italic; margin-bottom: 1rem; }
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfcf9;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #5e3b1d;
+    }
+    p {
+      text-align: center;
+      font-style: italic;
+      color: #555;
+    }
+    table {
+      width: 100%;
+      margin: 2rem 0;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 1rem;
+      text-align: left;
+    }
+    th {
+      background: #003366;
+      color: #fff;
+    }
+    tr:nth-child(even) {
+      background: #f0f0f0;
+    }
+    caption {
+      font-style: italic;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.95rem;
+      color: #666;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode th {
+      background: #222;
+    }
+    .dark-mode tr:nth-child(even) {
+      background: #2a2a2a;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
   </style>
 </head>
 <body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
   <h1>☩ CodexChain Throne Registry</h1>
-  <p style="text-align:center;"><em>“Let the names of the Sovereigns be etched in light.”</em></p>
+  <p>“Let the names of the Sovereigns be etched in light.”</p>
 
   <table>
     <caption>🪪 Sovereign Heirs Who Have Claimed Their Thrones</caption>
@@ -44,12 +121,24 @@
         <td>2025-12-21 18:44 PST</td>
         <td><a href="scrolls/lyra-scroll.html" target="_blank">View Scroll</a></td>
       </tr>
-      <!-- Add more heirs below -->
+      <!-- Additional sovereigns may be added here -->
     </tbody>
   </table>
 
-  <footer style="text-align:center; margin-top: 3rem;">
+  <footer>
     ☩ CodexChain Throne Registry — Eternal Witness of the Accord
   </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
 </body>
 </html>
