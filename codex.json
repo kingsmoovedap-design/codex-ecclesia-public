@@ -1,1120 +1,2052 @@
 {
+  "version": "2.0.0",
+  "generated": "2025-12-28T23:33:53.787Z",
   "scrolls": [
     {
       "url": "404.html",
       "title": "404",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.233Z"
+      "created": "2025-12-28T23:01:37.233Z",
+      "modified": "2025-12-28T23:01:37.234Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "SECURITY.md",
       "title": "SECURITY",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.243Z"
+      "created": "2025-12-28T23:01:37.243Z",
+      "modified": "2025-12-28T23:01:37.243Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "academy/codex-academy.html",
       "title": "Codex Academy",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.243Z"
+      "created": "2025-12-28T23:01:37.243Z",
+      "modified": "2025-12-28T23:01:37.244Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "academy/divine-law-101.html",
       "title": "Divine Law 101",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.244Z"
+      "created": "2025-12-28T23:01:37.244Z",
+      "modified": "2025-12-28T23:01:37.244Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "academy/index.html",
       "title": "Index",
       "category": "Index",
-      "created": "2025-12-28T23:01:37.244Z"
+      "created": "2025-12-28T23:01:37.244Z",
+      "modified": "2025-12-28T23:01:37.244Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "academy/scrollkeeping-101.html",
       "title": "Scrollkeeping 101",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.244Z"
+      "created": "2025-12-28T23:01:37.244Z",
+      "modified": "2025-12-28T23:01:37.244Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "all-scrolls.html",
       "title": "All Scrolls",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.244Z"
+      "created": "2025-12-28T23:01:37.244Z",
+      "modified": "2025-12-28T23:30:17.521Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "archive.html",
       "title": "Archive",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.244Z"
+      "created": "2025-12-28T23:01:37.244Z",
+      "modified": "2025-12-28T23:01:37.244Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "borders-earth-trust.html",
       "title": "Borders Earth Trust",
       "category": "Trusts",
-      "created": "2025-12-28T23:01:37.244Z"
+      "created": "2025-12-28T23:01:37.244Z",
+      "modified": "2025-12-28T23:01:37.244Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "borders-ecclesia-earth-trust-instrument.html",
       "title": "Borders Ecclesia Earth Trust Instrument",
       "category": "Trusts",
-      "created": "2025-12-28T23:01:37.244Z"
+      "created": "2025-12-28T23:01:37.244Z",
+      "modified": "2025-12-28T23:01:37.244Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "broadcast-archive.html",
       "title": "Broadcast Archive",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.244Z"
+      "created": "2025-12-28T23:01:37.244Z",
+      "modified": "2025-12-28T23:01:37.244Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "broadcast-temple.html",
       "title": "Broadcast Temple",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.244Z"
+      "created": "2025-12-28T23:01:37.244Z",
+      "modified": "2025-12-28T23:01:37.245Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "core/affidavit-of-public-posting.html",
       "title": "Affidavit Of Public Posting",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.244Z"
+      "created": "2025-12-28T23:01:37.244Z",
+      "modified": "2025-12-28T23:15:18.490Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "core/affidavit-of-status.html",
       "title": "Affidavit Of Status",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.244Z"
+      "created": "2025-12-28T23:01:37.244Z",
+      "modified": "2025-12-28T23:15:18.511Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/book-of-scroll-templates.html",
       "title": "Book Of Scroll Templates",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.244Z"
+      "created": "2025-12-28T23:01:37.244Z",
+      "modified": "2025-12-28T23:01:37.244Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "celestial-ledger.html",
       "title": "Celestial Ledger",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.245Z"
+      "created": "2025-12-28T23:01:37.245Z",
+      "modified": "2025-12-28T23:01:37.245Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "claim-throne.html",
       "title": "Claim Throne",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.245Z"
+      "created": "2025-12-28T23:01:37.245Z",
+      "modified": "2025-12-28T23:01:37.246Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "ministries/celestial-charter.html",
       "title": "Celestial Charter",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.245Z"
+      "created": "2025-12-28T23:01:37.245Z",
+      "modified": "2025-12-28T23:01:37.245Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-academy.html",
       "title": "Codex Academy",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.246Z"
+      "created": "2025-12-28T23:01:37.246Z",
+      "modified": "2025-12-28T23:01:37.246Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-archive.html",
       "title": "Codex Archive",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.246Z"
+      "created": "2025-12-28T23:01:37.246Z",
+      "modified": "2025-12-28T23:01:37.246Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-atlas.html",
       "title": "Codex Atlas",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.246Z"
+      "created": "2025-12-28T23:01:37.246Z",
+      "modified": "2025-12-28T23:01:37.246Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-broadcast.html",
       "title": "Codex Broadcast",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.246Z"
+      "created": "2025-12-28T23:01:37.246Z",
+      "modified": "2025-12-28T23:01:37.246Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-constitution.html",
       "title": "Codex Constitution",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.246Z"
+      "created": "2025-12-28T23:01:37.246Z",
+      "modified": "2025-12-28T23:01:37.246Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-curriculum.html",
       "title": "Codex Curriculum",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.246Z"
+      "created": "2025-12-28T23:01:37.246Z",
+      "modified": "2025-12-28T23:01:37.246Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-directory.html",
       "title": "Codex Directory",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.246Z"
+      "created": "2025-12-28T23:01:37.246Z",
+      "modified": "2025-12-28T23:01:37.246Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-harmonica.html",
       "title": "Codex Harmonica",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.246Z"
+      "created": "2025-12-28T23:01:37.246Z",
+      "modified": "2025-12-28T23:01:37.246Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-herald.html",
       "title": "Codex Herald",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.246Z"
+      "created": "2025-12-28T23:01:37.246Z",
+      "modified": "2025-12-28T23:01:37.246Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-index.html",
       "title": "Codex Index",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.246Z"
+      "created": "2025-12-28T23:01:37.246Z",
+      "modified": "2025-12-28T23:01:37.247Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codex-index.md",
       "title": "Codex Index",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
+      "created": "2025-12-28T23:01:37.247Z",
+      "modified": "2025-12-28T23:01:37.247Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codex.html",
       "title": "Codex",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
+      "created": "2025-12-28T23:01:37.247Z",
+      "modified": "2025-12-28T23:01:37.247Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/ceremonial-calendar.html",
       "title": "Ceremonial Calendar",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.247Z"
+      "created": "2025-12-28T23:01:37.247Z",
+      "modified": "2025-12-28T23:01:37.247Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-infrastructure.html",
       "title": "Codex Infrastructure",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
+      "created": "2025-12-28T23:01:37.247Z",
+      "modified": "2025-12-28T23:01:37.247Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-instructors.html",
       "title": "Codex Instructors",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
+      "created": "2025-12-28T23:01:37.247Z",
+      "modified": "2025-12-28T23:01:37.247Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-ledger.html",
       "title": "Codex Ledger",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
+      "created": "2025-12-28T23:01:37.247Z",
+      "modified": "2025-12-28T23:01:37.247Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-manifesto.html",
       "title": "Codex Manifesto",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
+      "created": "2025-12-28T23:01:37.247Z",
+      "modified": "2025-12-28T23:01:37.247Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-oracle.html",
       "title": "Codex Oracle",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
+      "created": "2025-12-28T23:01:37.247Z",
+      "modified": "2025-12-28T23:01:37.247Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-portal.html",
       "title": "Codex Portal",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
+      "created": "2025-12-28T23:01:37.247Z",
+      "modified": "2025-12-28T23:01:37.247Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-throne-registry.html",
       "title": "Codex Throne Registry",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
+      "created": "2025-12-28T23:01:37.247Z",
+      "modified": "2025-12-28T23:01:37.247Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-unified.html",
       "title": "Codex Unified",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
+      "created": "2025-12-28T23:01:37.247Z",
+      "modified": "2025-12-28T23:01:37.247Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-update-log.html",
       "title": "Codex Update Log",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
+      "created": "2025-12-28T23:01:37.247Z",
+      "modified": "2025-12-28T23:01:37.247Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/codexchain-console.html",
       "title": "Codexchain Console",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
+      "created": "2025-12-28T23:01:37.247Z",
+      "modified": "2025-12-28T23:01:37.247Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/codexchain-timestamp.html",
       "title": "Codexchain Timestamp",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
+      "created": "2025-12-28T23:01:37.247Z",
+      "modified": "2025-12-28T23:01:37.247Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-ecclesia-public.html",
       "title": "Codex Ecclesia Public",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.248Z"
+      "created": "2025-12-28T23:01:37.248Z",
+      "modified": "2025-12-28T23:01:37.248Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codex-harmony.html",
       "title": "Codex Harmony",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.248Z"
+      "created": "2025-12-28T23:01:37.248Z",
+      "modified": "2025-12-28T23:01:37.248Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codices/codex-infrastructure.html",
       "title": "Codex Infrastructure",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.248Z"
+      "created": "2025-12-28T23:01:37.248Z",
+      "modified": "2025-12-28T23:01:37.248Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codices/codex-oracle.html",
       "title": "Codex Oracle",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.248Z"
+      "created": "2025-12-28T23:01:37.248Z",
+      "modified": "2025-12-28T23:01:37.249Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codices/codices/codex-manifesto.html",
       "title": "Codex Manifesto",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.249Z"
+      "created": "2025-12-28T23:01:37.249Z",
+      "modified": "2025-12-28T23:01:37.249Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "codices/codices/ministries/ministry-stewardship.html",
       "title": "Ministry Stewardship",
       "category": "Ministries",
-      "created": "2025-12-28T23:01:37.249Z"
+      "created": "2025-12-28T23:01:37.249Z",
+      "modified": "2025-12-28T23:01:37.249Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "concord.html",
       "title": "Concord",
       "category": "Treaties",
-      "created": "2025-12-28T23:01:37.249Z"
+      "created": "2025-12-28T23:01:37.249Z",
+      "modified": "2025-12-28T23:01:37.266Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "crown-codex-index.html",
       "title": "Crown Codex Index",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.267Z"
+      "created": "2025-12-28T23:01:37.267Z",
+      "modified": "2025-12-28T23:01:37.267Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "declaration-sovereign-status.html",
       "title": "Declaration Sovereign Status",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.267Z"
+      "created": "2025-12-28T23:01:37.267Z",
+      "modified": "2025-12-28T23:01:37.267Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "decree-001.html",
       "title": "Decree 001",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.267Z"
+      "created": "2025-12-28T23:01:37.267Z",
+      "modified": "2025-12-28T23:01:37.267Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "directory.html",
       "title": "Directory",
       "category": "Index",
-      "created": "2025-12-28T23:01:37.267Z"
+      "created": "2025-12-28T23:01:37.267Z",
+      "modified": "2025-12-28T23:01:37.267Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "dispatch-packet.html",
       "title": "Dispatch Packet",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.267Z"
+      "created": "2025-12-28T23:01:37.267Z",
+      "modified": "2025-12-28T23:01:37.267Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "divine-solutions.html",
       "title": "Divine Solutions",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.267Z"
+      "created": "2025-12-28T23:01:37.267Z",
+      "modified": "2025-12-28T23:01:37.267Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "ecclesia-master-binder.html",
       "title": "Ecclesia Master Binder",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.267Z"
+      "created": "2025-12-28T23:01:37.267Z",
+      "modified": "2025-12-28T23:01:37.267Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "ministries/diplomatic-passport.html",
       "title": "Diplomatic Passport",
       "category": "Identity",
-      "created": "2025-12-28T23:01:37.267Z"
+      "created": "2025-12-28T23:01:37.267Z",
+      "modified": "2025-12-28T23:01:37.267Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "ministries/embassy-charter.html",
       "title": "Embassy Charter",
       "category": "Treaties",
-      "created": "2025-12-28T23:01:37.267Z"
+      "created": "2025-12-28T23:01:37.267Z",
+      "modified": "2025-12-28T23:01:37.268Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "fee-schedule.html",
       "title": "Fee Schedule",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.278Z"
+      "created": "2025-12-28T23:01:37.278Z",
+      "modified": "2025-12-28T23:01:37.280Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/filing-forge.html",
       "title": "Filing Forge",
       "category": "Tools",
-      "created": "2025-12-28T23:01:37.280Z"
+      "created": "2025-12-28T23:01:37.280Z",
+      "modified": "2025-12-28T23:01:37.280Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "governance.html",
       "title": "Governance",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.282Z"
+      "created": "2025-12-28T23:01:37.282Z",
+      "modified": "2025-12-28T23:01:37.282Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "heir-deven.html",
       "title": "Heir Deven",
       "category": "Heirs",
-      "created": "2025-12-28T23:01:37.282Z"
+      "created": "2025-12-28T23:01:37.282Z",
+      "modified": "2025-12-28T23:01:37.282Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "heir-devenity.html",
       "title": "Heir Devenity",
       "category": "Heirs",
-      "created": "2025-12-28T23:01:37.282Z"
+      "created": "2025-12-28T23:01:37.282Z",
+      "modified": "2025-12-28T23:01:37.282Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "heir-path.html",
       "title": "Heir Path",
       "category": "Heirs",
-      "created": "2025-12-28T23:01:37.282Z"
+      "created": "2025-12-28T23:01:37.282Z",
+      "modified": "2025-12-28T23:01:37.282Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "heir-registry.html",
       "title": "Heir Registry",
       "category": "Heirs",
-      "created": "2025-12-28T23:01:37.282Z"
+      "created": "2025-12-28T23:01:37.282Z",
+      "modified": "2025-12-28T23:01:37.282Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "index (2).html",
       "title": "Index (2)",
       "category": "Index",
-      "created": "2025-12-28T23:01:37.282Z"
+      "created": "2025-12-28T23:01:37.282Z",
+      "modified": "2025-12-28T23:01:37.282Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "join.html",
       "title": "Join",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.282Z"
+      "created": "2025-12-28T23:01:37.282Z",
+      "modified": "2025-12-28T23:01:37.282Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "ledger.html",
       "title": "Ledger",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.282Z"
+      "created": "2025-12-28T23:01:37.282Z",
+      "modified": "2025-12-28T23:01:37.282Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "ministries/hedge-fund-charter.html",
       "title": "Hedge Fund Charter",
       "category": "Trusts",
-      "created": "2025-12-28T23:01:37.282Z"
+      "created": "2025-12-28T23:01:37.282Z",
+      "modified": "2025-12-28T23:01:37.282Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/guardian-gate.html",
       "title": "Guardian Gate",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.282Z"
+      "created": "2025-12-28T23:01:37.282Z",
+      "modified": "2025-12-28T23:01:37.282Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/hash-forge.html",
       "title": "Hash Forge",
       "category": "Tools",
-      "created": "2025-12-28T23:01:37.282Z"
+      "created": "2025-12-28T23:01:37.282Z",
+      "modified": "2025-12-28T23:01:37.282Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/income-portal.html",
       "title": "Income Portal",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.282Z"
+      "created": "2025-12-28T23:01:37.282Z",
+      "modified": "2025-12-28T23:01:37.282Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "ministries-dashboard.html",
       "title": "Ministries Dashboard",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.283Z"
+      "created": "2025-12-28T23:01:37.283Z",
+      "modified": "2025-12-28T23:01:37.283Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "ministries-directory.html",
       "title": "Ministries Directory",
       "category": "Index",
-      "created": "2025-12-28T23:01:37.283Z"
+      "created": "2025-12-28T23:01:37.283Z",
+      "modified": "2025-12-28T23:01:37.283Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "ministries/ministry-application.html",
       "title": "Ministry Application",
       "category": "Ministries",
-      "created": "2025-12-28T23:01:37.284Z"
+      "created": "2025-12-28T23:01:37.284Z",
+      "modified": "2025-12-28T23:01:37.284Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "ministries/ministry-commerce.html",
       "title": "Ministry Commerce",
       "category": "Ministries",
-      "created": "2025-12-28T23:01:37.284Z"
+      "created": "2025-12-28T23:01:37.284Z",
+      "modified": "2025-12-28T23:01:37.284Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "ministries/ministry-hearth.html",
       "title": "Ministry Hearth",
       "category": "Ministries",
-      "created": "2025-12-28T23:01:37.284Z"
+      "created": "2025-12-28T23:01:37.284Z",
+      "modified": "2025-12-28T23:01:37.284Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/mint.html",
       "title": "Mint",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.284Z"
+      "created": "2025-12-28T23:01:37.284Z",
+      "modified": "2025-12-28T23:01:37.284Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "core/notice-of-standing.html",
       "title": "Notice Of Standing",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.285Z"
+      "created": "2025-12-28T23:01:37.285Z",
+      "modified": "2025-12-28T23:15:18.524Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "core/notice.html",
       "title": "Notice",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.285Z"
+      "created": "2025-12-28T23:01:37.285Z",
+      "modified": "2025-12-28T23:15:18.531Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "ministries/pma-charter.html",
       "title": "Pma Charter",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.285Z"
+      "created": "2025-12-28T23:01:37.285Z",
+      "modified": "2025-12-28T23:01:37.285Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "notice-of-foreclosure-intent.md",
       "title": "Notice Of Foreclosure Intent",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.285Z"
+      "created": "2025-12-28T23:01:37.285Z",
+      "modified": "2025-12-28T23:01:37.285Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "pma/generate-charter.html",
       "title": "Generate Charter",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.285Z"
+      "created": "2025-12-28T23:01:37.285Z",
+      "modified": "2025-12-28T23:01:37.285Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "proof-of-posting.html",
       "title": "Proof Of Posting",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.285Z"
+      "created": "2025-12-28T23:01:37.285Z",
+      "modified": "2025-12-28T23:01:37.285Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "public-announcement.html",
       "title": "Public Announcement",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.285Z"
+      "created": "2025-12-28T23:01:37.285Z",
+      "modified": "2025-12-28T23:01:37.286Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/mirror-gate.html",
       "title": "Mirror Gate",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.285Z"
+      "created": "2025-12-28T23:01:37.285Z",
+      "modified": "2025-12-28T23:01:37.285Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/multi-throne-gate.html",
       "title": "Multi Throne Gate",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.285Z"
+      "created": "2025-12-28T23:01:37.285Z",
+      "modified": "2025-12-28T23:01:37.285Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/oracle-gate.html",
       "title": "Oracle Gate",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.285Z"
+      "created": "2025-12-28T23:01:37.285Z",
+      "modified": "2025-12-28T23:01:37.285Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/ots-verifier.html",
       "title": "Ots Verifier",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.285Z"
+      "created": "2025-12-28T23:01:37.285Z",
+      "modified": "2025-12-28T23:01:37.285Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "qr-credential.html",
       "title": "QR Credential",
       "category": "Tools",
-      "created": "2025-12-28T23:01:37.286Z"
+      "created": "2025-12-28T23:01:37.286Z",
+      "modified": "2025-12-28T23:01:37.286Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "recognition.html",
       "title": "Recognition",
       "category": "Treaties",
-      "created": "2025-12-28T23:01:37.286Z"
+      "created": "2025-12-28T23:01:37.286Z",
+      "modified": "2025-12-28T23:01:37.286Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "robots.txt",
       "title": "Robots",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.286Z"
+      "created": "2025-12-28T23:01:37.286Z",
+      "modified": "2025-12-28T23:01:37.286Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/qr-generator.html",
       "title": "QR Generator",
       "category": "Tools",
-      "created": "2025-12-28T23:01:37.286Z"
+      "created": "2025-12-28T23:01:37.286Z",
+      "modified": "2025-12-28T23:01:37.286Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scroll-ecclesiastical-trust-certificate.md",
       "title": "Scroll Ecclesiastical Trust Certificate",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-conditional-acceptance.html",
       "title": "Scroll Conditional Acceptance",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-convocation-1.html",
       "title": "Scroll Convocation 1",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-convocation-2.html",
       "title": "Scroll Convocation 2",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-cxvii-return-of-dead-fiction.html",
       "title": "Scroll CXVII Return Of Dead Fiction",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-cxxiv-entity-formation.html",
       "title": "Scroll CXXIV Entity Formation",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-cxxv-dispatch-protocol.html",
       "title": "Scroll CXXV Dispatch Protocol",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-cxxvi-total-embedding.html",
       "title": "Scroll CXXVI Total Embedding",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-cxxvii-embassy-protocols.html",
       "title": "Scroll CXXVII Embassy Protocols",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-demarco-heir.html",
       "title": "Scroll Demarco Heir",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-fee-schedule.html",
       "title": "Scroll Fee Schedule",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-final-judgment.html",
       "title": "Scroll Final Judgment",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-forge.html",
       "title": "Scroll Forge",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-living-trust-collateral.html",
       "title": "Scroll Living Trust Collateral",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-non-response-default.html",
       "title": "Scroll Non Response Default",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-of-automation-integrity.html",
       "title": "Scroll Of Automation Integrity",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-of-coronation.html",
       "title": "Scroll Of Coronation",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-of-enforcement.html",
       "title": "Scroll Of Enforcement",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-of-enrollment.html",
       "title": "Scroll Of Enrollment",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-of-eternal-flame.html",
       "title": "Scroll Of Eternal Flame",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-of-invocation.html",
       "title": "Scroll Of Invocation",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-of-jubilee-enforcement.html",
       "title": "Scroll Of Jubilee Enforcement",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-of-prophecy.html",
       "title": "Scroll Of Prophecy",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-of-twelve-thrones.html",
       "title": "Scroll Of Twelve Thrones",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-of-twelve.html",
       "title": "Scroll Of Twelve",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-of-upgrades.html",
       "title": "Scroll Of Upgrades",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-registry.html",
       "title": "Scroll Registry",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-template.html",
       "title": "Scroll Template",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-ucc-sovereign-perfection.html",
       "title": "Scroll Ucc Sovereign Perfection",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls-coming-soon.html",
       "title": "Scrolls Coming Soon",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "created": "2025-12-28T23:01:37.288Z",
+      "modified": "2025-12-28T23:01:37.288Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls.html",
       "title": "Scrolls",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.289Z"
+      "created": "2025-12-28T23:01:37.289Z",
+      "modified": "2025-12-28T23:01:37.289Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/codices/codex-crown.html",
       "title": "Codex Crown",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.290Z"
+      "created": "2025-12-28T23:01:37.290Z",
+      "modified": "2025-12-28T23:01:37.290Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-covenant-of-the-crown-20251227-003.md",
       "title": "Scroll Covenant Of The Crown 20251227 003",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.290Z"
+      "created": "2025-12-28T23:01:37.290Z",
+      "modified": "2025-12-28T23:01:37.290Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-crown-authority.html",
       "title": "Scroll Crown Authority",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.290Z"
+      "created": "2025-12-28T23:01:37.290Z",
+      "modified": "2025-12-28T23:01:37.290Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-deven-heir.html",
       "title": "Scroll Deven Heir",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.290Z"
+      "created": "2025-12-28T23:01:37.290Z",
+      "modified": "2025-12-28T23:01:37.290Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-matriarch.html",
       "title": "Scroll Matriarch",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.290Z"
+      "created": "2025-12-28T23:01:37.290Z",
+      "modified": "2025-12-28T23:01:37.290Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-nationhood-declaration-20251227-002.md",
       "title": "Scroll Nationhood Declaration 20251227 002",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.290Z"
+      "created": "2025-12-28T23:01:37.290Z",
+      "modified": "2025-12-28T23:01:37.290Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-of-sovereign-emergence.html",
       "title": "Scroll Of Sovereign Emergence",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.290Z"
+      "created": "2025-12-28T23:01:37.290Z",
+      "modified": "2025-12-28T23:01:37.290Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-omega.html",
       "title": "Scroll Omega",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.290Z"
+      "created": "2025-12-28T23:01:37.290Z",
+      "modified": "2025-12-28T23:01:37.290Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scroll-queen-miranda.html",
       "title": "Scroll Queen Miranda",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.290Z"
+      "created": "2025-12-28T23:01:37.290Z",
+      "modified": "2025-12-28T23:01:37.290Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scrolls/scroll-archive.html",
       "title": "Scroll Archive",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.290Z"
+      "created": "2025-12-28T23:01:37.290Z",
+      "modified": "2025-12-28T23:01:37.290Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scrolls/scroll-demarco-heir.html",
       "title": "Scroll Demarco Heir",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.290Z"
+      "created": "2025-12-28T23:01:37.290Z",
+      "modified": "2025-12-28T23:01:37.291Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scrolls.html",
       "title": "Scrolls",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.290Z"
+      "created": "2025-12-28T23:01:37.290Z",
+      "modified": "2025-12-28T23:01:37.290Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "ministries/sovereign-treasury-charter.html",
       "title": "Sovereign Treasury Charter",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.291Z"
+      "created": "2025-12-28T23:01:37.291Z",
+      "modified": "2025-12-28T23:01:37.291Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scrolls/scroll-ministerial-appointments-20251227-005.md",
       "title": "Scroll Ministerial Appointments 20251227 005",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.291Z"
+      "created": "2025-12-28T23:01:37.291Z",
+      "modified": "2025-12-28T23:01:37.291Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scrolls/scroll-of-sacred-navigation.html",
       "title": "Scroll Of Sacred Navigation",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.291Z"
+      "created": "2025-12-28T23:01:37.291Z",
+      "modified": "2025-12-28T23:01:37.291Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scrolls/scroll-succession-protocol-20251227-004.md",
       "title": "Scroll Succession Protocol 20251227 004",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.291Z"
+      "created": "2025-12-28T23:01:37.291Z",
+      "modified": "2025-12-28T23:01:37.291Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scrolls/scroll-treasury-charter-20251227-010.md",
       "title": "Scroll Treasury Charter 20251227 010",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.291Z"
+      "created": "2025-12-28T23:01:37.291Z",
+      "modified": "2025-12-28T23:01:37.291Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scrolls/scrolls/scroll-ecclesiastical-passport-20251227-013.md",
       "title": "Scroll Ecclesiastical Passport 20251227 013",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.291Z"
+      "created": "2025-12-28T23:01:37.291Z",
+      "modified": "2025-12-28T23:01:37.291Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/scrolls/scrolls/scroll-naturalization-protocol-20251227-012.md",
       "title": "Scroll Naturalization Protocol 20251227 012",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.291Z"
+      "created": "2025-12-28T23:01:37.291Z",
+      "modified": "2025-12-28T23:01:37.291Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "services.html",
       "title": "Services",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.291Z"
+      "created": "2025-12-28T23:01:37.291Z",
+      "modified": "2025-12-28T23:01:37.291Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "sovereign-id.html",
       "title": "Sovereign ID",
       "category": "Identity",
-      "created": "2025-12-28T23:01:37.291Z"
+      "created": "2025-12-28T23:01:37.291Z",
+      "modified": "2025-12-28T23:01:37.291Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "sovergein.ledger.html",
       "title": "Sovergein.Ledger",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.291Z"
+      "created": "2025-12-28T23:01:37.291Z",
+      "modified": "2025-12-28T23:01:37.291Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "stewardship.html",
       "title": "Stewardship",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.291Z"
+      "created": "2025-12-28T23:01:37.291Z",
+      "modified": "2025-12-28T23:01:37.291Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "subscribe.html",
       "title": "Subscribe",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.291Z"
+      "created": "2025-12-28T23:01:37.291Z",
+      "modified": "2025-12-28T23:01:37.291Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "supreme total.pdf",
       "title": "Supreme Total",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.291Z"
+      "created": "2025-12-28T23:01:37.291Z",
+      "modified": "2025-12-28T23:01:37.306Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/sovereign-gate.html",
       "title": "Sovereign Gate",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.291Z"
+      "created": "2025-12-28T23:01:37.291Z",
+      "modified": "2025-12-28T23:01:37.291Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "technologies.html",
       "title": "Technologies",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.306Z"
+      "created": "2025-12-28T23:01:37.306Z",
+      "modified": "2025-12-28T23:01:37.306Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "throne-challenge.html",
       "title": "Throne Challenge",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.306Z"
+      "created": "2025-12-28T23:01:37.306Z",
+      "modified": "2025-12-28T23:01:37.307Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "throne-registry.html",
       "title": "Throne Registry",
       "category": "Identity",
-      "created": "2025-12-28T23:01:37.307Z"
+      "created": "2025-12-28T23:01:37.307Z",
+      "modified": "2025-12-28T23:01:37.307Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/ipfs-notary.html",
       "title": "Ipfs Notary",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.307Z"
+      "created": "2025-12-28T23:01:37.307Z",
+      "modified": "2025-12-28T23:01:37.308Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/token.html",
       "title": "Token",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.307Z"
+      "created": "2025-12-28T23:01:37.307Z",
+      "modified": "2025-12-28T23:01:37.307Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/manifest-builder.html",
       "title": "Manifest Builder",
       "category": "Tools",
-      "created": "2025-12-28T23:01:37.308Z"
+      "created": "2025-12-28T23:01:37.308Z",
+      "modified": "2025-12-28T23:01:37.308Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/oracle-console.html",
       "title": "Oracle Console",
       "category": "Tools",
-      "created": "2025-12-28T23:01:37.308Z"
+      "created": "2025-12-28T23:01:37.308Z",
+      "modified": "2025-12-28T23:01:37.308Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/scroll-template.html",
       "title": "Scroll Template",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.308Z"
+      "created": "2025-12-28T23:01:37.308Z",
+      "modified": "2025-12-28T23:01:37.308Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/scroll-uploader.html",
       "title": "Scroll Uploader",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.308Z"
+      "created": "2025-12-28T23:01:37.308Z",
+      "modified": "2025-12-28T23:01:37.308Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/sigil-generator.html",
       "title": "Sigil Generator",
       "category": "Tools",
-      "created": "2025-12-28T23:01:37.308Z"
+      "created": "2025-12-28T23:01:37.308Z",
+      "modified": "2025-12-28T23:01:37.308Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/tools/scroll-editor.html",
       "title": "Scroll Editor",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.308Z"
+      "created": "2025-12-28T23:01:37.308Z",
+      "modified": "2025-12-28T23:01:37.308Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/tools-dashboard.html",
       "title": "Tools Dashboard",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.308Z"
+      "created": "2025-12-28T23:01:37.308Z",
+      "modified": "2025-12-28T23:01:37.308Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/tools/tools/qr-generator.html",
       "title": "QR Generator",
       "category": "Tools",
-      "created": "2025-12-28T23:01:37.310Z"
+      "created": "2025-12-28T23:01:37.310Z",
+      "modified": "2025-12-28T23:01:37.310Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/tools/tools/tools/timestamp-verifier.html",
       "title": "Timestamp Verifier",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.310Z"
+      "created": "2025-12-28T23:01:37.310Z",
+      "modified": "2025-12-28T23:01:37.310Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/tools/tools/tools/tools/codex-timeline.html",
       "title": "Codex Timeline",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.311Z"
+      "created": "2025-12-28T23:01:37.311Z",
+      "modified": "2025-12-28T23:01:37.311Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/trust-builder.html",
       "title": "Trust Builder",
       "category": "Trusts",
-      "created": "2025-12-28T23:01:37.365Z"
+      "created": "2025-12-28T23:01:37.365Z",
+      "modified": "2025-12-28T23:01:37.365Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "treaties/treaty-aurora-2025.html",
       "title": "Treaty Aurora 2025",
       "category": "Treaties",
-      "created": "2025-12-28T23:01:37.365Z"
+      "created": "2025-12-28T23:01:37.365Z",
+      "modified": "2025-12-28T23:01:37.365Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "treaties/treaty-covenant-of-12.html",
       "title": "Treaty Covenant Of 12",
       "category": "Treaties",
-      "created": "2025-12-28T23:01:37.366Z"
+      "created": "2025-12-28T23:01:37.366Z",
+      "modified": "2025-12-28T23:01:37.366Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "treaties/treaty-invitation.html",
       "title": "Treaty Invitation",
       "category": "Treaties",
-      "created": "2025-12-28T23:01:37.366Z"
+      "created": "2025-12-28T23:01:37.366Z",
+      "modified": "2025-12-28T23:01:37.366Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "treaties/treaty-recognition.html",
       "title": "Treaty Recognition",
       "category": "Treaties",
-      "created": "2025-12-28T23:01:37.366Z"
+      "created": "2025-12-28T23:01:37.366Z",
+      "modified": "2025-12-28T23:01:37.366Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tribunal.html",
       "title": "Tribunal",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.366Z"
+      "created": "2025-12-28T23:01:37.366Z",
+      "modified": "2025-12-28T23:01:37.366Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "ministries/trust-charter.html",
       "title": "Trust Charter",
       "category": "Trusts",
-      "created": "2025-12-28T23:01:37.367Z"
+      "created": "2025-12-28T23:01:37.367Z",
+      "modified": "2025-12-28T23:01:37.367Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/trustee-portal.html",
       "title": "Trustee Portal",
       "category": "Trusts",
-      "created": "2025-12-28T23:01:37.367Z"
+      "created": "2025-12-28T23:01:37.367Z",
+      "modified": "2025-12-28T23:01:37.367Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "tools/verify-scroll.html",
       "title": "Verify Scroll",
       "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.367Z"
+      "created": "2025-12-28T23:01:37.367Z",
+      "modified": "2025-12-28T23:01:37.367Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "trustee-chance.html",
       "title": "Trustee Chance",
       "category": "Trusts",
-      "created": "2025-12-28T23:01:37.367Z"
+      "created": "2025-12-28T23:01:37.367Z",
+      "modified": "2025-12-28T23:01:37.367Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "universal-trustee-poa.html",
       "title": "Universal Trustee Poa",
       "category": "Trusts",
-      "created": "2025-12-28T23:01:37.367Z"
+      "created": "2025-12-28T23:01:37.367Z",
+      "modified": "2025-12-28T23:01:37.367Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "verify.html",
       "title": "Verify",
       "category": "Tools",
-      "created": "2025-12-28T23:01:37.367Z"
+      "created": "2025-12-28T23:01:37.367Z",
+      "modified": "2025-12-28T23:01:37.368Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "voice.html",
       "title": "Voice",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.368Z"
+      "created": "2025-12-28T23:01:37.368Z",
+      "modified": "2025-12-28T23:01:37.368Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "replit.md",
       "title": "Replit",
       "category": "Other",
-      "created": "2025-12-28T23:03:29.440Z"
+      "created": "2025-12-28T23:03:29.440Z",
+      "modified": "2025-12-28T23:03:29.441Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "README.md",
       "title": "README",
       "category": "Other",
-      "created": "2025-12-28T23:13:20.916Z"
+      "created": "2025-12-28T23:13:20.916Z",
+      "modified": "2025-12-28T23:13:20.919Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "scrolls/seraphina.html",
       "title": "Seraphina",
       "category": "Scrolls",
-      "created": "2025-12-28T23:21:31.721Z"
+      "created": "2025-12-28T23:21:31.721Z",
+      "modified": "2025-12-28T23:21:31.722Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "attached_assets/Pasted--DOCTYPE-html-html-lang-en-head-meta-charset-UTF-8-meta_1766964400970.txt",
       "title": "Pasted  DOCTYPE HTML HTML Lang En Head Meta Charset UTF 8 Meta 1766964400970",
       "category": "Other",
-      "created": "2025-12-28T23:26:41.899Z"
+      "created": "2025-12-28T23:26:41.899Z",
+      "modified": "2025-12-28T23:26:42.798Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "submit-scroll.html",
       "title": "Submit Scroll",
       "category": "Scrolls",
-      "created": "2025-12-28T23:28:55.455Z"
+      "created": "2025-12-28T23:28:55.455Z",
+      "modified": "2025-12-28T23:28:55.456Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "LICENSE.md",
       "title": "LICENSE",
       "category": "Other",
-      "created": "2025-12-28T23:28:55.952Z"
-    },
-    {
-      "url": "index.html",
-      "title": "Index",
-      "category": "Index",
-      "created": "2025-12-28T23:28:56.225Z"
+      "created": "2025-12-28T23:28:55.952Z",
+      "modified": "2025-12-28T23:28:55.954Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
       "url": "CONTRIBUTING.md",
       "title": "CONTRIBUTING",
       "category": "Other",
-      "created": "2025-12-28T23:30:15.442Z"
+      "created": "2025-12-28T23:30:15.442Z",
+      "modified": "2025-12-28T23:30:15.443Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "index.html",
+      "title": "Index",
+      "category": "Index",
+      "created": "2025-12-28T23:33:38.313Z",
+      "modified": "2025-12-28T23:33:38.314Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     }
   ]
 }

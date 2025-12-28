@@ -14,6 +14,7 @@
     "generate:manifest": "node scripts/generate-manifest.cjs",
     "generate:sitemap": "node scripts/generate-sitemap.cjs",
     "publish:scroll": "node scripts/publish-scroll.cjs",
+    "guard": "node scripts/guardian.cjs",
     "lint": "htmlhint '**/*.html'"
   },
   "dependencies": {

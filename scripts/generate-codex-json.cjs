@@ -32,7 +32,7 @@ function formatTitle(filename) {
   return base
     .replace(/[-_]/g, ' ')
     .replace(/\b(?:id|qr|pdf|md|html)\b/gi, match => match.toUpperCase())
-    .replace(/\b([ivxlcdm]+)\b/gi, match => match.toUpperCase()) // Roman numerals
+    .replace(/\b([ivxlcdm]+)\b/gi, match => match.toUpperCase())
     .replace(/\b\w/g, c => c.toUpperCase());
 }
 
@@ -48,7 +48,8 @@ function walk(dir, fileList = []) {
       const stat = fs.statSync(fullPath);
       fileList.push({
         path: fullPath.replace(/\\/g, '/').replace(/^\.\//, ''),
-        created: stat.birthtime.toISOString()
+        created: stat.birthtime.toISOString(),
+        modified: stat.mtime.toISOString()
       });
     }
   }
@@ -61,12 +62,21 @@ function main() {
     url: file.path,
     title: formatTitle(file.path),
     category: categorize(file.path),
-    created: file.created
+    created: file.created,
+    modified: file.modified,
+    version: "1.0.0",
+    lang: "en",
+    status: "active",
+    image: "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
   }));
 
   scrolls.sort((a, b) => new Date(a.created) - new Date(b.created));
 
-  const codex = { scrolls };
+  const codex = { 
+    version: "2.0.0",
+    generated: new Date().toISOString(),
+    scrolls 
+  };
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(codex, null, 2));
   console.log(`✅ ${OUTPUT_FILE} generated with ${scrolls.length} entries.`);
 }

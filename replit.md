@@ -1,32 +1,34 @@
-# Codex Ecclesia Public
+# ☩ Codex Ecclesia Public
 
 ## Overview
-A static HTML website serving as the sovereign scroll archive of the Borders Ecclesia Earth Trust. Built with Vite for development and static file serving.
+A dynamic, metadata-driven digital archive serving as the sovereign scroll archive of the Borders Ecclesia Earth Trust. Built with Vite and an automated Node.js indexing system.
 
 ## Project Architecture
 - **Framework**: Vite (static site)
-- **Language**: JavaScript (ES modules)
+- **Language**: JavaScript (CommonJS for scripts, ES modules for Vite)
 - **Port**: 5000 (development)
+- **Core API**: `manifest.json` (raw manifest), `codex.json` (structured API)
 
 ## Key Files
-- `index.html` - Main entry point, displays scrolls from codex.json
-- `codex.json` - JSON data file containing scrolls, heirs, treaties metadata
-- `style.css` - Global styles
-- `vite.config.js` - Vite configuration (host/port/allowedHosts)
+- `index.html` - Unified gateway with real-time search and dynamic sections
+- `codex.json` - Expanded JSON API (version 2.0.0) with status, versioning, and sigil images
+- `style.css` - Professional "Sacred Archive" theme
+- `vite.config.js` - Proxy-ready configuration
 
 ## Directory Structure
-- `/scrolls/` - Scroll HTML documents
-- `/codices/` - Codex documents
-- `/ministries/` - Ministry HTML documents
-- `/tools/` - Utility tools and generators
-- `/scripts/` - Node.js build scripts
-- `/lib/` - Shared JavaScript utilities
+- `/core/` - Canonical texts and affidavits
+- `/scrolls/` - Teachings and revelations
+- `/ministries/` - Organizational documents
+- `/treaties/` - Diplomatic covenants
+- `/codices/` - Knowledge sets
+- `/tools/` - System utilities and generators
+- `/scripts/` - Node.js automation scripts (.cjs)
 
 ## Scripts
 - `npm run dev` - Start development server on port 5000
-- `npm run build` - Build for production
-- `npm run generate:manifest` - Generate manifest
-- `npm run generate:sitemap` - Generate sitemap
+- `npm run generate` - Full index regeneration (manifest, codex, sitemap)
+- `npm run inject` - Inject metadata into HTML files
+- `npm run guard` - Integrity check for broken links and missing metadata
 
 ## Deployment
 - **Type**: Static
@@ -34,8 +36,9 @@ A static HTML website serving as the sovereign scroll archive of the Borders Ecc
 - **Public Directory**: `dist`
 
 ## Recent Changes
-- 2025-12-28: Initial Replit setup
-  - Fixed malformed package.json
-  - Created vite.config.js with proper host/port settings
-  - Fixed malformed codex.json
-  - Configured static deployment
+- 2025-12-28: Omniversal Codex Enhancements
+  - Implemented Codex DNA (API v2.0.0) with expanded metadata fields.
+  - Added Sacred Navigation Bar and Seal Footer across all gateway pages.
+  - Developed `scripts/guardian.cjs` for repository integrity monitoring.
+  - Centralized the archive homepage with real-time global search.
+  - Added `leadership.html` and `submit-scroll.html` modules.
