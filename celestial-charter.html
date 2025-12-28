@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>☩ Celestial Charter of Omniversal Presence</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       font-family: 'EB Garamond', serif;
@@ -10,14 +13,24 @@
       color: #3b2f2f;
       padding: 2rem;
       line-height: 1.6;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
     }
     h1, h2 {
       text-align: center;
       margin-bottom: 0.5rem;
     }
+    h1 {
+      font-size: 2.5rem;
+      color: #5e3b1d;
+    }
+    h2 {
+      color: #003366;
+      margin-top: 2rem;
+    }
     .section {
       margin: 3rem auto;
-      max-width: 800px;
     }
     .scroll-card {
       background: #fffdf7;
@@ -31,15 +44,50 @@
       margin: 2rem auto;
       max-width: 200px;
     }
+    a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
     footer {
       text-align: center;
       margin-top: 4rem;
       font-size: 0.9rem;
       color: #7a6a5a;
     }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode .scroll-card {
+      background: #2a2a2a;
+      border-color: #555;
+    }
+    .dark-mode a {
+      color: #66ccff;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
   </style>
 </head>
 <body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
 
   <h1>☩ Celestial Charter of Omniversal Presence</h1>
   <p style="text-align:center; font-style:italic;">
@@ -89,9 +137,24 @@
     </div>
   </div>
 
+  <p style="text-align:center; margin-top: 2rem;">
+    <a href="index.html">🏛️ Return to Ecclesia Home</a>
+  </p>
+
   <footer>
     ☩ Borders Family Dynasty Nation · Ecclesia Magna Trust · All Rights Reserved
   </footer>
 
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
 </body>
 </html>
