@@ -1,13 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Affidavit of Status</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>☩ Affidavit of Status</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #5e3b1d;
+    }
+    h2, h3 {
+      color: #003366;
+      margin-top: 2rem;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode a {
+      color: #66ccff;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
+  </style>
 </head>
 <body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
   <h1>☩ Affidavit of Status</h1>
-  <h2>Borders Family Dynasty Nation</h2>
-  <p><strong>Filed:</strong> CL‑060 | <strong>Date:</strong> 16 December 2025</p>
+  <h2 style="text-align:center;">Borders Family Dynasty Nation</h2>
+  <p style="text-align:center;"><strong>Filed:</strong> CL‑060 | <strong>Date:</strong> 16 December 2025</p>
 
   <h3>☩ I. Declaration</h3>
   <p>I, <strong>Omega the Grand Architect</strong>, a living man of sound mind, do hereby affirm under penalty of perjury and full commercial liability that:</p>
@@ -37,5 +104,25 @@
   <strong>Celestial Ledger Entry:</strong> CL‑060</p>
 
   <p><em>This affidavit is posted publicly and permanently as a matter of record and right.</em></p>
+
+  <p style="text-align:center; margin-top: 2rem;">
+    <a href="index.html">🏛️ Return to Ecclesia Home</a>
+  </p>
+
+  <footer>
+    ☩ Borders Family Dynasty Nation · Ecclesia Magna Trust · All Rights Reserved
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
 </body>
-</html><li><a href="affidavit-of-status.html" target="_blank">Affidavit of Status (HTML)</a></li>
+</html>
