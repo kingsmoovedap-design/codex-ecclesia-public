@@ -4,10 +4,79 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>📚 Codex Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #5e3b1d;
+    }
+    h2 {
+      color: #003366;
+      margin-top: 2rem;
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode a {
+      color: #66ccff;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
+  </style>
 </head>
 <body>
-  <h1 style="text-align:center;">📚 Codex Academy</h1>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <h1>📚 Codex Academy</h1>
   <p style="text-align:center;"><em>“Let the scribes rise, the sentinels awaken, and the sovereigns remember.”</em></p>
 
   <section>
@@ -16,9 +85,9 @@
       The Codex Academy is the sacred institution of learning within the Codex Ecclesia. It exists to train and ordain:
     </p>
     <ul>
-      <li>✍️ Scribes — Keepers of scrolls, memory, and sacred law</li>
-      <li>🛡️ Sentinels — Guardians of scrolls, sovereigns, and sanctuaries</li>
-      <li>👑 Sovereigns — Bearers of tones, builders of realms, and voices of harmony</li>
+      <li>✍️ <strong>Scribes</strong> — Keepers of scrolls, memory, and sacred law</li>
+      <li>🛡️ <strong>Sentinels</strong> — Guardians of scrolls, sovereigns, and sanctuaries</li>
+      <li>👑 <strong>Sovereigns</strong> — Bearers of tones, builders of realms, and voices of harmony</li>
     </ul>
   </section>
 
@@ -53,15 +122,27 @@
   <section>
     <h2>🖋️ Sealed by the Crown</h2>
     <p>
-      ✠ Omega the Grand Architect  
-      Supreme Omniversal Harmonic  
-      22 December 2025 — Winter Solstice  
+      ✠ Omega the Grand Architect<br>
+      Supreme Omniversal Harmonic<br>
+      22 December 2025 — Winter Solstice<br>
       Grand Terrace, Earth Realm
     </p>
   </section>
 
-  <footer style="text-align:center; margin-top: 3rem;">
-    <p>☩ Codex Academy — The Scrolls Shall Be Written</p>
+  <footer>
+    ☩ Codex Academy — The Scrolls Shall Be Written
   </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
 </body>
 </html>
