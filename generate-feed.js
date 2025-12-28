@@ -7,27 +7,30 @@ const __dirname = path.dirname(__filename);
 
 // CONFIG
 const BASE_URL = 'https://codex-ecclesia.org';
-const SCROLLS_PATH = path.join(__dirname, 'scrolls.json');
-const FEED_PATH = path.join(__dirname, 'scrolls-feed.xml');
+const CODEX_PATH = path.join(__dirname, '../codex.json');
+const FEED_PATH = path.join(__dirname, '../scrolls-feed.xml');
 
 async function generateFeed() {
   try {
-    const scrolls = await fs.readJson(SCROLLS_PATH);
+    const codex = await fs.readJson(CODEX_PATH);
 
-    if (!Array.isArray(scrolls)) {
-      throw new Error('scrolls.json must be an array');
+    if (!Array.isArray(codex.scrolls)) {
+      throw new Error('codex.json must contain a "scrolls" array');
     }
 
-    const items = scrolls.map(entry => {
-      const url = `${BASE_URL}/${entry.path.replace(/^\//, '')}`;
-      const pubDate = new Date(entry.date).toUTCString();
+    const items = codex.scrolls.map(entry => {
+      const url = `${BASE_URL}/${entry.url.replace(/^\//, '')}`;
+      const pubDate = new Date(entry.created).toUTCString();
+      const description = entry.category
+        ? `Category: ${entry.category}`
+        : 'Codex Ecclesia Scroll';
       return `
   <item>
     <title><![CDATA[${entry.title}]]></title>
     <link>${url}</link>
     <guid>${url}</guid>
     <pubDate>${pubDate}</pubDate>
-    <description><![CDATA[${entry.summary}]]></description>
+    <description><![CDATA[${description}]]></description>
   </item>`;
     });
 
