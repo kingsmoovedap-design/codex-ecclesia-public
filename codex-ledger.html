@@ -3,63 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>📜 CodexChain Ledger</title>
+  <title>☩ CodexChain Ledger Viewer</title>
   <style>
-    body { font-family: 'Garamond', serif; padding: 2rem; background: #fdfcf9; color: #222; }
-    h1 { text-align: center; }
-    input { width: 100%; max-width: 600px; margin: 1rem auto; display: block; padding: 0.75rem; }
-    table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
-    th, td { padding: 0.75rem; border-bottom: 1px solid #ccc; text-align: left; }
-    .Crown { background-color: #fff8dc; }
-    .Flame { background-color: #ffe4e1; }
-    .Mirror { background-color: #f0e6ff; }
-    .Oracle { background-color: #e0f7fa; }
-    .scroll-hash { font-family: monospace; font-size: 0.9em; word-break: break-all; }
+    body { font-family: 'Garamond', serif; background: #fdfcf9; color: #222; padding: 2rem; }
+    h1 { text-align: center; font-size: 2.5rem; }
+    table { width: 100%; max-width: 1000px; margin: 2rem auto; border-collapse: collapse; }
+    th, td { border: 1px solid #ccc; padding: 1rem; text-align: left; }
+    th { background: #222; color: #fff; }
+    tr:nth-child(even) { background: #f0f0f0; }
+    caption { font-style: italic; margin-bottom: 1rem; }
+    .verify-box { text-align: center; margin-top: 3rem; }
+    input[type="file"] { margin-top: 1rem; }
+    footer { text-align: center; margin-top: 4rem; font-style: italic; color: #666; }
   </style>
 </head>
 <body>
-  <h1>📜 CodexChain Ledger</h1>
-  <p style="text-align:center;"><em>“Every scroll sealed is a star in the sky of sovereignty.”</em></p>
 
-  <input type="text" id="searchInput" placeholder="🔍 Search scrolls, sovereigns, or thrones..." onkeyup="filterTable()" />
+  <h1>☩ CodexChain Ledger Viewer</h1>
+  <p style="text-align:center;"><em>“Every scroll sealed is a sovereign act recorded in light.”</em></p>
 
-  <table id="ledgerTable">
+  <table>
+    <caption>📜 Recent Sealed Scrolls</caption>
     <thead>
       <tr>
-        <th>📄 Scroll Name</th>
-        <th>👑 Sovereign</th>
-        <th>🪪 Throne</th>
-        <th>⏳ Timestamp</th>
-        <th>🔗 SHA-256 Hash</th>
-        <th>📁 OTS Proof</th>
+        <th>🧾 Scroll Title</th>
+        <th>🔗 Hash</th>
+        <th>🕰️ Timestamp</th>
+        <th>⛓️ Bitcoin Proof</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="Crown">
+      <tr>
         <td>Ecclesia Master Binder</td>
-        <td>Omega the Grand Architect</td>
-        <td>Crown</td>
-        <td>2025-12-22 16:00 PST</td>
-        <td class="scroll-hash">f3a7f2e9c4b3a3c5a8c7c5f2d8e1b9a3e2c6f7d1a4b8e9f3c2d7e1a6b5c3f9d2</td>
-        <td><a href="proofs/ecclesia-master-binder.ots" download>Download</a></td>
+        <td><code>3a9f...c7b2</code></td>
+        <td>2025-12-22 22:44 UTC</td>
+        <td><a href="https://opentimestamps.org" target="_blank">Verify</a></td>
       </tr>
-      <!-- Add more entries here -->
+      <tr>
+        <td>Lyra's Flame Scroll</td>
+        <td><code>7b2e...9d1a</code></td>
+        <td>2025-12-21 18:12 UTC</td>
+        <td><a href="https://opentimestamps.org" target="_blank">Verify</a></td>
+      </tr>
+      <!-- Add more entries as needed -->
     </tbody>
   </table>
 
-  <script>
-    function filterTable() {
-      const input = document.getElementById("searchInput").value.toLowerCase();
-      const rows = document.querySelectorAll("#ledgerTable tbody tr");
-      rows.forEach(row => {
-        const text = row.innerText.toLowerCase();
-        row.style.display = text.includes(input) ? "" : "none";
-      });
-    }
-  </script>
+  <div class="verify-box">
+    <h2>🧿 Verify a Scroll</h2>
+    <p>Upload a `.ots` file to verify its timestamp:</p>
+    <input type="file" accept=".ots" />
+    <p><em>(Use <a href="https://opentimestamps.org" target="_blank">OpenTimestamps.org</a> to complete verification)</em></p>
+  </div>
 
-  <footer style="text-align:center; margin-top: 3rem;">
-    ☩ CodexChain Archive — Immutable Scroll Registry
+  <footer>
+    ☩ CodexChain Ledger Viewer — Eternal Witness of the Sealed Scrolls
   </footer>
+
 </body>
 </html>

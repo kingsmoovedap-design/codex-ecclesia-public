@@ -1,0 +1,31 @@
+[
+  {
+    "id": "001",
+    "title": "Crowning of Deven Julian Borders",
+    "type": "Crowning Ceremony",
+    "date": "2026-02-09",
+    "location": "Borders Sovereign Hall",
+    "participants": ["Deven Julian Borders", "Omega", "Destiny M. Simmons", "Demarco C. Borders"],
+    "scroll": "scroll-deven-heir.html",
+    "notes": "Deven’s 17th birthday and official crowning as Crowned Heir of the Borders Dynasty."
+  },
+  {
+    "id": "002",
+    "title": "Birth of Princess Devenity Eden Borders",
+    "type": "Heir Birth",
+    "date": "2024-10-08",
+    "location": "Borders Sovereign House",
+    "participants": ["Omega", "Miranda M. Eden"],
+    "notes": "The birth of Princess Devenity Eden Borders, third heir of the Borders Dynasty."
+  },
+  {
+    "id": "003",
+    "title": "Filing of the Codex of Harmony",
+    "type": "Codex Filing",
+    "date": "2025-12-24",
+    "location": "Codex Ecclesia Harmony",
+    "participants": ["Omega"],
+    "scroll": "codices/codex-harmony.html",
+    "notes": "The Codex of Harmony was filed to define the 7 Harmonies of Sovereignty."
+  }
+]

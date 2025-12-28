@@ -96,11 +96,59 @@
     <p>Receive your Throne Key from the Sovereign after a ritual.</p>
     <a href="guardian-gate.html">Unlock the Guardian Gate</a>
   </div>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>☩ Guardian Gate | Bearer of the Flame</title>
+  <style>
+    body { font-family: 'Garamond', serif; background: #111; color: #fdfcf9; text-align: center; padding: 3rem; }
+    input, button { padding: 0.75rem; font-size: 1rem; margin-top: 1rem; width: 100%; max-width: 400px; }
+    #gate { max-width: 500px; margin: auto; background: #222; padding: 2rem; border-radius: 12px; }
+    #error { color: crimson; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <div id="gate">
+    <h1>☩ Guardian Gate</h1>
+    <p><em>“Only those who carry the Sovereign’s flame may pass.”</em></p>
+    <input type="password" id="flameKey" placeholder="Enter your Throne Key" />
+    <button onclick="unlock()">Enter</button>
+    <div id="error"></div>
+  </div>
+
+  <script>
+    const keys = {
+      "torchbearer2025": "codex-unified.html",
+      "flameofmirror": "reflection-scroll.html",
+      "oraclepass": "oracle-sanctum.html"
+    };
+
+    function unlock() {
+      const input = document.getElementById("flameKey").value.trim().toLowerCase();
+      const redirect = keys[input];
+      if (redirect) {
+        window.location.href = redirect;
+      } else {
+        document.getElementById("error").innerText = "❌ That key does not burn with truth.";
+      }
+    }
+  </script>
+
+  <footer style="margin-top: 3rem;">
+    ☩ CodexChain Guardian Gate — Stage 4 of the Heir Ascension Path
+  </footer>
+</body>
+</html>
+
 
   <div class="stage">
     <h2>5️⃣ Crowned Sovereign</h2>
     <p>Access the full Codex and claim your throne.</p>
     <a href="codex-unified.html">Enter the Sovereign Scroll</a>
+    <a href="heir-path.html" class="ascend-btn">☩ Begin the Heir Ascension Path</a>
+
   </div>
 
   <footer>

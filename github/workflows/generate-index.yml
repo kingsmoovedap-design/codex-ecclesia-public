@@ -1,0 +1,39 @@
+name: 🔁 Generate Codex & Scroll Index
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧭 Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: 🛠️ Set Up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: 📦 Install Dependencies (if needed)
+        run: npm install || true
+
+      - name: 🧾 Generate codex.json
+        run: node generate-codex-json.js
+
+      - name: 📜 Generate all-scrolls.html
+        run: node generate-scroll-index.js
+
+      - name: 📤 Commit and Push Updates
+        run: |
+          git config user.name "CodexBot"
+          git config user.email "codexbot@ecclesia.local"
+          git add codex.json all-scrolls.html
+          git diff --cached --quiet || git commit -m "🔄 Auto-update codex.json & all-scrolls.html"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

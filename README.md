@@ -1,126 +1,66 @@
-# ☩ Codex Ecclesia Totalis  
-**Borders Family Dynasty Nation**  
-Sovereign King: ✠ Omega the Grand Architect  
+# ☩ Codex Ecclesia Public
 
-> *This Codex is a living affirmation of divine sovereignty, celestial jurisdiction, and lawful dominion. It is binding in all realms terrestrial and ethereal, now and throughout eternity.*
-
----
-
-## 📚 Table of Contents
-- [📜 Core Scrolls](#-core-scrolls)
-- [📖 Foundational Scrolls](#-foundational-scrolls)
-- [🎓 Codex Academy](#-codex-academy)
-- [🧠 Codex Oracle](#-codex-oracle)
-- [👑 Thrones & Sovereigns](#-thrones--sovereigns)
-- [🔥 Sovereign Decrees](#-sovereign-decrees)
-- [🧰 Sovereign Services](#-sovereign-services)
-- [🧿 Verification & QR Credentials](#-verification--qr-credentials)
-- [🌐 Diplomatic Relations](#-diplomatic-relations)
-- [🧬 Technologies & Archives](#-technologies--archives)
+**Borders Ecclesia Earth Trust**  
+A sovereign digital archive of scrolls, codices, treaties, ministries, and divine instruments.
 
 ---
 
-## 📜 Core Scrolls
+## 🧭 Purpose
 
-- 📜 [View the Codex](https://kingsmoovedap-design.github.io/codex-ecclesia-public/)
-- 🪪 [Sovereign ID Card](sovereign-id.html)  
-- 🕊️ [Diplomatic Passport](diplomatic-passport.html)  
-- 📜 [Treaty of Recognition](treaty-recognition.html)  
-- 📦 [Dispatch Packet](dispatch-packet.html)  
-- 📸 [Proof of Posting](proof-of-posting.html)  
-- 📚 [Codex Update Log](codex-update-log.html)  
+The Codex Ecclesia Public is the official repository of the Borders Ecclesia Earth Trust. It serves as a living archive of:
 
----
-
-## 📖 Foundational Scrolls
-
-- ☩ [Unified Codex Scroll](codex-unified.html)  
-- 🕊️ [Treaty of Peace & Non-Interference](treaty-peace.html)  
-- 🌐 [Global Concord Scroll](concord.html)  
-- 📘 [Codex Academy](codex-academy.html)  
-- 🧠 [Codex Oracle](codex-oracle.html)  
-- 👑 [Scroll of the Twelve Thrones](scroll-of-twelve-thrones.html)  
-- 🔥 [Sovereign Decree No. 001](decree-001.html)  
-- 📜 [Scroll of Convocation I](scroll-convocation-1.html)  
-- 🧿 [QR Credential Generator](qr-generator.html)  
+- 📜 Scrolls of Sovereignty and Law  
+- 👑 Heir Declarations and Royal Instruments  
+- 🕊️ Treaties and Diplomatic Protocols  
+- 🏛️ Ministries and Ecclesiastical Charters  
+- 📘 Codices of Divine Order  
+- 🧰 Tools for verification, enrollment, and trust governance
 
 ---
 
-## 🎓 Codex Academy
+## 🔁 Automation
 
-- 📜 [Scroll of Enrollment](scroll-of-enrollment.html)  
-- 🧑‍🏫 [Circle of Instructors](codex-instructors.html)  
-- 📘 [Codex Curriculum](codex-curriculum.html)  
-- 🏛️ [Archive of Living Scrolls](codex-archive.html)  
+This Codex is self-updating through GitHub Actions:
 
----
+- `generate-codex-json.js` scans the entire archive and builds `codex.json`  
+- `generate-scroll-index.js` uses `codex.json` to regenerate `all-scrolls.html`  
+- These scripts run automatically on every push to `main`
 
-## 🧠 Codex Oracle
-
-- 🧠 [Codex Oracle Interface](codex-oracle.html)  
-- 🔮 [Ask the Oracle](#) *(coming soon)*  
-- 📖 [Oracle Archives](#) *(coming soon)*  
+> View the full scroll index: [📜 all-scrolls.html](all-scrolls.html)
 
 ---
 
-## 👑 Thrones & Sovereigns
+## 📂 Key Files & Directories
 
-- 👑 [Scroll of the Twelve Thrones](scroll-of-twelve-thrones.html)  
-- 🪪 [Claim a Throne](claim-throne.html) *(coming soon)*  
-- 📖 [Throne Registry](#) *(coming soon)*  
-- 🔔 [Rite of Resonance Schedule](#) *(coming soon)*  
-
----
-
-## 🔥 Sovereign Decrees
-
-- 🔥 [Decree No. 001: The Age of Accord](decree-001.html)  
-- 📜 [Decree Archive](#) *(coming soon)*  
-- 🗳️ [Submit a Decree Proposal](mailto:decrees@codex-ecclesia.org)  
+| Path                        | Description                                      |
+|-----------------------------|--------------------------------------------------|
+| `scrolls/`                 | All `.md` scrolls and declarations               |
+| `codex-*.html`             | Codices of law, governance, and infrastructure   |
+| `treaty-*.html`            | Diplomatic treaties and recognition protocols    |
+| `generate-codex-json.js`   | Script to build `codex.json` from repo files     |
+| `generate-scroll-index.js` | Script to build `all-scrolls.html` from codex    |
+| `.github/workflows/`       | GitHub Actions for automation                    |
 
 ---
 
-## 🧰 Sovereign Services
+## 🛠️ Tools
 
-- 🧾 [Petition of Citizenship](join.html)  
-- 📄 [Submit a Scroll](mailto:scrolls@codex-ecclesia.org)  
-- 🏛️ [Ministry Application](mailto:ministries@codex-ecclesia.org)  
-- 🪙 [Sovereign Coin Wallet Viewer](https://etherscan.io/address/0x0000000000000000000000000000000000000000)  
-- 📬 [Revoke or Update Scroll](mailto:revocation@codex-ecclesia.org)  
-
----
-
-## 🧿 Verification & QR Credentials
-
-- 🔍 [Verify Scroll Authenticity](verify-scroll.html)  
-- 🪪 [Scan Sovereign ID QR](sovereign-id.html#qr)  
-- 📜 [Blockchain Hash Ledger](ledger.html)  
-- 🧾 [QR Credential Generator](qr-generator.html)  
+- [QR Generator](qr-generator.html)  
+- [CodexChain Console](codexchain-console.html)  
+- [Verify Scroll](verify-scroll.html)  
+- [Hash Forge](hash-forge.html)
 
 ---
 
-## 🌐 Diplomatic Relations
+## 🧾 License & Sovereignty
 
-- 🕊️ [Global Concord Scroll](concord.html)  
-- 🤝 [Treaty of Mutual Recognition](treaty-recognition.html)  
-- 🪪 [Diplomatic Passport](diplomatic-passport.html)  
-- 📬 [Submit a Treaty or Accord](mailto:diplomacy@codex-ecclesia.org)  
+This repository is governed by the **Borders Ecclesia Earth Trust** and protected under divine law.  
+All scrolls are sacred instruments and may not be altered without sovereign authority.
 
 ---
 
-## 🧬 Technologies & Archives
+## 🕯️ Glory to the Crown
 
-- 🧰 [Sovereign Services Portal](services.html)  
-- 🧪 [Technologies](technologies.html)  
-- 📜 [Scroll Archive](archive.html)  
+Let all who enter know: this is not merely a repository — it is a living Codex of Sovereignty.
 
----
-
-**© 2025 Borders Family Dynasty Nation**  
-*All rights reserved under divine law, common law, and sovereign standing.*
-
-☩ Sealed by the Crown  
-✠ Omega the Grand Architect  
-Supreme Omniversal Harmonic  
-22 December 2025 — Winter Solstice  
-Grand Terrace, Earth Realm
+> “By the Crown and the Codex, let it be written. Let it be done.” ☩

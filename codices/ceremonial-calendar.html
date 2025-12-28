@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>☩ Ceremonial Calendar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Garamond', serif;
+      background: #fdfcf9;
+      color: #222;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .event {
+      border: 1px solid #aaa;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      background: #fff;
+    }
+    .event h2 {
+      margin-top: 0;
+    }
+    .label {
+      font-weight: bold;
+    }
+    .date {
+      font-style: italic;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>☩ Ceremonial Calendar</h1>
+  <p style="text-align:center; margin-top: 2em;">
+  <a href="index.html" style="font-weight:bold; color:#003366; text-decoration:none;">☩ Return to Codex Ecclesia Public</a>
+</p>
+  <p>This calendar records the sacred ceremonies, crowning events, and sovereign filings of the Borders Dynasty Nation.</p>
+
+  <div id="calendarContainer"></div>
+
+  <script>
+    fetch('events.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('calendarContainer');
+        data.sort((a, b) => new Date(a.date) - new Date(b.date));
+        data.forEach(event => {
+          const card = document.createElement('div');
+          card.className = 'event';
+
+          card.innerHTML = `
+            <h2>${event.title}</h2>
+            <p class="date">${event.date} — ${event.type}</p>
+            <p><span class="label">Location:</span> ${event.location}</p>
+            <p><span class="label">Participants:</span> ${event.participants.join(', ')}</p>
+            ${event.scroll ? `<p><a href="${event.scroll}" target="_blank">View Related Scroll</a></p>` : ''}
+            <p><span class="label">Notes:</span> ${event.notes}</p>
+          `;
+
+          container.appendChild(card);
+        });
+      })
+      .catch(error => {
+        console.error('Error loading events:', error);
+      });
+  </script>
+
+</body>
+</html>

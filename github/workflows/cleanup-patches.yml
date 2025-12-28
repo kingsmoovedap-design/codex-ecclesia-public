@@ -1,0 +1,36 @@
+name: 🧹 Cleanup Merged Patch Branches
+
+on:
+  workflow_dispatch:  # Manual trigger from GitHub UI
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Required to see all branches and history
+
+      - name: 🧹 Delete Merged Patch Branches
+        run: |
+          echo "☩ Fetching remote branches..."
+          git fetch --prune
+
+          echo "☩ Finding merged patch branches..."
+          MERGED=$(git branch -r --merged origin/main | grep 'origin/kingsmoovedap-design-patch-' | sed 's/origin\///')
+
+          if [ -z "$MERGED" ]; then
+            echo "✅ No merged patch branches to delete."
+            exit 0
+          fi
+
+          echo "🧨 Deleting merged patch branches:"
+          echo "$MERGED"
+
+          for branch in $MERGED; do
+            echo "🔥 Deleting $branch..."
+            git push origin --delete "$branch"
+          done
+
+          echo "✅ Cleanup complete."

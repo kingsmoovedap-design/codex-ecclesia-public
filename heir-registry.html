@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>☩ Heir Registry</title>
+  <style>
+    body {
+      font-family: 'Garamond', serif;
+      background: #fdfcf9;
+      color: #222;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .heir-card {
+      border: 1px solid #aaa;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      background: #fff;
+    }
+    .heir-card h2 {
+      margin-top: 0;
+    }
+    .label {
+      font-weight: bold;
+    }
+    .scroll-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+    .status {
+      font-style: italic;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>☩ Heir Registry</h1>
+  <p>This registry records the heirs of the Borders Dynasty, their lineage, scrolls, and sovereign path to crowning.</p>
+
+  <div id="heirContainer"></div>
+
+  <script>
+    fetch('heirs.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('heirContainer');
+        data.forEach(heir => {
+          const card = document.createElement('div');
+          card.className = 'heir-card';
+
+          card.innerHTML = `
+            <h2>${heir.name} <span class="status">(${heir.title})</span></h2>
+            <p><span class="label">Born:</span> ${heir.birthdate}</p>
+            ${heir.crowning_date ? `<p><span class="label">Crowning Date:</span> ${heir.crowning_date}</p>` : ''}
+            <p><span class="label">Father:</span> ${heir.father} &nbsp; <span class="label">Mother:</span> ${heir.mother}</p>
+            <p><span class="label">Siblings:</span> ${heir.siblings.join(', ')}</p>
+            ${heir.scroll ? `<p><a class="scroll-link" href="${heir.scroll}" target="_blank">View Scroll</a></p>` : ''}
+            <p><span class="label">Witnesses:</span> ${heir.witnesses.join(', ')}</p>
+            <p><span class="label">Status:</span> ${heir.status}</p>
+            <p><span class="label">Notes:</span> ${heir.notes}</p>
+          `;
+
+          container.appendChild(card);
+        });
+      })
+      .catch(error => {
+        console.error('Error loading heirs:', error);
+      });
+  </script>
+
+</body>
+</html>
