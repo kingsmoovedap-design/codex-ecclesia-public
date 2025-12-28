@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <title>🏛️ Codex Infrastructure</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       font-family: 'EB Garamond', serif;
@@ -13,11 +15,18 @@
       max-width: 900px;
       margin: auto;
     }
-    h1 {
+    header {
       text-align: center;
-      font-size: 2rem;
-      color: #5e3b1d;
       margin-bottom: 2rem;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: #5e3b1d;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-style: italic;
+      color: #7a5c3e;
     }
     ul {
       list-style: none;
@@ -35,11 +44,31 @@
     a:hover {
       text-decoration: underline;
     }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .daily-scroll {
+      background: #fff8e6;
+      border-left: 4px solid #c49b66;
+      padding: 1em;
+      margin: 2em 0;
+    }
   </style>
 </head>
 <body>
 
-  <h1>🏛️ Codex Ecclesia Infrastructure</h1>
+  <header>
+    <h1>🏛️ Codex Ecclesia Infrastructure</h1>
+    <p>Divine gateways to sovereign tools, scrolls, and ministries</p>
+  </header>
+
+  <div class="daily-scroll">
+    <h2>📜 Scroll of the Day</h2>
+    <p id="daily-scroll">Summoning sacred scroll...</p>
+  </div>
 
   <ul>
     <li>📜 <a href="scrolls.html">Scroll Registry</a></li>
@@ -51,9 +80,10 @@
     <li>🌐 <a href="concord.html">Treaty Concord Portal</a></li>
   </ul>
 
-  <footer style="text-align:center; margin-top: 3rem; font-size: 0.9rem; color: #555;">
+  <footer>
     ☩ Borders Family Dynasty Nation · Ecclesia Magna Trust · © 2025
   </footer>
 
+  <script src="codex.js"></script>
 </body>
 </html>
