@@ -4,21 +4,83 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>☩ Guardian Gate | Bearer of the Flame</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: 'Garamond', serif; background: #111; color: #fdfcf9; text-align: center; padding: 3rem; }
-    input, button { padding: 0.75rem; font-size: 1rem; margin-top: 1rem; width: 100%; max-width: 400px; }
-    #gate { max-width: 500px; margin: auto; background: #222; padding: 2rem; border-radius: 12px; }
-    #error { color: crimson; margin-top: 1rem; }
+    body {
+      font-family: 'EB Garamond', serif;
+      background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
+      color: #fdfcf9;
+      text-align: center;
+      padding: 3rem 1rem;
+      margin: 0;
+    }
+    #gate {
+      max-width: 500px;
+      margin: auto;
+      background: #222;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #d4af37;
+      border: 2px solid #d4af37;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #f0d98c;
+    }
+    p {
+      font-style: italic;
+      color: #ccc;
+    }
+    input, button {
+      padding: 0.75rem;
+      font-size: 1rem;
+      margin-top: 1rem;
+      width: 100%;
+      max-width: 400px;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+    }
+    input {
+      background: #333;
+      color: #fdfcf9;
+      border: 1px solid #555;
+    }
+    button {
+      background: #5e3b1d;
+      color: #fffdf7;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #3b2614;
+    }
+    #error {
+      color: crimson;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
   </style>
 </head>
 <body>
+
   <div id="gate">
     <h1>☩ Guardian Gate</h1>
-    <p><em>“Only those who carry the Sovereign’s flame may pass.”</em></p>
-    <input type="password" id="flameKey" placeholder="Enter your Throne Key" />
+    <p>“Only those who carry the Sovereign’s flame may pass.”</p>
+    <input type="password" id="flameKey" placeholder="Enter your Throne Key" autocomplete="off" />
     <button onclick="unlock()">Enter</button>
     <div id="error"></div>
   </div>
+
+  <footer>
+    ☩ CodexChain Guardian Gate — Stage 4 of the Heir Ascension Path
+  </footer>
 
   <script>
     const keys = {
@@ -36,10 +98,11 @@
         document.getElementById("error").innerText = "❌ That key does not burn with truth.";
       }
     }
+
+    document.getElementById("flameKey").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") unlock();
+    });
   </script>
 
-  <footer style="margin-top: 3rem;">
-    ☩ CodexChain Guardian Gate — Stage 4 of the Heir Ascension Path
-  </footer>
 </body>
 </html>
