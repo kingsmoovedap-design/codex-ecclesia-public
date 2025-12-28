@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>🌐 Global Concord | Codex Ecclesia</title>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       margin: 0;
       font-family: 'EB Garamond', serif;
       background: #fdfaf6 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
       color: #2c1a0f;
+      transition: background 0.3s, color 0.3s;
     }
     header {
       background: linear-gradient(to right, #2c1a0f, #5e3b1d);
@@ -21,7 +23,7 @@
     }
     header h1 {
       margin: 0;
-      font-size: 2.2rem;
+      font-size: 2.5rem;
     }
     nav {
       background: #3b2614;
@@ -49,6 +51,7 @@
       border-bottom: 2px solid #d4af37;
       padding-bottom: 0.5rem;
       margin-bottom: 1rem;
+      color: #5e3b1d;
     }
     .ally-card {
       background: #fffdf7;
@@ -59,6 +62,18 @@
     }
     .ally-card h3 {
       margin-top: 0;
+      color: #003366;
+    }
+    .ally-card p {
+      margin: 0.5rem 0;
+    }
+    a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
     }
     footer {
       background: #2c1a0f;
@@ -68,9 +83,49 @@
       font-size: 0.9rem;
       margin-top: 3rem;
     }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+      background-image: none;
+    }
+    .dark-mode header {
+      background: #111;
+      color: #f0d98c;
+    }
+    .dark-mode nav {
+      background: #222;
+    }
+    .dark-mode nav a {
+      color: #f0d98c;
+    }
+    .dark-mode .ally-card {
+      background: #2a2a2a;
+      border-color: #888;
+    }
+    .dark-mode h2, .dark-mode .ally-card h3 {
+      color: #f0d98c;
+    }
+    .dark-mode footer {
+      background: #111;
+      color: #aaa;
+    }
   </style>
 </head>
 <body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
   <header>
     <h1>🌐 Global Concord</h1>
     <p>Registry of Allied Nations, Trusts & Sovereigns</p>
@@ -79,9 +134,9 @@
   <nav>
     <a href="index.html">Home</a>
     <a href="join.html">Join</a>
-    <a href="archive.html">Scroll Archive</a>
+    <a href="scroll-archive.html">Scroll Archive</a>
     <a href="technologies.html">Technologies</a>
-    <a href="concord.html">Global Concord</a>
+    <a href="global-concord.html">Global Concord</a>
     <a href="governance.html">Governance</a>
     <a href="voice.html">Voice</a>
   </nav>
@@ -119,5 +174,18 @@
   <footer>
     &copy; 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
   </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+
 </body>
 </html>
