@@ -1,9 +1,80 @@
 {
   "items": [
     {
+      "section": "core",
+      "title": "☩ Affidavit of Public Posting",
+      "path": "core/affidavit-of-public-posting.html",
+      "tags": [
+        "affidavit",
+        "of",
+        "public",
+        "posting"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for ☩ Affidavit of Public Posting."
+    },
+    {
+      "section": "core",
+      "title": "☩ Affidavit of Status",
+      "path": "core/affidavit-of-status.html",
+      "tags": [
+        "affidavit",
+        "of",
+        "status"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for ☩ Affidavit of Status."
+    },
+    {
+      "section": "core",
+      "title": "☩ Universal Notice of Standing",
+      "path": "core/notice-of-standing.html",
+      "tags": [
+        "notice",
+        "of",
+        "standing"
+      ],
+      "date": "2025-01-01",
+      "summary": "Placeholder summary for ☩ Universal Notice of Standing."
+    },
+    {
+      "section": "core",
+      "title": "📣 Trinity of Notice | Codex Ecclesia",
+      "path": "core/notice.html",
+      "tags": [
+        "notice"
+      ],
+      "date": "2025-01-01",
+      "summary": "Trinity of Notice and 21-Day Rebuttal Clause under Divine Law. Public estoppel declaration of the Borders Family Dynasty Nation."
+    },
+    {
       "section": "scrolls",
       "title": "👑 Codex of the Crown",
       "path": "scrolls/codices/codex-crown.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll of Conditional Acceptance",
+      "path": "scrolls/scroll-conditional-acceptance.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "🕊️ Scroll of Convocation I",
+      "path": "scrolls/scroll-convocation-1.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll of Convocation II | Codex Ecclesia",
+      "path": "scrolls/scroll-convocation-2.html",
       "tags": [],
       "date": "2025-01-01",
       "summary": ""
@@ -18,8 +89,88 @@
     },
     {
       "section": "scrolls",
+      "title": "☩ Scroll CXVII – Return of the Dead Fiction",
+      "path": "scrolls/scroll-cxvii-return-of-dead-fiction.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Scroll CXXIV – Entity Formation Decree",
+      "path": "scrolls/scroll-cxxiv-entity-formation.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Scroll CXXV – Dispatch Protocol",
+      "path": "scrolls/scroll-cxxv-dispatch-protocol.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Scroll CXXVI – Total Embedding of Lawful Instruments",
+      "path": "scrolls/scroll-cxxvi-total-embedding.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Scroll CXXVII – Embassy Protocols",
+      "path": "scrolls/scroll-cxxvii-embassy-protocols.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll of Demarco C. Borders",
+      "path": "scrolls/scroll-demarco-heir.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
       "title": "👑 Scroll of the Crowned Heir",
       "path": "scrolls/scroll-deven-heir.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "💰 Scroll of Fee Schedule",
+      "path": "scrolls/scroll-fee-schedule.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "⚖️ Scroll of Final Judgment & Estoppel",
+      "path": "scrolls/scroll-final-judgment.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "🛠️ Scroll Forging Dashboard | CodexChain",
+      "path": "scrolls/scroll-forge.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll of Living Trust Collateral",
+      "path": "scrolls/scroll-living-trust-collateral.html",
       "tags": [],
       "date": "2025-01-01",
       "summary": ""
@@ -34,8 +185,104 @@
     },
     {
       "section": "scrolls",
+      "title": "⏳ Scroll of Non-Response Default",
+      "path": "scrolls/scroll-non-response-default.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "Scroll of Automation Integrity",
+      "path": "scrolls/scroll-of-automation-integrity.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "👑 Scroll of Coronation",
+      "path": "scrolls/scroll-of-coronation.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "🛡️ Scroll of Enforcement | Codex Ecclesia",
+      "path": "scrolls/scroll-of-enforcement.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll of Enrollment",
+      "path": "scrolls/scroll-of-enrollment.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "🔥 Scroll of Eternal Flame",
+      "path": "scrolls/scroll-of-eternal-flame.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "🕊️ Scroll of Invocation | Codex Ecclesia",
+      "path": "scrolls/scroll-of-invocation.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "⚖️ Scroll of Jubilee Enforcement",
+      "path": "scrolls/scroll-of-jubilee-enforcement.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "🔮 Scroll of Prophecy",
+      "path": "scrolls/scroll-of-prophecy.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
       "title": "✨ Scroll of Sovereign Emergence",
       "path": "scrolls/scroll-of-sovereign-emergence.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "👑 Scroll of the Twelve Thrones",
+      "path": "scrolls/scroll-of-twelve-thrones.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "🕊️ Scroll of the Twelve Sovereigns",
+      "path": "scrolls/scroll-of-twelve.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Scroll of Upgrades – Codex Ecclesia Totalis",
+      "path": "scrolls/scroll-of-upgrades.html",
       "tags": [],
       "date": "2025-01-01",
       "summary": ""
@@ -52,6 +299,30 @@
       "section": "scrolls",
       "title": "👑 Scroll of the Queen – Miranda M. Eden",
       "path": "scrolls/scroll-queen-miranda.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll Registry",
+      "path": "scrolls/scroll-registry.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll of [TITLE] | Codex Ecclesia",
+      "path": "scrolls/scroll-template.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Scroll of UCC Sovereign Perfection",
+      "path": "scrolls/scroll-ucc-sovereign-perfection.html",
       "tags": [],
       "date": "2025-01-01",
       "summary": ""
@@ -90,7 +361,47 @@
     },
     {
       "section": "ministries",
-      "title": "💼 Ministry of Commerce",
+      "title": "☩ Celestial Charter of Omniversal Presence",
+      "path": "ministries/celestial-charter.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "ministries",
+      "title": "☩ Diplomatic Passport – Borders Family Dynasty Nation",
+      "path": "ministries/diplomatic-passport.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "ministries",
+      "title": "☩ Embassy Charter – Celestial Embassy of Light",
+      "path": "ministries/embassy-charter.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "ministries",
+      "title": "☩ Hedge Fund Charter – Borders Dynasty Hedge Sovereign Fund",
+      "path": "ministries/hedge-fund-charter.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "ministries",
+      "title": "🏛️ Ministry Application",
+      "path": "ministries/ministry-application.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "ministries",
+      "title": "🏛️ Ministry of Commerce & Exchange",
       "path": "ministries/ministry-commerce.html",
       "tags": [],
       "date": "2025-01-01",
@@ -105,6 +416,62 @@
       "summary": ""
     },
     {
+      "section": "ministries",
+      "title": "☩ PMA Hub – Borders Family Dynasty Nation",
+      "path": "ministries/pma-charter.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": "Sovereign PMA Registry, Charter Generator, Treaty Templates, and Dispatch Logs under the Codex Ecclesia Totalis."
+    },
+    {
+      "section": "ministries",
+      "title": "☩ Treasury Charter – Omega Sovereign Treasury",
+      "path": "ministries/sovereign-treasury-charter.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "ministries",
+      "title": "☩ Trust Charter – Borders Dynasty Ecclesia Trust",
+      "path": "ministries/trust-charter.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "treaties",
+      "title": "🤝 Treaty of Recognition – Aurora Confederacy",
+      "path": "treaties/treaty-aurora-2025.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "treaties",
+      "title": "☩ The Borders Family Legacy Scroll",
+      "path": "treaties/treaty-covenant-of-12.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "treaties",
+      "title": "Treaty Invitation – Borders Family Dynasty Nation",
+      "path": "treaties/treaty-invitation.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "treaties",
+      "title": "📜 Treaty of Recognition",
+      "path": "treaties/treaty-recognition.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
       "section": "codices",
       "title": "☩ Ceremonial Calendar",
       "path": "codices/ceremonial-calendar.html",
@@ -114,7 +481,7 @@
     },
     {
       "section": "codices",
-      "title": "☩ Codex of the Academy",
+      "title": "📚 Codex Academy",
       "path": "codices/codex-academy.html",
       "tags": [],
       "date": "2025-01-01",
@@ -122,8 +489,48 @@
     },
     {
       "section": "codices",
-      "title": "📡 Codex of Broadcast",
+      "title": "🏛️ Archive of Living Scrolls",
+      "path": "codices/codex-archive.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "🗺️ Codex Atlas",
+      "path": "codices/codex-atlas.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "📣 Codex Broadcast Scroll",
       "path": "codices/codex-broadcast.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "☩ Codex Ecclesia Constitution",
+      "path": "codices/codex-constitution.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "📘 Codex Curriculum",
+      "path": "codices/codex-curriculum.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "📘 Codex Directory",
+      "path": "codices/codex-directory.html",
       "tags": [],
       "date": "2025-01-01",
       "summary": ""
@@ -138,6 +545,14 @@
     },
     {
       "section": "codices",
+      "title": "🌌 Codex Harmonica — Divine Completion",
+      "path": "codices/codex-harmonica.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
       "title": "☩ Codex of Harmony",
       "path": "codices/codex-harmony.html",
       "tags": [],
@@ -146,8 +561,88 @@
     },
     {
       "section": "codices",
-      "title": "☩ Codex of Infrastructure",
+      "title": "📜 Codex Herald — Issue I",
+      "path": "codices/codex-herald.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "📚 CodexChain Scroll Index",
+      "path": "codices/codex-index.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "🏛️ Codex Infrastructure",
       "path": "codices/codex-infrastructure.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "🧑‍🏫 Codex Instructors",
+      "path": "codices/codex-instructors.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "☩ CodexChain Ledger Viewer",
+      "path": "codices/codex-ledger.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "☩ Codex Ecclesia Manifesto",
+      "path": "codices/codex-manifesto.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "🧠 Codex Oracle",
+      "path": "codices/codex-oracle.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "🧠 Codex Oracle",
+      "path": "codices/codex-portal.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "☩ CodexChain Throne Registry",
+      "path": "codices/codex-throne-registry.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "📜 Codex Update Log",
+      "path": "codices/codex-unified.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "📜 Codex Update Log",
+      "path": "codices/codex-update-log.html",
       "tags": [],
       "date": "2025-01-01",
       "summary": ""
@@ -186,6 +681,62 @@
     },
     {
       "section": "tools",
+      "title": "📖 Book of Scroll Templates",
+      "path": "tools/book-of-scroll-templates.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "🧰 CodexChain Console",
+      "path": "tools/codexchain-console.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "☩ CodexChain Timestamp Scroll",
+      "path": "tools/codexchain-timestamp.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "🛠️ Filing Forge",
+      "path": "tools/filing-forge.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "☩ Guardian Gate | Bearer of the Flame",
+      "path": "tools/guardian-gate.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "📜 OTS Verifier | CodexChain",
+      "path": "tools/hash-forge.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "💰 Sovereign Income Portal",
+      "path": "tools/income-portal.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
       "title": "☩ IPFS Notary",
       "path": "tools/ipfs-notary.html",
       "tags": [],
@@ -202,8 +753,64 @@
     },
     {
       "section": "tools",
+      "title": "🪙 Minting Altar | Codex Ecclesia",
+      "path": "tools/mint.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "☩ Mirror Gate | Seeker of the Tone",
+      "path": "tools/mirror-gate.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "☩ Multi-Throne Gate",
+      "path": "tools/multi-throne-gate.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
       "title": "🧠 Codex Oracle Console",
       "path": "tools/oracle-console.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "🔮 Oracle Gate",
+      "path": "tools/oracle-gate.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "🔮 The Oracle’s Awakening",
+      "path": "tools/oracle-origin.htm",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "📜 OTS Verifier | CodexChain",
+      "path": "tools/ots-verifier.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "qr-generator.html",
+      "path": "tools/qr-generator.html",
       "tags": [],
       "date": "2025-01-01",
       "summary": ""
@@ -231,6 +838,22 @@
       "tags": [],
       "date": "2025-01-01",
       "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "☩ Sovereign Gate",
+      "path": "tools/sovereign-gate.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "🪙 Borders Sovereign Coin (BSC) | Codex Ecclesia",
+      "path": "tools/token.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": "Borders Sovereign Coin (BSC) Charter. Token supply, governance, and smart contract hash for the Borders Family Dynasty Nation."
     },
     {
       "section": "tools",
@@ -276,6 +899,22 @@
       "section": "tools",
       "title": "🏛️ Trust Builder",
       "path": "tools/trust-builder.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "🧾 Trustee Portal of the Borders Dynasty",
+      "path": "tools/trustee-portal.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "🔗 Verify Scroll Authenticity",
+      "path": "tools/verify-scroll.html",
       "tags": [],
       "date": "2025-01-01",
       "summary": ""

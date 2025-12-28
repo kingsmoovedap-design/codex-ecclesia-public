@@ -13,12 +13,6 @@
       "created": "2025-12-28T23:01:37.234Z"
     },
     {
-      "url": "README.md",
-      "title": "README",
-      "category": "Other",
-      "created": "2025-12-28T23:01:37.243Z"
-    },
-    {
       "url": "SECURITY.md",
       "title": "SECURITY",
       "category": "Other",
@@ -49,18 +43,6 @@
       "created": "2025-12-28T23:01:37.244Z"
     },
     {
-      "url": "affidavit-of-public-posting.html",
-      "title": "Affidavit Of Public Posting",
-      "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.244Z"
-    },
-    {
-      "url": "affidavit-of-status.html",
-      "title": "Affidavit Of Status",
-      "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.244Z"
-    },
-    {
       "url": "all-scrolls.html",
       "title": "All Scrolls",
       "category": "Scrolls",
@@ -70,12 +52,6 @@
       "url": "archive.html",
       "title": "Archive",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.244Z"
-    },
-    {
-      "url": "book-of-scroll-templates.html",
-      "title": "Book Of Scroll Templates",
-      "category": "Scrolls",
       "created": "2025-12-28T23:01:37.244Z"
     },
     {
@@ -103,10 +79,22 @@
       "created": "2025-12-28T23:01:37.244Z"
     },
     {
-      "url": "celestial-charter.html",
-      "title": "Celestial Charter",
-      "category": "Other",
-      "created": "2025-12-28T23:01:37.245Z"
+      "url": "core/affidavit-of-public-posting.html",
+      "title": "Affidavit Of Public Posting",
+      "category": "Scrolls",
+      "created": "2025-12-28T23:01:37.244Z"
+    },
+    {
+      "url": "core/affidavit-of-status.html",
+      "title": "Affidavit Of Status",
+      "category": "Scrolls",
+      "created": "2025-12-28T23:01:37.244Z"
+    },
+    {
+      "url": "tools/book-of-scroll-templates.html",
+      "title": "Book Of Scroll Templates",
+      "category": "Scrolls",
+      "created": "2025-12-28T23:01:37.244Z"
     },
     {
       "url": "celestial-ledger.html",
@@ -121,61 +109,67 @@
       "created": "2025-12-28T23:01:37.245Z"
     },
     {
-      "url": "codex-academy.html",
+      "url": "ministries/celestial-charter.html",
+      "title": "Celestial Charter",
+      "category": "Other",
+      "created": "2025-12-28T23:01:37.245Z"
+    },
+    {
+      "url": "codices/codex-academy.html",
       "title": "Codex Academy",
       "category": "Codices",
       "created": "2025-12-28T23:01:37.246Z"
     },
     {
-      "url": "codex-archive.html",
+      "url": "codices/codex-archive.html",
       "title": "Codex Archive",
       "category": "Codices",
       "created": "2025-12-28T23:01:37.246Z"
     },
     {
-      "url": "codex-atlas.html",
+      "url": "codices/codex-atlas.html",
       "title": "Codex Atlas",
       "category": "Codices",
       "created": "2025-12-28T23:01:37.246Z"
     },
     {
-      "url": "codex-broadcast.html",
+      "url": "codices/codex-broadcast.html",
       "title": "Codex Broadcast",
       "category": "Codices",
       "created": "2025-12-28T23:01:37.246Z"
     },
     {
-      "url": "codex-constitution.html",
+      "url": "codices/codex-constitution.html",
       "title": "Codex Constitution",
       "category": "Codices",
       "created": "2025-12-28T23:01:37.246Z"
     },
     {
-      "url": "codex-curriculum.html",
+      "url": "codices/codex-curriculum.html",
       "title": "Codex Curriculum",
       "category": "Codices",
       "created": "2025-12-28T23:01:37.246Z"
     },
     {
-      "url": "codex-directory.html",
+      "url": "codices/codex-directory.html",
       "title": "Codex Directory",
       "category": "Codices",
       "created": "2025-12-28T23:01:37.246Z"
     },
     {
-      "url": "codex-harmonica.html",
+      "url": "codices/codex-harmonica.html",
       "title": "Codex Harmonica",
       "category": "Codices",
       "created": "2025-12-28T23:01:37.246Z"
     },
     {
-      "url": "codex-herald.html",
+      "url": "codices/codex-herald.html",
       "title": "Codex Herald",
       "category": "Codices",
       "created": "2025-12-28T23:01:37.246Z"
     },
     {
-      "url": "codex-index.html",
+      "url": "codices/codex-index.html",
       "title": "Codex Index",
       "category": "Codices",
       "created": "2025-12-28T23:01:37.246Z"
@@ -187,74 +181,8 @@
       "created": "2025-12-28T23:01:37.247Z"
     },
     {
-      "url": "codex-infrastructure.html",
-      "title": "Codex Infrastructure",
-      "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
-    },
-    {
-      "url": "codex-instructors.html",
-      "title": "Codex Instructors",
-      "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
-    },
-    {
-      "url": "codex-ledger.html",
-      "title": "Codex Ledger",
-      "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
-    },
-    {
-      "url": "codex-manifesto.html",
-      "title": "Codex Manifesto",
-      "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
-    },
-    {
-      "url": "codex-oracle.html",
-      "title": "Codex Oracle",
-      "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
-    },
-    {
-      "url": "codex-portal.html",
-      "title": "Codex Portal",
-      "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
-    },
-    {
-      "url": "codex-throne-registry.html",
-      "title": "Codex Throne Registry",
-      "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
-    },
-    {
-      "url": "codex-unified.html",
-      "title": "Codex Unified",
-      "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
-    },
-    {
-      "url": "codex-update-log.html",
-      "title": "Codex Update Log",
-      "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
-    },
-    {
       "url": "codex.html",
       "title": "Codex",
-      "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
-    },
-    {
-      "url": "codexchain-console.html",
-      "title": "Codexchain Console",
-      "category": "Codices",
-      "created": "2025-12-28T23:01:37.247Z"
-    },
-    {
-      "url": "codexchain-timestamp.html",
-      "title": "Codexchain Timestamp",
       "category": "Codices",
       "created": "2025-12-28T23:01:37.247Z"
     },
@@ -265,16 +193,70 @@
       "created": "2025-12-28T23:01:37.247Z"
     },
     {
-      "url": "codices/codex-academy.html",
-      "title": "Codex Academy",
+      "url": "codices/codex-infrastructure.html",
+      "title": "Codex Infrastructure",
       "category": "Codices",
       "created": "2025-12-28T23:01:37.247Z"
     },
     {
-      "url": "codices/codex-broadcast.html",
-      "title": "Codex Broadcast",
+      "url": "codices/codex-instructors.html",
+      "title": "Codex Instructors",
       "category": "Codices",
-      "created": "2025-12-28T23:01:37.248Z"
+      "created": "2025-12-28T23:01:37.247Z"
+    },
+    {
+      "url": "codices/codex-ledger.html",
+      "title": "Codex Ledger",
+      "category": "Codices",
+      "created": "2025-12-28T23:01:37.247Z"
+    },
+    {
+      "url": "codices/codex-manifesto.html",
+      "title": "Codex Manifesto",
+      "category": "Codices",
+      "created": "2025-12-28T23:01:37.247Z"
+    },
+    {
+      "url": "codices/codex-oracle.html",
+      "title": "Codex Oracle",
+      "category": "Codices",
+      "created": "2025-12-28T23:01:37.247Z"
+    },
+    {
+      "url": "codices/codex-portal.html",
+      "title": "Codex Portal",
+      "category": "Codices",
+      "created": "2025-12-28T23:01:37.247Z"
+    },
+    {
+      "url": "codices/codex-throne-registry.html",
+      "title": "Codex Throne Registry",
+      "category": "Codices",
+      "created": "2025-12-28T23:01:37.247Z"
+    },
+    {
+      "url": "codices/codex-unified.html",
+      "title": "Codex Unified",
+      "category": "Codices",
+      "created": "2025-12-28T23:01:37.247Z"
+    },
+    {
+      "url": "codices/codex-update-log.html",
+      "title": "Codex Update Log",
+      "category": "Codices",
+      "created": "2025-12-28T23:01:37.247Z"
+    },
+    {
+      "url": "tools/codexchain-console.html",
+      "title": "Codexchain Console",
+      "category": "Codices",
+      "created": "2025-12-28T23:01:37.247Z"
+    },
+    {
+      "url": "tools/codexchain-timestamp.html",
+      "title": "Codexchain Timestamp",
+      "category": "Codices",
+      "created": "2025-12-28T23:01:37.247Z"
     },
     {
       "url": "codices/codex-ecclesia-public.html",
@@ -285,12 +267,6 @@
     {
       "url": "codices/codex-harmony.html",
       "title": "Codex Harmony",
-      "category": "Codices",
-      "created": "2025-12-28T23:01:37.248Z"
-    },
-    {
-      "url": "codices/codex-infrastructure.html",
-      "title": "Codex Infrastructure",
       "category": "Codices",
       "created": "2025-12-28T23:01:37.248Z"
     },
@@ -343,12 +319,6 @@
       "created": "2025-12-28T23:01:37.267Z"
     },
     {
-      "url": "diplomatic-passport.html",
-      "title": "Diplomatic Passport",
-      "category": "Identity",
-      "created": "2025-12-28T23:01:37.267Z"
-    },
-    {
       "url": "directory.html",
       "title": "Directory",
       "category": "Index",
@@ -373,7 +343,13 @@
       "created": "2025-12-28T23:01:37.267Z"
     },
     {
-      "url": "embassy-charter.html",
+      "url": "ministries/diplomatic-passport.html",
+      "title": "Diplomatic Passport",
+      "category": "Identity",
+      "created": "2025-12-28T23:01:37.267Z"
+    },
+    {
+      "url": "ministries/embassy-charter.html",
       "title": "Embassy Charter",
       "category": "Treaties",
       "created": "2025-12-28T23:01:37.267Z"
@@ -385,7 +361,7 @@
       "created": "2025-12-28T23:01:37.278Z"
     },
     {
-      "url": "filing-forge.html",
+      "url": "tools/filing-forge.html",
       "title": "Filing Forge",
       "category": "Tools",
       "created": "2025-12-28T23:01:37.280Z"
@@ -394,24 +370,6 @@
       "url": "governance.html",
       "title": "Governance",
       "category": "Other",
-      "created": "2025-12-28T23:01:37.282Z"
-    },
-    {
-      "url": "guardian-gate.html",
-      "title": "Guardian Gate",
-      "category": "Other",
-      "created": "2025-12-28T23:01:37.282Z"
-    },
-    {
-      "url": "hash-forge.html",
-      "title": "Hash Forge",
-      "category": "Tools",
-      "created": "2025-12-28T23:01:37.282Z"
-    },
-    {
-      "url": "hedge-fund-charter.html",
-      "title": "Hedge Fund Charter",
-      "category": "Trusts",
       "created": "2025-12-28T23:01:37.282Z"
     },
     {
@@ -439,12 +397,6 @@
       "created": "2025-12-28T23:01:37.282Z"
     },
     {
-      "url": "income-portal.html",
-      "title": "Income Portal",
-      "category": "Other",
-      "created": "2025-12-28T23:01:37.282Z"
-    },
-    {
       "url": "index (2).html",
       "title": "Index (2)",
       "category": "Index",
@@ -469,10 +421,28 @@
       "created": "2025-12-28T23:01:37.282Z"
     },
     {
-      "url": "ministries/ministry-commerce.html",
-      "title": "Ministry Commerce",
-      "category": "Ministries",
-      "created": "2025-12-28T23:01:37.283Z"
+      "url": "ministries/hedge-fund-charter.html",
+      "title": "Hedge Fund Charter",
+      "category": "Trusts",
+      "created": "2025-12-28T23:01:37.282Z"
+    },
+    {
+      "url": "tools/guardian-gate.html",
+      "title": "Guardian Gate",
+      "category": "Other",
+      "created": "2025-12-28T23:01:37.282Z"
+    },
+    {
+      "url": "tools/hash-forge.html",
+      "title": "Hash Forge",
+      "category": "Tools",
+      "created": "2025-12-28T23:01:37.282Z"
+    },
+    {
+      "url": "tools/income-portal.html",
+      "title": "Income Portal",
+      "category": "Other",
+      "created": "2025-12-28T23:01:37.282Z"
     },
     {
       "url": "ministries-dashboard.html",
@@ -487,38 +457,44 @@
       "created": "2025-12-28T23:01:37.283Z"
     },
     {
+      "url": "ministries/ministry-application.html",
+      "title": "Ministry Application",
+      "category": "Ministries",
+      "created": "2025-12-28T23:01:37.284Z"
+    },
+    {
+      "url": "ministries/ministry-commerce.html",
+      "title": "Ministry Commerce",
+      "category": "Ministries",
+      "created": "2025-12-28T23:01:37.284Z"
+    },
+    {
       "url": "ministries/ministry-hearth.html",
       "title": "Ministry Hearth",
       "category": "Ministries",
       "created": "2025-12-28T23:01:37.284Z"
     },
     {
-      "url": "ministry-application.html",
-      "title": "Ministry Application",
-      "category": "Ministries",
-      "created": "2025-12-28T23:01:37.284Z"
-    },
-    {
-      "url": "ministry-commerce.html",
-      "title": "Ministry Commerce",
-      "category": "Ministries",
-      "created": "2025-12-28T23:01:37.284Z"
-    },
-    {
-      "url": "mint.html",
+      "url": "tools/mint.html",
       "title": "Mint",
       "category": "Other",
       "created": "2025-12-28T23:01:37.284Z"
     },
     {
-      "url": "mirror-gate.html",
-      "title": "Mirror Gate",
-      "category": "Other",
+      "url": "core/notice-of-standing.html",
+      "title": "Notice Of Standing",
+      "category": "Scrolls",
       "created": "2025-12-28T23:01:37.285Z"
     },
     {
-      "url": "multi-throne-gate.html",
-      "title": "Multi Throne Gate",
+      "url": "core/notice.html",
+      "title": "Notice",
+      "category": "Scrolls",
+      "created": "2025-12-28T23:01:37.285Z"
+    },
+    {
+      "url": "ministries/pma-charter.html",
+      "title": "Pma Charter",
       "category": "Other",
       "created": "2025-12-28T23:01:37.285Z"
     },
@@ -529,38 +505,8 @@
       "created": "2025-12-28T23:01:37.285Z"
     },
     {
-      "url": "notice-of-standing.html",
-      "title": "Notice Of Standing",
-      "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.285Z"
-    },
-    {
-      "url": "notice.html",
-      "title": "Notice",
-      "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.285Z"
-    },
-    {
-      "url": "oracle-gate.html",
-      "title": "Oracle Gate",
-      "category": "Other",
-      "created": "2025-12-28T23:01:37.285Z"
-    },
-    {
-      "url": "ots-verifier.html",
-      "title": "Ots Verifier",
-      "category": "Other",
-      "created": "2025-12-28T23:01:37.285Z"
-    },
-    {
       "url": "pma/generate-charter.html",
       "title": "Generate Charter",
-      "category": "Other",
-      "created": "2025-12-28T23:01:37.285Z"
-    },
-    {
-      "url": "pma-charter.html",
-      "title": "Pma Charter",
       "category": "Other",
       "created": "2025-12-28T23:01:37.285Z"
     },
@@ -577,14 +523,32 @@
       "created": "2025-12-28T23:01:37.285Z"
     },
     {
-      "url": "qr-credential.html",
-      "title": "QR Credential",
-      "category": "Tools",
-      "created": "2025-12-28T23:01:37.286Z"
+      "url": "tools/mirror-gate.html",
+      "title": "Mirror Gate",
+      "category": "Other",
+      "created": "2025-12-28T23:01:37.285Z"
     },
     {
-      "url": "qr-generator.html",
-      "title": "QR Generator",
+      "url": "tools/multi-throne-gate.html",
+      "title": "Multi Throne Gate",
+      "category": "Other",
+      "created": "2025-12-28T23:01:37.285Z"
+    },
+    {
+      "url": "tools/oracle-gate.html",
+      "title": "Oracle Gate",
+      "category": "Other",
+      "created": "2025-12-28T23:01:37.285Z"
+    },
+    {
+      "url": "tools/ots-verifier.html",
+      "title": "Ots Verifier",
+      "category": "Other",
+      "created": "2025-12-28T23:01:37.285Z"
+    },
+    {
+      "url": "qr-credential.html",
+      "title": "QR Credential",
       "category": "Tools",
       "created": "2025-12-28T23:01:37.286Z"
     },
@@ -601,58 +565,10 @@
       "created": "2025-12-28T23:01:37.286Z"
     },
     {
-      "url": "scroll-conditional-acceptance.html",
-      "title": "Scroll Conditional Acceptance",
-      "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
-    },
-    {
-      "url": "scroll-convocation-1.html",
-      "title": "Scroll Convocation 1",
-      "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
-    },
-    {
-      "url": "scroll-convocation-2.html",
-      "title": "Scroll Convocation 2",
-      "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
-    },
-    {
-      "url": "scroll-cxvii-return-of-dead-fiction.html",
-      "title": "Scroll CXVII Return Of Dead Fiction",
-      "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
-    },
-    {
-      "url": "scroll-cxxiv-entity-formation.html",
-      "title": "Scroll CXXIV Entity Formation",
-      "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
-    },
-    {
-      "url": "scroll-cxxv-dispatch-protocol.html",
-      "title": "Scroll CXXV Dispatch Protocol",
-      "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
-    },
-    {
-      "url": "scroll-cxxvi-total-embedding.html",
-      "title": "Scroll CXXVI Total Embedding",
-      "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
-    },
-    {
-      "url": "scroll-cxxvii-embassy-protocols.html",
-      "title": "Scroll CXXVII Embassy Protocols",
-      "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
-    },
-    {
-      "url": "scroll-demarco-heir.html",
-      "title": "Scroll Demarco Heir",
-      "category": "Scrolls",
-      "created": "2025-12-28T23:01:37.288Z"
+      "url": "tools/qr-generator.html",
+      "title": "QR Generator",
+      "category": "Tools",
+      "created": "2025-12-28T23:01:37.286Z"
     },
     {
       "url": "scroll-ecclesiastical-trust-certificate.md",
@@ -661,115 +577,169 @@
       "created": "2025-12-28T23:01:37.288Z"
     },
     {
-      "url": "scroll-fee-schedule.html",
+      "url": "scrolls/scroll-conditional-acceptance.html",
+      "title": "Scroll Conditional Acceptance",
+      "category": "Scrolls",
+      "created": "2025-12-28T23:01:37.288Z"
+    },
+    {
+      "url": "scrolls/scroll-convocation-1.html",
+      "title": "Scroll Convocation 1",
+      "category": "Scrolls",
+      "created": "2025-12-28T23:01:37.288Z"
+    },
+    {
+      "url": "scrolls/scroll-convocation-2.html",
+      "title": "Scroll Convocation 2",
+      "category": "Scrolls",
+      "created": "2025-12-28T23:01:37.288Z"
+    },
+    {
+      "url": "scrolls/scroll-cxvii-return-of-dead-fiction.html",
+      "title": "Scroll CXVII Return Of Dead Fiction",
+      "category": "Scrolls",
+      "created": "2025-12-28T23:01:37.288Z"
+    },
+    {
+      "url": "scrolls/scroll-cxxiv-entity-formation.html",
+      "title": "Scroll CXXIV Entity Formation",
+      "category": "Scrolls",
+      "created": "2025-12-28T23:01:37.288Z"
+    },
+    {
+      "url": "scrolls/scroll-cxxv-dispatch-protocol.html",
+      "title": "Scroll CXXV Dispatch Protocol",
+      "category": "Scrolls",
+      "created": "2025-12-28T23:01:37.288Z"
+    },
+    {
+      "url": "scrolls/scroll-cxxvi-total-embedding.html",
+      "title": "Scroll CXXVI Total Embedding",
+      "category": "Scrolls",
+      "created": "2025-12-28T23:01:37.288Z"
+    },
+    {
+      "url": "scrolls/scroll-cxxvii-embassy-protocols.html",
+      "title": "Scroll CXXVII Embassy Protocols",
+      "category": "Scrolls",
+      "created": "2025-12-28T23:01:37.288Z"
+    },
+    {
+      "url": "scrolls/scroll-demarco-heir.html",
+      "title": "Scroll Demarco Heir",
+      "category": "Scrolls",
+      "created": "2025-12-28T23:01:37.288Z"
+    },
+    {
+      "url": "scrolls/scroll-fee-schedule.html",
       "title": "Scroll Fee Schedule",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.288Z"
     },
     {
-      "url": "scroll-final-judgment.html",
+      "url": "scrolls/scroll-final-judgment.html",
       "title": "Scroll Final Judgment",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.288Z"
     },
     {
-      "url": "scroll-forge.html",
+      "url": "scrolls/scroll-forge.html",
       "title": "Scroll Forge",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.288Z"
     },
     {
-      "url": "scroll-living-trust-collateral.html",
+      "url": "scrolls/scroll-living-trust-collateral.html",
       "title": "Scroll Living Trust Collateral",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.288Z"
     },
     {
-      "url": "scroll-non-response-default.html",
+      "url": "scrolls/scroll-non-response-default.html",
       "title": "Scroll Non Response Default",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.288Z"
     },
     {
-      "url": "scroll-of-automation-integrity.html",
+      "url": "scrolls/scroll-of-automation-integrity.html",
       "title": "Scroll Of Automation Integrity",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.288Z"
     },
     {
-      "url": "scroll-of-coronation.html",
+      "url": "scrolls/scroll-of-coronation.html",
       "title": "Scroll Of Coronation",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.288Z"
     },
     {
-      "url": "scroll-of-enforcement.html",
+      "url": "scrolls/scroll-of-enforcement.html",
       "title": "Scroll Of Enforcement",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.288Z"
     },
     {
-      "url": "scroll-of-enrollment.html",
+      "url": "scrolls/scroll-of-enrollment.html",
       "title": "Scroll Of Enrollment",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.288Z"
     },
     {
-      "url": "scroll-of-eternal-flame.html",
+      "url": "scrolls/scroll-of-eternal-flame.html",
       "title": "Scroll Of Eternal Flame",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.288Z"
     },
     {
-      "url": "scroll-of-invocation.html",
+      "url": "scrolls/scroll-of-invocation.html",
       "title": "Scroll Of Invocation",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.288Z"
     },
     {
-      "url": "scroll-of-jubilee-enforcement.html",
+      "url": "scrolls/scroll-of-jubilee-enforcement.html",
       "title": "Scroll Of Jubilee Enforcement",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.288Z"
     },
     {
-      "url": "scroll-of-prophecy.html",
+      "url": "scrolls/scroll-of-prophecy.html",
       "title": "Scroll Of Prophecy",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.288Z"
     },
     {
-      "url": "scroll-of-twelve-thrones.html",
+      "url": "scrolls/scroll-of-twelve-thrones.html",
       "title": "Scroll Of Twelve Thrones",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.288Z"
     },
     {
-      "url": "scroll-of-twelve.html",
+      "url": "scrolls/scroll-of-twelve.html",
       "title": "Scroll Of Twelve",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.288Z"
     },
     {
-      "url": "scroll-of-upgrades.html",
+      "url": "scrolls/scroll-of-upgrades.html",
       "title": "Scroll Of Upgrades",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.288Z"
     },
     {
-      "url": "scroll-registry.html",
+      "url": "scrolls/scroll-registry.html",
       "title": "Scroll Registry",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.288Z"
     },
     {
-      "url": "scroll-template.html",
+      "url": "scrolls/scroll-template.html",
       "title": "Scroll Template",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.288Z"
     },
     {
-      "url": "scroll-ucc-sovereign-perfection.html",
+      "url": "scrolls/scroll-ucc-sovereign-perfection.html",
       "title": "Scroll Ucc Sovereign Perfection",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.288Z"
@@ -859,6 +829,12 @@
       "created": "2025-12-28T23:01:37.290Z"
     },
     {
+      "url": "ministries/sovereign-treasury-charter.html",
+      "title": "Sovereign Treasury Charter",
+      "category": "Other",
+      "created": "2025-12-28T23:01:37.291Z"
+    },
+    {
       "url": "scrolls/scrolls/scroll-ministerial-appointments-20251227-005.md",
       "title": "Scroll Ministerial Appointments 20251227 005",
       "category": "Scrolls",
@@ -901,21 +877,9 @@
       "created": "2025-12-28T23:01:37.291Z"
     },
     {
-      "url": "sovereign-gate.html",
-      "title": "Sovereign Gate",
-      "category": "Other",
-      "created": "2025-12-28T23:01:37.291Z"
-    },
-    {
       "url": "sovereign-id.html",
       "title": "Sovereign ID",
       "category": "Identity",
-      "created": "2025-12-28T23:01:37.291Z"
-    },
-    {
-      "url": "sovereign-treasury-charter.html",
-      "title": "Sovereign Treasury Charter",
-      "category": "Other",
       "created": "2025-12-28T23:01:37.291Z"
     },
     {
@@ -943,6 +907,12 @@
       "created": "2025-12-28T23:01:37.291Z"
     },
     {
+      "url": "tools/sovereign-gate.html",
+      "title": "Sovereign Gate",
+      "category": "Other",
+      "created": "2025-12-28T23:01:37.291Z"
+    },
+    {
       "url": "technologies.html",
       "title": "Technologies",
       "category": "Other",
@@ -961,14 +931,14 @@
       "created": "2025-12-28T23:01:37.307Z"
     },
     {
-      "url": "token.html",
-      "title": "Token",
+      "url": "tools/ipfs-notary.html",
+      "title": "Ipfs Notary",
       "category": "Other",
       "created": "2025-12-28T23:01:37.307Z"
     },
     {
-      "url": "tools/ipfs-notary.html",
-      "title": "Ipfs Notary",
+      "url": "tools/token.html",
+      "title": "Token",
       "category": "Other",
       "created": "2025-12-28T23:01:37.307Z"
     },
@@ -1039,25 +1009,25 @@
       "created": "2025-12-28T23:01:37.365Z"
     },
     {
-      "url": "treaty-aurora-2025.html",
+      "url": "treaties/treaty-aurora-2025.html",
       "title": "Treaty Aurora 2025",
       "category": "Treaties",
       "created": "2025-12-28T23:01:37.365Z"
     },
     {
-      "url": "treaty-covenant-of-12.html",
+      "url": "treaties/treaty-covenant-of-12.html",
       "title": "Treaty Covenant Of 12",
       "category": "Treaties",
       "created": "2025-12-28T23:01:37.366Z"
     },
     {
-      "url": "treaty-invitation.html",
+      "url": "treaties/treaty-invitation.html",
       "title": "Treaty Invitation",
       "category": "Treaties",
       "created": "2025-12-28T23:01:37.366Z"
     },
     {
-      "url": "treaty-recognition.html",
+      "url": "treaties/treaty-recognition.html",
       "title": "Treaty Recognition",
       "category": "Treaties",
       "created": "2025-12-28T23:01:37.366Z"
@@ -1069,9 +1039,21 @@
       "created": "2025-12-28T23:01:37.366Z"
     },
     {
-      "url": "trust-charter.html",
+      "url": "ministries/trust-charter.html",
       "title": "Trust Charter",
       "category": "Trusts",
+      "created": "2025-12-28T23:01:37.367Z"
+    },
+    {
+      "url": "tools/trustee-portal.html",
+      "title": "Trustee Portal",
+      "category": "Trusts",
+      "created": "2025-12-28T23:01:37.367Z"
+    },
+    {
+      "url": "tools/verify-scroll.html",
+      "title": "Verify Scroll",
+      "category": "Scrolls",
       "created": "2025-12-28T23:01:37.367Z"
     },
     {
@@ -1081,21 +1063,9 @@
       "created": "2025-12-28T23:01:37.367Z"
     },
     {
-      "url": "trustee-portal.html",
-      "title": "Trustee Portal",
-      "category": "Trusts",
-      "created": "2025-12-28T23:01:37.367Z"
-    },
-    {
       "url": "universal-trustee-poa.html",
       "title": "Universal Trustee Poa",
       "category": "Trusts",
-      "created": "2025-12-28T23:01:37.367Z"
-    },
-    {
-      "url": "verify-scroll.html",
-      "title": "Verify Scroll",
-      "category": "Scrolls",
       "created": "2025-12-28T23:01:37.367Z"
     },
     {
@@ -1115,6 +1085,12 @@
       "title": "Replit",
       "category": "Other",
       "created": "2025-12-28T23:03:29.440Z"
+    },
+    {
+      "url": "README.md",
+      "title": "README",
+      "category": "Other",
+      "created": "2025-12-28T23:13:20.916Z"
     }
   ]
 }

@@ -13,26 +13,48 @@
   </header>
 
   <main>
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Search the sacred scrolls..." />
+    </div>
     <section>
-      <h2>📜 Scrolls</h2>
+      <h2>📜 Scrolls & Divine Instruments</h2>
       <ul id="scroll-list"></ul>
     </section>
   </main>
 
   <script>
+    let allScrolls = [];
+    const list = document.getElementById('scroll-list');
+    const searchInput = document.getElementById('search-input');
+
+    function renderScrolls(scrolls) {
+      list.innerHTML = '';
+      scrolls.forEach(item => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = item.url || item.path;
+        a.textContent = item.title || item.url || item.path;
+        li.appendChild(a);
+        list.appendChild(li);
+      });
+    }
+
     fetch('codex.json')
       .then(res => res.json())
       .then(data => {
-        const list = document.getElementById('scroll-list');
-        data.scrolls.forEach(item => {
-          const li = document.createElement('li');
-          const a = document.createElement('a');
-          a.href = item.url;
-          a.textContent = item.title || item.url;
-          li.appendChild(a);
-          list.appendChild(li);
-        });
+        allScrolls = data.scrolls || data.items || [];
+        renderScrolls(allScrolls);
       });
+
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase();
+      const filtered = allScrolls.filter(s => 
+        (s.title && s.title.toLowerCase().includes(term)) || 
+        (s.url && s.url.toLowerCase().includes(term)) ||
+        (s.path && s.path.toLowerCase().includes(term))
+      );
+      renderScrolls(filtered);
+    });
   </script>
 </body>
 </html>
