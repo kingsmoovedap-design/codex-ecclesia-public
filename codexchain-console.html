@@ -4,13 +4,82 @@
   <meta charset="UTF-8" />
   <title>🧰 CodexChain Console</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfcf9;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    header, footer {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #5e3b1d;
+    }
+    h2 {
+      color: #003366;
+      margin-top: 2rem;
+    }
+    label {
+      font-weight: bold;
+    }
+    textarea {
+      font-family: monospace;
+      font-size: 1rem;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #002244;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode h1, .dark-mode h2 {
+      color: #f0d98c;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
+  </style>
 </head>
 <body>
 
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
   <header>
     <h1>🧰 CodexChain Console</h1>
-    <p>Seal your scrolls with cryptographic truth and eternal time</p>
+    <p><em>Seal your scrolls with cryptographic truth and eternal time</em></p>
   </header>
 
   <main>
@@ -31,7 +100,7 @@
   </main>
 
   <footer>
-    <p>CodexChain Console • Borders Dynasty Nation</p>
+    <p>☩ CodexChain Console — Borders Dynasty Nation</p>
   </footer>
 
   <script>
@@ -45,7 +114,17 @@
       });
     }
 
-    document.getElementById('utcTime').innerText = new Date().toISOString();
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+
+    window.onload = () => {
+      document.getElementById('utcTime').innerText = new Date().toISOString();
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
   </script>
 
 </body>
