@@ -9,7 +9,7 @@ on:
       - "treaties/**"
       - "codices/**"
       - "tools/**"
-      - "generate-manifest.js"
+      - "scripts/generate-manifest.js"
 
 jobs:
   build:
@@ -26,19 +26,20 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Generate manifest.json
-        run: |
-          npm install
-          node generate-manifest.js
+      - name: Install dependencies
+        run: npm install
 
-      - name: Commit manifest.json
+      - name: Generate codex.json
+        run: node scripts/generate-manifest.js
+
+      - name: Commit codex.json
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add manifest.json
+          git add codex.json
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Auto-update manifest.json"
+            git commit -m "Auto-update codex.json"
             git push
           fi
