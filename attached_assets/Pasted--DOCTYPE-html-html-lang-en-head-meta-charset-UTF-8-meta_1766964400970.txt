@@ -69,24 +69,9 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
-    nav {
-      text-align: center;
-      margin-bottom: 2em;
-    }
-    nav a {
-      margin: 0 1em;
-      color: #003366;
-      text-decoration: none;
-      font-weight: bold;
-    }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="submit-scroll.html">Submit a Scroll</a>
-  </nav>
-
   <h1>☩ Codex Ecclesia</h1>
   <p style="text-align:center;">A living archive of sacred scrolls, heirs, and trustees of the Ecclesia.</p>
 
@@ -109,8 +94,8 @@
       const data = await res.json();
       const items = data.items || [];
 
-      const heirs = items.filter(i => i.tags && i.tags.includes('heir'));
-      const trustees = items.filter(i => i.tags && i.tags.includes('trustee'));
+      const heirs = items.filter(i => i.tags.includes('heir'));
+      const trustees = items.filter(i => i.tags.includes('trustee'));
 
       const createCard = (entry) => `
         <div class="card">
@@ -130,9 +115,9 @@
       searchBox.addEventListener('input', () => {
         const q = searchBox.value.toLowerCase();
         const filtered = items.filter(i =>
-          (i.title && i.title.toLowerCase().includes(q)) ||
-          (i.summary && i.summary.toLowerCase().includes(q)) ||
-          (i.tags && i.tags.join(',').toLowerCase().includes(q))
+          i.title.toLowerCase().includes(q) ||
+          i.summary.toLowerCase().includes(q) ||
+          i.tags.join(',').toLowerCase().includes(q)
         );
         document.getElementById('all-scrolls').innerHTML = filtered.map(createCard).join('');
       });
