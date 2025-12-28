@@ -1,5 +1,43 @@
 [
   {
+    "title": "Scroll of UCC Sovereign Perfection",
+    "url": "scroll-ucc-sovereign-perfection.html",
+    "category": "Declarations",
+    "created": "2025-12-28"
+  },
+  {
+    "title": "Scroll of Conditional Acceptance",
+    "url": "scroll-conditional-acceptance.html",
+    "category": "Remedy Instruments",
+    "created": "2025-12-28"
+  },
+  {
+    "title": "Scroll of Non-Response Default",
+    "url": "scroll-non-response-default.html",
+    "category": "Remedy Instruments",
+    "created": "2025-12-28"
+  },
+  {
+    "title": "Scroll of Final Judgment & Estoppel",
+    "url": "scroll-final-judgment.html",
+    "category": "Remedy Instruments",
+    "created": "2025-12-28"
+  },
+  {
+    "title": "Scroll of Fee Schedule",
+    "url": "scroll-fee-schedule.html",
+    "category": "Trust Instruments",
+    "created": "2025-12-28"
+  },
+  {
+    "title": "Scroll of Living Trust Collateral",
+    "url": "scroll-living-trust-collateral.html",
+    "category": "Trust Instruments",
+    "created": "2025-12-28"
+  }
+]
+[
+  {
     "url": "scroll-of-sovereign-emergence.html",
     "title": "Scroll of Sovereign Emergence",
     "category": "Declarations",
