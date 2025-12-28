@@ -1,53 +1,45 @@
 const fs = require('fs');
 const path = require('path');
 
+const CODEX_FILE = 'codex.json';
 const OUTPUT_FILE = 'all-scrolls.html';
-const ROOT_DIR = '.';
 
-const categories = {
-  scrolls: ['scroll', 'notice', 'affidavit', 'declaration', 'proof', 'coronation'],
-  codices: ['codex'],
-  treaties: ['treaty', 'recognition'],
-  tools: ['qr', 'verify', 'hash', 'console', 'forge', 'generator', 'manifest'],
-  heirs: ['heir', 'queen', 'matriarch', 'omega'],
-  ministries: ['ministry'],
-};
-
-function categorize(filename) {
-  const lower = filename.toLowerCase();
-  for (const [category, keywords] of Object.entries(categories)) {
-    if (keywords.some(k => lower.includes(k))) return category;
-  }
-  return 'other';
+function loadCodex() {
+  const raw = fs.readFileSync(CODEX_FILE, 'utf-8');
+  const data = JSON.parse(raw);
+  return data.scrolls || [];
 }
 
-function walk(dir, fileList = []) {
-  const files = fs.readdirSync(dir);
-  for (const file of files) {
-    const fullPath = path.join(dir, file);
-    const stat = fs.statSync(fullPath);
-    if (stat.isDirectory()) {
-      walk(fullPath, fileList);
-    } else if (file.endsWith('.html') || file.endsWith('.md')) {
-      fileList.push(fullPath.replace('./', ''));
-    }
+function groupByCategory(scrolls) {
+  const grouped = {};
+  for (const scroll of scrolls) {
+    const category = scroll.category || 'Other';
+    if (!grouped[category]) grouped[category] = [];
+    grouped[category].push(scroll);
   }
-  return fileList;
+  return grouped;
 }
 
 function generateHTML(grouped) {
   let html = `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><title>☩ All Scrolls</title>
 <link rel="stylesheet" href="style.css" />
+<style>
+  body { font-family: Georgia, serif; background: #fdfcf9; color: #222; padding: 2em; }
+  h1, h2 { color: #003366; }
+  ul { list-style: none; padding-left: 0; }
+  li { margin: 0.5em 0; }
+  a { color: #003366; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>
 </head><body>
 <h1>☩ All Scrolls & Instruments</h1>
 <p><a href="index.html">← Return to Codex Ecclesia Public</a></p>`;
 
-  for (const [category, files] of Object.entries(grouped)) {
-    html += `<h2>${category.toUpperCase()}</h2><ul>`;
-    for (const file of files.sort()) {
-      const name = path.basename(file).replace(/[-_]/g, ' ').replace(/\.(html|md)/, '');
-      html += `<li><a href="${file}">${name}</a></li>`;
+  for (const [category, items] of Object.entries(grouped)) {
+    html += `<h2>${category}</h2><ul>`;
+    for (const item of items.sort((a, b) => a.title.localeCompare(b.title))) {
+      html += `<li><a href="${item.url}">${item.title}</a></li>`;
     }
     html += '</ul>';
   }
@@ -57,16 +49,11 @@ function generateHTML(grouped) {
 }
 
 function main() {
-  const files = walk(ROOT_DIR);
-  const grouped = {};
-  for (const file of files) {
-    const category = categorize(file);
-    if (!grouped[category]) grouped[category] = [];
-    grouped[category].push(file);
-  }
+  const scrolls = loadCodex();
+  const grouped = groupByCategory(scrolls);
   const html = generateHTML(grouped);
   fs.writeFileSync(OUTPUT_FILE, html);
-  console.log(`✅ ${OUTPUT_FILE} generated with ${files.length} entries.`);
+  console.log(`✅ ${OUTPUT_FILE} generated with ${scrolls.length} entries from codex.json`);
 }
 
 main();
