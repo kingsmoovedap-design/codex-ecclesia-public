@@ -1,3 +1,7 @@
+"scripts": {
+  "inject": "node scripts/inject-metadata.js",
+  "generate": "node scripts/generate-manifest.js && node scripts/generate-codex-json.js && node scripts/generate-scroll-index.js"
+}
 {
   "name": "codex-ecclesia-public",
   "version": "1.2.0",
