@@ -16,48 +16,44 @@
     <div class="search-container">
       <input type="text" id="search-input" placeholder="Search the sacred scrolls..." />
     </div>
+
+    <h2>👑 Heirs of the Ecclesia</h2>
+    <div id="heirs" class="card-grid"></div>
+
+    <h2>🛡️ Trustees of the Ecclesia</h2>
+    <div id="trustees" class="card-grid"></div>
+
     <section>
       <h2>📜 Scrolls & Divine Instruments</h2>
       <ul id="scroll-list"></ul>
     </section>
-
-    <h2>👑 Heirs of the Ecclesia</h2>
-    <div class="card-grid">
-      <div class="card">
-        <img src="https://via.placeholder.com/100" alt="Heir Portrait" />
-        <h3>Lady Seraphina</h3>
-        <p>Heir of the Scrolls</p>
-        <a href="scrolls/seraphina.html">View Scroll</a>
-      </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/100" alt="Heir Portrait" />
-        <h3>Prince Kael</h3>
-        <p>Heir of the Codices</p>
-        <a href="codices/kael.html">View Codex</a>
-      </div>
-    </div>
-
-    <h2>🛡️ Trustees of the Ecclesia</h2>
-    <div class="card-grid">
-      <div class="card">
-        <img src="https://via.placeholder.com/100" alt="Trustee Portrait" />
-        <h3>Archscribe Elion</h3>
-        <p>Guardian of Ministries</p>
-        <a href="ministries/elion.html">View Ministry</a>
-      </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/100" alt="Trustee Portrait" />
-        <h3>Warden Nyra</h3>
-        <p>Steward of Treaties</p>
-        <a href="treaties/nyra.html">View Treaty</a>
-      </div>
-    </div>
   </main>
 
   <script>
     let allScrolls = [];
     const list = document.getElementById('scroll-list');
     const searchInput = document.getElementById('search-input');
+
+    async function loadCodexCards() {
+      const res = await fetch('manifest.json');
+      const data = await res.json();
+      const items = data.items || [];
+
+      const heirs = items.filter(item => item.tags && item.tags.includes('heir'));
+      const trustees = items.filter(item => item.tags && item.tags.includes('trustee'));
+
+      const createCard = (entry) => `
+        <div class="card">
+          <img src="https://via.placeholder.com/100" alt="${entry.title}" />
+          <h3>${entry.title}</h3>
+          <p>${entry.summary || 'No summary'}</p>
+          <a href="${entry.path}">View Scroll</a>
+        </div>
+      `;
+
+      document.getElementById('heirs').innerHTML = heirs.map(createCard).join('');
+      document.getElementById('trustees').innerHTML = trustees.map(createCard).join('');
+    }
 
     function renderScrolls(scrolls) {
       list.innerHTML = '';
@@ -87,6 +83,8 @@
       );
       renderScrolls(filtered);
     });
+
+    loadCodexCards();
   </script>
 </body>
 </html>

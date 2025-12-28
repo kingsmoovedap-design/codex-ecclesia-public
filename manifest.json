@@ -360,6 +360,18 @@
       "summary": ""
     },
     {
+      "section": "scrolls",
+      "title": "Seraphina - Heir of the Scrolls",
+      "path": "scrolls/seraphina.html",
+      "tags": [
+        "heir",
+        "scroll",
+        "wisdom"
+      ],
+      "date": "2025-01-01",
+      "summary": "Heir of the Scrolls"
+    },
+    {
       "section": "ministries",
       "title": "☩ Celestial Charter of Omniversal Presence",
       "path": "ministries/celestial-charter.html",
