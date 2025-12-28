@@ -1,41 +1,55 @@
+import fs from 'fs-extra';
 import path from 'path';
-import { fileURLToPath } from 'url';
-import {
-  loadManifest,
-  addScroll,
-  saveManifest
-} from './lib/scroll-utils.js';
+import glob from 'glob';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const MANIFEST_PATH = path.join(__dirname, 'scrolls.json');
+const SCROLLS_DIR = './';
+const OUTPUT_FILE = './codex.json';
 
-// Example scroll to add
-const NEW_SCROLL = {
-  section: 'core',
-  title: 'Codex Curriculum',
-  path: 'codex-curriculum.html',
-  tags: ['core', 'codex', 'curriculum', 'education', 'rites'],
-  date: '2025-12-25',
-  summary: 'The sacred syllabus of the Ecclesia — outlining sovereign studies, rites of passage, and the path of scribes, sentinels, and sovereigns.'
-};
-
-async function main() {
-  try {
-    const manifest = await loadManifest(MANIFEST_PATH);
-    const updated = addScroll(manifest, NEW_SCROLL);
-    await saveManifest(MANIFEST_PATH, updated);
-  } catch (err) {
-    console.error('❌ Manifest generation failed:', err.message);
-    process.exit(1);
-  }
+function extractTitle(content) {
+  const match = content.match(/<title>(.*?)<\/title>/i);
+  return match ? match[1].trim() : null;
 }
 
-main();
-function slugify(title) {
-  return title
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, '')     // Remove punctuation
-    .trim()
-    .replace(/\s+/g, '-')         // Replace spaces with hyphens
+function extractCategory(content) {
+  const match = content.match(/<meta\s+name=["']category["']\s+content=["'](.*?)["']/i);
+  return match ? match[1].trim() : 'Uncategorized';
 }
+
+function extractCreatedDate(content) {
+  const match = content.match(/<meta\s+name=["']created["']\s+content=["'](.*?)["']/i);
+  return match ? match[1].trim() : new Date().toISOString().split('T')[0];
+}
+
+function buildManifestEntry(filePath) {
+  const content = fs.readFileSync(filePath, 'utf-8');
+  return {
+    title: extractTitle(content) || path.basename(filePath),
+    url: path.relative('.', filePath).replace(/\\/g, '/'),
+    category: extractCategory(content),
+    created: extractCreatedDate(content)
+  };
+}
+
+function generateManifest() {
+  const files = glob.sync('**/*.html', {
+    ignore: ['node_modules/**', 'dist/**', 'vite.config.js', 'index.html']
+  });
+
+  const scrolls = files.map(buildManifestEntry).sort((a, b) =>
+    a.title.localeCompare(b.title)
+  );
+
+  const manifest = {
+    scrolls,
+    meta: {
+      generated: new Date().toISOString(),
+      sovereign: 'Sovereign King Omega',
+      repository: 'Borders Ecclesia Earth Trust'
+    }
+  };
+
+  fs.writeJsonSync(OUTPUT_FILE, manifest, { spaces: 2 });
+  console.log(`☩ Manifest generated with ${scrolls.length} scrolls.`);
+}
+
+generateManifest();
