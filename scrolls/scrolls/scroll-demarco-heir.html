@@ -2,38 +2,172 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>📜 Scroll of Demarco C. Borders</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="../style.css" />
+  <title>📜 Scroll Registry – Codex Ecclesia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #5e3b1d;
+    }
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      justify-content: center;
+    }
+    input, select {
+      padding: 0.5rem;
+      font-family: inherit;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .scroll-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .scroll-card {
+      background: #fff;
+      border: 1px solid #d4af37;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .scroll-card h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: #5e3b1d;
+    }
+    .scroll-card p {
+      font-size: 0.95rem;
+      color: #444;
+    }
+    .scroll-card a {
+      display: inline-block;
+      margin-top: 0.5rem;
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .scroll-card a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
+  <h1>📜 Scroll Registry of the Codex Ecclesia</h1>
 
-  <h1>📜 Scroll of Demarco C. Borders</h1>
-  <p><strong>Born:</strong> January 26, 2013</p>
-  <p><strong>Father:</strong> Omega</p>
-  <p><strong>Mother:</strong> Destiny M. Simmons</p>
+  <div class="filters">
+    <input type="text" id="searchInput" placeholder="🔍 Search scrolls..." />
+    <select id="tagFilter">
+      <option value="">Filter by tag</option>
+    </select>
+    <select id="sectionFilter">
+      <option value="">Filter by section</option>
+    </select>
+  </div>
 
-  <h2>I. Declaration</h2>
-  <p>I, Demarco C. Borders, second-born son of Omega, stand in witness to the sovereign scrolls and divine law of the Borders Dynasty. I walk the path of the heir in training, guided by the Codex of the Academy and the Harmonies of Sovereignty. My life is a preparation for the crown, and my heart is pledged to the legacy of my bloodline.</p>
+  <div class="scroll-list" id="scrollList"></div>
 
-  <h2>II. Crown Path</h2>
-  <p>My crowning shall be prepared through scrollcraft, divine law, and sovereign service. I shall author my own scroll upon reaching the appointed age of 17 and stand before the Ecclesia in full alignment.</p>
+  <footer>
+    &copy; 2025 Borders Ecclesia Earth Trust • Sovereignty in Scroll and Spirit
+  </footer>
 
-  <h2>III. Witnesses</h2>
-  <ul>
-    <li>Omega</li>
-    <li>Deven Julian Borders</li>
-    <li>Destiny M. Simmons</li>
-  </ul>
+  <script>
+    const scrollList = document.getElementById('scrollList');
+    const searchInput = document.getElementById('searchInput');
+    const tagFilter = document.getElementById('tagFilter');
+    const sectionFilter = document.getElementById('sectionFilter');
+    let scrolls = [];
 
-  <h2>IV. Seal Phrase</h2>
-  <blockquote>“I walk in rhythm, I rise in truth, I serve in sovereignty.”</blockquote>
+    async function loadScrolls() {
+      try {
+        const res = await fetch('scrolls.json'); // or 'manifest.json'
+        scrolls = await res.json();
+        populateFilters(scrolls);
+        renderScrolls(scrolls);
+      } catch (err) {
+        scrollList.innerHTML = '<p>⚠️ Failed to load scrolls.</p>';
+      }
+    }
 
-  <h2>V. Codex Links</h2>
-  <ul>
-    <li><a href="../codices/codex-academy.html">Codex of the Academy</a></li>
-    <li><a href="../codices/codex-harmony.html">Codex of Harmony</a></li>
-  </ul>
+    function populateFilters(data) {
+      const tags = new Set();
+      const sections = new Set();
+      data.forEach(s => {
+        s.tags.forEach(tag => tags.add(tag));
+        sections.add(s.section);
+      });
+      [...tags].sort().forEach(tag => {
+        const opt = document.createElement('option');
+        opt.value = tag;
+        opt.textContent = tag;
+        tagFilter.appendChild(opt);
+      });
+      [...sections].sort().forEach(section => {
+        const opt = document.createElement('option');
+        opt.value = section;
+        opt.textContent = section;
+        sectionFilter.appendChild(opt);
+      });
+    }
 
+    function renderScrolls(data) {
+      scrollList.innerHTML = '';
+      if (data.length === 0) {
+        scrollList.innerHTML = '<p>No scrolls match your filters.</p>';
+        return;
+      }
+      data.forEach(scroll => {
+        const card = document.createElement('div');
+        card.className = 'scroll-card';
+        card.innerHTML = `
+          <h3>${scroll.title}</h3>
+          <p><strong>Date:</strong> ${scroll.date}</p>
+          <p>${scroll.summary}</p>
+          <a href="${scroll.path}" target="_blank">Read Scroll →</a>
+        `;
+        scrollList.appendChild(card);
+      });
+    }
+
+    function applyFilters() {
+      const query = searchInput.value.toLowerCase();
+      const tag = tagFilter.value;
+      const section = sectionFilter.value;
+      const filtered = scrolls.filter(s => {
+        const matchesQuery = s.title.toLowerCase().includes(query) || s.summary.toLowerCase().includes(query);
+        const matchesTag = tag ? s.tags.includes(tag) : true;
+        const matchesSection = section ? s.section === section : true;
+        return matchesQuery && matchesTag && matchesSection;
+      });
+      renderScrolls(filtered);
+    }
+
+    searchInput.addEventListener('input', applyFilters);
+    tagFilter.addEventListener('change', applyFilters);
+    sectionFilter.addEventListener('change', applyFilters);
+
+    loadScrolls();
+  </script>
 </body>
 </html>

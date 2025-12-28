@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>☩ Scroll CXXIV – Entity Formation Decree</title>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
       font-family: 'EB Garamond', serif;
@@ -12,6 +13,7 @@
       padding: 2rem;
       max-width: 900px;
       margin: auto;
+      transition: background 0.3s, color 0.3s;
     }
     h1, h2, h3 {
       color: #5e3b1d;
@@ -48,8 +50,9 @@
       color: #555;
     }
     .print-btn {
-      float: right;
-      margin-top: -2rem;
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
       background: #5e3b1d;
       color: #fffdf7;
       border: none;
@@ -57,6 +60,7 @@
       font-size: 0.9rem;
       border-radius: 4px;
       cursor: pointer;
+      z-index: 1000;
     }
     .print-btn:hover {
       background: #3b2614;
@@ -64,10 +68,33 @@
     .qr {
       margin-top: 1rem;
     }
+    .dark-mode {
+      background: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode h1, .dark-mode h2, .dark-mode h3 {
+      color: #f0d98c;
+    }
+    .dark-mode .footer {
+      color: #aaa;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+      z-index: 1000;
+    }
   </style>
 </head>
 <body>
 
+  <button class="toggle" onclick="toggleMode()">🌓</button>
   <button class="print-btn" onclick="window.print()">🖨️ Print or Save</button>
 
   <h1>☩ Scroll CXXIV: Entity Formation Decree</h1>
@@ -117,6 +144,18 @@
   <div class="footer">
     &copy; 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
   </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('scroll-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('scroll-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
 
 </body>
 </html>

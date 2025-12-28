@@ -1,4 +1,20 @@
 {
+  "name": "Codex Ecclesia Public",
+  "short_name": "Codex Ecclesia",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#fdfcf9",
+  "theme_color": "#003366",
+  "description": "Sovereign repository of scrolls, treaties, and codices of the Borders Ecclesia Earth Trust.",
+  "icons": [
+    {
+      "src": "favicon.png.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
+{
   "items": [
     {
       "section": "core",
@@ -1882,4 +1898,19 @@
       "summary": "Placeholder summary for Manifest Builder."
     }
   ]
+}
+{
+  "section": "core",
+  "title": "Scroll CXVII: Return of the Dead Fiction",
+  "path": "scroll-cxvii-return-of-dead-fiction.html",
+  "tags": [
+    "core",
+    "scroll",
+    "cxvii",
+    "return",
+    "dead",
+    "fiction"
+  ],
+  "date": "2025-12-16",
+  "summary": "Declaration of sovereign status reclaiming the estate from the legal fiction and affirming divine jurisdiction and living standing."
 }
