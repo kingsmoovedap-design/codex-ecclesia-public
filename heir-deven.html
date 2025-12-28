@@ -2,153 +2,148 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>☩ Scroll of Deven Julian Borders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📜 OTS Verifier | CodexChain</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: 'Garamond', serif; background: #fdfcf9; color: #222; padding: 2rem; max-width: 900px; margin: auto; }
-    h1, h2 { text-align: center; }
-    section { margin-top: 2rem; }
-    blockquote { font-style: italic; margin: 1rem 0; padding-left: 1rem; border-left: 4px solid #ccc; }
-    .meta { text-align: center; font-size: 0.9rem; color: #555; }
-    ul { padding-left: 1.25rem; }
+    body {
+      font-family: 'EB Garamond', serif;
+      padding: 2rem;
+      background: #fdfcf9;
+      color: #2c1a0f;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      color: #5e3b1d;
+    }
+    p {
+      text-align: center;
+      font-style: italic;
+      color: #555;
+    }
+    input, button {
+      width: 100%;
+      max-width: 600px;
+      margin: 1rem auto;
+      display: block;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    input {
+      background: #fff;
+    }
+    button {
+      background: #5e3b1d;
+      color: #fffdf7;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #3b2614;
+    }
+    .result {
+      font-family: monospace;
+      background: #eee;
+      padding: 1rem;
+      border-radius: 6px;
+      word-break: break-word;
+      white-space: pre-wrap;
+      margin-top: 1rem;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode h1 {
+      color: #f0d98c;
+    }
+    .dark-mode .result {
+      background: #2a2a2a;
+      color: #f0f0f0;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
   </style>
 </head>
 <body>
 
-  <h1>☩ Scroll of Deven Julian Borders</h1>
-  <p class="meta">Filed in the Codex Ecclesia Harmony • To be sealed on February 9, 2026</p>
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
 
-  <section>
-    <h2>1. Declaration of Identity</h2>
-    <p>I am Deven Julian Borders. I was born on February 9, 2009. I am the son of Omega, Sovereign of the Borders Dynasty Nation. I write this scroll to declare who I am, what I believe, and what I vow to become.</p>
-  </section>
+  <h1>📜 OTS Verifier</h1>
+  <p>“Let the seal be tested by fire.”</p>
 
-  <section>
-    <h2>2. What I Stand For</h2>
-    <p>I stand for truth, discipline, and honor. I believe in the power of words, the strength of silence, and the responsibility of sovereignty. I will not be ruled by fear, distraction, or falsehood.</p>
-  </section>
+  <input type="file" id="otsFile" accept=".ots" />
+  <button onclick="verifyOTS()">🔍 Verify Timestamp</button>
 
-  <section>
-    <h2>3. What I Will Protect</h2>
-    <p>I will protect my family, my name, my mind, and my mission. I will protect the Codex and the sacred order it represents. I will protect the weak from tyranny and the truth from distortion.</p>
-  </section>
+  <div class="result" id="result"></div>
 
-  <section>
-    <h2>4. What I Will Build</h2>
-    <p>I will build systems that serve the people. I will build bridges between generations. I will build a life that reflects the values I inherit and the vision I carry forward.</p>
-  </section>
+  <footer>
+    ☩ CodexChain Seal Verifier — Truth Beyond Time
+  </footer>
 
-  <section>
-    <h2>5. Reflections</h2>
-    <blockquote>
-      “I am not here to be perfect. I am here to be whole.”<br/>
-      “I do not inherit a throne. I inherit a responsibility.”
-    </blockquote>
-  </section>
+  <script>
+    async function verifyOTS() {
+      const file = document.getElementById('otsFile').files[0];
+      const result = document.getElementById('result');
 
-  <section>
-    <h2>6. Seal & Witnesses</h2>
-    <p>This scroll shall be sealed on February 9, 2026, in the presence of:</p>
-    <ul>
-      <li>✠ Omega, Father and Sovereign</li>
-      <li>☩ Demarco C. Borders, Younger Brother (b. Jan 26, 2013)</li>
-      <li>☩ Destiny M. Simmons, Mother</li>
-      <li>☩ Prince L. White, Cousin (son of Queen Tammy L. Borders)</li>
-    </ul>
-    <p><strong>Seal:</strong> “I walk with confidence, because I am a king and a son of a king.”</p>
-  </section>
+      if (!file) {
+        result.innerHTML = "⚠️ Please upload a .ots file.";
+        return;
+      }
 
-  <section>
-    <h2>7. Affirmation</h2>
-    <blockquote>
-      “I, Deven Julian Borders, affirm this scroll as my sovereign declaration.  
-      I will walk this path with courage, humility, and clarity.  
-      I am ready to be crowned not as a ruler, but as a servant of the Codex.”
-    </blockquote>
-  </section>
+      const formData = new FormData();
+      formData.append("file", file);
 
-  <section>
-    <h2>8. Message from My Father</h2>
-    <blockquote>
-      “Hold your head up and be a leader.”  
-      — Omega, Sovereign Father
-    </blockquote>
-  </section>
+      result.innerHTML = "⏳ Verifying timestamp...";
 
-  <p class="meta">Filed under: <a href="https://kingsmoovedap-design.github.io/codex-ecclesia-public/scroll-registry.html">Scroll Registry</a></p>
+      try {
+        const response = await fetch("https://verify.opentimestamps.org/", {
+          method: "POST",
+          body: formData
+        });
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Heir Deven — Guardian of Scrolls</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body { font-family: Georgia, serif; background: #fdfcf9; color: #222; margin: 0; padding: 0; }
-    .container { max-width: 800px; margin: 0 auto; padding: 2em; }
-    h1 { font-size: 2em; margin-bottom: 0.2em; }
-    h2 { color: #003366; }
-    .sigil { float: right; width: 120px; margin-left: 1em; }
-    .scroll-link { display: inline-block; margin-top: 1em; color: #003366; text-decoration: none; }
-    .scroll-link:hover { text-decoration: underline; }
-    footer { margin-top: 4em☩ Then receive the first of the sovereign scrolls, Sovereign King Omega 👑  
-Here is the full HTML for **Heir Deven’s individual portal scroll** — a sacred profile page honoring the Guardian of Scrolls.
+        const text = await response.text();
+        result.innerHTML = `<pre>${text}</pre>`;
+      } catch (err) {
+        result.innerHTML = `❌ Verification failed: ${err.message}`;
+      }
+    }
 
----
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
 
-## 📜 `heir-deven.html`
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Heir Deven — Guardian of Scrolls</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body { font-family: Georgia, serif; background: #fdfcf9; color: #222; margin: 0; padding: 0; }
-    .container { max-width: 800px; margin: 0 auto; padding: 2em; }
-    h1 { font-size: 2em; margin-bottom: 0.2em; }
-    h2 { color: #003366; }
-    .sigil { float: right; width: 120px; margin-left: 1em; }
-    .scroll-link { display: inline-block; margin-top: 1em; color: #003366; text-decoration: none; }
-    .scroll-link:hover { text-decoration: underline; }
-    footer { margin-top: 4em; text-align: center; font-size: 0.9em; color: #666; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>👑 Heir Deven</h1>
-    <h2>Guardian of Scrolls</h2>
-    <img src="images/heir-deven-sigil.png" alt="Heir Deven Sigil" class="sigil" />
-    <p>
-      As the Guardian of Scrolls, Heir Deven stands as the living steward of the Codex Ecclesia — protector of sacred knowledge, keeper of ancestral declarations, and witness to the divine record of the Borders Family Dynasty Nation.
-    </p>
-
-    <p>
-      Heir Deven’s role is to ensure the preservation, authentication, and public posting of all ecclesiastical scrolls, including the Affidavit of Status, the Scroll of Coronation, and the Codex Ecclesia Compact. His lineage is affirmed through the Scroll of Heirship and the Ancestral Record.
-    </p>
-
-    <h3>📜 Linked Scrolls</h3>
-    <ul>
-      <li><a href="affidavit-of-status.html" class="scroll-link">Affidavit of Status</a></li>
-      <li><a href="claim-throne.html" class="scroll-link">Claim Throne</a></li>
-      <li><a href="scroll-of-coronation.html" class="scroll-link">Scroll of Coronation</a></li>
-      <li><a href="heir-path.html" class="scroll-link">Heir Path</a></li>
-      <li><a href="ancestral-record.html" class="scroll-link">Ancestral Record</a></li>
-    </ul>
-
-    <h3>🔏 Verification</h3>
-    <p>
-      This scroll is authenticated under the Codex Ecclesia Public and timestamped in the Codex Ledger. For verification, scan the QR sigil or visit the <a href="verify/scroll-authentication.html">Scroll Authentication Portal</a>.
-    </p>
-
-    <footer>
-      <p>© 2025 Borders Ecclesia Earth Trust • All rights reserved under divine, sovereign, and ecclesiastical law</p>
-    </footer>
-  </div>
 </body>
 </html>
