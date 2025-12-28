@@ -5,15 +5,18 @@
   <title>☩ PMA Hub – Borders Family Dynasty Nation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Sovereign PMA Registry, Charter Generator, Treaty Templates, and Dispatch Logs under the Codex Ecclesia Totalis.">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
   <style>
     body {
       background-color: #fdf6e3;
-      font-family: Georgia, serif;
+      font-family: 'EB Garamond', serif;
       color: #3b2f1e;
       margin: 40px;
+      transition: background 0.3s, color 0.3s;
     }
     h1, h2 {
       text-align: center;
+      color: #5e3b1d;
     }
     ul {
       max-width: 800px;
@@ -43,10 +46,39 @@
       text-align: center;
       margin-top: 40px;
       font-size: 0.9em;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode a {
+      color: #f0d98c;
+      border-bottom: 1px dashed #f0d98c;
+    }
+    .dark-mode a:hover {
+      color: #ffcc99;
+      border-bottom: 1px solid #ffcc99;
+    }
+    .dark-mode .footer {
+      color: #aaa;
     }
   </style>
 </head>
 <body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
 
   <img src="proof/seal-lion.png" alt="Sovereign Seal" class="seal">
 
@@ -66,6 +98,18 @@
     <p>This hub governs all Private Membership Associations under the divine jurisdiction of the Borders Family Dynasty Nation.<br>
     All charters are sealed, timestamped, and rebuttal-proof under the Codex Ecclesia Totalis.</p>
   </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
 
 </body>
 </html>
