@@ -1,3 +1,83 @@
+[
+  {
+    "url": "scroll-of-sovereign-emergence.html",
+    "title": "Scroll of Sovereign Emergence",
+    "category": "Declarations",
+    "created": "2025-12-28T00:00:00Z"
+  },
+  {
+    "url": "scroll-of-sacred-navigation.html",
+    "title": "Scroll of Sacred Navigation",
+    "category": "Navigation",
+    "created": "2025-12-28T00:00:00Z"
+  },
+  {
+    "url": "scroll-of-invocation.html",
+    "title": "Scroll of Invocation",
+    "category": "Convocations",
+    "created": "2025-12-22T00:00:00Z"
+  },
+  {
+    "url": "scroll-of-enforcement.html",
+    "title": "Scroll of Enforcement",
+    "category": "Protocols",
+    "created": "2025-12-22T00:00:00Z"
+  },
+  {
+    "url": "trust-charter-borders-dynasty.html",
+    "title": "Trust Charter – Borders Dynasty Ecclesia Trust",
+    "category": "Trust Instruments",
+    "created": "2025-12-16T00:00:00Z"
+  },
+  {
+    "url": "universal-trustee-poa.html",
+    "title": "Universal Trustee Power of Attorney",
+    "category": "Trust Instruments",
+    "created": "2025-12-16T00:00:00Z"
+  },
+  {
+    "url": "sovereign-treasury-charter.html",
+    "title": "Treasury Charter – Omega Sovereign Treasury",
+    "category": "Trust Instruments",
+    "created": "2025-12-16T00:00:00Z"
+  },
+  {
+    "url": "borders-sovereign-coin.html",
+    "title": "Borders Sovereign Coin (BSC)",
+    "category": "Economy",
+    "created": "2025-12-28T00:00:00Z"
+  },
+  {
+    "url": "sacred-technologies.html",
+    "title": "Sacred Technologies",
+    "category": "Innovation",
+    "created": "2025-12-28T00:00:00Z"
+  },
+  {
+    "url": "ministry-provision-stewardship.html",
+    "title": "Ministry of Provision & Stewardship",
+    "category": "Ministries",
+    "created": "2025-12-28T00:00:00Z"
+  },
+  {
+    "url": "verify-scroll.html",
+    "title": "Verify Scroll Authenticity",
+    "category": "Tools",
+    "created": "2025-12-28T00:00:00Z"
+  },
+  {
+    "url": "subscribe-codex-herald.html",
+    "title": "Subscribe to the Codex Herald",
+    "category": "Communications",
+    "created": "2025-12-28T00:00:00Z"
+  },
+  {
+    "url": "borders-family-legacy-scroll.html",
+    "title": "Borders Family Legacy Scroll",
+    "category": "Legacy",
+    "created": "2025-12-28T00:00:00Z"
+  }
+]
 fetch('codex.json')
   .then(res => res.json())
   .then(data => {
