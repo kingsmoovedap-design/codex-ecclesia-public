@@ -3,17 +3,94 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🛠️ Scroll Forging Dashboard</title>
+  <title>🛠️ Scroll Forging Dashboard | CodexChain</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet"/>
   <style>
-    body { font-family: 'Garamond', serif; padding: 2rem; background: #fdfcf9; color: #222; }
-    h1 { text-align: center; }
-    input, button, textarea { width: 100%; max-width: 600px; margin: 1rem auto; display: block; padding: 0.75rem; }
-    .result { margin-top: 2rem; font-family: monospace; background: #eee; padding: 1rem; border-radius: 6px; }
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 960px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.2rem;
+      color: #5e3b1d;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+    }
+    p {
+      text-align: center;
+      font-style: italic;
+      color: #555;
+    }
+    input, button, textarea {
+      width: 100%;
+      max-width: 600px;
+      margin: 1rem auto;
+      display: block;
+      padding: 0.75rem;
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background: #2c1a0f;
+      color: #f9e8c9;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #5e3b1d;
+    }
+    .result {
+      margin-top: 2rem;
+      font-family: monospace;
+      background: #eee;
+      padding: 1rem;
+      border-radius: 6px;
+      white-space: pre-wrap;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+      background-image: none;
+    }
+    .dark-mode h1 {
+      color: #f0d98c;
+    }
+    .dark-mode .footer {
+      color: #aaa;
+    }
   </style>
 </head>
 <body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
   <h1>🛠️ Scroll Forging Dashboard</h1>
-  <p style="text-align:center;"><em>“Let the scroll be sealed in light.”</em></p>
+  <p>“Let the scroll be sealed in light.”</p>
 
   <input type="file" id="scrollFile" />
   <input type="text" id="scrollName" placeholder="📜 Scroll Name (e.g. Ecclesia Master Binder)" />
@@ -44,23 +121,40 @@
       const timestamp = new Date().toISOString().replace("T", " ").split(".")[0] + " UTC";
 
       result.innerHTML = `
-        ✅ <strong>SHA-256 Hash:</strong><br/><code>${hashHex}</code><br/><br/>
-        🔗 <a href="https://opentimestamps.org" target="_blank">Submit this file to OpenTimestamps</a><br/><br/>
-        📜 <strong>CodexChain Ledger Entry:</strong><br/>
-        <textarea rows="6" readonly><tr>
+✅ SHA-256 Hash:
+${hashHex}
+
+🔗 Submit this file to OpenTimestamps:
+https://opentimestamps.org
+
+📜 CodexChain Ledger Entry:
+<tr>
   <td>${scrollName}</td>
   <td>${sovereign}</td>
   <td>${throne}</td>
   <td>${timestamp}</td>
   <td><code>${hashHex}</code></td>
   <td><a href="proofs/${file.name}.ots" download>Download</a></td>
-</tr></textarea>
+</tr>
       `;
     }
+
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
   </script>
 
-  <footer style="text-align:center; margin-top: 3rem;">
-    ☩ CodexChain Sovereign Tools — Scroll Integrity & Eternal Proof
-  </footer>
+  <div class="footer">
+    ☩ CodexChain Sovereign Tools — Scroll Integrity & Eternal Proof<br/>
+    © 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
+  </div>
+
 </body>
 </html>
