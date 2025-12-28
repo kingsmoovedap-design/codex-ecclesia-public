@@ -2,13 +2,135 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>🪙 Minting Altar | Codex Ecclesia</title>
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.2rem;
+      color: #5e3b1d;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+    }
+    p {
+      text-align: center;
+      font-style: italic;
+      color: #555;
+    }
+    ul {
+      margin-top: 1rem;
+      padding-left: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      margin-top: 2rem;
+      font-size: 1.5rem;
+      color: #5e3b1d;
+      border-bottom: 1px solid #d4af37;
+      padding-bottom: 0.3rem;
+    }
+    form {
+      background: #fffdf7;
+      border: 1px solid #d4af37;
+      padding: 1.5rem;
+      margin-top: 1rem;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 1.5rem;
+      padding: 0.7rem 1.5rem;
+      background: #2c1a0f;
+      color: #f9e8c9;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button:hover {
+      background: #5e3b1d;
+    }
+    nav {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    nav a {
+      color: #5e3b1d;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+      background-image: none;
+    }
+    .dark-mode h1, .dark-mode h2 {
+      color: #f0d98c;
+    }
+    .dark-mode form {
+      background: #2a2a2a;
+      border-color: #f0d98c;
+    }
+    .dark-mode nav a {
+      color: #f0d98c;
+    }
+    .dark-mode .footer {
+      color: #aaa;
+    }
+  </style>
 </head>
 <body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
   <h1>🪙 The Minting Altar</h1>
-  <p style="text-align:center;"><em>“From the Codex, we mint legacy.”</em></p>
+  <p>“From the Codex, we mint legacy.”</p>
 
   <p>Welcome to the sacred Minting Altar of the Divine Nation of Borders. Here, you may request:</p>
   <ul>
@@ -18,23 +140,25 @@
   </ul>
 
   <h2>⚒️ Submit a Minting Request</h2>
-  <form>
-    <label for="name">Full Name:</label><br />
-    <input type="text" id="name" name="name" required /><br /><br />
+  <form name="minting" method="POST" data-netlify="true">
+    <input type="hidden" name="form-name" value="minting" />
 
-    <label for="email">Email Address:</label><br />
-    <input type="email" id="email" name="email" /><br /><br />
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" name="name" required />
 
-    <label for="type">Type of Minting:</label><br />
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" name="email" />
+
+    <label for="type">Type of Minting:</label>
     <select id="type" name="type" required>
       <option value="">-- Select --</option>
       <option value="coin">Sovereign Coin Note</option>
       <option value="scroll">Scroll Relic</option>
       <option value="token">Oracle Token</option>
-    </select><br /><br />
+    </select>
 
-    <label for="reason">Purpose or Intention:</label><br />
-    <textarea id="reason" name="reason" rows="4" cols="50" placeholder="Explain your sacred purpose..."></textarea><br /><br />
+    <label for="reason">Purpose or Intention:</label>
+    <textarea id="reason" name="reason" rows="4" placeholder="Explain your sacred purpose..."></textarea>
 
     <button type="submit">Submit Request</button>
   </form>
@@ -46,7 +170,21 @@
   </nav>
 
   <div class="footer">
-    🪙 Minted in light. Sealed in legacy.
+    🪙 Minted in light. Sealed in legacy.<br/>
+    © 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
   </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+
 </body>
 </html>
