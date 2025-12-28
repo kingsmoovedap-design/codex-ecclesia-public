@@ -1,4 +1,20 @@
 {
+  "name": "Codex Ecclesia Public",
+  "short_name": "Codex Ecclesia",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#fdfcf9",
+  "theme_color": "#003366",
+  "description": "Sovereign repository of scrolls, treaties, and codices of the Borders Ecclesia Earth Trust.",
+  "icons": [
+    {
+      "src": "favicon.png.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
+{
   "items": [
     {
       "section": "core",
