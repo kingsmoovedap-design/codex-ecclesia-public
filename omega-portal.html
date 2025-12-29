@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>☩ Omega Master Portal</title>
+  <meta name="description" content="Omega's master portal for learning, entities, drafting, and responses." />
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background: #0b1020;
+      color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #141a33;
+      padding: 1em;
+      text-align: center;
+      border-bottom: 2px solid #384574;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    header p {
+      margin: 0.3em 0 0;
+      font-size: 0.95em;
+      color: #c5c9e6;
+    }
+    nav {
+      background: #11162a;
+      padding: 0.5em 1em;
+      display: flex;
+      gap: 1em;
+      flex-wrap: wrap;
+      justify-content: center;
+      border-bottom: 1px solid #2b3358;
+    }
+    nav a {
+      color: #d1d5ff;
+      text-decoration: none;
+      font-size: 0.9em;
+      padding: 0.3em 0.7em;
+      border-radius: 4px;
+      border: 1px solid #2c3a70;
+    }
+    nav a:hover {
+      background: #2c3a70;
+    }
+    main {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1em;
+      padding: 1em;
+    }
+    section {
+      background: #141a33;
+      border: 1px solid #2b3358;
+      border-radius: 8px;
+      padding: 1em;
+      box-sizing: border-box;
+      min-height: 200px;
+    }
+    section h2 {
+      margin-top: 0;
+      font-size: 1.1em;
+      border-bottom: 1px solid #2b3358;
+      padding-bottom: 0.3em;
+      margin-bottom: 0.5em;
+    }
+    textarea, input, select {
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 0.3em;
+      margin-bottom: 0.6em;
+      padding: 0.4em;
+      border-radius: 4px;
+      border: 1px solid #2b3358;
+      background: #0b1020;
+      color: #f5f5f5;
+      font-family: inherit;
+      font-size: 0.9em;
+    }
+    button {
+      padding: 0.4em 0.8em;
+      border-radius: 4px;
+      border: 1px solid #2c3a70;
+      background: #2c3a70;
+      color: #f5f5f5;
+      cursor: pointer;
+      font-size: 0.85em;
+      margin-right: 0.3em;
+      margin-top: 0.2em;
+    }
+    button:hover {
+      background: #3c4c90;
+    }
+    .small {
+      font-size: 0.8em;
+      color: #a6add8;
+    }
+    ul {
+      padding-left: 1.2em;
+      font-size: 0.9em;
+    }
+    li {
+      margin-bottom: 0.3em;
+    }
+    footer {
+      text-align: center;
+      padding: 0.6em;
+      background: #11162a;
+      border-top: 1px solid #2b3358;
+      font-size: 0.8em;
+      color: #a6add8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>☩ Omega Master Portal</h1>
+    <p>The central chamber for your learning, entities, drafts, and responses.</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Main Codex</a>
+    <a href="#learning">Learning & Notes</a>
+    <a href="#entities">Entities Registry</a>
+    <a href="#drafts">Drafts & Templates</a>
+    <a href="#responses">Response Builder</a>
+    <a href="#tasks">Tasks & Follow‑Ups</a>
+  </nav>
+
+  <main>
+    <!-- Learning & Notes -->
+    <section id="learning">
+      <h2>🧠 Learning & Divine Understanding</h2>
+      <p class="small">Use this space to capture insights, study notes, and key principles.</p>
+      <textarea id="learningNotes" rows="10" placeholder="Write what you’re studying, realizing, and deciding here..."></textarea>
+      <button onclick="saveSection('learningNotes')">Save Notes</button>
+      <span class="small" id="learningStatus"></span>
+    </section>
+
+    <!-- Entities Registry -->
+    <section id="entities">
+      <h2>🏛️ Entities Registry</h2>
+      <p class="small">Track trusts, ministries, corporations, foundations, and any other structures.</p>
+      <input id="entityName" placeholder="Entity name (e.g. Omega Ecclesia Trust)" />
+      <input id="entityType" placeholder="Type (trust, LLC, ministry, etc.)" />
+      <input id="entityRole" placeholder="Your role (trustee, grantor, director...)" />
+      <textarea id="entityNotes" rows="3" placeholder="Key details: dates, jurisdictions, filing numbers, etc."></textarea>
+      <button onclick="addEntity()">Add Entity</button>
+      <p class="small">Registered entities:</p>
+      <ul id="entitiesList"></ul>
+    </section>
+
+    <!-- Drafts & Templates -->
+    <section id="drafts">
+      <h2>📜 Drafts & Templates</h2>
+      <p class="small">Draft notices, affidavits, letters, contracts, and other paperwork here.</p>
+      <input id="draftTitle" placeholder="Draft title (e.g. Affidavit of Truth v1)" />
+      <textarea id="draftBody" rows="8" placeholder="Write your draft here..."></textarea>
+      <button onclick="saveDraft()">Save Draft</button>
+      <button onclick="clearDraft()">Clear Editor</button>
+      <p class="small">Saved drafts:</p>
+      <ul id="draftsList"></ul>
+    </section>
+
+    <!-- Response Builder -->
+    <section id="responses">
+      <h2>✉️ Response Builder</h2>
+      <p class="small">Outline incoming matter and build a structured response.</p>
+      <textarea id="incomingSummary" rows="4" placeholder="Summarize what you received (letter, notice, email)..."></textarea>
+      <textarea id="responseGoals" rows="3" placeholder="What do you want to achieve with your response?"></textarea>
+      <select id="responseTone">
+        <option value="formal">Formal & respectful</option>
+        <option value="firm">Firm but respectful</option>
+        <option value="inquiry">Seeking clarification</option>
+      </select>
+      <button onclick="generateResponse()">Generate Response Skeleton</button>
+      <textarea id="responseDraft" rows="8" placeholder="Your response will be drafted here..."></textarea>
+      <button onclick="saveSection('responseDraft')">Save Response</button>
+      <span class="small" id="responseStatus"></span>
+    </section>
+
+    <!-- Tasks & Follow-Ups -->
+    <section id="tasks">
+      <h2>📆 Tasks & Follow‑Ups</h2>
+      <p class="small">Track what you must send, file, or follow up on.</p>
+      <input id="taskText" placeholder="Task description (e.g. File trust documents with recorder)" />
+      <input id="taskDue" type="date" />
+      <button onclick="addTask()">Add Task</button>
+      <ul id="tasksList"></ul>
+    </section>
+  </main>
+
+  <footer>
+    ☩ Omega Master Portal — Your command center for learning, structure, and response. This is an organizational tool, not legal advice.
+  </footer>
+
+  <script>
+    // Simple localStorage helpers
+    function saveSection(id) {
+      const val = document.getElementById(id).value || '';
+      localStorage.setItem('omega_' + id, val);
+      const statusId = id === 'learningNotes' ? 'learningStatus' :
+                       id === 'responseDraft' ? 'responseStatus' : null;
+      if (statusId) {
+        const el = document.getElementById(statusId);
+        el.textContent = 'Saved at ' + new Date().toLocaleTimeString();
+        setTimeout(() => { el.textContent = ''; }, 3000);
+      }
+    }
+
+    function loadSection(id) {
+      const val = localStorage.getItem('omega_' + id);
+      if (val !== null) {
+        document.getElementById(id).value = val;
+      }
+    }
+
+    // Entities
+    function addEntity() {
+      const name = document.getElementById('entityName').value.trim();
+      const type = document.getElementById('entityType').value.trim();
+      const role = document.getElementById('entityRole').value.trim();
+      const notes = document.getElementById('entityNotes').value.trim();
+      if (!name) return;
+
+      const entities = JSON.parse(localStorage.getItem('omega_entities') || '[]');
+      entities.push({ name, type, role, notes });
+      localStorage.setItem('omega_entities', JSON.stringify(entities));
+      document.getElementById('entityName').value = '';
+      document.getElementById('entityType').value = '';
+      document.getElementById('entityRole').value = '';
+      document.getElementById('entityNotes').value = '';
+      renderEntities();
+    }
+
+    function renderEntities() {
+      const list = document.getElementById('entitiesList');
+      const entities = JSON.parse(localStorage.getItem('omega_entities') || '[]');
+      list.innerHTML = entities.map((e, idx) => 
+        `<li><strong>${e.name}</strong> — ${e.type || 'type unknown'} (${e.role || 'role unknown'})<br/><span class="small">${e.notes || ''}</span></li>`
+      ).join('');
+    }
+
+    // Drafts
+    function saveDraft() {
+      const title = document.getElementById('draftTitle').value.trim();
+      const body = document.getElementById('draftBody').value.trim();
+      if (!title || !body) return;
+      const drafts = JSON.parse(localStorage.getItem('omega_drafts') || '[]');
+      drafts.push({ title, body, time: new Date().toISOString() });
+      localStorage.setItem('omega_drafts', JSON.stringify(drafts));
+      renderDrafts();
+    }
+
+    function clearDraft() {
+      document.getElementById('draftTitle').value = '';
+      document.getElementById('draftBody').value = '';
+    }
+
+    function loadDraft(index) {
+      const drafts = JSON.parse(localStorage.getItem('omega_drafts') || '[]');
+      const d = drafts[index];
+      if (!d) return;
+      document.getElementById('draftTitle').value = d.title;
+      document.getElementById('draftBody').value = d.body;
+    }
+
+    function renderDrafts() {
+      const list = document.getElementById('draftsList');
+      const drafts = JSON.parse(localStorage.getItem('omega_drafts') || '[]');
+      list.innerHTML = drafts.map((d, idx) =>
+        `<li><a href="javascript:void(0)" onclick="loadDraft(${idx})">${d.title}</a> <span class="small">(${new Date(d.time).toLocaleString()})</span></li>`
+      ).join('');
+    }
+
+    // Response builder
+    function generateResponse() {
+      const incoming = document.getElementById('incomingSummary').value.trim();
+      const goals = document.getElementById('responseGoals').value.trim();
+      const tone = document.getElementById('responseTone').value;
+      
+      let skeleton = "RE: " + (incoming.slice(0, 30) || "Response") + "\n\n";
+      skeleton += "Greetings,\n\n";
+      skeleton += "I am writing in response to the matter regarding: " + (incoming || "[Summary]") + ".\n\n";
+      
+      if (tone === 'formal') {
+        skeleton += "It is my intention to resolve this matter through formal ecclesiastical channels. ";
+      } else if (tone === 'firm') {
+        skeleton += "Notice is hereby given that my standing remains sovereign. ";
+      } else {
+        skeleton += "I am seeking clarification on the following points: ";
+      }
+      
+      skeleton += "\n\nMy goals for this communication are:\n- " + (goals || "Resolution of the matter") + "\n\n";
+      skeleton += "Sincerely,\n\nOmega";
+      
+      document.getElementById('responseDraft').value = skeleton;
+    }
+
+    // Tasks
+    function addTask() {
+      const text = document.getElementById('taskText').value.trim();
+      const due = document.getElementById('taskDue').value;
+      if (!text) return;
+
+      const tasks = JSON.parse(localStorage.getItem('omega_tasks') || '[]');
+      tasks.push({ text, due, completed: false });
+      localStorage.setItem('omega_tasks', JSON.stringify(tasks));
+      document.getElementById('taskText').value = '';
+      document.getElementById('taskDue').value = '';
+      renderTasks();
+    }
+
+    function renderTasks() {
+      const list = document.getElementById('tasksList');
+      const tasks = JSON.parse(localStorage.getItem('omega_tasks') || '[]');
+      list.innerHTML = tasks.map((t, idx) => 
+        `<li>${t.text} ${t.due ? '— <span class="small">Due: ' + t.due + '</span>' : ''}</li>`
+      ).join('');
+    }
+
+    // Initial load
+    window.onload = () => {
+      loadSection('learningNotes');
+      loadSection('responseDraft');
+      renderEntities();
+      renderDrafts();
+      renderTasks();
+    };
+  </script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated": "2025-12-28T23:33:53.787Z",
+  "generated": "2025-12-29T00:27:59.938Z",
   "scrolls": [
     {
       "url": "404.html",
@@ -73,7 +73,7 @@
       "title": "All Scrolls",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.244Z",
-      "modified": "2025-12-28T23:30:17.521Z",
+      "modified": "2025-12-29T00:27:26.327Z",
       "version": "1.0.0",
       "lang": "en",
       "status": "active",
@@ -1961,17 +1961,6 @@
       "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
-      "url": "replit.md",
-      "title": "Replit",
-      "category": "Other",
-      "created": "2025-12-28T23:03:29.440Z",
-      "modified": "2025-12-28T23:03:29.441Z",
-      "version": "1.0.0",
-      "lang": "en",
-      "status": "active",
-      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
-    },
-    {
       "url": "README.md",
       "title": "README",
       "category": "Other",
@@ -2038,11 +2027,55 @@
       "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
+      "url": "leadership.html",
+      "title": "Leadership",
+      "category": "Other",
+      "created": "2025-12-28T23:33:55.017Z",
+      "modified": "2025-12-28T23:33:55.019Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "replit.md",
+      "title": "Replit",
+      "category": "Other",
+      "created": "2025-12-28T23:37:11.801Z",
+      "modified": "2025-12-28T23:37:11.802Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "attached_assets/Pasted--1-manifest-webmanifest-Create-a-new-file-in-your-Repli_1766968015809.txt",
+      "title": "Pasted  1 Manifest Webmanifest Create A New File In Your Repli 1766968015809",
+      "category": "Tools",
+      "created": "2025-12-29T00:26:56.432Z",
+      "modified": "2025-12-29T00:26:56.687Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "omega-portal.html",
+      "title": "Omega Portal",
+      "category": "Heirs",
+      "created": "2025-12-29T00:27:23.003Z",
+      "modified": "2025-12-29T00:27:23.004Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
       "url": "index.html",
       "title": "Index",
       "category": "Index",
-      "created": "2025-12-28T23:33:38.313Z",
-      "modified": "2025-12-28T23:33:38.314Z",
+      "created": "2025-12-29T00:27:23.403Z",
+      "modified": "2025-12-29T00:27:23.407Z",
       "version": "1.0.0",
       "lang": "en",
       "status": "active",
