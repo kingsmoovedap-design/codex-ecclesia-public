@@ -23,6 +23,13 @@
       "notes": "Operates privately under contract",
       "scroll": "scrolls/pma-bylaws.html",
       "timestamp": "2025-12-28T17:52:00Z"
+    },
+    {
+      "title": "Declaration of Express Trust",
+      "path": "scrolls/express-trust-declaration.html",
+      "summary": "Establishes a private, non-statutory trust under Private Law.",
+      "tags": ["trust", "private", "ecclesiastical"],
+      "timestamp": "2025-12-28T18:00:00Z"
     }
   ]
 }

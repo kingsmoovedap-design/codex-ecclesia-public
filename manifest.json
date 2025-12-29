@@ -49,8 +49,64 @@
     },
     {
       "section": "scrolls",
+      "title": "☩ Articles of Association",
+      "path": "scrolls/articles-of-association.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
       "title": "👑 Codex of the Crown",
       "path": "scrolls/codices/codex-crown.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Ecclesiastical Charter",
+      "path": "scrolls/ecclesiastical-charter.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Declaration of Express Trust",
+      "path": "scrolls/express-trust-declaration.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Articles of Organization",
+      "path": "scrolls/llc-charter.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Declaration of Natural Law Entity",
+      "path": "scrolls/natural-law-entity-declaration.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Articles of Incorporation",
+      "path": "scrolls/nonprofit-articles.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Private Association Bylaws",
+      "path": "scrolls/pma-bylaws.html",
       "tags": [],
       "date": "2025-01-01",
       "summary": ""
@@ -370,6 +426,14 @@
       ],
       "date": "2025-01-01",
       "summary": "Heir of the Scrolls"
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Charter of Sovereign Ecclesia",
+      "path": "scrolls/sovereign-ecclesia-charter.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
     },
     {
       "section": "ministries",
