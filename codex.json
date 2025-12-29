@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated": "2025-12-29T02:24:23.822Z",
+  "generated": "2025-12-29T02:28:20.231Z",
   "scrolls": [
     {
       "url": "404.html",
@@ -73,7 +73,7 @@
       "title": "All Scrolls",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.244Z",
-      "modified": "2025-12-29T02:23:34.422Z",
+      "modified": "2025-12-29T02:24:24.048Z",
       "version": "1.0.0",
       "lang": "en",
       "status": "active",
@@ -2401,17 +2401,6 @@
       "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
-      "url": "dist/index.html",
-      "title": "Index",
-      "category": "Index",
-      "created": "2025-12-29T02:23:36.042Z",
-      "modified": "2025-12-29T02:23:36.042Z",
-      "version": "1.0.0",
-      "lang": "en",
-      "status": "active",
-      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
-    },
-    {
       "url": "scrolls/ecclesiastical-trade-covenant.html",
       "title": "Ecclesiastical Trade Covenant",
       "category": "Scrolls",
@@ -2434,11 +2423,110 @@
       "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
+      "url": "dist/index.html",
+      "title": "Index",
+      "category": "Index",
+      "created": "2025-12-29T02:24:25.691Z",
+      "modified": "2025-12-29T02:24:25.692Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "attached_assets/Pasted-Guild-Registration-Scroll-Filename-guild-registration-s_1766975269754.txt",
+      "title": "Pasted Guild Registration Scroll Filename Guild Registration S 1766975269754",
+      "category": "Scrolls",
+      "created": "2025-12-29T02:27:50.437Z",
+      "modified": "2025-12-29T02:27:51.212Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "scrolls/guild-registration-scroll.html",
+      "title": "Guild Registration Scroll",
+      "category": "Scrolls",
+      "created": "2025-12-29T02:28:05.847Z",
+      "modified": "2025-12-29T02:28:05.848Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "scrolls/merchant-oath-of-integrity.html",
+      "title": "Merchant Oath Of Integrity",
+      "category": "Scrolls",
+      "created": "2025-12-29T02:28:08.024Z",
+      "modified": "2025-12-29T02:28:08.024Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "scrolls/guild-ledger-template.html",
+      "title": "Guild Ledger Template",
+      "category": "Scrolls",
+      "created": "2025-12-29T02:28:09.626Z",
+      "modified": "2025-12-29T02:28:09.626Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "scrolls/ecclesia-arbitration-protocol.html",
+      "title": "Ecclesia Arbitration Protocol",
+      "category": "Scrolls",
+      "created": "2025-12-29T02:28:12.267Z",
+      "modified": "2025-12-29T02:28:12.267Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "scrolls/dispute-resolution-scroll.html",
+      "title": "Dispute Resolution Scroll",
+      "category": "Scrolls",
+      "created": "2025-12-29T02:28:14.279Z",
+      "modified": "2025-12-29T02:28:14.279Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "scrolls/ecclesia-court-charter.html",
+      "title": "Ecclesia Court Charter",
+      "category": "Scrolls",
+      "created": "2025-12-29T02:28:16.365Z",
+      "modified": "2025-12-29T02:28:16.365Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "scrolls/covenantal-enforcement-decree.html",
+      "title": "Covenantal Enforcement Decree",
+      "category": "Scrolls",
+      "created": "2025-12-29T02:28:16.604Z",
+      "modified": "2025-12-29T02:28:16.604Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
       "url": "omega-portal.html",
       "title": "Omega Portal",
       "category": "Heirs",
-      "created": "2025-12-29T02:24:20.737Z",
-      "modified": "2025-12-29T02:24:20.835Z",
+      "created": "2025-12-29T02:28:16.812Z",
+      "modified": "2025-12-29T02:28:16.902Z",
       "version": "1.0.0",
       "lang": "en",
       "status": "active",

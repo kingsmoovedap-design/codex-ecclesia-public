@@ -73,6 +73,14 @@
     },
     {
       "section": "scrolls",
+      "title": "☩ Covenantal Enforcement Decree",
+      "path": "scrolls/covenantal-enforcement-decree.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
       "title": "☩ Cultural Sovereignty Codex",
       "path": "scrolls/cultural-sovereignty-codex.html",
       "tags": [],
@@ -89,8 +97,32 @@
     },
     {
       "section": "scrolls",
+      "title": "☩ Dispute Resolution Scroll",
+      "path": "scrolls/dispute-resolution-scroll.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
       "title": "☩ Dynasty Bond Indenture",
       "path": "scrolls/dynasty-bond-indenture.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Ecclesia Arbitration Protocol",
+      "path": "scrolls/ecclesia-arbitration-protocol.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Ecclesia Court Charter",
+      "path": "scrolls/ecclesia-court-charter.html",
       "tags": [],
       "date": "2025-01-01",
       "summary": ""
@@ -137,6 +169,22 @@
     },
     {
       "section": "scrolls",
+      "title": "☩ Guild Ledger Template",
+      "path": "scrolls/guild-ledger-template.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Guild Registration Scroll",
+      "path": "scrolls/guild-registration-scroll.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
       "title": "☩ Omega IP Bank Charter",
       "path": "scrolls/ip-bank-charter.html",
       "tags": [],
@@ -163,6 +211,14 @@
       "section": "scrolls",
       "title": "☩ Celestial Marriage & Lineage Registry",
       "path": "scrolls/marriage-lineage-registry.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Merchant Oath of Integrity",
+      "path": "scrolls/merchant-oath-of-integrity.html",
       "tags": [],
       "date": "2025-01-01",
       "summary": ""

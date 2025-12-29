@@ -1534,13 +1534,6 @@
   </url>
 
   <url>
-    <loc>https://codex-ecclesia.org/dist/index.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
     <loc>https://codex-ecclesia.org/scrolls/ecclesiastical-trade-covenant.html</loc>
     <lastmod>2025-12-29</lastmod>
     <changefreq>monthly</changefreq>
@@ -1549,6 +1542,69 @@
 
   <url>
     <loc>https://codex-ecclesia.org/scrolls/sovereign-diplomatic-protocol.html</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codex-ecclesia.org/dist/index.html</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codex-ecclesia.org/attached_assets/Pasted-Guild-Registration-Scroll-Filename-guild-registration-s_1766975269754.txt</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codex-ecclesia.org/scrolls/guild-registration-scroll.html</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codex-ecclesia.org/scrolls/merchant-oath-of-integrity.html</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codex-ecclesia.org/scrolls/guild-ledger-template.html</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codex-ecclesia.org/scrolls/ecclesia-arbitration-protocol.html</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codex-ecclesia.org/scrolls/dispute-resolution-scroll.html</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codex-ecclesia.org/scrolls/ecclesia-court-charter.html</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codex-ecclesia.org/scrolls/covenantal-enforcement-decree.html</loc>
     <lastmod>2025-12-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
