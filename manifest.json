@@ -121,6 +121,14 @@
     },
     {
       "section": "scrolls",
+      "title": "☩ Celestial Marriage & Lineage Registry",
+      "path": "scrolls/marriage-lineage-registry.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
       "title": "☩ National Treasury Constitution",
       "path": "scrolls/national-treasury-constitution.html",
       "tags": [],
@@ -451,6 +459,14 @@
       "section": "scrolls",
       "title": "📜 Scroll Registry – Codex Ecclesia",
       "path": "scrolls/scrolls.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ National Security & Defense Charter",
+      "path": "scrolls/security-defense-charter.html",
       "tags": [],
       "date": "2025-01-01",
       "summary": ""

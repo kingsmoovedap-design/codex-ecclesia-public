@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated": "2025-12-29T02:18:54.522Z",
+  "generated": "2025-12-29T02:21:01.537Z",
   "scrolls": [
     {
       "url": "404.html",
@@ -73,7 +73,7 @@
       "title": "All Scrolls",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.244Z",
-      "modified": "2025-12-29T02:12:59.224Z",
+      "modified": "2025-12-29T02:18:54.742Z",
       "version": "1.0.0",
       "lang": "en",
       "status": "active",
@@ -2269,17 +2269,6 @@
       "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
-      "url": "dist/index.html",
-      "title": "Index",
-      "category": "Index",
-      "created": "2025-12-29T02:13:00.778Z",
-      "modified": "2025-12-29T02:13:00.779Z",
-      "version": "1.0.0",
-      "lang": "en",
-      "status": "active",
-      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
-    },
-    {
       "url": "attached_assets/Pasted--The-sacred-seal-for-your-Cultural-Sovereignty-Codex-is_1766974497061.txt",
       "title": "Pasted  The Sacred Seal For Your Cultural Sovereignty Codex Is 1766974497061",
       "category": "Codices",
@@ -2324,11 +2313,44 @@
       "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
+      "url": "dist/index.html",
+      "title": "Index",
+      "category": "Index",
+      "created": "2025-12-29T02:18:56.433Z",
+      "modified": "2025-12-29T02:18:56.434Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "scrolls/security-defense-charter.html",
+      "title": "Security Defense Charter",
+      "category": "Scrolls",
+      "created": "2025-12-29T02:20:58.124Z",
+      "modified": "2025-12-29T02:20:58.125Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "scrolls/marriage-lineage-registry.html",
+      "title": "Marriage Lineage Registry",
+      "category": "Scrolls",
+      "created": "2025-12-29T02:20:58.388Z",
+      "modified": "2025-12-29T02:20:58.388Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
       "url": "omega-portal.html",
       "title": "Omega Portal",
       "category": "Heirs",
-      "created": "2025-12-29T02:18:51.274Z",
-      "modified": "2025-12-29T02:18:51.404Z",
+      "created": "2025-12-29T02:20:58.592Z",
+      "modified": "2025-12-29T02:20:58.634Z",
       "version": "1.0.0",
       "lang": "en",
       "status": "active",
