@@ -57,6 +57,14 @@
     },
     {
       "section": "scrolls",
+      "title": "☩ Omega Barter Certificate",
+      "path": "scrolls/barter-certificate.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
       "title": "👑 Codex of the Crown",
       "path": "scrolls/codices/codex-crown.html",
       "tags": [],
@@ -73,6 +81,14 @@
     },
     {
       "section": "scrolls",
+      "title": "☩ Currency Issuance Ritual",
+      "path": "scrolls/currency-issuance-ritual.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
       "title": "☩ Dynasty Bond Indenture",
       "path": "scrolls/dynasty-bond-indenture.html",
       "tags": [],
@@ -81,8 +97,24 @@
     },
     {
       "section": "scrolls",
+      "title": "☩ Ecclesia Market Constitution",
+      "path": "scrolls/ecclesia-market-constitution.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
       "title": "☩ Ecclesiastical Charter",
       "path": "scrolls/ecclesiastical-charter.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Ecclesiastical Mint Charter",
+      "path": "scrolls/ecclesiastical-mint-charter.html",
       "tags": [],
       "date": "2025-01-01",
       "summary": ""
@@ -147,6 +179,14 @@
       "section": "scrolls",
       "title": "☩ Articles of Incorporation",
       "path": "scrolls/nonprofit-articles.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Ω-Crown Currency Manifesto",
+      "path": "scrolls/omega-crown-manifesto.html",
       "tags": [],
       "date": "2025-01-01",
       "summary": ""
