@@ -1,19 +1,23 @@
 body {
   font-family: 'Crimson Text', 'Georgia', serif;
-  background-color: #fdfcf9;
-  color: #2c241a;
+  background-color: #0b1020;
+  background-image: linear-gradient(rgba(11, 16, 32, 0.9), rgba(11, 16, 32, 0.9)), url('attached_assets/generated_images/sacred_archive_hero_background.png');
+  background-size: cover;
+  background-attachment: fixed;
+  color: #e0d5b0;
   line-height: 1.6;
   margin: 0;
   padding: 0;
 }
 
 header {
-  background: linear-gradient(135deg, #1a1a1a 0%, #3d3d3d 100%);
-  color: #e0d5b0;
-  padding: 3rem 1rem;
+  background: rgba(20, 26, 51, 0.8);
+  backdrop-filter: blur(10px);
+  color: #c5a059;
+  padding: 4rem 1rem;
   text-align: center;
-  border-bottom: 4px solid #c5a059;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  border-bottom: 2px solid #c5a059;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 
 header h1 {
@@ -29,6 +33,26 @@ header p {
   opacity: 0.9;
 }
 
+nav {
+  background: rgba(17, 22, 42, 0.9);
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  border-bottom: 1px solid #2c3a70;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav a {
+  color: #c5a059;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
 main {
   max-width: 900px;
   margin: 2rem auto;
@@ -36,18 +60,22 @@ main {
 }
 
 section {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 4px;
-  box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-  border: 1px solid #e8e1d5;
+  background: rgba(20, 26, 51, 0.7);
+  backdrop-filter: blur(5px);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  border: 1px solid #2c3a70;
+  margin-bottom: 2rem;
 }
 
 h2 {
-  color: #5d4037;
-  border-bottom: 2px solid #e8e1d5;
-  padding-bottom: 0.5rem;
+  color: #c5a059;
+  border-bottom: 1px solid #2c3a70;
+  padding-bottom: 0.7rem;
   margin-top: 0;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
 ul {
@@ -57,7 +85,7 @@ ul {
 
 li {
   padding: 0.8rem 0;
-  border-bottom: 1px solid #f0ede6;
+  border-bottom: 1px solid #2c3a70;
 }
 
 li:last-child {
@@ -65,14 +93,14 @@ li:last-child {
 }
 
 a {
-  color: #8b4513;
+  color: #c5a059;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: #c5a059;
+  color: #fdfcf9;
   text-decoration: underline;
 }
 
@@ -82,12 +110,14 @@ a:hover {
 
 #search-input {
   width: 100%;
-  padding: 1rem;
-  font-size: 1.1rem;
-  border: 2px solid #e8e1d5;
-  border-radius: 4px;
-  background: #fff;
+  padding: 1.2rem;
+  font-size: 1.2rem;
+  border: 1px solid #2c3a70;
+  border-radius: 8px;
+  background: rgba(11, 16, 32, 0.8);
+  color: #fdfcf9;
   font-family: inherit;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
 }
 
 #search-input:focus {
@@ -101,36 +131,49 @@ a:hover {
   gap: 1.5em;
   margin-bottom: 2em;
 }
+
 .card {
-  background: #fff;
-  border: 2px solid #003366;
-  border-radius: 8px;
-  padding: 1em;
-  width: 200px;
+  background: rgba(20, 26, 51, 0.8);
+  border: 1px solid #c5a059;
+  border-radius: 12px;
+  padding: 1.5em;
+  width: 220px;
   text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(197, 160, 89, 0.3);
+}
+
 .card img {
   border-radius: 50%;
   width: 100px;
   height: 100px;
   object-fit: cover;
 }
+
 .card h3 {
   margin: 0.5em 0 0.2em;
-  color: #5d4037;
+  color: #c5a059;
 }
+
 .card p {
   font-size: 0.9em;
-  color: #555;
+  color: #a6add8;
 }
+
 .card a {
   display: inline-block;
   margin-top: 0.5em;
-  color: #003366;
+  color: #c5a059;
   text-decoration: none;
   font-weight: bold;
 }
+
 .card a:hover {
   text-decoration: underline;
+  color: #fdfcf9;
 }
