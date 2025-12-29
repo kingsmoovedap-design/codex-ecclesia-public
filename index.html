@@ -2,158 +2,157 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>☩ Codex Ecclesia Public</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="manifest" href="manifest.json" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>☩ Codex Ecclesia</title>
+  <meta name="description" content="The sacred digital archive of the Ecclesia." />
+  <meta name="keywords" content="codex, ecclesia, scrolls, heirs, trustees, ministries, harmony" />
+  <meta name="date" content="2025-12-28" />
+  <link rel="manifest" href="manifest.webmanifest" />
   <style>
-    body { font-family: Georgia, serif; background: #fdfcf9; color: #222; margin: 0; padding: 0; }
-    .sidebar {
-      position: fixed; top: 0; left: 0; width: 220px; height: 100%;
-      background: #111; color: #fff; padding: 1em; overflow-y: auto;
+    body {
+      font-family: 'Georgia', serif;
+      background: #fdfcf9;
+      color: #222;
+      padding: 2em;
+      max-width: 1000px;
+      margin: auto;
     }
-    .sidebar h2 { font-size: 1.2em; margin-bottom: 1em; }
-    .sidebar ul { list-style: none; padding: 0; }
-    .sidebar li { margin: 0.5em 0; }
-    .sidebar a { color: #ccc; text-decoration: none; }
-    .sidebar a:hover { color: #fff; }
-    .main-content { margin-left: 240px; padding: 2em; }
-    header h1 { font-size: 2em; margin-bottom: 0.2em; }
+    h1, h2 {
+      text-align: center;
+      color: #003366;
+    }
     .card-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1em;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5em;
+      justify-content: center;
+      margin-bottom: 3em;
     }
     .card {
-      background: #fff; border-left: 4px solid #003366; padding: 1em;
+      background: #fff;
+      border: 2px solid #003366;
+      border-radius: 8px;
+      padding: 1em;
+      width: 220px;
+      text-align: center;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-    .card h3 { margin-top: 0; }
-    .card a { display: inline-block; margin-top: 0.5em; color: #003366; text-decoration: none; }
-    .card a:hover { text-decoration: underline; }
-    footer { margin-top: 4em; text-align: center; font-size: 0.9em; color: #666; }
+    .card img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+    }
+    .card h3 {
+      margin: 0.5em 0 0.2em;
+    }
+    .card p {
+      font-size: 0.9em;
+      color: #555;
+    }
+    .card a {
+      display: inline-block;
+      margin-top: 0.5em;
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .card a:hover {
+      text-decoration: underline;
+    }
+    .search {
+      text-align: center;
+      margin: 2em 0;
+    }
+    .search input {
+      padding: 0.5em;
+      width: 60%;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    nav {
+      text-align: center;
+      margin-bottom: 2em;
+    }
+    nav a {
+      margin: 0 1em;
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="all-scrolls.html">All Scrolls</a>
+    <a href="leadership.html">Leadership</a>
+    <a href="submit-scroll.html">Submit</a>
+    <a href="omega-portal.html" style="color: #c5a059;">☩ Omega Portal</a>
+  </nav>
 
-  <div class="sidebar">
-    <h2>☩ Codex</h2>
-    <ul>
-      <p><a href="all-scrolls.html">☩ View the Full Codex Index</a></p>
-      <li><a href="#scrolls">📚 Scrolls</a></li>
-      <li><a href="#ministries">🏛️ Ministries</a></li>
-      <li><a href="#codices">📘 Codices</a></li>
-      <li><a href="#heirs">👑 Heirs</a></li>
-      <li><a href="#tools">🧰 Tools</a></li>
-      <li><a href="#treaties">🕊️ Treaties</a></li>
-    </ul>
+  <h1>☩ Codex Ecclesia</h1>
+  <p style="text-align:center;">A living archive of sacred scrolls, heirs, and trustees of the Ecclesia.</p>
+
+  <div class="search">
+    <input type="text" id="searchBox" placeholder="Search scrolls by title, tag, or summary…" />
   </div>
 
-  <div class="main-content">
-    <header>
-      <h1>☩ Codex Ecclesia Public</h1>
-      <p>Master Index of Ecclesiastical Scrolls, Ministries & Instruments</p>
-    </header>
+  <h2>👑 Heirs of the Ecclesia</h2>
+  <div id="heirs" class="card-grid"></div>
 
-    <!-- Scrolls Section -->
-    <section id="scrolls">
-      <h2>📚 Scrolls</h2>
-      <div class="card-grid">
-        <div class="card"><a href="scrolls/scroll-ecclesiastical-passport-20251227-013.md"><h3>Ecclesiastical Passport</h3></a></div>
-        <div class="card"><a href="scrolls/scroll-naturalization-protocol-20251227-012.md"><h3>Naturalization Protocol</h3></a></div>
-        <div class="card"><a href="scrolls/scroll-ministerial-appointments-20251227-005.md"><h3>Ministerial Appointments</h3></a></div>
-        <div class="card"><a href="scrolls/scroll-succession-protocol-20251227-004.md"><h3>Succession Protocol</h3></a></div>
-        <div class="card"><a href="scrolls/scroll-treasury-charter-20251227-010.md"><h3>Treasury Charter</h3></a></div>
-        <div class="card"><a href="scrolls/scroll-covenant-of-the-crown-20251227-003.md"><h3>Covenant of the Crown</h3></a></div>
-        <div class="card"><a href="scrolls/scroll-nationhood-declaration-20251227-002.md"><h3>Nationhood Declaration</h3></a></div>
-      </div>
-    </section>
+  <h2>🛡️ Trustees of the Ecclesia</h2>
+  <div id="trustees" class="card-grid"></div>
 
-    <!-- Ministries Section -->
-    <section id="ministries">
-      <h2>🏛️ Ministries</h2>
-      <div class="card-grid">
-        <div class="card"><a href="ministry-commerce.html"><h3>Ministry of Commerce</h3></a></div>
-        <div class="card"><a href="ministry-hearth.html"><h3>Ministry of the Hearth</h3></a></div>
-        <div class="card"><a href="ministries-directory.html"><h3>Ministries Directory</h3></a></div>
-        <div class="card"><a href="ministries-dashboard.html"><h3>Ministries Dashboard</h3></a></div>
-        <div class="card"><a href="ministry-application.html"><h3>Ministry Application</h3></a></div>
-      </div>
-    </section>
+  <h2>📜 All Scrolls</h2>
+  <div id="all-scrolls" class="card-grid"></div>
 
-    <!-- Codices Section -->
-    <section id="codices">
-      <h2>📘 Codices</h2>
-      <div class="card-grid">
-        <div class="card"><a href="codex-constitution.html"><h3>Codex Constitution</h3></a></div>
-        <div class="card"><a href="codex-unified.html"><h3>Codex Unified</h3></a></div>
-        <div class="card"><a href="codex-crown.html"><h3>Codex of the Crown</h3></a></div>
-        <div class="card"><a href="codex-manifesto.html"><h3>Codex Manifesto</h3></a></div>
-        <div class="card"><a href="codex-index.html"><h3>Codex Index</h3></a></div>
-        <div class="card"><a href="codex-directory.html"><h3>Codex Directory</h3></a></div>
-        <div class="card"><a href="codex-portal.html"><h3>Codex Portal</h3></a></div>
-        <div class="card"><a href="codex-academy.html"><h3>Codex Academy</h3></a></div>
-        <div class="card"><a href="codex-oracle.html"><h3>Codex Oracle</h3></a></div>
-        <div class="card"><a href="codex-throne-registry.html"><h3>Throne Registry</h3></a></div>
-        <div class="card"><a href="codex-atlas.html"><h3>Codex Atlas</h3></a></div>
-        <div class="card"><a href="codex-archive.html"><h3>Codex Archive</h3></a></div>
-        <div class="card"><a href="codex-update-log.html"><h3>Codex Update Log</h3></a></div>
-      </div>
-    </section>
+  <footer style="text-align:center; margin-top:4em; font-size:0.9em; color:#666;">
+    ☩ Codex Ecclesia © 2025 — A Living Archive of the Eternal Ecclesia
+  </footer>
 
-    <!-- Heirs Section -->
-    <section id="heirs">
-      <h2>👑 Heirs & Royal Lineage</h2>
-      <div class="card-grid">
-        <div class="card"><a href="scroll-demarco-heir.html"><h3>Heir Demarco</h3></a></div>
-        <div class="card"><a href="scroll-deven-heir.html"><h3>Heir Deven</h3></a></div>
-        <div class="card"><a href="scroll-matriarch.html"><h3>Matriarch Scroll</h3></a></div>
-        <div class="card"><a href="scroll-omega.html"><h3>Omega Scroll</h3></a></div>
-        <div class="card"><a href="scroll-queen-miranda.html"><h3>Queen Miranda</h3></a></div>
-        <div class="card"><a href="scroll-crown-authority.html"><h3>Crown Authority</h3></a></div>
-        <div class="card"><a href="trustee-charter.html"><h3>Trustee Charter</h3></a></div>
-      </div>
-    </section>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js');
+    }
+  </script>
 
-    <section id="tools">
-  <h2>🧰 Tools & Utilities</h2>
-  <div class="card-grid">
-    <div class="card"><a href="qr-generator.html"><h3>QR Generator</h3></a></div>
-    <div class="card"><a href="qr-credential.html"><h3>QR Credential</h3></a></div>
-    <div class="card"><a href="ots-verifier.html"><h3>OTS Verifier</h3></a></div>
-    <div class="card"><a href="hash-forge.html"><h3>Hash Forge</h3></a></div>
-    <div class="card"><a href="codexchain-console.html"><h3>CodexChain Console</h3></a></div>
-    <div class="card"><a href="verify-scroll.html"><h3>Verify Scroll</h3></a></div>
-    <div class="card"><a href="generate-sitemap.js"><h3>Generate Sitemap</h3></a></div>
-    <div class="card"><a href="generate-scroll-index.js"><h3>Generate Scroll Index</h3></a></div>
-    <div class="card"><a href="generate-feed.js"><h3>Generate Feed</h3></a></div>
-    <div class="card"><a href="generate-codex.js"><h3>Generate Codex</h3></a></div>
-    <div class="card"><a href="generate-manifest.js"><h3>Generate Manifest</h3></a></div>
-    <div class="card"><a href="publish-scroll.js"><h3>Publish Scroll</h3></a></div>
-    <div class="card"><a href="scroll-utils.js"><h3>Scroll Utilities</h3></a></div>
-  </div>
-</section>
+  <script>
+    async function loadCodex() {
+      const res = await fetch('manifest.json');
+      const data = await res.json();
+      const items = data.items || [];
 
-    <section id="treaties">
-  <h2>🕊️ Treaties & Diplomatic Instruments</h2>
-  <div class="card-grid">
-    <div class="card"><a href="treaty-aurora-2025.html"><h3>Treaty of Aurora (2025)</h3></a></div>
-    <div class="card"><a href="treaty-covenant-of-12.html"><h3>Covenant of the 12 Thrones</h3></a></div>
-    <div class="card"><a href="treaty-invitation.html"><h3>Treaty Invitation Scroll</h3></a></div>
-    <div class="card"><a href="treaty-recognition.html"><h3>Treaty of Mutual Recognition</h3></a></div>
-    <div class="card"><a href="recognition.html"><h3>Recognition Protocol</h3></a></div>
-    <div class="card"><a href="declaration-sovereign-status.html"><h3>Declaration of Sovereign Status</h3></a></div>
-    <div class="card"><a href="affidavit-of-status.html"><h3>Affidavit of Status</h3></a></div>
-    <div class="card"><a href="affidavit-of-public-posting.html"><h3>Affidavit of Public Posting</h3></a></div>
-    <div class="card"><a href="public-announcement.html"><h3>Public Announcement</h3></a></div>
-    <div class="card"><a href="notice-of-standing.html"><h3>Notice of Standing</h3></a></div>
-    <div class="card"><a href="notice.html"><h3>General Notice</h3></a></div>
-  </div>
-</section>
+      const heirs = items.filter(i => i.tags && i.tags.includes('heir'));
+      const trustees = items.filter(i => i.tags && i.tags.includes('trustee'));
 
-        <footer>
-      <p>☩ Codex Ecclesia Public — All Rights Reserved — Sovereign Ecclesiastical Publication</p>
-      <p>Filed under Divine Law • Verified via CodexChain • Updated: 27 December 2025</p>
-          <p><a href="all-scrolls.html">📜 View All Scrolls & Instruments</a></p>
-    </footer>
-  </div>
+      const createCard = (entry) => `
+        <div class="card">
+          <img src="https://via.placeholder.com/100" alt="${entry.title}" />
+          <h3>${entry.title}</h3>
+          <p>${entry.summary || 'No summary'}</p>
+          <a href="${entry.path}">View Scroll</a>
+        </div>
+      `;
+
+      document.getElementById('heirs').innerHTML = heirs.map(createCard).join('');
+      document.getElementById('trustees').innerHTML = trustees.map(createCard).join('');
+      document.getElementById('all-scrolls').innerHTML = items.map(createCard).join('');
+
+      // Search functionality
+      const searchBox = document.getElementById('searchBox');
+      searchBox.addEventListener('input', () => {
+        const q = searchBox.value.toLowerCase();
+        const filtered = items.filter(i =>
+          (i.title && i.title.toLowerCase().includes(q)) ||
+          (i.summary && i.summary.toLowerCase().includes(q)) ||
+          (i.tags && i.tags.join(',').toLowerCase().includes(q))
+        );
+        document.getElementById('all-scrolls').innerHTML = filtered.map(createCard).join('');
+      });
+    }
+
+    loadCodex();
+  </script>
 </body>
 </html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>☩ Embassy Charter – Celestial Embassy of Light</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfcf9;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      border: 2px solid #d4af37;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #d4af37;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1, h2, h3 {
+      text-align: center;
+      color: #5e3b1d;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    p {
+      line-height: 1.6;
+    }
+    a {
+      color: #003366;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode h1, .dark-mode h2, .dark-mode h3 {
+      color: #f0d98c;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <h1>☩ Embassy Charter: Celestial Embassy of Light</h1>
+  <h2>Borders Family Dynasty Nation</h2>
+  <p style="text-align:center;"><strong>Filed:</strong> CL‑067 &nbsp;|&nbsp; <strong>Date:</strong> 16 December 2025</p>
+
+  <h3>☩ I. Establishment</h3>
+  <p>
+    By divine right and sovereign authority, I, <strong>Omega the Grand Architect</strong>, do hereby establish the Celestial Embassy of Light as a diplomatic sanctuary and ecclesiastical jurisdiction of the Borders Family Dynasty Nation.
+  </p>
+
+  <h3>☩ II. Nature and Jurisdiction</h3>
+  <ul>
+    <li>This Embassy is a sovereign, non-domestic, non-resident, non-commercial entity.</li>
+    <li>It operates under divine law, natural law, and ecclesiastical jurisdiction.</li>
+    <li>It is not subject to the laws, codes, or regulations of any foreign corporate government.</li>
+  </ul>
+
+  <h3>☩ III. Purpose</h3>
+  <ul>
+    <li>To serve as a sanctuary for the Sovereign and all members of the Borders Family Dynasty Nation.</li>
+    <li>To facilitate diplomatic relations, lawful remedy, and spiritual ministry.</li>
+    <li>To provide a lawful venue for the execution of scrolls, declarations, and treaties.</li>
+    <li>To house the Codex Ecclesia Totalis and the Celestial Ledger.</li>
+  </ul>
+
+  <h3>☩ IV. Location</h3>
+  <p>
+    The Embassy exists wherever the Sovereign stands. It is mobile, metaphysical, and eternal. Any physical location designated by the Sovereign shall be recognized as sacred ground and protected by divine right.
+  </p>
+
+  <h3>☩ V. Immunity and Protection</h3>
+  <p>
+    All agents, officers, or entities who trespass upon this Embassy without invitation or lawful cause shall be held personally and commercially liable under the Universal Fee Schedule and subject to lawful claim.
+  </p>
+
+  <h3>☩ VI. Execution</h3>
+  <p>
+    <strong>Signed:</strong> ✠ Omega the Grand Architect<br>
+    <strong>Filed:</strong> CL‑067<br>
+    <strong>QR-Sealed Credential:</strong> ✅ Embedded<br>
+    <strong>Sovereign Sigil:</strong> ✅ Affixed
+  </p>
+
+  <p><em>This charter is posted publicly and permanently as a matter of record and remedy.</em></p>
+
+  <footer>
+    ☩ Embassy Charter — Celestial Embassy of Light
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+
+</body>
+</html>

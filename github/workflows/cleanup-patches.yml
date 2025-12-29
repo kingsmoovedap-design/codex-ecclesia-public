@@ -6,19 +6,22 @@ on:
 jobs:
   cleanup:
     runs-on: ubuntu-latest
+
     steps:
       - name: ⬇️ Checkout Repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Required to see all branches and history
+          fetch-depth: 0  # Ensure full history for merge detection
 
       - name: 🧹 Delete Merged Patch Branches
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "☩ Fetching remote branches..."
           git fetch --prune
 
-          echo "☩ Finding merged patch branches..."
-          MERGED=$(git branch -r --merged origin/main | grep 'origin/kingsmoovedap-design-patch-' | sed 's/origin\///')
+          echo "☩ Identifying merged patch branches..."
+          MERGED=$(git branch -r --merged origin/main | grep 'origin/kingsmoovedap-design-patch-' | sed 's|origin/||')
 
           if [ -z "$MERGED" ]; then
             echo "✅ No merged patch branches to delete."
@@ -30,7 +33,7 @@ jobs:
 
           for branch in $MERGED; do
             echo "🔥 Deleting $branch..."
-            git push origin --delete "$branch"
+            git push origin --delete "$branch" || echo "⚠️ Failed to delete $branch"
           done
 
           echo "✅ Cleanup complete."

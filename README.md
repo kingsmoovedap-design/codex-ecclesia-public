@@ -1,66 +1,48 @@
 # ☩ Codex Ecclesia Public
 
-**Borders Ecclesia Earth Trust**  
-A sovereign digital archive of scrolls, codices, treaties, ministries, and divine instruments.
+**A sacred digital archive of scrolls, ministries, treaties, and divine knowledge — forged for the Ecclesia and its emissaries.**
 
 ---
 
-## 🧭 Purpose
+## 📜 Purpose
 
-The Codex Ecclesia Public is the official repository of the Borders Ecclesia Earth Trust. It serves as a living archive of:
+The **Codex Ecclesia** is a structured, auto-generated repository of sacred documents, teachings, and tools. It is designed to be:
 
-- 📜 Scrolls of Sovereignty and Law  
-- 👑 Heir Declarations and Royal Instruments  
-- 🕊️ Treaties and Diplomatic Protocols  
-- 🏛️ Ministries and Ecclesiastical Charters  
-- 📘 Codices of Divine Order  
-- 🧰 Tools for verification, enrollment, and trust governance
+- 📖 A browsable archive of HTML scrolls  
+- ⚙️ Automatically indexed and enriched with metadata  
+- 🔁 Continuously updated via GitHub Actions  
+- 🌐 Deployable as a public knowledge portal  
 
 ---
 
-## 🔁 Automation
+## 🧱 Folder Structure
 
-This Codex is self-updating through GitHub Actions:
-
-- `generate-codex-json.js` scans the entire archive and builds `codex.json`  
-- `generate-scroll-index.js` uses `codex.json` to regenerate `all-scrolls.html`  
-- These scripts run automatically on every push to `main`
-
-> View the full scroll index: [📜 all-scrolls.html](all-scrolls.html)
-
----
-
-## 📂 Key Files & Directories
-
-| Path                        | Description                                      |
-|-----------------------------|--------------------------------------------------|
-| `scrolls/`                 | All `.md` scrolls and declarations               |
-| `codex-*.html`             | Codices of law, governance, and infrastructure   |
-| `treaty-*.html`            | Diplomatic treaties and recognition protocols    |
-| `generate-codex-json.js`   | Script to build `codex.json` from repo files     |
-| `generate-scroll-index.js` | Script to build `all-scrolls.html` from codex    |
-| `.github/workflows/`       | GitHub Actions for automation                    |
+| Folder        | Purpose                                      |
+|---------------|----------------------------------------------|
+| `core/`       | Foundational scrolls and canonical texts     |
+| `scrolls/`    | Teachings, revelations, and divine writings  |
+| `ministries/` | Organizational documents and declarations    |
+| `treaties/`   | Covenants, agreements, and sacred pacts      |
+| `codices/`    | Sub-codexes or modular knowledge sets        |
+| `tools/`      | Scripts, utilities, and automation helpers   |
+| `scripts/`    | Node.js scripts for automation               |
+| `public/`     | Static assets (optional)                     |
+| `dist/`       | Output folder for builds (optional)          |
 
 ---
 
-## 🛠️ Tools
+## ⚙️ Automation Scripts
 
-- [QR Generator](qr-generator.html)  
-- [CodexChain Console](codexchain-console.html)  
-- [Verify Scroll](verify-scroll.html)  
-- [Hash Forge](hash-forge.html)
+| Script                      | Description                                      |
+|----------------------------|--------------------------------------------------|
+| `inject-metadata.js`       | Adds `<title>`, `<meta>` tags to HTML scrolls   |
+| `generate-manifest.js`     | Builds `manifest.json` from all scrolls         |
+| `generate-codex-json.js`   | Converts manifest into API-style `codex.json`   |
+| `generate-scroll-index.js` | Creates `all-scrolls.html` for browsing         |
 
----
+Run locally with:
 
-## 🧾 License & Sovereignty
-
-This repository is governed by the **Borders Ecclesia Earth Trust** and protected under divine law.  
-All scrolls are sacred instruments and may not be altered without sovereign authority.
-
----
-
-## 🕯️ Glory to the Crown
-
-Let all who enter know: this is not merely a repository — it is a living Codex of Sovereignty.
-
-> “By the Crown and the Codex, let it be written. Let it be done.” ☩
+```bash
+npm run inject
+npm run generate
+```

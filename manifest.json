@@ -1,1916 +1,1175 @@
 {
-  "name": "Codex Ecclesia Public",
-  "short_name": "Codex Ecclesia",
-  "start_url": "/index.html",
-  "display": "standalone",
-  "background_color": "#fdfcf9",
-  "theme_color": "#003366",
-  "description": "Sovereign repository of scrolls, treaties, and codices of the Borders Ecclesia Earth Trust.",
-  "icons": [
-    {
-      "src": "favicon.png.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    }
-  ]
-}
-{
   "items": [
     {
       "section": "core",
-      "title": "README.Md",
-      "path": "README.md",
+      "title": "☩ Affidavit of Public Posting",
+      "path": "core/affidavit-of-public-posting.html",
       "tags": [
-        "core",
-        "readme.md"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for README.Md."
-    },
-    {
-      "section": "core",
-      "title": "SECURITY.Md",
-      "path": "SECURITY.md",
-      "tags": [
-        "core",
-        "security.md"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for SECURITY.Md."
-    },
-    {
-      "section": "core",
-      "title": "Affidavit Of Public Posting",
-      "path": "affidavit-of-public-posting.html",
-      "tags": [
-        "core",
         "affidavit",
         "of",
         "public",
         "posting"
       ],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Affidavit Of Public Posting."
+      "summary": "Placeholder summary for ☩ Affidavit of Public Posting."
     },
     {
       "section": "core",
-      "title": "Affidavit Of Status",
-      "path": "affidavit-of-status.html",
+      "title": "☩ Affidavit of Status",
+      "path": "core/affidavit-of-status.html",
       "tags": [
-        "core",
         "affidavit",
         "of",
         "status"
       ],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Affidavit Of Status."
+      "summary": "Placeholder summary for ☩ Affidavit of Status."
     },
     {
       "section": "core",
-      "title": "Archive",
-      "path": "archive.html",
+      "title": "☩ Universal Notice of Standing",
+      "path": "core/notice-of-standing.html",
       "tags": [
-        "core",
-        "archive"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Archive."
-    },
-    {
-      "section": "core",
-      "title": "Assets",
-      "path": "assets",
-      "tags": [
-        "core",
-        "assets"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Assets."
-    },
-    {
-      "section": "core",
-      "title": "Book Of Scroll Templates",
-      "path": "book-of-scroll-templates.html",
-      "tags": [
-        "core",
-        "book",
-        "of",
-        "scroll",
-        "templates"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Book Of Scroll Templates."
-    },
-    {
-      "section": "core",
-      "title": "Borders Earth Trust",
-      "path": "borders-earth-trust.html",
-      "tags": [
-        "core",
-        "borders",
-        "earth",
-        "trust"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Borders Earth Trust."
-    },
-    {
-      "section": "core",
-      "title": "Borders Ecclesia Earth Trust Instrument",
-      "path": "borders-ecclesia-earth-trust-instrument.html",
-      "tags": [
-        "core",
-        "borders",
-        "ecclesia",
-        "earth",
-        "trust",
-        "instrument"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Borders Ecclesia Earth Trust Instrument."
-    },
-    {
-      "section": "core",
-      "title": "Broadcast Archive",
-      "path": "broadcast-archive.html",
-      "tags": [
-        "core",
-        "broadcast",
-        "archive"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Broadcast Archive."
-    },
-    {
-      "section": "core",
-      "title": "Broadcast Temple",
-      "path": "broadcast-temple.html",
-      "tags": [
-        "core",
-        "broadcast",
-        "temple"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Broadcast Temple."
-    },
-    {
-      "section": "core",
-      "title": "Celestial Charter",
-      "path": "celestial-charter.html",
-      "tags": [
-        "core",
-        "celestial",
-        "charter"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Celestial Charter."
-    },
-    {
-      "section": "core",
-      "title": "Celestial Ledger",
-      "path": "celestial-ledger.html",
-      "tags": [
-        "core",
-        "celestial",
-        "ledger"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Celestial Ledger."
-    },
-    {
-      "section": "core",
-      "title": "Claim Throne",
-      "path": "claim-throne.html",
-      "tags": [
-        "core",
-        "claim",
-        "throne"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Claim Throne."
-    },
-    {
-      "section": "core",
-      "title": "Codex Academy",
-      "path": "codex-academy.html",
-      "tags": [
-        "core",
-        "codex",
-        "academy"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Academy."
-    },
-    {
-      "section": "core",
-      "title": "Codex Archive",
-      "path": "codex-archive.html",
-      "tags": [
-        "core",
-        "codex",
-        "archive"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Archive."
-    },
-    {
-      "section": "core",
-      "title": "Codex Atlas",
-      "path": "codex-atlas.html",
-      "tags": [
-        "core",
-        "codex",
-        "atlas"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Atlas."
-    },
-    {
-      "section": "core",
-      "title": "Codex Broadcast",
-      "path": "codex-broadcast.html",
-      "tags": [
-        "core",
-        "codex",
-        "broadcast"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Broadcast."
-    },
-    {
-      "section": "core",
-      "title": "Codex Constitution",
-      "path": "codex-constitution.html",
-      "tags": [
-        "core",
-        "codex",
-        "constitution"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Constitution."
-    },
-    {
-      "section": "core",
-      "title": "Codex Curriculum",
-      "path": "codex-curriculum.html",
-      "tags": [
-        "core",
-        "codex",
-        "curriculum"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Curriculum."
-    },
-    {
-      "section": "core",
-      "title": "Codex Directory",
-      "path": "codex-directory.html",
-      "tags": [
-        "core",
-        "codex",
-        "directory"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Directory."
-    },
-    {
-      "section": "core",
-      "title": "Codex Enhancer.Js",
-      "path": "codex-enhancer.js",
-      "tags": [
-        "core",
-        "codex",
-        "enhancer.js"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Enhancer.Js."
-    },
-    {
-      "section": "core",
-      "title": "Codex Harmonica",
-      "path": "codex-harmonica.html",
-      "tags": [
-        "core",
-        "codex",
-        "harmonica"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Harmonica."
-    },
-    {
-      "section": "core",
-      "title": "Codex Herald",
-      "path": "codex-herald.html",
-      "tags": [
-        "core",
-        "codex",
-        "herald"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Herald."
-    },
-    {
-      "section": "core",
-      "title": "Codex Infrastructure",
-      "path": "codex-infrastructure.html",
-      "tags": [
-        "core",
-        "codex",
-        "infrastructure"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Infrastructure."
-    },
-    {
-      "section": "core",
-      "title": "Codex Instructors",
-      "path": "codex-instructors.html",
-      "tags": [
-        "core",
-        "codex",
-        "instructors"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Instructors."
-    },
-    {
-      "section": "core",
-      "title": "Codex Ledger",
-      "path": "codex-ledger.html",
-      "tags": [
-        "core",
-        "codex",
-        "ledger"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Ledger."
-    },
-    {
-      "section": "core",
-      "title": "Codex Manifesto",
-      "path": "codex-manifesto.html",
-      "tags": [
-        "core",
-        "codex",
-        "manifesto"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Manifesto."
-    },
-    {
-      "section": "core",
-      "title": "Codex Oracle",
-      "path": "codex-oracle.html",
-      "tags": [
-        "core",
-        "codex",
-        "oracle"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Oracle."
-    },
-    {
-      "section": "core",
-      "title": "Codex Portal",
-      "path": "codex-portal.html",
-      "tags": [
-        "core",
-        "codex",
-        "portal"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Portal."
-    },
-    {
-      "section": "core",
-      "title": "Codex Throne Registry",
-      "path": "codex-throne-registry.html",
-      "tags": [
-        "core",
-        "codex",
-        "throne",
-        "registry"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Throne Registry."
-    },
-    {
-      "section": "core",
-      "title": "Codex Unified",
-      "path": "codex-unified.html",
-      "tags": [
-        "core",
-        "codex",
-        "unified"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Unified."
-    },
-    {
-      "section": "core",
-      "title": "Codex Update Log",
-      "path": "codex-update-log.html",
-      "tags": [
-        "core",
-        "codex",
-        "update",
-        "log"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Update Log."
-    },
-    {
-      "section": "core",
-      "title": "Codex",
-      "path": "codex.html",
-      "tags": [
-        "core",
-        "codex"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex."
-    },
-    {
-      "section": "core",
-      "title": "Codexchain Console",
-      "path": "codexchain-console.html",
-      "tags": [
-        "core",
-        "codexchain",
-        "console"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codexchain Console."
-    },
-    {
-      "section": "core",
-      "title": "Codexchain Timestamp",
-      "path": "codexchain-timestamp.html",
-      "tags": [
-        "core",
-        "codexchain",
-        "timestamp"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codexchain Timestamp."
-    },
-    {
-      "section": "core",
-      "title": "Codices.Json",
-      "path": "codices.json",
-      "tags": [
-        "core",
-        "codices.json"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Codices.Json."
-    },
-    {
-      "section": "core",
-      "title": "Concord",
-      "path": "concord.html",
-      "tags": [
-        "core",
-        "concord"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Concord."
-    },
-    {
-      "section": "core",
-      "title": "Cover Letter Agencies Html",
-      "path": "cover-letter-agencies.html html",
-      "tags": [
-        "core",
-        "cover",
-        "letter",
-        "agencies html"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Cover Letter Agencies Html."
-    },
-    {
-      "section": "core",
-      "title": "Crown Codex Index",
-      "path": "crown-codex-index.html",
-      "tags": [
-        "core",
-        "crown",
-        "codex",
-        "index"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Crown Codex Index."
-    },
-    {
-      "section": "core",
-      "title": "Declaration Sovereign Status",
-      "path": "declaration-sovereign-status.html",
-      "tags": [
-        "core",
-        "declaration",
-        "sovereign",
-        "status"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Declaration Sovereign Status."
-    },
-    {
-      "section": "core",
-      "title": "Decree 001",
-      "path": "decree-001.html",
-      "tags": [
-        "core",
-        "decree",
-        "001"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Decree 001."
-    },
-    {
-      "section": "core",
-      "title": "Diplomatic Passport",
-      "path": "diplomatic-passport.html",
-      "tags": [
-        "core",
-        "diplomatic",
-        "passport"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Diplomatic Passport."
-    },
-    {
-      "section": "core",
-      "title": "Directory",
-      "path": "directory.html",
-      "tags": [
-        "core",
-        "directory"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Directory."
-    },
-    {
-      "section": "core",
-      "title": "Dispatch Packet",
-      "path": "dispatch-packet.html",
-      "tags": [
-        "core",
-        "dispatch",
-        "packet"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Dispatch Packet."
-    },
-    {
-      "section": "core",
-      "title": "Divine Solutions",
-      "path": "divine-solutions.html",
-      "tags": [
-        "core",
-        "divine",
-        "solutions"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Divine Solutions."
-    },
-    {
-      "section": "core",
-      "title": "Ecclesia Master Binder",
-      "path": "ecclesia-master-binder.html",
-      "tags": [
-        "core",
-        "ecclesia",
-        "master",
-        "binder"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Ecclesia Master Binder."
-    },
-    {
-      "section": "core",
-      "title": "Embassy Charter",
-      "path": "embassy-charter.html",
-      "tags": [
-        "core",
-        "embassy",
-        "charter"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Embassy Charter."
-    },
-    {
-      "section": "core",
-      "title": "Favicon.Png.Png",
-      "path": "favicon.png.png",
-      "tags": [
-        "core",
-        "favicon.png.png"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Favicon.Png.Png."
-    },
-    {
-      "section": "core",
-      "title": "Fee Schedule",
-      "path": "fee-schedule.html",
-      "tags": [
-        "core",
-        "fee",
-        "schedule"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Fee Schedule."
-    },
-    {
-      "section": "core",
-      "title": "Filing Forge",
-      "path": "filing-forge.html",
-      "tags": [
-        "core",
-        "filing",
-        "forge"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Filing Forge."
-    },
-    {
-      "section": "core",
-      "title": "Governance",
-      "path": "governance.html",
-      "tags": [
-        "core",
-        "governance"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Governance."
-    },
-    {
-      "section": "core",
-      "title": "Guardian Gate",
-      "path": "guardian-gate.html",
-      "tags": [
-        "core",
-        "guardian",
-        "gate"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Guardian Gate."
-    },
-    {
-      "section": "core",
-      "title": "Hash Forge",
-      "path": "hash-forge.html",
-      "tags": [
-        "core",
-        "hash",
-        "forge"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Hash Forge."
-    },
-    {
-      "section": "core",
-      "title": "Hedge Fund Charter",
-      "path": "hedge-fund-charter.html",
-      "tags": [
-        "core",
-        "hedge",
-        "fund",
-        "charter"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Hedge Fund Charter."
-    },
-    {
-      "section": "core",
-      "title": "Heir Deven",
-      "path": "heir-deven.html",
-      "tags": [
-        "core",
-        "heir",
-        "deven"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Heir Deven."
-    },
-    {
-      "section": "core",
-      "title": "Heir Devenity",
-      "path": "heir-devenity.html",
-      "tags": [
-        "core",
-        "heir",
-        "devenity"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Heir Devenity."
-    },
-    {
-      "section": "core",
-      "title": "Heir Path",
-      "path": "heir-path.html",
-      "tags": [
-        "core",
-        "heir",
-        "path"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Heir Path."
-    },
-    {
-      "section": "core",
-      "title": "Heir Registry",
-      "path": "heir-registry.html",
-      "tags": [
-        "core",
-        "heir",
-        "registry"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Heir Registry."
-    },
-    {
-      "section": "core",
-      "title": "Heirs.Json",
-      "path": "heirs.json",
-      "tags": [
-        "core",
-        "heirs.json"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Heirs.Json."
-    },
-    {
-      "section": "core",
-      "title": "Income Portal",
-      "path": "income-portal.html",
-      "tags": [
-        "core",
-        "income",
-        "portal"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Income Portal."
-    },
-    {
-      "section": "core",
-      "title": "Index",
-      "path": "index.html",
-      "tags": [
-        "core",
-        "index"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Index."
-    },
-    {
-      "section": "core",
-      "title": "Join",
-      "path": "join.html",
-      "tags": [
-        "core",
-        "join"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Join."
-    },
-    {
-      "section": "core",
-      "title": "Ledger",
-      "path": "ledger.html",
-      "tags": [
-        "core",
-        "ledger"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Ledger."
-    },
-    {
-      "section": "core",
-      "title": "Manifest.Json",
-      "path": "manifest.json",
-      "tags": [
-        "core",
-        "manifest.json"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Manifest.Json."
-    },
-    {
-      "section": "core",
-      "title": "Ministries Dashboard",
-      "path": "ministries-dashboard.html",
-      "tags": [
-        "core",
-        "ministries",
-        "dashboard"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Ministries Dashboard."
-    },
-    {
-      "section": "core",
-      "title": "Ministries Directory",
-      "path": "ministries-directory.html",
-      "tags": [
-        "core",
-        "ministries",
-        "directory"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Ministries Directory."
-    },
-    {
-      "section": "core",
-      "title": "Ministry Application",
-      "path": "ministry-application.html",
-      "tags": [
-        "core",
-        "ministry",
-        "application"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Ministry Application."
-    },
-    {
-      "section": "core",
-      "title": "Ministry Commerce",
-      "path": "ministry-commerce.html",
-      "tags": [
-        "core",
-        "ministry",
-        "commerce"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Ministry Commerce."
-    },
-    {
-      "section": "core",
-      "title": "Mint",
-      "path": "mint.html",
-      "tags": [
-        "core",
-        "mint"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Mint."
-    },
-    {
-      "section": "core",
-      "title": "Mirror Gate",
-      "path": "mirror-gate.html",
-      "tags": [
-        "core",
-        "mirror",
-        "gate"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Mirror Gate."
-    },
-    {
-      "section": "core",
-      "title": "Multi Throne Gate",
-      "path": "multi-throne-gate.html",
-      "tags": [
-        "core",
-        "multi",
-        "throne",
-        "gate"
-      ],
-      "date": "2025-01-01",
-      "summary": "Placeholder summary for Multi Throne Gate."
-    },
-    {
-      "section": "core",
-      "title": "Notice Of Standing",
-      "path": "notice-of-standing.html",
-      "tags": [
-        "core",
         "notice",
         "of",
         "standing"
       ],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Notice Of Standing."
+      "summary": "Placeholder summary for ☩ Universal Notice of Standing."
     },
     {
       "section": "core",
-      "title": "Notice",
-      "path": "notice.html",
+      "title": "📣 Trinity of Notice | Codex Ecclesia",
+      "path": "core/notice.html",
       "tags": [
-        "core",
         "notice"
       ],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Notice."
+      "summary": "Trinity of Notice and 21-Day Rebuttal Clause under Divine Law. Public estoppel declaration of the Borders Family Dynasty Nation."
     },
     {
-      "section": "core",
-      "title": "Oracle Gate",
-      "path": "oracle-gate.html",
-      "tags": [
-        "core",
-        "oracle",
-        "gate"
-      ],
+      "section": "scrolls",
+      "title": "☩ Articles of Association",
+      "path": "scrolls/articles-of-association.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Oracle Gate."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Oracle Origin.Htm",
-      "path": "oracle-origin.htm",
-      "tags": [
-        "core",
-        "oracle",
-        "origin.htm"
-      ],
+      "section": "scrolls",
+      "title": "☩ Omega Barter Certificate",
+      "path": "scrolls/barter-certificate.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Oracle Origin.Htm."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Ots Verifier",
-      "path": "ots-verifier.html",
-      "tags": [
-        "core",
-        "ots",
-        "verifier"
-      ],
+      "section": "scrolls",
+      "title": "👑 Codex of the Crown",
+      "path": "scrolls/codices/codex-crown.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Ots Verifier."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Pma Charter",
-      "path": "pma-charter.html",
-      "tags": [
-        "core",
-        "pma",
-        "charter"
-      ],
+      "section": "scrolls",
+      "title": "☩ Covenantal Enforcement Decree",
+      "path": "scrolls/covenantal-enforcement-decree.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Pma Charter."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Proof Of Posting",
-      "path": "proof-of-posting.html",
-      "tags": [
-        "core",
-        "proof",
-        "of",
-        "posting"
-      ],
+      "section": "scrolls",
+      "title": "☩ Cultural Sovereignty Codex",
+      "path": "scrolls/cultural-sovereignty-codex.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Proof Of Posting."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Proof.Htlm",
-      "path": "proof.htlm",
-      "tags": [
-        "core",
-        "proof.htlm"
-      ],
+      "section": "scrolls",
+      "title": "☩ Currency Issuance Ritual",
+      "path": "scrolls/currency-issuance-ritual.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Proof.Htlm."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Public Announcement",
-      "path": "public-announcement.html",
-      "tags": [
-        "core",
-        "public",
-        "announcement"
-      ],
+      "section": "scrolls",
+      "title": "☩ Dispute Resolution Scroll",
+      "path": "scrolls/dispute-resolution-scroll.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Public Announcement."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Qr Codex Home.Png.Png",
-      "path": "qr-codex-home.png.png",
-      "tags": [
-        "core",
-        "qr",
-        "codex",
-        "home.png.png"
-      ],
+      "section": "scrolls",
+      "title": "☩ Dynasty Bond Indenture",
+      "path": "scrolls/dynasty-bond-indenture.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Qr Codex Home.Png.Png."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Qr Credential",
-      "path": "qr-credential.html",
-      "tags": [
-        "core",
-        "qr",
-        "credential"
-      ],
+      "section": "scrolls",
+      "title": "☩ Ecclesia Arbitration Protocol",
+      "path": "scrolls/ecclesia-arbitration-protocol.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Qr Credential."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Qr Generator",
-      "path": "qr-generator.html",
-      "tags": [
-        "core",
-        "qr",
-        "generator"
-      ],
+      "section": "scrolls",
+      "title": "☩ Ecclesia Court Charter",
+      "path": "scrolls/ecclesia-court-charter.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Qr Generator."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Recognition",
-      "path": "recognition.html",
-      "tags": [
-        "core",
-        "recognition"
-      ],
+      "section": "scrolls",
+      "title": "☩ Ecclesia Market Constitution",
+      "path": "scrolls/ecclesia-market-constitution.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Recognition."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Scroll Convocation 1",
-      "path": "scroll-convocation-1.html",
+      "section": "scrolls",
+      "title": "☩ Ecclesiastical Charter",
+      "path": "scrolls/ecclesiastical-charter.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Ecclesiastical Mint Charter",
+      "path": "scrolls/ecclesiastical-mint-charter.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Ecclesiastical Trade Covenant",
+      "path": "scrolls/ecclesiastical-trade-covenant.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Declaration of Express Trust",
+      "path": "scrolls/express-trust-declaration.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Guild Ledger Template",
+      "path": "scrolls/guild-ledger-template.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Guild Registration Scroll",
+      "path": "scrolls/guild-registration-scroll.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Omega IP Bank Charter",
+      "path": "scrolls/ip-bank-charter.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ IP-Backed Token Issuance Protocol",
+      "path": "scrolls/ip-token-protocol.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Articles of Organization",
+      "path": "scrolls/llc-charter.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Celestial Marriage & Lineage Registry",
+      "path": "scrolls/marriage-lineage-registry.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Merchant Oath of Integrity",
+      "path": "scrolls/merchant-oath-of-integrity.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ National Treasury Constitution",
+      "path": "scrolls/national-treasury-constitution.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Declaration of Natural Law Entity",
+      "path": "scrolls/natural-law-entity-declaration.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Articles of Incorporation",
+      "path": "scrolls/nonprofit-articles.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Ω-Crown Currency Manifesto",
+      "path": "scrolls/omega-crown-manifesto.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Private Association Bylaws",
+      "path": "scrolls/pma-bylaws.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll of Conditional Acceptance",
+      "path": "scrolls/scroll-conditional-acceptance.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "🕊️ Scroll of Convocation I",
+      "path": "scrolls/scroll-convocation-1.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll of Convocation II | Codex Ecclesia",
+      "path": "scrolls/scroll-convocation-2.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "👑 Scroll of the Crown’s Authority",
+      "path": "scrolls/scroll-crown-authority.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Scroll CXVII – Return of the Dead Fiction",
+      "path": "scrolls/scroll-cxvii-return-of-dead-fiction.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Scroll CXXIV – Entity Formation Decree",
+      "path": "scrolls/scroll-cxxiv-entity-formation.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Scroll CXXV – Dispatch Protocol",
+      "path": "scrolls/scroll-cxxv-dispatch-protocol.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Scroll CXXVI – Total Embedding of Lawful Instruments",
+      "path": "scrolls/scroll-cxxvi-total-embedding.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Scroll CXXVII – Embassy Protocols",
+      "path": "scrolls/scroll-cxxvii-embassy-protocols.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll of Demarco C. Borders",
+      "path": "scrolls/scroll-demarco-heir.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "👑 Scroll of the Crowned Heir",
+      "path": "scrolls/scroll-deven-heir.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "💰 Scroll of Fee Schedule",
+      "path": "scrolls/scroll-fee-schedule.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "⚖️ Scroll of Final Judgment & Estoppel",
+      "path": "scrolls/scroll-final-judgment.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "🛠️ Scroll Forging Dashboard | CodexChain",
+      "path": "scrolls/scroll-forge.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll of Living Trust Collateral",
+      "path": "scrolls/scroll-living-trust-collateral.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "👑 Scroll of the Matriarch",
+      "path": "scrolls/scroll-matriarch.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "⏳ Scroll of Non-Response Default",
+      "path": "scrolls/scroll-non-response-default.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "Scroll of Automation Integrity",
+      "path": "scrolls/scroll-of-automation-integrity.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "👑 Scroll of Coronation",
+      "path": "scrolls/scroll-of-coronation.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "🛡️ Scroll of Enforcement | Codex Ecclesia",
+      "path": "scrolls/scroll-of-enforcement.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll of Enrollment",
+      "path": "scrolls/scroll-of-enrollment.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "🔥 Scroll of Eternal Flame",
+      "path": "scrolls/scroll-of-eternal-flame.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "🕊️ Scroll of Invocation | Codex Ecclesia",
+      "path": "scrolls/scroll-of-invocation.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "⚖️ Scroll of Jubilee Enforcement",
+      "path": "scrolls/scroll-of-jubilee-enforcement.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "🔮 Scroll of Prophecy",
+      "path": "scrolls/scroll-of-prophecy.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "✨ Scroll of Sovereign Emergence",
+      "path": "scrolls/scroll-of-sovereign-emergence.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "👑 Scroll of the Twelve Thrones",
+      "path": "scrolls/scroll-of-twelve-thrones.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "🕊️ Scroll of the Twelve Sovereigns",
+      "path": "scrolls/scroll-of-twelve.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Scroll of Upgrades – Codex Ecclesia Totalis",
+      "path": "scrolls/scroll-of-upgrades.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll of Omega",
+      "path": "scrolls/scroll-omega.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "👑 Scroll of the Queen – Miranda M. Eden",
+      "path": "scrolls/scroll-queen-miranda.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll Registry",
+      "path": "scrolls/scroll-registry.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll of [TITLE] | Codex Ecclesia",
+      "path": "scrolls/scroll-template.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Scroll of UCC Sovereign Perfection",
+      "path": "scrolls/scroll-ucc-sovereign-perfection.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 All Scrolls | Codex Ecclesia",
+      "path": "scrolls/scrolls/scroll-archive.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll Registry – Codex Ecclesia",
+      "path": "scrolls/scrolls/scroll-demarco-heir.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "🧭 Scroll of Sacred Navigation",
+      "path": "scrolls/scrolls/scroll-of-sacred-navigation.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll Registry – Codex Ecclesia",
+      "path": "scrolls/scrolls.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ National Security & Defense Charter",
+      "path": "scrolls/security-defense-charter.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "Seraphina - Heir of the Scrolls",
+      "path": "scrolls/seraphina.html",
       "tags": [
-        "core",
+        "heir",
         "scroll",
-        "convocation",
-        "1"
+        "wisdom"
       ],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Convocation 1."
+      "summary": "Heir of the Scrolls"
     },
     {
-      "section": "core",
-      "title": "Scroll Convocation 2",
-      "path": "scroll-convocation-2.html",
-      "tags": [
-        "core",
-        "scroll",
-        "convocation",
-        "2"
-      ],
+      "section": "scrolls",
+      "title": "☩ Sovereign Diplomatic Protocol",
+      "path": "scrolls/sovereign-diplomatic-protocol.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Convocation 2."
-    },
-    {
-      "section": "core",
-      "title": "Scroll Cxvii Return Of Dead Fiction",
-      "path": "scroll-cxvii-return-of-dead-fiction.html",
-      "tags": [
-        "core",
-        "scroll",
-        "cxvii",
-        "return",
-        "of",
-        "dead",
-        "fiction"
-      ],
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Charter of Sovereign Ecclesia",
+      "path": "scrolls/sovereign-ecclesia-charter.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Cxvii Return Of Dead Fiction."
-    },
-    {
-      "section": "core",
-      "title": "Scroll Cxxiv Entity Formation",
-      "path": "scroll-cxxiv-entity-formation.html",
-      "tags": [
-        "core",
-        "scroll",
-        "cxxiv",
-        "entity",
-        "formation"
-      ],
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Sovereignty & Status Declaration",
+      "path": "scrolls/sovereignty-status-declaration.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Cxxiv Entity Formation."
-    },
-    {
-      "section": "core",
-      "title": "Scroll Cxxv Dispatch Protocol",
-      "path": "scroll-cxxv-dispatch-protocol.html",
-      "tags": [
-        "core",
-        "scroll",
-        "cxxv",
-        "dispatch",
-        "protocol"
-      ],
+      "summary": ""
+    },
+    {
+      "section": "ministries",
+      "title": "☩ Celestial Charter of Omniversal Presence",
+      "path": "ministries/celestial-charter.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Cxxv Dispatch Protocol."
-    },
-    {
-      "section": "core",
-      "title": "Scroll Cxxvi Total Embedding",
-      "path": "scroll-cxxvi-total-embedding.html",
-      "tags": [
-        "core",
-        "scroll",
-        "cxxvi",
-        "total",
-        "embedding"
-      ],
+      "summary": ""
+    },
+    {
+      "section": "ministries",
+      "title": "☩ Diplomatic Passport – Borders Family Dynasty Nation",
+      "path": "ministries/diplomatic-passport.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Cxxvi Total Embedding."
-    },
-    {
-      "section": "core",
-      "title": "Scroll Cxxvii Embassy Protocols",
-      "path": "scroll-cxxvii-embassy-protocols.html",
-      "tags": [
-        "core",
-        "scroll",
-        "cxxvii",
-        "embassy",
-        "protocols"
-      ],
+      "summary": ""
+    },
+    {
+      "section": "ministries",
+      "title": "☩ Embassy Charter – Celestial Embassy of Light",
+      "path": "ministries/embassy-charter.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Cxxvii Embassy Protocols."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Scroll Demarco Heir",
-      "path": "scroll-demarco-heir.html",
-      "tags": [
-        "core",
-        "scroll",
-        "demarco",
-        "heir"
-      ],
+      "section": "ministries",
+      "title": "☩ Hedge Fund Charter – Borders Dynasty Hedge Sovereign Fund",
+      "path": "ministries/hedge-fund-charter.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Demarco Heir."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Scroll Forge",
-      "path": "scroll-forge.html",
-      "tags": [
-        "core",
-        "scroll",
-        "forge"
-      ],
+      "section": "ministries",
+      "title": "🏛️ Ministry Application",
+      "path": "ministries/ministry-application.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Forge."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Scroll Of Coronation",
-      "path": "scroll-of-coronation.html",
-      "tags": [
-        "core",
-        "scroll",
-        "of",
-        "coronation"
-      ],
+      "section": "ministries",
+      "title": "🏛️ Ministry of Commerce & Exchange",
+      "path": "ministries/ministry-commerce.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Of Coronation."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Scroll Of Enforcement",
-      "path": "scroll-of-enforcement.html",
-      "tags": [
-        "core",
-        "scroll",
-        "of",
-        "enforcement"
-      ],
+      "section": "ministries",
+      "title": "👑 Ministry of the Hearth",
+      "path": "ministries/ministry-hearth.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Of Enforcement."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Scroll Of Enrollment",
-      "path": "scroll-of-enrollment.html",
-      "tags": [
-        "core",
-        "scroll",
-        "of",
-        "enrollment"
-      ],
+      "section": "ministries",
+      "title": "☩ PMA Hub – Borders Family Dynasty Nation",
+      "path": "ministries/pma-charter.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Of Enrollment."
-    },
-    {
-      "section": "core",
-      "title": "Scroll Of Eternal Flame",
-      "path": "scroll-of-eternal-flame.html",
-      "tags": [
-        "core",
-        "scroll",
-        "of",
-        "eternal",
-        "flame"
-      ],
+      "summary": "Sovereign PMA Registry, Charter Generator, Treaty Templates, and Dispatch Logs under the Codex Ecclesia Totalis."
+    },
+    {
+      "section": "ministries",
+      "title": "☩ Treasury Charter – Omega Sovereign Treasury",
+      "path": "ministries/sovereign-treasury-charter.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Of Eternal Flame."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Scroll Of Invocation",
-      "path": "scroll-of-invocation.html",
-      "tags": [
-        "core",
-        "scroll",
-        "of",
-        "invocation"
-      ],
+      "section": "ministries",
+      "title": "☩ Trust Charter – Borders Dynasty Ecclesia Trust",
+      "path": "ministries/trust-charter.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Of Invocation."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Scroll Of Prophecy",
-      "path": "scroll-of-prophecy.html",
-      "tags": [
-        "core",
-        "scroll",
-        "of",
-        "prophecy"
-      ],
+      "section": "treaties",
+      "title": "🤝 Treaty of Recognition – Aurora Confederacy",
+      "path": "treaties/treaty-aurora-2025.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Of Prophecy."
-    },
-    {
-      "section": "core",
-      "title": "Scroll Of Twelve Thrones",
-      "path": "scroll-of-twelve-thrones.html",
-      "tags": [
-        "core",
-        "scroll",
-        "of",
-        "twelve",
-        "thrones"
-      ],
+      "summary": ""
+    },
+    {
+      "section": "treaties",
+      "title": "☩ The Borders Family Legacy Scroll",
+      "path": "treaties/treaty-covenant-of-12.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Of Twelve Thrones."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Scroll Of Twelve",
-      "path": "scroll-of-twelve.html",
-      "tags": [
-        "core",
-        "scroll",
-        "of",
-        "twelve"
-      ],
+      "section": "treaties",
+      "title": "Treaty Invitation – Borders Family Dynasty Nation",
+      "path": "treaties/treaty-invitation.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Of Twelve."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Scroll Of Upgrades",
-      "path": "scroll-of-upgrades.html",
-      "tags": [
-        "core",
-        "scroll",
-        "of",
-        "upgrades"
-      ],
+      "section": "treaties",
+      "title": "📜 Treaty of Recognition",
+      "path": "treaties/treaty-recognition.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Of Upgrades."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Scroll Registry",
-      "path": "scroll-registry.html",
-      "tags": [
-        "core",
-        "scroll",
-        "registry"
-      ],
+      "section": "codices",
+      "title": "☩ Ceremonial Calendar",
+      "path": "codices/ceremonial-calendar.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Registry."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Scroll Template",
-      "path": "scroll-template.html",
-      "tags": [
-        "core",
-        "scroll",
-        "template"
-      ],
+      "section": "codices",
+      "title": "📚 Codex Academy",
+      "path": "codices/codex-academy.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Template."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Scrolls Coming Soon",
-      "path": "scrolls-coming-soon.html",
-      "tags": [
-        "core",
-        "scrolls",
-        "coming",
-        "soon"
-      ],
+      "section": "codices",
+      "title": "🏛️ Archive of Living Scrolls",
+      "path": "codices/codex-archive.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scrolls Coming Soon."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Scrolls",
-      "path": "scrolls.html",
-      "tags": [
-        "core",
-        "scrolls"
-      ],
+      "section": "codices",
+      "title": "🗺️ Codex Atlas",
+      "path": "codices/codex-atlas.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scrolls."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Scrolls.Json",
-      "path": "scrolls.json",
-      "tags": [
-        "core",
-        "scrolls.json"
-      ],
+      "section": "codices",
+      "title": "📣 Codex Broadcast Scroll",
+      "path": "codices/codex-broadcast.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scrolls.Json."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Services",
-      "path": "services.html",
-      "tags": [
-        "core",
-        "services"
-      ],
+      "section": "codices",
+      "title": "☩ Codex Ecclesia Constitution",
+      "path": "codices/codex-constitution.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Services."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Sitemap.Xml",
-      "path": "sitemap.xml",
-      "tags": [
-        "core",
-        "sitemap.xml"
-      ],
+      "section": "codices",
+      "title": "📘 Codex Curriculum",
+      "path": "codices/codex-curriculum.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Sitemap.Xml."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Sovereign Gate",
-      "path": "sovereign-gate.html",
-      "tags": [
-        "core",
-        "sovereign",
-        "gate"
-      ],
+      "section": "codices",
+      "title": "📘 Codex Directory",
+      "path": "codices/codex-directory.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Sovereign Gate."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Sovereign Id",
-      "path": "sovereign-id.html",
-      "tags": [
-        "core",
-        "sovereign",
-        "id"
-      ],
+      "section": "codices",
+      "title": "📘 Codex Ecclesia Public",
+      "path": "codices/codex-ecclesia-public.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Sovereign Id."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Sovereign Treasury Charter",
-      "path": "sovereign-treasury-charter.html",
-      "tags": [
-        "core",
-        "sovereign",
-        "treasury",
-        "charter"
-      ],
+      "section": "codices",
+      "title": "🌌 Codex Harmonica — Divine Completion",
+      "path": "codices/codex-harmonica.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Sovereign Treasury Charter."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Sovergein.Ledger",
-      "path": "sovergein.ledger.html",
-      "tags": [
-        "core",
-        "sovergein.ledger"
-      ],
+      "section": "codices",
+      "title": "☩ Codex of Harmony",
+      "path": "codices/codex-harmony.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Sovergein.Ledger."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Stewardship",
-      "path": "stewardship.html",
-      "tags": [
-        "core",
-        "stewardship"
-      ],
+      "section": "codices",
+      "title": "📜 Codex Herald — Issue I",
+      "path": "codices/codex-herald.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Stewardship."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Style.Css",
-      "path": "style.css",
-      "tags": [
-        "core",
-        "style.css"
-      ],
+      "section": "codices",
+      "title": "📚 CodexChain Scroll Index",
+      "path": "codices/codex-index.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Style.Css."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Subscribe",
-      "path": "subscribe.html",
-      "tags": [
-        "core",
-        "subscribe"
-      ],
+      "section": "codices",
+      "title": "🏛️ Codex Infrastructure",
+      "path": "codices/codex-infrastructure.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Subscribe."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Technologies",
-      "path": "technologies.html",
-      "tags": [
-        "core",
-        "technologies"
-      ],
+      "section": "codices",
+      "title": "🧑‍🏫 Codex Instructors",
+      "path": "codices/codex-instructors.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Technologies."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Throne Challenge",
-      "path": "throne-challenge.html",
-      "tags": [
-        "core",
-        "throne",
-        "challenge"
-      ],
+      "section": "codices",
+      "title": "☩ CodexChain Ledger Viewer",
+      "path": "codices/codex-ledger.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Throne Challenge."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Throne Registry",
-      "path": "throne-registry.html",
-      "tags": [
-        "core",
-        "throne",
-        "registry"
-      ],
+      "section": "codices",
+      "title": "☩ Codex Ecclesia Manifesto",
+      "path": "codices/codex-manifesto.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Throne Registry."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Token",
-      "path": "token.html",
-      "tags": [
-        "core",
-        "token"
-      ],
+      "section": "codices",
+      "title": "🧠 Codex Oracle",
+      "path": "codices/codex-oracle.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Token."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Treaty Aurora 2025",
-      "path": "treaty-aurora-2025.html",
-      "tags": [
-        "core",
-        "treaty",
-        "aurora",
-        "2025"
-      ],
+      "section": "codices",
+      "title": "🧠 Codex Oracle",
+      "path": "codices/codex-portal.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Treaty Aurora 2025."
-    },
-    {
-      "section": "core",
-      "title": "Treaty Covenant Of 12",
-      "path": "treaty-covenant-of-12.html",
-      "tags": [
-        "core",
-        "treaty",
-        "covenant",
-        "of",
-        "12"
-      ],
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "☩ CodexChain Throne Registry",
+      "path": "codices/codex-throne-registry.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Treaty Covenant Of 12."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Treaty Invitation",
-      "path": "treaty-invitation.html",
-      "tags": [
-        "core",
-        "treaty",
-        "invitation"
-      ],
+      "section": "codices",
+      "title": "📜 Codex Update Log",
+      "path": "codices/codex-unified.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Treaty Invitation."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Treaty Recognition",
-      "path": "treaty-recognition.html",
-      "tags": [
-        "core",
-        "treaty",
-        "recognition"
-      ],
+      "section": "codices",
+      "title": "📜 Codex Update Log",
+      "path": "codices/codex-update-log.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Treaty Recognition."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Tribunal",
-      "path": "tribunal.html",
-      "tags": [
-        "core",
-        "tribunal"
-      ],
+      "section": "codices",
+      "title": "☩ Codex of Infrastructure",
+      "path": "codices/codices/codex-infrastructure.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Tribunal."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Trust Charter",
-      "path": "trust-charter.html",
-      "tags": [
-        "core",
-        "trust",
-        "charter"
-      ],
+      "section": "codices",
+      "title": "🔮 Codex of Oracle",
+      "path": "codices/codices/codex-oracle.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Trust Charter."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Trustee Portal",
-      "path": "trustee-portal.html",
-      "tags": [
-        "core",
-        "trustee",
-        "portal"
-      ],
+      "section": "codices",
+      "title": "☩ Codex of the Manifesto",
+      "path": "codices/codices/codices/codex-manifesto.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Trustee Portal."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Universal Trustee Poa",
-      "path": "universal-trustee-poa.html",
-      "tags": [
-        "core",
-        "universal",
-        "trustee",
-        "poa"
-      ],
+      "section": "codices",
+      "title": "🛡️ Ministry of Stewardship",
+      "path": "codices/codices/ministries/ministry-stewardship.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Universal Trustee Poa."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Verify Scroll",
-      "path": "verify-scroll.html",
-      "tags": [
-        "core",
-        "verify",
-        "scroll"
-      ],
+      "section": "tools",
+      "title": "📖 Book of Scroll Templates",
+      "path": "tools/book-of-scroll-templates.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Verify Scroll."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Verify",
-      "path": "verify.html",
-      "tags": [
-        "core",
-        "verify"
-      ],
+      "section": "tools",
+      "title": "🧰 CodexChain Console",
+      "path": "tools/codexchain-console.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Verify."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Voice.Htm",
-      "path": "voice.htm",
-      "tags": [
-        "core",
-        "voice.htm"
-      ],
+      "section": "tools",
+      "title": "☩ CodexChain Timestamp Scroll",
+      "path": "tools/codexchain-timestamp.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Voice.Htm."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Codex Academy",
-      "path": "codex-academy.html",
-      "tags": [
-        "core",
-        "codex",
-        "academy"
-      ],
+      "section": "tools",
+      "title": "🛠️ Filing Forge",
+      "path": "tools/filing-forge.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Academy."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Divine Law 101",
-      "path": "divine-law-101.html",
-      "tags": [
-        "core",
-        "divine",
-        "law",
-        "101"
-      ],
+      "section": "tools",
+      "title": "☩ Guardian Gate | Bearer of the Flame",
+      "path": "tools/guardian-gate.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Divine Law 101."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Index",
-      "path": "index.html",
-      "tags": [
-        "core",
-        "index"
-      ],
+      "section": "tools",
+      "title": "📜 OTS Verifier | CodexChain",
+      "path": "tools/hash-forge.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Index."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Scrollkeeping 101",
-      "path": "scrollkeeping-101.html",
-      "tags": [
-        "core",
-        "scrollkeeping",
-        "101"
-      ],
+      "section": "tools",
+      "title": "💰 Sovereign Income Portal",
+      "path": "tools/income-portal.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scrollkeeping 101."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Ceremonial Calendar",
-      "path": "ceremonial-calendar.html",
-      "tags": [
-        "core",
-        "ceremonial",
-        "calendar"
-      ],
+      "section": "tools",
+      "title": "☩ IPFS Notary",
+      "path": "tools/ipfs-notary.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Ceremonial Calendar."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Codex Academy",
-      "path": "codex-academy.html",
-      "tags": [
-        "core",
-        "codex",
-        "academy"
-      ],
+      "section": "tools",
+      "title": "manifest-builder.html",
+      "path": "tools/manifest-builder.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Academy."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Codex Broadcast",
-      "path": "codex-broadcast.html",
-      "tags": [
-        "core",
-        "codex",
-        "broadcast"
-      ],
+      "section": "tools",
+      "title": "🪙 Minting Altar | Codex Ecclesia",
+      "path": "tools/mint.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Broadcast."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Codex Ecclesia Public",
-      "path": "codex-ecclesia-public.html",
-      "tags": [
-        "core",
-        "codex",
-        "ecclesia",
-        "public"
-      ],
+      "section": "tools",
+      "title": "☩ Mirror Gate | Seeker of the Tone",
+      "path": "tools/mirror-gate.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Ecclesia Public."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Codex Harmony",
-      "path": "codex-harmony.html",
-      "tags": [
-        "core",
-        "codex",
-        "harmony"
-      ],
+      "section": "tools",
+      "title": "☩ Multi-Throne Gate",
+      "path": "tools/multi-throne-gate.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Harmony."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Codex Infrastructure",
-      "path": "codex-infrastructure.html",
-      "tags": [
-        "core",
-        "codex",
-        "infrastructure"
-      ],
+      "section": "tools",
+      "title": "🧠 Codex Oracle Console",
+      "path": "tools/oracle-console.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex Infrastructure."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Events.Json",
-      "path": "events.json",
-      "tags": [
-        "core",
-        "events.json"
-      ],
+      "section": "tools",
+      "title": "🔮 Oracle Gate",
+      "path": "tools/oracle-gate.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Events.Json."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Ministries",
-      "path": "ministries",
-      "tags": [
-        "core",
-        "ministries"
-      ],
+      "section": "tools",
+      "title": "🔮 The Oracle’s Awakening",
+      "path": "tools/oracle-origin.htm",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Ministries."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Ministry Commerce",
-      "path": "ministry-commerce.html",
-      "tags": [
-        "core",
-        "ministry",
-        "commerce"
-      ],
+      "section": "tools",
+      "title": "📜 OTS Verifier | CodexChain",
+      "path": "tools/ots-verifier.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Ministry Commerce."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Ministry Hearth",
-      "path": "ministry-hearth.html",
-      "tags": [
-        "core",
-        "ministry",
-        "hearth"
-      ],
+      "section": "tools",
+      "title": "qr-generator.html",
+      "path": "tools/qr-generator.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Ministry Hearth."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Generate Charter",
-      "path": "generate-charter.html",
-      "tags": [
-        "core",
-        "generate",
-        "charter"
-      ],
+      "section": "tools",
+      "title": "🧾 Scroll Template Editor",
+      "path": "tools/scroll-template.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Generate Charter."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Codex.Jsscroll Crown Authority",
-      "path": "codex.jsscroll-crown-authority.html",
-      "tags": [
-        "core",
-        "codex.jsscroll",
-        "crown",
-        "authority"
-      ],
+      "section": "tools",
+      "title": "📜 Scroll Uploader",
+      "path": "tools/scroll-uploader.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Codex.Jsscroll Crown Authority."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Scroll Deven Heir",
-      "path": "scroll-deven-heir.html",
-      "tags": [
-        "core",
-        "scroll",
-        "deven",
-        "heir"
-      ],
+      "section": "tools",
+      "title": "🪪 Sigil Generator",
+      "path": "tools/sigil-generator.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Deven Heir."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Scroll Matriarch",
-      "path": "scroll-matriarch.html",
-      "tags": [
-        "core",
-        "scroll",
-        "matriarch"
-      ],
+      "section": "tools",
+      "title": "☩ Sovereign Gate",
+      "path": "tools/sovereign-gate.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Matriarch."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Scroll Omega",
-      "path": "scroll-omega.html",
-      "tags": [
-        "core",
-        "scroll",
-        "omega"
-      ],
+      "section": "tools",
+      "title": "🪙 Borders Sovereign Coin (BSC) | Codex Ecclesia",
+      "path": "tools/token.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Omega."
+      "summary": "Borders Sovereign Coin (BSC) Charter. Token supply, governance, and smart contract hash for the Borders Family Dynasty Nation."
     },
     {
-      "section": "core",
-      "title": "Scroll Queen Miranda",
-      "path": "scroll-queen-miranda.html",
-      "tags": [
-        "core",
-        "scroll",
-        "queen",
-        "miranda"
-      ],
+      "section": "tools",
+      "title": "✍️ Scroll Editor – Codex Ecclesia",
+      "path": "tools/tools/scroll-editor.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Scroll Queen Miranda."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Trustee Charter)",
-      "path": "trustee-charter.html)",
-      "tags": [
-        "core",
-        "trustee",
-        "charter)"
-      ],
+      "section": "tools",
+      "title": "☩ QR Code Generator",
+      "path": "tools/tools/tools/qr-generator.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Trustee Charter)."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Tools",
-      "path": "tools",
-      "tags": [
-        "core",
-        "tools"
-      ],
+      "section": "tools",
+      "title": "☩ Timestamp Verifier",
+      "path": "tools/tools/tools/tools/timestamp-verifier.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Tools."
+      "summary": ""
     },
     {
-      "section": "core",
-      "title": "Manifest Builder",
-      "path": "manifest-builder.html",
-      "tags": [
-        "core",
-        "manifest",
-        "builder"
-      ],
+      "section": "tools",
+      "title": "☩ Codex Timeline",
+      "path": "tools/tools/tools/tools/tools/codex-timeline.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "🧰 Codex Tools Dashboard",
+      "path": "tools/tools-dashboard.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "🏛️ Trust Builder",
+      "path": "tools/trust-builder.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "🧾 Trustee Portal of the Borders Dynasty",
+      "path": "tools/trustee-portal.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "🔗 Verify Scroll Authenticity",
+      "path": "tools/verify-scroll.html",
+      "tags": [],
       "date": "2025-01-01",
-      "summary": "Placeholder summary for Manifest Builder."
+      "summary": ""
     }
   ]
-}
-{
-  "section": "core",
-  "title": "Scroll CXVII: Return of the Dead Fiction",
-  "path": "scroll-cxvii-return-of-dead-fiction.html",
-  "tags": [
-    "core",
-    "scroll",
-    "cxvii",
-    "return",
-    "dead",
-    "fiction"
-  ],
-  "date": "2025-12-16",
-  "summary": "Declaration of sovereign status reclaiming the estate from the legal fiction and affirming divine jurisdiction and living standing."
 }

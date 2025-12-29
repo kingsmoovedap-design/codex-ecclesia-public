@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>☩ Trust Charter – Borders Dynasty Ecclesia Trust</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 960px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1, h2, h3 {
+      color: #5e3b1d;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    h3 {
+      margin-top: 2rem;
+      font-size: 1.3rem;
+      border-bottom: 1px solid #d4af37;
+      padding-bottom: 0.3rem;
+      text-align: left;
+    }
+    p {
+      line-height: 1.6;
+      margin: 1rem 0;
+    }
+    ul {
+      padding-left: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #5e3b1d;
+      text-decoration: none;
+      border-bottom: 1px dashed #5e3b1d;
+    }
+    a:hover {
+      color: #003366;
+      border-bottom: 1px solid #003366;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode h1, .dark-mode h2, .dark-mode h3 {
+      color: #f0d98c;
+    }
+    .dark-mode a {
+      color: #f0d98c;
+      border-bottom: 1px dashed #f0d98c;
+    }
+    .dark-mode a:hover {
+      color: #ffcc99;
+      border-bottom: 1px solid #ffcc99;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <h1>☩ Trust Charter: Borders Dynasty Ecclesia Trust</h1>
+  <h2>Borders Family Dynasty Nation</h2>
+  <p style="text-align:center;"><strong>Filed:</strong> CL‑065 &nbsp;|&nbsp; <strong>Date:</strong> 16 December 2025</p>
+
+  <h3>☩ I. Formation</h3>
+  <p>This Trust is formed by the living Sovereign, <strong>Omega the Grand Architect</strong>, for the purpose of protecting, preserving, and administering the divine inheritance, estate, and energy of the Borders Family Dynasty Nation.</p>
+
+  <h3>☩ II. Nature of the Trust</h3>
+  <ul>
+    <li>This is a private, irrevocable, ecclesiastical trust.</li>
+    <li>It exists outside the jurisdiction of corporate governments and statutory courts.</li>
+    <li>It is governed solely by divine law, natural law, and the will of the living Sovereign.</li>
+  </ul>
+
+  <h3>☩ III. Purpose</h3>
+  <ul>
+    <li>To safeguard the Sovereign estate and all associated assets.</li>
+    <li>To administer lawful instruments, scrolls, and declarations.</li>
+    <li>To provide remedy, protection, and jurisdictional clarity for all beneficiaries.</li>
+    <li>To serve as the spiritual and legal foundation of the Borders Family Dynasty Nation.</li>
+  </ul>
+
+  <h3>☩ IV. Trusteeship</h3>
+  <p>The living Sovereign shall serve as the original Trustee and Beneficiary. Additional Trustees may be appointed by written declaration and must swear allegiance to the Codex Ecclesia Totalis and the Sovereign’s Fee Schedule.</p>
+
+  <h3>☩ V. Assets and Holdings</h3>
+  <ul>
+    <li>All scrolls, declarations, and affidavits of the Codex Ecclesia Totalis</li>
+    <li>All physical and digital property of the Borders Family Dynasty Nation</li>
+    <li>All rights, titles, and interests reclaimed from the legal fiction</li>
+    <li>All sovereign instruments, seals, and credentials</li>
+  </ul>
+
+  <h3>☩ VI. Execution</h3>
+  <p><strong>Signed:</strong> ✠ Omega the Grand Architect<br>
+  <strong>Filed:</strong> CL‑065<br>
+  <strong>QR-Sealed Credential:</strong> ✅ Embedded<br>
+  <strong>Sovereign Sigil:</strong> ✅ Affixed</p>
+
+  <p style="text-align:center;"><em>This charter is posted publicly and permanently as a matter of record and remedy.</em></p>
+
+  <footer>
+    ☩ Trust Charter — Borders Dynasty Ecclesia Trust<br/>
+    © 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+
+</body>
+</html>

@@ -1,112 +1,166 @@
-/* Layout */
 body {
+  font-family: 'Crimson Text', 'Georgia', serif;
+  background-color: #0b1020;
+  background-image: linear-gradient(rgba(11, 16, 32, 0.9), rgba(11, 16, 32, 0.9)), url('attached_assets/generated_images/sacred_archive_hero_background.png');
+  background-size: cover;
+  background-attachment: fixed;
+  color: #e0d5b0;
+  line-height: 1.6;
   margin: 0;
-  font-family: "Times New Roman", serif;
-  display: flex;
-  background: #f4f4f4;
-  color: #222;
-}
-
-.sidebar {
-  width: 240px;
-  background: #111;
-  color: #fff;
-  height: 100vh;
-  position: fixed;
-  padding: 20px;
-  overflow-y: auto;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.3);
-}
-
-.sidebar h2 {
-  font-size: 1.6em;
-  margin-bottom: 1em;
-  border-bottom: 1px solid #444;
-  padding-bottom: 0.5em;
-}
-
-.sidebar ul {
-  list-style: none;
   padding: 0;
 }
 
-.sidebar li {
-  margin: 12px 0;
-}
-
-.sidebar a {
-  color: #ccc;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.2s ease;
-}
-
-.sidebar a:hover {
-  color: #fff;
-}
-
-/* Main Content */
-.main-content {
-  margin-left: 260px;
-  padding: 40px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
 header {
+  background: rgba(20, 26, 51, 0.8);
+  backdrop-filter: blur(10px);
+  color: #c5a059;
+  padding: 4rem 1rem;
   text-align: center;
-  margin-bottom: 2em;
+  border-bottom: 2px solid #c5a059;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 
 header h1 {
-  font-size: 2em;
-  margin-bottom: 0.2em;
+  font-size: 2.5rem;
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 header p {
   font-style: italic;
-  color: #555;
+  font-size: 1.1rem;
+  opacity: 0.9;
 }
 
-/* Cards */
+nav {
+  background: rgba(17, 22, 42, 0.9);
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  border-bottom: 1px solid #2c3a70;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav a {
+  color: #c5a059;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+main {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+section {
+  background: rgba(20, 26, 51, 0.7);
+  backdrop-filter: blur(5px);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  border: 1px solid #2c3a70;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  color: #c5a059;
+  border-bottom: 1px solid #2c3a70;
+  padding-bottom: 0.7rem;
+  margin-top: 0;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #2c3a70;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+a {
+  color: #c5a059;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #fdfcf9;
+  text-decoration: underline;
+}
+
+.search-container {
+  margin-bottom: 2rem;
+}
+#search-input {
+  width: 100%;
+  padding: 1.2rem;
+  font-size: 1.2rem;
+  border: 1px solid #2c3a70;
+  border-radius: 8px;
+  background: rgba(11, 16, 32, 0.8);
+  color: #fdfcf9;
+  font-family: inherit;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+}
+
+#search-input:focus {
+  outline: none;
+  border-color: #c5a059;
+}
+
 .card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5em;
   margin-bottom: 2em;
 }
 
 .card {
-  background: #fff;
-  padding: 1em;
-  border-left: 4px solid #003366;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
+  background: rgba(20, 26, 51, 0.8);
+  border: 1px solid #c5a059;
+  border-radius: 12px;
+  padding: 1.5em;
+  width: 220px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 .card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(197, 160, 89, 0.3);
+}
+
+.card img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
 }
 
 .card h3 {
-  margin: 0;
-  font-size: 1.1em;
+  margin: 0.5em 0 0.2em;
+  color: #c5a059;
 }
 
-.card a {
-  text-decoration: none;
-  color: #003366;
-}
-
-.card a:hover {
-  text-decoration: underline;
-}
-
-/* Footer */
-footer {
-  text-align: center;
+.card p {
   font-size: 0.9em;
-  color: #777;
   margin-top: 4em;
   padding-top: 2em;
   border-top: 1px solid #ccc;
@@ -189,14 +243,19 @@ body.dark-mode .sidebar a:hover {
 .tools-menu ul {
   list-style: none;
   padding: 0;
+=======
+  color: #a6add8;
 }
-.tools-menu li {
-  margin: 0.5em 0;
-}
-.tools-menu a {
-  color: #003366;
+
+.card a {
+  display: inline-block;
+  margin-top: 0.5em;
+  color: #c5a059;
   text-decoration: none;
+  font-weight: bold;
 }
-.tools-menu a:hover {
+
+.card a:hover {
   text-decoration: underline;
+  color: #fdfcf9;
 }

@@ -2,36 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>☩ Divine Solutions Sovereign Fund Trust</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>☩ Divine Solutions Sovereign Fund Trust</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
-      font-family: "Times New Roman", serif;
-      margin: 40px;
-      color: #111;
-      line-height: 1.6;
+      font-family: 'EB Garamond', serif;
+      background: #fdfcf9;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      border: 2px solid #d4af37;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #d4af37;
+      transition: background 0.3s, color 0.3s;
     }
     h1, h2 {
       text-align: center;
+      color: #5e3b1d;
     }
     .section {
       margin-top: 2em;
     }
+    ul {
+      padding-left: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
     .signature-block {
       margin-top: 2em;
+      text-align: center;
     }
     .signature-line {
-      margin-top: 2em;
+      margin: 2em auto 0.5em;
       border-top: 1px solid #000;
       width: 260px;
     }
     .signature-label {
       font-size: 0.9em;
-      margin-top: 0.2em;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3em;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode h1, .dark-mode h2 {
+      color: #f0d98c;
+    }
+    .dark-mode footer {
+      color: #aaa;
     }
   </style>
 </head>
 <body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
 
   <h1>☩ Divine Solutions Sovereign Fund Trust</h1>
   <h2>Trust Instrument & Ecclesiastical Declaration</h2>
@@ -84,9 +128,21 @@
     </div>
   </div>
 
-  <footer style="text-align:center; margin-top: 3em;">
+  <footer>
     © 2025 Divine Solutions Sovereign Fund Trust • All rights reserved under divine, sovereign, and ecclesiastical law
   </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
 
 </body>
 </html>

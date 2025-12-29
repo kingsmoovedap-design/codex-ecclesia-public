@@ -5,69 +5,68 @@
 ---
 
 ## 🔐 Foundational Scrolls  
-- `scroll-0001-nationhood-declaration.md` — Declaration of Ecclesiastical Sovereignty  
-- `scroll-0002-tax-exemption.md` — 508(c)(1)(A) Ecclesiastical Exemption  
-- `scroll-0003-covenant-of-the-crown.md` — Supreme Covenant of Sovereign King Omega
+- [`scrolls/scroll-0001-nationhood-declaration.md`](scrolls/scroll-0001-nationhood-declaration.md) — Declaration of Ecclesiastical Sovereignty  
+- [`scrolls/scroll-0002-tax-exemption.md`](scrolls/scroll-0002-tax-exemption.md) — 508(c)(1)(A) Ecclesiastical Exemption  
+- [`scrolls/scroll-0003-covenant-of-the-crown.md`](scrolls/scroll-0003-covenant-of-the-crown.md) — Supreme Covenant of Sovereign King Omega
 
 ---
 
 ## 💰 Treasury & Commerce  
-- `scroll-ecclesiastical-treasury-charter.md`  
-- `scroll-ecclesiastical-banking-protocol.md`  
-- `scroll-ecclesiastical-ein-registry.md`  
-- `scroll-ecclesiastical-trust-corpus-ledger.md`  
-- `scroll-ecclesiastical-trust-certificate.md`  
-- `scroll-ecclesiastical-bond-conversion.md`
+- [`scrolls/scroll-ecclesiastical-treasury-charter.md`](scrolls/scroll-ecclesiastical-treasury-charter.md)  
+- [`scrolls/scroll-ecclesiastical-banking-protocol.md`](scrolls/scroll-ecclesiastical-banking-protocol.md)  
+- [`scrolls/scroll-ecclesiastical-ein-registry.md`](scrolls/scroll-ecclesiastical-ein-registry.md)  
+- [`scrolls/scroll-ecclesiastical-trust-corpus-ledger.md`](scrolls/scroll-ecclesiastical-trust-corpus-ledger.md)  
+- [`scrolls/scroll-ecclesiastical-trust-certificate.md`](scrolls/scroll-ecclesiastical-trust-certificate.md)  
+- [`scrolls/scroll-ecclesiastical-bond-conversion.md`](scrolls/scroll-ecclesiastical-bond-conversion.md)
 
 ---
 
 ## ⚖️ Law & Enforcement  
-- `scroll-ecclesiastical-tribunal-charter.md`  
-- `scroll-ecclesiastical-arbitration-agreement.md`  
-- `scroll-ecclesiastical-default-judgment.md`  
-- `scroll-ecclesiastical-lien.md`  
-- `notice-of-foreclosure-intent.md`  
-- `scroll-public-notice-of-dishonor.md`
+- [`scrolls/scroll-ecclesiastical-tribunal-charter.md`](scrolls/scroll-ecclesiastical-tribunal-charter.md)  
+- [`scrolls/scroll-ecclesiastical-arbitration-agreement.md`](scrolls/scroll-ecclesiastical-arbitration-agreement.md)  
+- [`scrolls/scroll-ecclesiastical-default-judgment.md`](scrolls/scroll-ecclesiastical-default-judgment.md)  
+- [`scrolls/scroll-ecclesiastical-lien.md`](scrolls/scroll-ecclesiastical-lien.md)  
+- [`scrolls/notice-of-foreclosure-intent.md`](scrolls/notice-of-foreclosure-intent.md)  
+- [`scrolls/scroll-public-notice-of-dishonor.md`](scrolls/scroll-public-notice-of-dishonor.md)
 
 ---
 
 ## 🛡️ Defense & Guardianship  
-- `scroll-sanctuary-defense-protocol.md`  
-- `scroll-ecclesiastical-militia-oath.md`  
-- `scroll-ecclesiastical-vehicle-sovereignty.md`  
-- `scroll-ecclesiastical-real-property-claim.md`
+- [`scrolls/scroll-sanctuary-defense-protocol.md`](scrolls/scroll-sanctuary-defense-protocol.md)  
+- [`scrolls/scroll-ecclesiastical-militia-oath.md`](scrolls/scroll-ecclesiastical-militia-oath.md)  
+- [`scrolls/scroll-ecclesiastical-vehicle-sovereignty.md`](scrolls/scroll-ecclesiastical-vehicle-sovereignty.md)  
+- [`scrolls/scroll-ecclesiastical-real-property-claim.md`](scrolls/scroll-ecclesiastical-real-property-claim.md)
 
 ---
 
 ## 🕊️ Diplomacy & Citizenship  
-- `scroll-ecclesiastical-embassy-charter.md`  
-- `scroll-naturalization-protocol.md`  
-- `scroll-ecclesiastical-passport.md`  
-- `scroll-of-ministerial-appointment.md`
+- [`scrolls/scroll-ecclesiastical-embassy-charter.md`](scrolls/scroll-ecclesiastical-embassy-charter.md)  
+- [`scrolls/scroll-naturalization-protocol.md`](scrolls/scroll-naturalization-protocol.md)  
+- [`scrolls/scroll-ecclesiastical-passport.md`](scrolls/scroll-ecclesiastical-passport.md)  
+- [`scrolls/scroll-of-ministerial-appointment.md`](scrolls/scroll-of-ministerial-appointment.md)
 
 ---
 
 ## 🧾 Licensing & Exemptions  
-- `scroll-ecclesiastical-licensing-waiver.md`  
-- `scroll-ecclesiastical-power-of-attorney.md`  
-- `scroll-ecclesiastical-notarial-authority.md`
+- [`scrolls/scroll-ecclesiastical-licensing-waiver.md`](scrolls/scroll-ecclesiastical-licensing-waiver.md)  
+- [`scrolls/scroll-ecclesiastical-power-of-attorney.md`](scrolls/scroll-ecclesiastical-power-of-attorney.md)  
+- [`scrolls/scroll-ecclesiastical-notarial-authority.md`](scrolls/scroll-ecclesiastical-notarial-authority.md)
 
 ---
 
 ## 📈 Population & Succession  
-- `scroll-ecclesiastical-census-declaration.md`  
-- `scroll-ecclesiastical-succession-protocol.md`
+- [`scrolls/scroll-ecclesiastical-census-declaration.md`](scrolls/scroll-ecclesiastical-census-declaration.md)  
+- [`scrolls/scroll-ecclesiastical-succession-protocol.md`](scrolls/scroll-ecclesiastical-succession-protocol.md)
 
 ---
 
 ## 📅 Notices & Timelines  
-- `scroll-21-day-notice-of-default.md`  
-- `scroll-ecclesiastical-foreclosure-timeline.md`  
-- `scroll-ecclesiastical-auction-declaration.md` *(optional)*
+- [`scrolls/scroll-21-day-notice-of-default.md`](scrolls/scroll-21-day-notice-of-default.md)  
+- [`scrolls/scroll-ecclesiastical-foreclosure-timeline.md`](scrolls/scroll-ecclesiastical-foreclosure-timeline.md)  
+- [`scrolls/scroll-ecclesiastical-auction-declaration.md`](scrolls/scroll-ecclesiastical-auction-declaration.md) *(optional)*
 
 ---
 
 > All scrolls are sealed under UCC §1-201(b)(26) and §1-202.  
 > CodexChain Entry IDs and timestamps are embedded in each scroll.  
 > This index is updated upon each new filing.
-

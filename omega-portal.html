@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>☩ Omega Master Portal</title>
+  <meta name="description" content="Omega's master portal for learning, entities, drafting, and responses." />
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background: #0b1020;
+      color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #141a33;
+      padding: 1em;
+      text-align: center;
+      border-bottom: 2px solid #384574;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    header p {
+      margin: 0.3em 0 0;
+      font-size: 0.95em;
+      color: #c5c9e6;
+    }
+    nav {
+      background: #11162a;
+      padding: 0.5em 1em;
+      display: flex;
+      gap: 1em;
+      flex-wrap: wrap;
+      justify-content: center;
+      border-bottom: 1px solid #2b3358;
+    }
+    nav a {
+      color: #d1d5ff;
+      text-decoration: none;
+      font-size: 0.9em;
+      padding: 0.3em 0.7em;
+      border-radius: 4px;
+      border: 1px solid #2c3a70;
+    }
+    nav a:hover {
+      background: #2c3a70;
+    }
+    main {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1em;
+      padding: 1em;
+    }
+    section {
+      background: #141a33;
+      border: 1px solid #2b3358;
+      border-radius: 8px;
+      padding: 1em;
+      box-sizing: border-box;
+      min-height: 200px;
+    }
+    section h2 {
+      margin-top: 0;
+      font-size: 1.1em;
+      border-bottom: 1px solid #2b3358;
+      padding-bottom: 0.3em;
+      margin-bottom: 0.5em;
+    }
+    textarea, input, select {
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 0.3em;
+      margin-bottom: 0.6em;
+      padding: 0.4em;
+      border-radius: 4px;
+      border: 1px solid #2b3358;
+      background: #0b1020;
+      color: #f5f5f5;
+      font-family: inherit;
+      font-size: 0.9em;
+    }
+    button {
+      padding: 0.4em 0.8em;
+      border-radius: 4px;
+      border: 1px solid #2c3a70;
+      background: #2c3a70;
+      color: #f5f5f5;
+      cursor: pointer;
+      font-size: 0.85em;
+      margin-right: 0.3em;
+      margin-top: 0.2em;
+    }
+    button:hover {
+      background: #3c4c90;
+    }
+    .small {
+      font-size: 0.8em;
+      color: #a6add8;
+    }
+    ul {
+      padding-left: 1.2em;
+      font-size: 0.9em;
+    }
+    li {
+      margin-bottom: 0.3em;
+    }
+    footer {
+      text-align: center;
+      padding: 0.6em;
+      background: #11162a;
+      border-top: 1px solid #2b3358;
+      font-size: 0.8em;
+      color: #a6add8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>☩ Omega Master Portal</h1>
+    <p>The central chamber for your learning, entities, drafts, and responses.</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Main Codex</a>
+    <a href="#learning">Learning & Notes</a>
+    <a href="#entities">Entities Registry</a>
+    <a href="#drafts">Drafts & Templates</a>
+    <a href="#responses">Response Builder</a>
+    <a href="#tasks">Tasks & Follow‑Ups</a>
+  </nav>
+
+  <main>
+    <!-- Learning & Notes -->
+    <section id="learning">
+      <h2>🧠 Learning & Divine Understanding</h2>
+      <p class="small">Use this space to capture insights, study notes, and key principles.</p>
+      <textarea id="learningNotes" rows="10" placeholder="Write what you’re studying, realizing, and deciding here..."></textarea>
+      <button onclick="saveSection('learningNotes')">Save Notes</button>
+      <span class="small" id="learningStatus"></span>
+    </section>
+
+    <!-- Entities Registry -->
+    <section id="entities">
+      <h2>🏛️ Entities Registry</h2>
+      <p class="small">Track trusts, ministries, corporations, foundations, and any other structures.</p>
+      <input id="entityName" placeholder="Entity name (e.g. Omega Ecclesia Trust)" />
+      <input id="entityType" placeholder="Type (trust, LLC, ministry, etc.)" />
+      <input id="entityRole" placeholder="Your role (trustee, grantor, director...)" />
+      <textarea id="entityNotes" rows="3" placeholder="Key details: dates, jurisdictions, filing numbers, etc."></textarea>
+      <button onclick="addEntity()">Add Entity</button>
+      <p class="small">Registered entities:</p>
+      <ul id="entitiesList"></ul>
+    </section>
+
+    <!-- Drafts & Templates -->
+    <section id="drafts">
+      <h2>📜 Drafts & Templates</h2>
+      <p class="small">Draft notices, affidavits, letters, contracts, and other paperwork here.</p>
+      <input id="draftTitle" placeholder="Draft title (e.g. Affidavit of Truth v1)" />
+      <textarea id="draftBody" rows="8" placeholder="Write your draft here..."></textarea>
+      <button onclick="saveDraft()">Save Draft</button>
+      <button onclick="clearDraft()">Clear Editor</button>
+      <p class="small">Saved drafts:</p>
+      <ul id="draftsList"></ul>
+    </section>
+
+    <!-- Response Builder -->
+    <section id="responses">
+      <h2>✉️ Response Builder</h2>
+      <p class="small">Outline incoming matter and build a structured response.</p>
+      <textarea id="incomingSummary" rows="4" placeholder="Summarize what you received (letter, notice, email)..."></textarea>
+      <textarea id="responseGoals" rows="3" placeholder="What do you want to achieve with your response?"></textarea>
+      <select id="responseTone">
+        <option value="formal">Formal & respectful</option>
+        <option value="firm">Firm but respectful</option>
+        <option value="inquiry">Seeking clarification</option>
+      </select>
+      <button onclick="generateResponse()">Generate Response Skeleton</button>
+      <textarea id="responseDraft" rows="8" placeholder="Your response will be drafted here..."></textarea>
+      <button onclick="saveSection('responseDraft')">Save Response</button>
+      <span class="small" id="responseStatus"></span>
+    </section>
+
+    <section id="entityWizard">
+      <h2>🧭 Ecclesiastical Entity Creation Wizard</h2>
+      <p class="small">Select an entity type to auto-fill its jurisdiction, purpose, and scroll template.</p>
+
+      <label>Entity Type:</label>
+      <select id="wizardType" onchange="fillWizardFields()">
+        <option value="">-- Select --</option>
+        <option value="Express Trust">Express Trust</option>
+        <option value="Ecclesiastical Juridic Person">Ecclesiastical Juridic Person</option>
+        <option value="PMA">Private Membership Association (PMA)</option>
+        <option value="Unincorporated Association">Unincorporated Association</option>
+        <option value="Nonprofit Corporation">Nonprofit Corporation (501(c)(3))</option>
+        <option value="LLC">LLC / Corporation</option>
+        <option value="Foundation">Foundation</option>
+        <option value="Sovereign Ecclesia">Sovereign Ecclesia</option>
+        <option value="Natural Law Entity">International Natural Law Entity</option>
+      </select>
+
+      <label>Jurisdiction:</label>
+      <input id="wizardJurisdiction" readonly />
+
+      <label>Purpose:</label>
+      <input id="wizardPurpose" readonly />
+
+      <label>Template Scroll:</label>
+      <input id="wizardScroll" readonly />
+
+      <button onclick="addWizardEntity()">Add to Registry</button>
+      <button onclick="downloadScroll()">Download Scroll</button>
+    </section>
+
+    <section id="entityScrolls">
+      <h2>☩ Entity Scroll Templates</h2>
+      <ul style="list-style-type: none; padding: 0;">
+        <li><a href="scrolls/ecclesia-court-charter.html" style="color: #c5a059;">Ecclesia Court Charter</a></li>
+        <li><a href="scrolls/covenantal-enforcement-decree.html" style="color: #c5a059;">Covenantal Enforcement Decree</a></li>
+        <li><a href="scrolls/ecclesia-arbitration-protocol.html" style="color: #c5a059;">Ecclesia Arbitration Protocol</a></li>
+        <li><a href="scrolls/dispute-resolution-scroll.html" style="color: #c5a059;">Dispute Resolution Scroll</a></li>
+        <li><a href="scrolls/guild-registration-scroll.html" style="color: #c5a059;">Guild Registration Scroll</a></li>
+        <li><a href="scrolls/merchant-oath-of-integrity.html" style="color: #c5a059;">Merchant Oath of Integrity</a></li>
+        <li><a href="scrolls/guild-ledger-template.html" style="color: #c5a059;">Guild Ledger Template</a></li>
+        <li><a href="scrolls/ecclesiastical-trade-covenant.html" style="color: #c5a059;">Ecclesiastical Trade Covenant</a></li>
+        <li><a href="scrolls/sovereign-diplomatic-protocol.html" style="color: #c5a059;">Sovereign Diplomatic Protocol</a></li>
+        <li><a href="scrolls/barter-certificate.html" style="color: #c5a059;">Barter Certificate Template</a></li>
+        <li><a href="scrolls/omega-crown-manifesto.html" style="color: #c5a059;">Ω-Crown Currency Manifesto</a></li>
+        <li><a href="scrolls/ecclesiastical-mint-charter.html" style="color: #c5a059;">Ecclesiastical Mint Charter</a></li>
+        <li><a href="scrolls/currency-issuance-ritual.html" style="color: #c5a059;">Currency Issuance Ritual</a></li>
+        <li><a href="scrolls/ecclesia-market-constitution.html" style="color: #c5a059;">Ecclesia Market Constitution</a></li>
+        <li><a href="scrolls/security-defense-charter.html" style="color: #c5a059;">National Security & Defense Charter</a></li>
+        <li><a href="scrolls/marriage-lineage-registry.html" style="color: #c5a059;">Celestial Marriage & Lineage Registry</a></li>
+        <li><a href="scrolls/national-treasury-constitution.html" style="color: #c5a059;">National Treasury Constitution</a></li>
+        <li><a href="scrolls/ip-token-protocol.html" style="color: #c5a059;">IP-Backed Token Issuance Protocol</a></li>
+        <li><a href="scrolls/sovereignty-status-declaration.html" style="color: #c5a059;">Sovereignty & Status Declaration</a></li>
+        <li><a href="scrolls/dynasty-bond-indenture.html" style="color: #c5a059;">Dynasty Bond Indenture</a></li>
+        <li><a href="scrolls/ip-bank-charter.html" style="color: #c5a059;">IP Bank Charter</a></li>
+        <li><a href="scrolls/cultural-sovereignty-codex.html" style="color: #c5a059;">Cultural Sovereignty Codex</a></li>
+        <li><a href="scrolls/express-trust-declaration.html" style="color: #c5a059;">Declaration of Express Trust</a></li>
+        <li><a href="scrolls/ecclesiastical-charter.html" style="color: #c5a059;">Ecclesiastical Charter</a></li>
+        <li><a href="scrolls/pma-bylaws.html" style="color: #c5a059;">PMA Bylaws</a></li>
+        <li><a href="scrolls/articles-of-association.html" style="color: #c5a059;">Articles of Association</a></li>
+        <li><a href="scrolls/nonprofit-articles.html" style="color: #c5a059;">Nonprofit Incorporation Articles</a></li>
+        <li><a href="scrolls/llc-charter.html" style="color: #c5a059;">LLC / Corporation Charter</a></li>
+        <li><a href="scrolls/sovereign-ecclesia-charter.html" style="color: #c5a059;">Sovereign Ecclesia Charter</a></li>
+        <li><a href="scrolls/natural-law-entity-declaration.html" style="color: #c5a059;">Natural Law Entity Declaration</a></li>
+      </ul>
+    </section>
+
+    <!-- Tasks & Follow-Ups -->
+    <section id="tasks">
+      <h2>📆 Tasks & Follow‑Ups</h2>
+      <p class="small">Track what you must send, file, or follow up on.</p>
+      <input id="taskText" placeholder="Task description (e.g. File trust documents with recorder)" />
+      <input id="taskDue" type="date" />
+      <button onclick="addTask()">Add Task</button>
+      <ul id="tasksList"></ul>
+    </section>
+  </main>
+
+  <footer>
+    ☩ Omega Master Portal — Your command center for learning, structure, and response. This is an organizational tool, not legal advice.
+  </footer>
+
+  <script>
+    // Simple localStorage helpers
+    function saveSection(id) {
+      const val = document.getElementById(id).value || '';
+      localStorage.setItem('omega_' + id, val);
+      const statusId = id === 'learningNotes' ? 'learningStatus' :
+                       id === 'responseDraft' ? 'responseStatus' : null;
+      if (statusId) {
+        const el = document.getElementById(statusId);
+        el.textContent = 'Saved at ' + new Date().toLocaleTimeString();
+        setTimeout(() => { el.textContent = ''; }, 3000);
+      }
+    }
+
+    function loadSection(id) {
+      const val = localStorage.getItem('omega_' + id);
+      if (val !== null) {
+        document.getElementById(id).value = val;
+      }
+    }
+
+    // Entities
+    function addEntity() {
+      const name = document.getElementById('entityName').value.trim();
+      const type = document.getElementById('entityType').value.trim();
+      const role = document.getElementById('entityRole').value.trim();
+      const notes = document.getElementById('entityNotes').value.trim();
+      if (!name) return;
+
+      const entities = JSON.parse(localStorage.getItem('omega_entities') || '[]');
+      entities.push({ name, type, role, notes });
+      localStorage.setItem('omega_entities', JSON.stringify(entities));
+      document.getElementById('entityName').value = '';
+      document.getElementById('entityType').value = '';
+      document.getElementById('entityRole').value = '';
+      document.getElementById('entityNotes').value = '';
+      renderEntities();
+    }
+
+    function renderEntities() {
+      const list = document.getElementById('entitiesList');
+      
+      // Load from localStorage first
+      let localEntities = JSON.parse(localStorage.getItem('omega_entities') || '[]');
+      
+      // Fetch canonical entities from JSON
+      fetch('entities.json')
+        .then(res => res.json())
+        .then(data => {
+          const canonicalEntities = data.entities || [];
+          const allEntities = [...canonicalEntities, ...localEntities];
+          
+          list.innerHTML = allEntities.map((e, idx) => 
+            `<li><strong>${e.type || e.name}</strong> — ${e.jurisdiction || e.type || 'Type unknown'} (${e.purpose || e.role || 'Role unknown'})<br/>
+             <span class="small">${e.notes || ''}</span>
+             ${e.scroll ? `<br/><a href="${e.scroll}" class="small" style="color:#c5a059;">View Governing Scroll</a>` : ''}
+            </li>`
+          ).join('');
+        })
+        .catch(() => {
+          // Fallback to local only if fetch fails
+          list.innerHTML = localEntities.map((e, idx) => 
+            `<li><strong>${e.name}</strong> — ${e.type || 'type unknown'} (${e.role || 'role unknown'})<br/><span class="small">${e.notes || ''}</span></li>`
+          ).join('');
+        });
+    }
+
+    // Drafts
+    function saveDraft() {
+      const title = document.getElementById('draftTitle').value.trim();
+      const body = document.getElementById('draftBody').value.trim();
+      if (!title || !body) return;
+      const drafts = JSON.parse(localStorage.getItem('omega_drafts') || '[]');
+      drafts.push({ title, body, time: new Date().toISOString() });
+      localStorage.setItem('omega_drafts', JSON.stringify(drafts));
+      renderDrafts();
+    }
+
+    function clearDraft() {
+      document.getElementById('draftTitle').value = '';
+      document.getElementById('draftBody').value = '';
+    }
+
+    function loadDraft(index) {
+      const drafts = JSON.parse(localStorage.getItem('omega_drafts') || '[]');
+      const d = drafts[index];
+      if (!d) return;
+      document.getElementById('draftTitle').value = d.title;
+      document.getElementById('draftBody').value = d.body;
+    }
+
+    function renderDrafts() {
+      const list = document.getElementById('draftsList');
+      const drafts = JSON.parse(localStorage.getItem('omega_drafts') || '[]');
+      list.innerHTML = drafts.map((d, idx) =>
+        `<li><a href="javascript:void(0)" onclick="loadDraft(${idx})">${d.title}</a> <span class="small">(${new Date(d.time).toLocaleString()})</span></li>`
+      ).join('');
+    }
+
+    // Response builder
+    function generateResponse() {
+      const incoming = document.getElementById('incomingSummary').value.trim();
+      const goals = document.getElementById('responseGoals').value.trim();
+      const tone = document.getElementById('responseTone').value;
+      
+      let skeleton = "RE: " + (incoming.slice(0, 30) || "Response") + "\n\n";
+      skeleton += "Greetings,\n\n";
+      skeleton += "I am writing in response to the matter regarding: " + (incoming || "[Summary]") + ".\n\n";
+      
+      if (tone === 'formal') {
+        skeleton += "It is my intention to resolve this matter through formal ecclesiastical channels. ";
+      } else if (tone === 'firm') {
+        skeleton += "Notice is hereby given that my standing remains sovereign. ";
+      } else {
+        skeleton += "I am seeking clarification on the following points: ";
+      }
+      
+      skeleton += "\n\nMy goals for this communication are:\n- " + (goals || "Resolution of the matter") + "\n\n";
+      skeleton += "Sincerely,\n\nOmega";
+      
+      document.getElementById('responseDraft').value = skeleton;
+    }
+
+    const wizardData = {
+      "Express Trust": {
+        jurisdiction: "Private Law",
+        purpose: "Asset protection, sovereignty",
+        scroll: "scrolls/express-trust-declaration.html"
+      },
+      "Ecclesiastical Juridic Person": {
+        jurisdiction: "Canon Law",
+        purpose: "Church, ministry, sacred office",
+        scroll: "scrolls/ecclesiastical-charter.html"
+      },
+      "PMA": {
+        jurisdiction: "Contract Law",
+        purpose: "Health, education, commerce",
+        scroll: "scrolls/pma-bylaws.html"
+      },
+      "Unincorporated Association": {
+        jurisdiction: "Common Law",
+        purpose: "Fellowship, ministry, mutual support",
+        scroll: "scrolls/articles-of-association.html"
+      },
+      "Nonprofit Corporation": {
+        jurisdiction: "Statutory Law",
+        purpose: "Religious, charitable, educational",
+        scroll: "scrolls/nonprofit-articles.html"
+      },
+      "LLC": {
+        jurisdiction: "Statutory Law",
+        purpose: "Business or ministry-related commerce",
+        scroll: "scrolls/llc-charter.html"
+      },
+      "Foundation": {
+        jurisdiction: "Statutory/Private Law",
+        purpose: "Endowment, philanthropic support",
+        scroll: "scrolls/nonprofit-articles.html"
+      },
+      "Sovereign Ecclesia": {
+        jurisdiction: "Natural Law",
+        purpose: "Spiritual governance and protection",
+        scroll: "scrolls/sovereign-ecclesia-charter.html"
+      },
+      "Natural Law Entity": {
+        jurisdiction: "Natural Law",
+        purpose: "Self-determination and lawful governance",
+        scroll: "scrolls/natural-law-entity-declaration.html"
+      }
+    };
+
+    function fillWizardFields() {
+      const type = document.getElementById('wizardType').value;
+      const data = wizardData[type] || {};
+      document.getElementById('wizardJurisdiction').value = data.jurisdiction || '';
+      document.getElementById('wizardPurpose').value = data.purpose || '';
+      document.getElementById('wizardScroll').value = data.scroll || '';
+    }
+
+    function addWizardEntity() {
+      const type = document.getElementById('wizardType').value;
+      if (!type) return;
+      const name = prompt("Enter a unique name for this entity:", type);
+      if (!name) return;
+      const data = wizardData[type] || {};
+      const role = "Founder";
+      const notes = "Created via Wizard (" + data.jurisdiction + ")";
+      const time = new Date().toISOString();
+      const entities = JSON.parse(localStorage.getItem('omega_entities') || '[]');
+      entities.push({ name, type, role, notes, time, scroll: data.scroll });
+      localStorage.setItem('omega_entities', JSON.stringify(entities));
+      renderEntities();
+      alert("Entity added to registry.");
+    }
+
+    function downloadScroll() {
+      const scroll = document.getElementById('wizardScroll').value;
+      if (scroll) window.open(scroll, '_blank');
+    }
+
+    // Tasks
+    function addTask() {
+      const text = document.getElementById('taskText').value.trim();
+      const due = document.getElementById('taskDue').value;
+      if (!text) return;
+
+      const tasks = JSON.parse(localStorage.getItem('omega_tasks') || '[]');
+      tasks.push({ text, due, completed: false });
+      localStorage.setItem('omega_tasks', JSON.stringify(tasks));
+      document.getElementById('taskText').value = '';
+      document.getElementById('taskDue').value = '';
+      renderTasks();
+    }
+
+    function renderTasks() {
+      const list = document.getElementById('tasksList');
+      const tasks = JSON.parse(localStorage.getItem('omega_tasks') || '[]');
+      list.innerHTML = tasks.map((t, idx) => 
+        `<li>${t.text} ${t.due ? '— <span class="small">Due: ' + t.due + '</span>' : ''}</li>`
+      ).join('');
+    }
+
+    // Initial load
+    window.onload = () => {
+      loadSection('learningNotes');
+      loadSection('responseDraft');
+      renderEntities();
+      renderDrafts();
+      renderTasks();
+    };
+  </script>
+</body>
+</html>

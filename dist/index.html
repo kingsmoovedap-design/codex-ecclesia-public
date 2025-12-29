@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>☩ Codex Ecclesia</title>
+  <meta name="description" content="The sacred digital archive of the Ecclesia." />
+  <meta name="keywords" content="codex, ecclesia, scrolls, heirs, trustees, ministries, harmony" />
+  <meta name="date" content="2025-12-28" />
+  <link rel="manifest" href="/assets/manifest-c1DHQDR-.webmanifest" />
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: #fdfcf9;
+      color: #222;
+      padding: 2em;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #003366;
+    }
+    .card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5em;
+      justify-content: center;
+      margin-bottom: 3em;
+    }
+    .card {
+      background: #fff;
+      border: 2px solid #003366;
+      border-radius: 8px;
+      padding: 1em;
+      width: 220px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .card img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+    }
+    .card h3 {
+      margin: 0.5em 0 0.2em;
+    }
+    .card p {
+      font-size: 0.9em;
+      color: #555;
+    }
+    .card a {
+      display: inline-block;
+      margin-top: 0.5em;
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .card a:hover {
+      text-decoration: underline;
+    }
+    .search {
+      text-align: center;
+      margin: 2em 0;
+    }
+    .search input {
+      padding: 0.5em;
+      width: 60%;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    nav {
+      text-align: center;
+      margin-bottom: 2em;
+    }
+    nav a {
+      margin: 0 1em;
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="all-scrolls.html">All Scrolls</a>
+    <a href="leadership.html">Leadership</a>
+    <a href="submit-scroll.html">Submit</a>
+    <a href="omega-portal.html" style="color: #c5a059;">☩ Omega Portal</a>
+  </nav>
+
+  <h1>☩ Codex Ecclesia</h1>
+  <p style="text-align:center;">A living archive of sacred scrolls, heirs, and trustees of the Ecclesia.</p>
+
+  <div class="search">
+    <input type="text" id="searchBox" placeholder="Search scrolls by title, tag, or summary…" />
+  </div>
+
+  <h2>👑 Heirs of the Ecclesia</h2>
+  <div id="heirs" class="card-grid"></div>
+
+  <h2>🛡️ Trustees of the Ecclesia</h2>
+  <div id="trustees" class="card-grid"></div>
+
+  <h2>📜 All Scrolls</h2>
+  <div id="all-scrolls" class="card-grid"></div>
+
+  <footer style="text-align:center; margin-top:4em; font-size:0.9em; color:#666;">
+    ☩ Codex Ecclesia © 2025 — A Living Archive of the Eternal Ecclesia
+  </footer>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js');
+    }
+  </script>
+
+  <script>
+    async function loadCodex() {
+      const res = await fetch('manifest.json');
+      const data = await res.json();
+      const items = data.items || [];
+
+      const heirs = items.filter(i => i.tags && i.tags.includes('heir'));
+      const trustees = items.filter(i => i.tags && i.tags.includes('trustee'));
+
+      const createCard = (entry) => `
+        <div class="card">
+          <img src="https://via.placeholder.com/100" alt="${entry.title}" />
+          <h3>${entry.title}</h3>
+          <p>${entry.summary || 'No summary'}</p>
+          <a href="${entry.path}">View Scroll</a>
+        </div>
+      `;
+
+      document.getElementById('heirs').innerHTML = heirs.map(createCard).join('');
+      document.getElementById('trustees').innerHTML = trustees.map(createCard).join('');
+      document.getElementById('all-scrolls').innerHTML = items.map(createCard).join('');
+
+      // Search functionality
+      const searchBox = document.getElementById('searchBox');
+      searchBox.addEventListener('input', () => {
+        const q = searchBox.value.toLowerCase();
+        const filtered = items.filter(i =>
+          (i.title && i.title.toLowerCase().includes(q)) ||
+          (i.summary && i.summary.toLowerCase().includes(q)) ||
+          (i.tags && i.tags.join(',').toLowerCase().includes(q))
+        );
+        document.getElementById('all-scrolls').innerHTML = filtered.map(createCard).join('');
+      });
+    }
+
+    loadCodex();
+  </script>
+</body>
+</html>

@@ -1,28 +1,27 @@
-name: Check for Broken Links
+name: Link Checker
 
 on:
   pull_request:
-    branches: [ dev, main ]
-  schedule:
-    - cron: '0 3 * * 1' # Every Monday at 3 AM UTC
+    branches:
+      - main
+  push:
+    branches:
+      - main
 
 jobs:
   linkChecker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Install Lychee link checker
-        run: |
-          curl -sSfL https://github.com/lycheeverse/lychee/releases/latest/download/lychee-x86_64-unknown-linux-gnu.tar.gz | tar xz
-          sudo mv lychee /usr/local/bin/
-
-      - name: Run Lychee on HTML and Markdown files
-        run: |
-          lychee --verbose --no-progress './**/*.html' './**/*.md' > link-check-report.md || true
-
-      - name: Upload Link Check Report
-        uses: actions/upload-artifact@v3
+      - name: Run link checker
+        uses: lycheeverse/lychee-action@v1.8.0
         with:
-          name: link-check-report
-          path: link-check-report.md
+          args: --verbose --no-progress './**/*.html'
+
+      - name: Upload link report
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-report
+          path: ./lychee/out.md

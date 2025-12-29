@@ -2,25 +2,130 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🔍 Verify Scroll Authenticity</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🔍 Verify Scroll Authenticity | CodexChain</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 960px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    header, footer {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    h1 {
+      font-size: 2.2rem;
+      color: #5e3b1d;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      color: #5e3b1d;
+      margin-top: 2rem;
+      border-bottom: 1px solid #d4af37;
+      padding-bottom: 0.3rem;
+    }
+    p {
+      text-align: center;
+      font-style: italic;
+      color: #555;
+    }
+    input, button {
+      width: 100%;
+      max-width: 600px;
+      margin: 1rem auto;
+      display: block;
+      padding: 0.75rem;
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background: #2c1a0f;
+      color: #f9e8c9;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #5e3b1d;
+    }
+    ul {
+      padding-left: 1.5rem;
+      margin-top: 1rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #5e3b1d;
+      text-decoration: none;
+      border-bottom: 1px dashed #5e3b1d;
+    }
+    a:hover {
+      color: #003366;
+      border-bottom: 1px solid #003366;
+    }
+    .result {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+      background-image: none;
+    }
+    .dark-mode h1, .dark-mode h2 {
+      color: #f0d98c;
+    }
+    .dark-mode a {
+      color: #f0d98c;
+      border-bottom: 1px dashed #f0d98c;
+    }
+    .dark-mode a:hover {
+      color: #ffcc99;
+      border-bottom: 1px solid #ffcc99;
+    }
+    .dark-mode .footer {
+      color: #aaa;
+    }
+  </style>
 </head>
 <body>
-  <header style="text-align:center; padding: 2rem;">
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <header>
     <h1>🔍 Scroll Verifier</h1>
     <p><em>“Let no scroll be forged, and no truth be hidden.”</em></p>
   </header>
 
-  <main style="max-width: 800px; margin: auto; padding: 1rem;">
+  <main>
     <section>
       <h2>📜 Verify a Scroll or Credential</h2>
       <p>Enter the scroll hash, ID, or reference code below to verify its authenticity against the public ledger:</p>
-      <input type="text" id="verifyInput" placeholder="Enter scroll hash or ID" style="width: 100%; padding: 0.5rem;" />
-      <br /><br />
-      <button onclick="verifyScroll()" style="padding: 0.5rem 1rem;">☩ Verify</button>
-      <br /><br />
-      <div id="verificationResult" style="text-align:center; font-weight: bold;"></div>
+      <input type="text" id="verifyInput" placeholder="Enter scroll hash or ID" />
+      <button onclick="verifyScroll()">☩ Verify</button>
+      <div class="result" id="verificationResult"></div>
     </section>
 
     <section>
@@ -34,14 +139,13 @@
 
     <section>
       <h2>🏛️ Return to the Codex</h2>
-      <p style="text-align:center;">
-        <a href="index.html">🏛️ Back to Ecclesia Home</a>
-      </p>
+      <p><a href="index.html">🏛️ Back to Ecclesia Home</a></p>
     </section>
   </main>
 
-  <footer style="text-align:center; padding: 2rem;">
-    <p>☩ Scroll Verifier — Truth is Sovereignty</p>
+  <footer>
+    ☩ Scroll Verifier — Truth is Sovereignty<br/>
+    © 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
   </footer>
 
   <script>
@@ -49,7 +153,6 @@
       const input = document.getElementById("verifyInput").value.trim();
       const result = document.getElementById("verificationResult");
 
-      // Simulated verification logic (replace with real ledger lookup)
       const knownHashes = [
         "ecclesia-001",
         "scroll-omega-777",
@@ -65,12 +168,24 @@
 
       if (knownHashes.includes(input.toLowerCase())) {
         result.textContent = "✅ Verified: This scroll is authentic and recorded in the ledger.";
-        result.style.color = "#00ff99";
+        result.style.color = "#00cc66";
       } else {
         result.textContent = "❌ Not Found: This scroll is not recorded in the public ledger.";
-        result.style.color = "#ff6666";
+        result.style.color = "#cc0033";
       }
     }
+
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
   </script>
+
 </body>
 </html>

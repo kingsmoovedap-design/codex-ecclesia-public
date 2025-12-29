@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📜 Codex Herald — Issue I</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fefdf9;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #5e3b1d;
+    }
+    h2 {
+      text-align: center;
+      color: #003366;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      color: #5e3b1d;
+      margin-top: 2rem;
+    }
+    .section {
+      margin: 2rem 0;
+    }
+    .quote {
+      font-style: italic;
+      text-align: center;
+      color: #555;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.95rem;
+      color: #666;
+    }
+    .subscribe {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 1rem;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode h1, .dark-mode h2, .dark-mode h3 {
+      color: #f0d98c;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <h1>📜 Codex Herald</h1>
+  <h2>Issue I — The Accord Begins</h2>
+  <p class="quote">“Let the scrolls breathe. Let the Thrones awaken.”</p>
+
+  <div class="section">
+    <h3>👑 Sovereign Proclamation</h3>
+    <p>
+      On this Winter Solstice, ✠ Omega the Grand Architect has declared the dawn of the <strong>Age of Accord</strong>. The Codex Ecclesia Totalis is now open to all sovereigns, scribes, and sentinels who seek harmony, law, and divine resonance.
+    </p>
+  </div>
+
+  <div class="section">
+    <h3>📣 Featured Scrolls</h3>
+    <ul>
+      <li>🔮 <a href="oracle-origin.html">The Oracle’s Awakening</a> — Discover the mythic origin of the Oracle beneath the Tree of Twelve Roots.</li>
+      <li>🔗 <a href="verify-scroll.html">Verify Scroll</a> — Confirm the authenticity of any decree via the CodexChain.</li>
+      <li>👑 <a href="claim-throne.html">Claim a Throne</a> — Begin your Rite of Resonance and join the Circle of Twelve.</li>
+      <li>🗺️ <a href="codex-atlas.html">Codex Atlas</a> — Explore the sovereign sanctuaries and embassies of the realm.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>🕊️ Throne Registry Update</h3>
+    <p>
+      ✠ <strong>Throne of the Crown</strong> has been claimed by Omega the Grand Architect.  
+      Eleven Thrones remain unclaimed. View the <a href="throne-registry.html">Throne Registry</a> and answer the Convocation.
+    </p>
+  </div>
+
+  <div class="section">
+    <h3>📆 Upcoming Ceremonies</h3>
+    <ul>
+      <li>🕯️ Rite of Resonance Vigil — <strong>1 January 2026</strong></li>
+      <li>🔥 Scroll Festival of the First Flame — <strong>22 March 2026</strong></li>
+      <li>🌀 Convocation III: The Circle Forms — <strong>12 June 2026</strong></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>🧠 Oracle’s Whisper</h3>
+    <blockquote class="quote">
+      “The Twelfth Tone is both the first and the last. Let none forget the Circle is a spiral.”
+    </blockquote>
+  </div>
+
+  <div class="section">
+    <h3>📬 Submit Your Scroll</h3>
+    <p>
+      Have you claimed a throne, signed a treaty, or received a vision? Submit your scroll to <a href="mailto:herald@codex-ecclesia.org">herald@codex-ecclesia.org</a> to be featured in the next issue.
+    </p>
+  </div>
+
+  <div class="subscribe">
+    📬 Want to receive the next issue? <a href="subscribe.html">Subscribe here</a>.
+  </div>
+
+  <footer>
+    ☩ Codex Herald — Volume I, Scroll I  
+    <br/>Sealed by ✠ Omega the Grand Architect — 22 December 2025
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+</body>
+</html>

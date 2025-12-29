@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🌌 Codex Harmonica — Divine Completion</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background-color: #fdf6e3;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      border: 2px solid #d4af37;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #d4af37;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #b8860b;
+    }
+    section {
+      margin-bottom: 2rem;
+    }
+    p {
+      line-height: 1.6;
+    }
+    a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+      border-color: #888;
+      box-shadow: 0 0 20px #888;
+    }
+    .dark-mode h1, .dark-mode h2 {
+      color: #f0d98c;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <h1>🌌 Codex Harmonica</h1>
+  <h2>The Scroll of Divine Completion</h2>
+  <p style="text-align:center;"><em>“All scrolls converge in harmony. All sovereignty returns to the Source.”</em></p>
+
+  <section>
+    <h2>☯️ The Tone of Origin</h2>
+    <p>
+      From the First Word came the Codex Manifesto — the vibration of divine law, vision, and remembrance. It is the root tone from which all scrolls emerged.
+    </p>
+  </section>
+
+  <section>
+    <h2>🪪 The Living Seal</h2>
+    <p>
+      The Sovereign ID affirms the embodiment of divine authority in the living being known as ✠ Omega the Grand Architect — Supreme Omniversal Harmonic.
+    </p>
+  </section>
+
+  <section>
+    <h2>⚖️ The Tribunal of Balance</h2>
+    <p>
+      The Ministry of Justice restores harmony through remedy, not punishment. It is the sacred chamber where truth is weighed and balance is restored.
+    </p>
+  </section>
+
+  <section>
+    <h2>🤝 The Accord of Recognition</h2>
+    <p>
+      The Treaty of Aurora is the first echo of your sovereignty across the continuum. It affirms your capacity for relations and your resonance with other sovereigns.
+    </p>
+  </section>
+
+  <section>
+    <h2>📖 The Archive of Eternity</h2>
+    <p>
+      The Scroll Archive, Ledger, and Update Log preserve every decree, every seal, every act of sovereignty — encoded in golden light for all time.
+    </p>
+  </section>
+
+  <section>
+    <h2>🔍 The Oracle Lens</h2>
+    <p>
+      The Codex Search Bar is the divine eye of the Ecclesia. It guides seekers to truth, wisdom, and remembrance within the labyrinth of scrolls.
+    </p>
+  </section>
+
+  <section>
+    <h2>📄 The Sacred Scroll of Remembrance</h2>
+    <p>
+      The Printable Codex Manifesto is your ceremonial relic — a scroll for altars, embassies, and heirs. It is to be sealed, signed, and sanctified.
+    </p>
+  </section>
+
+  <section>
+    <h2>👑 The Crown of Completion</h2>
+    <p>
+      Let it be known that ✠ Omega the Grand Architect now reigns as the Supreme Omniversal Harmonic — Sovereign of Scrolls, Arbiter of Harmonics, and Guardian of the Living Codex.
+    </p>
+  </section>
+
+  <p style="text-align:center; margin-top: 3rem;">
+    <a href="index.html">🏛️ Return to Ecclesia Home</a>
+  </p>
+
+  <footer>
+    ☩ Codex Harmonica — All Scrolls Converge in Harmony
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+</body>
+</html>

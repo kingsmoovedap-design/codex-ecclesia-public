@@ -68,9 +68,53 @@
       font-size: 0.9rem;
       margin-top: 3rem;
     }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+      background-image: none;
+    }
+    .dark-mode header {
+      background: linear-gradient(to right, #000000, #333333);
+      color: #f0d98c;
+    }
+    .dark-mode nav {
+      background: #111;
+    }
+    .dark-mode nav a {
+      color: #f0d98c;
+    }
+    .dark-mode nav a:hover {
+      color: #ffcc99;
+    }
+    .dark-mode .tech-card {
+      background: #2a2a2a;
+      border-color: #f0d98c;
+      color: #eee;
+    }
+    .dark-mode h2 {
+      color: #f0d98c;
+    }
+    .dark-mode footer {
+      color: #aaa;
+      background: #000;
+    }
   </style>
 </head>
 <body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
   <header>
     <h1>⚙️ Sacred Technologies</h1>
     <p>Divine Inventions | Blockchain Systems | Sovereign Innovation</p>
@@ -79,11 +123,11 @@
   <nav>
     <a href="index.html">Home</a>
     <a href="ledger.html">Ledger</a>
-    <a href="token.html">Sovereign Coin</a>
+    <a href="borders-sovereign-coin.html">Sovereign Coin</a>
     <a href="tribunal.html">Tribunal</a>
     <a href="notice.html">Notice</a>
     <a href="join.html">Join</a>
-    <a href="recognition.html">Treaties</a>
+    <a href="treaty-recognition-log.html">Treaties</a>
     <a href="archive.html">Archive</a>
     <a href="codex.html">Full Codex</a>
   </nav>
@@ -119,5 +163,18 @@
   <footer>
     &copy; 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
   </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+
 </body>
 </html>

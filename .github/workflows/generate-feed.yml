@@ -1,0 +1,39 @@
+name: Generate RSS Feed
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "codex.json"
+      - "scripts/generate-feed.js"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate scrolls-feed.xml
+        run: node scripts/generate-feed.js
+
+      - name: Commit scrolls-feed.xml
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scrolls-feed.xml
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Auto-update scrolls-feed.xml"
+            git push
+          fi

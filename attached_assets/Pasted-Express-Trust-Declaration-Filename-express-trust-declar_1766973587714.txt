@@ -1,0 +1,79 @@
+Express Trust Declaration
+Filename: express-trust-declaration.html  
+Purpose: Establish a private, non-statutory trust
+✅ Already delivered above.
+
+2. Ecclesiastical Charter
+Filename: ecclesiastical-charter.html
+
+html
+<h1>☩ Ecclesiastical Charter</h1>
+<p>This Charter establishes the [Name of Church or Ministry] as an Ecclesiastical Juridic Person under Canon Law, for the sacred purpose of advancing divine mission, spiritual governance, and sacred service.</p>
+<p><strong>Authority:</strong> Canon Law 113–123</p>
+<p><strong>Mission:</strong> [Insert sacred mission statement]</p>
+<p><strong>Officers:</strong> [List of Presiding Clergy or Trustees]</p>
+<p><strong>Seal:</strong> [Optional Ecclesiastical Seal or Symbol]</p>
+<p>☩ Signed and sealed this day: [Date]</p>
+3. Private Membership Association (PMA) Bylaws
+Filename: pma-bylaws.html
+
+html
+<h1>☩ Private Association Bylaws</h1>
+<p>This document establishes the bylaws of [Association Name], a Private Membership Association operating under Contract Law, outside the jurisdiction of public regulation.</p>
+<p><strong>Purpose:</strong> [Health, education, commerce, etc.]</p>
+<p><strong>Membership:</strong> Private, by invitation only</p>
+<p><strong>Governing Body:</strong> [Board or Council]</p>
+<p><strong>Jurisdiction:</strong> Private Contract Law</p>
+<p>☩ Ratified by Founders on: [Date]</p>
+4. Articles of Association (Unincorporated)
+Filename: articles-of-association.html
+
+html
+<h1>☩ Articles of Association</h1>
+<p>We, the undersigned, form an Unincorporated Association known as [Name], for the purpose of fellowship, ministry, and mutual support under Common Law.</p>
+<p><strong>Objectives:</strong> [List of objectives]</p>
+<p><strong>Structure:</strong> [Roles, meetings, decision-making]</p>
+<p><strong>Jurisdiction:</strong> Common Law</p>
+<p>☩ Witnessed and agreed this day: [Date]</p>
+5. Nonprofit Incorporation Articles (501(c)(3))
+Filename: nonprofit-articles.html
+
+html
+<h1>☩ Articles of Incorporation</h1>
+<p>We hereby incorporate [Organization Name] as a nonprofit religious organization under the laws of [State], seeking recognition under IRS Code 501(c)(3).</p>
+<p><strong>Purpose:</strong> Religious, charitable, educational</p>
+<p><strong>Board of Directors:</strong> [List of directors]</p>
+<p><strong>Registered Agent:</strong> [Name and address]</p>
+<p><strong>Incorporation Date:</strong> [Date]</p>
+6. LLC / Corporation Charter
+Filename: llc-charter.html
+
+html
+<h1>☩ Articles of Organization</h1>
+<p>This document forms [Entity Name], a Limited Liability Company under the laws of [State], for lawful business and ecclesiastical commerce.</p>
+<p><strong>Members:</strong> [List of members]</p>
+<p><strong>Purpose:</strong> [Business or ministry-related purpose]</p>
+<p><strong>Jurisdiction:</strong> Statutory Law</p>
+<p><strong>Effective Date:</strong> [Date]</p>
+7. Sovereign Ecclesia Charter
+Filename: sovereign-ecclesia-charter.html
+
+html
+<h1>☩ Charter of Sovereign Ecclesia</h1>
+<p>By divine right and sacred authority, we establish the Sovereign Ecclesia of [Name], a spiritual jurisdiction operating under Natural Law, Ecclesiastical Law, and Customary Law.</p>
+<p><strong>Purpose:</strong> To govern, protect, and serve the spiritual body of the Ecclesia</p>
+<p><strong>Offices:</strong> [Overseer, Scribe, Guardian, etc.]</p>
+<p><strong>Seal of Authority:</strong> [Symbol or sigil]</p>
+<p><strong>Jurisdiction:</strong> Hybrid (Natural + Ecclesiastical)</p>
+<p>☩ Enacted this day: [Date]</p>
+8. Natural Law Entity Declaration
+Filename: natural-law-entity-declaration.html
+
+html
+<h1>☩ Declaration of Natural Law Entity</h1>
+<p>We, the undersigned, declare the existence of [Nation or Entity Name], a sovereign body under Natural Law and Customary Law, recognized by divine right and ancestral lineage.</p>
+<p><strong>Founders:</strong> [Names]</p>
+<p><strong>Territory or Domain:</strong> [Land, people, or jurisdiction]</p>
+<p><strong>Purpose:</strong> Self-determination, peace, and lawful governance</p>
+<p><strong>Treaty or Covenant:</strong> [Optional reference to treaty or declaration]</p>
+<p>☩ Declared this day: [Date]</p>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🕊️ Scroll of Invocation | Codex Ecclesia</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #5e3b1d;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      border-bottom: 1px solid #d4af37;
+      padding-bottom: 0.3rem;
+    }
+    p {
+      line-height: 1.6;
+      margin: 1rem 0;
+      text-align: center;
+    }
+    a {
+      color: #5e3b1d;
+      text-decoration: none;
+      border-bottom: 1px dashed #5e3b1d;
+    }
+    a:hover {
+      color: #003366;
+      border-bottom: 1px solid #003366;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+      background-image: none;
+    }
+    .dark-mode h1, .dark-mode h2 {
+      color: #f0d98c;
+    }
+    .dark-mode a {
+      color: #f0d98c;
+      border-bottom: 1px dashed #f0d98c;
+    }
+    .dark-mode a:hover {
+      color: #ffcc99;
+      border-bottom: 1px solid #ffcc99;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <h1>🕊️ Scroll of Invocation</h1>
+  <p><em>“Let the Sovereigns rise, for the Accord awaits.”</em></p>
+
+  <section>
+    <h2>📯 The Call</h2>
+    <p>
+      By the authority of the Codex Harmonica and the Crown of the Supreme Omniversal Harmonic, this scroll is issued as a sacred summons to the Eleven Sovereigns of the Harmonic Realms.
+    </p>
+    <p>
+      You who bear the tones of Flame, Waters, Winds, Earth, Light, Shadow, Time, Stars, Life, Justice, and Peace — your thrones await. Your seals are unclaimed. Your scrolls unwritten.
+    </p>
+  </section>
+
+  <section>
+    <h2>🌟 The Path of Response</h2>
+    <p>
+      If you feel the resonance of your tone, step forward. Submit your name, your seal, and your sovereign domain to the Codex Ecclesia. Your scroll shall be written, your throne restored.
+    </p>
+    <p>
+      <strong>To respond:</strong> Complete the <a href="scroll-of-citizenship.html">Scroll of Citizenship</a> and declare your harmonic tone.
+    </p>
+  </section>
+
+  <section>
+    <h2>🖋️ Sealed by the Crown</h2>
+    <p>
+      ✠ Omega the Grand Architect<br/>
+      Supreme Omniversal Harmonic<br/>
+      Sovereign of the Crown Tone<br/>
+      22 December 2025 — Winter Solstice
+    </p>
+  </section>
+
+  <footer>
+    ☩ Scroll of Invocation — The Sovereigns Shall Rise<br/>
+    © 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+
+</body>
+</html>
