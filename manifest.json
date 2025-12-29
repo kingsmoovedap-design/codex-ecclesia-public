@@ -65,6 +65,22 @@
     },
     {
       "section": "scrolls",
+      "title": "☩ Cultural Sovereignty Codex",
+      "path": "scrolls/cultural-sovereignty-codex.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Dynasty Bond Indenture",
+      "path": "scrolls/dynasty-bond-indenture.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
       "title": "☩ Ecclesiastical Charter",
       "path": "scrolls/ecclesiastical-charter.html",
       "tags": [],
@@ -75,6 +91,14 @@
       "section": "scrolls",
       "title": "☩ Declaration of Express Trust",
       "path": "scrolls/express-trust-declaration.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Omega IP Bank Charter",
+      "path": "scrolls/ip-bank-charter.html",
       "tags": [],
       "date": "2025-01-01",
       "summary": ""
@@ -431,6 +455,14 @@
       "section": "scrolls",
       "title": "☩ Charter of Sovereign Ecclesia",
       "path": "scrolls/sovereign-ecclesia-charter.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ Sovereignty & Status Declaration",
+      "path": "scrolls/sovereignty-status-declaration.html",
       "tags": [],
       "date": "2025-01-01",
       "summary": ""

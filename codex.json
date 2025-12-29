@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated": "2025-12-29T02:01:29.048Z",
+  "generated": "2025-12-29T02:12:58.927Z",
   "scrolls": [
     {
       "url": "404.html",
@@ -73,7 +73,7 @@
       "title": "All Scrolls",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.244Z",
-      "modified": "2025-12-29T01:55:18.934Z",
+      "modified": "2025-12-29T02:01:29.339Z",
       "version": "1.0.0",
       "lang": "en",
       "status": "active",
@@ -2071,17 +2071,6 @@
       "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
-      "url": "dist/index.html",
-      "title": "Index",
-      "category": "Index",
-      "created": "2025-12-29T01:55:20.498Z",
-      "modified": "2025-12-29T01:55:20.499Z",
-      "version": "1.0.0",
-      "lang": "en",
-      "status": "active",
-      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
-    },
-    {
       "url": "attached_assets/Pasted--All-four-sacred-components-are-now-complete-King-Omega_1766973455804.txt",
       "title": "Pasted  All Four Sacred Components Are Now Complete King Omega 1766973455804",
       "category": "Heirs",
@@ -2192,11 +2181,110 @@
       "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
+      "url": "dist/index.html",
+      "title": "Index",
+      "category": "Index",
+      "created": "2025-12-29T02:01:30.885Z",
+      "modified": "2025-12-29T02:01:30.885Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "attached_assets/Pasted-Sovereignty-Status-Declaration-Scroll-Filename-sovereig_1766974079180.txt",
+      "title": "Pasted Sovereignty Status Declaration Scroll Filename Sovereig 1766974079180",
+      "category": "Scrolls",
+      "created": "2025-12-29T02:08:00.056Z",
+      "modified": "2025-12-29T02:08:05.631Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "attached_assets/Pasted-Sovereignty-Status-Declaration-Scroll-Filename-sovereig_1766974172197.txt",
+      "title": "Pasted Sovereignty Status Declaration Scroll Filename Sovereig 1766974172197",
+      "category": "Scrolls",
+      "created": "2025-12-29T02:09:32.831Z",
+      "modified": "2025-12-29T02:09:33.128Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "attached_assets/Pasted-mbed-Scrolls-in-Your-Codex-Directory-Place-all-scrolls-_1766974231109.txt",
+      "title": "Pasted Mbed Scrolls In Your Codex Directory Place All Scrolls  1766974231109",
+      "category": "Scrolls",
+      "created": "2025-12-29T02:10:31.753Z",
+      "modified": "2025-12-29T02:10:31.905Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "attached_assets/Pasted-Cultural-Sovereignty-Codex-Filename-cultural-sovereignt_1766974281003.txt",
+      "title": "Pasted Cultural Sovereignty Codex Filename Cultural Sovereignt 1766974281003",
+      "category": "Codices",
+      "created": "2025-12-29T02:11:21.665Z",
+      "modified": "2025-12-29T02:11:21.821Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "scrolls/sovereignty-status-declaration.html",
+      "title": "Sovereignty Status Declaration",
+      "category": "Scrolls",
+      "created": "2025-12-29T02:12:46.513Z",
+      "modified": "2025-12-29T02:12:46.513Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "scrolls/dynasty-bond-indenture.html",
+      "title": "Dynasty Bond Indenture",
+      "category": "Scrolls",
+      "created": "2025-12-29T02:12:50.897Z",
+      "modified": "2025-12-29T02:12:50.898Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "scrolls/ip-bank-charter.html",
+      "title": "Ip Bank Charter",
+      "category": "Scrolls",
+      "created": "2025-12-29T02:12:55.445Z",
+      "modified": "2025-12-29T02:12:55.445Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "scrolls/cultural-sovereignty-codex.html",
+      "title": "Cultural Sovereignty Codex",
+      "category": "Scrolls",
+      "created": "2025-12-29T02:12:55.726Z",
+      "modified": "2025-12-29T02:12:55.726Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
       "url": "omega-portal.html",
       "title": "Omega Portal",
       "category": "Heirs",
-      "created": "2025-12-29T02:01:25.685Z",
-      "modified": "2025-12-29T02:01:25.757Z",
+      "created": "2025-12-29T02:12:55.999Z",
+      "modified": "2025-12-29T02:12:56.026Z",
       "version": "1.0.0",
       "lang": "en",
       "status": "active",
