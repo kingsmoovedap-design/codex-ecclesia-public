@@ -29,3 +29,10 @@
     "htmlhint": "^1.1.5"
   }
 }
+{
+  "type": "module",
+  "scripts": {
+    "build": "node build.cjs",
+    "deploy": "node deploy.cjs"
+  }
+}
