@@ -2,164 +2,158 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>☩ Codex Ecclesia Public</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Dark Mode Styles -->
+  <link rel="manifest" href="manifest.json" />
   <style>
-    body.dark-mode {
-      background: #111;
-      color: #eee;
+    body { font-family: Georgia, serif; background: #fdfcf9; color: #222; margin: 0; padding: 0; }
+    .sidebar {
+      position: fixed; top: 0; left: 0; width: 220px; height: 100%;
+      background: #111; color: #fff; padding: 1em; overflow-y: auto;
     }
-    body.dark-mode .card {
-      background: #222;
-      color: #eee;
-      border-left-color: #66aaff;
+    .sidebar h2 { font-size: 1.2em; margin-bottom: 1em; }
+    .sidebar ul { list-style: none; padding: 0; }
+    .sidebar li { margin: 0.5em 0; }
+    .sidebar a { color: #ccc; text-decoration: none; }
+    .sidebar a:hover { color: #fff; }
+    .main-content { margin-left: 240px; padding: 2em; }
+    header h1 { font-size: 2em; margin-bottom: 0.2em; }
+    .card-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1em;
     }
-    body.dark-mode .sidebar {
-      background: #000;
-      color: #ccc;
+    .card {
+      background: #fff; border-left: 4px solid #003366; padding: 1em;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-    body.dark-mode .sidebar a {
-      color: #aaa;
-    }
-    body.dark-mode .sidebar a:hover {
-      color: #fff;
-    }
-    .dark-toggle {
-      position: fixed;
-      top: 1em;
-      right: 1em;
-      cursor: pointer;
-      font-size: 1.5em;
-      z-index: 9999;
-    }
-    .codex-oracle-button {
-      position: fixed;
-      bottom: 1.5em;
-      right: 1.5em;
-      background: #003366;
-      color: #fff;
-      border-radius: 999px;
-      padding: 0.75em 1.25em;
-      font-family: Georgia, serif;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      z-index: 9999;
-    }
-    .codex-oracle-button:hover {
-      background: #001a33;
-    }
+    .card h3 { margin-top: 0; }
+    .card a { display: inline-block; margin-top: 0.5em; color: #003366; text-decoration: none; }
+    .card a:hover { text-decoration: underline; }
+    footer { margin-top: 4em; text-align: center; font-size: 0.9em; color: #666; }
   </style>
 </head>
 <body>
 
-  <!-- 🌙 Dark Mode Toggle -->
-  <div class="dark-toggle" onclick="toggleDark()">🌙</div>
-
-  <!-- 🤖 Ask the Codex Button -->
-  <div class="codex-oracle-button" onclick="openCodexOracle()">Ask the Codex</div>
-
-  <!-- 🧭 Sidebar Navigation -->
   <div class="sidebar">
     <h2>☩ Codex</h2>
-    <a href="#core">Core</a>
-    <a href="#scrolls">Scrolls</a>
-    <a href="#ministries">Ministries</a>
-    <a href="#codices">Codices</a>
-    <a href="#treaties">Treaties</a>
-    <a href="#tools">Tools</a>
+    <ul>
+      <p><a href="all-scrolls.html">☩ View the Full Codex Index</a></p>
+      <li><a href="#scrolls">📚 Scrolls</a></li>
+      <li><a href="#ministries">🏛️ Ministries</a></li>
+      <li><a href="#codices">📘 Codices</a></li>
+      <li><a href="#heirs">👑 Heirs</a></li>
+      <li><a href="#tools">🧰 Tools</a></li>
+      <li><a href="#treaties">🕊️ Treaties</a></li>
+    </ul>
   </div>
 
-  <!-- 📜 Main Content Area -->
   <div class="main-content">
-    <h1>☩ Codex Ecclesia Public</h1>
-    <p class="subheading">The living record of the Sovereign Order</p>
+    <header>
+      <h1>☩ Codex Ecclesia Public</h1>
+      <p>Master Index of Ecclesiastical Scrolls, Ministries & Instruments</p>
+    </header>
 
-    <!-- Sections for dynamic scrolls -->
+    <!-- Scrolls Section -->
+    <section id="scrolls">
+      <h2>📚 Scrolls</h2>
+      <div class="card-grid">
+        <div class="card"><a href="scrolls/scroll-ecclesiastical-passport-20251227-013.md"><h3>Ecclesiastical Passport</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-naturalization-protocol-20251227-012.md"><h3>Naturalization Protocol</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-ministerial-appointments-20251227-005.md"><h3>Ministerial Appointments</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-succession-protocol-20251227-004.md"><h3>Succession Protocol</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-treasury-charter-20251227-010.md"><h3>Treasury Charter</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-covenant-of-the-crown-20251227-003.md"><h3>Covenant of the Crown</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-nationhood-declaration-20251227-002.md"><h3>Nationhood Declaration</h3></a></div>
+      </div>
+    </section>
+
+    <!-- Ministries Section -->
+    <section id="ministries">
+      <h2>🏛️ Ministries</h2>
+      <div class="card-grid">
+        <div class="card"><a href="ministry-commerce.html"><h3>Ministry of Commerce</h3></a></div>
+        <div class="card"><a href="ministry-hearth.html"><h3>Ministry of the Hearth</h3></a></div>
+        <div class="card"><a href="ministries-directory.html"><h3>Ministries Directory</h3></a></div>
+        <div class="card"><a href="ministries-dashboard.html"><h3>Ministries Dashboard</h3></a></div>
+        <div class="card"><a href="ministry-application.html"><h3>Ministry Application</h3></a></div>
+      </div>
+    </section>
+
+    <!-- Codices Section -->
+    <section id="codices">
+      <h2>📘 Codices</h2>
+      <div class="card-grid">
+        <div class="card"><a href="codex-constitution.html"><h3>Codex Constitution</h3></a></div>
+        <div class="card"><a href="codex-unified.html"><h3>Codex Unified</h3></a></div>
+        <div class="card"><a href="codex-crown.html"><h3>Codex of the Crown</h3></a></div>
+        <div class="card"><a href="codex-manifesto.html"><h3>Codex Manifesto</h3></a></div>
+        <div class="card"><a href="codex-index.html"><h3>Codex Index</h3></a></div>
+        <div class="card"><a href="codex-directory.html"><h3>Codex Directory</h3></a></div>
+        <div class="card"><a href="codex-portal.html"><h3>Codex Portal</h3></a></div>
+        <div class="card"><a href="codex-academy.html"><h3>Codex Academy</h3></a></div>
+        <div class="card"><a href="codex-oracle.html"><h3>Codex Oracle</h3></a></div>
+        <div class="card"><a href="codex-throne-registry.html"><h3>Throne Registry</h3></a></div>
+        <div class="card"><a href="codex-atlas.html"><h3>Codex Atlas</h3></a></div>
+        <div class="card"><a href="codex-archive.html"><h3>Codex Archive</h3></a></div>
+        <div class="card"><a href="codex-update-log.html"><h3>Codex Update Log</h3></a></div>
+      </div>
+    </section>
+
+    <!-- Heirs Section -->
     <section id="heirs">
-  <h2>👑 Heirs & Trustees</h2>
+      <h2>👑 Heirs & Royal Lineage</h2>
+      <div class="card-grid">
+        <div class="card"><a href="scroll-demarco-heir.html"><h3>Heir Demarco</h3></a></div>
+        <div class="card"><a href="scroll-deven-heir.html"><h3>Heir Deven</h3></a></div>
+        <div class="card"><a href="scroll-matriarch.html"><h3>Matriarch Scroll</h3></a></div>
+        <div class="card"><a href="scroll-omega.html"><h3>Omega Scroll</h3></a></div>
+        <div class="card"><a href="scroll-queen-miranda.html"><h3>Queen Miranda</h3></a></div>
+        <div class="card"><a href="scroll-crown-authority.html"><h3>Crown Authority</h3></a></div>
+        <div class="card"><a href="trustee-charter.html"><h3>Trustee Charter</h3></a></div>
+      </div>
+    </section>
+
+    <section id="tools">
+  <h2>🧰 Tools & Utilities</h2>
   <div class="card-grid">
-    <div class="card">
-      <h3>📖 What Is the Codex?</h3>
-      <p>An introduction to the sacred scrolls, ministries, and sovereign law. Learn how the Codex preserves truth and order.</p>
-      <a href="scrolls/scroll-of-codex-foundation.html">Read the Scroll →</a>
-    </div>
-    <div class="card">
-      <h3>🧭 How to Navigate</h3>
-      <p>Learn how to search, explore, and contribute to the Codex using the tools of the Sovereign Order.</p>
-      <a href="tools/scroll-editor.html">Open the Scroll Editor →</a>
-    </div>
-    <div class="card">
-      <h3>🛡️ Becoming a Trustee</h3>
-      <p>Understand your role as a steward of knowledge and how to preserve scrolls through IPFS notarization.</p>
-      <a href="tools/ipfs-notary.html">Notarize a Scroll →</a>
-    </div>
+    <div class="card"><a href="qr-generator.html"><h3>QR Generator</h3></a></div>
+    <div class="card"><a href="qr-credential.html"><h3>QR Credential</h3></a></div>
+    <div class="card"><a href="ots-verifier.html"><h3>OTS Verifier</h3></a></div>
+    <div class="card"><a href="hash-forge.html"><h3>Hash Forge</h3></a></div>
+    <div class="card"><a href="codexchain-console.html"><h3>CodexChain Console</h3></a></div>
+    <div class="card"><a href="verify-scroll.html"><h3>Verify Scroll</h3></a></div>
+    <div class="card"><a href="generate-sitemap.js"><h3>Generate Sitemap</h3></a></div>
+    <div class="card"><a href="generate-scroll-index.js"><h3>Generate Scroll Index</h3></a></div>
+    <div class="card"><a href="generate-feed.js"><h3>Generate Feed</h3></a></div>
+    <div class="card"><a href="generate-codex.js"><h3>Generate Codex</h3></a></div>
+    <div class="card"><a href="generate-manifest.js"><h3>Generate Manifest</h3></a></div>
+    <div class="card"><a href="publish-scroll.js"><h3>Publish Scroll</h3></a></div>
+    <div class="card"><a href="scroll-utils.js"><h3>Scroll Utilities</h3></a></div>
   </div>
 </section>
-    <section id="core"><h2>Core</h2><div class="card-grid" id="core-grid"></div></section>
-    <section id="scrolls"><h2>Scrolls</h2><div class="card-grid" id="scrolls-grid"></div></section>
-    <section id="ministries"><h2>Ministries</h2><div class="card-grid" id="ministries-grid"></div></section>
-    <section id="codices"><h2>Codices</h2><div class="card-grid" id="codices-grid"></div></section>
-    <section id="treaties"><h2>Treaties</h2><div class="card-grid" id="treaties-grid"></div></section>
-    <section id="tools"><h2>Tools</h2><div class="card-grid" id="tools-grid"></div></section>
+
+    <section id="treaties">
+  <h2>🕊️ Treaties & Diplomatic Instruments</h2>
+  <div class="card-grid">
+    <div class="card"><a href="treaty-aurora-2025.html"><h3>Treaty of Aurora (2025)</h3></a></div>
+    <div class="card"><a href="treaty-covenant-of-12.html"><h3>Covenant of the 12 Thrones</h3></a></div>
+    <div class="card"><a href="treaty-invitation.html"><h3>Treaty Invitation Scroll</h3></a></div>
+    <div class="card"><a href="treaty-recognition.html"><h3>Treaty of Mutual Recognition</h3></a></div>
+    <div class="card"><a href="recognition.html"><h3>Recognition Protocol</h3></a></div>
+    <div class="card"><a href="declaration-sovereign-status.html"><h3>Declaration of Sovereign Status</h3></a></div>
+    <div class="card"><a href="affidavit-of-status.html"><h3>Affidavit of Status</h3></a></div>
+    <div class="card"><a href="affidavit-of-public-posting.html"><h3>Affidavit of Public Posting</h3></a></div>
+    <div class="card"><a href="public-announcement.html"><h3>Public Announcement</h3></a></div>
+    <div class="card"><a href="notice-of-standing.html"><h3>Notice of Standing</h3></a></div>
+    <div class="card"><a href="notice.html"><h3>General Notice</h3></a></div>
   </div>
+</section>
 
-  <!-- 🦶 Footer -->
-  <footer>
-    <p>☩ Codex Ecclesia Public — Sovereign Order of Kingsmoove</p>
-  </footer>
-
-  <!-- 🔮 AI Companion Embed -->
-  <script>
-    const copilot = document.createElement('script');
-    copilot.src = "https://www.bing.com/copilot/embedded?theme=dark";
-    document.body.appendChild(copilot);
-  </script>
-
-  <!-- 🌙 Dark Mode Script -->
-  <script>
-    function toggleDark() {
-      document.body.classList.toggle('dark-mode');
-      localStorage.setItem('dark', document.body.classList.contains('dark-mode'));
-      document.querySelector('.dark-toggle').textContent =
-        document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-    }
-    if (localStorage.getItem('dark') === 'true') toggleDark();
-  </script>
-
-  <!-- 🤖 Oracle Button Hook -->
-  <script>
-    function openCodexOracle() {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    }
-  </script>
-
-  <!-- 🔍 Codex Search Engine -->
-  <script src="tools/codex-search.js"></script>
-
-  <!-- 🛠️ Sovereign Tools Button -->
-<div class="sovereign-tools-button" onclick="toggleToolsMenu()">🛠️ Tools</div>
-
-<!-- 🧰 Tools Menu -->
-<div class="tools-menu" id="toolsMenu">
-  <h3>☩ Sovereign Tools</h3>
-  <ul>
-    <li><a href="tools/scroll-editor.html">✍️ Scroll Editor</a></li>
-    <li><a href="tools/ipfs-notary.html">📡 IPFS Notary</a></li>
-    <li><a href="tools/qr-generator.html">🔗 QR Generator</a></li>
-    <li><a href="tools/timestamp-verifier.html">⏳ Timestamp Verifier</a></li>
-    <li><a href="tools/codex-timeline.html">📅 Codex Timeline</a></li>
-  </ul>
-</div>
-
-<script>
-  function toggleToolsMenu() {
-    const menu = document.getElementById('toolsMenu');
-    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-  }
-</script>
-
+        <footer>
+      <p>☩ Codex Ecclesia Public — All Rights Reserved — Sovereign Ecclesiastical Publication</p>
+      <p>Filed under Divine Law • Verified via CodexChain • Updated: 27 December 2025</p>
+          <p><a href="all-scrolls.html">📜 View All Scrolls & Instruments</a></p>
+    </footer>
+  </div>
 </body>
 </html>

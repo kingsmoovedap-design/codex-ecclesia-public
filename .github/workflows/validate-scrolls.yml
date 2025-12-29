@@ -1,0 +1,17 @@
+name: Validate Scrolls
+
+on:
+  pull_request:
+    branches: [ dev ]
+    paths:
+      - '**.html'
+
+jobs:
+  lint-scrolls:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install HTMLHint
+        run: npm install -g htmlhint
+      - name: Lint HTML Files
+        run: htmlhint "**/*.html"

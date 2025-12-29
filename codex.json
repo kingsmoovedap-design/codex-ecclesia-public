@@ -1,0 +1,41 @@
+fetch('codex.json')
+  .then(res => res.json())
+  .then(data => {
+    const list = document.getElementById('scroll-list');
+    data.scrolls.forEach(item => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = item.url;
+      a.textContent = item.title || item.url;
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+  });
+{
+  "scrolls": [
+    "scroll-ecclesiastical-passport-20251227-013.md",
+    "scroll-naturalization-protocol-20251227-012.md",
+    "scroll-ministerial-appointments-20251227-005.md",
+    "scroll-succession-protocol-20251227-004.md",
+    "scroll-treasury-charter-20251227-010.md",
+    "scroll-covenant-of-the-crown-20251227-003.md",
+    "scroll-nationhood-declaration-20251227-002.md"
+  ],
+  "heirs": [
+    "scroll-demarco-heir.html",
+    "scroll-deven-heir.html",
+    "scroll-matriarch.html",
+    "scroll-omega.html",
+    "scroll-queen-miranda.html"
+  ],
+  "treaties": [
+    "treaty-recognition.html",
+    "treaty-aurora-2025.html",
+    "treaty-covenant-of-12.html"
+  ],
+  "meta": {
+    "generated": "2025-12-27T21:47:00-08:00",
+    "sovereign": "Sovereign King Omega",
+    "repository": "Borders Ecclesia Earth Trust"
+  }
+}

@@ -1,33 +1,61 @@
 [
   {
-    "number": "001",
-    "title": "Untitled Scroll",
-    "tone": "—",
-    "author": "Omega",
-    "link": "https://kingsmoovedap-design.github.io/codex-ecclesia-harmony/scrolls/scroll-001.html",
-    "filed": "2025-01-01",
-    "sealed": "",
-    "witnesses": [],
-    "seal_phrase": "",
-    "affirmation": "",
-    "notes": ""
+    "title": "The Book of Light",
+    "slug": "book-of-light",
+    "path": "scrolls/book-of-light.html",
+    "date": "2025-12-25",
+    "tags": ["prophecy", "illumination"],
+    "summary": "A sacred scroll revealing the first glyphs of the Codex."
   },
-  ...
   {
-    "number": "031",
-    "title": "Scroll of Deven Julian Borders",
-    "tone": "Heir Declaration",
-    "author": "Deven Julian Borders",
-    "link": "https://kingsmoovedap-design.github.io/codex-ecclesia-harmony/scrolls/scroll-deven-heir.html",
-    "filed": "2025-12-24",
-    "sealed": "2026-02-09",
-    "witnesses": [
-      "Demarco C. Borders, Younger Brother (b. Jan 26, 2013)",
-      "Destiny M. Simmons, Mother",
-      "Prince L. White, Cousin (son of Queen Tammy L. Borders)"
-    ],
-    "seal_phrase": "I walk with confidence, because I am a king and a son of a king.",
-    "affirmation": "I, Deven Julian Borders, affirm this scroll as my sovereign declaration. I will walk this path with courage, humility, and clarity. I am ready to be crowned not as a ruler, but as a servant of the Codex.",
-    "notes": "Filed by Omega, Sovereign Father, as part of the Heir Ascension Path. To be sealed in ceremony on Deven’s 17th birthday."
+    "title": "Rites of the Sovereign Flame",
+    "slug": "sovereign-flame",
+    "path": "scrolls/sovereign-flame.html",
+    "date": "2025-12-20",
+    "tags": ["ritual", "fire"],
+    "summary": "Instructions for invoking the eternal flame of the Ecclesia."
   }
 ]
+[
+  {
+    "section": "core",
+    "title": "Scroll CXVII: Return of the Dead Fiction",
+    "path": "scroll-cxvii-return-of-dead-fiction.html",
+    "tags": ["core", "scroll", "cxvii", "return", "dead", "fiction"],
+    "date": "2025-12-16",
+    "summary": "Declaration of sovereign status reclaiming the estate from the legal fiction and affirming divine jurisdiction and living standing.",
+    "filed": "CL‑059",
+    "author": "Omega the Grand Architect",
+    "location": "Grand Terrace, California"
+  },
+  {
+    "section": "core",
+    "title": "Scroll CXXIV: Entity Formation Decree",
+    "path": "scroll-cxxiv-entity-formation.html",
+    "tags": ["core", "scroll", "cxxiv", "entity", "formation"],
+    "date": "2025-12-16",
+    "summary": "Decree establishing sovereign entities including trusts, embassies, and digital instruments under divine jurisdiction.",
+    "filed": "CL‑063",
+    "author": "Omega the Grand Architect",
+    "location": "Borders Family Dynasty Nation"
+  },
+  {
+    "section": "core",
+    "title": "Scroll CXXVI: Total Embedding of Lawful Instruments",
+    "path": "scroll-cxxvi-total-embedding.html",
+    "tags": ["core", "scroll", "cxxvi", "total", "embedding"],
+    "date": "2025-12-16",
+    "summary": "Decree embedding all lawful paperwork, charters, procedures, and formats into the Codex Ecclesia Totalis.",
+    "filed": "CL‑056",
+    "author": "Omega the Grand Architect",
+    "location": "Borders Family Dynasty Nation"
+  }
+]
+{
+  "section": "core",
+  "title": "Codex Curriculum",
+  "path": "codex-curriculum.html",
+  "tags": ["core", "codex", "curriculum", "education", "rites"],
+  "date": "2025-12-25",
+  "summary": "The sacred syllabus of the Ecclesia — outlining sovereign studies, rites of passage, and the path of scribes, sentinels, and sovereigns."
+}
