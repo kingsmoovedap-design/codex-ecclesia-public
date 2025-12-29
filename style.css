@@ -136,23 +136,6 @@ body.dark-mode .sidebar a:hover {
   color: #fff;
 }
 
-.codex-oracle-button {
-  position: fixed;
-  bottom: 1.5em;
-  right: 1.5em;
-  background: #003366;
-  color: #fff;
-  border-radius: 999px;
-  padding: 0.75em 1.25em;
-  font-family: Georgia, serif;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  z-index: 9999;
-}
-.codex-oracle-button:hover {
-  background: #001a33;
-}
-
 .sovereign-tools-button {
   position: fixed;
   bottom: 1.5em;
@@ -165,10 +148,29 @@ body.dark-mode .sidebar a:hover {
   cursor: pointer;
   z-index: 9999;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  
 }
 .sovereign-tools-button:hover {
   background: #001a33;
 }
+.sovereign-tools-button {
+  position: fixed;
+  bottom: 1.5em;
+  left: 1.5em;
+  background: #003366;
+  color: white;
+  padding: 0.75em 1.25em;
+  border-radius: 999px;
+  font-family: Georgia, serif;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  
+}
+.sovereign-tools-button:hover {
+  background: #001a33;
+}
+=======
 .tools-menu {
   display: none;
   position: fixed;
