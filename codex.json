@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated": "2025-12-29T02:23:34.156Z",
+  "generated": "2025-12-29T02:24:23.822Z",
   "scrolls": [
     {
       "url": "404.html",
@@ -73,7 +73,7 @@
       "title": "All Scrolls",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.244Z",
-      "modified": "2025-12-29T02:21:01.759Z",
+      "modified": "2025-12-29T02:23:34.422Z",
       "version": "1.0.0",
       "lang": "en",
       "status": "active",
@@ -2335,17 +2335,6 @@
       "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
-      "url": "dist/index.html",
-      "title": "Index",
-      "category": "Index",
-      "created": "2025-12-29T02:21:03.324Z",
-      "modified": "2025-12-29T02:21:03.325Z",
-      "version": "1.0.0",
-      "lang": "en",
-      "status": "active",
-      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
-    },
-    {
       "url": "attached_assets/Pasted--National-Treasury-Constitution-Scroll-Filename-nationa_1766974988388.txt",
       "title": "Pasted  National Treasury Constitution Scroll Filename Nationa 1766974988388",
       "category": "Scrolls",
@@ -2412,11 +2401,44 @@
       "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
+      "url": "dist/index.html",
+      "title": "Index",
+      "category": "Index",
+      "created": "2025-12-29T02:23:36.042Z",
+      "modified": "2025-12-29T02:23:36.042Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "scrolls/ecclesiastical-trade-covenant.html",
+      "title": "Ecclesiastical Trade Covenant",
+      "category": "Scrolls",
+      "created": "2025-12-29T02:24:20.311Z",
+      "modified": "2025-12-29T02:24:20.311Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "scrolls/sovereign-diplomatic-protocol.html",
+      "title": "Sovereign Diplomatic Protocol",
+      "category": "Scrolls",
+      "created": "2025-12-29T02:24:20.545Z",
+      "modified": "2025-12-29T02:24:20.545Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
       "url": "omega-portal.html",
       "title": "Omega Portal",
       "category": "Heirs",
-      "created": "2025-12-29T02:23:31.102Z",
-      "modified": "2025-12-29T02:23:31.238Z",
+      "created": "2025-12-29T02:24:20.737Z",
+      "modified": "2025-12-29T02:24:20.835Z",
       "version": "1.0.0",
       "lang": "en",
       "status": "active",

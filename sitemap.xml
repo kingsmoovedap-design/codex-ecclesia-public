@@ -1492,13 +1492,6 @@
   </url>
 
   <url>
-    <loc>https://codex-ecclesia.org/dist/index.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
     <loc>https://codex-ecclesia.org/attached_assets/Pasted--National-Treasury-Constitution-Scroll-Filename-nationa_1766974988388.txt</loc>
     <lastmod>2025-12-29</lastmod>
     <changefreq>monthly</changefreq>
@@ -1535,6 +1528,27 @@
 
   <url>
     <loc>https://codex-ecclesia.org/scrolls/ecclesia-market-constitution.html</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codex-ecclesia.org/dist/index.html</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codex-ecclesia.org/scrolls/ecclesiastical-trade-covenant.html</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codex-ecclesia.org/scrolls/sovereign-diplomatic-protocol.html</loc>
     <lastmod>2025-12-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
