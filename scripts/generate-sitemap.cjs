@@ -1,9 +1,5 @@
-import fs from 'fs-extra';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const fs = require('fs-extra');
+const path = require('path');
 
 // CONFIG
 const BASE_URL = 'https://codex-ecclesia.org';
@@ -20,7 +16,7 @@ async function generateSitemap() {
 
     const urls = codex.scrolls.map(entry => {
       const loc = `${BASE_URL}/${entry.url.replace(/^\//, '')}`;
-      const lastmod = new Date(entry.created).toISOString().split('T')[0];
+      const lastmod = entry.created ? new Date(entry.created).toISOString().split('T')[0] : new Date().toISOString().split('T')[0];
       return `
   <url>
     <loc>${loc}</loc>

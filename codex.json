@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated": "2025-12-29T00:27:59.938Z",
+  "generated": "2025-12-29T00:28:51.589Z",
   "scrolls": [
     {
       "url": "404.html",
@@ -73,7 +73,7 @@
       "title": "All Scrolls",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.244Z",
-      "modified": "2025-12-29T00:27:26.327Z",
+      "modified": "2025-12-29T00:28:00.170Z",
       "version": "1.0.0",
       "lang": "en",
       "status": "active",
@@ -2038,17 +2038,6 @@
       "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
-      "url": "replit.md",
-      "title": "Replit",
-      "category": "Other",
-      "created": "2025-12-28T23:37:11.801Z",
-      "modified": "2025-12-28T23:37:11.802Z",
-      "version": "1.0.0",
-      "lang": "en",
-      "status": "active",
-      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
-    },
-    {
       "url": "attached_assets/Pasted--1-manifest-webmanifest-Create-a-new-file-in-your-Repli_1766968015809.txt",
       "title": "Pasted  1 Manifest Webmanifest Create A New File In Your Repli 1766968015809",
       "category": "Tools",
@@ -2076,6 +2065,28 @@
       "category": "Index",
       "created": "2025-12-29T00:27:23.403Z",
       "modified": "2025-12-29T00:27:23.407Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "dist/index.html",
+      "title": "Index",
+      "category": "Index",
+      "created": "2025-12-29T00:28:01.675Z",
+      "modified": "2025-12-29T00:28:01.676Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "replit.md",
+      "title": "Replit",
+      "category": "Other",
+      "created": "2025-12-29T00:28:03.672Z",
+      "modified": "2025-12-29T00:28:03.674Z",
       "version": "1.0.0",
       "lang": "en",
       "status": "active",

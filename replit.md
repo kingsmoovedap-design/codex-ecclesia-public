@@ -44,4 +44,4 @@ A dynamic, metadata-driven digital archive serving as the sovereign scroll archi
   - Added `leadership.html` and `submit-scroll.html` modules.
   - Implemented PWA features: Web App Manifest and Service Worker for offline support.
   - Developed `omega-portal.html` as a master command center for trust management and document drafting.
-  - Integrated sacred ☩ seal icons (192px/512px) for PWA compliance.
+  - Integrated sacred ☩ seal icons (192px/512px) for PWA compliance and offline support.
