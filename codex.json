@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated": "2025-12-29T00:28:51.589Z",
+  "generated": "2025-12-29T01:04:01.172Z",
   "scrolls": [
     {
       "url": "404.html",
@@ -73,7 +73,7 @@
       "title": "All Scrolls",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.244Z",
-      "modified": "2025-12-29T00:28:00.170Z",
+      "modified": "2025-12-29T00:28:51.775Z",
       "version": "1.0.0",
       "lang": "en",
       "status": "active",
@@ -2074,8 +2074,8 @@
       "url": "dist/index.html",
       "title": "Index",
       "category": "Index",
-      "created": "2025-12-29T00:28:01.675Z",
-      "modified": "2025-12-29T00:28:01.676Z",
+      "created": "2025-12-29T00:28:52.844Z",
+      "modified": "2025-12-29T00:28:52.845Z",
       "version": "1.0.0",
       "lang": "en",
       "status": "active",
@@ -2085,8 +2085,8 @@
       "url": "replit.md",
       "title": "Replit",
       "category": "Other",
-      "created": "2025-12-29T00:28:03.672Z",
-      "modified": "2025-12-29T00:28:03.674Z",
+      "created": "2025-12-29T00:28:58.347Z",
+      "modified": "2025-12-29T00:28:58.348Z",
       "version": "1.0.0",
       "lang": "en",
       "status": "active",
