@@ -1,0 +1,20 @@
+[
+  {
+    "title": "The Scroll of Origins",
+    "author": "Elder Thales",
+    "tags": ["history", "founding", "mythos"],
+    "summary": "An account of the founding of the Omega Ecclesia and the first covenantal rites."
+  },
+  {
+    "title": "Treatise on Sacred Commerce",
+    "author": "Archivist Liora",
+    "tags": ["economy", "market", "law"],
+    "summary": "A guide to the principles of trade within the Ecclesia Market, including the use of Ω-Crowns and covenantal contracts."
+  },
+  {
+    "title": "The Flame of the Sixth Seal",
+    "author": "Scribe Malkior",
+    "tags": ["prophecy", "ritual", "flame"],
+    "summary": "A prophetic vision of the sixth seal and the trials that precede the Age of Renewal."
+  }
+]
