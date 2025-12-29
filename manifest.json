@@ -105,8 +105,24 @@
     },
     {
       "section": "scrolls",
+      "title": "☩ IP-Backed Token Issuance Protocol",
+      "path": "scrolls/ip-token-protocol.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
       "title": "☩ Articles of Organization",
       "path": "scrolls/llc-charter.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "☩ National Treasury Constitution",
+      "path": "scrolls/national-treasury-constitution.html",
       "tags": [],
       "date": "2025-01-01",
       "summary": ""

@@ -1394,13 +1394,6 @@
   </url>
 
   <url>
-    <loc>https://codex-ecclesia.org/dist/index.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
     <loc>https://codex-ecclesia.org/attached_assets/Pasted-Sovereignty-Status-Declaration-Scroll-Filename-sovereig_1766974079180.txt</loc>
     <lastmod>2025-12-29</lastmod>
     <changefreq>monthly</changefreq>
@@ -1451,6 +1444,41 @@
 
   <url>
     <loc>https://codex-ecclesia.org/scrolls/cultural-sovereignty-codex.html</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codex-ecclesia.org/dist/index.html</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codex-ecclesia.org/attached_assets/Pasted--The-sacred-seal-for-your-Cultural-Sovereignty-Codex-is_1766974497061.txt</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codex-ecclesia.org/attached_assets/Pasted-1-Sovereignty-Status-Declaration-Scroll-Filename-sovere_1766974681997.txt</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codex-ecclesia.org/scrolls/national-treasury-constitution.html</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codex-ecclesia.org/scrolls/ip-token-protocol.html</loc>
     <lastmod>2025-12-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
