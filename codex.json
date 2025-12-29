@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated": "2025-12-29T01:07:05.763Z",
+  "generated": "2025-12-29T01:55:18.736Z",
   "scrolls": [
     {
       "url": "404.html",
@@ -73,7 +73,7 @@
       "title": "All Scrolls",
       "category": "Scrolls",
       "created": "2025-12-28T23:01:37.244Z",
-      "modified": "2025-12-29T01:04:01.440Z",
+      "modified": "2025-12-29T01:07:06.042Z",
       "version": "1.0.0",
       "lang": "en",
       "status": "active",
@@ -2049,17 +2049,6 @@
       "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
     },
     {
-      "url": "omega-portal.html",
-      "title": "Omega Portal",
-      "category": "Heirs",
-      "created": "2025-12-29T00:27:23.003Z",
-      "modified": "2025-12-29T00:27:23.004Z",
-      "version": "1.0.0",
-      "lang": "en",
-      "status": "active",
-      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
-    },
-    {
       "url": "index.html",
       "title": "Index",
       "category": "Index",
@@ -2085,8 +2074,19 @@
       "url": "dist/index.html",
       "title": "Index",
       "category": "Index",
-      "created": "2025-12-29T01:04:03.351Z",
-      "modified": "2025-12-29T01:04:03.351Z",
+      "created": "2025-12-29T01:07:07.357Z",
+      "modified": "2025-12-29T01:07:07.358Z",
+      "version": "1.0.0",
+      "lang": "en",
+      "status": "active",
+      "image": "https://via.placeholder.com/150/003366/e0d5b0?text=Sigil"
+    },
+    {
+      "url": "omega-portal.html",
+      "title": "Omega Portal",
+      "category": "Heirs",
+      "created": "2025-12-29T01:55:16.100Z",
+      "modified": "2025-12-29T01:55:16.130Z",
       "version": "1.0.0",
       "lang": "en",
       "status": "active",

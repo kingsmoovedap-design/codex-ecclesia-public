@@ -240,10 +240,30 @@
 
     function renderEntities() {
       const list = document.getElementById('entitiesList');
-      const entities = JSON.parse(localStorage.getItem('omega_entities') || '[]');
-      list.innerHTML = entities.map((e, idx) => 
-        `<li><strong>${e.name}</strong> — ${e.type || 'type unknown'} (${e.role || 'role unknown'})<br/><span class="small">${e.notes || ''}</span></li>`
-      ).join('');
+      
+      // Load from localStorage first
+      let localEntities = JSON.parse(localStorage.getItem('omega_entities') || '[]');
+      
+      // Fetch canonical entities from JSON
+      fetch('entities.json')
+        .then(res => res.json())
+        .then(data => {
+          const canonicalEntities = data.entities || [];
+          const allEntities = [...canonicalEntities, ...localEntities];
+          
+          list.innerHTML = allEntities.map((e, idx) => 
+            `<li><strong>${e.type || e.name}</strong> — ${e.jurisdiction || e.type || 'Type unknown'} (${e.purpose || e.role || 'Role unknown'})<br/>
+             <span class="small">${e.notes || ''}</span>
+             ${e.scroll ? `<br/><a href="${e.scroll}" class="small" style="color:#c5a059;">View Governing Scroll</a>` : ''}
+            </li>`
+          ).join('');
+        })
+        .catch(() => {
+          // Fallback to local only if fetch fails
+          list.innerHTML = localEntities.map((e, idx) => 
+            `<li><strong>${e.name}</strong> — ${e.type || 'type unknown'} (${e.role || 'role unknown'})<br/><span class="small">${e.notes || ''}</span></li>`
+          ).join('');
+        });
     }
 
     // Drafts

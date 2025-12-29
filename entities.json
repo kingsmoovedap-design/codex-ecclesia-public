@@ -1,0 +1,28 @@
+{
+  "entities": [
+    {
+      "type": "Express Trust",
+      "jurisdiction": "Private Law",
+      "purpose": "Asset protection, sovereignty",
+      "notes": "Non-statutory; not registered with state",
+      "scroll": "scrolls/express-trust-declaration.html",
+      "timestamp": "2025-12-28T17:52:00Z"
+    },
+    {
+      "type": "Ecclesiastical Juridic Person",
+      "jurisdiction": "Canon Law",
+      "purpose": "Church, ministry, sacred office",
+      "notes": "Recognized under Canons 113–123",
+      "scroll": "scrolls/ecclesiastical-charter.html",
+      "timestamp": "2025-12-28T17:52:00Z"
+    },
+    {
+      "type": "Private Membership Association (PMA)",
+      "jurisdiction": "Contract Law",
+      "purpose": "Health, education, commerce",
+      "notes": "Operates privately under contract",
+      "scroll": "scrolls/pma-bylaws.html",
+      "timestamp": "2025-12-28T17:52:00Z"
+    }
+  ]
+}
