@@ -4,73 +4,178 @@
   <meta charset="UTF-8" />
   <title>📜 All Scrolls | Codex Ecclesia</title>
   <link rel="stylesheet" href="style.css" />
+
   <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #003366;
+      color: white;
+      padding: 1.5em;
+      text-align: center;
+    }
+
+    #search {
+      width: 90%;
+      max-width: 500px;
+      padding: 0.75em;
+      margin-top: 1em;
+      font-size: 1em;
+      border-radius: 4px;
+      border: none;
+    }
+
+    #filters {
+      margin: 1em auto;
+      text-align: center;
+    }
+
+    #filters select {
+      padding: 0.5em;
+      margin: 0.5em;
+      font-size: 1em;
+    }
+
+    #tag-buttons button {
+      margin: 0.2em;
+      padding: 0.4em 0.8em;
+      border: none;
+      background: #003366;
+      color: white;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
     .scroll {
       border: 1px solid #ccc;
       padding: 1em;
-      margin-bottom: 1em;
+      margin: 1em auto;
       background: #fff;
       border-left: 5px solid #003366;
+      max-width: 800px;
+      border-radius: 4px;
     }
-    #search {
-      width: 100%;
-      padding: 0.5em;
-      margin-bottom: 1em;
-      font-size: 1em;
+
+    footer {
+      text-align: center;
+      padding: 2em;
+      color: #666;
     }
   </style>
 </head>
+
 <body>
   <header>
     <h1>📜 All Scrolls</h1>
-    <input type="text" id="search" placeholder="Search scrolls by title, author, or tag…" />
+    <input type="text" id="search" placeholder="Search scrolls by title, summary, or tag…" />
   </header>
 
-  <main id="scroll-list">
-    <!-- Scrolls will be rendered here -->
-  </main>
+  <div id="filters">
+    <select id="sectionFilter">
+      <option value="">All Sections</option>
+    </select>
+    <div id="tag-buttons"></div>
+  </div>
+
+  <main id="scroll-list"></main>
 
   <footer>
     <p>☩ Powered by the Omega Ecclesia</p>
   </footer>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       const scrollList = document.getElementById('scroll-list');
       const searchInput = document.getElementById('search');
+      const sectionFilter = document.getElementById('sectionFilter');
+      const tagButtons = document.getElementById('tag-buttons');
 
-      fetch('scrolls/scrolls.json')
-        .then(res => res.json())
-        .then(data => {
-          const scrolls = data.scrolls || data;
+      // Load manifest.json (unified Codex source)
+      const res = await fetch('manifest.json');
+      const data = await res.json();
+      const items = data.items || [];
 
-          function renderScrolls(filter = '') {
-            scrollList.innerHTML = '';
-            scrolls
-              .filter(s =>
-                s.title.toLowerCase().includes(filter.toLowerCase()) ||
-                (s.author && s.author.toLowerCase().includes(filter.toLowerCase())) ||
-                (s.tags && s.tags.some(tag => tag.toLowerCase().includes(filter.toLowerCase())))
-              )
-              .forEach(scroll => {
-                const div = document.createElement('div');
-                div.className = 'scroll';
-                div.innerHTML = `
-                  <h2>${scroll.title}</h2>
-                  <p><strong>Author:</strong> ${scroll.author || 'Unknown'}</p>
-                  <p><strong>Tags:</strong> ${scroll.tags?.join(', ') || 'None'}</p>
-                  <p>${scroll.summary || ''}</p>
-                `;
-                scrollList.appendChild(div);
-              });
-          }
+      // Collect all tags
+      const allTags = new Set();
+      items.forEach(i => (i.tags || []).forEach(t => allTags.add(t)));
 
-          renderScrolls();
+      // Populate section filter
+      const sections = [...new Set(items.map(i => i.section))].sort();
+      sections.forEach(sec => {
+        const opt = document.createElement('option');
+        opt.value = sec;
+        opt.textContent = sec.charAt(0).toUpperCase() + sec.slice(1);
+        sectionFilter.appendChild(opt);
+      });
 
-          searchInput.addEventListener('input', e => {
-            renderScrolls(e.target.value);
+      // Render tag buttons
+      allTags.forEach(tag => {
+        const btn = document.createElement('button');
+        btn.textContent = tag;
+        btn.onclick = () => applyFilters({ tag });
+        tagButtons.appendChild(btn);
+      });
+
+      let activeTag = null;
+
+      function applyFilters({ query = null, tag = null } = {}) {
+        if (query !== null) query = query.toLowerCase();
+        if (tag !== null) activeTag = tag;
+
+        const sectionValue = sectionFilter.value.toLowerCase();
+
+        scrollList.innerHTML = '';
+
+        items
+          .filter(s => {
+            const matchesQuery =
+              !query ||
+              s.title.toLowerCase().includes(query) ||
+              s.summary.toLowerCase().includes(query) ||
+              (s.tags && s.tags.some(t => t.toLowerCase().includes(query)));
+
+            const matchesTag =
+              !activeTag ||
+              (s.tags && s.tags.includes(activeTag));
+
+            const matchesSection =
+              !sectionValue ||
+              s.section.toLowerCase() === sectionValue;
+
+            return matchesQuery && matchesTag && matchesSection;
+          })
+          .forEach(scroll => {
+            const div = document.createElement('div');
+            div.className = 'scroll';
+            div.innerHTML = `
+              <h2>${scroll.title}</h2>
+              <p><strong>Section:</strong> ${scroll.section}</p>
+              <p><strong>Date:</strong> ${scroll.date}</p>
+              <p><strong>Tags:</strong> ${scroll.tags?.join(', ') || 'None'}</p>
+              <p>${scroll.summary}</p>
+              <p><a href="${scroll.path}">Open Scroll →</a></p>
+            `;
+            scrollList.appendChild(div);
           });
-        });
+      }
+
+      // Initial render
+      applyFilters();
+
+      // Search listener
+      searchInput.addEventListener('input', e => {
+        applyFilters({ query: e.target.value });
+      });
+
+      // Section filter listener
+      sectionFilter.addEventListener('change', () => {
+        applyFilters({ query: searchInput.value });
+      });
     });
   </script>
 </body>
