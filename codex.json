@@ -1,189 +1,102 @@
-/**
- * Codex JSON Generator (Codex Kernel v2.5)
- * ---------------------------------------
- * Generates codex.json with:
- *  - Full scroll index
- *  - Kernel-aligned schema
- *  - Slugs, sections, tags, summaries
- *  - Future-proof search fields
- */
+(async function () {
+  // If you are serving from GitHub Pages under /codex-ecclesia-public/,
+  // codex.json should be at /codex-ecclesia-public/codex.json after build.
+  const CODEX_URL = 'codex.json';
 
-const fs = require('fs');
-const path = require('path');
+  let scrolls = [];
 
-// Load Codex Kernel Config
-const config = require('../codex.config.js');
+  const searchInput = document.getElementById('searchInput');
+  const resultsGrid = document.getElementById('resultsGrid');
+  const resultsEmpty = document.getElementById('resultsEmpty');
+  const resultsTitle = document.getElementById('resultsTitle');
 
-// Output + root
-const OUTPUT_FILE = 'codex.json';
-const ROOT_DIR = config.basePath || '.';
-
-// IMPORTANT: Base URL for links (GitHub Pages repo name)
-const BASE_URL = '/codex-ecclesia-public/';
-
-// What files count as scrolls
-// If you want PDFs too, add '.pdf' back here.
-const SUPPORTED_EXTENSIONS = ['.html', '.htm'];
-
-// Directories to skip entirely
-const EXCLUDED_DIRS = [
-  'node_modules',
-  '.git',
-  '.github',
-  'assets',
-  'proof',
-  'dist',
-  'attached_assets'
-];
-
-// Category rules
-const CATEGORY_RULES = {
-  Scrolls: ['scroll', 'notice', 'affidavit', 'declaration', 'proof', 'coronation'],
-  Heirs: ['heir', 'queen', 'matriarch', 'omega'],
-  Codices: ['codex', 'binder', 'ledger'],
-  Treaties: ['treaty', 'recognition', 'embassy', 'concord'],
-  Tools: ['qr', 'verify', 'hash', 'console', 'forge', 'generator', 'manifest'],
-  Ministries: ['ministry'],
-  Trusts: ['trust', 'fund'],
-  Identity: ['passport', 'id', 'registry'],
-  Index: ['index', 'directory'],
-  Other: []
-};
-
-// ----------------- helpers -----------------
-
-function categorize(filename) {
-  const lower = filename.toLowerCase();
-  for (const [category, keywords] of Object.entries(CATEGORY_RULES)) {
-    if (keywords.some(k => lower.includes(k))) return category;
-  }
-  return 'Other';
-}
-
-function formatTitle(filepath) {
-  const base = path.basename(filepath, path.extname(filepath));
-  return base
-    .replace(/[-_]/g, ' ')
-    .replace(/\b(?:id|qr|pdf|md|html)\b/gi, m => m.toUpperCase())
-    .replace(/\b([ivxlcdm]+)\b/gi, m => m.toUpperCase())
-    .replace(/\b\w/g, c => c.toUpperCase());
-}
-
-function generateSlug(filepath) {
-  return filepath
-    .replace(/\.[^/.]+$/, '')
-    .replace(/[^a-zA-Z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-    .toLowerCase();
-}
-
-function extractTagsFromPath(filepath) {
-  const parts = filepath.split('/');
-  return parts
-    .filter(p => p && !p.includes('.'))
-    .map(p => p.toLowerCase());
-}
-
-function normalizeSectionFromPathOrCategory(filePath, category) {
-  const parts = filePath.split('/');
-  const first = parts[0] || '';
-  const sectionCandidate = first.toLowerCase();
-
-  if (config.sections.includes(sectionCandidate)) {
-    return sectionCandidate;
-  }
-
-  return String(category || 'other').toLowerCase();
-}
-
-// ----------------- walker -----------------
-
-function walk(dir, fileList = []) {
-  const entries = fs.readdirSync(dir, { withFileTypes: true });
-
-  for (const entry of entries) {
-    const fullPath = path.join(dir, entry.name);
-
-    if (entry.isDirectory()) {
-      if (!EXCLUDED_DIRS.includes(entry.name) && !entry.name.startsWith('.')) {
-        walk(fullPath, fileList);
-      }
-    } else {
-      const ext = path.extname(entry.name).toLowerCase();
-      if (SUPPORTED_EXTENSIONS.includes(ext)) {
-        const stat = fs.statSync(fullPath);
-        fileList.push({
-          path: fullPath
-            .replace(/\\/g, '/')
-            .replace(/^\.\//, '')
-            .replace(/^\.?\//, ''),
-          created: stat.birthtime.toISOString(),
-          modified: stat.mtime.toISOString()
-        });
-      }
+  // Fetch codex.json
+  try {
+    const res = await fetch(CODEX_URL, { cache: 'no-cache' });
+    if (!res.ok) throw new Error('Failed to load codex.json');
+    const data = await res.json();
+    scrolls = Array.isArray(data.scrolls) ? data.scrolls : [];
+  } catch (err) {
+    console.error('Error loading codex:', err);
+    if (resultsEmpty) {
+      resultsEmpty.style.display = 'block';
+      resultsEmpty.textContent = 'Unable to load Codex data.';
     }
+    return;
   }
 
-  return fileList;
-}
+  function renderCard(item) {
+    const div = document.createElement('div');
+    div.className = 'card';
 
-// ----------------- main -----------------
+    const created = item.created ? new Date(item.created) : null;
+    const createdStr = created ? created.toLocaleDateString() : '';
 
-function main() {
-  const files = walk(ROOT_DIR);
+    div.innerHTML = `
+      <h3>${item.title || 'Untitled Scroll'}</h3>
+      <p style="font-size:0.85rem; color:#666; margin-bottom:0.5rem;">
+        ${(item.section || '').toUpperCase()}${
+          item.category ? ' • ' + item.category : ''
+        }${createdStr ? ' • ' + createdStr : ''}
+      </p>
+      <p>${item.summary || ''}</p>
+      <p style="margin-top:0.75rem;">
+        <a href="${item.url}" target="_blank" rel="noopener noreferrer">Open Scroll →</a>
+      </p>
+    `;
+    return div;
+  }
 
-  const scrolls = files.map(file => {
-    const title = formatTitle(file.path);
-    const category = categorize(file.path);
-    const section = normalizeSectionFromPathOrCategory(file.path, category);
+  function updateResults(list, titleOverride) {
+    if (!resultsGrid) return;
+    resultsGrid.innerHTML = '';
+    if (resultsTitle && titleOverride) {
+      resultsTitle.textContent = titleOverride;
+    }
 
-    const tags = config.metadataDefaults.tagsFromPath
-      ? extractTagsFromPath(file.path)
-      : [];
+    if (!list || list.length === 0) {
+      if (resultsEmpty) resultsEmpty.style.display = 'block';
+      return;
+    }
 
-    const slug = config.metadataDefaults.autoSlug
-      ? generateSlug(file.path)
-      : null;
+    if (resultsEmpty) resultsEmpty.style.display = 'none';
+    list.forEach(item => resultsGrid.appendChild(renderCard(item)));
+  }
 
-    const summaryTemplate =
-      config.metadataDefaults.summary || 'Placeholder summary for {{title}}.';
-    const summary = summaryTemplate.replace('{{title}}', title);
+  // Build featured set: pinned first, then newest
+  const pinned = scrolls.filter(s => s.pinned);
+  const recent = [...scrolls]
+    .filter(s => !s.pinned)
+    .sort((a, b) => new Date(b.created || 0) - new Date(a.created || 0))
+    .slice(0, Math.max(0, 6 - pinned.length));
+  const featured = [...pinned, ...recent].slice(0, 6);
 
-    return {
-      url: `${BASE_URL}${file.path}`,
-      slug,
-      title,
-      section,
-      category,
-      summary,
-      tags,
-      created: file.created || config.defaultDate,
-      modified: file.modified || file.created || config.defaultDate,
-      version: '1.0.0',
-      lang: 'en',
-      status: 'active',
-      image: 'https://via.placeholder.com/150/003366/e0d5b0?text=Sigil',
-      pinned: false,
-      searchBoost: 1.0
-    };
-  });
+  updateResults(featured, 'Featured Scrolls');
 
-  scrolls.sort((a, b) => new Date(a.created) - new Date(b.created));
+  function searchScrolls(query) {
+    const q = (query || '').toLowerCase().trim();
+    if (!q) return featured;
 
-  const codex = {
-    version: '2.5.0',
-    generated: new Date().toISOString(),
-    meta: {
-      schema: 'codex-kernel-v2.5',
-      description: 'Unified Codex index generated from repository scrolls.',
-      source: 'codex.config.js',
-      sections: config.sections
-    },
-    scrolls
-  };
+    return scrolls.filter(item => {
+      const haystack = [
+        item.title || '',
+        item.summary || '',
+        item.section || '',
+        item.category || '',
+        ...(item.tags || [])
+      ]
+        .join(' ')
+        .toLowerCase();
 
-  fs.writeFileSync(OUTPUT_FILE, JSON.stringify(codex, null, 2), 'utf8');
-  console.log(`✅ ${OUTPUT_FILE} generated with ${scrolls.length} entries.`);
-}
+      return haystack.includes(q);
+    });
+  }
 
-main();
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const list = searchScrolls(searchInput.value);
+      const title = searchInput.value ? 'Search Results' : 'Featured Scrolls';
+      updateResults(list, title);
+    });
+  }
+})();
