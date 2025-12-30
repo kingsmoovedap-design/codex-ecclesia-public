@@ -1,10 +1,12 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  // ------------------------------------------------------------
-  // Base path (important for GitHub Pages + Codex routing)
-  // ------------------------------------------------------------
-  base: './',
+  base: '/codex-ecclesia-public/',
+  build: {
+    outDir: 'dist'
+  }
+});
+
 
   // ------------------------------------------------------------
   // Dev Server
