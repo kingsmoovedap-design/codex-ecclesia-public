@@ -18,8 +18,12 @@ const config = require('../codex.config.js');
 const OUTPUT_FILE = 'codex.json';
 const ROOT_DIR = config.basePath || '.';
 
+// IMPORTANT: Base URL for links (GitHub Pages repo name)
+const BASE_URL = '/codex-ecclesia-public/';
+
 // What files count as scrolls
-const SUPPORTED_EXTENSIONS = ['.html', '.htm', '.md', '.pdf', '.txt'];
+// If you want PDFs too, add '.pdf' back here.
+const SUPPORTED_EXTENSIONS = ['.html', '.htm'];
 
 // Directories to skip entirely
 const EXCLUDED_DIRS = [
@@ -32,7 +36,7 @@ const EXCLUDED_DIRS = [
   'attached_assets'
 ];
 
-// Category rules (as before)
+// Category rules
 const CATEGORY_RULES = {
   Scrolls: ['scroll', 'notice', 'affidavit', 'declaration', 'proof', 'coronation'],
   Heirs: ['heir', 'queen', 'matriarch', 'omega'],
@@ -81,7 +85,6 @@ function extractTagsFromPath(filepath) {
 }
 
 function normalizeSectionFromPathOrCategory(filePath, category) {
-  // derive from top-level folder if present
   const parts = filePath.split('/');
   const first = parts[0] || '';
   const sectionCandidate = first.toLowerCase();
@@ -90,7 +93,6 @@ function normalizeSectionFromPathOrCategory(filePath, category) {
     return sectionCandidate;
   }
 
-  // fallback: from category
   return String(category || 'other').toLowerCase();
 }
 
@@ -143,11 +145,12 @@ function main() {
       ? generateSlug(file.path)
       : null;
 
-    const summaryTemplate = config.metadataDefaults.summary || 'Placeholder summary for {{title}}.';
+    const summaryTemplate =
+      config.metadataDefaults.summary || 'Placeholder summary for {{title}}.';
     const summary = summaryTemplate.replace('{{title}}', title);
 
     return {
-      url: file.path,
+      url: `${BASE_URL}${file.path}`,
       slug,
       title,
       section,
@@ -160,13 +163,11 @@ function main() {
       lang: 'en',
       status: 'active',
       image: 'https://via.placeholder.com/150/003366/e0d5b0?text=Sigil',
-      // Future-proof search fields
       pinned: false,
       searchBoost: 1.0
     };
   });
 
-  // Sort by creation date
   scrolls.sort((a, b) => new Date(a.created) - new Date(b.created));
 
   const codex = {
