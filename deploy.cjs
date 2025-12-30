@@ -1,7 +1,9 @@
 {
   "type": "module",
   "scripts": {
-    "build": "node build.cjs",
-    "deploy": "node deploy.cjs"
+    "build": "node scripts/build-codex.cjs",
+    "dev": "vite",
+    "preview": "vite preview",
+    "deploy": "node scripts/deploy.cjs"
   }
 }
