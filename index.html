@@ -11,44 +11,43 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<body style="max-width: 1000px; margin: auto; padding: 2rem;">
+<body>
 
   <!-- Navigation -->
-  <nav style="text-align:center; margin-bottom:2rem;">
+  <nav class="nav">
     <a href="index.html">Home</a>
     <a href="all-scrolls.html">All Scrolls</a>
     <a href="leadership.html">Leadership</a>
     <a href="submit-scroll.html">Submit</a>
-    <a href="omega-portal.html" style="color:#c5a059;">☩ Omega Portal</a>
+    <a href="omega-portal.html" class="nav-omega">☩ Omega Portal</a>
   </nav>
 
   <!-- Header -->
-  <header>
-    <h1 style="text-align:center; color:#003366;">☩ Codex Ecclesia</h1>
-    <p style="text-align:center; max-width:700px; margin:0 auto;">
+  <header class="page-header">
+    <h1>☩ Codex Ecclesia</h1>
+    <p>
       A living archive of sacred scrolls, ministries, treaties, codices, heirs, and trustees of the Ecclesia.
       Structured, searchable, and preserved through the Codex Kernel v2.5.
     </p>
   </header>
 
   <!-- Search -->
-  <section style="margin-top:2rem; text-align:center;">
+  <section class="search-section">
     <input
       id="searchInput"
       type="search"
       placeholder="Search scrolls by title, tag, or summary…"
-      style="padding:0.75rem; width:70%; max-width:500px; border-radius:6px; border:1px solid #ccc;"
     />
-    <p style="font-size:0.85rem; color:#666; margin-top:0.5rem;">
+    <p class="search-note">
       Powered by <code>codex.json</code> (Codex Kernel v2.5)
     </p>
   </section>
 
   <!-- Chambers -->
-  <section style="margin-top:3rem;">
-    <h2 style="text-align:center; color:#003366;">Browse by Chamber</h2>
+  <section class="section-block">
+    <h2>Browse by Chamber</h2>
 
-    <div class="card-grid" style="margin-top:1.5rem;">
+    <div class="card-grid">
       <div class="card">
         <h3>Core</h3>
         <p>Canonical texts, affidavits, and foundational scrolls.</p>
@@ -88,20 +87,19 @@
   </section>
 
   <!-- Featured Scrolls -->
-  <section style="margin-top:3rem;">
-    <h2 id="resultsTitle" style="text-align:center; color:#003366;">Featured Scrolls</h2>
+  <section class="section-block">
+    <h2 id="resultsTitle">Featured Scrolls</h2>
 
-    <div class="card-grid" id="resultsGrid" style="margin-top:1.5rem;">
+    <div class="card-grid" id="resultsGrid">
       <!-- Populated by search.js -->
     </div>
 
-    <p id="resultsEmpty" style="display:none; text-align:center; margin-top:1rem; color:#666;">
+    <p id="resultsEmpty" class="empty-note">
       No scrolls match your search yet.
     </p>
   </section>
 
-  <!-- Footer -->
-  <footer style="text-align:center; margin-top:4rem; font-size:0.9rem; color:#666;">
+  <footer class="footer">
     ☩ Codex Ecclesia © 2025 — A Living Archive of the Eternal Ecclesia
   </footer>
 
