@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>☩ Scroll Registry</title>
+  <style>
+    body {
+      font-family: 'Garamond', serif;
+      background: #fdfcf9;
+      color: #222;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #eee;
+    }
+    .seal, .affirmation {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #444;
+    }
+    .tone {
+      font-weight: bold;
+      color: #004488;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>☩ Scroll Registry</h1>
+  <p>This registry reflects all scrolls filed within the Codex Ecclesia Harmony. Each scroll is a sovereign declaration of truth, law, or legacy.</p>
+
+  <table id="scrollTable">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Tone</th>
+        <th>Author</th>
+        <th>Filed</th>
+        <th>Sealed</th>
+        <th>Seal Phrase</th>
+        <th>Affirmation</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    fetch('scrolls.json')
+      .then(response => response.json())
+      .then(data => {
+        const tbody = document.querySelector('#scrollTable tbody');
+        data.forEach(scroll => {
+          const row = document.createElement('tr');
+
+          row.innerHTML = `
+            <td>${scroll.number}</td>
+            <td><a href="${scroll.link}" target="_blank">${scroll.title}</a></td>
+            <td class="tone">${scroll.tone}</td>
+            <td>${scroll.author}</td>
+            <td>${scroll.filed || ''}</td>
+            <td>${scroll.sealed || ''}</td>
+            <td class="seal">${scroll.seal_phrase || ''}</td>
+            <td class="affirmation">${scroll.affirmation || ''}</td>
+          `;
+
+          tbody.appendChild(row);
+        });
+      })
+      .catch(error => {
+        console.error('Error loading scrolls:', error);
+      });
+  </script>
+
+</body>
+</html>

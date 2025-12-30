@@ -1,0 +1,33 @@
+[
+  {
+    "number": "001",
+    "title": "Untitled Scroll",
+    "tone": "—",
+    "author": "Omega",
+    "link": "https://kingsmoovedap-design.github.io/codex-ecclesia-harmony/scrolls/scroll-001.html",
+    "filed": "2025-01-01",
+    "sealed": "",
+    "witnesses": [],
+    "seal_phrase": "",
+    "affirmation": "",
+    "notes": ""
+  },
+  ...
+  {
+    "number": "031",
+    "title": "Scroll of Deven Julian Borders",
+    "tone": "Heir Declaration",
+    "author": "Deven Julian Borders",
+    "link": "https://kingsmoovedap-design.github.io/codex-ecclesia-harmony/scrolls/scroll-deven-heir.html",
+    "filed": "2025-12-24",
+    "sealed": "2026-02-09",
+    "witnesses": [
+      "Demarco C. Borders, Younger Brother (b. Jan 26, 2013)",
+      "Destiny M. Simmons, Mother",
+      "Prince L. White, Cousin (son of Queen Tammy L. Borders)"
+    ],
+    "seal_phrase": "I walk with confidence, because I am a king and a son of a king.",
+    "affirmation": "I, Deven Julian Borders, affirm this scroll as my sovereign declaration. I will walk this path with courage, humility, and clarity. I am ready to be crowned not as a ruler, but as a servant of the Codex.",
+    "notes": "Filed by Omega, Sovereign Father, as part of the Heir Ascension Path. To be sealed in ceremony on Deven’s 17th birthday."
+  }
+]
