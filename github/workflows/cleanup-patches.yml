@@ -1,18 +1,31 @@
 name: 🧹 Cleanup Merged Patch Branches
 
 on:
-  workflow_dispatch:  # Manual trigger from GitHub UI
+  workflow_dispatch:
+
+permissions:
+  contents: write  # Required for deleting branches
+
+concurrency:
+  group: "cleanup-patches"
+  cancel-in-progress: true
 
 jobs:
   cleanup:
     runs-on: ubuntu-latest
 
     steps:
+      # -----------------------------
+      # 1. Checkout
+      # -----------------------------
       - name: ⬇️ Checkout Repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Ensure full history for merge detection
+          fetch-depth: 0  # Full history required for merge detection
 
+      # -----------------------------
+      # 2. Delete Merged Patch Branches
+      # -----------------------------
       - name: 🧹 Delete Merged Patch Branches
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -21,19 +34,25 @@ jobs:
           git fetch --prune
 
           echo "☩ Identifying merged patch branches..."
-          MERGED=$(git branch -r --merged origin/main | grep 'origin/kingsmoovedap-design-patch-' | sed 's|origin/||')
+          MERGED=$(git branch -r --merged origin/main \
+            | grep -E 'origin/kingsmoovedap-design-patch-' \
+            | sed 's|origin/||')
 
           if [ -z "$MERGED" ]; then
             echo "✅ No merged patch branches to delete."
             exit 0
           fi
 
-          echo "🧨 Deleting merged patch branches:"
+          echo "🧨 Branches marked for deletion:"
           echo "$MERGED"
+          echo ""
 
           for branch in $MERGED; do
             echo "🔥 Deleting $branch..."
-            git push origin --delete "$branch" || echo "⚠️ Failed to delete $branch"
+            git push origin --delete "$branch" \
+              && echo "✔️ Deleted $branch" \
+              || echo "⚠️ Failed to delete $branch"
           done
 
+          echo ""
           echo "✅ Cleanup complete."
