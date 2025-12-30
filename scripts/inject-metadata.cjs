@@ -17,7 +17,7 @@ function walk(dir, callback) {
 function inject(file) {
   let html = fs.readFileSync(file, 'utf8');
 
-  if (!html.includes('<meta name="date"')) {
+  if (!html.includes('meta name="date"')) {
     const date = new Date().toISOString().split('T')[0];
     html = html.replace(
       '</head>',
