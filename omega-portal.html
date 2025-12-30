@@ -2,92 +2,91 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Omega Portal — Codex Ecclesia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    name="description"
-    content="Omega Portal — command center for trust management, scroll drafting, and Ecclesia operations."
-  />
+  <title>Omega Portal — Codex Ecclesia</title>
+
+  <meta name="description" content="Omega Portal — command center for trust management, scroll drafting, and Ecclesia operations." />
+
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <aside class="sidebar">
-    <h2>☩ Codex Ecclesia</h2>
-    <ul>
-      <li><a href="index.html">Sacred Gateway</a></li>
-      <li><a href="all-scrolls.html">All Scrolls Directory</a></li>
-      <li><a href="omega-portal.html">Omega Portal</a></li>
-      <li><a href="codex.json">Codex API</a></li>
-    </ul>
-  </aside>
 
-  <main class="main-content">
-    <header>
-      <h1>Omega Portal</h1>
-      <p style="text-align:center; max-width:640px; margin:0 auto 1.5rem;">
-        Command center for the Borders Ecclesia Earth Trust — navigation, drafting, verification, and
-        stewardship of the Codex.
-      </p>
-    </header>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="all-scrolls.html">All Scrolls</a>
+    <a href="leadership.html">Leadership</a>
+    <a href="submit-scroll.html">Submit</a>
+    <a href="omega-portal.html" class="nav-omega">☩ Omega Portal</a>
+  </nav>
 
-    <section style="margin-top:2rem;">
-      <h2>Command Tiles</h2>
-      <div class="card-grid">
-        <article class="card">
-          <h3>Leadership</h3>
-          <p>Access leadership declarations, roles, and succession scrolls.</p>
-          <p><a href="leadership.html">Open Leadership Chamber →</a></p>
-        </article>
+  <header class="page-header">
+    <h1>Omega Portal</h1>
+    <p>
+      Command center for the Borders Ecclesia Earth Trust — navigation, drafting, verification, and
+      stewardship of the Codex.
+    </p>
+  </header>
 
-        <article class="card">
-          <h3>Submit Scroll</h3>
-          <p>Submit new scrolls or instruments for inclusion in the Codex.</p>
-          <p><a href="submit-scroll.html">Open Scroll Forge →</a></p>
-        </article>
-
-        <article class="card">
-          <h3>Verify Scroll</h3>
-          <p>Verify the presence and status of a scroll in the Codex API.</p>
-          <p><a href="tools/verify-scroll.html">Open Verification Portal →</a></p>
-        </article>
-
-        <article class="card">
-          <h3>Ministry Records</h3>
-          <p>Review ministry charters, applications, and operational documents.</p>
-          <p><a href="all-scrolls.html?section=ministries">Review Ministries →</a></p>
-        </article>
-
-        <article class="card">
-          <h3>Treaties & Embassies</h3>
-          <p>View covenants, recognitions, diplomatic instruments, and embassy scrolls.</p>
-          <p><a href="all-scrolls.html?section=treaties">Review Treaties →</a></p>
-        </article>
-
-        <article class="card">
-          <h3>Codex Kernel</h3>
-          <p>Examine the living API and architecture of the Codex.</p>
-          <p><a href="codex.json">View Codex Kernel API →</a></p>
-        </article>
+  <section class="section-block">
+    <h2>Command Tiles</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Leadership</h3>
+        <p>Access leadership declarations, roles, and succession scrolls.</p>
+        <a href="leadership.html">Open Leadership Chamber →</a>
       </div>
-    </section>
 
-    <section style="margin-top:2.5rem;">
-      <h2>Recent & Pinned Scrolls</h2>
-      <p style="text-align:center; font-size:0.9rem; color:#555;">
-        Pulled from <code>codex.json</code> using <code>pinned</code> and timestamps.
-      </p>
-      <div class="card-grid" id="resultsGrid">
-        <!-- Populated by search.js with pinned/recent logic -->
+      <div class="card">
+        <h3>Submit Scroll</h3>
+        <p>Submit new scrolls or instruments for inclusion in the Codex.</p>
+        <a href="submit-scroll.html">Open Scroll Forge →</a>
       </div>
-      <p id="resultsEmpty" style="text-align:center; margin-top:1rem; display:none;">
-        No pinned or recent scrolls are available yet.
-      </p>
-    </section>
 
-    <footer>
-      <p>☩ Omega Portal — Borders Ecclesia Earth Trust</p>
-    </footer>
-  </main>
+      <div class="card">
+        <h3>Verify Scroll</h3>
+        <p>Verify the presence and status of a scroll in the Codex.</p>
+        <a href="tools/verify-scroll.html">Open Verification Portal →</a>
+      </div>
+
+      <div class="card">
+        <h3>Ministry Records</h3>
+        <p>Review ministry charters, applications, and operational documents.</p>
+        <a href="all-scrolls.html?section=ministries">Review Ministries →</a>
+      </div>
+
+      <div class="card">
+        <h3>Treaties & Embassies</h3>
+        <p>View covenants, recognitions, diplomatic instruments, and embassy scrolls.</p>
+        <a href="all-scrolls.html?section=treaties">Review Treaties →</a>
+      </div>
+
+      <div class="card">
+        <h3>Codex Kernel</h3>
+        <p>Examine the living API and architecture of the Codex.</p>
+        <a href="codex.json">View Codex Kernel API →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block">
+    <h2 id="resultsTitle">Recent & Pinned Scrolls</h2>
+    <p class="search-note">
+      Pulled from <code>codex.json</code> using <code>pinned</code> and timestamps.
+    </p>
+
+    <div class="card-grid" id="resultsGrid">
+      <!-- Populated by search.js -->
+    </div>
+
+    <p id="resultsEmpty" class="empty-note">
+      No pinned or recent scrolls are available yet.
+    </p>
+  </section>
+
+  <footer class="footer">
+    ☩ Omega Portal — Borders Ecclesia Earth Trust
+  </footer>
 
   <script src="search.js"></script>
 </body>
