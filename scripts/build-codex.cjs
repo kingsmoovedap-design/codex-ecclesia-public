@@ -17,25 +17,25 @@ console.log("====================================");
 console.log("   ☩ Building Codex Kernel v2.5");
 console.log("====================================");
 
-// Step 1: Metadata Injection
+// Step 1: Inject metadata into scrolls
 run("Injecting Metadata", "node scripts/inject-metadata.cjs");
 
-// Step 2: Generate codex.json
+// Step 2: Generate codex.json from scrolls
 run("Generating Codex JSON", "node scripts/generate-codex-json.cjs");
 
-// Step 3: Validate scrolls
+// Step 3: Validate scrolls and paths
 run("Validating Scrolls", "node scripts/validate-scrolls.cjs");
 
-// Step 4: Hash scrolls into CodexChain
+// Step 4: Hash scrolls into CodexChain ledger
 run("Hashing Scrolls", "node scripts/hash-scrolls.cjs");
 
 // Step 5: Generate missing HTML scrolls
 run("Generating Missing Scrolls", "node scripts/generate-missing-scrolls.cjs");
 
-// Step 6: Generate manifest
+// Step 6: Generate manifest for PWA
 run("Generating Manifest", "node scripts/generate-manifest.cjs");
 
-// Step 7: Build site with Vite
+// Step 7: Build site using Vite
 run("Running Vite Build", "vite build");
 
 console.log("\n====================================");
