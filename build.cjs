@@ -12,7 +12,11 @@ function run(label, command) {
     process.exit(1);
   }
 }
-
+node scripts/inject-metadata.cjs
+node scripts/generate-codex-json.cjs
+node scripts/validate-scrolls.cjs
+node scripts/hash-scrolls.cjs
+node scripts/generate-missing-scrolls.cjs
 console.log("====================================");
 console.log("   ☩ Building Codex Kernel v2.5");
 console.log("====================================");
