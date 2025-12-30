@@ -100,3 +100,9 @@
     });
   }
 })();
+{
+  "title": "Scroll of Jubilee Declaration",
+  "path": "scrolls/scroll-of-jubilee-declaration.html",
+  "section": "scrolls",
+  "tags": ["jubilee", "declaration"]
+}
