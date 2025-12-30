@@ -1,38 +1,33 @@
-import fs from 'fs-extra';
-import path from 'path';
-import { fileURLToPath } from 'url';
+#!/usr/bin/env node
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const fs = require('fs');
+const path = require('path');
 
-// CONFIG
-const BASE_URL = 'https://codex-ecclesia.org';
-const SCROLLS_PATH = path.join(__dirname, 'scrolls.json');
-const CODEX_PATH = path.join(__dirname, 'codex.json');
+const ROOT = process.cwd();
+const OUTPUT = path.join(ROOT, 'codex.json');
 
-async function generateCodex() {
-  try {
-    const scrolls = await fs.readJson(SCROLLS_PATH);
-el.innerHTML = `<a href="${item.filename}">${item.title}</a> <small>[${item.category}]</small>`;
-    if (!Array.isArray(scrolls)) {
-      throw new Error('scrolls.json must be an array');
-    }
-
-    const codex = scrolls.map(entry => ({
-      title: entry.title,
-      path: entry.path,
-      url: `${BASE_URL}/${entry.path.replace(/^\//, '')}`,
-      tags: entry.tags || [],
-      date: entry.date,
-      summary: entry.summary
-    }));
-
-    await fs.writeJson(CODEX_PATH, codex, { spaces: 2 });
-    console.log(`✅ codex.json generated with ${codex.length} entries.`);
-  } catch (err) {
-    console.error('❌ Failed to generate codex.json:', err.message);
-    process.exit(1);
-  }
+function loadManifest() {
+  const file = path.join(ROOT, 'manifest.json');
+  return JSON.parse(fs.readFileSync(file, 'utf8'));
 }
 
-generateCodex();
+function buildCodex() {
+  const manifest = loadManifest();
+
+  const scrolls = manifest.items.map(item => ({
+    title: item.title,
+    summary: item.summary,
+    section: item.section,
+    category: item.category || null,
+    tags: item.tags || [],
+    created: item.date || null,
+    url: `/${item.path}`
+  }));
+
+  return { version: "2.5", scrolls };
+}
+
+const codex = buildCodex();
+fs.writeFileSync(OUTPUT, JSON.stringify(codex, null, 2));
+
+console.log(`✅ codex.json generated with ${codex.scrolls.length} scrolls.`);
