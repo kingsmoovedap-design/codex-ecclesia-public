@@ -1,261 +1,160 @@
-body {
-  font-family: 'Crimson Text', 'Georgia', serif;
-  background-color: #0b1020;
-  background-image: linear-gradient(rgba(11, 16, 32, 0.9), rgba(11, 16, 32, 0.9)), url('attached_assets/generated_images/sacred_archive_hero_background.png');
-  background-size: cover;
-  background-attachment: fixed;
-  color: #e0d5b0;
-  line-height: 1.6;
+/* ============================================
+   Codex Ecclesia — Unified Theme v2.5
+   Clean, modern, responsive, sovereign-grade
+   ============================================ */
+
+/* ---------- Root Variables ---------- */
+:root {
+  --bg: #f4f4f4;
+  --bg-dark: #111;
+  --bg-light: #fff;
+
+  --text: #222;
+  --text-light: #eee;
+
+  --accent: #003366;
+  --accent-light: #e0d5b0;
+
+  --card-border: #003366;
+  --card-shadow: rgba(0, 0, 0, 0.15);
+
+  --radius: 8px;
+  --transition: 0.25s ease;
+}
+
+/* ---------- Global Reset ---------- */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-header {
-  background: rgba(20, 26, 51, 0.8);
-  backdrop-filter: blur(10px);
-  color: #c5a059;
-  padding: 4rem 1rem;
-  text-align: center;
-  border-bottom: 2px solid #c5a059;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-}
-
-header h1 {
-  font-size: 2.5rem;
-  margin: 0;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-header p {
-  font-style: italic;
-  font-size: 1.1rem;
-  opacity: 0.9;
-}
-
-nav {
-  background: rgba(17, 22, 42, 0.9);
-  padding: 1rem;
+/* ---------- Body Layout ---------- */
+body {
+  font-family: "Times New Roman", serif;
+  background: var(--bg);
+  color: var(--text);
   display: flex;
-  justify-content: center;
-  gap: 2rem;
-  border-bottom: 1px solid #2c3a70;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  min-height: 100vh;
 }
 
-nav a {
-  color: #c5a059;
+/* ---------- Sidebar ---------- */
+.sidebar {
+  width: 240px;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  padding: 30px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 0.9rem;
-  font-weight: bold;
 }
 
-main {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-section {
-  background: rgba(20, 26, 51, 0.7);
-  backdrop-filter: blur(5px);
-  padding: 2.5rem;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  border: 1px solid #2c3a70;
-  margin-bottom: 2rem;
-}
-
-h2 {
-  color: #c5a059;
-  border-bottom: 1px solid #2c3a70;
-  padding-bottom: 0.7rem;
-  margin-top: 0;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-}
-
-ul {
+.sidebar ul {
   list-style: none;
-  padding: 0;
 }
 
-li {
-  padding: 0.8rem 0;
-  border-bottom: 1px solid #2c3a70;
+.sidebar li {
+  margin: 0.5rem 0;
 }
 
-li:last-child {
-  border-bottom: none;
-}
-
-a {
-  color: #c5a059;
+.sidebar a {
+  color: var(--text-light);
   text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s ease;
+  font-size: 1rem;
+  transition: var(--transition);
 }
 
-a:hover {
-  color: #fdfcf9;
-  text-decoration: underline;
+.sidebar a:hover {
+  color: var(--accent-light);
+  padding-left: 4px;
 }
 
-.search-container {
-  margin-bottom: 2rem;
-}
-#search-input {
-  width: 100%;
-  padding: 1.2rem;
-  font-size: 1.2rem;
-  border: 1px solid #2c3a70;
-  border-radius: 8px;
-  background: rgba(11, 16, 32, 0.8);
-  color: #fdfcf9;
-  font-family: inherit;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+/* ---------- Main Content ---------- */
+.main-content {
+  margin-left: 260px;
+  padding: 40px;
+  width: calc(100% - 260px);
 }
 
-#search-input:focus {
-  outline: none;
-  border-color: #c5a059;
-}
-
-.card-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5em;
-  margin-bottom: 2em;
-}
-
-.card {
-  background: rgba(20, 26, 51, 0.8);
-  border: 1px solid #c5a059;
-  border-radius: 12px;
-  padding: 1.5em;
-  width: 220px;
+h1, h2, h3 {
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+
+/* ---------- Card Grid ---------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--bg-light);
+  padding: 20px;
+  border-left: 6px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 10px var(--card-shadow);
+  transition: var(--transition);
+  text-align: center;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 20px rgba(197, 160, 89, 0.3);
-}
-
-.card img {
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px var(--card-shadow);
 }
 
 .card h3 {
-  margin: 0.5em 0 0.2em;
-  color: #c5a059;
+  margin-bottom: 0.5rem;
+  color: var(--accent);
 }
 
 .card p {
-  font-size: 0.9em;
-  margin-top: 4em;
-  padding-top: 2em;
-  border-top: 1px solid #ccc;
+  font-size: 0.95rem;
+  line-height: 1.4;
 }
 
-body.dark-mode {
-  background: #111;
-  color: #eee;
+/* ---------- Trustees List ---------- */
+.trustees {
+  margin-top: 2rem;
+  padding-left: 1rem;
 }
 
-body.dark-mode .card {
-  background: #222;
-  color: #eee;
-  border-left-color: #66aaff;
+.trustees li {
+  margin: 0.4rem 0;
+  font-size: 1rem;
 }
 
-body.dark-mode .sidebar {
-  background: #000;
-  color: #ccc;
+/* ---------- Footer ---------- */
+footer {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
 }
 
-body.dark-mode .sidebar a {
-  color: #aaa;
-}
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+  }
 
-body.dark-mode .sidebar a:hover {
-  color: #fff;
-}
-
-.sovereign-tools-button {
-  position: fixed;
-  bottom: 1.5em;
-  left: 1.5em;
-  background: #003366;
-  color: white;
-  padding: 0.75em 1.25em;
-  border-radius: 999px;
-  font-family: Georgia, serif;
-  cursor: pointer;
-  z-index: 9999;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  
-}
-.sovereign-tools-button:hover {
-  background: #001a33;
-}
-.sovereign-tools-button {
-  position: fixed;
-  bottom: 1.5em;
-  left: 1.5em;
-  background: #003366;
-  color: white;
-  padding: 0.75em 1.25em;
-  border-radius: 999px;
-  font-family: Georgia, serif;
-  cursor: pointer;
-  z-index: 9999;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  
-}
-.sovereign-tools-button:hover {
-  background: #001a33;
-}
-=======
-.tools-menu {
-  display: none;
-  position: fixed;
-  bottom: 5em;
-  left: 1.5em;
-  background: #fff;
-  border: 2px solid #003366;
-  padding: 1em;
-  z-index: 9999;
-  font-family: Georgia, serif;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-.tools-menu h3 {
-  margin-top: 0;
-}
-.tools-menu ul {
-  list-style: none;
-  padding: 0;
-=======
-  color: #a6add8;
-}
-
-.card a {
-  display: inline-block;
-  margin-top: 0.5em;
-  color: #c5a059;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.card a:hover {
-  text-decoration: underline;
-  color: #fdfcf9;
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 20px;
+  }
 }
