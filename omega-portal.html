@@ -1,93 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Omega Portal — Codex Ecclesia</title>
+.omega-main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
 
-  <meta name="description" content="Omega Portal — command center for trust management, scroll drafting, and Ecclesia operations." />
+.omega-hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
 
-  <link rel="stylesheet" href="style.css" />
-</head>
+.omega-hero h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  color: #003366;
+}
 
-<body>
+.omega-subtitle {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
 
-  <nav class="nav">
-    <a href="index.html">Home</a>
-    <a href="all-scrolls.html">All Scrolls</a>
-    <a href="leadership.html">Leadership</a>
-    <a href="submit-scroll.html">Submit</a>
-    <a href="omega-portal.html" class="nav-omega">☩ Omega Portal</a>
-  </nav>
+.omega-search-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
 
-  <header class="page-header">
-    <h1>Omega Portal</h1>
-    <p>
-      Command center for the Borders Ecclesia Earth Trust — navigation, drafting, verification, and
-      stewardship of the Codex.
-    </p>
-  </header>
+#searchInput {
+  width: 100%;
+  max-width: 420px;
+  padding: 0.6rem 0.8rem;
+  border: 2px solid #003366;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
 
-  <section class="section-block">
-    <h2>Command Tiles</h2>
-    <div class="card-grid">
-      <div class="card">
-        <h3>Leadership</h3>
-        <p>Access leadership declarations, roles, and succession scrolls.</p>
-        <a href="leadership.html">Open Leadership Chamber →</a>
-      </div>
+.omega-filters {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+}
 
-      <div class="card">
-        <h3>Submit Scroll</h3>
-        <p>Submit new scrolls or instruments for inclusion in the Codex.</p>
-        <a href="submit-scroll.html">Open Scroll Forge →</a>
-      </div>
+.filterButton {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  border-radius: 999px;
+  border: 1px solid #003366;
+  background: white;
+  color: #003366;
+  cursor: pointer;
+}
 
-      <div class="card">
-        <h3>Verify Scroll</h3>
-        <p>Verify the presence and status of a scroll in the Codex.</p>
-        <a href="tools/verify-scroll.html">Open Verification Portal →</a>
-      </div>
+.filterButton.filter-active {
+  background: #003366;
+  color: white;
+}
 
-      <div class="card">
-        <h3>Ministry Records</h3>
-        <p>Review ministry charters, applications, and operational documents.</p>
-        <a href="all-scrolls.html?section=ministries">Review Ministries →</a>
-      </div>
+.omega-results h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
 
-      <div class="card">
-        <h3>Treaties & Embassies</h3>
-        <p>View covenants, recognitions, diplomatic instruments, and embassy scrolls.</p>
-        <a href="all-scrolls.html?section=treaties">Review Treaties →</a>
-      </div>
+#resultsEmpty {
+  color: #777;
+  margin-bottom: 0.5rem;
+}
 
-      <div class="card">
-        <h3>Codex Kernel</h3>
-        <p>Examine the living API and architecture of the Codex.</p>
-        <a href="codex.json">View Codex Kernel API →</a>
-      </div>
-    </div>
-  </section>
+.omega-grid,
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
 
-  <section class="section-block">
-    <h2 id="resultsTitle">Recent & Pinned Scrolls</h2>
-    <p class="search-note">
-      Pulled from <code>codex.json</code> using <code>pinned</code> and timestamps.
-    </p>
+.card {
+  background: #fdfcf9;
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid #e0dcd0;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
 
-    <div class="card-grid" id="resultsGrid">
-      <!-- Populated by search.js -->
-    </div>
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 0.35rem;
+  font-size: 1.05rem;
+}
 
-    <p id="resultsEmpty" class="empty-note">
-      No pinned or recent scrolls are available yet.
-    </p>
-  </section>
+.card-meta {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
 
-  <footer class="footer">
-    ☩ Omega Portal — Borders Ecclesia Earth Trust
-  </footer>
+.card-link-row a {
+  font-size: 0.9rem;
+  color: #003366;
+  text-decoration: none;
+  font-weight: 600;
+}
 
-  <script src="search.js"></script>
-</body>
-</html>
+.card-link-row a:hover {
+  text-decoration: underline;
+}
+
+.card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+/* Keyboard focus inside the grid */
+.card.focus {
+  outline: 3px solid #003366;
+  outline-offset: 2px;
+}
