@@ -14,16 +14,18 @@
       max-width: 960px;
       margin: auto;
     }
-    h1 {
+    h1, h2 {
       text-align: center;
-      font-size: 2.5rem;
       color: #5e3b1d;
+    }
+    h1 {
+      font-size: 2.5rem;
       border-bottom: 2px solid #d4af37;
       padding-bottom: 0.5rem;
     }
     h2 {
       margin-top: 2rem;
-      color: #5e3b1d;
+      font-size: 1.5rem;
       border-bottom: 1px solid #d4af37;
       padding-bottom: 0.3rem;
     }
@@ -44,18 +46,80 @@
       color: #003366;
       border-bottom: 1px solid #003366;
     }
-    footer {
+    .footer {
       text-align: center;
       margin-top: 3rem;
       font-size: 0.9rem;
       color: #555;
     }
+    .coin-box {
+      background: #fffdf7;
+      border: 1px solid #d4af37;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    }
+    .coin-box ul {
+      padding-left: 1.5rem;
+    }
+    .coin-box li {
+      margin-bottom: 0.5rem;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode h1, .dark-mode h2 {
+      color: #f0d98c;
+    }
+    .dark-mode a {
+      color: #f0d98c;
+      border-bottom: 1px dashed #f0d98c;
+    }
+    .dark-mode a:hover {
+      color: #ffcc99;
+      border-bottom: 1px solid #ffcc99;
+    }
+    .dark-mode .footer {
+      color: #aaa;
+    }
   </style>
 </head>
 <body>
 
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
   <h1>☩ Codex Ecclesia</h1>
   <p style="text-align:center;"><em>“A sovereign archive of divine law, trust, and truth.”</em></p>
+
+  <h2>🪙 Borders Sovereign Coin (BSC)</h2>
+  <div class="coin-box">
+    <p style="text-align:center;">The official sovereign token of the Borders Family Dynasty Nation.</p>
+    <ul>
+      <li><strong>Token Name:</strong> Borders Sovereign Coin</li>
+      <li><strong>Symbol:</strong> BSC</li>
+      <li><strong>Total Supply:</strong> 1,000,000 BSC</li>
+      <li><strong>Declared Value:</strong> $1.00 USD per BSC</li>
+      <li><strong>Smart Contract Hash:</strong> 0xE6F7...B2D9</li>
+      <li><strong>Treasury Wallet:</strong> [Insert Wallet Address]</li>
+    </ul>
+    <p style="text-align:center;">
+      🔥 <a href="minting-altar.html">Enter the Minting Altar</a> | 
+      📜 <a href="ledger.html">View CodexChain Ledger</a> | 
+      🔍 <a href="verify.html">Verify Scroll Authenticity</a>
+    </p>
+  </div>
 
   <h2>📜 Core Codex Scrolls</h2>
   <ul>
@@ -81,7 +145,6 @@
     <li><a href="scroll-of-enforcement.html">🛡️ Scroll of Enforcement</a></li>
     <li><a href="scroll-of-convocation-ii.html">📯 Scroll of Convocation II</a></li>
   </ul>
-
   <h2>📜 Trusts & Treasury</h2>
   <ul>
     <li><a href="trust-charter-borders-dynasty.html">📜 Trust Charter – Borders Dynasty Ecclesia Trust</a></li>
@@ -89,11 +152,7 @@
     <li><a href="divine-solutions-trust.html">☩ Divine Solutions Sovereign Fund Trust</a></li>
     <li><a href="borders-ecclesia-trust.html">📜 Borders Ecclesia Earth Trust</a></li>
     <li><a href="hedge-fund-charter.html">💰 Hedge Fund Charter – Borders Dynasty Hedge Sovereign Fund</a></li>
-    <li><a href="borders-sovereign-coin.html">🪙 Borders Sovereign Coin (BSC)</a></li>
-    <li><a href="core/codex-ecclesia.html">☩ Codex Ecclesia</a></li>
-    <li><a href="ministries/ministry-commerce.html">💱 Ministry of Commerce</a></li>
-    <li><a href="scrolls/scroll-of-jubilee-declaration.html">📜 Scroll of Jubilee Declaration</a></li>
-</ul>
+    <li><a href="scroll-of-jubilee-declaration.html">📜 Scroll of Jubilee Declaration</a></li>
   </ul>
 
   <h2>🖋️ Declarations & Identity</h2>
@@ -146,4 +205,25 @@
     <li><a href="affidavit-public-posting.html">☩ Affidavit of Public Posting</a></li>
     <li><a href="universal-notice-of-standing.html">☩ Universal Notice of Standing</a></li>
     <li><a href="fee-schedule.html">💰 Universal Fee Schedule</a></li>
-    <li><a href="dispatch-packet.html">
+    <li><a href="dispatch-packet.html">📦 Dispatch Packet</a></li>
+  </ul>
+
+  <div class="footer">
+    ☩ Codex Ecclesia Totalis • Borders Family Dynasty Nation<br/>
+    © 2025 Ecclesia Magna Trust | All Rights Reserved
+  </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+
+</body>
+</html>
