@@ -3,7 +3,6 @@
   "version": "2.5.0",
   "description": "The Codex Ecclesia — a unified, generational, sovereign-grade knowledge system.",
   "type": "module",
-
   "scripts": {
     "dev": "vite",
     "preview": "vite preview",
@@ -13,12 +12,10 @@
     "manifest": "node scripts/generate-manifest.cjs",
     "metadata": "node scripts/inject-metadata.cjs"
   },
-
   "dependencies": {
     "gray-matter": "^4.0.3",
     "marked": "^12.0.1"
   },
-
   "devDependencies": {
     "vite": "^5.0.0",
     "gh-pages": "^6.0.0",
