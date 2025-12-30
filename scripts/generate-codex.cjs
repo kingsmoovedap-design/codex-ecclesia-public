@@ -13,7 +13,7 @@ const CODEX_PATH = path.join(__dirname, 'codex.json');
 async function generateCodex() {
   try {
     const scrolls = await fs.readJson(SCROLLS_PATH);
-
+el.innerHTML = `<a href="${item.filename}">${item.title}</a> <small>[${item.category}]</small>`;
     if (!Array.isArray(scrolls)) {
       throw new Error('scrolls.json must be an array');
     }
