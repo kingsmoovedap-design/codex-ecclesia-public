@@ -1,5 +1,6 @@
 (async function () {
-  const codexUrl = 'codex.json';
+  const CODEX_URL = 'codex.json';
+
   let scrolls = [];
 
   const searchInput = document.getElementById('searchInput');
@@ -8,23 +9,20 @@
   const resultsTitle = document.getElementById('resultsTitle');
   const filterButtons = document.querySelectorAll('.filterButton');
 
-  // Helper: get current page type
-  const page = (() => {
-    const path = window.location.pathname;
-    if (path.endsWith('all-scrolls.html')) return 'directory';
-    if (path.endsWith('omega-portal.html')) return 'omega';
-    return 'home';
-  })();
+  const path = window.location.pathname;
+  const page = path.endsWith('all-scrolls.html')
+    ? 'directory'
+    : path.endsWith('omega-portal.html')
+    ? 'omega'
+    : 'home';
 
-  // Helper: get URL query param
   function getQueryParam(key) {
     const params = new URLSearchParams(window.location.search);
     return params.get(key);
   }
 
-  // Fetch codex
   try {
-    const res = await fetch(codexUrl, { cache: 'no-cache' });
+    const res = await fetch(CODEX_URL, { cache: 'no-cache' });
     if (!res.ok) throw new Error('Failed to load codex.json');
     const data = await res.json();
     scrolls = Array.isArray(data.scrolls) ? data.scrolls : [];
@@ -37,9 +35,8 @@
     return;
   }
 
-  // Basic card template
   function renderCard(item) {
-    const div = document.createElement('article');
+    const div = document.createElement('div');
     div.className = 'card';
 
     const created = item.created ? new Date(item.created) : null;
@@ -47,13 +44,13 @@
 
     div.innerHTML = `
       <h3>${item.title || 'Untitled Scroll'}</h3>
-      <p style="font-size:0.85rem; color:#666; margin-bottom:0.5rem;">
-        ${item.section ? item.section.toUpperCase() : ''}${
-      item.category ? ' • ' + item.category : ''
-    }${createdStr ? ' • ' + createdStr : ''}
+      <p class="card-meta">
+        ${(item.section || '').toUpperCase()}${
+          item.category ? ' • ' + item.category : ''
+        }${createdStr ? ' • ' + createdStr : ''}
       </p>
       <p>${item.summary || ''}</p>
-      <p style="margin-top:0.75rem;">
+      <p class="card-link-row">
         <a href="${item.url}" target="_blank" rel="noopener noreferrer">Open Scroll →</a>
       </p>
     `;
@@ -63,6 +60,7 @@
   function updateResults(list, titleOverride) {
     if (!resultsGrid) return;
     resultsGrid.innerHTML = '';
+
     if (resultsTitle && titleOverride) {
       resultsTitle.textContent = titleOverride;
     }
@@ -76,7 +74,6 @@
     list.forEach(item => resultsGrid.appendChild(renderCard(item)));
   }
 
-  // Search logic
   function searchScrolls(query, sectionFilter) {
     const q = (query || '').toLowerCase().trim();
     const sec = (sectionFilter || '').toLowerCase().trim();
@@ -99,15 +96,13 @@
     });
   }
 
-  // Initial render based on page
+  // Initial page-specific render
   if (page === 'home') {
-    // Featured: pinned first, then most recent
     const pinned = scrolls.filter(s => s.pinned);
     const recent = [...scrolls]
       .filter(s => !s.pinned)
       .sort((a, b) => new Date(b.created || 0) - new Date(a.created || 0))
-      .slice(0, 6 - pinned.length);
-
+      .slice(0, Math.max(0, 6 - pinned.length));
     const featured = [...pinned, ...recent].slice(0, 6);
     updateResults(featured, 'Featured Scrolls');
   }
@@ -121,12 +116,10 @@
     const initial = searchScrolls('', sectionParam || '');
     updateResults(initial, title);
 
-    // Pre-highlight filter button
     if (sectionParam) {
       filterButtons.forEach(btn => {
         if (btn.dataset.section === sectionParam) {
-          btn.style.backgroundColor = '#003366';
-          btn.style.color = '#fff';
+          btn.classList.add('filter-active');
         }
       });
     }
@@ -141,34 +134,29 @@
     updateResults(combined, 'Recent & Pinned Scrolls');
   }
 
-  // Wire search input
+  // Search wiring
   if (searchInput) {
     searchInput.addEventListener('input', () => {
-      const sectionParam =
-        page === 'directory' ? getQueryParam('section') || '' : '';
+      const sectionParam = page === 'directory' ? getQueryParam('section') || '' : '';
       const list = searchScrolls(searchInput.value, sectionParam);
       let title = 'Search Results';
       if (!searchInput.value) {
         if (page === 'home') title = 'Featured Scrolls';
         if (page === 'directory') title = 'All Entries';
+        if (page === 'omega') title = 'Recent & Pinned Scrolls';
       }
       updateResults(list, title);
     });
   }
 
-  // Wire filter buttons (directory)
+  // Filter buttons (directory)
   if (filterButtons && filterButtons.length) {
     filterButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const section = btn.dataset.section || '';
 
-        // Visual state
-        filterButtons.forEach(b => {
-          b.style.backgroundColor = '';
-          b.style.color = '';
-        });
-        btn.style.backgroundColor = '#003366';
-        btn.style.color = '#fff';
+        filterButtons.forEach(b => b.classList.remove('filter-active'));
+        btn.classList.add('filter-active');
 
         const list = searchScrolls(searchInput ? searchInput.value : '', section);
         let title = 'All Entries';
@@ -177,7 +165,6 @@
         }
         updateResults(list, title);
 
-        // Update query param (without reload)
         const url = new URL(window.location.href);
         if (section) {
           url.searchParams.set('section', section);
