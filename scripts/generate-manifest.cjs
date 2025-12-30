@@ -1,10 +1,5 @@
 #!/usr/bin/env node
 
-/**
- * Codex Kernel v2.5 — Manifest Generator
- * Scans all sections, extracts metadata, builds manifest.json
- */
-
 const fs = require('fs-extra');
 const path = require('path');
 const cheerio = require('cheerio');
@@ -13,9 +8,6 @@ const config = require('../codex.config.js');
 const ROOT = path.join(__dirname, '..');
 const OUTPUT = path.join(ROOT, 'manifest.json');
 
-// ------------------------------------------------------------
-// Helpers
-// ------------------------------------------------------------
 function normalize(section) {
   return String(section).trim().toLowerCase();
 }
@@ -37,8 +29,7 @@ function extractMetadata(filePath) {
     path.basename(filePath).replace(/\.[^.]+$/, '');
 
   const summary =
-    $('meta[name="description"]').attr('content') ||
-    '';
+    $('meta[name="description"]').attr('content') || '';
 
   const keywords =
     $('meta[name="keywords"]').attr('content') || '';
@@ -74,9 +65,6 @@ function getHtmlFiles(dir) {
   return files;
 }
 
-// ------------------------------------------------------------
-// Build Manifest
-// ------------------------------------------------------------
 function buildManifest() {
   const items = [];
 
@@ -105,9 +93,6 @@ function buildManifest() {
   return { items };
 }
 
-// ------------------------------------------------------------
-// Execute
-// ------------------------------------------------------------
 const manifest = buildManifest();
 fs.writeFileSync(OUTPUT, JSON.stringify(manifest, null, 2));
 
