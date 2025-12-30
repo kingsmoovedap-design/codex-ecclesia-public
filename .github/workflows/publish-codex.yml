@@ -4,28 +4,55 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: "codex-publish"
+  cancel-in-progress: true
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
 
     steps:
+      # -----------------------------
+      # 1. Checkout
+      # -----------------------------
       - name: 🧭 Checkout Codex Repository
         uses: actions/checkout@v4
 
+      # -----------------------------
+      # 2. Setup Node
+      # -----------------------------
       - name: 🔧 Set Up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: 22
+          cache: npm
+          registry-url: https://registry.npmjs.org/
 
+      # -----------------------------
+      # 3. Install Dependencies
+      # -----------------------------
       - name: 📦 Install Dependencies
         run: npm ci
 
+      # -----------------------------
+      # 4. Build Codex
+      # -----------------------------
       - name: 🛠️ Build Codex
         run: node build.cjs
 
+      # -----------------------------
+      # 5. Publish Codex
+      # -----------------------------
       - name: 📜 Publish Codex
-        run: node deploy.cjs
+        run: |
+          echo "Publishing Codex to npm…"
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
