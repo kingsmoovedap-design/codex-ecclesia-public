@@ -1,39 +1,65 @@
-name: Generate RSS Feed
+name: 🔁 Generate RSS Feed
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
     paths:
-      - "codex.json"
-      - "scripts/generate-feed.js"
+      - codex.json
+      - scripts/generate-feed.js
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "rss-feed"
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      # -----------------------------
+      # 1. Checkout
+      # -----------------------------
+      - name: 🧭 Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      # -----------------------------
+      # 2. Setup Node
+      # -----------------------------
+      - name: 🛠️ Set Up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: 22
+          cache: npm
 
-      - name: Install dependencies
-        run: npm install
+      # -----------------------------
+      # 3. Install Dependencies
+      # -----------------------------
+      - name: 📦 Install Dependencies
+        run: npm ci
 
-      - name: Generate scrolls-feed.xml
+      # -----------------------------
+      # 4. Generate RSS Feed
+      # -----------------------------
+      - name: 📰 Generate scrolls-feed.xml
         run: node scripts/generate-feed.js
 
-      - name: Commit scrolls-feed.xml
+      # -----------------------------
+      # 5. Commit & Push Changes
+      # -----------------------------
+      - name: 🔐 Configure Git
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "CodexBot"
+          git config user.email "codexbot@ecclesia.local"
+
+      - name: 📤 Commit and Push Updates
+        run: |
           git add scrolls-feed.xml
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "Auto-update scrolls-feed.xml"
-            git push
-          fi
+          git diff --cached --quiet || git commit -m "🔄 Auto-update scrolls-feed.xml"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
