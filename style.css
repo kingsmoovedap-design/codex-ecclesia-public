@@ -1,160 +1,193 @@
 /* ============================================
-   Codex Ecclesia — Unified Theme v2.5
-   Clean, modern, responsive, sovereign-grade
+   Codex Ecclesia — Sacred Archive Theme v2.5
    ============================================ */
 
-/* ---------- Root Variables ---------- */
-:root {
-  --bg: #f4f4f4;
-  --bg-dark: #111;
-  --bg-light: #fff;
-
-  --text: #222;
-  --text-light: #eee;
-
-  --accent: #003366;
-  --accent-light: #e0d5b0;
-
-  --card-border: #003366;
-  --card-shadow: rgba(0, 0, 0, 0.15);
-
-  --radius: 8px;
-  --transition: 0.25s ease;
-}
-
-/* ---------- Global Reset ---------- */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* ---------- Body Layout ---------- */
 body {
-  font-family: "Times New Roman", serif;
-  background: var(--bg);
-  color: var(--text);
-  display: flex;
-  min-height: 100vh;
+  font-family: "Georgia", serif;
+  background: #fdfcf9;
+  color: #222;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
-/* ---------- Sidebar ---------- */
-.sidebar {
-  width: 240px;
-  background: var(--bg-dark);
-  color: var(--text-light);
-  padding: 30px 20px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  overflow-y: auto;
-}
+/* Navigation */
 
-.sidebar h2 {
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.sidebar ul {
-  list-style: none;
-}
-
-.sidebar li {
-  margin: 0.5rem 0;
-}
-
-.sidebar a {
-  color: var(--text-light);
-  text-decoration: none;
-  font-size: 1rem;
-  transition: var(--transition);
-}
-
-.sidebar a:hover {
-  color: var(--accent-light);
-  padding-left: 4px;
-}
-
-/* ---------- Main Content ---------- */
-.main-content {
-  margin-left: 260px;
-  padding: 40px;
-  width: calc(100% - 260px);
-}
-
-h1, h2, h3 {
+.nav {
   text-align: center;
-  margin-bottom: 1rem;
-  color: var(--accent);
+  margin-bottom: 2rem;
 }
 
-/* ---------- Card Grid ---------- */
+.nav a {
+  margin: 0 0.75rem;
+  color: #003366;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.nav-omega {
+  color: #c5a059;
+}
+
+/* Headers */
+
+.page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  color: #003366;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Sections */
+
+.section-block {
+  margin-top: 3rem;
+}
+
+.section-block h2 {
+  text-align: center;
+  color: #003366;
+  margin-bottom: 1rem;
+}
+
+/* Search */
+
+.search-section {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.search-section input[type="search"] {
+  padding: 0.75rem;
+  width: 70%;
+  max-width: 500px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.search-note {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.filterButton {
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid #003366;
+  background: #fff;
+  color: #003366;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.filterButton:hover {
+  background: #003366;
+  color: #fff;
+}
+
+.filter-active {
+  background: #003366;
+  color: #fff;
+}
+
+/* Cards */
+
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1.5rem;
-  margin-top: 2rem;
 }
 
-/* ---------- Cards ---------- */
 .card {
-  background: var(--bg-light);
-  padding: 20px;
-  border-left: 6px solid var(--card-border);
-  border-radius: var(--radius);
-  box-shadow: 0 4px 10px var(--card-shadow);
-  transition: var(--transition);
+  background: #fff;
+  border: 2px solid #003366;
+  border-radius: 8px;
+  padding: 1rem;
   text-align: center;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 14px var(--card-shadow);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
 
 .card h3 {
-  margin-bottom: 0.5rem;
-  color: var(--accent);
+  margin: 0.5rem 0 0.25rem;
+  color: #003366;
 }
 
 .card p {
-  font-size: 0.95rem;
-  line-height: 1.4;
-}
-
-/* ---------- Trustees List ---------- */
-.trustees {
-  margin-top: 2rem;
-  padding-left: 1rem;
-}
-
-.trustees li {
-  margin: 0.4rem 0;
-  font-size: 1rem;
-}
-
-/* ---------- Footer ---------- */
-footer {
-  margin-top: 3rem;
-  text-align: center;
   font-size: 0.9rem;
   color: #555;
 }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 900px) {
-  .sidebar {
-    position: static;
-    width: 100%;
-    height: auto;
+.card-meta {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.card-link-row {
+  margin-top: 0.75rem;
+}
+
+.card a {
+  color: #003366;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+/* Empty state */
+
+.empty-note {
+  display: none;
+  text-align: center;
+  margin-top: 1rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Footer */
+
+.footer {
+  text-align: center;
+  margin-top: 4rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Responsive tweaks */
+
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
   }
 
-  .main-content {
-    margin-left: 0;
+  .search-section input[type="search"] {
     width: 100%;
-    padding: 20px;
   }
 }
