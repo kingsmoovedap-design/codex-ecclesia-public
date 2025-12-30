@@ -1,4 +1,4 @@
-name: ☩ Publish Codex
+name: Codex Build & Deploy
 
 on:
   push:
@@ -6,53 +6,27 @@ on:
       - main
   workflow_dispatch:
 
-permissions:
-  contents: read
-  packages: write
-
-concurrency:
-  group: "codex-publish"
-  cancel-in-progress: true
-
 jobs:
-  build-and-publish:
+  build-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # -----------------------------
-      # 1. Checkout
-      # -----------------------------
-      - name: 🧭 Checkout Codex Repository
+      - name: ☩ Checkout Repository
         uses: actions/checkout@v4
 
-      # -----------------------------
-      # 2. Setup Node
-      # -----------------------------
-      - name: 🔧 Set Up Node.js
+      - name: ☩ Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: npm
-          registry-url: https://registry.npmjs.org/
+          node-version: 20
 
-      # -----------------------------
-      # 3. Install Dependencies
-      # -----------------------------
-      - name: 📦 Install Dependencies
-        run: npm ci
+      - name: ☩ Install Dependencies
+        run: npm install
 
-      # -----------------------------
-      # 4. Build Codex
-      # -----------------------------
-      - name: 🛠️ Build Codex
-        run: node build.cjs
+      - name: ☩ Build Codex (Full Pipeline)
+        run: npm run build
 
-      # -----------------------------
-      # 5. Publish Codex
-      # -----------------------------
-      - name: 📜 Publish Codex
-        run: |
-          echo "Publishing Codex to npm…"
-          npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: ☩ Deploy Codex to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
