@@ -2,25 +2,47 @@ name: ☩ Validate Scrolls
 
 on:
   pull_request:
-    branches: [ dev ]
+    branches:
+      - dev
     paths:
-      - '**/*.html'
+      - "**/*.html"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "scroll-validation"
+  cancel-in-progress: true
 
 jobs:
   lint-scrolls:
     runs-on: ubuntu-latest
 
     steps:
+      # -----------------------------
+      # 1. Checkout
+      # -----------------------------
       - name: ⬇️ Checkout Repository
         uses: actions/checkout@v4
 
+      # -----------------------------
+      # 2. Setup Node
+      # -----------------------------
       - name: 🧰 Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: 22
+          cache: npm
 
+      # -----------------------------
+      # 3. Install Dependencies
+      # -----------------------------
       - name: 📦 Install Dependencies
-        run: npm install
+        run: npm ci
 
+      # -----------------------------
+      # 4. Lint HTML Scrolls
+      # -----------------------------
       - name: 🧪 Lint HTML Scrolls
         run: npx htmlhint "**/*.html"
