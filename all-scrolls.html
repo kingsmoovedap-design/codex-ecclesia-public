@@ -2,110 +2,66 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Codex Ecclesia — Sacred Archive</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    name="description"
-    content="The Codex Ecclesia — a sovereign-grade archive of scrolls, ministries, treaties, and codices."
-  />
+  <title>All Scrolls — Codex Ecclesia</title>
+
+  <meta name="description" content="Directory of all scrolls, ministries, treaties, codices, and tools in the Codex Ecclesia." />
+
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <h2>☩ Codex Ecclesia</h2>
-    <ul>
-      <li><a href="index.html">Sacred Gateway</a></li>
-      <li><a href="all-scrolls.html">All Scrolls Directory</a></li>
-      <li><a href="omega-portal.html">Omega Portal</a></li>
-      <li><a href="codex.json">Codex API</a></li>
-      <li><a href="manifest.json">Manifest</a></li>
-    </ul>
-  </aside>
 
-  <!-- Main Content -->
-  <main class="main-content">
-    <header>
-      <h1>☩ Sacred Gateway</h1>
-      <p style="text-align:center; max-width:640px; margin:0 auto 1.5rem;">
-        A living archive of scrolls, treaties, ministries, and codices — structured, searchable, and preserved
-        for the Ecclesia and its emissaries.
-      </p>
-    </header>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="all-scrolls.html">All Scrolls</a>
+    <a href="leadership.html">Leadership</a>
+    <a href="submit-scroll.html">Submit</a>
+    <a href="omega-portal.html" class="nav-omega">☩ Omega Portal</a>
+  </nav>
 
-    <!-- Search Bar -->
-    <section style="margin-top:2rem;">
-      <h2>Search the Codex</h2>
-      <div style="max-width:480px; margin:0.5rem auto;">
-        <input
-          id="searchInput"
-          type="search"
-          placeholder="Search by title, tag, section, or keyword…"
-          style="width:100%; padding:0.75rem; border-radius:6px; border:1px solid #ccc;"
-        />
-      </div>
-      <p style="text-align:center; font-size:0.9rem; color:#555;">
-        Powered by <code>codex.json</code> (Codex Kernel v2.5).
-      </p>
-    </section>
+  <header class="page-header">
+    <h1>All Scrolls Directory</h1>
+    <p>
+      A complete index of scrolls, ministries, treaties, codices, and tools as defined in
+      <code>codex.json</code>.
+    </p>
+  </header>
 
-    <!-- Quick Filters -->
-    <section style="margin-top:2rem;">
-      <h2>Browse by Chamber</h2>
-      <div class="card-grid" id="chamberCards">
-        <article class="card" data-section="core">
-          <h3>Core</h3>
-          <p>Canonical texts, affidavits, and foundational scrolls.</p>
-          <p><a href="all-scrolls.html?section=core">Enter Core Chamber →</a></p>
-        </article>
+  <!-- Filter + search -->
+  <section class="search-section">
+    <div class="filter-row">
+      <button class="filterButton" data-section="">All</button>
+      <button class="filterButton" data-section="core">Core</button>
+      <button class="filterButton" data-section="scrolls">Scrolls</button>
+      <button class="filterButton" data-section="ministries">Ministries</button>
+      <button class="filterButton" data-section="treaties">Treaties</button>
+      <button class="filterButton" data-section="codices">Codices</button>
+      <button class="filterButton" data-section="tools">Tools</button>
+    </div>
+    <input
+      id="searchInput"
+      type="search"
+      placeholder="Filter by title, tag, or keyword…"
+    />
+  </section>
 
-        <article class="card" data-section="scrolls">
-          <h3>Scrolls</h3>
-          <p>Teachings, notices, revelations, and proclamations.</p>
-          <p><a href="all-scrolls.html?section=scrolls">Enter Scrolls Chamber →</a></p>
-        </article>
+  <!-- Results -->
+  <section class="section-block">
+    <h2 id="resultsTitle">All Entries</h2>
 
-        <article class="card" data-section="ministries">
-          <h3>Ministries</h3>
-          <p>Organizational charters, applications, and ministry records.</p>
-          <p><a href="all-scrolls.html?section=ministries">Enter Ministries Chamber →</a></p>
-        </article>
+    <div class="card-grid" id="resultsGrid">
+      <!-- Populated by search.js -->
+    </div>
 
-        <article class="card" data-section="treaties">
-          <h3>Treaties</h3>
-          <p>Covenants, recognitions, and diplomatic instruments.</p>
-          <p><a href="all-scrolls.html?section=treaties">Enter Treaties Chamber →</a></p>
-        </article>
+    <p id="resultsEmpty" class="empty-note">
+      No scrolls match your filters yet.
+    </p>
+  </section>
 
-        <article class="card" data-section="codices">
-          <h3>Codices</h3>
-          <p>Indexes, ledgers, curricula, and knowledge sets.</p>
-          <p><a href="all-scrolls.html?section=codices">Enter Codices Chamber →</a></p>
-        </article>
-
-        <article class="card" data-section="tools">
-          <h3>Tools</h3>
-          <p>Verification portals, generators, and system utilities.</p>
-          <p><a href="all-scrolls.html?section=tools">Enter Tools Chamber →</a></p>
-        </article>
-      </div>
-    </section>
-
-    <!-- Featured / Search Results -->
-    <section style="margin-top:3rem;">
-      <h2 id="resultsTitle">Featured Scrolls</h2>
-      <div class="card-grid" id="resultsGrid">
-        <!-- Populated by search.js -->
-      </div>
-      <p id="resultsEmpty" style="text-align:center; margin-top:1rem; display:none;">
-        No scrolls match your search yet. Adjust your query or browse by chamber above.
-      </p>
-    </section>
-
-    <footer>
-      <p>☩ Codex Ecclesia — Borders Ecclesia Earth Trust</p>
-    </footer>
-  </main>
+  <footer class="footer">
+    ☩ Codex Ecclesia © 2025 — A Living Archive of the Eternal Ecclesia
+  </footer>
 
   <script src="search.js"></script>
 </body>
