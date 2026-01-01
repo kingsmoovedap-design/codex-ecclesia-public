@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logistics Dynasty | Borders Dynasty Nation</title>
+  <meta name="description" content="Sovereign supply chain and logistics management platform for the Borders Dynasty Nation" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .logistics-header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: #fff;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .logistics-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    .logistics-header h1 {
+      color: var(--accent-gold);
+      margin: 0 0 1rem 0;
+    }
+    .logistics-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(212,175,55,0.2);
+      border: 1px solid var(--accent-gold);
+      padding: 0.5rem 1.5rem;
+      border-radius: 20px;
+      margin-top: 1rem;
+    }
+    .pulse-dot {
+      width: 10px;
+      height: 10px;
+      background: #ffc107;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+    .logistics-modules {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logistics-module {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 12px;
+      padding: 2rem;
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+    .logistics-module:hover {
+      border-color: var(--accent-gold);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(212,175,55,0.2);
+    }
+    .module-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .logistics-module h3 {
+      color: var(--accent-gold);
+      margin: 0 0 0.5rem 0;
+    }
+    .logistics-module p {
+      color: #aaa;
+      margin: 0 0 1rem 0;
+      font-size: 0.95rem;
+    }
+    .module-features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .module-features li {
+      padding: 0.25rem 0;
+      font-size: 0.85rem;
+      color: #888;
+    }
+    .module-features li::before {
+      content: "✓ ";
+      color: var(--accent-gold);
+    }
+    .integration-section {
+      background: #f5f0e1;
+      padding: 3rem 2rem;
+    }
+    .integration-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 2rem auto 0;
+    }
+    .integration-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .integration-card .icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .integration-card h4 {
+      margin: 0 0 0.25rem 0;
+      color: #333;
+    }
+    .integration-card p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .launch-section {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: #fff;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .launch-section h2 {
+      color: var(--accent-gold);
+    }
+    .launch-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .launch-btn {
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .launch-btn-primary {
+      background: linear-gradient(135deg, #d4af37, #8b5a2b);
+      color: #fff;
+    }
+    .launch-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(212,175,55,0.4);
+    }
+    .launch-btn-secondary {
+      background: transparent;
+      border: 2px solid var(--accent-gold);
+      color: var(--accent-gold);
+    }
+    .launch-btn-secondary:hover {
+      background: var(--accent-gold);
+      color: #1a1a2e;
+    }
+    .config-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    .config-panel {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .config-panel h3 {
+      margin-top: 0;
+      color: #333;
+      border-bottom: 2px solid var(--accent-gold);
+      padding-bottom: 0.5rem;
+    }
+    .config-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .config-row:last-child {
+      border-bottom: none;
+    }
+    .config-label {
+      font-weight: bold;
+      color: #333;
+    }
+    .config-value {
+      color: #666;
+    }
+    .config-value.active {
+      color: #28a745;
+    }
+    .config-value.pending {
+      color: #ffc107;
+    }
+  </style>
+</head>
+<body>
+  <nav class="sacred-nav">
+    <a href="index.html">Home</a>
+    <a href="all-scrolls.html">All Scrolls</a>
+    <a href="omega-portal.html">☩ Omega Portal</a>
+    <a href="logistics-dynasty.html" class="active">🚚 Logistics Dynasty</a>
+    <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="nav-dynasty">👑 Dynasty Dashboard</a>
+  </nav>
+
+  <header class="logistics-header">
+    <div class="logistics-icon">🚚</div>
+    <h1>Logistics Dynasty</h1>
+    <p class="hero-tagline">Sovereign Supply Chain & Logistics Platform</p>
+    <p class="hero-subtitle">Borders Dynasty Nation | Private Membership Association</p>
+    <div class="logistics-status-badge">
+      <span class="pulse-dot"></span>
+      <span>Platform Launching Soon</span>
+    </div>
+  </header>
+
+  <section class="section-block">
+    <h2 class="section-title">Platform Modules</h2>
+    <p class="section-subtitle">Comprehensive logistics infrastructure for sovereign operations</p>
+    <div class="logistics-modules">
+      <div class="logistics-module">
+        <div class="module-icon">📦</div>
+        <h3>Inventory Management</h3>
+        <p>Track and manage sovereign assets across all locations</p>
+        <ul class="module-features">
+          <li>Real-time inventory tracking</li>
+          <li>Multi-location support</li>
+          <li>Asset categorization</li>
+          <li>Audit trail logging</li>
+        </ul>
+      </div>
+
+      <div class="logistics-module">
+        <div class="module-icon">🚛</div>
+        <h3>Freight & Shipping</h3>
+        <p>Coordinate domestic and international shipments</p>
+        <ul class="module-features">
+          <li>Carrier management</li>
+          <li>Route optimization</li>
+          <li>Shipment tracking</li>
+          <li>Customs documentation</li>
+        </ul>
+      </div>
+
+      <div class="logistics-module">
+        <div class="module-icon">🏭</div>
+        <h3>Warehouse Operations</h3>
+        <p>Optimize storage and fulfillment processes</p>
+        <ul class="module-features">
+          <li>Storage allocation</li>
+          <li>Pick & pack workflows</li>
+          <li>Quality control</li>
+          <li>Returns processing</li>
+        </ul>
+      </div>
+
+      <div class="logistics-module">
+        <div class="module-icon">📊</div>
+        <h3>Supply Chain Analytics</h3>
+        <p>Data-driven insights for operational excellence</p>
+        <ul class="module-features">
+          <li>Performance dashboards</li>
+          <li>Demand forecasting</li>
+          <li>Cost analysis</li>
+          <li>Supplier scorecards</li>
+        </ul>
+      </div>
+
+      <div class="logistics-module">
+        <div class="module-icon">🤝</div>
+        <h3>Vendor Management</h3>
+        <p>Manage supplier relationships and contracts</p>
+        <ul class="module-features">
+          <li>Vendor onboarding</li>
+          <li>Contract management</li>
+          <li>Performance tracking</li>
+          <li>Payment scheduling</li>
+        </ul>
+      </div>
+
+      <div class="logistics-module">
+        <div class="module-icon">📋</div>
+        <h3>Compliance & Documentation</h3>
+        <p>Maintain sovereign documentation standards</p>
+        <ul class="module-features">
+          <li>Bill of lading generation</li>
+          <li>PMA documentation</li>
+          <li>Export declarations</li>
+          <li>Chain of custody</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="integration-section">
+    <h2 class="section-title">Dynasty Ecosystem Integration</h2>
+    <p class="section-subtitle">Seamlessly connected with all Dynasty platforms</p>
+    <div class="integration-grid">
+      <div class="integration-card">
+        <div class="icon">💰</div>
+        <h4>BSC Treasury</h4>
+        <p>Pay vendors with Borders Sovereign Coin</p>
+      </div>
+      <div class="integration-card">
+        <div class="icon">📜</div>
+        <h4>Omega Portal</h4>
+        <p>Generate shipping & trade documents</p>
+      </div>
+      <div class="integration-card">
+        <div class="icon">🔗</div>
+        <h4>CodexChain</h4>
+        <p>Immutable shipment records</p>
+      </div>
+      <div class="integration-card">
+        <div class="icon">👑</div>
+        <h4>Dynasty Dashboard</h4>
+        <p>Unified command center</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="config-section">
+    <div class="config-panel">
+      <h3>🔧 Platform Configuration</h3>
+      <div class="config-row">
+        <span class="config-label">Platform Status</span>
+        <span class="config-value pending">Pre-Launch</span>
+      </div>
+      <div class="config-row">
+        <span class="config-label">External Dashboard URL</span>
+        <span class="config-value" id="externalUrl">Not configured</span>
+      </div>
+      <div class="config-row">
+        <span class="config-label">Dynasty Integration</span>
+        <span class="config-value active">Connected</span>
+      </div>
+      <div class="config-row">
+        <span class="config-label">QFS Compliance</span>
+        <span class="config-value active">Ready</span>
+      </div>
+      <div class="config-row">
+        <span class="config-label">ISO-20022</span>
+        <span class="config-value active">Compliant</span>
+      </div>
+      <div class="config-row">
+        <span class="config-label">Blockchain Filing</span>
+        <span class="config-value active">Enabled</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="launch-section">
+    <h2>Ready for Launch</h2>
+    <p>The Logistics Dynasty platform is fully prepared for both local state operations and global sovereign commerce.</p>
+    <div class="dynasty-status">
+      <div class="status-item">
+        <span class="status-dot status-active"></span>
+        <span>QFS-Compliant</span>
+      </div>
+      <div class="status-item">
+        <span class="status-dot status-active"></span>
+        <span>ISO-20022</span>
+      </div>
+      <div class="status-item">
+        <span class="status-dot status-active"></span>
+        <span>Gold-Backed</span>
+      </div>
+    </div>
+    <div class="launch-buttons">
+      <a href="#" class="launch-btn launch-btn-primary" id="launchBtn" onclick="launchPlatform()">Launch Logistics Dashboard</a>
+      <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="launch-btn launch-btn-secondary">Dynasty Command Center</a>
+    </div>
+  </section>
+
+  <footer class="sacred-footer">
+    <p>🚚 Logistics Dynasty — Sovereign Supply Chain Platform</p>
+    <p>Borders Dynasty Nation | Private Membership Association</p>
+    <p>© 2025 All Rights Reserved under Divine Law</p>
+  </footer>
+
+  <script>
+    const LOGISTICS_DYNASTY_URL = '';
+    
+    function launchPlatform() {
+      if (LOGISTICS_DYNASTY_URL) {
+        window.open(LOGISTICS_DYNASTY_URL, '_blank');
+      } else {
+        alert('Logistics Dynasty platform URL will be configured upon launch. Please check back soon.');
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlDisplay = document.getElementById('externalUrl');
+      const launchBtn = document.getElementById('launchBtn');
+      
+      if (LOGISTICS_DYNASTY_URL) {
+        urlDisplay.textContent = LOGISTICS_DYNASTY_URL;
+        urlDisplay.classList.add('active');
+        launchBtn.href = LOGISTICS_DYNASTY_URL;
+        launchBtn.setAttribute('target', '_blank');
+        launchBtn.onclick = null;
+      }
+    });
+  </script>
+</body>
+</html>

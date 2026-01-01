@@ -39,7 +39,15 @@ A static HTML website serving as the sovereign scroll archive of the Borders Ecc
   - Dynasty Ecosystem section on homepage with 6 platform cards
   - Blockchain filing integration in Omega Portal with QFS/ISO-20022 status
   - Gold gradient styling for Dynasty Dashboard navigation link
-  - Logistics Dynasty placeholder (coming soon) for future integration
+  - Logistics Dynasty page with full platform modules (ready for external URL)
+
+- 2026-01-01: Logistics Dynasty Platform Page
+  - Dedicated logistics-dynasty.html with 6 platform modules
+  - Inventory Management, Freight & Shipping, Warehouse Operations
+  - Supply Chain Analytics, Vendor Management, Compliance & Documentation
+  - Dynasty Ecosystem integration cards (BSC Treasury, Omega Portal, CodexChain, Dashboard)
+  - Configuration panel with platform status and compliance indicators
+  - Launch buttons ready for external dashboard URL configuration
   
 - 2026-01-01: Enhanced Omega Portal System
   - Master Portal with 4 tabs: Lawful Suggestions, Draft Documents, File & Record, Track Filings
