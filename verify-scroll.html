@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔗 Verify Scroll Authenticity</title>
+  <style>
+    body { font-family: 'Garamond', serif; padding: 2rem; text-align: center; }
+    input, button { padding: 0.75rem; margin-top: 1rem; width: 80%; max-width: 500px; }
+    .result { margin-top: 2rem; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>🔗 Verify Scroll Authenticity</h1>
+  <p><em>“Let the hash reveal the truth.”</em></p>
+
+  <section>
+    <p>Upload your scroll to generate a SHA-256 hash and verify it via OpenTimestamps.</p>
+    <input type="file" id="scrollFile" />
+    <button onclick="hashAndVerify()">Generate Hash & Verify</button>
+    <div class="result" id="result"></div>
+  </section>
+
+  <script>
+    async function hashAndVerify() {
+      const file = document.getElementById('scrollFile').files[0];
+      const result = document.getElementById('result');
+      if (!file) {
+        result.textContent = "⚠️ Please upload a scroll file.";
+        return;
+      }
+
+      const buffer = await file.arrayBuffer();
+      const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+      result.innerHTML = `
+        ✅ SHA-256 Hash: <code>${hashHex}</code><br/>
+        🔗 <a href="https://opentimestamps.org" target="_blank">Submit this hash to OpenTimestamps</a><br/>
+        📜 Save your .ots proof file for future verification.
+      `;
+    }
+  </script>
+
+  <footer style="margin-top: 3rem;">
+    <p>☩ CodexChain Verification — Eternal Scroll Integrity</p>
+  </footer>
+</body>
+</html>

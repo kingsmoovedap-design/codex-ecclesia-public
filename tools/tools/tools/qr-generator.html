@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>☩ QR Code Generator</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <style>
+    body { font-family: Georgia, serif; padding: 2em; background: #f4f4f4; }
+    input { width: 100%; padding: 1em; margin: 1em 0; font-size: 1em; }
+    canvas { margin-top: 1em; }
+  </style>
+</head>
+<body>
+  <h1>☩ QR Code Generator</h1>
+  <input id="qrInput" placeholder="Enter scroll URL or path..." />
+  <div id="qrcode"></div>
+
+  <script>
+    const input = document.getElementById('qrInput');
+    const qrDiv = document.getElementById('qrcode');
+
+    input.addEventListener('input', () => {
+      qrDiv.innerHTML = '';
+      if (input.value.trim()) {
+        QRCode.toCanvas(input.value.trim(), { width: 256 }, (err, canvas) => {
+          if (!err) qrDiv.appendChild(canvas);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

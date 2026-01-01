@@ -1,0 +1,32 @@
+[
+  {
+    "id": "001",
+    "title": "Unified Codex",
+    "tone": "Foundational Law",
+    "author": "Omega",
+    "filed": "2024-01-01",
+    "link": "https://kingsmoovedap-design.github.io/codex-ecclesia-harmony/codices/unified-codex.html",
+    "status": "active",
+    "summary": "The central legal and spiritual framework of the Ecclesia Harmony. Defines sovereignty, law, and divine order."
+  },
+  {
+    "id": "002",
+    "title": "Codex of Harmony",
+    "tone": "Spiritual Alignment",
+    "author": "Omega",
+    "filed": "2024-03-21",
+    "link": "https://kingsmoovedap-design.github.io/codex-ecclesia-harmony/codices/codex-harmony.html",
+    "status": "active",
+    "summary": "A scroll of sacred alignment, outlining the 7 Harmonies of Sovereignty and the daily rituals of tone."
+  },
+  {
+    "id": "003",
+    "title": "Codex of the Academy",
+    "tone": "Education & Training",
+    "author": "Omega",
+    "filed": "2024-06-01",
+    "link": "https://kingsmoovedap-design.github.io/codex-ecclesia-harmony/codices/codex-academy.html",
+    "status": "draft",
+    "summary": "Outlines the structure, curriculum, and rites of passage for heirs and sovereign apprentices."
+  }
+]

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>☩ The Borders Family Legacy Scroll</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      background: #0e0e0e;
+      color: #f0e6d2;
+      font-family: 'EB Garamond', serif;
+      padding: 2rem;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #d4af37;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+    }
+    .scroll {
+      max-width: 800px;
+      margin: auto;
+      border: 2px solid #d4af37;
+      padding: 2rem;
+      background: #1a1a1a;
+      border-radius: 8px;
+    }
+    .scroll p {
+      margin-bottom: 1.5rem;
+    }
+    .oracle {
+      margin-top: 3rem;
+      text-align: center;
+      font-style: italic;
+      color: #aaa;
+    }
+    a {
+      color: #d4af37;
+      text-decoration: none;
+      border-bottom: 1px dashed #d4af37;
+    }
+    a:hover {
+      color: #fff;
+      border-bottom: 1px solid #fff;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #444;
+      color: #f0e6d2;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #fdfaf6;
+      color: #2c1a0f;
+    }
+    .dark-mode .scroll {
+      background: #fffdf7;
+      color: #2c1a0f;
+      border-color: #5e3b1d;
+    }
+    .dark-mode h1 {
+      color: #5e3b1d;
+      border-color: #5e3b1d;
+    }
+    .dark-mode .oracle {
+      color: #555;
+    }
+    .dark-mode a {
+      color: #5e3b1d;
+      border-bottom: 1px dashed #5e3b1d;
+    }
+    .dark-mode a:hover {
+      color: #003366;
+      border-bottom: 1px solid #003366;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <h1>☩ The Borders Family Legacy Scroll ☩</h1>
+
+  <div class="scroll">
+    <p><strong>The Borders Family Legacy Message.</strong> These words are not about perfection. They are about becoming. They are about learning to breathe again, choosing peace over chaos, clarity over confusion, and growth over fear...</p>
+
+    <p>This message is for myself, for my children, and for anyone who walks beside me...</p>
+
+    <p><em>Devenity my soul. Demarco my heart. Deven my brain.</em> You three are the best of my everything. Not because you’re perfect, but because you’re mine, and because you’re growing into yourselves every day...</p>
+
+    <p><strong>These words are yours now. Carry them gently. Live them boldly.</strong></p>
+  </div>
+
+  <div class="oracle">
+    🔮 This scroll is sealed in the Codex for all time.
+    <br><br>
+    <a href="index.html">← Return to the Minting Altar</a>
+  </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+
+</body>
+</html>

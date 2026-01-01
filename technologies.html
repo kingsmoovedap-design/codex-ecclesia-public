@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>⚙️ Sacred Technologies | Codex Ecclesia</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      color: #2c1a0f;
+    }
+    header {
+      background: linear-gradient(to right, #2c1a0f, #5e3b1d);
+      color: #f9e8c9;
+      padding: 2rem;
+      text-align: center;
+      border-bottom: 4px solid gold;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+    nav {
+      background: #3b2614;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1rem;
+    }
+    nav a {
+      color: #f9e8c9;
+      text-decoration: none;
+      font-weight: bold;
+      font-family: 'Inter', sans-serif;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .tech-card {
+      background: #fffdf7;
+      border: 1px solid #d4af37;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    }
+    .tech-card h3 {
+      margin-top: 0;
+    }
+    footer {
+      background: #2c1a0f;
+      color: #f9e8c9;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+      background-image: none;
+    }
+    .dark-mode header {
+      background: linear-gradient(to right, #000000, #333333);
+      color: #f0d98c;
+    }
+    .dark-mode nav {
+      background: #111;
+    }
+    .dark-mode nav a {
+      color: #f0d98c;
+    }
+    .dark-mode nav a:hover {
+      color: #ffcc99;
+    }
+    .dark-mode .tech-card {
+      background: #2a2a2a;
+      border-color: #f0d98c;
+      color: #eee;
+    }
+    .dark-mode h2 {
+      color: #f0d98c;
+    }
+    .dark-mode footer {
+      color: #aaa;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <header>
+    <h1>⚙️ Sacred Technologies</h1>
+    <p>Divine Inventions | Blockchain Systems | Sovereign Innovation</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="ledger.html">Ledger</a>
+    <a href="borders-sovereign-coin.html">Sovereign Coin</a>
+    <a href="tribunal.html">Tribunal</a>
+    <a href="notice.html">Notice</a>
+    <a href="join.html">Join</a>
+    <a href="treaty-recognition-log.html">Treaties</a>
+    <a href="archive.html">Archive</a>
+    <a href="codex.html">Full Codex</a>
+  </nav>
+
+  <main>
+    <h2>📜 Codex of Sacred Technologies</h2>
+
+    <div class="tech-card">
+      <h3>BDC Sovereign Coin</h3>
+      <p><strong>Purpose:</strong> A trust-backed digital currency for lawful exchange within the Borders Family Dynasty Nation.</p>
+      <p><strong>Status:</strong> Active | Blockchain Ledger Entry #0051</p>
+    </div>
+
+    <div class="tech-card">
+      <h3>Scroll Hash Ledger</h3>
+      <p><strong>Purpose:</strong> Immutable record of all sealed scrolls, decrees, and sovereign acts.</p>
+      <p><strong>Technology:</strong> SHA-256 hash chain with timestamped entries</p>
+    </div>
+
+    <div class="tech-card">
+      <h3>Sovereign Identity Generator</h3>
+      <p><strong>Purpose:</strong> Generates unique sovereign IDs and scrolls for citizens of the Codex.</p>
+      <p><strong>Coming Soon:</strong> PDF + QR code issuance</p>
+    </div>
+
+    <div class="tech-card">
+      <h3>Petition of Invention</h3>
+      <p><strong>Purpose:</strong> Submit sacred technologies for recognition and protection under the Codex.</p>
+      <p><a href="mailto:sovereign@codex-ecclesia.org">Submit your invention →</a></p>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+
+</body>
+</html>

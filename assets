@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🛡️ Sovereign Iconography Archive</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf4;
+      color: #3b2f2f;
+      margin: 0;
+      padding: 2rem;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .section {
+      margin: 3rem auto;
+      max-width: 800px;
+      text-align: center;
+    }
+    .symbol {
+      max-width: 300px;
+      margin: 1rem auto;
+      display: block;
+    }
+    .download-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-weight: bold;
+      color: #6b4c2e;
+      text-decoration: none;
+    }
+    .intro {
+      font-size: 1.1rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: #7a6a5a;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode .download-link {
+      color: #66ccff;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <h1>☩ Sovereign Iconography Archive</h1>
+  <p class="intro">
+    By decree of the Sovereign, these sacred symbols are hereby published for ceremonial use, verification, and divine governance. Each seal, flag, and emblem carries the authority of the Borders Family Dynasty Nation and may be embedded into scrolls, QR credentials, and sovereign instruments.
+  </p>
+
+  <div class="section">
+    <h2>🛡️ Sovereign Sigils</h2>
+    <img src="assets/sigil1.png" alt="Sovereign Sigil 1" class="symbol" />
+    <a href="assets/sigil1.png" class="download-link" download>Download Sigil 1</a>
+
+    <img src="assets/sigil2.png" alt="Sovereign Sigil 2" class="symbol" />
+    <a href="assets/sigil2.png" class="download-link" download>Download Sigil 2</a>
+
+    <img src="assets/sigil3.png" alt="Sovereign Sigil 3" class="symbol" />
+    <a href="assets/sigil3.png" class="download-link" download>Download Sigil 3</a>
+  </div>
+
+  <div class="section">
+    <h2>🏳️ National Flag</h2>
+    <img src="assets/flag.png" alt="Borders Nation Flag" class="symbol" />
+    <a href="assets/flag.png" class="download-link" download>Download Flag</a>
+  </div>
+
+  <div class="section">
+    <h2>📖 Emblems & Identity Digits</h2>
+    <img src="assets/emblem.png" alt="Sovereign Emblem" class="symbol" />
+    <a href="assets/emblem.png" class="download-link" download>Download Emblem</a>
+
+    <img src="assets/identity-digits.png" alt="Identity Digits" class="symbol" />
+    <a href="assets/identity-digits.png" class="download-link" download>Download Identity Digits</a>
+  </div>
+
+  <div class="section">
+    <h2>🧿 Verification & Usage</h2>
+    <p>Each symbol may be embedded into:</p>
+    <ul style="text-align:left; max-width:600px; margin:0 auto;">
+      <li>Codex scrolls and declarations</li>
+      <li>Trust deeds and PMA charters</li>
+      <li>QR credentials and sovereign ID cards</li>
+      <li>Digital and printed ceremonial instruments</li>
+    </ul>
+    <p>To verify authenticity, scan the QR credential linked to each scroll or visit the <a href="index.html">Ecclesia Portal</a>.</p>
+  </div>
+
+  <footer>
+    ☩ Borders Family Dynasty Nation · Ecclesia Magna Trust · All Rights Reserved
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+
+</body>
+</html>

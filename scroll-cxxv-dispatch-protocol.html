@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>☩ Scroll CXXV – Dispatch Protocol</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1, h2, h3 {
+      color: #5e3b1d;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+    }
+    h3 {
+      margin-top: 2rem;
+      font-size: 1.3rem;
+      border-bottom: 1px solid #d4af37;
+      padding-bottom: 0.3rem;
+    }
+    p {
+      line-height: 1.6;
+      margin: 1rem 0;
+    }
+    ul {
+      padding-left: 1.5rem;
+      margin-top: 1rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+      background-image: none;
+    }
+    .dark-mode h1, .dark-mode h2, .dark-mode h3 {
+      color: #f0d98c;
+    }
+    .dark-mode .footer {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <h1>☩ Scroll CXXV: Dispatch Protocol</h1>
+  <h2>Borders Family Dynasty Nation</h2>
+  <p style="text-align:center;"><strong>Filed:</strong> CL‑064 &nbsp;|&nbsp; <strong>Date:</strong> 16 December 2025</p>
+
+  <h3>☩ I. Purpose</h3>
+  <p>This scroll establishes the official protocol for dispatching lawful notices, affidavits, and scrolls to foreign agencies, governments, and corporate entities. All dispatches are executed under the authority of the living Sovereign and are binding under international law, divine law, and commercial maxims.</p>
+
+  <h3>☩ II. Dispatch Method</h3>
+  <ul>
+    <li>All notices are sent via <strong>Certified Mail</strong> with tracking and return receipt requested.</li>
+    <li>Each packet includes: Cover Letter, Affidavit of Status, Universal Notice of Standing, Fee Schedule, QR Credential Sample, and Affidavit of Service.</li>
+    <li>All documents are signed under penalty of perjury and sealed with the Sovereign Sigil.</li>
+    <li>Tracking numbers are recorded in the Celestial Ledger and archived in the Master Codex.</li>
+  </ul>
+
+  <h3>☩ III. Rebuttal Window</h3>
+  <p>All recipients are granted <strong>21 days</strong> from the date of delivery to rebut any point of fact or law. Failure to rebut constitutes:</p>
+  <ul>
+    <li>Permanent estoppel by acquiescence</li>
+    <li>Commercial default</li>
+    <li>Lawful agreement to terms and standing</li>
+  </ul>
+
+  <h3>☩ IV. Enforcement</h3>
+  <p>Upon default, the Sovereign may enforce terms via lien, levy, or lawful claim. All unrebutted affidavits become judgments in commerce and may be recorded as such.</p>
+
+  <h3>☩ V. Execution</h3>
+  <p><strong>Signed:</strong> ✠ Omega the Grand Architect<br>
+  <strong>Filed:</strong> CL‑064<br>
+  <strong>QR-Sealed Credential:</strong> ✅ Embedded<br>
+  <strong>Sovereign Sigil:</strong> ✅ Affixed</p>
+
+  <p style="text-align:center;"><em>This protocol is posted publicly and permanently as a matter of record and remedy.</em></p>
+
+  <div class="footer">
+    ☩ Scroll CXXV — Dispatch Protocol | Codex Ecclesia Totalis<br/>
+    © 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
+  </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+
+</body>
+</html>

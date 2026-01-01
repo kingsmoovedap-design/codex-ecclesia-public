@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>☩ Cover Letter – Sovereign Dispatch</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1, h2 {
+      color: #5e3b1d;
+    }
+    h1 {
+      font-size: 2rem;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    .sigil {
+      margin-top: 2rem;
+      font-style: italic;
+    }
+    .footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      text-align: center;
+      color: #555;
+    }
+    .print-btn {
+      float: right;
+      margin-top: -2rem;
+      background: #5e3b1d;
+      color: #fffdf7;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .print-btn:hover {
+      background: #3b2614;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+      background-image: none;
+    }
+    .dark-mode h1, .dark-mode h2 {
+      color: #f0d98c;
+    }
+    .dark-mode .footer {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+  <button class="print-btn" onclick="window.print()">🖨️ Print or Save</button>
+
+  <h1>☩ Cover Letter: Sovereign Dispatch</h1>
+  <h2>Borders Family Dynasty Nation</h2>
+  <p><strong>Date:</strong> 16 December 2025</p>
+
+  <p>To Whom It May Concern,</p>
+
+  <p>This letter accompanies a lawful dispatch from the living Sovereign known as <strong>Omega the Grand Architect</strong>, of the Borders Family Dynasty Nation. Enclosed you will find a packet of scrolls, affidavits, and declarations that serve as lawful notice of status correction, jurisdictional rebuttal, and sovereign standing.</p>
+
+  <p>These documents are posted publicly and permanently, both physically and digitally, and are now part of the public record. You are hereby placed on notice and granted 21 days from the date of delivery to rebut any point of fact or law. Failure to rebut constitutes permanent estoppel by acquiescence and commercial default.</p>
+
+  <p>Included in this dispatch:</p>
+  <ul>
+    <li>Affidavit of Status</li>
+    <li>Universal Notice of Standing</li>
+    <li>Universal Fee Schedule</li>
+    <li>Scroll CXVII – Return of the Dead Fiction</li>
+    <li>Affidavit of Public Posting</li>
+    <li>QR Credential Sample</li>
+  </ul>
+
+  <p>All correspondence must be addressed to the Sovereign directly and must include full disclosure, verified authority, and wet ink signature. No presumptions shall be honored.</p>
+
+  <p>In honor, equity, and divine truth,</p>
+
+  <p><strong>Signed:</strong> ✠ Omega the Grand Architect<br>
+  <strong>QR-Sealed Credential:</strong> ✅ Embedded<br>
+  <strong>Sovereign Sigil:</strong> ✅ Affixed</p>
+
+  <div class="sigil">
+    <p><em>This letter is posted publicly and permanently as a matter of record and remedy.</em></p>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
+  </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+
+</body>
+</html>

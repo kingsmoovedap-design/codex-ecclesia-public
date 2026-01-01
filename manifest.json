@@ -1,0 +1,284 @@
+{
+  "items": [
+    {
+      "section": "scrolls",
+      "title": "👑 Codex of the Crown",
+      "path": "scrolls/codices/codex-crown.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "👑 Scroll of the Crown’s Authority",
+      "path": "scrolls/scroll-crown-authority.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "👑 Scroll of the Crowned Heir",
+      "path": "scrolls/scroll-deven-heir.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "👑 Scroll of the Matriarch",
+      "path": "scrolls/scroll-matriarch.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "✨ Scroll of Sovereign Emergence",
+      "path": "scrolls/scroll-of-sovereign-emergence.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll of Omega",
+      "path": "scrolls/scroll-omega.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "👑 Scroll of the Queen – Miranda M. Eden",
+      "path": "scrolls/scroll-queen-miranda.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 All Scrolls | Codex Ecclesia",
+      "path": "scrolls/scrolls/scroll-archive.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll Registry – Codex Ecclesia",
+      "path": "scrolls/scrolls/scroll-demarco-heir.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "🧭 Scroll of Sacred Navigation",
+      "path": "scrolls/scrolls/scroll-of-sacred-navigation.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "scrolls",
+      "title": "📜 Scroll Registry – Codex Ecclesia",
+      "path": "scrolls/scrolls.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "ministries",
+      "title": "💼 Ministry of Commerce",
+      "path": "ministries/ministry-commerce.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "ministries",
+      "title": "👑 Ministry of the Hearth",
+      "path": "ministries/ministry-hearth.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "☩ Ceremonial Calendar",
+      "path": "codices/ceremonial-calendar.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "☩ Codex of the Academy",
+      "path": "codices/codex-academy.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "📡 Codex of Broadcast",
+      "path": "codices/codex-broadcast.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "📘 Codex Ecclesia Public",
+      "path": "codices/codex-ecclesia-public.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "☩ Codex of Harmony",
+      "path": "codices/codex-harmony.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "☩ Codex of Infrastructure",
+      "path": "codices/codex-infrastructure.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "☩ Codex of Infrastructure",
+      "path": "codices/codices/codex-infrastructure.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "🔮 Codex of Oracle",
+      "path": "codices/codices/codex-oracle.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "☩ Codex of the Manifesto",
+      "path": "codices/codices/codices/codex-manifesto.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "codices",
+      "title": "🛡️ Ministry of Stewardship",
+      "path": "codices/codices/ministries/ministry-stewardship.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "☩ IPFS Notary",
+      "path": "tools/ipfs-notary.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "manifest-builder.html",
+      "path": "tools/manifest-builder.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "🧠 Codex Oracle Console",
+      "path": "tools/oracle-console.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "🧾 Scroll Template Editor",
+      "path": "tools/scroll-template.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "📜 Scroll Uploader",
+      "path": "tools/scroll-uploader.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "🪪 Sigil Generator",
+      "path": "tools/sigil-generator.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "✍️ Scroll Editor – Codex Ecclesia",
+      "path": "tools/tools/scroll-editor.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "☩ QR Code Generator",
+      "path": "tools/tools/tools/qr-generator.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "☩ Timestamp Verifier",
+      "path": "tools/tools/tools/tools/timestamp-verifier.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "☩ Codex Timeline",
+      "path": "tools/tools/tools/tools/tools/codex-timeline.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "🧰 Codex Tools Dashboard",
+      "path": "tools/tools-dashboard.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    },
+    {
+      "section": "tools",
+      "title": "🏛️ Trust Builder",
+      "path": "tools/trust-builder.html",
+      "tags": [],
+      "date": "2025-01-01",
+      "summary": ""
+    }
+  ]
+}

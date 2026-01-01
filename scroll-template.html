@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📜 Scroll of [TITLE] | Codex Ecclesia</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      color: #2c1a0f;
+    }
+    header {
+      background: linear-gradient(to right, #2c1a0f, #5e3b1d);
+      color: #f9e8c9;
+      padding: 2rem;
+      text-align: center;
+      border-bottom: 4px solid gold;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+    nav {
+      background: #3b2614;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1rem;
+    }
+    nav a {
+      color: #f9e8c9;
+      text-decoration: none;
+      font-weight: bold;
+      font-family: 'Inter', sans-serif;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .scroll-body {
+      background: #fffdf7;
+      border: 1px solid #d4af37;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    }
+    .meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      color: #5e3b1d;
+    }
+    .qr {
+      max-width: 150px;
+      display: block;
+      margin: 1rem auto;
+    }
+    footer {
+      background: #2c1a0f;
+      color: #f9e8c9;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📜 Scroll of [TITLE]</h1>
+    <p>Sealed Decree | Borders Blockchain Hash Ledger</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="archive.html">Archive</a>
+    <a href="technologies.html">Technologies</a>
+    <a href="concord.html">Global Concord</a>
+    <a href="voice.html">Voice</a>
+  </nav>
+
+  <main>
+    <h2>🪶 Scroll Text</h2>
+    <div class="scroll-body">
+      <p class="meta"><strong>Ledger Entry:</strong> #XXXX | <strong>Date Sealed:</strong> DD Month YYYY</p>
+      <p>[Insert full scroll text here. Use sacred language, declarations, and lawful affirmations. This is the living decree of the Sovereign.]</p>
+    </div>
+
+    <h2>🔐 Verification</h2>
+    <div class="scroll-body">
+      <p><strong>SHA-256 Hash:</strong><br/>[insert hash here]</p>
+      <p><strong>QR Code:</strong></p>
+      <img src="proof/qr-[scroll-name].png" alt="QR Code for Scroll" class="qr"/>
+      <p style="text-align:center;"><em>Scan to verify this scroll on the public ledger or IPFS mirror.</em></p>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
+  </footer>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📚 Scroll Archive</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6;
+      color: #2c1a0f;
+      margin: 0;
+      padding: 0;
+      transition: background 0.3s, color 0.3s;
+    }
+    .archive {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #5e3b1d;
+    }
+    h2 {
+      color: #b8860b;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+      margin-top: 2.5rem;
+    }
+    .scroll-entry {
+      margin: 1rem 0;
+      padding: 1rem;
+      border: 1px solid #d4af37;
+      border-radius: 8px;
+      background-color: #fdf6e3;
+    }
+    .scroll-entry h3 {
+      margin: 0;
+    }
+    .scroll-entry p {
+      margin: 0.5rem 0;
+    }
+    a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .search-bar {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .search-bar input {
+      padding: 0.75rem;
+      width: 80%;
+      max-width: 500px;
+      font-size: 1rem;
+      border: 2px solid #d4af37;
+      border-radius: 8px;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode .scroll-entry {
+      background-color: #2a2a2a;
+      border-color: #555;
+    }
+    .dark-mode a {
+      color: #66ccff;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <header class="archive">
+    <h1>📚 Scroll Archive of Ecclesia</h1>
+    <p style="text-align:center;"><em>“Every scroll remembered. Every word preserved.”</em></p>
+  </header>
+
+  <section class="search-bar">
+    <input type="text" id="scrollSearch" placeholder="🔍 Search scrolls by name or purpose..." />
+  </section>
+
+  <main class="archive">
+    <section>
+      <h2>🧾 Foundational Scrolls</h2>
+      <div class="scroll-entry">
+        <h3><a href="codex.html">☩ Codex Ecclesia Totalis</a></h3>
+        <p>The foundational doctrine of the Ecclesia and its divine order.</p>
+        <p><strong>Date:</strong> 22 December 2025</p>
+      </div>
+      <div class="scroll-entry">
+        <h3><a href="codex-unified.html">📖 Unified Codex Scroll</a></h3>
+        <p>Master index of all scrolls, ministries, and sovereign decrees.</p>
+        <p><strong>Date:</strong> 22 December 2025</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>🏛️ Ministries</h2>
+      <div class="scroll-entry">
+        <h3><a href="ministry-application.html">🖋️ Ministry Application</a></h3>
+        <p>Petition form for sovereigns to serve in divine stewardship.</p>
+      </div>
+      <div class="scroll-entry">
+        <h3><a href="stewardship.html">🌿 Ministry of Provision</a></h3>
+        <p>Oversees land, food, water, and ecological restoration.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>🪪 Credentials & Verification</h2>
+      <div class="scroll-entry">
+        <h3><a href="sovereign-id.html">🪪 Sovereign ID – Omega</a></h3>
+        <p>Official identification scroll of King Omega the Grand Architect.</p>
+      </div>
+      <div class="scroll-entry">
+        <h3><a href="qr-credential.html">🧿 QR Credential Generator</a></h3>
+        <p>Generate QR codes for scrolls, treaties, and sovereign IDs.</p>
+      </div>
+      <div class="scroll-entry">
+        <h3><a href="verify.html">🔍 Scroll Verifier</a></h3>
+        <p>Check the authenticity of any scroll or credential.</p>
+      </div>
+      <div class="scroll-entry">
+        <h3><a href="ledger.html">📜 Blockchain Ledger</a></h3>
+        <p>Immutable record of verified scrolls and sovereign acts.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>🤝 Treaties & Decrees</h2>
+      <div class="scroll-entry">
+        <h3><a href="treaty-recognition.html">🤝 Treaty of Recognition – Aurora</a></h3>
+        <p>Affirms mutual sovereignty between Ecclesia and the Aurora Confederacy.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>☁️ Lost & Future Scrolls</h2>
+      <div class="scroll-entry">
+        <h3><a href="404.html">☁️ Celestial Scroll Not Found</a></h3>
+        <p>Guides lost travelers back to the Codex.</p>
+      </div>
+      <div class="scroll-entry">
+        <h3><a href="scrolls-coming-soon.html">📜 Scrolls Coming Soon</a></h3>
+        <p>Placeholder for scrolls in progress and future revelations.</p>
+      </div>
+    </section>
+
+    <section style="text-align:center; margin-top: 3rem;">
+      <a href="index.html">🏛️ Return to Ecclesia Home</a>
+    </section>
+  </main>
+
+  <footer>
+    ☩ Scroll Archive — Living Library of the Ecclesia
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+
+    document.getElementById('scrollSearch').addEventListener('input', function () {
+      const query = this.value.toLowerCase();
+      const entries = document.querySelectorAll('.scroll-entry');
+      entries.forEach(entry => {
+        const text = entry.innerText.toLowerCase();
+        entry.style.display = text.includes(query) ? 'block' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

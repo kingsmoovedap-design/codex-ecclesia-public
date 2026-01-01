@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📖 Ecclesia Master Binder | Codex Ecclesia</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfcf9;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #5e3b1d;
+    }
+    h2 {
+      margin-top: 2rem;
+      color: #003366;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.3rem;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #003366;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    nav {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    nav a {
+      margin: 0 0.5rem;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode h1, .dark-mode h2 {
+      color: #f0d98c;
+    }
+    .dark-mode .footer {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <h1>📖 Ecclesia Master Binder</h1>
+  <p style="text-align:center;"><em>“All scrolls are sacred. All links are light.”</em></p>
+
+  <h2>📜 Foundational Scrolls</h2>
+  <ul>
+    <li><a href="charter.pdf">Codex Ecclesia: Divine Nation Charter</a></li>
+    <li><a href="legacy.pdf">Borders Family Legacy Scroll</a></li>
+    <li><a href="trust.pdf">Ecclesiastical Trust Declaration</a></li>
+    <li><a href="ministries.pdf">Ministry Registry & Roles</a></li>
+    <li><a href="trustees.pdf">Trustee Council & Oath Scroll</a></li>
+    <li><a href="constitution.pdf">Divine Constitution</a></li>
+    <li><a href="oracle.pdf">Oracle Interface Guide</a></li>
+  </ul>
+
+  <h2>🗃️ Codex Pages & Charters</h2>
+  <ul>
+    <li><a href="celestial-charter.html">Celestial Charter</a></li>
+    <li><a href="celestial-ledger.html">Celestial Ledger</a></li>
+    <li><a href="codex-infrastructure.html">Codex Infrastructure</a></li>
+    <li><a href="codex-unified.html">Codex Unified Scroll</a></li>
+    <li><a href="codex-update-log.html">Codex Update Log</a></li>
+    <li><a href="codex.html">Codex Ecclesia (Main)</a></li>
+    <li><a href="concord.html">Concord Treaty</a></li>
+    <li><a href="cover-letter-agencies.html">Cover Letter to Agencies</a></li>
+    <li><a href="diplomatic-passport.html">Diplomatic Passport</a></li>
+    <li><a href="dispatch-packet.html">Dispatch Packet</a></li>
+    <li><a href="ecclesia-master-binder.html">Ecclesia Master Binder</a></li>
+    <li><a href="embassy-charter.html">Embassy Charter</a></li>
+    <li><a href="fee-schedule.html">Sacred Fee Schedule</a></li>
+    <li><a href="novernance.html">Novernance Doctrine</a></li>
+    <li><a href="nedge-fund-charter.html">Nedge Fund Charter</a></li>
+  </ul>
+
+  <h2>🧭 Navigation</h2>
+  <nav>
+    <a href="index.html">🏛️ Codex Home</a> |
+    <a href="mint.html">🪙 Minting Altar</a> |
+    <a href="verify.html">🔍 Verification Chamber</a> |
+    <a href="oracle.html">🔮 Oracle Interface</a> |
+    <a href="citizen.html">📜 Citizen Scroll</a> |
+    <a href="trustees.html">🧙 Trustee Portal</a>
+  </nav>
+
+  <div class="footer">
+    ☩ All scrolls are sealed in light. All links are eternal.
+  </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+
+</body>
+</html>

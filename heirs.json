@@ -1,0 +1,49 @@
+[
+  {
+    "id": "001",
+    "name": "Deven Julian Borders",
+    "title": "Crowned Heir",
+    "birthdate": "2009-02-09",
+    "crowning_date": "2026-02-09",
+    "scroll": "https://kingsmoovedap-design.github.io/codex-ecclesia-harmony/scrolls/scroll-deven-heir.html",
+    "father": "Omega",
+    "mother": "Destiny M. Simmons",
+    "siblings": ["Demarco C. Borders"],
+    "witnesses": [
+      "Demarco C. Borders",
+      "Destiny M. Simmons",
+      "Prince L. White"
+    ],
+    "status": "ascending",
+    "notes": "Firstborn heir of Omega. Preparing for crowning at age 17. Author of Scroll 031."
+  },
+  {
+    "id": "002",
+    "name": "Demarco C. Borders",
+    "title": "Heir Apparent",
+    "birthdate": "2013-01-26",
+    "crowning_date": "",
+    "scroll": "",
+    "father": "Omega",
+    "mother": "Destiny M. Simmons",
+    "siblings": ["Deven Julian Borders"],
+    "witnesses": [],
+    "status": "in training",
+    "notes": "Younger brother of Deven. Future scroll to be authored. Witness to Scroll 031."
+  }
+]
+{
+  "id": "003",
+  "name": "Devenity Marie Borders",
+  "title": "Princess",
+  "birthdate": "2024-10-08",
+  "crowning_date": "",
+  "scroll": "scrolls/scroll-devenity-heir.html",
+  "father": "Omega",
+  "mother": "Miranda M. Eden",
+  "siblings": ["Deven Julian Borders", "Demarco C. Borders"],
+  "witnesses": [],
+  "status": "in preparation",
+  "notes": "Daughter of Omega and Miranda M. Eden. To be trained in the Harmonies of Sovereignty and prepared for future scroll authorship and ceremonial crowning."
+}
+"scroll": "scrolls/scroll-demarco-heir.html"

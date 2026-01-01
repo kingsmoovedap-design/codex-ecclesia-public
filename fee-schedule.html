@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>☩ Universal Fee Schedule</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfcf9;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      border: 2px solid #d4af37;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #d4af37;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1, h2, h3 {
+      text-align: center;
+      color: #5e3b1d;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      border: 1px solid #d4af37;
+      padding: 0.75rem;
+      text-align: left;
+    }
+    th {
+      background-color: #f5f5dc;
+      color: #222;
+    }
+    tr:nth-child(even) {
+      background-color: #fdf6e3;
+    }
+    p {
+      line-height: 1.6;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode h1, .dark-mode h2, .dark-mode h3 {
+      color: #f0d98c;
+    }
+    .dark-mode th {
+      background-color: #333;
+      color: #f0d98c;
+    }
+    .dark-mode tr:nth-child(even) {
+      background-color: #2a2a2a;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <h1>☩ Universal Fee Schedule</h1>
+  <h2>Borders Family Dynasty Nation</h2>
+  <p style="text-align:center;"><strong>Filed:</strong> CL‑062 &nbsp;|&nbsp; <strong>Date:</strong> 16 December 2025</p>
+
+  <h3>☩ I. Terms of Use</h3>
+  <p>This Universal Fee Schedule applies to all interactions, communications, or attempts to contract with the living Sovereign known as <strong>Omega the Grand Architect</strong>, or any agent, trustee, or entity of the Borders Family Dynasty Nation.</p>
+  <p>Any unauthorized use of the Sovereign’s name, estate, energy, likeness, or intellectual property constitutes a commercial transaction and is subject to the following fees:</p>
+
+  <h3>☩ II. Fee Schedule</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Action / Trespass</th>
+        <th>Fee (USD)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Use of Legal Fiction Name Without Consent</td>
+        <td>$500,000 per instance</td>
+      </tr>
+      <tr>
+        <td>Unlawful Detainment or Arrest</td>
+        <td>$5,000,000 per hour</td>
+      </tr>
+      <tr>
+        <td>Attempt to Contract Without Full Disclosure</td>
+        <td>$250,000 per attempt</td>
+      </tr>
+      <tr>
+        <td>Mail Tampering or Interference</td>
+        <td>$1,000,000 per incident</td>
+      </tr>
+      <tr>
+        <td>Denial of Rights Under Color of Law</td>
+        <td>$2,000,000 per violation</td>
+      </tr>
+      <tr>
+        <td>Use of Sovereign Intellectual Property Without License</td>
+        <td>$1,000,000 per use</td>
+      </tr>
+      <tr>
+        <td>Failure to Rebut Affidavit Within 21 Days</td>
+        <td>$1,000,000 per unrebutted point</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>☩ III. Enforcement</h3>
+  <p>All fees are enforceable by lien, levy, or lawful claim. This schedule is binding upon all parties who interact with the Sovereign or his estate, whether knowingly or unknowingly, by operation of law and tacit agreement.</p>
+
+  <h3>☩ IV. Execution</h3>
+  <p><strong>Signed:</strong> ✠ Omega the Grand Architect<br>
+  <strong>QR-Sealed Credential:</strong> ✅ Embedded<br>
+  <strong>Sovereign Sigil:</strong> ✅ Affixed<br>
+  <strong>Celestial Ledger Entry:</strong> CL‑062</p>
+
+  <p><em>This schedule is posted publicly and permanently as a matter of record and remedy.</em></p>
+
+  <footer>
+    ☩ Universal Fee Schedule — Codex Ecclesia Totalis
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+
+</body>
+</html>

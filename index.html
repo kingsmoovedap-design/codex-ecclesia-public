@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Codex Ecclesia Public</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>☩ Codex Ecclesia Public</h1>
+    <p>The sovereign scroll archive of the Borders Ecclesia Earth Trust</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>📜 Scrolls</h2>
+      <ul id="scroll-list"></ul>
+    </section>
+  </main>
+
+  <script>
+    fetch('codex.json')
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById('scroll-list');
+        data.scrolls.forEach(item => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = item.url;
+          a.textContent = item.title || item.url;
+          li.appendChild(a);
+          list.appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>

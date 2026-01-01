@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🧾 Generate PMA Charter | Codex Ecclesia</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: #fdfaf6;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: inherit;
+    }
+    button {
+      margin-top: 1.5rem;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      background: #5e3b1d;
+      color: #fffdf7;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #3b2614;
+    }
+    #output {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #fffdf7;
+      border: 1px solid #d4af37;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    }
+    .print-btn {
+      float: right;
+      margin-top: -2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧾 Generate PMA Charter</h1>
+  <p style="text-align:center; margin-top: 2em;">
+  <a href="index.html" style="font-weight:bold; color:#003366; text-decoration:none;">☩ Return to Codex Ecclesia Public</a>
+</p>
+
+  <form id="charterForm">
+    <label for="name">PMA Name</label>
+    <input type="text" id="name" required>
+
+    <label for="founder">Founder Name</label>
+    <input type="text" id="founder" required>
+
+    <label for="purpose">Purpose of the PMA</label>
+    <textarea id="purpose" rows="4" required></textarea>
+
+    <label for="jurisdiction">Jurisdiction</label>
+    <input type="text" id="jurisdiction" value="Borders Family Dynasty Nation" required>
+
+    <label for="date">Date of Formation</label>
+    <input type="date" id="date" required>
+
+    <label for="hash">SHA-256 Hash (optional)</label>
+    <input type="text" id="hash">
+
+    <label for="qr">QR Code URL (optional)</label>
+    <input type="text" id="qr">
+
+    <button type="submit">Generate Charter</button>
+  </form>
+
+  <div id="output" style="display:none;">
+    <button class="print-btn" onclick="window.print()">🖨️ Print or Save PDF</button>
+    <h2>☩ PMA Charter</h2>
+    <div id="charterText"></div>
+  </div>
+
+  <script>
+    document.getElementById('charterForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const founder = document.getElementById('founder').value;
+      const purpose = document.getElementById('purpose').value;
+      const jurisdiction = document.getElementById('jurisdiction').value;
+      const date = document.getElementById('date').value;
+      const hash = document.getElementById('hash').value;
+      const qr = document.getElementById('qr').value;
+
+      let charter = `
+        <p><strong>PMA Name:</strong> ${name}</p>
+        <p><strong>Founder:</strong> ${founder}</p>
+        <p><strong>Date of Formation:</strong> ${date}</p>
+        <p><strong>Jurisdiction:</strong> ${jurisdiction}</p>
+        <p><strong>Purpose:</strong><br>${purpose.replace(/\n/g, '<br>')}</p>
+      `;
+
+      if (hash) {
+        charter += `<p><strong>SHA-256 Hash:</strong> ${hash}</p>`;
+      }
+
+      if (qr) {
+        charter += `<p><strong>QR Code:</strong><br><img src="${qr}" alt="QR Code" width="120"></p>`;
+      }
+
+      charter += `<p><em>Posted publicly on ${date}. All parties have 21 days to rebut under full liability and penalty of perjury. Failure to rebut constitutes lawful agreement and estoppel.</em></p>`;
+
+      document.getElementById('charterText').innerHTML = charter;
+      document.getElementById('output').style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>

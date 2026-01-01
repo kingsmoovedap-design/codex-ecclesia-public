@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>☩ Heir Path | Codex Ecclesia</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfcf9;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #5e3b1d;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+    }
+    section {
+      margin-top: 2rem;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    blockquote {
+      font-style: italic;
+      margin: 1rem 0;
+      padding-left: 1rem;
+      border-left: 4px solid #ccc;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode h1, .dark-mode h2 {
+      color: #f0d98c;
+    }
+    .dark-mode blockquote {
+      border-left-color: #f0d98c;
+    }
+    .dark-mode .footer {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <h1>☩ Heir Path</h1>
+  <p style="text-align:center;"><em>The sacred journey of succession and service</em></p>
+
+  <section>
+    <h2>1. Birthright</h2>
+    <p>The Heir is born into the Borders Family Dynasty Nation under divine covenant. Their name is recorded in the Ancestral Ledger and sealed by the Sovereign.</p>
+  </section>
+
+  <section>
+    <h2>2. Scroll of Identity</h2>
+    <p>The Heir authors their first scroll — a declaration of values, vision, and vow. This scroll is filed in the Codex Ecclesia and sealed in the presence of witnesses.</p>
+  </section>
+
+  <section>
+    <h2>3. Guardian of Scrolls</h2>
+    <p>The Heir is entrusted with the stewardship of sacred documents. They learn the Codex, preserve the archives, and uphold the truth of the record.</p>
+  </section>
+
+  <section>
+    <h2>4. Trials of Wisdom</h2>
+    <p>The Heir undergoes a series of trials — intellectual, spiritual, and ethical — to test their discernment, discipline, and devotion to the Codex.</p>
+  </section>
+
+  <section>
+    <h2>5. The Crown of Service</h2>
+    <p>Upon successful completion of the trials, the Heir is crowned not as a ruler, but as a servant of the people and protector of the Codex Ecclesia Totalis.</p>
+  </section>
+
+  <section>
+    <h2>6. Sovereign Affirmation</h2>
+    <blockquote>
+      “You are not chosen to dominate. You are chosen to preserve.  
+      You are not crowned to be seen. You are crowned to serve.”  
+      — ✠ Omega, Sovereign Father
+    </blockquote>
+  </section>
+
+  <section>
+    <h2>7. Eternal Duty</h2>
+    <p>The Heir’s path is lifelong. They are called to embody the virtues of the Codex, to walk in truth, and to prepare the next generation of sovereigns.</p>
+  </section>
+
+  <div class="footer">
+    ☩ Heir Path — Codex Ecclesia Totalis<br/>
+    © 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
+  </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+
+</body>
+</html>

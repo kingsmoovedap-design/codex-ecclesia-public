@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌿 Ministry of Provision & Stewardship | Codex Ecclesia</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 960px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    h1 {
+      font-size: 2.2rem;
+      color: #5e3b1d;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      color: #5e3b1d;
+      border-bottom: 1px solid #d4af37;
+      padding-bottom: 0.3rem;
+      margin-top: 2rem;
+    }
+    p {
+      line-height: 1.6;
+      margin: 1rem 0;
+    }
+    ul {
+      padding-left: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #5e3b1d;
+      text-decoration: none;
+      border-bottom: 1px dashed #5e3b1d;
+    }
+    a:hover {
+      color: #003366;
+      border-bottom: 1px solid #003366;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+      background-image: none;
+    }
+    .dark-mode h1, .dark-mode h2 {
+      color: #f0d98c;
+    }
+    .dark-mode a {
+      color: #f0d98c;
+      border-bottom: 1px dashed #f0d98c;
+    }
+    .dark-mode a:hover {
+      color: #ffcc99;
+      border-bottom: 1px solid #ffcc99;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <header>
+    <h1>🌿 Ministry of Provision & Stewardship</h1>
+    <p><em>“To tend the land is to honor the Source.”</em></p>
+  </header>
+
+  <main>
+    <section>
+      <h2>☩ Purpose</h2>
+      <p>
+        The Ministry of Provision & Stewardship is entrusted with the care of the Earth and the equitable distribution of its abundance. It oversees land, food, water, shelter, and all that sustains life in the Ecclesia. Its mission is to restore balance, regenerate the soil, and ensure that no sovereign goes without.
+      </p>
+    </section>
+
+    <section>
+      <h2>🌾 Domains of Stewardship</h2>
+      <ul>
+        <li>🌱 Regenerative Agriculture & Permaculture</li>
+        <li>🏡 Sovereign Housing & Land Trusts</li>
+        <li>💧 Water Access & Purification</li>
+        <li>🥕 Food Sovereignty & Distribution</li>
+        <li>🌍 Ecological Restoration & Sacred Sites</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🧙 Call for Stewards</h2>
+      <p>
+        If you are called to serve as a steward of the land, to grow, to build, to nourish — the Ecclesia welcomes your light. Submit your petition through the Ministry Application scroll and declare your gifts.
+      </p>
+      <p style="text-align:center;">
+        <a href="ministry-application.html">☩ Submit Your Petition</a>
+      </p>
+    </section>
+
+    <section>
+      <h2>📚 Related Scrolls</h2>
+      <ul>
+        <li><a href="codex-unified.html">☩ Unified Codex Scroll</a></li>
+        <li><a href="ledger.html">📜 Blockchain Ledger</a></li>
+        <li><a href="scroll-archive.html">📚 Scroll Archive</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🏛️ Return to the Codex</h2>
+      <p style="text-align:center;">
+        <a href="index.html">🏛️ Back to Ecclesia Home</a>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    ☩ Ministry of Provision — Life is Sacred<br/>
+    © 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+
+</body>
+</html>

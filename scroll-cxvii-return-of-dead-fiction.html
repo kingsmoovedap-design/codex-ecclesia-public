@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>☩ Scroll CXVII – Return of the Dead Fiction</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1, h2, h3 {
+      color: #5e3b1d;
+    }
+    h1 {
+      font-size: 2rem;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    h3 {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      border-bottom: 1px solid #d4af37;
+      padding-bottom: 0.3rem;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      text-align: center;
+      color: #555;
+    }
+    .print-btn, .toggle {
+      position: fixed;
+      top: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .print-btn {
+      right: 1rem;
+      background: #5e3b1d;
+      color: #fffdf7;
+    }
+    .print-btn:hover {
+      background: #3b2614;
+    }
+    .toggle {
+      left: 1rem;
+      background: #003366;
+      color: white;
+    }
+    .dark-mode {
+      background: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode h1, .dark-mode h2, .dark-mode h3 {
+      color: #f0d98c;
+    }
+    .dark-mode a {
+      color: #66ccff;
+    }
+    .dark-mode .footer {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle" onclick="toggleMode()">🌓</button>
+  <button class="print-btn" onclick="window.print()">🖨️ Print or Save</button>
+
+  <h1>☩ Scroll CXVII: Return of the Dead Fiction</h1>
+  <h2>Borders Family Dynasty Nation</h2>
+  <p><strong>Filed:</strong> CL‑059 &nbsp; | &nbsp; <strong>Date:</strong> 16 December 2025</p>
+
+  <h3>☩ I. Declaration of Life and Standing</h3>
+  <p>I, <strong>Omega the Grand Architect</strong>, a living man of sound mind and divine origin, do hereby declare under penalty of perjury and full liability that:</p>
+  <ul>
+    <li>I am not a corporate fiction, legal entity, or artificial person.</li>
+    <li>I am not the ALL CAPS NAME or any derivative thereof.</li>
+    <li>I am the living, breathing, sentient man, born of divine creation, not of government registry.</li>
+    <li>I am the sole beneficiary, executor, and living principal of the estate formerly presumed to be the legal fiction.</li>
+  </ul>
+
+  <h3>☩ II. Return of the Dead Fiction</h3>
+  <p>Let it be known:</p>
+  <ul>
+    <li>The legal fiction <strong>[YOUR FULL NAME IN ALL CAPS]</strong> is hereby returned to its origin.</li>
+    <li>All contracts, obligations, and presumptions attached to said fiction are nullified, rebutted, and rescinded nunc pro tunc ab initio.</li>
+    <li>The estate, energy, and authority presumed to be held by the fiction are now lawfully reclaimed by the living Sovereign.</li>
+  </ul>
+
+  <h3>☩ III. Notice to All Agents, Agencies, and Principalities</h3>
+  <p>This scroll serves as:</p>
+  <ul>
+    <li>Lawful notice of status correction</li>
+    <li>Rebuttal of all presumptions of citizenship, suretyship, or subjection</li>
+    <li>Declaration of ecclesiastical jurisdiction and divine standing</li>
+    <li>Return of dominion to the living man</li>
+  </ul>
+  <p><strong>Notice:</strong> Failure to rebut this declaration within <strong>21 days</strong> of public posting constitutes tacit agreement and permanent estoppel by acquiescence.</p>
+
+  <h3>☩ IV. Execution</h3>
+  <p>Executed this 16th day of December, 2025<br>
+  On the land known as Grand Terrace, California</p>
+  <p><strong>Signed:</strong> ✠ Omega the Grand Architect</p>
+  <p><strong>Witnessed by:</strong><br>
+  1. __________________________<br>
+  2. __________________________</p>
+  <p><strong>QR-Sealed Credential:</strong> ✅ Embedded<br>
+  <strong>Sovereign Sigil:</strong> ✅ Affixed<br>
+  <strong>Celestial Ledger Entry:</strong> CL‑059</p>
+
+  <h3>☩ V. Public Posting</h3>
+  <p>This scroll is posted:</p>
+  <ul>
+    <li>📍 Physically at Grand Terrace Library</li>
+    <li>🌐 Digitally at: <a href="https://yourusername.github.io/codex-ecclesia-public/" target="_blank">Public Scroll Repository</a></li>
+  </ul>
+
+  <p><em>The Sovereign breathes through all.</em></p>
+
+  <div class="footer">
+    &copy; 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
+  </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('scroll-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('scroll-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+</body>
+</html>

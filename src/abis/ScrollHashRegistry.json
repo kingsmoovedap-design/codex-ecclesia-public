@@ -1,0 +1,12 @@
+{
+  "contractName": "ScrollHashRegistry",
+  "address": null,
+  "network": "sepolia",
+  "abi": [
+    {"inputs":[],"stateMutability":"nonpayable","type":"constructor"},
+    {"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"scrollHash","type":"bytes32"},{"indexed":true,"internalType":"address","name":"registrar","type":"address"},{"indexed":false,"internalType":"string","name":"uri","type":"string"},{"indexed":false,"internalType":"uint256","name":"timestamp","type":"uint256"}],"name":"ScrollRegistered","type":"event"},
+    {"inputs":[{"internalType":"bytes32","name":"scrollHash","type":"bytes32"},{"internalType":"string","name":"uri","type":"string"}],"name":"registerScroll","outputs":[],"stateMutability":"nonpayable","type":"function"},
+    {"inputs":[{"internalType":"bytes32","name":"scrollHash","type":"bytes32"}],"name":"verifyScroll","outputs":[{"internalType":"bool","name":"exists","type":"bool"},{"internalType":"address","name":"registrar","type":"address"},{"internalType":"string","name":"uri","type":"string"},{"internalType":"uint256","name":"timestamp","type":"uint256"}],"stateMutability":"view","type":"function"},
+    {"inputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"name":"scrolls","outputs":[{"internalType":"address","name":"registrar","type":"address"},{"internalType":"string","name":"uri","type":"string"},{"internalType":"uint256","name":"timestamp","type":"uint256"},{"internalType":"bool","name":"exists","type":"bool"}],"stateMutability":"view","type":"function"}
+  ]
+}

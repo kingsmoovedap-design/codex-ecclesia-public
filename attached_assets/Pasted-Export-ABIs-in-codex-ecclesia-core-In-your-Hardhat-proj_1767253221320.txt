@@ -1,0 +1,99 @@
+Export ABIs in codex-ecclesia-core
+In your Hardhat project (codex-ecclesia-core), after compiling contracts, ABIs are stored in:
+
+Code
+artifacts/contracts/YourContract.sol/YourContract.json
+You can automate ABI extraction like this:
+
+bash
+mkdir -p ../codex-ecclesia-public/src/abis
+cp artifacts/contracts/BordersSovereignCoin.sol/BordersSovereignCoin.json ../codex-ecclesia-public/src/abis/
+cp artifacts/contracts/ScrollHashRegistry.sol/ScrollHashRegistry.json ../codex-ecclesia-public/src/abis/
+cp artifacts/contracts/DynasticIdentity.sol/DynasticIdentity.json ../codex-ecclesia-public/src/abis/
+This assumes both repos are cloned side-by-side locally.
+
+⚙️ 2. Automate with a Script
+Create a script in codex-ecclesia-core/scripts/syncAbis.js:
+
+js
+const fs = require('fs');
+const path = require('path');
+
+const contracts = ['BordersSovereignCoin', 'ScrollHashRegistry', 'DynasticIdentity'];
+const srcDir = path.join(__dirname, '../artifacts/contracts');
+const destDir = path.join(__dirname, '../../codex-ecclesia-public/src/abis');
+
+if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
+
+contracts.forEach(name => {
+const abiPath = path.join(srcDir, ${name}.sol/${name}.json);
+const destPath = path.join(destDir, ${name}.json);
+fs.copyFileSync(abiPath, destPath);
+console.log(✅ Synced ${name}.json);
+});
+Then run:
+
+bash
+node scripts/syncAbis.js
+🛠️ 3. Use ABIs in codex-ecclesia-public
+In your frontend:
+
+js
+import BordersSovereignCoin from './abis/BordersSovereignCoin.json';
+import ScrollHashRegistry from './abis/ScrollHashRegistry.json';
+
+const coinAbi = BordersSovereignCoin.abi;
+const registryAbi = ScrollHashRegistry.abi;
+🔁 4. Optional: GitHub Actions Sync
+You can automate ABI syncing on every push to main in codex-ecclesia-core using GitHub Actions and a personal access token to push to codex-ecclesia-public. make sure allscrolls and index html's match
+
+An unexpected error occurred while creating this checkpoint. This is most likely an issue with Replit.
+
+3 messages & 12 actions
+I can set up the ABI structure for your project. Let me create the directory and a proper loader to work with the full contract ABIs when you sync them from your Hardhat project.
+An unexpected error occurred while creating this checkpoint. This is most likely an issue with Replit.
+Worked for 59 seconds
+make sure this can be app and web3? and defi
+
+
+Show less
+The user wants to make sure the app is fully Web3 and DeFi capable. Let me enhance the treasury-widget.js to add more DeFi features like token approval, staking-ready functions, and make sure it's robust for a full DApp experience. I should also check for any Web3/DeFi integrations available.
+
+I'll enhance the app with full DeFi capabilities - token approvals, allowance checking, and more robust Web3 features.
+
+Let me enhance the app with full DeFi capabilities:
+
+Now let me add the DeFi UI section to the homepage:
+
+Now let me add the CSS for the DeFi section:
+
+Checked console and system logs
+Your app is now fully Web3 and DeFi ready! Here's what's included:
+
+Web3 Features:
+
+Wallet connection/disconnection with MetaMask
+Automatic Sepolia network switching
+Live contract data (name, symbol, total supply from blockchain)
+ETH + BSC balance display
+Token transfers with gas estimation
+DeFi Features:
+
+Token Approvals - Approve spenders to use your BSC tokens (essential for DEX/DeFi protocols)
+Allowance Checking - See how much a spender is approved to use
+Multi-contract support (BSC, ScrollHashRegistry, DynasticIdentity)
+ABI Structure:
+
+src/abis/BordersSovereignCoin.json - BSC token contract
+src/abis/ScrollHashRegistry.json - Scroll verification (add address when deployed)
+src/abis/DynasticIdentity.json - Dynasty identity (add address when deployed)
+API Exposed:
+
+TreasuryWidget.connect()      // Connect wallet
+TreasuryWidget.disconnect()   // Disconnect
+TreasuryWidget.transfer()     // Send BSC tokens
+TreasuryWidget.approve()      // Approve spender (DeFi)
+TreasuryWidget.checkAllowance() // Check allowance
+TreasuryWidget.contracts      // Access to contract instances
+TreasuryWidget.getSigner()    // Get current signer
+The app is ready for DeFi integrations - you can now build DEX swaps, staking, or other protocols on top of this. Just sync your full ABIs from the Hardhat project when you're ready!
