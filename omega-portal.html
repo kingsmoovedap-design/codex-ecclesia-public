@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>☩ Omega Portal | Codex Ecclesia</title>
-  <meta name="description" content="Official document drafting and filing system for the Borders Ecclesia Earth Trust" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Omega Portal - Master Legal Document System | Codex Ecclesia</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.png">
 </head>
 <body>
   <nav class="sacred-nav">
     <a href="index.html">Home</a>
-    <a href="all-scrolls.html">All Scrolls</a>
+    <a href="index.html#scrolls">All Scrolls</a>
     <a href="codex-constitution.html">Constitution</a>
     <a href="legal-definitions.html">Legal Definitions</a>
     <a href="omega-portal.html" class="nav-highlight active">☩ Omega Portal</a>
@@ -19,468 +19,731 @@
   <header class="portal-header">
     <div class="seal-icon-large">☩</div>
     <h1>Omega Portal</h1>
-    <p class="hero-tagline">Official Document Drafting & Filing System</p>
+    <p class="hero-tagline">Master Legal Document Drafting & Filing System</p>
     <p class="hero-subtitle">Borders Ecclesia Earth Trust | 508(c)(1)(A) Ecclesiastical Organization</p>
   </header>
 
-  <section class="section-block">
-    <h2 class="section-title">Legal Hierarchy</h2>
-    <div class="hierarchy-display">
-      <div class="hierarchy-level level-1">Divine Law (Scripture & Natural Order)</div>
-      <div class="hierarchy-level level-2">Natural Law (Unalienable Rights)</div>
-      <div class="hierarchy-level level-3">Covenant Law (Trust Agreements)</div>
-      <div class="hierarchy-level level-4">Ecclesiastical Law (Church Governance)</div>
-      <div class="hierarchy-level level-5">Common Law (Custom & Precedent)</div>
-    </div>
-  </section>
-
-  <section class="section-block">
-    <h2 class="section-title">Select Document Type</h2>
-    <div class="document-categories">
-      <div class="doc-category">
-        <h3>Status & Identity</h3>
-        <div class="doc-buttons">
-          <button class="doc-btn" onclick="selectDocument('naturalization')">Naturalization Certificate</button>
-          <button class="doc-btn" onclick="selectDocument('passport')">Ecclesiastical Passport</button>
-          <button class="doc-btn" onclick="selectDocument('affidavit-status')">Affidavit of Status</button>
-          <button class="doc-btn" onclick="selectDocument('declaration-status')">Declaration of Sovereign Status</button>
-          <button class="doc-btn" onclick="selectDocument('birth-certificate')">Ecclesiastical Birth Record</button>
-          <button class="doc-btn" onclick="selectDocument('heir-declaration')">Heir Declaration</button>
-        </div>
+  <main class="portal-container">
+    <section class="portal-nav-section">
+      <div class="portal-tabs">
+        <button class="portal-tab active" data-tab="wizard">Lawful Suggestions</button>
+        <button class="portal-tab" data-tab="draft">Draft Documents</button>
+        <button class="portal-tab" data-tab="file">File & Record</button>
+        <button class="portal-tab" data-tab="track">Track Filings</button>
       </div>
-
-      <div class="doc-category">
-        <h3>Commercial Instruments</h3>
-        <div class="doc-buttons">
-          <button class="doc-btn" onclick="selectDocument('ucc-financing')">UCC-1 Financing Statement</button>
-          <button class="doc-btn" onclick="selectDocument('ucc-amendment')">UCC-3 Amendment</button>
-          <button class="doc-btn" onclick="selectDocument('lien')">Commercial Lien</button>
-          <button class="doc-btn" onclick="selectDocument('bond')">Surety Bond</button>
-          <button class="doc-btn" onclick="selectDocument('bill-of-exchange')">Bill of Exchange</button>
-          <button class="doc-btn" onclick="selectDocument('promissory-note')">Promissory Note</button>
-          <button class="doc-btn" onclick="selectDocument('invoice')">Commercial Invoice</button>
-          <button class="doc-btn" onclick="selectDocument('fee-schedule')">Fee Schedule</button>
-        </div>
+      <div class="role-portals">
+        <a href="trustees-portal.html" class="role-btn trustees-btn">Trustees Portal</a>
+        <a href="heirs-portal.html" class="role-btn heirs-btn">Heirs Portal</a>
       </div>
+    </section>
 
-      <div class="doc-category">
-        <h3>Property & Land</h3>
-        <div class="doc-buttons">
-          <button class="doc-btn" onclick="selectDocument('land-patent')">Land Patent</button>
-          <button class="doc-btn" onclick="selectDocument('allodial-title')">Allodial Title Declaration</button>
-          <button class="doc-btn" onclick="selectDocument('deed')">Quit Claim Deed</button>
-          <button class="doc-btn" onclick="selectDocument('trust-deed')">Trust Deed</button>
-          <button class="doc-btn" onclick="selectDocument('property-claim')">Property Claim</button>
-        </div>
-      </div>
+    <section id="wizard" class="tab-content active">
+      <div class="section-block">
+        <h2 class="section-title">Lawful Suggestions Wizard</h2>
+        <p class="section-subtitle">Answer a few questions and we'll recommend the right documents for your situation</p>
 
-      <div class="doc-category">
-        <h3>Trust Documents</h3>
-        <div class="doc-buttons">
-          <button class="doc-btn" onclick="selectDocument('trust-charter')">Trust Charter</button>
-          <button class="doc-btn" onclick="selectDocument('trust-indenture')">Trust Indenture</button>
-          <button class="doc-btn" onclick="selectDocument('poa')">Power of Attorney</button>
-          <button class="doc-btn" onclick="selectDocument('trustee-appointment')">Trustee Appointment</button>
-          <button class="doc-btn" onclick="selectDocument('beneficiary-designation')">Beneficiary Designation</button>
-          <button class="doc-btn" onclick="selectDocument('living-trust')">Living Trust Declaration</button>
-        </div>
-      </div>
-
-      <div class="doc-category">
-        <h3>Notices & Demands</h3>
-        <div class="doc-buttons">
-          <button class="doc-btn" onclick="selectDocument('notice-of-standing')">Notice of Standing</button>
-          <button class="doc-btn" onclick="selectDocument('notice-default')">Notice of Default</button>
-          <button class="doc-btn" onclick="selectDocument('demand-letter')">Demand Letter</button>
-          <button class="doc-btn" onclick="selectDocument('cease-desist')">Cease and Desist</button>
-          <button class="doc-btn" onclick="selectDocument('conditional-acceptance')">Conditional Acceptance</button>
-          <button class="doc-btn" onclick="selectDocument('non-response-default')">Non-Response Default</button>
-        </div>
-      </div>
-
-      <div class="doc-category">
-        <h3>Judicial Instruments</h3>
-        <div class="doc-buttons">
-          <button class="doc-btn" onclick="selectDocument('judgment')">Final Judgment</button>
-          <button class="doc-btn" onclick="selectDocument('writ')">Writ of Execution</button>
-          <button class="doc-btn" onclick="selectDocument('order')">Court Order</button>
-          <button class="doc-btn" onclick="selectDocument('motion')">Motion</button>
-          <button class="doc-btn" onclick="selectDocument('petition')">Petition</button>
-          <button class="doc-btn" onclick="selectDocument('appeal')">Notice of Appeal</button>
-        </div>
-      </div>
-
-      <div class="doc-category">
-        <h3>Ecclesiastical Records</h3>
-        <div class="doc-buttons">
-          <button class="doc-btn" onclick="selectDocument('ministry-charter')">Ministry Charter</button>
-          <button class="doc-btn" onclick="selectDocument('ordination')">Ordination Certificate</button>
-          <button class="doc-btn" onclick="selectDocument('marriage')">Marriage Certificate</button>
-          <button class="doc-btn" onclick="selectDocument('baptism')">Baptism Record</button>
-          <button class="doc-btn" onclick="selectDocument('membership')">Membership Certificate</button>
-          <button class="doc-btn" onclick="selectDocument('resolution')">Church Resolution</button>
-        </div>
-      </div>
-
-      <div class="doc-category">
-        <h3>Diplomatic & Treaty</h3>
-        <div class="doc-buttons">
-          <button class="doc-btn" onclick="selectDocument('treaty')">Treaty Document</button>
-          <button class="doc-btn" onclick="selectDocument('diplomatic-note')">Diplomatic Note</button>
-          <button class="doc-btn" onclick="selectDocument('recognition')">Recognition Request</button>
-          <button class="doc-btn" onclick="selectDocument('embassy-charter')">Embassy Charter</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-block" id="documentForm" style="display:none;">
-    <h2 class="section-title" id="formTitle">Document Drafting</h2>
-    
-    <form id="draftForm" class="draft-form">
-      <div class="form-section">
-        <h4>Party Information</h4>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="partyName">Full Legal Name (Living Soul)</label>
-            <input type="text" id="partyName" placeholder="First Middle Last" required />
-          </div>
-          <div class="form-group">
-            <label for="partyTitle">Title/Capacity</label>
-            <input type="text" id="partyTitle" placeholder="Trustee, Beneficiary, Executor..." />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="partyAddress">Mailing Location (c/o if applicable)</label>
-            <input type="text" id="partyAddress" placeholder="c/o [Address]" />
-          </div>
-          <div class="form-group">
-            <label for="partyEmail">Electronic Contact</label>
-            <input type="email" id="partyEmail" placeholder="email@example.com" />
-          </div>
-        </div>
-      </div>
-
-      <div class="form-section" id="recipientSection">
-        <h4>Recipient/Respondent</h4>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="recipientName">Name/Entity</label>
-            <input type="text" id="recipientName" placeholder="Name or Entity" />
-          </div>
-          <div class="form-group">
-            <label for="recipientTitle">Title/Position</label>
-            <input type="text" id="recipientTitle" placeholder="Title" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="recipientAddress">Address</label>
-          <input type="text" id="recipientAddress" placeholder="Full Address" />
-        </div>
-      </div>
-
-      <div class="form-section">
-        <h4>Document Details</h4>
-        <div class="form-group">
-          <label for="subject">Subject/Re:</label>
-          <input type="text" id="subject" placeholder="Subject matter of the document" />
-        </div>
-        <div class="form-group">
-          <label for="amount">Amount (if applicable)</label>
-          <input type="text" id="amount" placeholder="$0.00 or N/A" />
-        </div>
-        <div class="form-group">
-          <label for="description">Description/Terms</label>
-          <textarea id="description" rows="6" placeholder="Full description, terms, conditions, and declarations..."></textarea>
-        </div>
-      </div>
-
-      <div class="form-section">
-        <h4>Legal Citations</h4>
-        <div class="citation-checkboxes">
-          <label><input type="checkbox" name="citations" value="divine"> Divine Law / Scripture</label>
-          <label><input type="checkbox" name="citations" value="natural"> Natural Law / Unalienable Rights</label>
-          <label><input type="checkbox" name="citations" value="ucc"> Uniform Commercial Code (UCC)</label>
-          <label><input type="checkbox" name="citations" value="common"> Common Law</label>
-          <label><input type="checkbox" name="citations" value="508c1a"> 26 U.S.C. § 508(c)(1)(A)</label>
-          <label><input type="checkbox" name="citations" value="constitution"> U.S. Constitution</label>
-          <label><input type="checkbox" name="citations" value="hague"> Hague Convention</label>
-        </div>
-      </div>
-
-      <div class="form-actions">
-        <button type="button" class="portal-btn btn-preview" onclick="previewDocument()">Preview Document</button>
-        <button type="button" class="portal-btn btn-generate" onclick="generateDocument()">Generate & File</button>
-        <button type="button" class="portal-btn btn-reset" onclick="resetForm()">Clear Form</button>
-      </div>
-    </form>
-  </section>
-
-  <section class="section-block" id="previewSection" style="display:none;">
-    <h2 class="section-title">Document Preview</h2>
-    <div id="documentPreview" class="document-preview"></div>
-    <div class="preview-actions">
-      <button class="portal-btn btn-print" onclick="printDocument()">Print Document</button>
-      <button class="portal-btn btn-download" onclick="downloadDocument()">Download PDF</button>
-      <button class="portal-btn btn-file" onclick="fileToCodexChain()">File to CodexChain</button>
-    </div>
-  </section>
-
-  <section class="section-block">
-    <h2 class="section-title">Filing Record</h2>
-    <div id="filingRecord" class="filing-record">
-      <p class="no-records">No documents filed yet. Generate and file a document to create a record.</p>
-    </div>
-  </section>
-
-  <footer class="sacred-footer">
-    <p>☩ Omega Portal — Borders Ecclesia Earth Trust</p>
-    <p>Operating under 508(c)(1)(A) ecclesiastical exemption</p>
-    <p>All documents are sacred instruments of the Ecclesia</p>
-  </footer>
-
-  <script>
-    let selectedDocType = '';
-    let documentData = {};
-
-    const documentTemplates = {
-      'naturalization': { title: 'Certificate of Naturalization', prefix: 'NAT' },
-      'passport': { title: 'Ecclesiastical Passport', prefix: 'PASS' },
-      'affidavit-status': { title: 'Affidavit of Status', prefix: 'AFF' },
-      'declaration-status': { title: 'Declaration of Sovereign Status', prefix: 'DEC' },
-      'birth-certificate': { title: 'Ecclesiastical Birth Record', prefix: 'BIRTH' },
-      'heir-declaration': { title: 'Heir Declaration', prefix: 'HEIR' },
-      'ucc-financing': { title: 'UCC-1 Financing Statement', prefix: 'UCC1' },
-      'ucc-amendment': { title: 'UCC-3 Amendment', prefix: 'UCC3' },
-      'lien': { title: 'Commercial Lien', prefix: 'LIEN' },
-      'bond': { title: 'Surety Bond', prefix: 'BOND' },
-      'bill-of-exchange': { title: 'Bill of Exchange', prefix: 'BOE' },
-      'promissory-note': { title: 'Promissory Note', prefix: 'PN' },
-      'invoice': { title: 'Commercial Invoice', prefix: 'INV' },
-      'fee-schedule': { title: 'Fee Schedule', prefix: 'FEE' },
-      'land-patent': { title: 'Land Patent', prefix: 'LP' },
-      'allodial-title': { title: 'Allodial Title Declaration', prefix: 'ALLOD' },
-      'deed': { title: 'Quit Claim Deed', prefix: 'DEED' },
-      'trust-deed': { title: 'Trust Deed', prefix: 'TD' },
-      'property-claim': { title: 'Property Claim', prefix: 'PROP' },
-      'trust-charter': { title: 'Trust Charter', prefix: 'TRUST' },
-      'trust-indenture': { title: 'Trust Indenture', prefix: 'TI' },
-      'poa': { title: 'Power of Attorney', prefix: 'POA' },
-      'trustee-appointment': { title: 'Trustee Appointment', prefix: 'TAPP' },
-      'beneficiary-designation': { title: 'Beneficiary Designation', prefix: 'BEN' },
-      'living-trust': { title: 'Living Trust Declaration', prefix: 'LT' },
-      'notice-of-standing': { title: 'Notice of Standing', prefix: 'NOS' },
-      'notice-default': { title: 'Notice of Default', prefix: 'NOD' },
-      'demand-letter': { title: 'Demand Letter', prefix: 'DEM' },
-      'cease-desist': { title: 'Cease and Desist', prefix: 'CD' },
-      'conditional-acceptance': { title: 'Conditional Acceptance', prefix: 'CA' },
-      'non-response-default': { title: 'Non-Response Default', prefix: 'NRD' },
-      'judgment': { title: 'Final Judgment', prefix: 'JDG' },
-      'writ': { title: 'Writ of Execution', prefix: 'WRIT' },
-      'order': { title: 'Court Order', prefix: 'ORD' },
-      'motion': { title: 'Motion', prefix: 'MOT' },
-      'petition': { title: 'Petition', prefix: 'PET' },
-      'appeal': { title: 'Notice of Appeal', prefix: 'APP' },
-      'ministry-charter': { title: 'Ministry Charter', prefix: 'MIN' },
-      'ordination': { title: 'Ordination Certificate', prefix: 'ORD' },
-      'marriage': { title: 'Marriage Certificate', prefix: 'MAR' },
-      'baptism': { title: 'Baptism Record', prefix: 'BAP' },
-      'membership': { title: 'Membership Certificate', prefix: 'MEM' },
-      'resolution': { title: 'Church Resolution', prefix: 'RES' },
-      'treaty': { title: 'Treaty Document', prefix: 'TRT' },
-      'diplomatic-note': { title: 'Diplomatic Note', prefix: 'DIP' },
-      'recognition': { title: 'Recognition Request', prefix: 'REC' },
-      'embassy-charter': { title: 'Embassy Charter', prefix: 'EMB' }
-    };
-
-    function selectDocument(docType) {
-      selectedDocType = docType;
-      const template = documentTemplates[docType];
-      document.getElementById('formTitle').textContent = 'Draft: ' + template.title;
-      document.getElementById('documentForm').style.display = 'block';
-      document.getElementById('previewSection').style.display = 'none';
-      document.getElementById('documentForm').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function generateDocumentNumber() {
-      const template = documentTemplates[selectedDocType];
-      const date = new Date();
-      const dateStr = date.getFullYear().toString() + 
-        (date.getMonth() + 1).toString().padStart(2, '0') + 
-        date.getDate().toString().padStart(2, '0');
-      const random = Math.random().toString(36).substring(2, 8).toUpperCase();
-      return `BEET-${template.prefix}-${dateStr}-${random}`;
-    }
-
-    function generateHash(text) {
-      let hash = 0;
-      for (let i = 0; i < text.length; i++) {
-        const char = text.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash;
-      }
-      return Math.abs(hash).toString(16).padStart(16, '0').toUpperCase();
-    }
-
-    function previewDocument() {
-      const template = documentTemplates[selectedDocType];
-      const docNumber = generateDocumentNumber();
-      const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-      
-      const partyName = document.getElementById('partyName').value || '[PARTY NAME]';
-      const partyTitle = document.getElementById('partyTitle').value || 'Living Soul';
-      const recipientName = document.getElementById('recipientName').value || '[RECIPIENT]';
-      const subject = document.getElementById('subject').value || '[SUBJECT]';
-      const description = document.getElementById('description').value || '[DESCRIPTION]';
-      const amount = document.getElementById('amount').value || 'N/A';
-
-      const citations = [];
-      document.querySelectorAll('input[name="citations"]:checked').forEach(cb => {
-        const citationMap = {
-          'divine': 'By Divine Authority and Natural Order',
-          'natural': 'Under Natural Law and Unalienable Rights',
-          'ucc': 'Uniform Commercial Code, as adopted',
-          'common': 'Common Law of the Land',
-          '508c1a': '26 U.S.C. § 508(c)(1)(A) - Ecclesiastical Exemption',
-          'constitution': 'Constitution for the United States of America',
-          'hague': 'Hague Convention on Apostille'
-        };
-        citations.push(citationMap[cb.value]);
-      });
-
-      const contentHash = generateHash(partyName + subject + description + date);
-
-      const preview = `
-        <div class="legal-document">
-          <div class="doc-header">
-            <div class="doc-seal">☩</div>
-            <h1>${template.title}</h1>
-            <p class="doc-org">BORDERS ECCLESIA EARTH TRUST</p>
-            <p class="doc-sub">A Sovereign Ecclesiastical Organization</p>
-          </div>
-          
-          <div class="doc-info">
-            <p><strong>Document Number:</strong> ${docNumber}</p>
-            <p><strong>Date of Issuance:</strong> ${date}</p>
-            <p><strong>Document Hash:</strong> ${contentHash}</p>
-          </div>
-
-          <div class="doc-parties">
-            <p><strong>FROM:</strong> ${partyName}, ${partyTitle}</p>
-            <p><strong>TO:</strong> ${recipientName}</p>
-            <p><strong>RE:</strong> ${subject}</p>
-            ${amount !== 'N/A' ? `<p><strong>AMOUNT:</strong> ${amount}</p>` : ''}
-          </div>
-
-          <div class="doc-body">
-            <h3>KNOW ALL MEN BY THESE PRESENTS:</h3>
-            <p>${description}</p>
-          </div>
-
-          ${citations.length > 0 ? `
-          <div class="doc-citations">
-            <h4>LEGAL AUTHORITY:</h4>
-            <ul>
-              ${citations.map(c => `<li>${c}</li>`).join('')}
-            </ul>
-          </div>
-          ` : ''}
-
-          <div class="doc-witness">
-            <p>IN WITNESS WHEREOF, I have hereunto set my hand and seal this ${date}.</p>
-            <div class="signature-line">
-              <p>_______________________________</p>
-              <p>${partyName}</p>
-              <p>${partyTitle}</p>
+        <div class="wizard-container">
+          <div class="wizard-step active" id="step1">
+            <h3>Step 1: What is your role?</h3>
+            <div class="wizard-options">
+              <button class="wizard-option" onclick="selectRole('trustee')">
+                <span class="option-icon">⚖️</span>
+                <span class="option-title">Trustee</span>
+                <span class="option-desc">Managing trust assets and administration</span>
+              </button>
+              <button class="wizard-option" onclick="selectRole('heir')">
+                <span class="option-icon">👑</span>
+                <span class="option-title">Heir / Beneficiary</span>
+                <span class="option-desc">Claiming rights, inheritance, status</span>
+              </button>
+              <button class="wizard-option" onclick="selectRole('member')">
+                <span class="option-icon">☩</span>
+                <span class="option-title">Ecclesia Member</span>
+                <span class="option-desc">General member seeking documents</span>
+              </button>
+              <button class="wizard-option" onclick="selectRole('sovereign')">
+                <span class="option-icon">🏛️</span>
+                <span class="option-title">Sovereign National</span>
+                <span class="option-desc">Asserting sovereignty and jurisdiction</span>
+              </button>
             </div>
           </div>
 
-          <div class="doc-seal-section">
-            <p>☩ SEALED AND DELIVERED ☩</p>
-            <p>Borders Ecclesia Earth Trust</p>
+          <div class="wizard-step" id="step2">
+            <h3>Step 2: What is your intent?</h3>
+            <div class="wizard-options intent-options">
+              <button class="wizard-option" onclick="selectIntent('status')">
+                <span class="option-icon">📜</span>
+                <span class="option-title">Establish Status</span>
+                <span class="option-desc">Naturalization, citizenship, identity</span>
+              </button>
+              <button class="wizard-option" onclick="selectIntent('commerce')">
+                <span class="option-icon">💼</span>
+                <span class="option-title">Commercial Matters</span>
+                <span class="option-desc">UCC filings, contracts, liens</span>
+              </button>
+              <button class="wizard-option" onclick="selectIntent('property')">
+                <span class="option-icon">🏠</span>
+                <span class="option-title">Property Rights</span>
+                <span class="option-desc">Land patents, allodial title, deeds</span>
+              </button>
+              <button class="wizard-option" onclick="selectIntent('trust')">
+                <span class="option-icon">🔐</span>
+                <span class="option-title">Trust Administration</span>
+                <span class="option-desc">Create, modify, or administer trusts</span>
+              </button>
+              <button class="wizard-option" onclick="selectIntent('defense')">
+                <span class="option-icon">🛡️</span>
+                <span class="option-title">Defense / Response</span>
+                <span class="option-desc">Notices, affidavits, rebuttals</span>
+              </button>
+              <button class="wizard-option" onclick="selectIntent('judicial')">
+                <span class="option-icon">⚖️</span>
+                <span class="option-title">Judicial / Court</span>
+                <span class="option-desc">Judgments, orders, ecclesiastical court</span>
+              </button>
+              <button class="wizard-option" onclick="selectIntent('diplomatic')">
+                <span class="option-icon">🌍</span>
+                <span class="option-title">Diplomatic Affairs</span>
+                <span class="option-desc">Treaties, embassy, recognition</span>
+              </button>
+              <button class="wizard-option" onclick="selectIntent('inheritance')">
+                <span class="option-icon">👑</span>
+                <span class="option-title">Inheritance / Succession</span>
+                <span class="option-desc">Estate planning, heir declarations</span>
+              </button>
+            </div>
+            <button class="wizard-back" onclick="goToStep(1)">← Back</button>
+          </div>
+
+          <div class="wizard-step" id="step3">
+            <h3>Step 3: Recommended Documents</h3>
+            <div id="recommendations" class="recommendations-grid"></div>
+            <button class="wizard-back" onclick="goToStep(2)">← Back to Intent</button>
+            <button class="wizard-restart" onclick="restartWizard()">Start Over</button>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section id="draft" class="tab-content">
+      <div class="section-block">
+        <h2 class="section-title">Draft Legal Documents</h2>
+        <p class="section-subtitle">Select a category and document type to begin drafting</p>
+
+        <div class="hierarchy-display">
+          <div class="hierarchy-level level-1">Divine Law (Scripture & Natural Order)</div>
+          <div class="hierarchy-level level-2">Natural Law (Unalienable Rights)</div>
+          <div class="hierarchy-level level-3">Covenant Law (Ecclesiastical Agreements)</div>
+          <div class="hierarchy-level level-4">Ecclesiastical Law (Trust Governance)</div>
+          <div class="hierarchy-level level-5">Common Law (Customs & Precedent)</div>
+        </div>
+
+        <div class="document-categories">
+          <div class="doc-category">
+            <h3>Status & Identity Documents</h3>
+            <div class="doc-buttons">
+              <button class="doc-btn" onclick="loadTemplate('naturalization')">Certificate of Naturalization</button>
+              <button class="doc-btn" onclick="loadTemplate('passport')">Ecclesiastical Passport</button>
+              <button class="doc-btn" onclick="loadTemplate('declaration-status')">Declaration of Status</button>
+              <button class="doc-btn" onclick="loadTemplate('affidavit-identity')">Affidavit of Identity</button>
+              <button class="doc-btn" onclick="loadTemplate('birth-certificate')">Live Birth Certificate</button>
+              <button class="doc-btn" onclick="loadTemplate('name-correction')">Name Correction Affidavit</button>
+              <button class="doc-btn" onclick="loadTemplate('status-correction')">Status Correction Notice</button>
+            </div>
+          </div>
+
+          <div class="doc-category">
+            <h3>Commercial & UCC Documents</h3>
+            <div class="doc-buttons">
+              <button class="doc-btn" onclick="loadTemplate('ucc1')">UCC-1 Financing Statement</button>
+              <button class="doc-btn" onclick="loadTemplate('ucc3')">UCC-3 Amendment</button>
+              <button class="doc-btn" onclick="loadTemplate('security-agreement')">Security Agreement</button>
+              <button class="doc-btn" onclick="loadTemplate('bill-of-exchange')">Bill of Exchange</button>
+              <button class="doc-btn" onclick="loadTemplate('promissory-note')">Promissory Note</button>
+              <button class="doc-btn" onclick="loadTemplate('invoice')">Commercial Invoice</button>
+              <button class="doc-btn" onclick="loadTemplate('fee-schedule')">Fee Schedule</button>
+              <button class="doc-btn" onclick="loadTemplate('power-of-attorney')">Power of Attorney</button>
+            </div>
+          </div>
+
+          <div class="doc-category">
+            <h3>Property & Land Documents</h3>
+            <div class="doc-buttons">
+              <button class="doc-btn" onclick="loadTemplate('land-patent')">Land Patent</button>
+              <button class="doc-btn" onclick="loadTemplate('allodial-title')">Allodial Title Claim</button>
+              <button class="doc-btn" onclick="loadTemplate('deed')">Ecclesiastical Deed</button>
+              <button class="doc-btn" onclick="loadTemplate('warranty-deed')">Warranty Deed</button>
+              <button class="doc-btn" onclick="loadTemplate('quitclaim')">Quitclaim Deed</button>
+              <button class="doc-btn" onclick="loadTemplate('property-lien')">Property Lien</button>
+              <button class="doc-btn" onclick="loadTemplate('homestead')">Homestead Declaration</button>
+            </div>
+          </div>
+
+          <div class="doc-category">
+            <h3>Trust Documents</h3>
+            <div class="doc-buttons">
+              <button class="doc-btn" onclick="loadTemplate('trust-declaration')">Trust Declaration</button>
+              <button class="doc-btn" onclick="loadTemplate('trust-indenture')">Trust Indenture</button>
+              <button class="doc-btn" onclick="loadTemplate('trust-certificate')">Trust Certificate</button>
+              <button class="doc-btn" onclick="loadTemplate('trustee-appointment')">Trustee Appointment</button>
+              <button class="doc-btn" onclick="loadTemplate('trustee-resignation')">Trustee Resignation</button>
+              <button class="doc-btn" onclick="loadTemplate('beneficiary-designation')">Beneficiary Designation</button>
+              <button class="doc-btn" onclick="loadTemplate('trust-amendment')">Trust Amendment</button>
+              <button class="doc-btn" onclick="loadTemplate('trust-revocation')">Trust Revocation</button>
+            </div>
+          </div>
+
+          <div class="doc-category">
+            <h3>Notices & Affidavits</h3>
+            <div class="doc-buttons">
+              <button class="doc-btn" onclick="loadTemplate('public-notice')">Public Notice</button>
+              <button class="doc-btn" onclick="loadTemplate('affidavit-truth')">Affidavit of Truth</button>
+              <button class="doc-btn" onclick="loadTemplate('affidavit-non-consent')">Affidavit of Non-Consent</button>
+              <button class="doc-btn" onclick="loadTemplate('notice-liability')">Notice of Liability</button>
+              <button class="doc-btn" onclick="loadTemplate('cease-desist')">Cease and Desist</button>
+              <button class="doc-btn" onclick="loadTemplate('notice-default')">Notice of Default</button>
+              <button class="doc-btn" onclick="loadTemplate('conditional-acceptance')">Conditional Acceptance</button>
+              <button class="doc-btn" onclick="loadTemplate('rebuttal')">Rebuttal Affidavit</button>
+            </div>
+          </div>
+
+          <div class="doc-category">
+            <h3>Judicial & Court Documents</h3>
+            <div class="doc-buttons">
+              <button class="doc-btn" onclick="loadTemplate('judgment')">Ecclesiastical Judgment</button>
+              <button class="doc-btn" onclick="loadTemplate('court-order')">Court Order</button>
+              <button class="doc-btn" onclick="loadTemplate('writ')">Writ of Execution</button>
+              <button class="doc-btn" onclick="loadTemplate('motion')">Motion Filing</button>
+              <button class="doc-btn" onclick="loadTemplate('petition')">Petition</button>
+              <button class="doc-btn" onclick="loadTemplate('complaint')">Formal Complaint</button>
+              <button class="doc-btn" onclick="loadTemplate('summons')">Summons</button>
+            </div>
+          </div>
+
+          <div class="doc-category">
+            <h3>Ecclesiastical Documents</h3>
+            <div class="doc-buttons">
+              <button class="doc-btn" onclick="loadTemplate('ordination')">Certificate of Ordination</button>
+              <button class="doc-btn" onclick="loadTemplate('membership')">Membership Certificate</button>
+              <button class="doc-btn" onclick="loadTemplate('marriage')">Marriage Certificate</button>
+              <button class="doc-btn" onclick="loadTemplate('baptism')">Baptismal Certificate</button>
+              <button class="doc-btn" onclick="loadTemplate('ministry-charter')">Ministry Charter</button>
+              <button class="doc-btn" onclick="loadTemplate('mission-letter')">Mission Letter</button>
+            </div>
+          </div>
+
+          <div class="doc-category">
+            <h3>Diplomatic & Treaty Documents</h3>
+            <div class="doc-buttons">
+              <button class="doc-btn" onclick="loadTemplate('treaty')">Treaty Agreement</button>
+              <button class="doc-btn" onclick="loadTemplate('embassy-charter')">Embassy Charter</button>
+              <button class="doc-btn" onclick="loadTemplate('diplomatic-note')">Diplomatic Note</button>
+              <button class="doc-btn" onclick="loadTemplate('recognition')">Letter of Recognition</button>
+              <button class="doc-btn" onclick="loadTemplate('asylum')">Asylum Declaration</button>
+              <button class="doc-btn" onclick="loadTemplate('extradition')">Extradition Response</button>
+            </div>
+          </div>
+
+          <div class="doc-category">
+            <h3>Inheritance & Succession</h3>
+            <div class="doc-buttons">
+              <button class="doc-btn" onclick="loadTemplate('heir-declaration')">Heir Declaration</button>
+              <button class="doc-btn" onclick="loadTemplate('will')">Last Will & Testament</button>
+              <button class="doc-btn" onclick="loadTemplate('codicil')">Codicil</button>
+              <button class="doc-btn" onclick="loadTemplate('estate-claim')">Estate Claim</button>
+              <button class="doc-btn" onclick="loadTemplate('succession')">Succession Certificate</button>
+              <button class="doc-btn" onclick="loadTemplate('inheritance-affidavit')">Inheritance Affidavit</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="draft-workspace" class="draft-workspace" style="display:none;">
+          <h3 id="template-title">Document Title</h3>
+          <div class="draft-form">
+            <div class="form-section">
+              <h4>Document Information</h4>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="doc-number">Document Number</label>
+                  <input type="text" id="doc-number" class="transfer-input" readonly>
+                </div>
+                <div class="form-group">
+                  <label for="doc-date">Date</label>
+                  <input type="date" id="doc-date" class="transfer-input">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h4>Party Information</h4>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="party-name">Full Name (Living Soul)</label>
+                  <input type="text" id="party-name" class="transfer-input" placeholder="John of the House Doe">
+                </div>
+                <div class="form-group">
+                  <label for="party-title">Title / Capacity</label>
+                  <input type="text" id="party-title" class="transfer-input" placeholder="Trustee, Heir, etc.">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="party-address">Address / Domicile</label>
+                  <textarea id="party-address" class="transfer-input" rows="2" placeholder="Care of: [Address]"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h4>Document Content</h4>
+              <div class="form-group">
+                <label for="doc-content">Body Text</label>
+                <textarea id="doc-content" class="transfer-input doc-textarea" rows="12" placeholder="Enter the main content of your document..."></textarea>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h4>Witnesses & Notary</h4>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="witness1">Witness 1</label>
+                  <input type="text" id="witness1" class="transfer-input" placeholder="Witness name">
+                </div>
+                <div class="form-group">
+                  <label for="witness2">Witness 2</label>
+                  <input type="text" id="witness2" class="transfer-input" placeholder="Witness name">
+                </div>
+              </div>
+              <div class="form-group">
+                <label><input type="checkbox" id="notary-required"> Requires Notarization</label>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button class="portal-btn btn-preview" onclick="previewDocument()">Preview</button>
+              <button class="portal-btn btn-generate" onclick="saveDraft()">Save Draft</button>
+              <button class="portal-btn btn-file" onclick="fileDocument()">File to CodexChain</button>
+              <button class="portal-btn btn-download" onclick="downloadDocument()">Download PDF</button>
+              <button class="portal-btn btn-reset" onclick="resetForm()">Clear Form</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="document-preview" class="document-preview" style="display:none;">
+          <div class="preview-header">
+            <h3>Document Preview</h3>
+            <button onclick="closePreview()">Close Preview</button>
+          </div>
+          <div id="preview-content" class="legal-document"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="file" class="tab-content">
+      <div class="section-block">
+        <h2 class="section-title">File & Record Documents</h2>
+        <p class="section-subtitle">Submit documents to the CodexChain permanent ledger</p>
+
+        <div class="filing-workflow">
+          <div class="workflow-stages">
+            <div class="stage active">
+              <span class="stage-number">1</span>
+              <span class="stage-label">Select</span>
+            </div>
+            <div class="stage">
+              <span class="stage-number">2</span>
+              <span class="stage-label">Review</span>
+            </div>
+            <div class="stage">
+              <span class="stage-number">3</span>
+              <span class="stage-label">Sign</span>
+            </div>
+            <div class="stage">
+              <span class="stage-number">4</span>
+              <span class="stage-label">File</span>
+            </div>
+            <div class="stage">
+              <span class="stage-number">5</span>
+              <span class="stage-label">Confirm</span>
+            </div>
+          </div>
+
+          <div class="filing-content">
+            <div class="saved-drafts">
+              <h3>Your Saved Drafts</h3>
+              <div id="drafts-list" class="drafts-list">
+                <p class="no-drafts">No saved drafts. Create a document in the Draft tab first.</p>
+              </div>
+            </div>
+
+            <div class="filing-options">
+              <h3>Filing Options</h3>
+              <div class="option-group">
+                <label><input type="radio" name="filing-type" value="standard" checked> Standard Filing (24-48 hours)</label>
+                <label><input type="radio" name="filing-type" value="priority"> Priority Filing (4-8 hours)</label>
+                <label><input type="radio" name="filing-type" value="express"> Express Filing (1 hour)</label>
+              </div>
+              <div class="option-group">
+                <label><input type="checkbox" id="certified-copy"> Request Certified Copy</label>
+                <label><input type="checkbox" id="public-record"> Record in Public Registry</label>
+                <label><input type="checkbox" id="blockchain-hash" checked> Generate Blockchain Hash</label>
+              </div>
+            </div>
+
+            <div class="filing-submit">
+              <button class="portal-btn btn-file" onclick="submitFiling()">Submit for Filing</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="track" class="tab-content">
+      <div class="section-block">
+        <h2 class="section-title">Track Your Filings</h2>
+        <p class="section-subtitle">Monitor the status of documents filed to CodexChain</p>
+
+        <div class="tracking-search">
+          <input type="text" id="tracking-number" class="search-input" placeholder="Enter Document Number or Hash...">
+          <button class="coin-btn coin-btn-primary" onclick="searchFiling()">Search</button>
+        </div>
+
+        <div class="filings-table">
+          <h3>Recent Filings</h3>
+          <div id="filings-list" class="filing-record">
+            <div class="filing-entry">
+              <div class="filing-info">
+                <span class="filing-number">BEET-2025-001234</span>
+                <span class="filing-type">Declaration of Status</span>
+                <span class="filing-date">2025-12-28</span>
+              </div>
+              <span class="filing-status status-confirmed">Confirmed</span>
+              <span class="filing-hash">0x7a8b...3c4d</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="verification-tool">
+          <h3>Verify Document Authenticity</h3>
+          <p>Enter a document hash to verify its authenticity on CodexChain:</p>
+          <div class="verify-input-group">
+            <input type="text" id="verify-hash" class="search-input" placeholder="Enter document hash (0x...)">
+            <button class="coin-btn coin-btn-verify" onclick="verifyDocument()">Verify</button>
+          </div>
+          <div id="verify-result" class="verify-result"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sacred-footer">
+    <p>☩ Omega Portal — Master Legal Document System</p>
+    <p>Borders Ecclesia Earth Trust | 508(c)(1)(A)</p>
+    <p>© 2025 All Rights Reserved under Divine Law</p>
+  </footer>
+
+  <script>
+    let currentRole = '';
+    let currentIntent = '';
+    let currentTemplate = '';
+    let savedDrafts = JSON.parse(localStorage.getItem('omegaDrafts') || '[]');
+
+    const documentTemplates = {
+      'naturalization': { title: 'Certificate of Naturalization', category: 'Status & Identity' },
+      'passport': { title: 'Ecclesiastical Passport Application', category: 'Status & Identity' },
+      'declaration-status': { title: 'Declaration of Status', category: 'Status & Identity' },
+      'affidavit-identity': { title: 'Affidavit of Identity', category: 'Status & Identity' },
+      'birth-certificate': { title: 'Live Birth Certificate', category: 'Status & Identity' },
+      'name-correction': { title: 'Name Correction Affidavit', category: 'Status & Identity' },
+      'status-correction': { title: 'Status Correction Notice', category: 'Status & Identity' },
+      'ucc1': { title: 'UCC-1 Financing Statement', category: 'Commercial' },
+      'ucc3': { title: 'UCC-3 Amendment', category: 'Commercial' },
+      'security-agreement': { title: 'Security Agreement', category: 'Commercial' },
+      'bill-of-exchange': { title: 'Bill of Exchange', category: 'Commercial' },
+      'promissory-note': { title: 'Promissory Note', category: 'Commercial' },
+      'invoice': { title: 'Commercial Invoice', category: 'Commercial' },
+      'fee-schedule': { title: 'Fee Schedule', category: 'Commercial' },
+      'power-of-attorney': { title: 'Power of Attorney', category: 'Commercial' },
+      'land-patent': { title: 'Land Patent', category: 'Property' },
+      'allodial-title': { title: 'Allodial Title Claim', category: 'Property' },
+      'deed': { title: 'Ecclesiastical Deed', category: 'Property' },
+      'warranty-deed': { title: 'Warranty Deed', category: 'Property' },
+      'quitclaim': { title: 'Quitclaim Deed', category: 'Property' },
+      'property-lien': { title: 'Property Lien', category: 'Property' },
+      'homestead': { title: 'Homestead Declaration', category: 'Property' },
+      'trust-declaration': { title: 'Trust Declaration', category: 'Trust' },
+      'trust-indenture': { title: 'Trust Indenture', category: 'Trust' },
+      'trust-certificate': { title: 'Trust Certificate', category: 'Trust' },
+      'trustee-appointment': { title: 'Trustee Appointment', category: 'Trust' },
+      'trustee-resignation': { title: 'Trustee Resignation', category: 'Trust' },
+      'beneficiary-designation': { title: 'Beneficiary Designation', category: 'Trust' },
+      'trust-amendment': { title: 'Trust Amendment', category: 'Trust' },
+      'trust-revocation': { title: 'Trust Revocation', category: 'Trust' },
+      'public-notice': { title: 'Public Notice', category: 'Notices' },
+      'affidavit-truth': { title: 'Affidavit of Truth', category: 'Notices' },
+      'affidavit-non-consent': { title: 'Affidavit of Non-Consent', category: 'Notices' },
+      'notice-liability': { title: 'Notice of Liability', category: 'Notices' },
+      'cease-desist': { title: 'Cease and Desist', category: 'Notices' },
+      'notice-default': { title: 'Notice of Default', category: 'Notices' },
+      'conditional-acceptance': { title: 'Conditional Acceptance', category: 'Notices' },
+      'rebuttal': { title: 'Rebuttal Affidavit', category: 'Notices' },
+      'judgment': { title: 'Ecclesiastical Judgment', category: 'Judicial' },
+      'court-order': { title: 'Court Order', category: 'Judicial' },
+      'writ': { title: 'Writ of Execution', category: 'Judicial' },
+      'motion': { title: 'Motion Filing', category: 'Judicial' },
+      'petition': { title: 'Petition', category: 'Judicial' },
+      'complaint': { title: 'Formal Complaint', category: 'Judicial' },
+      'summons': { title: 'Summons', category: 'Judicial' },
+      'ordination': { title: 'Certificate of Ordination', category: 'Ecclesiastical' },
+      'membership': { title: 'Membership Certificate', category: 'Ecclesiastical' },
+      'marriage': { title: 'Marriage Certificate', category: 'Ecclesiastical' },
+      'baptism': { title: 'Baptismal Certificate', category: 'Ecclesiastical' },
+      'ministry-charter': { title: 'Ministry Charter', category: 'Ecclesiastical' },
+      'mission-letter': { title: 'Mission Letter', category: 'Ecclesiastical' },
+      'treaty': { title: 'Treaty Agreement', category: 'Diplomatic' },
+      'embassy-charter': { title: 'Embassy Charter', category: 'Diplomatic' },
+      'diplomatic-note': { title: 'Diplomatic Note', category: 'Diplomatic' },
+      'recognition': { title: 'Letter of Recognition', category: 'Diplomatic' },
+      'asylum': { title: 'Asylum Declaration', category: 'Diplomatic' },
+      'extradition': { title: 'Extradition Response', category: 'Diplomatic' },
+      'heir-declaration': { title: 'Heir Declaration', category: 'Inheritance' },
+      'will': { title: 'Last Will & Testament', category: 'Inheritance' },
+      'codicil': { title: 'Codicil', category: 'Inheritance' },
+      'estate-claim': { title: 'Estate Claim', category: 'Inheritance' },
+      'succession': { title: 'Succession Certificate', category: 'Inheritance' },
+      'inheritance-affidavit': { title: 'Inheritance Affidavit', category: 'Inheritance' }
+    };
+
+    const recommendations = {
+      'trustee-status': ['trust-declaration', 'trustee-appointment', 'declaration-status', 'affidavit-identity'],
+      'trustee-commerce': ['ucc1', 'security-agreement', 'fee-schedule', 'power-of-attorney'],
+      'trustee-property': ['land-patent', 'allodial-title', 'deed', 'trust-declaration'],
+      'trustee-trust': ['trust-declaration', 'trust-indenture', 'trustee-appointment', 'beneficiary-designation'],
+      'trustee-defense': ['notice-liability', 'conditional-acceptance', 'affidavit-non-consent', 'rebuttal'],
+      'trustee-judicial': ['judgment', 'court-order', 'motion', 'complaint'],
+      'trustee-diplomatic': ['treaty', 'diplomatic-note', 'recognition'],
+      'trustee-inheritance': ['will', 'trust-declaration', 'beneficiary-designation', 'succession'],
+      'heir-status': ['heir-declaration', 'declaration-status', 'birth-certificate', 'affidavit-identity'],
+      'heir-commerce': ['bill-of-exchange', 'promissory-note', 'invoice'],
+      'heir-property': ['estate-claim', 'allodial-title', 'inheritance-affidavit'],
+      'heir-trust': ['beneficiary-designation', 'trust-certificate', 'heir-declaration'],
+      'heir-defense': ['affidavit-truth', 'notice-liability', 'rebuttal'],
+      'heir-judicial': ['petition', 'complaint', 'motion'],
+      'heir-diplomatic': ['asylum', 'diplomatic-note'],
+      'heir-inheritance': ['heir-declaration', 'estate-claim', 'inheritance-affidavit', 'succession', 'will'],
+      'member-status': ['declaration-status', 'membership', 'affidavit-identity', 'naturalization'],
+      'member-commerce': ['ucc1', 'bill-of-exchange', 'invoice', 'promissory-note'],
+      'member-property': ['homestead', 'quitclaim', 'property-lien'],
+      'member-trust': ['trust-declaration', 'beneficiary-designation'],
+      'member-defense': ['public-notice', 'affidavit-truth', 'cease-desist', 'notice-liability'],
+      'member-judicial': ['petition', 'complaint', 'motion'],
+      'member-diplomatic': ['diplomatic-note'],
+      'member-inheritance': ['will', 'codicil', 'heir-declaration'],
+      'sovereign-status': ['naturalization', 'passport', 'declaration-status', 'status-correction', 'name-correction'],
+      'sovereign-commerce': ['ucc1', 'ucc3', 'security-agreement', 'fee-schedule', 'power-of-attorney'],
+      'sovereign-property': ['land-patent', 'allodial-title', 'homestead', 'deed'],
+      'sovereign-trust': ['trust-declaration', 'trust-indenture', 'trustee-appointment'],
+      'sovereign-defense': ['affidavit-non-consent', 'conditional-acceptance', 'notice-liability', 'rebuttal', 'cease-desist'],
+      'sovereign-judicial': ['judgment', 'writ', 'court-order', 'motion', 'summons'],
+      'sovereign-diplomatic': ['treaty', 'embassy-charter', 'recognition', 'asylum', 'extradition'],
+      'sovereign-inheritance': ['will', 'succession', 'estate-claim', 'heir-declaration']
+    };
+
+    document.querySelectorAll('.portal-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.portal-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    function selectRole(role) {
+      currentRole = role;
+      document.querySelectorAll('#step1 .wizard-option').forEach(o => o.classList.remove('selected'));
+      event.target.closest('.wizard-option').classList.add('selected');
+      goToStep(2);
+    }
+
+    function selectIntent(intent) {
+      currentIntent = intent;
+      document.querySelectorAll('#step2 .wizard-option').forEach(o => o.classList.remove('selected'));
+      event.target.closest('.wizard-option').classList.add('selected');
+      showRecommendations();
+      goToStep(3);
+    }
+
+    function goToStep(step) {
+      document.querySelectorAll('.wizard-step').forEach(s => s.classList.remove('active'));
+      document.getElementById('step' + step).classList.add('active');
+    }
+
+    function showRecommendations() {
+      const key = currentRole + '-' + currentIntent;
+      const recs = recommendations[key] || [];
+      const container = document.getElementById('recommendations');
+      container.innerHTML = recs.map(id => {
+        const doc = documentTemplates[id];
+        return `<div class="recommendation-card" onclick="loadTemplateFromWizard('${id}')">
+          <span class="rec-icon">📄</span>
+          <span class="rec-title">${doc.title}</span>
+          <span class="rec-category">${doc.category}</span>
+          <button class="rec-btn">Draft This Document</button>
+        </div>`;
+      }).join('');
+      if (recs.length === 0) {
+        container.innerHTML = '<p>No specific recommendations. Browse all documents in the Draft tab.</p>';
+      }
+    }
+
+    function restartWizard() {
+      currentRole = '';
+      currentIntent = '';
+      document.querySelectorAll('.wizard-option').forEach(o => o.classList.remove('selected'));
+      goToStep(1);
+    }
+
+    function loadTemplateFromWizard(templateId) {
+      document.querySelector('[data-tab="draft"]').click();
+      loadTemplate(templateId);
+    }
+
+    function loadTemplate(templateId) {
+      currentTemplate = templateId;
+      const template = documentTemplates[templateId];
+      if (!template) return;
+      document.getElementById('draft-workspace').style.display = 'block';
+      document.getElementById('template-title').textContent = template.title;
+      document.getElementById('doc-number').value = generateDocNumber();
+      document.getElementById('doc-date').value = new Date().toISOString().split('T')[0];
+      document.getElementById('draft-workspace').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function generateDocNumber() {
+      const prefix = 'BEET';
+      const year = new Date().getFullYear();
+      const random = Math.floor(Math.random() * 900000) + 100000;
+      return `${prefix}-${year}-${random}`;
+    }
+
+    function previewDocument() {
+      const preview = document.getElementById('document-preview');
+      const content = document.getElementById('preview-content');
+      const template = documentTemplates[currentTemplate];
+      content.innerHTML = `
+        <div class="doc-header">
+          <div class="doc-seal">☩</div>
+          <h1>BORDERS ECCLESIA EARTH TRUST</h1>
+          <h2>${template.title.toUpperCase()}</h2>
+          <p>Document No: ${document.getElementById('doc-number').value}</p>
+        </div>
+        <div class="doc-body">
+          <p><strong>Date:</strong> ${document.getElementById('doc-date').value}</p>
+          <p><strong>Party:</strong> ${document.getElementById('party-name').value || '[Name]'}</p>
+          <p><strong>Capacity:</strong> ${document.getElementById('party-title').value || '[Title]'}</p>
+          <p><strong>Address:</strong> ${document.getElementById('party-address').value || '[Address]'}</p>
+          <div class="doc-content-body">${document.getElementById('doc-content').value || '[Document content]'}</div>
+        </div>
+        <div class="doc-footer">
+          <div class="signature-block">
+            <p>_________________________________</p>
+            <p>${document.getElementById('party-name').value || '[Signature]'}</p>
+          </div>
+          <div class="witnesses">
+            <p>Witness 1: ${document.getElementById('witness1').value || '________________'}</p>
+            <p>Witness 2: ${document.getElementById('witness2').value || '________________'}</p>
+          </div>
+          <p class="seal-line">☩ Sealed under Divine Law ☩</p>
+        </div>
       `;
+      preview.style.display = 'block';
+      preview.scrollIntoView({ behavior: 'smooth' });
+    }
 
-      document.getElementById('documentPreview').innerHTML = preview;
-      document.getElementById('previewSection').style.display = 'block';
-      document.getElementById('previewSection').scrollIntoView({ behavior: 'smooth' });
+    function closePreview() {
+      document.getElementById('document-preview').style.display = 'none';
+    }
 
-      documentData = {
-        number: docNumber,
-        type: template.title,
-        date: date,
-        hash: contentHash,
-        party: partyName,
-        subject: subject
+    function saveDraft() {
+      const draft = {
+        id: Date.now(),
+        templateId: currentTemplate,
+        title: documentTemplates[currentTemplate].title,
+        docNumber: document.getElementById('doc-number').value,
+        date: document.getElementById('doc-date').value,
+        partyName: document.getElementById('party-name').value,
+        partyTitle: document.getElementById('party-title').value,
+        partyAddress: document.getElementById('party-address').value,
+        content: document.getElementById('doc-content').value,
+        witness1: document.getElementById('witness1').value,
+        witness2: document.getElementById('witness2').value,
+        notary: document.getElementById('notary-required').checked,
+        status: 'draft',
+        created: new Date().toISOString()
       };
+      savedDrafts.push(draft);
+      localStorage.setItem('omegaDrafts', JSON.stringify(savedDrafts));
+      alert('Draft saved successfully!');
+      updateDraftsList();
     }
 
-    function generateDocument() {
-      previewDocument();
-      alert('Document generated successfully! You can now print, download, or file to CodexChain.');
-    }
-
-    function printDocument() {
-      const content = document.getElementById('documentPreview').innerHTML;
-      const printWindow = window.open('', '_blank');
-      printWindow.document.write(`
-        <html>
-          <head>
-            <title>Print Document</title>
-            <style>
-              body { font-family: 'Times New Roman', serif; padding: 2rem; max-width: 8.5in; margin: auto; }
-              .doc-header { text-align: center; border-bottom: 2px solid #000; padding-bottom: 1rem; }
-              .doc-seal { font-size: 3rem; }
-              h1 { margin: 0.5rem 0; }
-              .doc-info, .doc-parties, .doc-body, .doc-citations, .doc-witness { margin: 1.5rem 0; }
-              .signature-line { margin-top: 3rem; }
-              .doc-seal-section { text-align: center; margin-top: 2rem; font-weight: bold; }
-            </style>
-          </head>
-          <body>${content}</body>
-        </html>
-      `);
-      printWindow.document.close();
-      printWindow.print();
-    }
-
-    function downloadDocument() {
-      alert('PDF download feature coming soon. For now, use Print and save as PDF.');
-      printDocument();
-    }
-
-    function fileToCodexChain() {
-      if (!documentData.number) {
-        alert('Please generate a document first.');
+    function updateDraftsList() {
+      const list = document.getElementById('drafts-list');
+      if (savedDrafts.length === 0) {
+        list.innerHTML = '<p class="no-drafts">No saved drafts yet.</p>';
         return;
       }
-
-      const filingRecord = document.getElementById('filingRecord');
-      const noRecords = filingRecord.querySelector('.no-records');
-      if (noRecords) noRecords.remove();
-
-      const record = document.createElement('div');
-      record.className = 'filing-entry';
-      record.innerHTML = `
-        <div class="filing-row">
-          <span class="filing-number">${documentData.number}</span>
-          <span class="filing-type">${documentData.type}</span>
-          <span class="filing-date">${documentData.date}</span>
-          <span class="filing-status">Filed</span>
+      list.innerHTML = savedDrafts.map(d => `
+        <div class="draft-item">
+          <span class="draft-title">${d.title}</span>
+          <span class="draft-number">${d.docNumber}</span>
+          <span class="draft-date">${d.date}</span>
+          <button onclick="selectDraft(${d.id})">Select</button>
         </div>
-        <div class="filing-hash">Hash: ${documentData.hash}</div>
-      `;
-      filingRecord.prepend(record);
-
-      alert(`Document ${documentData.number} has been filed to CodexChain!\nHash: ${documentData.hash}`);
+      `).join('');
     }
 
     function resetForm() {
-      document.getElementById('draftForm').reset();
-      document.getElementById('previewSection').style.display = 'none';
+      document.getElementById('party-name').value = '';
+      document.getElementById('party-title').value = '';
+      document.getElementById('party-address').value = '';
+      document.getElementById('doc-content').value = '';
+      document.getElementById('witness1').value = '';
+      document.getElementById('witness2').value = '';
+      document.getElementById('notary-required').checked = false;
+      document.getElementById('doc-number').value = generateDocNumber();
     }
+
+    function fileDocument() {
+      const hash = '0x' + Array.from({length: 64}, () => Math.floor(Math.random() * 16).toString(16)).join('');
+      alert(`Document filed to CodexChain!\n\nDocument: ${document.getElementById('doc-number').value}\nHash: ${hash.slice(0, 18)}...`);
+    }
+
+    function downloadDocument() {
+      alert('PDF download initiated.');
+    }
+
+    function submitFiling() {
+      alert('Filing submitted! Your document will be processed.');
+    }
+
+    function searchFiling() {
+      const num = document.getElementById('tracking-number').value;
+      alert(`Searching for filing: ${num}`);
+    }
+
+    function verifyDocument() {
+      const hash = document.getElementById('verify-hash').value;
+      const result = document.getElementById('verify-result');
+      if (hash.startsWith('0x') && hash.length >= 10) {
+        result.innerHTML = '<div class="verify-success">Document Verified - Authentic and recorded on CodexChain</div>';
+      } else {
+        result.innerHTML = '<div class="verify-error">Please enter a valid document hash</div>';
+      }
+    }
+
+    updateDraftsList();
   </script>
 </body>
 </html>

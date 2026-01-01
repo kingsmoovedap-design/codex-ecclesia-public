@@ -34,6 +34,14 @@ A static HTML website serving as the sovereign scroll archive of the Borders Ecc
 - **Public Directory**: `dist`
 
 ## Recent Changes
+- 2026-01-01: Enhanced Omega Portal System
+  - Master Portal with 4 tabs: Lawful Suggestions, Draft Documents, File & Record, Track Filings
+  - Lawful Suggestions Wizard: Role-based (Trustee/Heir/Member/Sovereign) + Intent-based recommendations
+  - 60+ document templates across 9 categories
+  - Trustees Portal: 6-module learning curriculum, checklists, case studies, quick document access
+  - Heirs Portal: 5-step nation claiming roadmap, Bill of Rights summary, FAQ, inheritance education
+  - Full CSS styling for all new portal components
+  
 - 2026-01-01: Complete Web3 DeFi Integration Rebuild
   - Full index.html with BSC coin showcase, wallet connection, transfers, DeFi tools
   - treasury-widget.js module for all blockchain interactions via ethers.js
