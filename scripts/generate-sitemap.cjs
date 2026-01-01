@@ -1,11 +1,6 @@
-import fs from 'fs-extra';
-import path from 'path';
-import { fileURLToPath } from 'url';
+const fs = require('fs-extra');
+const path = require('path');
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// CONFIG
 const BASE_URL = 'https://codex-ecclesia.org';
 const CODEX_PATH = path.join(__dirname, '../codex.json');
 const SITEMAP_PATH = path.join(__dirname, '../sitemap.xml');
@@ -42,9 +37,9 @@ ${urls.join('\n')}
 </urlset>`;
 
     await fs.writeFile(SITEMAP_PATH, sitemap.trim());
-    console.log(`✅ Sitemap generated with ${urls.length + 1} entries.`);
+    console.log(`Sitemap generated with ${urls.length + 1} entries.`);
   } catch (err) {
-    console.error('❌ Failed to generate sitemap:', err.message);
+    console.error('Failed to generate sitemap:', err.message);
     process.exit(1);
   }
 }
