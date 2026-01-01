@@ -1,4 +1,4 @@
-name: ☩ Deploy Codex to GitHub Pages
+name: Deploy Codex to GitHub Pages
 
 on:
   push:
@@ -16,57 +16,36 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      # -----------------------------
-      # 1. Checkout
-      # -----------------------------
-      - name: ⬇️ Checkout Repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # -----------------------------
-      # 2. Setup Node
-      # -----------------------------
-      - name: 🧰 Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
           cache: npm
 
-      # -----------------------------
-      # 3. Install Dependencies
-      # -----------------------------
-      - name: 📦 Install Dependencies
-        run: npm ci
+      - name: Install Dependencies
+        run: npm install
 
-      # -----------------------------
-      # 4. Build Site
-      # -----------------------------
-      - name: 🏗️ Build Codex with Vite
+      - name: Build Codex
         run: npm run build
 
-      # -----------------------------
-      # 5. Configure GitHub Pages
-      # -----------------------------
-      - name: ⚙️ Setup GitHub Pages
+      - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
-      # -----------------------------
-      # 6. Upload Artifact
-      # -----------------------------
-      - name: 📤 Upload dist/ as Artifact
+      - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist/
 
-      # -----------------------------
-      # 7. Deploy
-      # -----------------------------
-      - name: 🚀 Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
