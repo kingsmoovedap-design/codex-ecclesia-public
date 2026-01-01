@@ -11,8 +11,14 @@ A static HTML website serving as the sovereign scroll archive of the Borders Ecc
 ## Key Files
 - `index.html` - Main entry point, displays scrolls from codex.json
 - `codex.json` - JSON data file containing scrolls, heirs, treaties metadata
-- `style.css` - Global styles
-- `vite.config.js` - Vite configuration (host/port/allowedHosts)
+- `style.css` - Global styles (1900+ lines with mobile optimization)
+- `server/index.ts` - Express server entry point
+- `server/routes.ts` - API routes for documents, filings, analytics
+- `server/storage.ts` - Database storage layer
+- `shared/schema.ts` - Drizzle ORM database schema
+- `lib/api.js` - Frontend API client
+- `lib/auth.js` - Authentication utilities
+- `lib/dynasty-sync.js` - Dynasty ecosystem integration
 
 ## Directory Structure
 - `/scrolls/` - Scroll HTML documents
@@ -20,11 +26,16 @@ A static HTML website serving as the sovereign scroll archive of the Borders Ecc
 - `/ministries/` - Ministry HTML documents
 - `/tools/` - Utility tools and generators
 - `/scripts/` - Node.js build scripts
-- `/lib/` - Shared JavaScript utilities
+- `/lib/` - Frontend JavaScript utilities (api.js, auth.js, dynasty-sync.js)
+- `/server/` - Express server and API routes
+- `/shared/` - Shared schema and types
 
 ## Scripts
-- `npm run dev` - Start development server on port 5000
+- `npm run dev` - Start Express server on port 5000
+- `npm run dev:vite` - Start Vite dev server
 - `npm run build` - Build for production
+- `npm run db:push` - Push database schema changes
+- `npm run db:studio` - Open Drizzle Studio
 - `npm run generate:manifest` - Generate manifest
 - `npm run generate:sitemap` - Generate sitemap
 
@@ -48,6 +59,17 @@ A static HTML website serving as the sovereign scroll archive of the Borders Ecc
   - Dynasty Ecosystem integration cards (BSC Treasury, Omega Portal, CodexChain, Dashboard)
   - Configuration panel with platform status and compliance indicators
   - Launch buttons ready for external dashboard URL configuration
+
+- 2026-01-01: Full Platform Enhancement (9-Point Upgrade)
+  - PostgreSQL database with Drizzle ORM (users, documents, filings, audit_logs, analytics tables)
+  - Express server backend with API routes
+  - User dashboard page with stats, quick actions, activity log
+  - Mobile-responsive CSS (480px, 768px, 1200px breakpoints)
+  - Dynasty ecosystem sync module with cross-platform integration
+  - Analytics tracking API and audit logging
+  - Authentication-ready infrastructure (Replit Auth compatible)
+  - Accessibility improvements (focus states, skip links, screen reader support)
+  - Blockchain verification endpoint
   
 - 2026-01-01: Enhanced Omega Portal System
   - Master Portal with 4 tabs: Lawful Suggestions, Draft Documents, File & Record, Track Filings

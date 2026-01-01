@@ -1,0 +1,146 @@
+import { pgTable, text, serial, integer, boolean, timestamp, varchar, jsonb } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
+import { createInsertSchema } from "drizzle-zod";
+import { z } from "zod";
+
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
+  username: text("username").notNull().unique(),
+  email: text("email"),
+  firstName: text("first_name"),
+  lastName: text("last_name"),
+  profileImageUrl: text("profile_image_url"),
+  role: text("role").default("member").notNull(),
+  walletAddress: text("wallet_address"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const sessions = pgTable("sessions", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull().references(() => users.id),
+  token: text("token").notNull().unique(),
+  expiresAt: timestamp("expires_at").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const documents = pgTable("documents", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull().references(() => users.id),
+  documentNumber: text("document_number").notNull().unique(),
+  title: text("title").notNull(),
+  category: text("category").notNull(),
+  templateId: text("template_id"),
+  content: text("content"),
+  metadata: jsonb("metadata"),
+  status: text("status").default("draft").notNull(),
+  version: integer("version").default(1).notNull(),
+  blockchainHash: text("blockchain_hash"),
+  filedAt: timestamp("filed_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const filings = pgTable("filings", {
+  id: serial("id").primaryKey(),
+  documentId: integer("document_id").notNull().references(() => documents.id),
+  userId: integer("user_id").notNull().references(() => users.id),
+  filingType: text("filing_type").notNull(),
+  status: text("status").default("pending").notNull(),
+  transactionHash: text("transaction_hash"),
+  blockNumber: integer("block_number"),
+  networkId: text("network_id"),
+  certifiedCopy: boolean("certified_copy").default(false),
+  publicRecord: boolean("public_record").default(false),
+  dynastySync: boolean("dynasty_sync").default(true),
+  filedAt: timestamp("filed_at"),
+  confirmedAt: timestamp("confirmed_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const auditLogs = pgTable("audit_logs", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id),
+  action: text("action").notNull(),
+  entityType: text("entity_type").notNull(),
+  entityId: integer("entity_id"),
+  details: jsonb("details"),
+  ipAddress: text("ip_address"),
+  userAgent: text("user_agent"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const analytics = pgTable("analytics", {
+  id: serial("id").primaryKey(),
+  eventType: text("event_type").notNull(),
+  eventName: text("event_name").notNull(),
+  userId: integer("user_id").references(() => users.id),
+  sessionId: text("session_id"),
+  pageUrl: text("page_url"),
+  referrer: text("referrer"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const walletConnections = pgTable("wallet_connections", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull().references(() => users.id),
+  walletAddress: text("wallet_address").notNull(),
+  networkId: text("network_id").notNull(),
+  isActive: boolean("is_active").default(true),
+  connectedAt: timestamp("connected_at").defaultNow().notNull(),
+  lastUsedAt: timestamp("last_used_at").defaultNow().notNull(),
+});
+
+export const documentVersions = pgTable("document_versions", {
+  id: serial("id").primaryKey(),
+  documentId: integer("document_id").notNull().references(() => documents.id),
+  version: integer("version").notNull(),
+  content: text("content"),
+  metadata: jsonb("metadata"),
+  changedBy: integer("changed_by").references(() => users.id),
+  changeNote: text("change_note"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const usersRelations = relations(users, ({ many }) => ({
+  documents: many(documents),
+  filings: many(filings),
+  auditLogs: many(auditLogs),
+  walletConnections: many(walletConnections),
+  sessions: many(sessions),
+}));
+
+export const documentsRelations = relations(documents, ({ one, many }) => ({
+  user: one(users, { fields: [documents.userId], references: [users.id] }),
+  filings: many(filings),
+  versions: many(documentVersions),
+}));
+
+export const filingsRelations = relations(filings, ({ one }) => ({
+  document: one(documents, { fields: [filings.documentId], references: [documents.id] }),
+  user: one(users, { fields: [filings.userId], references: [users.id] }),
+}));
+
+export const sessionsRelations = relations(sessions, ({ one }) => ({
+  user: one(users, { fields: [sessions.userId], references: [users.id] }),
+}));
+
+export const documentVersionsRelations = relations(documentVersions, ({ one }) => ({
+  document: one(documents, { fields: [documentVersions.documentId], references: [documents.id] }),
+  changedByUser: one(users, { fields: [documentVersions.changedBy], references: [users.id] }),
+}));
+
+export const insertUserSchema = createInsertSchema(users).omit({ id: true, createdAt: true, updatedAt: true });
+export const insertDocumentSchema = createInsertSchema(documents).omit({ id: true, createdAt: true, updatedAt: true });
+export const insertFilingSchema = createInsertSchema(filings).omit({ id: true, createdAt: true });
+export const insertAuditLogSchema = createInsertSchema(auditLogs).omit({ id: true, createdAt: true });
+
+export type User = typeof users.$inferSelect;
+export type InsertUser = z.infer<typeof insertUserSchema>;
+export type Document = typeof documents.$inferSelect;
+export type InsertDocument = z.infer<typeof insertDocumentSchema>;
+export type Filing = typeof filings.$inferSelect;
+export type InsertFiling = z.infer<typeof insertFilingSchema>;
+export type AuditLog = typeof auditLogs.$inferSelect;
+export type InsertAuditLog = z.infer<typeof insertAuditLogSchema>;

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Codex Ecclesia</title>
+  <meta name="description" content="Your personal dashboard for the Borders Ecclesia Earth Trust" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .dashboard-header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #fff;
+      padding: 2rem;
+    }
+    .dashboard-header h1 {
+      color: var(--accent-gold);
+      margin: 0;
+    }
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .dashboard-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .dashboard-card h3 {
+      margin-top: 0;
+      color: #333;
+      border-bottom: 2px solid var(--accent-gold);
+      padding-bottom: 0.5rem;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .stat-box {
+      background: #f5f0e1;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--accent-gold);
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .recent-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .recent-list li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .recent-list li:last-child {
+      border-bottom: none;
+    }
+    .status-badge {
+      padding: 0.25rem 0.75rem;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+    .status-draft { background: #e0e0e0; color: #666; }
+    .status-pending { background: #fff3cd; color: #856404; }
+    .status-filed { background: #d4edda; color: #155724; }
+    .status-confirmed { background: #cce5ff; color: #004085; }
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .quick-action-btn {
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--accent-gold), #8b5a2b);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .quick-action-btn:hover {
+      transform: translateY(-2px);
+    }
+    .wallet-status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      background: #f5f0e1;
+      border-radius: 8px;
+    }
+    .wallet-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #dc3545;
+    }
+    .wallet-dot.connected {
+      background: #28a745;
+    }
+    .audit-log {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .audit-entry {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+      font-size: 0.85rem;
+    }
+    .audit-time {
+      color: #999;
+      font-size: 0.75rem;
+    }
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: #666;
+    }
+    .auth-required {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    .auth-required h2 {
+      color: #333;
+    }
+    .auth-required p {
+      color: #666;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="sacred-nav">
+    <a href="index.html">Home</a>
+    <a href="omega-portal.html">☩ Omega Portal</a>
+    <a href="dashboard.html" class="active">Dashboard</a>
+    <a href="logistics-dynasty.html">🚚 Logistics</a>
+    <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="nav-dynasty">👑 Dynasty Dashboard</a>
+    <div id="auth-container"></div>
+  </nav>
+
+  <header class="dashboard-header">
+    <h1>Your Dashboard</h1>
+    <p id="welcome-message">Welcome back</p>
+  </header>
+
+  <main id="dashboard-content">
+    <div class="loading">Loading dashboard...</div>
+  </main>
+
+  <footer class="sacred-footer">
+    <p>☩ Codex Ecclesia Dashboard</p>
+    <p>Borders Ecclesia Earth Trust | 508(c)(1)(A)</p>
+  </footer>
+
+  <script type="module">
+    import { checkAuth, getUser, isAuthenticated, renderAuthUI, login } from './lib/auth.js';
+    import { api, trackPageView } from './lib/api.js';
+    import { renderDynastyStatus } from './lib/dynasty-sync.js';
+
+    trackPageView('/dashboard');
+
+    async function initDashboard() {
+      await checkAuth();
+      renderAuthUI('auth-container');
+
+      const content = document.getElementById('dashboard-content');
+      const welcomeMsg = document.getElementById('welcome-message');
+
+      const isLoggedIn = isAuthenticated();
+      
+      if (!isLoggedIn) {
+        welcomeMsg.textContent = 'Welcome to Codex Ecclesia';
+      }
+
+      const user = getUser();
+      welcomeMsg.textContent = `Welcome back, ${user.firstName || user.username}`;
+
+      try {
+        let documents = [];
+        let filings = [];
+        let auditLogs = [];
+
+        if (isLoggedIn) {
+          [documents, filings, auditLogs] = await Promise.all([
+            api.documents.list().catch(() => []),
+            api.filings.list().catch(() => []),
+            api.auditLogs.list().catch(() => []),
+          ]);
+        }
+
+        const draftCount = documents.filter(d => d.status === 'draft').length;
+        const filedCount = documents.filter(d => d.status === 'filed').length;
+        const pendingFilings = filings.filter(f => f.status === 'pending').length;
+        const confirmedFilings = filings.filter(f => f.status === 'confirmed').length;
+
+        content.innerHTML = `
+          <div class="dashboard-grid">
+            <div class="dashboard-card">
+              <h3>Overview</h3>
+              <div class="stat-grid">
+                <div class="stat-box">
+                  <div class="stat-value">${documents.length}</div>
+                  <div class="stat-label">Total Documents</div>
+                </div>
+                <div class="stat-box">
+                  <div class="stat-value">${draftCount}</div>
+                  <div class="stat-label">Drafts</div>
+                </div>
+                <div class="stat-box">
+                  <div class="stat-value">${filedCount}</div>
+                  <div class="stat-label">Filed</div>
+                </div>
+                <div class="stat-box">
+                  <div class="stat-value">${confirmedFilings}</div>
+                  <div class="stat-label">Confirmed</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-card">
+              <h3>Quick Actions</h3>
+              <div class="quick-actions">
+                <a href="omega-portal.html" class="quick-action-btn">New Document</a>
+                <a href="omega-portal.html#file" class="quick-action-btn">File Document</a>
+                <a href="trustees-portal.html" class="quick-action-btn">Trustees Portal</a>
+                <a href="heirs-portal.html" class="quick-action-btn">Heirs Portal</a>
+              </div>
+            </div>
+
+            <div class="dashboard-card">
+              <h3>Wallet & Blockchain</h3>
+              <div class="wallet-status">
+                <span class="wallet-dot ${isLoggedIn && user?.walletAddress ? 'connected' : ''}"></span>
+                <span>${isLoggedIn && user?.walletAddress ? user.walletAddress.slice(0, 6) + '...' + user.walletAddress.slice(-4) : 'Not connected'}</span>
+              </div>
+              <div id="dynasty-status" style="margin-top: 1rem;"></div>
+              ${!isLoggedIn ? '<p style="margin-top:1rem;font-size:0.9rem;color:#666;">Login to connect wallet and save documents</p>' : ''}
+            </div>
+
+            <div class="dashboard-card">
+              <h3>Recent Documents</h3>
+              <ul class="recent-list">
+                ${documents.slice(0, 5).map(doc => `
+                  <li>
+                    <span>${doc.title}</span>
+                    <span class="status-badge status-${doc.status}">${doc.status}</span>
+                  </li>
+                `).join('') || '<li>No documents yet</li>'}
+              </ul>
+            </div>
+
+            <div class="dashboard-card">
+              <h3>Recent Filings</h3>
+              <ul class="recent-list">
+                ${filings.slice(0, 5).map(filing => `
+                  <li>
+                    <span>${filing.filingType}</span>
+                    <span class="status-badge status-${filing.status}">${filing.status}</span>
+                  </li>
+                `).join('') || '<li>No filings yet</li>'}
+              </ul>
+            </div>
+
+            <div class="dashboard-card">
+              <h3>Activity Log</h3>
+              <div class="audit-log">
+                ${auditLogs.slice(0, 10).map(log => `
+                  <div class="audit-entry">
+                    <strong>${log.action}</strong> on ${log.entityType}
+                    <div class="audit-time">${new Date(log.createdAt).toLocaleString()}</div>
+                  </div>
+                `).join('') || '<p>No activity yet</p>'}
+              </div>
+            </div>
+          </div>
+        `;
+
+        renderDynastyStatus('dynasty-status');
+      } catch (error) {
+        console.error('Dashboard error:', error);
+        content.innerHTML = `
+          <div class="auth-required">
+            <h2>Error Loading Dashboard</h2>
+            <p>${error.message}</p>
+            <button onclick="location.reload()" class="quick-action-btn">Retry</button>
+          </div>
+        `;
+      }
+    }
+
+    initDashboard();
+  </script>
+</body>
+</html>
