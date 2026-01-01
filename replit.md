@@ -70,6 +70,12 @@ A static HTML website serving as the sovereign scroll archive of the Borders Ecc
   - Authentication-ready infrastructure (Replit Auth compatible)
   - Accessibility improvements (focus states, skip links, screen reader support)
   - Blockchain verification endpoint
+
+- 2026-01-01: Unified Navigation & Build Fix
+  - Consistent navigation across all pages (Dashboard, Logistics, Dynasty Dashboard)
+  - Fixed build script (generate-sitemap.cjs converted to CommonJS)
+  - Enhanced 404 page with full navigation and helpful links
+  - All pages now flow together: Codex Ecclesia, Coin, Logistics, Dashboard
   
 - 2026-01-01: Enhanced Omega Portal System
   - Master Portal with 4 tabs: Lawful Suggestions, Draft Documents, File & Record, Track Filings
