@@ -2,257 +2,293 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Borders Sovereign Coin (BSC) | Dynasty Treasury</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>☩ Codex Ecclesia</title>
+  <meta name="description" content="The sacred digital archive of the Ecclesia - Web3 DApp" />
+  <meta name="keywords" content="codex, ecclesia, scrolls, web3, defi, dynasty, blockchain" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-  <style>
-    :root {
-      --gold: #c5a059;
-      --gold-light: #ffd700;
-      --dark-bg: #1a1a0d;
-      --dark-surface: #2a2a1a;
-      --text: #f5f3ee;
-      --text-muted: #aaa;
-      --success: #50c878;
-      --purple: #6a5acd;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body { 
-      font-family: "Georgia", serif;
-      text-align: center; 
-      padding: 0;
-      background: linear-gradient(180deg, var(--dark-bg) 0%, #0d0d05 100%);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    nav {
-      background: rgba(0, 0, 0, 0.5);
-      padding: 1rem 2rem;
-      border-bottom: 1px solid rgba(197, 160, 89, 0.3);
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: var(--text);
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.2s;
-    }
-
-    nav a:hover {
-      color: var(--gold);
-    }
-
-    nav a.nav-codex {
-      color: var(--gold);
-    }
-
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    .crown-icon {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      color: var(--gold);
-    }
-
-    .tagline {
-      color: var(--text-muted);
-      font-style: italic;
-      margin-bottom: 2rem;
-    }
-
-    .action-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-    }
-
-    button { 
-      padding: 1rem 2rem; 
-      font-size: 1rem; 
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: all 0.2s;
-    }
-
-    .btn-connect {
-      background: linear-gradient(135deg, var(--purple), #483d8b);
-      color: white;
-    }
-
-    .btn-connect:hover {
-      box-shadow: 0 0 20px rgba(106, 90, 205, 0.5);
-    }
-
-    .btn-mint {
-      background: linear-gradient(135deg, var(--gold), #b8963f);
-      color: var(--dark-bg);
-    }
-
-    .btn-mint:hover {
-      box-shadow: 0 0 20px rgba(197, 160, 89, 0.5);
-    }
-
-    .btn-burn {
-      background: linear-gradient(135deg, #dc3545, #a71d2a);
-      color: white;
-    }
-
-    .btn-burn:hover {
-      box-shadow: 0 0 20px rgba(220, 53, 69, 0.5);
-    }
-
-    .status-card {
-      background: var(--dark-surface);
-      border: 1px solid rgba(197, 160, 89, 0.3);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    #wallet {
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-    }
-
-    #wallet.connected {
-      color: var(--success);
-    }
-
-    #balance { 
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: var(--gold);
-    }
-
-    .footer-link {
-      margin-top: 2rem;
-    }
-
-    .footer-link a {
-      color: var(--gold);
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .footer-link a:hover {
-      text-decoration: underline;
-    }
-
-    footer {
-      margin-top: 3rem;
-      padding: 1rem;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
-  </style>
 </head>
 <body>
-  <nav>
-    <a href="https://codex-ecclesia-public.com" class="nav-codex">☩ Codex Ecclesia</a>
-    <a href="index.html">BSC Home</a>
-    <a href="https://github.com/kingsmoovedap-design/borders-dynasty" target="_blank">GitHub</a>
+  <nav class="sacred-nav">
+    <a href="index.html">Home</a>
+    <a href="all-scrolls.html">All Scrolls</a>
+    <a href="leadership.html">Leadership</a>
+    <a href="submit-scroll.html">Submit</a>
+    <a href="omega-portal.html" class="nav-highlight">☩ Omega Portal</a>
   </nav>
 
-  <div class="container">
-    <div class="crown-icon">👑</div>
-    <h1>Borders Sovereign Coin (BSC)</h1>
-    <p class="tagline">The Official Digital Currency of the Dynasty</p>
+  <header class="hero-section">
+    <div class="seal-icon-large">☩</div>
+    <h1>Codex Ecclesia</h1>
+    <p class="hero-tagline">A living archive of sacred scrolls, heirs, and trustees of the Ecclesia</p>
+    <p class="hero-subtitle">Web3 DApp on Sepolia Testnet</p>
+  </header>
 
-    <div class="action-buttons">
-      <button class="btn-connect" onclick="connectWallet()">Connect Wallet</button>
-      <button class="btn-mint" onclick="mint()">Mint 1000 BSC</button>
-      <button class="btn-burn" onclick="burn()">Burn 500 BSC</button>
-    </div>
-
-    <div class="status-card">
-      <div id="wallet">Wallet: Not connected</div>
-      <div id="balance">Balance: --</div>
-    </div>
-
-    <div class="footer-link">
-      <a href="https://codex-ecclesia-public.com">← Return to Codex Ecclesia</a>
-    </div>
+  <div class="search-section">
+    <input type="text" id="searchBox" placeholder="Search scrolls by title, category, or content..." class="search-input" />
   </div>
 
-  <footer>
-    <p>Borders Sovereign Coin © 2025 | Borders Family Dynasty Nation</p>
+  <section class="section-block coin-showcase">
+    <h2 class="section-title">Borders Sovereign Coin (BSC)</h2>
+    <p class="section-subtitle">The official cryptocurrency of the Borders Dynasty Nation</p>
+
+    <div class="coin-info-grid">
+      <div class="coin-stat">
+        <span class="stat-label">Symbol</span>
+        <span class="stat-value">BSC</span>
+      </div>
+      <div class="coin-stat">
+        <span class="stat-label">Network</span>
+        <span class="stat-value">Sepolia</span>
+      </div>
+      <div class="coin-stat">
+        <span class="stat-label">Standard</span>
+        <span class="stat-value">ERC-20</span>
+      </div>
+    </div>
+
+    <div class="contract-info">
+      <div class="contract-row">
+        <span class="contract-label">Contract Address:</span>
+        <code class="contract-hash" id="contractHash">Loading...</code>
+        <button class="copy-btn" onclick="TreasuryWidget.copyAddress('contractHash')">Copy</button>
+      </div>
+      <div class="contract-row">
+        <span class="contract-label">Treasury Wallet:</span>
+        <code class="contract-hash" id="walletAddress">Loading...</code>
+        <button class="copy-btn" onclick="TreasuryWidget.copyAddress('walletAddress')">Copy</button>
+      </div>
+    </div>
+
+    <div id="liveContractData" class="live-contract-data" style="display:none;">
+      <h4>Live Blockchain Data</h4>
+      <div class="live-stats">
+        <div class="live-stat">
+          <span class="live-label">Name:</span>
+          <span id="liveCoinName" class="live-value">--</span>
+        </div>
+        <div class="live-stat">
+          <span class="live-label">Symbol:</span>
+          <span id="liveCoinSymbol" class="live-value">--</span>
+        </div>
+        <div class="live-stat">
+          <span class="live-label">Total Supply:</span>
+          <span id="liveTotalSupply" class="live-value">--</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="wallet-widget">
+      <h4>Wallet Connection</h4>
+      <div class="network-badge">
+        <span class="network-dot"></span>
+        <span class="network-name">Sepolia Testnet</span>
+      </div>
+      <div id="walletStatus"><span class="wallet-disconnected">Not connected</span></div>
+      <div id="walletBalanceDisplay" class="balance-display" style="display:none;">
+        <div class="balance-row">
+          <span class="balance-label">ETH Balance:</span>
+          <span id="ethBalance" class="balance-eth">0 ETH</span>
+        </div>
+        <div class="balance-row">
+          <span class="balance-label">BSC Balance:</span>
+          <span id="walletBalance" class="balance-value">0 BSC</span>
+        </div>
+      </div>
+      <button id="connectWalletBtn" class="coin-btn coin-btn-wallet" onclick="TreasuryWidget.connect()">Connect Wallet</button>
+    </div>
+
+    <div id="transferSection" class="transfer-section" style="display:none;">
+      <h4>Transfer BSC Tokens</h4>
+      <div class="transfer-form">
+        <div class="form-group">
+          <label for="transferRecipient">Recipient Address</label>
+          <input type="text" id="transferRecipient" placeholder="0x..." class="transfer-input" />
+        </div>
+        <div class="form-group">
+          <label for="transferAmount">Amount (BSC)</label>
+          <input type="number" id="transferAmount" placeholder="0.00" min="0" step="0.001" class="transfer-input" />
+        </div>
+        <button id="transferBtn" class="coin-btn coin-btn-transfer" onclick="TreasuryWidget.transfer()">Send BSC</button>
+      </div>
+    </div>
+
+    <div id="defiSection" class="defi-section" style="display:none;">
+      <h4>DeFi Tools</h4>
+      <div class="defi-tabs">
+        <button class="defi-tab active" onclick="showDefiTab('approve')">Approve</button>
+        <button class="defi-tab" onclick="showDefiTab('allowance')">Check Allowance</button>
+      </div>
+      <div id="approveTab" class="defi-tab-content active">
+        <p class="defi-desc">Approve a spender to use your BSC tokens (required for DeFi protocols)</p>
+        <div class="form-group">
+          <label for="approveSpender">Spender Address</label>
+          <input type="text" id="approveSpender" placeholder="0x..." class="transfer-input" />
+        </div>
+        <div class="form-group">
+          <label for="approveAmount">Amount (leave empty for unlimited)</label>
+          <input type="text" id="approveAmount" placeholder="100 or 'max'" class="transfer-input" />
+        </div>
+        <button id="approveBtn" class="coin-btn coin-btn-defi" onclick="TreasuryWidget.approve()">Approve</button>
+      </div>
+      <div id="allowanceTab" class="defi-tab-content">
+        <p class="defi-desc">Check how much a spender is approved to use</p>
+        <div class="form-group">
+          <label for="checkAllowanceSpender">Spender Address</label>
+          <input type="text" id="checkAllowanceSpender" placeholder="0x..." class="transfer-input" oninput="TreasuryWidget.checkAllowance()" />
+        </div>
+        <div class="allowance-result">
+          <span class="allowance-label">Allowance:</span>
+          <span id="allowanceDisplay" class="allowance-value">--</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="coin-actions">
+      <button onclick="TreasuryWidget.openEtherscan()" class="coin-btn coin-btn-verify">View on Etherscan</button>
+      <a href="https://kingsmoovedap-design.github.io/borders-dynasty/" target="_blank" class="coin-btn coin-btn-primary">Launch BSC App</a>
+      <a href="https://github.com/kingsmoovedap-design/borders-dynasty" target="_blank" class="coin-btn coin-btn-secondary">View Code</a>
+    </div>
+
+    <div class="coin-tech">
+      <h4>Technology Stack</h4>
+      <div class="tech-tags">
+        <span class="tech-tag">Solidity</span>
+        <span class="tech-tag">Hardhat</span>
+        <span class="tech-tag">Ethers.js</span>
+        <span class="tech-tag">MetaMask</span>
+        <span class="tech-tag">Web3</span>
+        <span class="tech-tag">DeFi</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block">
+    <h2 class="section-title">All Scrolls</h2>
+    <p class="section-subtitle">Complete archive of the Ecclesia</p>
+    
+    <div class="category-filters" id="categoryFilters"></div>
+    
+    <div class="scrolls-grid" id="allScrollsGrid"></div>
+    
+    <div id="scrollsEmpty" class="empty-note" style="display:none;">
+      No scrolls match your search.
+    </div>
+    
+    <div class="view-all-link">
+      <a href="all-scrolls.html" class="btn-primary">View Full Archive</a>
+    </div>
+  </section>
+
+  <section class="section-block treasury-section">
+    <h2 class="section-title">Treasury & Tools</h2>
+    <div class="card-grid treasury-grid">
+      <div class="card card-mint">
+        <div class="card-icon">🏛️</div>
+        <h3>Ecclesiastical Mint</h3>
+        <p>The sovereign mint for currency issuance and token generation.</p>
+        <a href="tools/mint.html">Enter Mint</a>
+      </div>
+      <div class="card card-treasury">
+        <div class="card-icon">💰</div>
+        <h3>National Treasury</h3>
+        <p>Financial charters and treasury protocols of the Dynasty.</p>
+        <a href="scrolls/national-treasury-constitution.html">View Constitution</a>
+      </div>
+      <div class="card card-tech">
+        <div class="card-icon">⚙️</div>
+        <h3>Blockchain Tech</h3>
+        <p>Smart contracts and cryptographic security for sovereign transactions.</p>
+        <a href="technologies.html">View Technologies</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="sacred-seal-footer">
+    <div class="seal-icon">☩</div>
+    <p>Codex Ecclesia © 2025</p>
+    <p>A Living Archive of the Eternal Ecclesia</p>
+    <a href="verify.html" class="verification-link">Verify Scroll Authenticity</a>
   </footer>
 
   <script>
-    const contractAddress = "0xYourContractAddress";
-    const abi = [
-      "function mint(address to, uint256 amount) public",
-      "function burn(uint256 amount) public",
-      "function balanceOf(address account) view returns (uint256)"
-    ];
-
-    let signer, contract;
-
-    async function connectWallet() {
-      if (!window.ethereum) return alert("Install MetaMask first!");
-      await ethereum.request({ method: "eth_requestAccounts" });
-
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      signer = provider.getSigner();
-      contract = new ethers.Contract(contractAddress, abi, signer);
-
-      const address = await signer.getAddress();
-      const walletEl = document.getElementById("wallet");
-      walletEl.innerText = `Wallet: ${address.slice(0,6)}...${address.slice(-4)}`;
-      walletEl.classList.add("connected");
-      getBalance();
+    function showDefiTab(tab) {
+      document.querySelectorAll('.defi-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.defi-tab-content').forEach(c => c.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(tab + 'Tab').classList.add('active');
     }
 
-    async function mint() {
-      if (!signer || !contract) return alert("Connect wallet first!");
-      const amount = ethers.utils.parseUnits("1000", 18);
-      const tx = await contract.mint(await signer.getAddress(), amount);
-      alert("Minting... TX: " + tx.hash);
-      await tx.wait();
-      alert("Minted 1000 BSC!");
-      getBalance();
+    async function loadAllScrolls() {
+      try {
+        const res = await fetch('codex.json');
+        const data = await res.json();
+        const scrolls = data.scrolls || [];
+        
+        const categories = [...new Set(scrolls.map(s => s.category).filter(Boolean))];
+        const filtersEl = document.getElementById('categoryFilters');
+        filtersEl.innerHTML = '<button class="category-btn active" onclick="filterScrolls(null)">All</button>' +
+          categories.map(c => `<button class="category-btn" onclick="filterScrolls('${c}')">${c}</button>`).join('');
+        
+        window.allScrolls = scrolls;
+        renderScrolls(scrolls.slice(0, 24));
+        
+        const searchBox = document.getElementById('searchBox');
+        searchBox.addEventListener('input', () => {
+          const q = searchBox.value.toLowerCase();
+          const filtered = scrolls.filter(s =>
+            (s.title && s.title.toLowerCase().includes(q)) ||
+            (s.category && s.category.toLowerCase().includes(q)) ||
+            (s.content && s.content.toLowerCase().includes(q))
+          );
+          renderScrolls(filtered.slice(0, 24));
+        });
+      } catch (err) {
+        console.error('Failed to load scrolls:', err);
+      }
     }
 
-    async function burn() {
-      if (!signer || !contract) return alert("Connect wallet first!");
-      const amount = ethers.utils.parseUnits("500", 18);
-      const tx = await contract.burn(amount);
-      alert("Burning... TX: " + tx.hash);
-      await tx.wait();
-      alert("Burned 500 BSC!");
-      getBalance();
+    function renderScrolls(scrolls) {
+      const grid = document.getElementById('allScrollsGrid');
+      const empty = document.getElementById('scrollsEmpty');
+      
+      if (scrolls.length === 0) {
+        grid.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+      }
+      
+      empty.style.display = 'none';
+      grid.innerHTML = scrolls.map(s => `
+        <div class="scroll-card">
+          <div class="scroll-category">${s.category || 'Other'}</div>
+          <h3 class="scroll-title">${s.title}</h3>
+          <p class="scroll-excerpt">${(s.content || '').substring(0, 100)}...</p>
+          <a href="${s.url}" class="scroll-link">View Scroll</a>
+        </div>
+      `).join('');
     }
 
-    async function getBalance() {
-      const address = await signer.getAddress();
-      const balance = await contract.balanceOf(address);
-      document.getElementById("balance").innerText =
-        `Balance: ${ethers.utils.formatUnits(balance, 18)} BSC`;
+    function filterScrolls(category) {
+      document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      if (category) {
+        const filtered = window.allScrolls.filter(s => s.category === category);
+        renderScrolls(filtered.slice(0, 24));
+      } else {
+        renderScrolls(window.allScrolls.slice(0, 24));
+      }
     }
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js');
+    }
+
+    loadAllScrolls();
   </script>
+  <script src="treasury-widget.js"></script>
 </body>
 </html>
