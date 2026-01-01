@@ -34,6 +34,13 @@ A static HTML website serving as the sovereign scroll archive of the Borders Ecc
 - **Public Directory**: `dist`
 
 ## Recent Changes
+- 2026-01-01: Borders Dynasty Integration
+  - Cross-platform navigation to Dynasty Dashboard on all pages
+  - Dynasty Ecosystem section on homepage with 6 platform cards
+  - Blockchain filing integration in Omega Portal with QFS/ISO-20022 status
+  - Gold gradient styling for Dynasty Dashboard navigation link
+  - Logistics Dynasty placeholder (coming soon) for future integration
+  
 - 2026-01-01: Enhanced Omega Portal System
   - Master Portal with 4 tabs: Lawful Suggestions, Draft Documents, File & Record, Track Filings
   - Lawful Suggestions Wizard: Role-based (Trustee/Heir/Member/Sovereign) + Intent-based recommendations

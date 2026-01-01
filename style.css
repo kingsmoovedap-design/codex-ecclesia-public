@@ -1529,3 +1529,196 @@ body {
     display: none;
   }
 }
+
+.nav-dynasty {
+  background: linear-gradient(135deg, #d4af37, #8b5a2b) !important;
+  font-weight: bold;
+}
+
+.nav-dynasty:hover {
+  background: linear-gradient(135deg, #e5c048, #9c6b3c) !important;
+}
+
+.dynasty-integration {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #fff;
+}
+
+.dynasty-integration .section-title {
+  color: var(--accent-gold);
+  border-bottom-color: var(--accent-gold);
+}
+
+.dynasty-integration .section-subtitle {
+  color: #ccc;
+}
+
+.dynasty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.dynasty-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(212,175,55,0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.dynasty-card:hover {
+  background: rgba(212,175,55,0.1);
+  border-color: var(--accent-gold);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(212,175,55,0.2);
+}
+
+.dynasty-coming {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.dynasty-coming:hover {
+  transform: none;
+}
+
+.dynasty-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.dynasty-card h3 {
+  color: var(--accent-gold);
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.dynasty-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.dynasty-status {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 1.5rem;
+  background: rgba(0,0,0,0.2);
+  border-radius: 8px;
+  margin-top: 1.5rem;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #666;
+}
+
+.status-dot.status-active {
+  background: #28a745;
+  box-shadow: 0 0 8px rgba(40,167,69,0.5);
+}
+
+.chain-filing-section {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+}
+
+.chain-filing-section h3 {
+  color: var(--accent-gold);
+  margin-bottom: 1rem;
+}
+
+.chain-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(40,167,69,0.2);
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.chain-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #28a745;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.chain-btn {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #d4af37, #8b5a2b);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.chain-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212,175,55,0.4);
+}
+
+.filing-hash {
+  font-family: monospace;
+  background: rgba(0,0,0,0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  word-break: break-all;
+  margin: 1rem 0;
+}
+
+.dynasty-link-section {
+  text-align: center;
+  padding: 1.5rem;
+  border-top: 1px solid rgba(212,175,55,0.3);
+  margin-top: 1.5rem;
+}
+
+.dynasty-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 2px solid var(--accent-gold);
+  color: var(--accent-gold);
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.dynasty-link-btn:hover {
+  background: var(--accent-gold);
+  color: #1a1a2e;
+}

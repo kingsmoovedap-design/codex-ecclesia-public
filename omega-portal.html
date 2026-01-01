@@ -14,6 +14,7 @@
     <a href="codex-constitution.html">Constitution</a>
     <a href="legal-definitions.html">Legal Definitions</a>
     <a href="omega-portal.html" class="nav-highlight active">☩ Omega Portal</a>
+    <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="nav-dynasty">👑 Dynasty Dashboard</a>
   </nav>
 
   <header class="portal-header">
@@ -345,6 +346,29 @@
         <h2 class="section-title">File & Record Documents</h2>
         <p class="section-subtitle">Submit documents to the CodexChain permanent ledger</p>
 
+        <div class="chain-filing-section">
+          <h3>Dynasty Blockchain Connection</h3>
+          <div class="chain-status">
+            <span class="chain-dot"></span>
+            <span>Connected to Sepolia Network</span>
+          </div>
+          <p>Documents filed through this portal are permanently recorded on the Dynasty blockchain and synced with the <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" style="color:var(--accent-gold)">Borders Dynasty Dashboard</a>.</p>
+          <div class="dynasty-status">
+            <div class="status-item">
+              <span class="status-dot status-active"></span>
+              <span>QFS-Compliant</span>
+            </div>
+            <div class="status-item">
+              <span class="status-dot status-active"></span>
+              <span>ISO-20022</span>
+            </div>
+            <div class="status-item">
+              <span class="status-dot status-active"></span>
+              <span>Gold-Backed</span>
+            </div>
+          </div>
+        </div>
+
         <div class="filing-workflow">
           <div class="workflow-stages">
             <div class="stage active">
@@ -388,11 +412,13 @@
                 <label><input type="checkbox" id="certified-copy"> Request Certified Copy</label>
                 <label><input type="checkbox" id="public-record"> Record in Public Registry</label>
                 <label><input type="checkbox" id="blockchain-hash" checked> Generate Blockchain Hash</label>
+                <label><input type="checkbox" id="dynasty-sync" checked> Sync to Dynasty Dashboard</label>
               </div>
             </div>
 
             <div class="filing-submit">
-              <button class="portal-btn btn-file" onclick="submitFiling()">Submit for Filing</button>
+              <button class="chain-btn" onclick="submitFiling()">Submit to CodexChain</button>
+              <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="dynasty-link-btn">Open Dynasty Dashboard</a>
             </div>
           </div>
         </div>
