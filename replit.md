@@ -45,6 +45,16 @@ A static HTML website serving as the sovereign scroll archive of the Borders Ecc
 - **Public Directory**: `dist`
 
 ## Recent Changes
+- 2026-01-01: Omega Portal Command Center Enhancement
+  - Grand Architect Command Center with 4 control panels
+  - Dynasty Sync with real-time connection to borders-dynasty--kingsmoovedap.replit.app
+  - Logistics Control panel with loadboard/dispatch integration toggles
+  - Legal Filing Status with quick actions
+  - Entity Formation wizard for Trust/PMA/LLC/Foundation
+  - Learning Center with 4 educational modules
+  - Quick Navigation grid to all major platform sections
+  - Database tables: legalEntities, logisticsOrders, learningProgress
+
 - 2026-01-01: Security Implementation
   - Server-side security headers (X-Content-Type-Options, X-XSS-Protection, CSP)
   - lib/shield.js client-side protection module
