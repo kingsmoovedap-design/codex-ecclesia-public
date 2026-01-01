@@ -45,6 +45,14 @@ A static HTML website serving as the sovereign scroll archive of the Borders Ecc
 - **Public Directory**: `dist`
 
 ## Recent Changes
+- 2026-01-01: Security Implementation
+  - Server-side security headers (X-Content-Type-Options, X-XSS-Protection, CSP)
+  - lib/shield.js client-side protection module
+  - Copy protection with source attribution
+  - Context menu protection for protected content
+  - CodexShield.verify() API for integrity checks
+  - Cache-Control headers to prevent stale content
+
 - 2026-01-01: Comprehensive Page Creation (19 New Pages)
   - Created all missing linked pages to ensure no broken navigation
   - Council Chamber with Twelve Thrones governance structure
