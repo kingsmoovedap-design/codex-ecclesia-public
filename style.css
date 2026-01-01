@@ -68,7 +68,6 @@ header p {
   color: #555;
 }
 
-/* Cards */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
