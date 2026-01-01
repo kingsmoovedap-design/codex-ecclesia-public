@@ -1,11 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Proof of Public Posting</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📸 Proof of Public Posting | Codex Ecclesia</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1, h2, h3 {
+      color: #5e3b1d;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+    }
+    ul {
+      padding-left: 1.5rem;
+      margin-top: 1rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #5e3b1d;
+      text-decoration: none;
+      border-bottom: 1px dashed #5e3b1d;
+    }
+    a:hover {
+      color: #003366;
+      border-bottom: 1px solid #003366;
+    }
+    p {
+      text-align: center;
+      font-style: italic;
+      color: #555;
+    }
+    nav {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    nav a {
+      color: #5e3b1d;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+      background-image: none;
+    }
+    .dark-mode h1, .dark-mode h2, .dark-mode h3 {
+      color: #f0d98c;
+    }
+    .dark-mode a {
+      color: #f0d98c;
+      border-bottom: 1px dashed #f0d98c;
+    }
+    .dark-mode a:hover {
+      color: #ffcc99;
+      border-bottom: 1px solid #ffcc99;
+    }
+    .dark-mode .footer {
+      color: #aaa;
+    }
+  </style>
 </head>
 <body>
-  <h1>☩ Proof of Public Posting</h1>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <h1>📸 Proof of Public Posting</h1>
   <h2>Borders Family Dynasty Nation</h2>
 
   <p>This gallery documents the lawful public posting of the Codex Ecclesia Totalis and all associated scrolls, charters, and affidavits.</p>
@@ -18,20 +112,27 @@
   </ul>
 
   <p><em>All images are timestamped and archived as lawful evidence of public notice.</em></p>
-</body>
-</html><li><a href="proof-of-posting.html" target="_blank">Proof of Public Posting</a></li><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>📸 Proof of Posting</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <h1>📸 Proof of Posting</h1>
-  <p style="text-align:center;"><em>This scroll is being sealed with divine timestamp.</em></p>
-  <p style="text-align:center;">Return soon to view your sacred proof.</p>
-  <nav><a href="index.html">🏛️ Return to Codex</a></nav>
+
+  <nav>
+    <a href="index.html">🏛️ Return to Codex</a>
+  </nav>
+
+  <div class="footer">
+    ☩ Proof of Public Posting — Codex Ecclesia Totalis<br/>
+    © 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
+  </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+
 </body>
 </html>
-

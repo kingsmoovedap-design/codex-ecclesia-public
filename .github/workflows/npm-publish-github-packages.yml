@@ -1,0 +1,86 @@
+name: 📦 Publish Node.js Package
+
+on:
+  release:
+    types:
+      - created
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: "npm-publish"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: 🔧 Build & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      # -----------------------------
+      # 1. Checkout
+      # -----------------------------
+      - name: 🧭 Checkout Repository
+        uses: actions/checkout@v4
+
+      # -----------------------------
+      # 2. Setup Node
+      # -----------------------------
+      - name: 🛠️ Set Up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # -----------------------------
+      # 3. Install Dependencies
+      # -----------------------------
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      # -----------------------------
+      # 4. Run Tests
+      # -----------------------------
+      - name: 🧪 Run Tests
+        run: npm test
+
+  publish:
+    name: 🚀 Publish to GitHub Packages
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      # -----------------------------
+      # 1. Checkout
+      # -----------------------------
+      - name: 🧭 Checkout Repository
+        uses: actions/checkout@v4
+
+      # -----------------------------
+      # 2. Setup Node for Publishing
+      # -----------------------------
+      - name: 🛠️ Set Up Node.js (Publish)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://npm.pkg.github.com/
+          cache: npm
+
+      # -----------------------------
+      # 3. Install Dependencies
+      # -----------------------------
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      # -----------------------------
+      # 4. Publish Package
+      # -----------------------------
+      - name: 🚀 Publish Package
+        run: |
+          echo "Publishing package to GitHub Packages…"
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,154 +1,193 @@
-/* Layout */
+/* ============================================
+   Codex Ecclesia — Sacred Archive Theme v2.5
+   ============================================ */
+
 body {
-  margin: 0;
-  font-family: "Times New Roman", serif;
-  display: flex;
-  background: #f4f4f4;
+  font-family: "Georgia", serif;
+  background: #fdfcf9;
   color: #222;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
-.sidebar {
-  width: 240px;
-  background: #111;
-  color: #fff;
-  height: 100vh;
-  position: fixed;
-  padding: 20px;
-  overflow-y: auto;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+/* Navigation */
+
+.nav {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.sidebar h2 {
-  font-size: 1.6em;
-  margin-bottom: 1em;
-  border-bottom: 1px solid #444;
-  padding-bottom: 0.5em;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar li {
-  margin: 12px 0;
-}
-
-.sidebar a {
-  color: #ccc;
+.nav a {
+  margin: 0 0.75rem;
+  color: #003366;
   text-decoration: none;
   font-weight: bold;
-  transition: color 0.2s ease;
+  font-size: 0.95rem;
 }
 
-.sidebar a:hover {
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.nav-omega {
+  color: #c5a059;
+}
+
+/* Headers */
+
+.page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  color: #003366;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Sections */
+
+.section-block {
+  margin-top: 3rem;
+}
+
+.section-block h2 {
+  text-align: center;
+  color: #003366;
+  margin-bottom: 1rem;
+}
+
+/* Search */
+
+.search-section {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.search-section input[type="search"] {
+  padding: 0.75rem;
+  width: 70%;
+  max-width: 500px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.search-note {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.filterButton {
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid #003366;
+  background: #fff;
+  color: #003366;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.filterButton:hover {
+  background: #003366;
   color: #fff;
 }
 
-/* Main Content */
-.main-content {
-  margin-left: 260px;
-  padding: 40px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-header {
-  text-align: center;
-  margin-bottom: 2em;
-}
-
-header h1 {
-  font-size: 2em;
-  margin-bottom: 0.2em;
-}
-
-header p {
-  font-style: italic;
-  color: #555;
+.filter-active {
+  background: #003366;
+  color: #fff;
 }
 
 /* Cards */
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1em;
-  margin-bottom: 2em;
+  gap: 1.5rem;
 }
 
 .card {
   background: #fff;
-  padding: 1em;
-  border-left: 4px solid #003366;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
+  border: 2px solid #003366;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
 
 .card h3 {
-  margin: 0;
-  font-size: 1.1em;
+  margin: 0.5rem 0 0.25rem;
+  color: #003366;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.card-meta {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.card-link-row {
+  margin-top: 0.75rem;
 }
 
 .card a {
-  text-decoration: none;
   color: #003366;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
 }
 
 .card a:hover {
   text-decoration: underline;
 }
 
-/* Footer */
-footer {
+/* Empty state */
+
+.empty-note {
+  display: none;
   text-align: center;
-  font-size: 0.9em;
-  color: #777;
-  margin-top: 4em;
-  padding-top: 2em;
-  border-top: 1px solid #ccc;
+  margin-top: 1rem;
+  color: #666;
+  font-size: 0.9rem;
 }
 
-body.dark-mode {
-  background: #111;
-  color: #eee;
+/* Footer */
+
+.footer {
+  text-align: center;
+  margin-top: 4rem;
+  font-size: 0.9rem;
+  color: #666;
 }
 
-body.dark-mode .card {
-  background: #222;
-  color: #eee;
-  border-left-color: #66aaff;
-}
+/* Responsive tweaks */
 
-body.dark-mode .sidebar {
-  background: #000;
-  color: #ccc;
-}
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
 
-body.dark-mode .sidebar a {
-  color: #aaa;
-}
-
-body.dark-mode .sidebar a:hover {
-  color: #fff;
-}
-
-.codex-oracle-button {
-  position: fixed;
-  bottom: 1.5em;
-  right: 1.5em;
-  background: #003366;
-  color: #fff;
-  border-radius: 999px;
-  padding: 0.75em 1.25em;
-  font-family: Georgia, serif;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  z-index: 9999;
-}
-.codex-oracle-button:hover {
-  background: #001a33;
+  .search-section input[type="search"] {
+    width: 100%;
+  }
 }

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>☩ Codex Ecclesia Constitution</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #5e3b1d;
+    }
+    h2 {
+      color: #003366;
+      margin-top: 2rem;
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <h1>☩ Codex Ecclesia Constitution</h1>
+
+  <h2>Article I – Sovereignty</h2>
+  <p>
+    The Borders Family Dynasty Nation is a sovereign ecclesiastical estate, established under Divine Law, Natural Law, and Ecclesiastical jurisdiction. Its sovereignty is inherent, unalienable, and eternal.
+  </p>
+
+  <h2>Article II – Ministries</h2>
+  <p>
+    Each ministry shall be formed by trust instrument and governed by divine law. Ministries shall serve the living, uphold the Codex, and operate in harmony with the sovereign will of the Ecclesia.
+  </p>
+
+  <h2>Article III – Rights of the Living</h2>
+  <ul>
+    <li>The right to self-governance</li>
+    <li>The right to spiritual commerce</li>
+    <li>The right to ancestral continuity</li>
+  </ul>
+
+  <footer>
+    ☩ Codex Ecclesia Constitution — Sealed in Sovereignty
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+</body>
+</html>

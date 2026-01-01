@@ -1,108 +1,273 @@
-document.addEventListener('DOMContentLoaded', async () => {
-  const response = await fetch('manifest.json');
-  const data = await response.json();
-  const items = data.items || [];
+(async function () {
+  const CODEX_URL = 'codex.json';
 
-  // Create UI
-  const main = document.querySelector('.main-content');
+  let scrolls = [];
 
-  const sectionFilter = document.createElement('select');
-  sectionFilter.innerHTML = '<option value="">All Sections</option>' +
-    [...new Set(items.map(i => i.section))].map(s => `<option value="${s}">${s}</option>`).join('');
-  sectionFilter.style = 'margin: 0.5em 0; padding: 0.5em;';
-  main.prepend(sectionFilter);
+  const searchInput = document.getElementById('searchInput');
+  const resultsGrid = document.getElementById('resultsGrid');
+  const resultsEmpty = document.getElementById('resultsEmpty');
+  const resultsTitle = document.getElementById('resultsTitle');
+  const filterButtons = document.querySelectorAll('.filterButton');
 
-  const searchBox = document.createElement('input');
-  searchBox.type = 'text';
-  searchBox.placeholder = 'Search all scrolls...';
-  searchBox.style = 'width: 100%; padding: 0.75em; font-size: 1em; margin: 0.5em 0;';
-  main.prepend(searchBox);
+  const path = window.location.pathname;
+  const page = path.endsWith('all-scrolls.html')
+    ? 'directory'
+    : path.endsWith('omega-portal.html')
+    ? 'omega'
+    : 'home';
 
-  const results = document.createElement('div');
-  results.id = 'search-results';
-  main.appendChild(results);
+  function getQueryParam(key) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(key);
+  }
 
-  const scrollCache = [];
-
-  for (const item of items) {
-    try {
-      const res = await fetch(item.path);
-      const html = await res.text();
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      const bodyText = doc.body ? doc.body.innerText : '';
-      scrollCache.push({
-        title: item.title,
-        path: item.path,
-        summary: item.summary || '',
-        tags: item.tags || [],
-        section: item.section,
-        content: bodyText.toLowerCase()
-      });
-    } catch (e) {
-      console.warn('Failed to fetch scroll:', item.path);
+  // ------------------------------------------------------------
+  // Load codex.json
+  // ------------------------------------------------------------
+  try {
+    const res = await fetch(CODEX_URL, { cache: 'no-cache' });
+    if (!res.ok) throw new Error('Failed to load codex.json');
+    const data = await res.json();
+    scrolls = Array.isArray(data.scrolls) ? data.scrolls : [];
+  } catch (err) {
+    console.error('Error loading codex:', err);
+    if (resultsEmpty) {
+      resultsEmpty.style.display = 'block';
+      resultsEmpty.textContent = 'Unable to load Codex data.';
     }
+    return;
   }
 
-  function highlight(text, query) {
-    return text.replace(new RegExp(`(${query})`, 'gi'), '<mark>$1</mark>');
+  // ------------------------------------------------------------
+  // Fuzzy search helper (subsequence matching)
+  // ------------------------------------------------------------
+  function fuzzyMatch(text, query) {
+    if (!query) return true;
+    text = (text || '').toLowerCase();
+    query = query.toLowerCase();
+
+    let tIndex = 0;
+    for (const q of query) {
+      tIndex = text.indexOf(q, tIndex);
+      if (tIndex === -1) return false;
+      tIndex++;
+    }
+    return true;
   }
 
-  function renderResults(query, section) {
-    results.innerHTML = '';
-    if (!query && !section) return;
+  // ------------------------------------------------------------
+  // Card rendering
+  // ------------------------------------------------------------
+  function renderCard(item) {
+    const div = document.createElement('div');
+    div.className = 'card';
 
-    const matches = scrollCache.filter(s =>
-      (!section || s.section === section) &&
-      (s.title.toLowerCase().includes(query) ||
-       s.summary.toLowerCase().includes(query) ||
-       s.content.includes(query))
-    );
+    const created = item.created ? new Date(item.created) : null;
+    const createdStr = created ? created.toLocaleDateString() : '';
 
-    localStorage.setItem('lastSearch', query);
+    div.innerHTML = `
+      <h3>${item.title || 'Untitled Scroll'}</h3>
+      <p class="card-meta">
+        ${(item.section || '').toUpperCase()}${
+          item.category ? ' • ' + item.category : ''
+        }${createdStr ? ' • ' + createdStr : ''}
+      </p>
+      <p>${item.summary || ''}</p>
+      <p class="card-link-row">
+        <a href="${item.url}" target="_blank" rel="noopener noreferrer">Open Scroll →</a>
+      </p>
+    `;
+    return div;
+  }
 
-    if (matches.length === 0) {
-      results.innerHTML = '<p>No scrolls match your query.</p>';
+  function updateResults(list, titleOverride) {
+    if (!resultsGrid) return;
+
+    resultsGrid.innerHTML = '';
+
+    if (resultsTitle && titleOverride) {
+      resultsTitle.textContent = titleOverride;
+    }
+
+    if (!list || !list.length) {
+      if (resultsEmpty) resultsEmpty.style.display = 'block';
       return;
     }
 
-    matches.forEach(s => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.style = 'margin: 1em 0; padding: 1em; background: var(--card-bg, #fff); color: var(--card-text, #000); border-left: 4px solid #003366;';
-      card.setAttribute('data-preview', s.content.slice(0, 300) + '...');
+    if (resultsEmpty) resultsEmpty.style.display = 'none';
 
-      const link = document.createElement('a');
-      link.href = s.path;
-      link.innerHTML = `<h3>${highlight(s.title, query)}</h3>`;
+    const fragment = document.createDocumentFragment();
+    list.forEach(item => fragment.appendChild(renderCard(item)));
+    resultsGrid.appendChild(fragment);
+  }
 
-      const snippetIndex = s.content.indexOf(query);
-      const snippet = snippetIndex !== -1
-        ? '...' + s.content.slice(Math.max(0, snippetIndex - 50), snippetIndex + 100) + '...'
-        : s.summary;
+  // ------------------------------------------------------------
+  // Unified search (with optional section filter)
+  // ------------------------------------------------------------
+  function searchScrolls(query, sectionFilter) {
+    const q = (query || '').toLowerCase().trim();
+    const sec = (sectionFilter || '').toLowerCase().trim();
 
-      const summary = document.createElement('p');
-      summary.innerHTML = highlight(snippet, query);
+    return scrolls.filter(item => {
+      if (sec && String(item.section || '').toLowerCase() !== sec) return false;
+      if (!q) return true;
 
-      const icon = document.createElement('span');
-      icon.textContent = s.section === 'ministries' ? '🏛️' :
-                         s.section === 'scrolls' ? '📜' :
-                         s.section === 'codices' ? '📘' :
-                         s.section === 'treaties' ? '🤝' : '📄';
-      icon.style = 'margin-right: 0.5em;';
+      const fields = [
+        item.title || '',
+        item.summary || '',
+        item.section || '',
+        item.category || '',
+        ...(item.tags || [])
+      ].join(' ');
 
-      card.prepend(icon);
-      card.appendChild(link);
-      card.appendChild(summary);
-      results.appendChild(card);
+      return fuzzyMatch(fields, q);
     });
   }
 
-  searchBox.addEventListener('input', () => {
-    renderResults(searchBox.value.toLowerCase(), sectionFilter.value);
-  });
+  // ------------------------------------------------------------
+  // Initial page‑specific render
+  // ------------------------------------------------------------
+  if (page === 'home') {
+    const pinned = scrolls.filter(s => s.pinned);
+    const recent = [...scrolls]
+      .filter(s => !s.pinned)
+      .sort((a, b) => new Date(b.created || 0) - new Date(a.created || 0))
+      .slice(0, Math.max(0, 6 - pinned.length));
 
-  sectionFilter.addEventListener('change', () => {
-    renderResults(searchBox.value.toLowerCase(), sectionFilter.value);
+    const featured = [...pinned, ...recent].slice(0, 6);
+    updateResults(featured, 'Featured Scrolls');
+  }
+
+  if (page === 'directory') {
+    const sectionParam = getQueryParam('section') || '';
+    let title = 'All Entries';
+    if (sectionParam) {
+      title = `Entries in ${
+        sectionParam.charAt(0).toUpperCase() + sectionParam.slice(1)
+      }`;
+    }
+
+    const initial = searchScrolls('', sectionParam);
+    updateResults(initial, title);
+
+    if (sectionParam) {
+      filterButtons.forEach(btn => {
+        if ((btn.dataset.section || '') === sectionParam) {
+          btn.classList.add('filter-active');
+        }
+      });
+    }
+  }
+
+  if (page === 'omega') {
+    const pinned = scrolls.filter(s => s.pinned);
+    const recent = [...scrolls]
+      .sort((a, b) => new Date(b.created || 0) - new Date(a.created || 0))
+      .slice(0, 12);
+
+    // Pinned first, then recent (deduped)
+    const combined = [
+      ...pinned,
+      ...recent.filter(r => !pinned.some(p => p.url === r.url))
+    ].slice(0, 12);
+
+    updateResults(combined, 'Recent & Pinned Scrolls');
+  }
+
+  // ------------------------------------------------------------
+  // Search input wiring (all pages)
+  // ------------------------------------------------------------
+  if (searchInput) {
+    // Restore last search per‑page (keyed by page type)
+    const storageKey = `codexSearch:${page}`;
+    const lastSearch = localStorage.getItem(storageKey);
+    if (lastSearch) {
+      searchInput.value = lastSearch;
+      const sectionParam = page === 'directory' ? getQueryParam('section') || '' : '';
+      const list = searchScrolls(lastSearch, sectionParam);
+      updateResults(list, 'Search Results');
+    }
+
+    searchInput.addEventListener('input', () => {
+      const value = searchInput.value;
+      localStorage.setItem(storageKey, value);
+
+      const sectionParam = page === 'directory' ? getQueryParam('section') || '' : '';
+      const list = searchScrolls(value, sectionParam);
+
+      let title = 'Search Results';
+      if (!value) {
+        if (page === 'home') title = 'Featured Scrolls';
+        if (page === 'directory') title = 'All Entries';
+        if (page === 'omega') title = 'Recent & Pinned Scrolls';
+      }
+      updateResults(list, title);
+    });
+  }
+
+  // ------------------------------------------------------------
+  // Filter buttons (directory)
+  // ------------------------------------------------------------
+  if (filterButtons && filterButtons.length) {
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const section = btn.dataset.section || '';
+
+        filterButtons.forEach(b => b.classList.remove('filter-active'));
+        btn.classList.add('filter-active');
+
+        const query = searchInput ? searchInput.value : '';
+        const list = searchScrolls(query, section);
+
+        let title = 'All Entries';
+        if (section) {
+          title = `Entries in ${
+            section.charAt(0).toUpperCase() + section.slice(1)
+          }`;
+        }
+        updateResults(list, title);
+
+        const url = new URL(window.location.href);
+        if (section) {
+          url.searchParams.set('section', section);
+        } else {
+          url.searchParams.delete('section');
+        }
+        window.history.replaceState({}, '', url.toString());
+      });
+    });
+  }
+
+  // ------------------------------------------------------------
+  // Keyboard navigation (↑ ↓ Enter) on cards
+  // ------------------------------------------------------------
+  document.addEventListener('keydown', e => {
+    if (!resultsGrid) return;
+
+    const cards = [...resultsGrid.querySelectorAll('.card')];
+    if (!cards.length) return;
+
+    let index = cards.findIndex(c => c.classList.contains('focus'));
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (index >= 0) cards[index].classList.remove('focus');
+      index = (index + 1) % cards.length;
+      cards[index].classList.add('focus');
+      cards[index].scrollIntoView({ block: 'nearest' });
+    }
+
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (index >= 0) cards[index].classList.remove('focus');
+      index = (index - 1 + cards.length) % cards.length;
+      cards[index].classList.add('focus');
+      cards[index].scrollIntoView({ block: 'nearest' });
+    }
+
+    if (e.key === 'Enter' && index >= 0) {
+      const link = cards[index].querySelector('a');
+      if (link) window.location.href = link.href;
+    }
   });
-});
+})();

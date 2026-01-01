@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Borders Sovereign Coin (BSC) Charter. Token supply, governance, and smart contract hash for the Borders Family Dynasty Nation." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🪙 Borders Sovereign Coin (BSC) | Codex Ecclesia</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #5e3b1d;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      border-bottom: 1px solid #d4af37;
+      padding-bottom: 0.3rem;
+    }
+    p {
+      line-height: 1.6;
+      margin: 1rem 0;
+      text-align: center;
+    }
+    ul {
+      padding-left: 1.5rem;
+      margin-top: 1rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #5e3b1d;
+      text-decoration: none;
+      border-bottom: 1px dashed #5e3b1d;
+    }
+    a:hover {
+      color: #003366;
+      border-bottom: 1px solid #003366;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode h1, .dark-mode h2 {
+      color: #f0d98c;
+    }
+    .dark-mode a {
+      color: #f0d98c;
+      border-bottom: 1px dashed #f0d98c;
+    }
+    .dark-mode a:hover {
+      color: #ffcc99;
+      border-bottom: 1px solid #ffcc99;
+    }
+    .dark-mode .footer {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <h1>🪙 Borders Sovereign Coin (BSC)</h1>
+  <p>The official sovereign token of the Borders Family Dynasty Nation.</p>
+
+  <ul>
+    <li><strong>Token Name:</strong> Borders Sovereign Coin</li>
+    <li><strong>Symbol:</strong> BSC</li>
+    <li><strong>Total Supply:</strong> 1,000,000 BSC</li>
+    <li><strong>Declared Value:</strong> $1.00 USD per BSC</li>
+    <li><strong>Smart Contract Hash:</strong> 0xE6F7...B2D9</li>
+    <li><strong>Treasury Wallet:</strong> [Insert Wallet Address]</li>
+  </ul>
+
+  <h2>Governance</h2>
+  <p>BSC is governed by the Council of Trustees and used for trust equity, citizen registry, and ceremonial rites.</p>
+
+  <p><a href="ledger.html">📜 View Blockchain Ledger →</a></p>
+  <p><a href="index.html">← Return to Codex</a></p>
+
+  <div class="footer">
+    ☩ Borders Sovereign Coin Charter — Codex Ecclesia Totalis<br/>
+    © 2025 Borders Family Dynasty Nation | Ecclesia Magna Trust
+  </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+
+</body>
+</html>

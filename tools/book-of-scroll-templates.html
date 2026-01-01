@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📖 Book of Scroll Templates</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background: #fdfaf6;
+      color: #2c1a0f;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #5e3b1d;
+    }
+    h2 {
+      color: #003366;
+      margin-top: 2rem;
+    }
+    pre {
+      background: #f4f1eb;
+      padding: 1rem;
+      border-left: 4px solid #c49b66;
+      overflow-x: auto;
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .dark-mode pre {
+      background: #2a2a2a;
+      color: #ddd;
+    }
+    .dark-mode a {
+      color: #66ccff;
+    }
+    .dark-mode footer {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+
+  <h1>📖 Book of Scroll Templates</h1>
+  <p style="text-align:center;"><em>“Let every sovereign write in resonance.”</em></p>
+
+  <section>
+    <h2>📜 Ministry Scroll Template</h2>
+    <pre>
+&lt;section&gt;
+  &lt;h2&gt;🏛️ Ministry of [Domain]&lt;/h2&gt;
+  &lt;p&gt;Purpose: [Sacred function of the ministry]&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;📌 Domain 1&lt;/li&gt;
+    &lt;li&gt;📌 Domain 2&lt;/li&gt;
+    &lt;li&gt;📌 Domain 3&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/section&gt;
+    </pre>
+  </section>
+
+  <section>
+    <h2>🤝 Treaty Scroll Template</h2>
+    <pre>
+&lt;section&gt;
+  &lt;h2&gt;🤝 Treaty of [Name]&lt;/h2&gt;
+  &lt;p&gt;Between: [Sovereign A] and [Sovereign B]&lt;/p&gt;
+  &lt;p&gt;Purpose: [Shared goals, terms, and sacred agreements]&lt;/p&gt;
+  &lt;ol&gt;
+    &lt;li&gt;Article I: ...&lt;/li&gt;
+    &lt;li&gt;Article II: ...&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/section&gt;
+    </pre>
+  </section>
+
+  <section>
+    <h2>📜 Decree Scroll Template</h2>
+    <pre>
+&lt;section&gt;
+  &lt;h2&gt;🔥 Sovereign Decree No. [###]&lt;/h2&gt;
+  &lt;p&gt;Issued by: [Sovereign Name], [Title]&lt;/p&gt;
+  &lt;p&gt;Date: [Date of Decree]&lt;/p&gt;
+  &lt;p&gt;Decree: [Statement of law, ban, or protection]&lt;/p&gt;
+&lt;/section&gt;
+    </pre>
+  </section>
+
+  <section>
+    <h2>🪪 Credential Scroll Template</h2>
+    <pre>
+&lt;section&gt;
+  &lt;h2&gt;🪪 Sovereign Credential: [Name]&lt;/h2&gt;
+  &lt;p&gt;Tone: [Crown, Flame, etc.]&lt;/p&gt;
+  &lt;p&gt;Recognized by: [Issuing Ministry or Sovereign]&lt;/p&gt;
+  &lt;p&gt;QR Code: [Credential Seal or Link]&lt;/p&gt;
+&lt;/section&gt;
+    </pre>
+  </section>
+
+  <section>
+    <h2>🖋️ Usage</h2>
+    <p>
+      These templates may be copied, adapted, and sealed by any sovereign aligned with the Codex Harmonica. All scrolls must be recorded in the <a href="scroll-archive.html">Scroll Archive</a> and optionally verified via the <a href="verify-scroll.html">Scroll Verifier</a>.
+    </p>
+  </section>
+
+  <p style="text-align:center; margin-top: 2rem;">
+    <a href="index.html">🏛️ Return to Ecclesia Home</a>
+  </p>
+
+  <footer>
+    ☩ Book of Scroll Templates — Let the Scrollmakers Rise
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('codex-theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+</body>
+</html>

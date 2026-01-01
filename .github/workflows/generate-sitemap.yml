@@ -1,0 +1,65 @@
+name: 🔁 Generate Sitemap
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - codex.json
+      - scripts/generate-sitemap.js
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "sitemap"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # -----------------------------
+      # 1. Checkout
+      # -----------------------------
+      - name: 🧭 Checkout Repository
+        uses: actions/checkout@v4
+
+      # -----------------------------
+      # 2. Setup Node
+      # -----------------------------
+      - name: 🛠️ Set Up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # -----------------------------
+      # 3. Install Dependencies
+      # -----------------------------
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      # -----------------------------
+      # 4. Generate Sitemap
+      # -----------------------------
+      - name: 🗺️ Generate sitemap.xml
+        run: node scripts/generate-sitemap.js
+
+      # -----------------------------
+      # 5. Commit & Push Changes
+      # -----------------------------
+      - name: 🔐 Configure Git
+        run: |
+          git config user.name "CodexBot"
+          git config user.email "codexbot@ecclesia.local"
+
+      - name: 📤 Commit and Push Updates
+        run: |
+          git add sitemap.xml
+          git diff --cached --quiet || git commit -m "🔄 Auto-update sitemap.xml"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

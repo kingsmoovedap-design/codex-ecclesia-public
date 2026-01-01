@@ -1,0 +1,46 @@
+name: 🔗 Link Checker
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "link-checker"
+  cancel-in-progress: true
+
+jobs:
+  linkChecker:
+    runs-on: ubuntu-latest
+
+    steps:
+      # -----------------------------
+      # 1. Checkout
+      # -----------------------------
+      - name: 🧭 Checkout Repository
+        uses: actions/checkout@v4
+
+      # -----------------------------
+      # 2. Run Link Checker
+      # -----------------------------
+      - name: 🔍 Run Lychee Link Checker
+        uses: lycheeverse/lychee-action@v1.8.0
+        with:
+          args: --verbose --no-progress "./**/*.html"
+
+      # -----------------------------
+      # 3. Upload Report
+      # -----------------------------
+      - name: 📤 Upload Link Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-report
+          path: lychee/out.md
+          retention-days: 7

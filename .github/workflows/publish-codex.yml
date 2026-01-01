@@ -1,0 +1,43 @@
+name: Codex Build & Deploy
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Inject metadata
+        run: node scripts/inject-metadata.cjs
+
+      - name: Generate manifest.json
+        run: node scripts/generate-manifest.cjs
+
+      - name: Generate codex.json
+        run: node scripts/generate-codex-json.js
+
+      - name: Build site
+        run: npm run build
+
+      - name: Ensure codex.json in dist
+        run: cp codex.json dist/codex.json
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

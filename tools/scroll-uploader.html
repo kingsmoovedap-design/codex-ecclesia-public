@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>📜 Scroll Uploader</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body { font-family: Georgia, serif; background: #fdfcf9; color: #222; margin: 0; padding: 2em; }
+    h1 { font-size: 2em; margin-bottom: 0.5em; }
+    label { display: block; margin-top: 1em; font-weight: bold; }
+    input[type="file"], input[type="text"] {
+      width: 100%; padding: 0.6em; margin-top: 0.3em; font-family: inherit;
+      border: 1px solid #ccc; border-radius: 4px; background: #fff;
+    }
+    button {
+      margin-top: 1.5em; padding: 0.8em 1.5em; background: #003366; color: #fff;
+      border: none; border-radius: 4px; font-size: 1em; cursor: pointer;
+    }
+    button:hover { background: #002244; }
+    .confirmation { margin-top: 2em; background: #f4f4f4; padding: 1em; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <h1>📜 Scroll Uploader</h1>
+  <p>Upload a new scroll to the Codex Ecclesia and timestamp its divine entry.</p>
+
+  <form id="uploadForm">
+    <label for="scrollName">Scroll Title</label>
+    <input type="text" id="scrollName" placeholder="e.g. Scroll of Invocation" required />
+
+    <label for="scrollFile">Select Scroll File (HTML, PDF, or TXT)</label>
+    <input type="file" id="scrollFile" accept=".html,.pdf,.txt" required />
+
+    <button type="submit">Upload & Timestamp</button>
+  </form>
+
+  <div class="confirmation" id="confirmation" style="display:none;">
+    <h2>✅ Scroll Uploaded</h2>
+    <p><strong>Title:</strong> <span id="confirmTitle"></span></p>
+    <p><strong>Timestamp:</strong> <span id="confirmTime"></span></p>
+    <p>This scroll has been received and recorded in the Codex Ledger.</p>
+  </div>
+
+  <script>
+    document.getElementById('uploadForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const title = document.getElementById('scrollName').value;
+      const file = document.getElementById('scrollFile').files[0];
+      const timestamp = new Date().toLocaleString();
+
+      if (!file) return;
+
+      document.getElementById('confirmTitle').textContent = title;
+      document.getElementById('confirmTime').textContent = timestamp;
+      document.getElementById('confirmation').style.display = 'block';
+
+      // Placeholder: actual upload logic would go here
+      console.log(`Scroll "${title}" uploaded at ${timestamp}. File: ${file.name}`);
+    });
+  </script>
+</body>
+</html>

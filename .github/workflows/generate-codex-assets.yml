@@ -1,0 +1,78 @@
+name: 🔁 Generate Codex Assets
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "codex-assets"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # -----------------------------
+      # 1. Checkout
+      # -----------------------------
+      - name: 🧭 Checkout Repository
+        uses: actions/checkout@v4
+
+      # -----------------------------
+      # 2. Setup Java (if needed)
+      # -----------------------------
+      - name: ☕ Setup Java JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+
+      # -----------------------------
+      # 3. Setup Node
+      # -----------------------------
+      - name: 🛠️ Set Up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # -----------------------------
+      # 4. Install Dependencies
+      # -----------------------------
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      # -----------------------------
+      # 5. Generate Codex Assets
+      # -----------------------------
+      - name: 🧾 Generate manifest.json
+        run: node scripts/generate-manifest.js
+
+      - name: 📘 Generate codex.json
+        run: node scripts/generate-codex-json.js
+
+      - name: 📜 Generate all-scrolls.html
+        run: node scripts/generate-scroll-index.js
+
+      # -----------------------------
+      # 6. Commit & Push Changes
+      # -----------------------------
+      - name: 🔐 Configure Git
+        run: |
+          git config user.name "CodexBot"
+          git config user.email "codexbot@ecclesia.local"
+
+      - name: 📤 Commit and Push Updates
+        run: |
+          git add manifest.json codex.json all-scrolls.html
+          git diff --cached --quiet || git commit -m "🔄 Auto-update manifest, codex & scroll index"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

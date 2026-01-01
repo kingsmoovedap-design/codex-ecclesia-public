@@ -1,0 +1,95 @@
+{
+  "scrolls": [
+    {
+      "title": "Scroll of Jubilee Declaration",
+      "path": "scrolls/scroll-of-jubilee-declaration.html",
+      "section": "scrolls",
+      "category": "jubilee",
+      "tags": ["jubilee", "declaration", "freedom"],
+      "summary": "Proclaims the Jubilee: debt forgiveness, land return, and sovereign restoration.",
+      "created": "2025-12-29T00:00:00Z",
+      "pinned": true
+    },
+    {
+      "title": "Codex Ecclesia Constitution",
+      "path": "codex-ecclesia-constitution.html",
+      "section": "core",
+      "category": "law",
+      "tags": ["constitution", "law", "sovereignty"],
+      "summary": "Foundational legal scroll of the Ecclesia Magna Trust.",
+      "created": "2025-12-01T00:00:00Z"
+    },
+    {
+      "title": "Ministry of Commerce & Exchange",
+      "path": "ministries/ministry-commerce.html",
+      "section": "ministries",
+      "category": "economy",
+      "tags": ["commerce", "exchange", "ministry"],
+      "summary": "Oversees sovereign trade, exchange, and economic law.",
+      "created": "2025-12-15T00:00:00Z"
+    },
+    {
+      "title": "Treaty Recognition Log",
+      "path": "treaty-recognition-log.html",
+      "section": "treaties",
+      "category": "diplomacy",
+      "tags": ["treaty", "recognition", "diplomacy"],
+      "summary": "Ledger of all recognized treaties and sovereign alliances.",
+      "created": "2025-12-20T00:00:00Z"
+    },
+    {
+      "title": "CodexChain Console",
+      "path": "codexchain-console.html",
+      "section": "tools",
+      "category": "blockchain",
+      "tags": ["codexchain", "console", "ledger"],
+      "summary": "Interface for interacting with the CodexChain ledger and mining tools.",
+      "created": "2025-12-18T00:00:00Z"
+    },
+    {
+      "title": "Minting Altar",
+      "path": "minting-altar.html",
+      "section": "tools",
+      "category": "currency",
+      "tags": ["minting", "altar", "BDC"],
+      "summary": "Sacred interface for minting BDC Sovereign Coin and scroll-backed tokens.",
+      "created": "2025-12-22T00:00:00Z"
+    },
+    {
+      "title": "Scroll of Sovereign Emergence",
+      "path": "scroll-of-sovereign-emergence.html",
+      "section": "scrolls",
+      "category": "identity",
+      "tags": ["sovereignty", "emergence", "status"],
+      "summary": "Declares the emergence of a living man or woman as sovereign under divine law.",
+      "created": "2025-12-10T00:00:00Z"
+    },
+    {
+      "title": "Borders Sovereign Coin (BSC)",
+      "path": "borders-sovereign-coin.html",
+      "section": "core",
+      "category": "currency",
+      "tags": ["BDC", "coin", "economy"],
+      "summary": "Trust-backed digital currency for lawful exchange within the Ecclesia.",
+      "created": "2025-12-05T00:00:00Z"
+    },
+    {
+      "title": "Universal Trustee Power of Attorney",
+      "path": "universal-trustee-poa.html",
+      "section": "scrolls",
+      "category": "trust",
+      "tags": ["trustee", "poa", "authority"],
+      "summary": "Grants universal authority to act as trustee under the Codex Ecclesia.",
+      "created": "2025-12-11T00:00:00Z"
+    },
+    {
+      "title": "Codex Harmonica — Divine Completion",
+      "path": "codex-harmonica.html",
+      "section": "core",
+      "category": "spiritual",
+      "tags": ["harmonica", "completion", "divine"],
+      "summary": "The final harmonic scroll completing the Codex Ecclesia.",
+      "created": "2025-12-25T00:00:00Z"
+    }
+  ]
+}

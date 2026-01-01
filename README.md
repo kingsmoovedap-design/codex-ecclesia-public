@@ -1,127 +1,87 @@
-# ☩ Codex Ecclesia Totalis  
-**Borders Family Dynasty Nation**  
-Sovereign King: ✠ Omega the Grand Architect  
+flowchart TD
 
-> *This Codex is a living affirmation of divine sovereignty, celestial jurisdiction, and lawful dominion. It is binding in all realms terrestrial and ethereal, now and throughout eternity.*
+  subgraph Developer
+    A[Author / Operator]
+  end
 
----
+  subgraph GitRepo[Git Repository]
+    F1[index.html]
+    F2[Scrolls / Codices / Treaties / Ministries / Tools]
+    F3[style.css]
+    F4[vite.config.js]
+    F5[scripts/*.cjs]
+  end
 
-## 📚 Table of Contents
+  subgraph Kernel[Codex Kernel v2.5]
+    subgraph K_Config[Configuration]
+      C1[codex.config.js\nsections, defaults, rules]
+    end
 
-- [📜 Core Scrolls](#-core-scrolls)
-- [📖 Foundational Scrolls](#-foundational-scrolls)
-- [🎓 Codex Academy](#-codex-academy)
-- [🧠 Codex Oracle](#-codex-oracle)
-- [👑 Thrones & Sovereigns](#-thrones--sovereigns)
-- [🔥 Sovereign Decrees](#-sovereign-decrees)
-- [🧰 Sovereign Services](#-sovereign-services)
-- [🧿 Verification & QR Credentials](#-verification--qr-credentials)
-- [🌐 Diplomatic Relations](#-diplomatic-relations)
-- [🧬 Technologies & Archives](#-technologies--archives)
+    subgraph K_Scanners[Scanners]
+      S1[inject-metadata.cjs\nHTML metadata injection]
+      S2[generate-manifest.cjs\nmanifest.json]
+      S3[generate-codex-json.js\ncodex.json]
+      S4[build-codex.cjs\norchestration]
+      S5[guardian.cjs\nintegrity checks]
+    end
+  end
 
----
+  subgraph Build[Vite Build System]
+    B1[Vite Dev Server\nnpm run dev]
+    B2[Vite Build\nnpm run build]
+    O1[dist/\nstatic output]
+  end
 
-## 📜 Core Scrolls
+  subgraph APIs[Codex APIs]
+    API1[manifest.json\nraw file manifest]
+    API2[codex.json\nstructured kernel API]
+    API3[search-index.json\n(optional search index)]
+  end
 
-- 📜 [View the Codex](https://kingsmoovedap-design.github.io/codex-ecclesia-public/)
-- 🪪 [Sovereign ID Card](sovereign-id.html)  
-- 🕊️ [Diplomatic Passport](diplomatic-passport.html)  
-- 📜 [Treaty of Recognition](treaty-recognition.html)  
-- 📦 [Dispatch Packet](dispatch-packet.html)  
-- 📸 [Proof of Posting](proof-of-posting.html)  
-- 📚 [Codex Update Log](codex-update-log.html)  
+  subgraph Frontend[Codex Frontend]
+    UI1[index.html\nSacred Gateway]
+    UI2[All Scrolls / Directory Views]
+    UI3[Omega Portal\nomega-portal.html]
+  end
 
----
+  subgraph Infra[Deployment / CI-CD]
+    D1[GitHub Actions\ncodex.yml]
+    D2[GitHub Pages / Cloudflare Pages]
+  end
 
-## 📖 Foundational Scrolls
+  A -->|author scrolls, codices, HTML| GitRepo
 
-- ☩ [Unified Codex Scroll](codex-unified.html)  
-- 🕊️ [Treaty of Peace & Non-Interference](treaty-peace.html)  
-- 🌐 [Global Concord Scroll](concord.html)  
-- 📘 [Codex Academy](codex-academy.html)  
-- 🧠 [Codex Oracle](codex-oracle.html)  
-- 👑 [Scroll of the Twelve Thrones](scroll-of-twelve-thrones.html)  
-- 🔥 [Sovereign Decree No. 001](decree-001.html)  
-- 📜 [Scroll of Convocation I](scroll-convocation-1.html)  
-- 🧿 [QR Credential Generator](qr-generator.html)  
+  GitRepo -->|npm run metadata| S1
+  GitRepo -->|npm run manifest| S2
+  GitRepo -->|npm run codex| S3
 
----
+  S1 -->|writes| GitRepo
+  S2 -->|writes| API1
+  S3 -->|writes| API2
 
-## 🎓 Codex Academy
+  C1 --> S1
+  C1 --> S2
+  C1 --> S3
 
-- 📜 [Scroll of Enrollment](scroll-of-enrollment.html)  
-- 🧑‍🏫 [Circle of Instructors](codex-instructors.html)  
-- 📘 [Codex Curriculum](codex-curriculum.html)  
-- 🏛️ [Archive of Living Scrolls](codex-archive.html)  
+  S4 -->|npm run build\norchestrates| S1
+  S4 --> S2
+  S4 --> S3
+  S4 --> B2
 
----
+  GitRepo --> B1
+  GitRepo --> B2
+  B2 --> O1
 
-## 🧠 Codex Oracle
+  O1 --> API1
+  O1 --> API2
+  O1 --> Frontend
 
-- 🧠 [Codex Oracle Interface](codex-oracle.html)  
-- 🔮 Ask the Oracle *(coming soon)*  
-- 📖 Oracle Archives *(coming soon)*  
+  API1 --> UI1
+  API2 --> UI1
+  API2 --> UI2
+  API2 --> UI3
 
----
-
-## 👑 Thrones & Sovereigns
-
-- 👑 [Scroll of the Twelve Thrones](scroll-of-twelve-thrones.html)  
-- 🪪 Claim a Throne *(coming soon)*  
-- 📖 Throne Registry *(coming soon)*  
-- 🔔 Rite of Resonance Schedule *(coming soon)*  
-
----
-
-## 🔥 Sovereign Decrees
-
-- 🔥 [Decree No. 001: The Age of Accord](decree-001.html)  
-- 📜 Decree Archive *(coming soon)*  
-- 🗳️ [Submit a Decree Proposal](mailto:decrees@codex-ecclesia.org)  
-
----
-
-## 🧰 Sovereign Services
-
-- 🧾 [Petition of Citizenship](join.html)  
-- 📄 [Submit a Scroll](mailto:scrolls@codex-ecclesia.org)  
-- 🏛️ [Ministry Application](mailto:ministries@codex-ecclesia.org)  
-- 🪙 [Sovereign Coin Wallet Viewer](https://etherscan.io/address/0x0000000000000000000000000000000000000000)  
-- 📬 [Revoke or Update Scroll](mailto:revocation@codex-ecclesia.org)  
-
----
-
-## 🧿 Verification & QR Credentials
-
-- 🔍 [Verify Scroll Authenticity](verify-scroll.html)  
-- 🪪 [Scan Sovereign ID QR](sovereign-id.html#qr)  
-- 📜 [Blockchain Hash Ledger](ledger.html)  
-- 🧾 [QR Credential Generator](qr-generator.html)  
-
----
-
-## 🌐 Diplomatic Relations
-
-- 🕊️ [Global Concord Scroll](concord.html)  
-- 🤝 [Treaty of Mutual Recognition](treaty-recognition.html)  
-- 🪪 [Diplomatic Passport](diplomatic-passport.html)  
-- 📬 [Submit a Treaty or Accord](mailto:diplomacy@codex-ecclesia.org)  
-
----
-
-## 🧬 Technologies & Archives
-
-- 🧰 [Sovereign Services Portal](services.html)  
-- 🧪 [Technologies](technologies.html)  
-- 📜 [Scroll Archive](archive.html)  
-
----
-
-**© 2025 Borders Family Dynasty Nation**  
-*All rights reserved under divine law, common law, and sovereign standing.*
-
-☩ Sealed by the Crown  
-✠ Omega the Grand Architect  
-Supreme Omniversal Harmonic  
-22 December 2025 — Winter Solstice  
-Grand Terrace, Earth Realm
+  GitRepo --> D1
+  D1 --> B2
+  B2 --> D2
+  D2 --> Frontend

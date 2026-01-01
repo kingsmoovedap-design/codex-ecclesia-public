@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>☩ Submit a Scroll</title>
+  <style>
+    body { font-family: Georgia, serif; padding: 2em; max-width: 600px; margin: auto; background: #fdfcf9; color: #222; }
+    h1 { text-align: center; color: #003366; }
+    form { display: flex; flex-direction: column; gap: 1em; }
+    label { font-weight: bold; }
+    input, textarea { padding: 0.5em; border: 1px solid #ccc; border-radius: 4px; }
+    button { background: #003366; color: white; padding: 0.7em; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #002244; }
+  </style>
+</head>
+<body>
+  <h1>☩ Submit a Scroll</h1>
+  <form action="https://formspree.io/f/your-form-id" method="POST">
+    <label for="name">Your Name</label>
+    <input type="text" id="name" name="name" required />
+
+    <label for="title">Scroll Title</label>
+    <input type="text" id="title" name="title" required />
+
+    <label for="tags">Tags (comma-separated)</label>
+    <input type="text" id="tags" name="tags" />
+
+    <label for="summary">Summary</label>
+    <textarea id="summary" name="summary" rows="4"></textarea>
+
+    <label for="link">Link to Scroll (e.g., Google Drive, GitHub)</label>
+    <input type="url" id="link" name="link" required />
+
+    <button type="submit">Submit Scroll</button>
+  </form>
+</body>
+</html>
