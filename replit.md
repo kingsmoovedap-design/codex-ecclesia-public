@@ -13,12 +13,16 @@ A static HTML website serving as the sovereign scroll archive of the Borders Ecc
 - `codex.json` - JSON data file containing scrolls, heirs, treaties metadata
 - `style.css` - Global styles (2600+ lines with mobile optimization)
 - `server/index.ts` - Express server entry point
-- `server/routes.ts` - API routes for documents, filings, analytics
+- `server/routes.ts` - API routes for documents, filings, analytics, Dynasty OS, Codex events
 - `server/storage.ts` - Database storage layer
 - `shared/schema.ts` - Drizzle ORM database schema
 - `lib/api.js` - Frontend API client
 - `lib/auth.js` - Authentication utilities
 - `lib/dynasty-sync.js` - Dynasty ecosystem integration
+- `lib/dynasty-os.js` - Dynasty OS service layer (LoadBoard, Dispatch, Treasury, Codex)
+- `lib/embed-widget.js` - Embeddable widget system for cross-platform deployment
+- `lib/shield.js` - Security and copy protection module
+- `omega-portal.html` - Grand Architect Command Center
 
 ## Directory Structure
 - `/scrolls/` - Scroll HTML documents
