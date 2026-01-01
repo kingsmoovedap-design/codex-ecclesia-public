@@ -599,11 +599,33 @@
     <p>© 2025 All Rights Reserved under Divine Law</p>
   </footer>
 
+  <script src="lib/dynasty-os.js"></script>
   <script>
     let currentRole = '';
     let currentIntent = '';
     let currentTemplate = '';
     let savedDrafts = JSON.parse(localStorage.getItem('omegaDrafts') || '[]');
+    
+    async function initDynastyOS() {
+      if (typeof DynastyOS !== 'undefined') {
+        const connected = await DynastyOS.connect();
+        if (connected) {
+          document.querySelector('.sync-indicator').classList.add('synced');
+          DynastyOS.logEvent('PORTAL_INITIALIZED', { page: 'omega_portal' });
+        }
+        updateServiceStatus();
+      }
+    }
+    
+    async function updateServiceStatus() {
+      try {
+        const response = await fetch('/api/dynasty/status');
+        const status = await response.json();
+        console.log('Dynasty OS Status:', status);
+      } catch (e) {}
+    }
+    
+    initDynastyOS();
 
     const documentTemplates = {
       'naturalization': { title: 'Certificate of Naturalization', category: 'Status & Identity' },

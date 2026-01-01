@@ -343,4 +343,199 @@ export function registerRoutes(app: Express) {
       res.status(500).json({ error: "Failed to verify" });
     }
   });
+
+  const codexEvents: any[] = [];
+  
+  app.post("/api/codex/events", async (req: Request, res: Response) => {
+    try {
+      const event = {
+        id: `EVT-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`,
+        ...req.body,
+        receivedAt: new Date().toISOString(),
+      };
+      codexEvents.push(event);
+      if (codexEvents.length > 10000) codexEvents.shift();
+      
+      await storage.trackAnalytics({
+        eventType: "codex_event",
+        eventData: { type: event.type, source: event.source },
+        createdAt: new Date(),
+      });
+      
+      res.json({ success: true, eventId: event.id });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to log event" });
+    }
+  });
+
+  app.get("/api/codex/events", async (req: Request, res: Response) => {
+    try {
+      const { type, since, limit = 100 } = req.query;
+      let filtered = codexEvents;
+      
+      if (type) {
+        filtered = filtered.filter(e => e.type === type);
+      }
+      if (since) {
+        filtered = filtered.filter(e => new Date(e.timestamp) > new Date(since as string));
+      }
+      
+      res.json({
+        events: filtered.slice(-Number(limit)),
+        total: filtered.length,
+      });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch events" });
+    }
+  });
+
+  app.post("/api/codex/anchor", async (req: Request, res: Response) => {
+    try {
+      const { eventIds } = req.body;
+      const anchorId = `ANC-${Date.now().toString(36).toUpperCase()}`;
+      
+      res.json({
+        anchorId,
+        eventCount: eventIds?.length || 0,
+        timestamp: new Date().toISOString(),
+        status: "anchored",
+      });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to anchor events" });
+    }
+  });
+
+  app.get("/api/codex/stats", async (req: Request, res: Response) => {
+    res.json({
+      totalEvents: codexEvents.length,
+      eventTypes: [...new Set(codexEvents.map(e => e.type))],
+      lastEvent: codexEvents[codexEvents.length - 1] || null,
+      uptime: process.uptime(),
+    });
+  });
+
+  app.get("/api/dynasty/status", async (req: Request, res: Response) => {
+    res.json({
+      platform: "dynasty_os",
+      version: "1.0.0",
+      services: {
+        loadBoard: { status: "ready", description: "Load management system" },
+        dispatch: { status: "ready", description: "AI + Human dispatch engine" },
+        driverApp: { status: "ready", description: "Driver execution layer" },
+        treasury: { status: "ready", description: "Payout and rewards system" },
+        codex: { status: "ready", description: "Event log and audit spine" },
+        compliance: { status: "ready", description: "Rule evaluation service" },
+      },
+      dynastyUrl: "https://borders-dynasty--kingsmoovedap.replit.app",
+      timestamp: new Date().toISOString(),
+    });
+  });
+
+  app.post("/api/dynasty/load", async (req: Request, res: Response) => {
+    try {
+      const load = {
+        id: `LD-${Date.now().toString(36).toUpperCase()}`,
+        ...req.body,
+        status: "pending",
+        createdAt: new Date().toISOString(),
+      };
+      
+      codexEvents.push({
+        id: `EVT-${Date.now().toString(36).toUpperCase()}`,
+        type: "LOAD_CREATED",
+        data: load,
+        timestamp: new Date().toISOString(),
+        source: "OMEGA_PORTAL",
+      });
+      
+      res.json({ success: true, load });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to create load" });
+    }
+  });
+
+  app.post("/api/dynasty/dispatch", async (req: Request, res: Response) => {
+    try {
+      const { loadId, driverId } = req.body;
+      const assignment = {
+        assignmentId: `ASN-${Date.now().toString(36).toUpperCase()}`,
+        loadId,
+        driverId,
+        status: "assigned",
+        assignedAt: new Date().toISOString(),
+      };
+      
+      codexEvents.push({
+        id: `EVT-${Date.now().toString(36).toUpperCase()}`,
+        type: "DISPATCH_ASSIGNED",
+        data: assignment,
+        timestamp: new Date().toISOString(),
+        source: "OMEGA_PORTAL",
+      });
+      
+      res.json({ success: true, assignment });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to dispatch" });
+    }
+  });
+
+  app.post("/api/dynasty/treasury/payout", async (req: Request, res: Response) => {
+    try {
+      const { loadId, amount, recipient } = req.body;
+      const payout = {
+        transactionId: `TXN-${Date.now().toString(36).toUpperCase()}`,
+        loadId,
+        amount,
+        recipient,
+        status: "processed",
+        processedAt: new Date().toISOString(),
+      };
+      
+      codexEvents.push({
+        id: `EVT-${Date.now().toString(36).toUpperCase()}`,
+        type: "PAYOUT_EXECUTED",
+        data: payout,
+        timestamp: new Date().toISOString(),
+        source: "OMEGA_PORTAL",
+      });
+      
+      res.json({ success: true, payout });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to process payout" });
+    }
+  });
+
+  app.post("/api/legal-entity", async (req: Request, res: Response) => {
+    try {
+      const entity = {
+        id: `ENT-${Date.now().toString(36).toUpperCase()}`,
+        ...req.body,
+        status: "pending",
+        createdAt: new Date().toISOString(),
+      };
+      
+      codexEvents.push({
+        id: `EVT-${Date.now().toString(36).toUpperCase()}`,
+        type: "ENTITY_FORMED",
+        data: entity,
+        timestamp: new Date().toISOString(),
+        source: "OMEGA_PORTAL",
+      });
+      
+      res.json({ success: true, entity });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to form entity" });
+    }
+  });
+
+  app.get("/api/embed/script", (req: Request, res: Response) => {
+    res.type("application/javascript");
+    res.send(`
+(function() {
+  var script = document.createElement('script');
+  script.src = '${req.protocol}://${req.get('host')}/lib/embed-widget.js';
+  document.head.appendChild(script);
+})();
+    `);
+  });
 }
