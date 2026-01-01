@@ -189,13 +189,13 @@
       const welcomeMsg = document.getElementById('welcome-message');
 
       const isLoggedIn = isAuthenticated();
+      const user = getUser();
       
-      if (!isLoggedIn) {
+      if (isLoggedIn) {
+        welcomeMsg.textContent = `Welcome back, ${user.firstName || user.username}`;
+      } else {
         welcomeMsg.textContent = 'Welcome to Codex Ecclesia';
       }
-
-      const user = getUser();
-      welcomeMsg.textContent = `Welcome back, ${user.firstName || user.username}`;
 
       try {
         let documents = [];
