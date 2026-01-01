@@ -1,63 +1,72 @@
-/* ✨ Codex Ecclesia Styling ✨ */
-
 body {
-  background: linear-gradient(to bottom, #0f0f0f, #1a1a1a);
-  color: #f5f5dc;
-  font-family: 'Garamond', serif;
-  line-height: 1.6;
   margin: 0;
+  font-family: "Times New Roman", serif;
+  display: flex;
+  background: #f4f4f4;
+}
+
+.sidebar {
+  width: 220px;
+  background: #111;
+  color: #fff;
+  height: 100vh;
+  position: fixed;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
+
+.sidebar ul {
+  list-style: none;
   padding: 0;
 }
 
-h1, h2 {
-  color: #ffd700;
-  text-align: center;
-  text-shadow: 0 0 5px #fff200;
+.sidebar li {
+  margin: 10px 0;
 }
 
-ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-li {
-  margin: 0.5rem 0;
-  text-align: center;
-}
-
-a {
-  color: #f5f5dc;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-
-a:hover {
-  color: #ffd700;
-  text-shadow: 0 0 10px #ffd700;
-  transform: scale(1.05);
-}
-
-header, footer {
-  background-color: #111;
-  padding: 2rem;
-  border-top: 2px solid #ffd700;
-  border-bottom: 2px solid #ffd700;
-}
-
-section {
-  margin: 2rem 0;
-  padding: 1rem;
-  border: 1px solid #444;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.02);
-}
-
-nav a {
-  margin: 0 1rem;
+.sidebar a {
   color: #ccc;
+  text-decoration: none;
 }
 
-nav a:hover {
-  color: #ffd700;
+.sidebar a:hover {
+  color: #fff;
+}
+
+.main-content {
+  margin-left: 240px;
+  padding: 40px;
+  width: 100%;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1em;
+}
+
+.card {
+  background: #fff;
+  padding: 1em;
+  border-left: 4px solid #003366;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.card a {
+  text-decoration: none;
+  color: #003366;
 }

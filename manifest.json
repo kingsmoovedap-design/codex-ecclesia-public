@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Codex Academy",
+    "filename": "codex-academy.html",
+    "category": "Academy",
+    "tags": ["education", "academy", "learning"]
+  },
+  {
+    "title": "Divine Law 101",
+    "filename": "divine-law-101.html",
+    "category": "Academy",
+    "tags": ["law", "divine", "education"]
+  },
+  {
+    "title": "Ministry of Commerce Trust",
+    "filename": "ministries/ministry-commerce.html",
+    "category": "Ministries",
+    "tags": ["commerce", "trust", "economy"]
+  },
+  {
+    "title": "Scroll of Enrollment",
+    "filename": "scrolls/scroll-of-enrollment.html",
+    "category": "Scrolls",
+    "tags": ["enrollment", "academy", "citizenship"]
+  },
+  {
+    "title": "Sovereign ID Card",
+    "filename": "sovereign-id.html",
+    "category": "Core",
+    "tags": ["identity", "sovereign", "credentials"]
+  }
+]
