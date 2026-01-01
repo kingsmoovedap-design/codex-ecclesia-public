@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📅 Dynasty Calendar — Codex Ecclesia</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="sacred-nav">
+    <a href="index.html">Home</a>
+    <a href="all-scrolls.html">All Scrolls</a>
+    <a href="ceremonial-calendar.html">Ceremonies</a>
+    <a href="omega-portal.html" class="nav-highlight">✦ Omega Portal</a>
+    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="dynasty-nav-link">👑 Dynasty Dashboard</a>
+  </nav>
+
+  <header class="sacred-header">
+    <div class="sacred-symbol">📅</div>
+    <h1>Dynasty Calendar</h1>
+    <p class="tagline">Schedule of Dynasty Events & Governance Meetings</p>
+  </header>
+
+  <main class="calendar-container">
+    <section class="calendar-section">
+      <h2>📆 Upcoming Events</h2>
+      <div class="event-timeline">
+        <div class="timeline-event">
+          <div class="event-date-badge">
+            <span class="month">JAN</span>
+            <span class="day">1</span>
+          </div>
+          <div class="event-details">
+            <h3>New Year's Sovereign Declaration</h3>
+            <p>Annual renewal of sovereign intent and dynasty purposes</p>
+            <span class="event-type">Annual Event</span>
+          </div>
+        </div>
+        <div class="timeline-event">
+          <div class="event-date-badge">
+            <span class="month">JAN</span>
+            <span class="day">15</span>
+          </div>
+          <div class="event-details">
+            <h3>Quarterly Throne Council</h3>
+            <p>Q1 meeting of the Council of Twelve Thrones</p>
+            <span class="event-type">Governance</span>
+          </div>
+        </div>
+        <div class="timeline-event">
+          <div class="event-date-badge">
+            <span class="month">MAR</span>
+            <span class="day">21</span>
+          </div>
+          <div class="event-details">
+            <h3>Vernal Equinox Ceremony</h3>
+            <p>Spring balance celebration and new beginnings</p>
+            <span class="event-type">Ceremony</span>
+          </div>
+        </div>
+        <div class="timeline-event">
+          <div class="event-date-badge">
+            <span class="month">APR</span>
+            <span class="day">15</span>
+          </div>
+          <div class="event-details">
+            <h3>Quarterly Throne Council</h3>
+            <p>Q2 meeting of the Council of Twelve Thrones</p>
+            <span class="event-type">Governance</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="calendar-section">
+      <h2>📋 Regular Schedule</h2>
+      <div class="schedule-grid">
+        <div class="schedule-item">
+          <h4>Weekly</h4>
+          <p>Oracle Readings - Every Sunday</p>
+        </div>
+        <div class="schedule-item">
+          <h4>Monthly</h4>
+          <p>1st - Filing Window Opens</p>
+          <p>15th - Mid-Month Review</p>
+          <p>Last Day - Filing Window Closes</p>
+        </div>
+        <div class="schedule-item">
+          <h4>Quarterly</h4>
+          <p>Throne Council Assembly</p>
+          <p>Financial Review</p>
+          <p>Ministry Reports</p>
+        </div>
+        <div class="schedule-item">
+          <h4>Annual</h4>
+          <p>Solstice & Equinox Ceremonies</p>
+          <p>Foundation Day (Dec 25)</p>
+          <p>Annual General Assembly</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="calendar-actions">
+      <h2>🔗 Related Pages</h2>
+      <div class="portal-actions">
+        <a href="ceremonial-calendar.html" class="action-btn">🕯️ Ceremonial Calendar</a>
+        <a href="council-chamber.html" class="action-btn">👑 Council Chamber</a>
+        <a href="broadcast-archive.html" class="action-btn">📼 Broadcast Archive</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sacred-footer">
+    <p>📅 Dynasty Calendar — Borders Ecclesia Earth Trust</p>
+    <p>508(c)(1)(A) Ecclesiastical Organization</p>
+  </footer>
+
+  <script type="module">
+    import { createDynastyHub } from './lib/dynasty-hub.js';
+    createDynastyHub({ position: 'bottom-right', collapsed: true });
+  </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💎 Treasury Console — Codex Ecclesia</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="sacred-nav">
+    <a href="index.html">Home</a>
+    <a href="all-scrolls.html">All Scrolls</a>
+    <a href="codex-constitution.html">Constitution</a>
+    <a href="omega-portal.html" class="nav-highlight">✦ Omega Portal</a>
+    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="dynasty-nav-link">👑 Dynasty Dashboard</a>
+  </nav>
+
+  <header class="sacred-header">
+    <div class="sacred-symbol">💎</div>
+    <h1>Treasury Console</h1>
+    <p class="tagline">Sovereign Treasury Management System</p>
+  </header>
+
+  <main class="treasury-container">
+    <section class="treasury-stats">
+      <h2>📊 Treasury Overview</h2>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-icon">💰</div>
+          <div class="stat-value" id="totalAssets">Loading...</div>
+          <div class="stat-label">Total Assets</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🪙</div>
+          <div class="stat-value" id="bscSupply">Loading...</div>
+          <div class="stat-label">BSC Total Supply</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📈</div>
+          <div class="stat-value" id="transactions">Loading...</div>
+          <div class="stat-label">Total Transactions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-value" id="holders">Loading...</div>
+          <div class="stat-label">Token Holders</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="treasury-actions">
+      <h2>🔧 Treasury Operations</h2>
+      <div class="action-grid">
+        <a href="borders-sovereign-coin.html" class="treasury-action-card">
+          <div class="action-icon">🪙</div>
+          <h3>BSC Token Management</h3>
+          <p>View balances, transfer tokens, connect wallet</p>
+        </a>
+        <a href="minting-altar.html" class="treasury-action-card">
+          <div class="action-icon">⚒️</div>
+          <h3>Minting Altar</h3>
+          <p>Mint new tokens (Treasury Admin only)</p>
+        </a>
+        <a href="sovereign-treasury-charter.html" class="treasury-action-card">
+          <div class="action-icon">📜</div>
+          <h3>Treasury Charter</h3>
+          <p>View treasury governance documents</p>
+        </a>
+        <a href="codexchain-console.html" class="treasury-action-card">
+          <div class="action-icon">⛓️</div>
+          <h3>CodexChain Console</h3>
+          <p>Blockchain verification and timestamps</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="treasury-compliance">
+      <h2>✅ Compliance Status</h2>
+      <div class="compliance-grid">
+        <div class="compliance-item active">
+          <span class="compliance-icon">✓</span>
+          <span>QFS-Compliant</span>
+        </div>
+        <div class="compliance-item active">
+          <span class="compliance-icon">✓</span>
+          <span>ISO-20022 Ready</span>
+        </div>
+        <div class="compliance-item active">
+          <span class="compliance-icon">✓</span>
+          <span>Gold-Backed Reserve</span>
+        </div>
+        <div class="compliance-item active">
+          <span class="compliance-icon">✓</span>
+          <span>508(c)(1)(A) Status</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="treasury-links">
+      <h2>🔗 Quick Links</h2>
+      <div class="portal-actions">
+        <a href="hedge-fund-charter.html" class="action-btn">📊 Hedge Fund Charter</a>
+        <a href="ministry-commerce.html" class="action-btn">💰 Ministry of Commerce</a>
+        <a href="income-portal.html" class="action-btn">💵 Income Portal</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sacred-footer">
+    <p>💎 Treasury Console — Borders Ecclesia Earth Trust</p>
+    <p>508(c)(1)(A) Ecclesiastical Organization</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('totalAssets').textContent = '$1,000,000+';
+      document.getElementById('bscSupply').textContent = '1,000,000,000 BSC';
+      document.getElementById('transactions').textContent = '0';
+      document.getElementById('holders').textContent = '1';
+    });
+  </script>
+  <script type="module">
+    import { createDynastyHub } from './lib/dynasty-hub.js';
+    createDynastyHub({ position: 'bottom-right', collapsed: true });
+  </script>
+</body>
+</html>

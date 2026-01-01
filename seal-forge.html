@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔖 Seal Forge — Codex Ecclesia</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="sacred-nav">
+    <a href="index.html">Home</a>
+    <a href="all-scrolls.html">All Scrolls</a>
+    <a href="codex-constitution.html">Constitution</a>
+    <a href="omega-portal.html" class="nav-highlight">✦ Omega Portal</a>
+    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="dynasty-nav-link">👑 Dynasty Dashboard</a>
+  </nav>
+
+  <header class="sacred-header">
+    <div class="sacred-symbol">🔖</div>
+    <h1>Seal Forge</h1>
+    <p class="tagline">Official Seal Generation & Authentication</p>
+  </header>
+
+  <main class="forge-container">
+    <section class="forge-intro">
+      <h2>About the Seal Forge</h2>
+      <p>The Seal Forge creates and manages official seals for the Borders Ecclesia Earth Trust. Each seal is unique, cryptographically verifiable, and permanently recorded on CodexChain.</p>
+    </section>
+
+    <section class="seal-types">
+      <h2>🔖 Seal Types</h2>
+      <div class="seal-grid">
+        <div class="seal-card">
+          <div class="seal-icon">👑</div>
+          <h3>Crown Seal</h3>
+          <p>Highest authority seal used by King Omega</p>
+          <span class="seal-level">Supreme</span>
+        </div>
+        <div class="seal-card">
+          <div class="seal-icon">🏛️</div>
+          <h3>Trust Seal</h3>
+          <p>Official Ecclesia Earth Trust seal</p>
+          <span class="seal-level">Trust</span>
+        </div>
+        <div class="seal-card">
+          <div class="seal-icon">📜</div>
+          <h3>Scroll Seal</h3>
+          <p>Authentication seal for official scrolls</p>
+          <span class="seal-level">Document</span>
+        </div>
+        <div class="seal-card">
+          <div class="seal-icon">🏢</div>
+          <h3>Ministry Seal</h3>
+          <p>Department-specific ministry seals</p>
+          <span class="seal-level">Ministry</span>
+        </div>
+        <div class="seal-card">
+          <div class="seal-icon">🪪</div>
+          <h3>Member Seal</h3>
+          <p>Individual member authentication seal</p>
+          <span class="seal-level">Personal</span>
+        </div>
+        <div class="seal-card">
+          <div class="seal-icon">🔏</div>
+          <h3>Notary Seal</h3>
+          <p>Ecclesiastical notary authentication</p>
+          <span class="seal-level">Notary</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="forge-tools">
+      <h2>🛠️ Forge Tools</h2>
+      <div class="portal-actions">
+        <a href="hash-forge.html" class="action-btn">⚡ Hash Forge</a>
+        <a href="qr-generator.html" class="action-btn">📱 QR Generator</a>
+        <a href="codexchain-timestamp.html" class="action-btn">⛓️ Blockchain Timestamp</a>
+        <a href="notary-gate.html" class="action-btn">🔏 Notary Gate</a>
+      </div>
+    </section>
+
+    <section class="forge-verify">
+      <h2>✅ Verify a Seal</h2>
+      <p>Enter a seal code to verify its authenticity:</p>
+      <div class="verify-form">
+        <input type="text" id="sealCode" placeholder="Enter seal code..." class="seal-input">
+        <button onclick="verifySeal()" class="verify-btn">Verify Seal</button>
+      </div>
+      <div id="verifyResult" class="verify-result"></div>
+    </section>
+  </main>
+
+  <footer class="sacred-footer">
+    <p>🔖 Seal Forge — Borders Ecclesia Earth Trust</p>
+    <p>508(c)(1)(A) Ecclesiastical Organization</p>
+  </footer>
+
+  <script>
+    function verifySeal() {
+      const code = document.getElementById('sealCode').value;
+      const result = document.getElementById('verifyResult');
+      if (!code) {
+        result.innerHTML = '<span style="color: #c00;">Please enter a seal code</span>';
+        return;
+      }
+      result.innerHTML = '<span style="color: #666;">Verifying seal... Please use the Omega Portal for full verification.</span>';
+    }
+  </script>
+  <script type="module">
+    import { createDynastyHub } from './lib/dynasty-hub.js';
+    createDynastyHub({ position: 'bottom-right', collapsed: true });
+  </script>
+</body>
+</html>
