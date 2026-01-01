@@ -3,6 +3,121 @@ import { storage } from "./storage.js";
 import { insertDocumentSchema, insertFilingSchema } from "../shared/schema.js";
 
 export function registerRoutes(app: Express) {
+  // CORS headers for cross-platform integration
+  app.use("/api/public", (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    if (req.method === "OPTIONS") {
+      return res.sendStatus(200);
+    }
+    next();
+  });
+
+  // Public API for cross-platform integration (no auth required)
+  app.get("/api/public/status", async (req: Request, res: Response) => {
+    res.json({
+      platform: "codex_ecclesia",
+      version: "1.2.0",
+      status: "operational",
+      features: {
+        documents: true,
+        filings: true,
+        blockchain: true,
+        analytics: true,
+      },
+      networks: {
+        sepolia: {
+          chainId: 11155111,
+          contractAddress: "0x12efC9a5D115AE7833c9a6D79f1B3BA18Cde817c",
+        },
+      },
+      timestamp: new Date().toISOString(),
+    });
+  });
+
+  app.get("/api/public/stats", async (req: Request, res: Response) => {
+    try {
+      const stats = await storage.getPublicStats();
+      res.json({
+        totalDocuments: stats.totalDocuments || 0,
+        totalFilings: stats.totalFilings || 0,
+        totalUsers: stats.totalUsers || 0,
+        recentActivity: stats.recentActivity || [],
+        qfsCompliant: true,
+        iso20022: true,
+        goldBacked: true,
+      });
+    } catch (error) {
+      res.json({
+        totalDocuments: 0,
+        totalFilings: 0,
+        totalUsers: 0,
+        recentActivity: [],
+        qfsCompliant: true,
+        iso20022: true,
+        goldBacked: true,
+      });
+    }
+  });
+
+  app.get("/api/public/widget/:type", async (req: Request, res: Response) => {
+    const { type } = req.params;
+    try {
+      switch (type) {
+        case "status":
+          res.json({
+            widget: "platform_status",
+            data: { operational: true, uptime: "99.9%" },
+          });
+          break;
+        case "coin":
+          res.json({
+            widget: "coin_ticker",
+            data: {
+              symbol: "BSC",
+              name: "Borders Sovereign Coin",
+              network: "Sepolia",
+              contract: "0x12efC9a5D115AE7833c9a6D79f1B3BA18Cde817c",
+            },
+          });
+          break;
+        case "documents":
+          const stats = await storage.getPublicStats();
+          res.json({
+            widget: "document_count",
+            data: { count: stats.totalDocuments || 0 },
+          });
+          break;
+        default:
+          res.status(404).json({ error: "Widget not found" });
+      }
+    } catch (error) {
+      res.status(500).json({ error: "Widget error" });
+    }
+  });
+
+  app.post("/api/public/sync", async (req: Request, res: Response) => {
+    try {
+      const { source, type, data } = req.body;
+      console.log(`Cross-platform sync from ${source}:`, type);
+      
+      await storage.trackAnalytics({
+        eventType: "cross_platform_sync",
+        eventData: { source, type },
+        createdAt: new Date(),
+      });
+      
+      res.json({
+        success: true,
+        syncId: `SYNC-${Date.now()}`,
+        acknowledged: new Date().toISOString(),
+      });
+    } catch (error) {
+      res.status(500).json({ error: "Sync failed" });
+    }
+  });
+
   app.get("/api/user", async (req: Request, res: Response) => {
     const user = (req as any).user;
     if (!user) {

@@ -6,7 +6,7 @@ import {
   type AuditLog, type InsertAuditLog
 } from "../shared/schema.js";
 import { db } from "./db.js";
-import { eq, desc, and } from "drizzle-orm";
+import { eq, desc, and, count } from "drizzle-orm";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -30,6 +30,7 @@ export interface IStorage {
   
   trackAnalytics(event: any): Promise<void>;
   getAnalytics(filters?: any): Promise<any[]>;
+  getPublicStats(): Promise<{ totalDocuments: number; totalFilings: number; totalUsers: number; recentActivity: any[] }>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -115,6 +116,28 @@ export class DatabaseStorage implements IStorage {
 
   async getAnalytics(filters?: any): Promise<any[]> {
     return await db.select().from(analytics).orderBy(desc(analytics.createdAt)).limit(1000);
+  }
+
+  async getPublicStats(): Promise<{ totalDocuments: number; totalFilings: number; totalUsers: number; recentActivity: any[] }> {
+    try {
+      const [docResult] = await db.select({ count: count() }).from(documents);
+      const [filingResult] = await db.select({ count: count() }).from(filings);
+      const [userResult] = await db.select({ count: count() }).from(users);
+      const recentLogs = await db.select().from(auditLogs).orderBy(desc(auditLogs.createdAt)).limit(5);
+      
+      return {
+        totalDocuments: docResult?.count || 0,
+        totalFilings: filingResult?.count || 0,
+        totalUsers: userResult?.count || 0,
+        recentActivity: recentLogs.map(log => ({
+          action: log.action,
+          entityType: log.entityType,
+          createdAt: log.createdAt,
+        })),
+      };
+    } catch (error) {
+      return { totalDocuments: 0, totalFilings: 0, totalUsers: 0, recentActivity: [] };
+    }
   }
 }
 

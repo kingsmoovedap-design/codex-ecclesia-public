@@ -1919,3 +1919,187 @@ body {
   outline: 2px solid var(--accent-gold);
   outline-offset: 2px;
 }
+
+.dynasty-widget {
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(212,175,55,0.3);
+  border-radius: 12px;
+  padding: 1rem;
+  color: #f5f5dc;
+  font-family: Georgia, serif;
+}
+
+.dynasty-widget .widget-header {
+  color: #d4af37;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(212,175,55,0.2);
+}
+
+.dynasty-widget .widget-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(74, 222, 128, 0.2);
+  border-radius: 20px;
+  color: #4ade80;
+  font-size: 0.85rem;
+}
+
+.dynasty-widget .widget-status.offline {
+  background: rgba(248, 113, 113, 0.2);
+  color: #f87171;
+}
+
+.dynasty-widget .widget-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin: 0.75rem 0;
+}
+
+.dynasty-widget .stat-item {
+  text-align: center;
+}
+
+.dynasty-widget .stat-value {
+  display: block;
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #d4af37;
+}
+
+.dynasty-widget .stat-label {
+  font-size: 0.75rem;
+  color: #aaa;
+}
+
+.dynasty-widget .widget-compliance {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.dynasty-widget .compliance-badge {
+  padding: 0.25rem 0.5rem;
+  background: rgba(212,175,55,0.2);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  color: #d4af37;
+}
+
+.dynasty-widget .coin-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.dynasty-widget .coin-icon {
+  font-size: 1.5rem;
+}
+
+.dynasty-widget .coin-name {
+  font-weight: bold;
+}
+
+.dynasty-widget .coin-network {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 0.75rem;
+}
+
+.dynasty-widget .widget-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #d4af37, #8b5a2b);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.dynasty-widget .widget-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212,175,55,0.4);
+}
+
+.dynasty-widget .quick-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dynasty-widget .quick-link {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255,255,255,0.05);
+  color: #f5f5dc;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.dynasty-widget .quick-link:hover {
+  background: rgba(212,175,55,0.2);
+  color: #d4af37;
+}
+
+.cross-platform-section {
+  background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(139,90,43,0.1));
+  border: 1px solid rgba(212,175,55,0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.cross-platform-section h3 {
+  color: #d4af37;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.platform-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.platform-card {
+  background: rgba(26,26,46,0.8);
+  border: 1px solid rgba(212,175,55,0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  text-decoration: none;
+  color: #f5f5dc;
+  transition: all 0.2s;
+}
+
+.platform-card:hover {
+  border-color: #d4af37;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(212,175,55,0.2);
+}
+
+.platform-card-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.platform-card-name {
+  font-weight: bold;
+  color: #d4af37;
+  margin-bottom: 0.25rem;
+}
+
+.platform-card-desc {
+  font-size: 0.8rem;
+  color: #aaa;
+}

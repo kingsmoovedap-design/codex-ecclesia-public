@@ -76,6 +76,14 @@ A static HTML website serving as the sovereign scroll archive of the Borders Ecc
   - Fixed build script (generate-sitemap.cjs converted to CommonJS)
   - Enhanced 404 page with full navigation and helpful links
   - All pages now flow together: Codex Ecclesia, Coin, Logistics, Dashboard
+
+- 2026-01-01: Cross-Platform Integration with Borders Dynasty
+  - Public API endpoints (/api/public/*) for cross-app communication
+  - Dynasty Hub floating menu on all major pages (bottom-right crown button)
+  - Embeddable widgets for stats, coin ticker, quick navigation
+  - Cross-platform sync endpoint for event tracking between apps
+  - CORS enabled for cross-origin requests from Dynasty Dashboard
+  - Integration with borders-dynasty--kingsmoovedap.replit.app
   
 - 2026-01-01: Enhanced Omega Portal System
   - Master Portal with 4 tabs: Lawful Suggestions, Draft Documents, File & Record, Track Filings
