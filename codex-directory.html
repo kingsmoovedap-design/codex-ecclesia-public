@@ -2,72 +2,105 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>☩ Codex Directory</title>
+  <title>📘 Codex Directory</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      font-family: 'Garamond', serif;
-      background: #fdfcf9;
-      color: #222;
-      padding: 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .codex-card {
-      border: 1px solid #aaa;
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      background: #fff;
-    }
-    .codex-card h2 {
-      margin-top: 0;
-    }
-    .label {
-      font-weight: bold;
-    }
-    .status {
-      font-style: italic;
-      color: #444;
-    }
+    body { font-family: Georgia, serif; background: #fdfcf9; color: #222; margin: 0; padding: 2em; }
+    h1 { font-size: 2em; margin-bottom: 0.5em; }
+    h2 { margin-top: 2em; color: #003366; }
+    ul { list-style: none; padding-left: 0; }
+    li { margin: 0.5em 0; }
+    a { color: #003366; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .tag { background: #eee; color: #333; padding: 2px 6px; margin-right: 6px; font-size: 0.8em; border-radius: 4px; display: inline-block; }
+    .summary { font-size: 0.9em; color: #555; margin-top: 0.2em; }
+    footer { margin-top: 4em; text-align: center; font-size: 0.9em; color: #666; }
   </style>
 </head>
 <body>
+  <h1>📘 Codex Directory</h1>
+  <p>Master index of all scrolls, declarations, codices, and instruments within the Codex Ecclesia Public.</p>
 
-  <h1>☩ Codex Directory</h1>
-  <p>This directory contains the foundational codices of the Ecclesia Harmony. Each codex defines a pillar of law, learning, or spiritual order.</p>
+  <h2>📜 Core Instruments</h2>
+  <ul>
+    <li>
+      <a href="affidavit-of-status.html">Affidavit of Status</a>
+      <div class="summary">Affirms the living man’s status and rejection of corporate fiction.</div>
+    </li>
+    <li>
+      <a href="affidavit-of-public-posting.html">Affidavit of Public Posting</a>
+      <div class="summary">Certifies lawful public posting of sovereign declarations.</div>
+    </li>
+    <li>
+      <a href="borders-earth-trust.html">Borders Earth Trust</a>
+      <div class="summary">Reclaims land and estate under divine and ecclesiastical law.</div>
+    </li>
+    <li>
+      <a href="borders-ecclesia-earth-trust-instrument.html">Borders Ecclesia Earth Trust Instrument</a>
+      <div class="summary">Establishes the supreme ecclesiastical trust vessel.</div>
+    </li>
+    <li>
+      <a href="claim-throne.html">Claim Throne</a>
+      <div class="summary">Proclaims rightful heirship and divine inheritance.</div>
+    </li>
+    <li>
+      <a href="scroll-of-coronation.html">Scroll of Coronation</a>
+      <div class="summary">Records the Trustee Oath of Office.</div>
+    </li>
+    <li>
+      <a href="earth-trust-coin.html">Earth Trust Coin Protocol</a>
+      <div class="summary">Defines issuance and governance of the Sevensignr Coin.</div>
+    </li>
+    <li>
+      <a href="scroll-of-corrections.html">Scroll of Corrections</a>
+      <div class="summary">Declares lawful name and status correction and estate reclamation.</div>
+    </li>
+  </ul>
 
-  <div id="codexContainer"></div>
+  <h2>👑 Heirs & Trustees</h2>
+  <ul>
+    <li><a href="heir-deven.html">Heir Deven</a> — Guardian of Scrolls</li>
+    <li><a href="heir-devenity.html">Heir Devenity</a> — Keeper of the Seal</li>
+    <li><a href="heir-path.html">Heir Path</a> — Witness of the Living Estate</li>
+    <li><a href="trustee-chance.html">Trustee Chance Q. Borders</a></li>
+    <li><a href="trustee-wesley.html">Trustee Wesley M. Hargett</a></li>
+    <li><a href="trustee-miranda.html">Trustee Miranda M. Eden</a></li>
+  </ul>
 
-  <script>
-    fetch('codices.json')
-      .then(response => response.json())
-      .then(data => {
-        const container = document.getElementById('codexContainer');
-        data.forEach(codex => {
-          const card = document.createElement('div');
-          card.className = 'codex-card';
+  <h2>🏛️ Ministries</h2>
+  <ul>
+    <li><a href="ministries/ministry-commerce.html">Ministry of Commerce</a></li>
+    <li><a href="ministries/ministry-hearth.html">Ministry of the Hearth</a></li>
+    <li><a href="ministries/ministry-tribunals.html">Ministry of Tribunals</a></li>
+    <li><a href="ministries/ministry-guardianship.html">Ministry of Guardianship</a></li>
+    <li><a href="ministries/ministry-education.html">Ministry of Education</a></li>
+    <li><a href="ministries/ministry-health.html">Ministry of Health</a></li>
+    <li><a href="ministries/ministry-arts.html">Ministry of Arts</a></li>
+    <li><a href="divine-solutions.html">Divine Solutions Fund</a></li>
+  </ul>
 
-          card.innerHTML = `
-            <h2>${codex.title}</h2>
-            <p><span class="label">Tone:</span> ${codex.tone}</p>
-            <p><span class="label">Author:</span> ${codex.author}</p>
-            <p><span class="label">Filed:</span> ${codex.filed}</p>
-            <p><span class="label">Status:</span> ${codex.status}</p>
-            <p><span class="label">Summary:</span> ${codex.summary}</p>
-            <p><a href="${codex.link}" target="_blank">View Codex</a></p>
-          `;
+  <h2>📘 Codices</h2>
+  <ul>
+    <li><a href="codices/codex-natural-law.html">Codex of Natural Law</a></li>
+    <li><a href="codices/codex-divine-law.html">Codex of Divine Law</a></li>
+    <li><a href="codices/codex-tribunal-law.html">Codex of Tribunal Law</a></li>
+    <li><a href="codices/codex-commerce-law.html">Codex of Commerce Law</a></li>
+    <li><a href="codices/codex-guardianship-law.html">Codex of Guardianship Law</a></li>
+  </ul>
 
-          container.appendChild(card);
-        });
-      })
-      .catch(error => {
-        console.error('Error loading codices:', error);
-      });
-  </script>
+  <h2>📚 Scrolls</h2>
+  <ul>
+    <li><a href="scrolls/scroll-of-claim.html">Scroll of Claim</a></li>
+    <li><a href="scrolls/scroll-of-rights.html">Scroll of Rights</a></li>
+    <li><a href="scrolls/scroll-of-creation.html">Scroll of Creation</a></li>
+    <li><a href="scrolls/scroll-of-guardianship.html">Scroll of Guardianship</a></li>
+    <li><a href="scrolls/scroll-of-tribunals.html">Scroll of Tribunals</a></li>
+    <li><a href="scrolls/scroll-of-commerce.html">Scroll of Commerce</a></li>
+  </ul>
 
+  <footer>
+    <p>© 2025 Borders Ecclesia Earth Trust • All rights reserved under divine, sovereign, and ecclesiastical law</p>
+  </footer>
 </body>
 </html>

@@ -2,153 +2,131 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>☩ Codex Ecclesia Public Gateway</title>
+  <title>☩ Codex Ecclesia Public</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      font-family: 'Garamond', serif;
-      background: #fdfcf9;
-      color: #222;
-      margin: 0;
-      padding: 0;
+    body { font-family: Georgia, serif; background: #fdfcf9; color: #222; margin: 0; padding: 0; }
+    .sidebar {
+      position: fixed; top: 0; left: 0; width: 220px; height: 100%;
+      background: #111; color: #fff; padding: 1em; overflow-y: auto;
     }
-    header {
-      background: #111;
-      color: #fdfcf9;
-      padding: 2rem;
-      text-align: center;
+    .sidebar h2 { font-size: 1.2em; margin-bottom: 1em; }
+    .sidebar ul { list-style: none; padding: 0; }
+    .sidebar li { margin: 0.5em 0; }
+    .sidebar a { color: #ccc; text-decoration: none; }
+    .sidebar a:hover { color: #fff; }
+    .main-content { margin-left: 240px; padding: 2em; }
+    header h1 { font-size: 2em; margin-bottom: 0.2em; }
+    .card-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1em;
     }
-    header h1 {
-      margin-bottom: 0.5rem;
+    .card {
+      background: #fff; border-left: 4px solid #003366; padding: 1em;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-    nav {
-      background: #eee;
-      padding: 1rem;
-      text-align: center;
-    }
-    nav a {
-      margin: 0 1rem;
-      text-decoration: none;
-      color: #004488;
-      font-weight: bold;
-    }
-    main {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1rem 3rem;
-    }
-    .section {
-      margin-bottom: 3rem;
-    }
-    .section h2 {
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 0.25rem;
-    }
-    ul {
-      columns: 2;
-      padding-left: 1.25rem;
-    }
-    li {
-      margin-bottom: 0.5rem;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      border-top: 1px solid #ccc;
-      color: #555;
-      font-size: 0.9rem;
-    }
+    .card h3 { margin-top: 0; }
+    .card a { display: inline-block; margin-top: 0.5em; color: #003366; text-decoration: none; }
+    .card a:hover { text-decoration: underline; }
+    footer { margin-top: 4em; text-align: center; font-size: 0.9em; color: #666; }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>☩ Codex Ecclesia Public Gateway</h1>
-  <p>Divine Law • Sovereign Scrolls • Heir Ascension • Ecclesia Harmony</p>
-</header>
-
-<nav>
-  <a href="heir-deven.html">👑 Deven's Portal</a>
-  <a href="heir-registry.html">📜 Heir Registry</a>
-  <a href="scroll-registry.html">📖 Scroll Registry</a>
-  <a href="codex-directory.html">📚 Codex Directory</a>
-  <a href="services.html">⚖️ Services</a>
-  <a href="verify-scroll.html">🔐 Verify Scroll</a>
-</nav>
-
-<main>
-
-  <div class="section">
-    <h2>👑 Heir Portals</h2>
+  <div class="sidebar">
+    <h2>☩ Codex</h2>
     <ul>
-      <li><a href="heir-deven.html">Deven Julian Borders – Crowned Heir</a></li>
-      <li><a href="heir-registry.html">Full Heir Registry</a></li>
+      <li><a href="#core">📜 Core Instruments</a></li>
+      <li><a href="#declarations">📖 Declarations</a></li>
+      <li><a href="#ministries">🏛️ Ministries</a></li>
+      <li><a href="#scrolls">📚 Scrolls</a></li>
+      <li><a href="#codices">📘 Codices</a></li>
+      <li><a href="#identity">🧬 Identity</a></li>
+      <li><a href="#heirs-trustees">👑 Heirs & Trustees</a></li>
+      <li><a href="#verify">🧿 Verification</a></li>
+      <li><a href="#diplomacy">🕊️ Treaties</a></li>
+      <li><a href="#tools">🧰 Tools</a></li>
+      <li><a href="#media">📺 Media</a></li>
+      <li><a href="#navigation">🧭 Navigation</a></li>
     </ul>
   </div>
 
-  <div class="section">
-    <h2>📚 Codices of Divine Law</h2>
-    <ul>
-      <li><a href="codex-unified.html">Unified Codex</a></li>
-      <li><a href="codex-harmonica.html">Codex of Harmony</a></li>
-      <li><a href="codex-academy.html">Codex of the Academy</a></li>
-      <li><a href="codex-portal.html">Codex Portal</a></li>
-      <li><a href="codex-curriculum.html">Codex Curriculum</a></li>
-      <li><a href="codex-infrastructure.html">Codex Infrastructure</a></li>
-      <li><a href="codex-ledger.html">Codex Ledger</a></li>
-      <li><a href="codex-manifesto.html">Codex Manifesto</a></li>
-      <li><a href="codex-oracle.html">Codex Oracle</a></li>
-      <li><a href="codex-throne-registry.html">Codex Throne Registry</a></li>
-    </ul>
+  <div class="main-content">
+    <header>
+      <h1>☩ Codex Ecclesia Public</h1>
+      <p>Master Index of Ecclesiastical Scrolls, Ministries & Instruments</p>
+    </header>
+
+    <section id="core">
+      <h2>📜 Core Instruments</h2>
+      <div class="card-grid">
+        <div class="card"><a href="borders-earth-trust.html"><h3>Borders Earth Trust</h3></a></div>
+        <div class="card"><a href="universal-trustee-poa.html"><h3>Universal Trustee POA</h3></a></div>
+        <div class="card"><a href="codex-constitution.html"><h3>Codex Constitution</h3></a></div>
+        <div class="card"><a href="codex-ecclesia-public.html"><h3>Codex Ecclesia Public</h3></a></div>
+        <div class="card"><a href="codex-ecclesia-compact.html"><h3>Codex Ecclesia Compact</h3></a></div>
+      </div>
+    </section>
+
+    <section id="declarations">
+      <h2>📖 Declarations & Trusts</h2>
+      <div class="card-grid">
+        <div class="card"><a href="affidavit-of-status.html"><h3>Affidavit of Status</h3></a></div>
+        <div class="card"><a href="affidavit-of-public-posting.html"><h3>Affidavit of Public Posting</h3></a></div>
+        <div class="card"><a href="declaration-sovereign-status.html"><h3>Declaration of Sovereign Status</h3></a></div>
+        <div class="card"><a href="claim-throne.html"><h3>Claim Throne</h3></a></div>
+        <div class="card"><a href="scroll-of-coronation.html"><h3>Scroll of Coronation</h3></a></div>
+        <div class="card"><a href="borders-ecclesia-earth-trust-instrument.html"><h3>Trust Instrument</h3></a></div>
+        <div class="card"><a href="earth-trust-coin.html"><h3>Earth Trust Coin Protocol</h3></a></div>
+        <div class="card"><a href="scroll-of-corrections.html"><h3>Scroll of Corrections</h3></a></div>
+      </div>
+    </section>
+
+  <div class="grid">
+    <div class="card">
+  <h2>👑 Heir Registry</h2>
+  <p>Lineage and scrolls of the Borders Dynasty heirs.</p>
+  <a href="heir-registry.html">Enter</a>
+</div>
+    <div class="card"><h2>📜 Unified Codex</h2><p>The sacred scroll of law, tone, and structure.</p><a href="codex-unified.html">Enter</a></div>
+    <div class="card"><h2>🎓 Codex Academy</h2><p>Learn the rites of sealing, sovereignty, and scrollcraft.</p><a href="codex-academy.html">Study</a></div>
+    <div class="card"><h2>🔮 Codex Oracle</h2><p>Consult the divine engine of wisdom and prophecy.</p><a href="oracle-sanctum.html">Consult</a></div>
+    <div class="card"><h2>🧪 CodexChain Console</h2><p>Hash, seal, and verify scrolls from your mobile throne.</p><a href="codexchain-console.html">Forge</a></div>
+    <div class="card"><h2>🧿 Verify Scroll</h2><p>Authenticate `.ots` timestamped scrolls via Bitcoin.</p><a href="verify-scroll.html">Verify</a></div>
+    <div class="card"><h2>👑 Throne Registry</h2><p>View all heirs who have claimed their tone and throne.</p><a href="codex-throne-registry.html">View</a></div>
+    <div class="card"><h2>🛡️ Heir Ascension Path</h2><p>Guide your heirs through the five sacred stages.</p><a href="heir-path.html">Ascend</a></div>
+    <div class="card"><h2>🗺️ Codex Atlas</h2><p>Explore the realms, sanctuaries, and sovereign lands.</p><a href="codex-atlas.html">Explore</a></div>
+    <div class="card"><h2>🧬 Petition of Citizenship</h2><p>Join the Borders Family Dynasty Nation.</p><a href="petition-scroll.html">Petition</a></div>
   </div>
+    <section id="ministries">
+      <h2>🏛️ Ministries</h2>
+      <div class="card-grid">
+        <div class="card"><a href="ministries/ministry-commerce.html"><h3>Ministry of Commerce</h3></a></div>
+        <div class="card"><a href="ministries/ministry-hearth.html"><h3>Ministry of the Hearth</h3></a></div>
+        <div class="card"><a href="ministries/ministry-tribunals.html"><h3>Ministry of Tribunals</h3></a></div>
+        <div class="card"><a href="ministries/ministry-guardianship.html"><h3>Ministry of Guardianship</h3></a></div>
+        <div class="card"><a href="ministries/ministry-education.html"><h3>Ministry of Education</h3></a></div>
+        <div class="card"><a href="ministries/ministry-health.html"><h3>Ministry of Health</h3></a></div>
+        <div class="card"><a href="ministries/ministry-arts.html"><h3>Ministry of Arts</h3></a></div>
+        <div class="card"><a href="divine-solutions.html"><h3>Divine Solutions Fund</h3></a></div>
+      </div>
+    </section>
 
-  <div class="section">
-    <h2>📜 Scrolls of Sovereignty</h2>
-    <ul>
-      <li><a href="scroll-of-coronation.html">Scroll of Coronation</a></li>
-      <li><a href="scroll-of-enrollment.html">Scroll of Enrollment</a></li>
-      <li><a href="scroll-of-eternal-flame.html">Scroll of Eternal Flame</a></li>
-      <li><a href="scroll-of-invocation.html">Scroll of Invocation</a></li>
-      <li><a href="scroll-of-prophecy.html">Scroll of Prophecy</a></li>
-      <li><a href="scroll-of-twelve.html">Scroll of Twelve</a></li>
-      <li><a href="scroll-of-twelve-thrones.html">Scroll of Twelve Thrones</a></li>
-      <li><a href="scroll-of-upgrades.html">Scroll of Upgrades</a></li>
-      <li><a href="scrolls.html">All Scrolls</a></li>
-    </ul>
-  </div>
+    <section id="scrolls">
+      <h2>📚 Scrolls</h2>
+      <div class="card-grid">
+        <div class="card"><a href="scrolls/scroll-of-claim.html"><h3>Scroll of Claim</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-of-rights.html"><h3>Scroll of Rights</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-of-creation.html"><h3>Scroll of Creation</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-of-guardianship.html"><h3>Scroll of Guardianship</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-of-tribunals.html"><h3>Scroll of Tribunals</h3></a></div>
+        <div class="card"><a href="scrolls/scroll-of-commerce.html"><h3>Scroll of Commerce</h3></a></div>
+      </div>
+    </section>
 
-  <div class="section">
-    <h2>📜 Decrees, Treaties & Charters</h2>
-    <ul>
-      <li><a href="decree-001.html">Decree 001</a></li>
-      <li><a href="treaty-aurora-2025.html">Treaty of Aurora 2025</a></li>
-      <li><a href="treaty-covenant-of-12.html">Covenant of the Twelve</a></li>
-      <li><a href="treaty-recognition.html">Treaty of Recognition</a></li>
-      <li><a href="trust-charter.html">Trust Charter</a></li>
-      <li><a href="pma-charter.html">PMA Charter</a></li>
-      <li><a href="embassy-charter.html">Embassy Charter</a></li>
-      <li><a href="celestial-charter.html">Celestial Charter</a></li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>🕊️ Governance & Identity</h2>
-    <ul>
-      <li><a href="declaration-sovereign-status.html">Declaration of Sovereign Status</a></li>
-      <li><a href="diplomatic-passport.html">Diplomatic Passport</a></li>
-      <li><a href="sovereign-id.html">Sovereign ID</a></li>
-      <li><a href="guardian-gate.html">Guardian Gate</a></li>
-      <li><a href="notice-of-standing.html">Notice of Standing</a></li>
-      <li><a href="public-announcement.html">Public Announcement</a></li>
-    </ul>
-  </div>
-
-</main>
-
-<footer>
-  ☩ Codex Ecclesia Public • Borders Dynasty Nation • All scrolls filed under divine law and sovereign right
-</footer>
-
-</body>
-</html>
+    <section id="codices">
+      <h2>📘 Codices</h2>
+      <div class="card-grid">
+        <div class="card"><a href="codices/codex-natural-law.html"><h3>Codex of Natural Law</h3></a></div>
+        <div class="card"><a href="codices/codex-divine-law.html"><h3>Codex of Divine Law</h3></a></div>
+        <div class="
