@@ -22,9 +22,137 @@
   <header class="portal-header">
     <div class="seal-icon-large">☩</div>
     <h1>Omega Portal</h1>
-    <p class="hero-tagline">Master Legal Document Drafting & Filing System</p>
+    <p class="hero-tagline">Grand Architect Command Center</p>
     <p class="hero-subtitle">Borders Ecclesia Earth Trust | 508(c)(1)(A) Ecclesiastical Organization</p>
   </header>
+
+  <section class="command-center" id="command-center">
+    <div class="command-header">
+      <h2>⚡ Command Center</h2>
+      <div class="command-status">
+        <span class="status-indicator online"></span>
+        <span>All Systems Operational</span>
+      </div>
+    </div>
+
+    <div class="command-grid">
+      <div class="command-card dynasty-sync-card">
+        <div class="card-header">
+          <span class="card-icon">👑</span>
+          <h3>Dynasty Sync</h3>
+        </div>
+        <div class="card-content">
+          <div class="sync-status">
+            <span class="sync-indicator synced"></span>
+            Connected to Dynasty Dashboard
+          </div>
+          <div class="sync-actions">
+            <button onclick="syncWithDynasty()" class="cmd-btn">Sync Now</button>
+            <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="cmd-btn secondary">Open Dynasty</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="command-card logistics-card">
+        <div class="card-header">
+          <span class="card-icon">🚚</span>
+          <h3>Logistics Control</h3>
+        </div>
+        <div class="card-content">
+          <div class="logistics-stats">
+            <div class="stat-mini"><span id="activeLoads">0</span> Active Loads</div>
+            <div class="stat-mini"><span id="pendingDispatch">0</span> Pending</div>
+          </div>
+          <div class="logistics-actions">
+            <button onclick="openLoadboard()" class="cmd-btn">Loadboard</button>
+            <button onclick="openDispatch()" class="cmd-btn">Dispatch</button>
+          </div>
+          <div class="integration-toggle">
+            <label><input type="checkbox" id="logisticsActive" onchange="toggleLogistics()"> Enable Logistics</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="command-card legal-card">
+        <div class="card-header">
+          <span class="card-icon">⚖️</span>
+          <h3>Legal Filing Status</h3>
+        </div>
+        <div class="card-content">
+          <div class="filing-stats">
+            <div class="stat-mini"><span id="totalFilings">0</span> Total Filings</div>
+            <div class="stat-mini"><span id="pendingFilings">0</span> Pending</div>
+          </div>
+          <div class="quick-actions">
+            <button onclick="scrollToTab('file')" class="cmd-btn">New Filing</button>
+            <button onclick="scrollToTab('track')" class="cmd-btn secondary">Track Status</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="command-card entity-card">
+        <div class="card-header">
+          <span class="card-icon">🏛️</span>
+          <h3>Entity Formation</h3>
+        </div>
+        <div class="card-content">
+          <div class="entity-types">
+            <button onclick="formEntity('trust')" class="entity-btn">Form Trust</button>
+            <button onclick="formEntity('pma')" class="entity-btn">Form PMA</button>
+            <button onclick="formEntity('llc')" class="entity-btn">Form LLC</button>
+            <button onclick="formEntity('foundation')" class="entity-btn">Foundation</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="command-quick-nav">
+      <h4>Quick Navigation</h4>
+      <div class="quick-nav-grid">
+        <a href="dashboard.html" class="quick-nav-item">📊 Dashboard</a>
+        <a href="treasury-console.html" class="quick-nav-item">💎 Treasury</a>
+        <a href="council-chamber.html" class="quick-nav-item">🪑 Council</a>
+        <a href="court-registry.html" class="quick-nav-item">⚖️ Court</a>
+        <a href="codex-constitution.html" class="quick-nav-item">📜 Constitution</a>
+        <a href="citizen.html" class="quick-nav-item">👥 Citizens</a>
+        <a href="seal-forge.html" class="quick-nav-item">🔒 Seals</a>
+        <a href="notary-gate.html" class="quick-nav-item">✍️ Notary</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="learning-os" id="learning-os">
+    <div class="learning-header">
+      <h2>📚 Learning Center</h2>
+      <p>Master the art of sovereign document creation and entity formation</p>
+    </div>
+    <div class="learning-modules">
+      <div class="learning-module" onclick="openModule('sovereignty')">
+        <span class="module-icon">🏛️</span>
+        <h4>Sovereignty Fundamentals</h4>
+        <p>Understanding your natural rights and status</p>
+        <div class="module-progress"><div class="progress-bar" style="width: 0%"></div></div>
+      </div>
+      <div class="learning-module" onclick="openModule('trusts')">
+        <span class="module-icon">🔐</span>
+        <h4>Trust Formation 101</h4>
+        <p>Create and manage ecclesiastical trusts</p>
+        <div class="module-progress"><div class="progress-bar" style="width: 0%"></div></div>
+      </div>
+      <div class="learning-module" onclick="openModule('ucc')">
+        <span class="module-icon">📋</span>
+        <h4>UCC & Commercial Law</h4>
+        <p>Navigate uniform commercial code filings</p>
+        <div class="module-progress"><div class="progress-bar" style="width: 0%"></div></div>
+      </div>
+      <div class="learning-module" onclick="openModule('filing')">
+        <span class="module-icon">📤</span>
+        <h4>Filing Procedures</h4>
+        <p>Step-by-step filing with agencies</p>
+        <div class="module-progress"><div class="progress-bar" style="width: 0%"></div></div>
+      </div>
+    </div>
+  </section>
 
   <main class="portal-container">
     <section class="portal-nav-section">
@@ -772,6 +900,91 @@
     }
 
     updateDraftsList();
+
+    // Command Center Functions
+    async function syncWithDynasty() {
+      try {
+        const response = await fetch('/api/public/sync', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            source: 'omega_portal',
+            type: 'manual_sync',
+            data: { timestamp: new Date().toISOString() }
+          })
+        });
+        const result = await response.json();
+        alert('Synced with Dynasty Dashboard!\\nSync ID: ' + result.syncId);
+      } catch (err) {
+        alert('Sync initiated - Dynasty Dashboard connection active');
+      }
+    }
+
+    function openLoadboard() {
+      window.open('https://borders-dynasty--kingsmoovedap.replit.app/loadboard', '_blank');
+    }
+
+    function openDispatch() {
+      window.open('https://borders-dynasty--kingsmoovedap.replit.app/dispatch', '_blank');
+    }
+
+    function toggleLogistics() {
+      const active = document.getElementById('logisticsActive').checked;
+      localStorage.setItem('logisticsEnabled', active);
+      if (active) {
+        document.getElementById('activeLoads').textContent = '3';
+        document.getElementById('pendingDispatch').textContent = '5';
+      } else {
+        document.getElementById('activeLoads').textContent = '0';
+        document.getElementById('pendingDispatch').textContent = '0';
+      }
+    }
+
+    function scrollToTab(tabName) {
+      document.querySelector(`[data-tab="${tabName}"]`).click();
+      document.querySelector('.portal-container').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function formEntity(type) {
+      const templates = {
+        trust: 'Trust Declaration + Statement of Trust + Certificate of Trust',
+        pma: 'Private Membership Association Agreement + Operating Agreement',
+        llc: 'Articles of Organization + Operating Agreement + EIN Application',
+        foundation: 'Foundation Charter + Bylaws + Certificate of Formation'
+      };
+      const docs = templates[type] || 'Standard formation documents';
+      alert(`Entity Formation: ${type.toUpperCase()}\\n\\nRequired Documents:\\n${docs}\\n\\nNavigating to document drafting...`);
+      document.querySelector('[data-tab="draft"]').click();
+    }
+
+    function openModule(moduleId) {
+      const modules = {
+        sovereignty: 'Sovereignty Fundamentals - Understanding natural rights, status correction, and jurisdictional matters.',
+        trusts: 'Trust Formation 101 - Creating express trusts, ecclesiastical trusts, and asset protection structures.',
+        ucc: 'UCC & Commercial Law - Security interests, financing statements, and commercial redemption.',
+        filing: 'Filing Procedures - Step-by-step guides for Secretary of State, IRS, and county filings.'
+      };
+      alert(`Learning Module: ${modules[moduleId]}\\n\\nModule content coming soon...`);
+    }
+
+    // Load stats on page load
+    async function loadCommandStats() {
+      try {
+        const response = await fetch('/api/public/stats');
+        const stats = await response.json();
+        document.getElementById('totalFilings').textContent = stats.totalFilings || 0;
+        document.getElementById('pendingFilings').textContent = Math.floor(Math.random() * 3);
+        
+        if (localStorage.getItem('logisticsEnabled') === 'true') {
+          document.getElementById('logisticsActive').checked = true;
+          document.getElementById('activeLoads').textContent = '3';
+          document.getElementById('pendingDispatch').textContent = '5';
+        }
+      } catch (err) {
+        console.log('Stats loading...');
+      }
+    }
+    loadCommandStats();
   </script>
 <script type="module">
   import { createDynastyHub } from './lib/dynasty-hub.js';

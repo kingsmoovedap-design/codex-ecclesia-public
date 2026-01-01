@@ -103,6 +103,48 @@ export const documentVersions = pgTable("document_versions", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const legalEntities = pgTable("legal_entities", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id),
+  entityType: text("entity_type").notNull(),
+  entityName: text("entity_name").notNull(),
+  ein: text("ein"),
+  stateOfFormation: text("state_of_formation"),
+  formationDate: timestamp("formation_date"),
+  status: text("status").default("pending").notNull(),
+  documents: jsonb("documents"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const logisticsOrders = pgTable("logistics_orders", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id),
+  orderNumber: text("order_number").notNull().unique(),
+  orderType: text("order_type").notNull(),
+  origin: text("origin"),
+  destination: text("destination"),
+  status: text("status").default("pending").notNull(),
+  carrier: text("carrier"),
+  trackingNumber: text("tracking_number"),
+  metadata: jsonb("metadata"),
+  scheduledDate: timestamp("scheduled_date"),
+  completedDate: timestamp("completed_date"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const learningProgress = pgTable("learning_progress", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id),
+  moduleId: text("module_id").notNull(),
+  progress: integer("progress").default(0).notNull(),
+  completed: boolean("completed").default(false),
+  lastAccessedAt: timestamp("last_accessed_at").defaultNow(),
+  completedAt: timestamp("completed_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const usersRelations = relations(users, ({ many }) => ({
   documents: many(documents),
   filings: many(filings),

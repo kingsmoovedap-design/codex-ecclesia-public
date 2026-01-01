@@ -2736,3 +2736,340 @@ body {
     flex-direction: column;
   }
 }
+
+/* ============================================
+   OMEGA PORTAL COMMAND CENTER
+   ============================================ */
+
+.command-center {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 30px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 16px;
+  border: 2px solid #c9a227;
+}
+
+.command-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(201, 162, 39, 0.3);
+}
+
+.command-header h2 {
+  color: #c9a227;
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.command-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #10b981;
+  font-size: 0.9rem;
+}
+
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #10b981;
+  animation: pulse 2s infinite;
+}
+
+.status-indicator.online { background: #10b981; }
+.status-indicator.offline { background: #ef4444; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.command-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.command-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(201, 162, 39, 0.2);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.command-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(201, 162, 39, 0.5);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.card-icon {
+  font-size: 1.5rem;
+}
+
+.card-header h3 {
+  color: #fff;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.card-content {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.sync-status, .logistics-stats, .filing-stats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+}
+
+.sync-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+.sync-indicator.synced { background: #10b981; }
+.sync-indicator.pending { background: #f59e0b; }
+
+.stat-mini {
+  background: rgba(201, 162, 39, 0.1);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.stat-mini span {
+  font-weight: bold;
+  color: #c9a227;
+}
+
+.sync-actions, .logistics-actions, .quick-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cmd-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  background: linear-gradient(135deg, #c9a227, #8b6914);
+  color: #1a1a2e;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.cmd-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 2px 8px rgba(201, 162, 39, 0.3);
+}
+
+.cmd-btn.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+}
+
+.cmd-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.integration-toggle {
+  margin-top: 12px;
+  font-size: 0.85rem;
+}
+
+.integration-toggle label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.integration-toggle input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #c9a227;
+}
+
+.entity-types {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.entity-btn {
+  padding: 10px;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  background: rgba(201, 162, 39, 0.1);
+  color: #c9a227;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+
+.entity-btn:hover {
+  background: rgba(201, 162, 39, 0.2);
+  border-color: #c9a227;
+}
+
+.command-quick-nav {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.command-quick-nav h4 {
+  color: #c9a227;
+  margin: 0 0 16px;
+  font-size: 1rem;
+}
+
+.quick-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.quick-nav-item {
+  padding: 12px;
+  background: rgba(201, 162, 39, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.quick-nav-item:hover {
+  background: rgba(201, 162, 39, 0.2);
+  border-color: rgba(201, 162, 39, 0.3);
+}
+
+/* Learning OS Section */
+.learning-os {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 30px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(201, 162, 39, 0.2);
+}
+
+.learning-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.learning-header h2 {
+  color: #c9a227;
+  font-size: 1.6rem;
+  margin: 0 0 8px;
+}
+
+.learning-header p {
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.learning-modules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.learning-module {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.learning-module:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(201, 162, 39, 0.3);
+  transform: translateY(-2px);
+}
+
+.module-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.learning-module h4 {
+  color: #fff;
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.learning-module p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  margin: 0 0 12px;
+}
+
+.module-progress {
+  background: rgba(255, 255, 255, 0.1);
+  height: 4px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #c9a227, #f5d742);
+  transition: width 0.3s;
+}
+
+/* Mobile responsiveness for command center */
+@media (max-width: 768px) {
+  .command-center, .learning-os {
+    margin: 0 16px 24px;
+    padding: 20px;
+  }
+  
+  .command-header {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  
+  .command-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .entity-types {
+    grid-template-columns: 1fr;
+  }
+  
+  .quick-nav-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
