@@ -1,3 +1,6 @@
+"engines": {
+  "node": "20.x"
+}
 {
   "name": "codex-ecclesia-public",
   "version": "1.2.0",
