@@ -32,21 +32,13 @@ jobs:
         run: |
           if [ -f package-lock.json ]; then
             npm ci
-          elif [ -f package.json ]; then
-            npm install
           else
-            echo "No package.json found — skipping dependency install."
+            npm install
           fi
 
       - name: 🏗 Build Project
         run: |
-          if npm run | grep -q "build"; then
-            npm run build
-          else
-            echo "No build script found — copying static files."
-            mkdir -p dist
-            cp -R ./* dist/
-          fi
+          npm run build
 
       - name: 📄 Upload Artifact
         uses: actions/upload-pages-artifact@v3
