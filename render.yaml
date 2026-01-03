@@ -1,0 +1,12 @@
+services:
+  - type: static
+    name: codex-ecclesia-public
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    buildFilter:
+      paths:
+        - "**/*"
+    envVars:
+      - key: NODE_VERSION
+        value: 20
