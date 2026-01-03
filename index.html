@@ -36,3 +36,382 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>✩ Codex Ecclesia Public</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    :root {
+      --bg: #fdfcf9;
+      --text: #222222;
+      --muted: #6b7280;
+      --accent: #003366;
+      --accent-soft: #e5edf7;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --shadow: rgba(0,0,0,0.04);
+    }
+
+    body.dark {
+      --bg: #020617;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #60a5fa;
+      --accent-soft: #0f172a;
+      --card: #020617;
+      --border: #1e293b;
+      --shadow: rgba(0,0,0,0.6);
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .shell {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      margin: 0 0 4px;
+      font-size: 2rem;
+      color: var(--accent);
+    }
+
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 520px;
+    }
+
+    .pill-row {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .theme-toggle {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 1px 2px var(--shadow);
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 800px) {
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      padding: 16px 18px;
+      box-shadow: 0 1px 3px var(--shadow);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+      color: var(--accent);
+    }
+
+    .card p {
+      margin-top: 0;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .card small {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 8px 10px;
+      background: var(--accent-soft);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid transparent;
+    }
+    .nav-link:hover {
+      border-color: var(--accent);
+      text-decoration: none;
+    }
+
+    .notice-block {
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+
+    .notice-heading {
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .notice-emphasis {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .meta-row {
+      margin-top: 6px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .list-compact {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    .list-compact li {
+      margin: 3px 0;
+      font-size: 0.85rem;
+    }
+
+    #scroll-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 6px 0 0;
+      max-height: 320px;
+      overflow-y: auto;
+      font-size: 0.86rem;
+    }
+
+    #scroll-list li {
+      margin: 3px 0;
+    }
+
+    footer {
+      margin-top: 22px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div>
+        <h1>✩ Codex Ecclesia Public</h1>
+        <p>
+          The sovereign scroll archive of the Borders Ecclesia Earth Trust and Borders Family Dynasty Nation.
+          This public mirror preserves notices, codices, scrolls, and instruments for inspection, rebuttal, and record.
+        </p>
+        <div class="pill-row">
+          <span class="pill">PUBLIC NOTICE ARCHIVE</span>
+          <span class="pill">READ‑ONLY MIRROR</span>
+          <span class="pill">21‑DAY REBUTTAL WINDOW</span>
+        </div>
+      </div>
+      <div>
+        <button id="themeToggle" class="theme-toggle">
+          <span>Toggle mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Left column: navigation + live scroll listing -->
+      <section class="card">
+        <h2>Gateways to the Codex</h2>
+        <p>
+          Use these gateways to navigate primary codices, scrolls, and tools. For a complete, alphabetical index of all instruments,
+          visit the <a href="all-scrolls.html">All Scrolls &amp; Instruments</a> register.
+        </p>
+
+        <div class="nav-grid" aria-label="Primary navigation">
+          <a class="nav-link" href="codices/codex.html">Codex Core</a>
+          <a class="nav-link" href="codices/codex-constitution.html">Codex Constitution</a>
+          <a class="nav-link" href="codices/codex-ledger.html">Codex Ledger</a>
+          <a class="nav-link" href="scrolls/scroll-registry.html">Scroll Registry</a>
+          <a class="nav-link" href="scrolls/scroll-of-sovereign-emergence.html">Sovereign Emergence</a>
+          <a class="nav-link" href="trusts/trust-charter.html">Trust Charter</a>
+          <a class="nav-link" href="ministries/ministries-directory.html">Ministries Directory</a>
+          <a class="nav-link" href="tools/tools-dashboard.html">Tools Dashboard</a>
+          <a class="nav-link" href="treaties/concord.html">Treaties &amp; Concord</a>
+          <a class="nav-link" href="identity/throne-registry.html">Throne Registry</a>
+          <a class="nav-link" href="academy/index.html">Academy</a>
+          <a class="nav-link" href="archive.html">Archive</a>
+        </div>
+
+        <hr style="margin:14px 0; border:none; border-top:1px solid var(--border);" />
+
+        <h2 style="margin-top:0.4em;">Scrolls (dynamic listing)</h2>
+        <p style="font-size:0.85rem; margin-top:4px;">
+          The list below is populated from <code>codex.json</code> and reflects the current set of public scrolls and instruments.
+        </p>
+        <ul id="scroll-list"></ul>
+
+        <div class="meta-row">
+          For a full categorized index, see <a href="all-scrolls.html">All Scrolls &amp; Instruments</a>.
+        </div>
+      </section>
+
+      <!-- Right column: Public Notice & procedure -->
+      <aside class="card">
+        <h2>Public Notice &amp; 21‑Day Rebuttal</h2>
+        <div class="notice-block">
+          <div class="notice-heading">FOUNDATION OF RECORD</div>
+          <p>
+            The Codex Ecclesia Public was first published and noticed to the public on
+            <span class="notice-emphasis">the 16th day of its original issuance</span>.
+            From that publication forward, all instruments, scrolls, codices, and notices hosted herein are
+            held out as <span class="notice-emphasis">open public notice</span> to any and all concerned parties.
+          </p>
+
+          <div class="notice-heading">21‑DAY REBUTTAL POLICY</div>
+          <p>
+            Unless otherwise specified on an individual instrument, each new or amended public notice, scroll, or codex entry
+            published within this archive carries a <span class="notice-emphasis">21‑day rebuttal window</span>
+            from the date of its first public posting. Any rebuttal, objection, or counter‑affidavit must be
+            made in writing, timely served, and supported by verifiable fact and law according to the procedures
+            stated in the relevant scroll or instrument.
+          </p>
+
+          <p style="font-size:0.8rem; color:var(--muted);">
+            This 21‑day rebuttal framework is declared as the Ecclesia’s administrative and commercial policy for notices and
+            is not, by itself, legal advice or a substitute for any statutory or judicial requirement that may apply in a given venue.
+          </p>
+
+          <div class="notice-heading">LAWFUL NOTICE PROCEDURE</div>
+          <ul class="list-compact">
+            <li>• Publication here constitutes the Ecclesia’s act of public noticing.</li>
+            <li>• The timestamp of first posting (or latest revision) controls the rebuttal window for that instrument.</li>
+            <li>• Parties seeking to rebut or contest a notice are expected to respond within 21 days of publication.</li>
+            <li>• Silence, failure to answer, or defective response may be treated, by Ecclesia policy, as non‑response or default, subject to applicable law and venue.</li>
+            <li>• Specific scrolls (e.g., Affidavits, Declarations, Covenants, Treaties) may state additional or superseding procedures.</li>
+          </ul>
+
+          <small>
+            Each visitor is responsible for consulting competent counsel in their own jurisdiction.
+            This archive is a ceremonial and administrative record of the Borders Ecclesia Earth Trust and
+            Borders Family Dynasty Nation, not a court or legal service.
+          </small>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      ✩ Codex Ecclesia Totalis • Borders Ecclesia Earth Trust • Borders Family Dynasty Nation •
+      Public mirror only • All instruments remain subject to their own terms.
+    </footer>
+  </div>
+
+  <script>
+    // Theme toggle with persistence
+    (function () {
+      const body = document.body;
+      const saved = localStorage.getItem("codex-theme");
+      if (saved === "dark") body.classList.add("dark");
+
+      const btn = document.getElementById("themeToggle");
+      if (btn) {
+        btn.addEventListener("click", () => {
+          body.classList.toggle("dark");
+          localStorage.setItem(
+            "codex-theme",
+            body.classList.contains("dark") ? "dark" : "light"
+          );
+        });
+      }
+    })();
+
+    // Dynamic scroll list from codex.json (preserves your existing behavior)
+    (function () {
+      const list = document.getElementById("scroll-list");
+      if (!list) return;
+
+      fetch("codex.json")
+        .then(res => res.json())
+        .then(data => {
+          if (!data || !Array.isArray(data.scrolls)) return;
+          data.scrolls.forEach(item => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.href = item.url;
+            a.textContent = item.title || item.url;
+            li.appendChild(a);
+            list.appendChild(li);
+          });
+        })
+        .catch(err => {
+          console.error("Failed to load codex.json:", err);
+          const li = document.createElement("li");
+          li.textContent = "Unable to load scroll listing (codex.json).";
+          list.appendChild(li);
+        });
+    })();
+  </script>
+</body>
+</html>
