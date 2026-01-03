@@ -1,4 +1,4 @@
-name: 🚀 Deploy Codex Ecclesia Public
+name: 🚀 Full Build & Deploy — Codex Ecclesia Public
 
 on:
   push:
@@ -17,19 +17,41 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
 
-      - name: 📦 Prepare Static Site
+      - name: 🟦 Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: 📦 Install Dependencies
         run: |
-          mkdir -p ./_site
-          cp -R ./* ./_site
+          if [ -f package-lock.json ]; then
+            npm ci
+          elif [ -f package.json ]; then
+            npm install
+          else
+            echo "No package.json found — skipping dependency install."
+          fi
+
+      - name: 🏗 Build Project
+        run: |
+          if npm run | grep -q "build"; then
+            npm run build
+          else
+            echo "No build script found — copying static files."
+            mkdir -p dist
+            cp -R ./* dist/
+          fi
 
       - name: 📄 Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./_site
+          path: ./dist
 
   deploy:
     needs: build
