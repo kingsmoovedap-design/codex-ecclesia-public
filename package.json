@@ -10,20 +10,28 @@
   },
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 5000",
-    "build": "vite build && npm run generate:manifest && npm run generate:sitemap",
-    "preview": "vite preview",
-    "generate": "node scripts/generate-manifest.cjs && node scripts/generate-codex-json.cjs && node scripts/generate-scroll-index.cjs",
-    "inject": "node scripts/inject-metadata.cjs",
+    "build": "vite build && node scripts/generate-all.cjs",
+    "generate": "node scripts/generate-all.cjs",
     "generate:manifest": "node scripts/generate-manifest.cjs",
     "generate:sitemap": "node scripts/generate-sitemap.cjs",
-    "publish:scroll": "node scripts/publish-scroll.cjs",
-    "lint": "htmlhint '**/*.html'"
+    "generate:codex": "node scripts/generate-codex-json.cjs",
+    "generate:scrolls": "node scripts/generate-scroll-index.cjs",
+    "inject": "node scripts/inject-metadata.cjs",
+    "search": "node scripts/generate-search-index.cjs",
+    "validate": "node scripts/validate-codex.cjs",
+    "watch": "node scripts/watch.cjs"
   },
- "dependencies": {
-  "fs-extra": "^11.2.0",
-  "glob": "^10.3.10",
-  "cheerio": "^1.0.0-rc.12",
-  "js-yaml": "^4.1.0",
-  "xml2js": "^0.6.2",
-  "sitemap": "^7.1.1"
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "glob": "^10.3.10",
+    "cheerio": "^1.0.0-rc.12",
+    "js-yaml": "^4.1.0",
+    "xml2js": "^0.6.2",
+    "sitemap": "^7.1.1"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "htmlhint": "^1.1.5",
+    "chokidar": "^3.5.3"
+  }
 }
