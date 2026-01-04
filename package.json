@@ -19,15 +19,11 @@
     "publish:scroll": "node scripts/publish-scroll.cjs",
     "lint": "htmlhint '**/*.html'"
   },
-  "dependencies": {
-    "fs-extra": "^11.2.0",
-    "glob": "^10.3.10",
-    "cheerio": "^1.0.0-rc.12",
-    "js-yaml": "^4.1.0",
-    "xml2js": "^0.6.2"
-  },
-  "devDependencies": {
-    "vite": "^5.0.0",
-    "htmlhint": "^1.1.5"
-  }
+ "dependencies": {
+  "fs-extra": "^11.2.0",
+  "glob": "^10.3.10",
+  "cheerio": "^1.0.0-rc.12",
+  "js-yaml": "^4.1.0",
+  "xml2js": "^0.6.2",
+  "sitemap": "^7.1.1"
 }
