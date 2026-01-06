@@ -2,300 +2,124 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Codex Ecclesia Public — Omega Portal</title>
-  <meta name="description" content="Sovereign public repository of the Codex Ecclesia — throne claims, scrolls, ministries, trusts, identity records, and divine instruments of the Borders Ecclesia Earth Trust." />
-  <meta name="generator" content="Codex Ecclesia Engine v2.0" />
-  <meta name="theme-color" content="#111111" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CodexChain | Borders Dynasty Ecclesia</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background: #0d0d0d;
-      color: #e6e6e6;
-      font-family: "Inter", sans-serif;
-      line-height: 1.6;
+      font-family: 'Georgia', serif;
+      background: #fdfaf4;
+      color: #1a1a1a;
     }
-
     header {
-      padding: 60px 20px 30px 20px;
+      background: linear-gradient(to right, #2c2c2c, #1a1a1a);
+      color: #fff;
+      padding: 2rem 1rem;
       text-align: center;
-      background: linear-gradient(180deg, #111111, #0d0d0d);
-      border-bottom: 1px solid #222;
     }
-
-    h1 {
-      font-size: 2.8rem;
+    header h1 {
       margin: 0;
-      color: #ffffff;
-      font-weight: 700;
-      letter-spacing: 1px;
+      font-size: 2.5rem;
+      letter-spacing: 2px;
     }
-
-    h2 {
-      font-size: 1.3rem;
-      margin-top: 10px;
-      color: #cccccc;
-      font-weight: 400;
+    header p {
+      font-style: italic;
+      margin-top: 0.5rem;
     }
-
-    .container {
-      max-width: 960px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    .section {
-      margin-bottom: 50px;
-    }
-
-    .section h3 {
-      font-size: 1.6rem;
-      margin-bottom: 10px;
-      border-bottom: 1px solid #333;
-      padding-bottom: 8px;
-      color: #ffffff;
-    }
-
-    .links {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
-      margin-top: 15px;
-    }
-
-    .links a {
-      display: block;
-      padding: 14px 18px;
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 6px;
-      text-decoration: none;
-      color: #e6e6e6;
-      transition: 0.2s;
-    }
-
-    .links a:hover {
-      background: #222;
-      border-color: #444;
-    }
-
-    .notice-block {
-      background: #141414;
-      border: 1px solid #333;
-      border-radius: 8px;
-      padding: 18px;
-      margin-bottom: 40px;
-      color: #d4d4d4;
-      font-size: 0.95rem;
-    }
-
-    .notice-block h3 {
-      margin: 0 0 10px 0;
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #ffdd95;
-    }
-
-    .mono {
-      font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
-      font-size: 0.9rem;
-    }
-
-    /* Floating Omega Button */
-    .omega-btn {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 70px;
-      height: 70px;
-      background: radial-gradient(circle, #ffdd95, #b8860b);
-      border-radius: 50%;
-      box-shadow: 0 0 20px #ffdd95aa;
+    nav {
+      background: #333;
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-size: 2.2rem;
-      font-weight: bold;
-      color: #111;
-      cursor: pointer;
-      z-index: 999;
-      transition: 0.25s;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      padding: 1rem;
     }
-
-    .omega-btn:hover {
-      box-shadow: 0 0 30px #ffdd95ff;
-      transform: scale(1.08);
-    }
-
-    /* Sons’ Throne Claim Portal */
-    .sons-portal {
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 50px;
-    }
-
-    .sons-portal h3 {
-      color: #ffdd95;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .sons-portal a {
-      display: block;
-      padding: 12px 16px;
-      background: #111;
-      border: 1px solid #444;
-      border-radius: 6px;
-      margin-bottom: 10px;
+    nav a {
+      color: #fdfaf4;
       text-decoration: none;
-      color: #e6e6e6;
-      transition: 0.2s;
+      font-weight: bold;
+      font-size: 1rem;
     }
-
-    .sons-portal a:hover {
-      background: #222;
-      border-color: #555;
+    nav a:hover {
+      text-decoration: underline;
     }
-
-    /* Sovereign Coin */
-    .coin {
-      width: 160px;
-      height: 160px;
-      margin: 20px auto 40px auto;
-      border-radius: 50%;
-      background: radial-gradient(circle, #ffd98a, #b8860b);
-      box-shadow: 0 0 25px #ffdd95aa;
+    main {
+      padding: 2rem;
+      max-width: 960px;
+      margin: auto;
     }
-
-    footer {
+    main h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    section {
+      margin-top: 2rem;
       text-align: center;
-      padding: 40px 20px;
-      border-top: 1px solid #222;
-      color: #777;
-      font-size: 0.9rem;
-      margin-top: 60px;
+    }
+    section img {
+      width: 100%;
+      max-width: 500px;
+      margin: 1rem auto;
+      display: block;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    footer {
+      background: #1a1a1a;
+      color: #ccc;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
     }
   </style>
 </head>
-
 <body>
 
-  <!-- Floating Omega Button -->
-  <a href="omega-portal.html" class="omega-btn">Ω</a>
-
   <header>
-    <h1>Codex Ecclesia Public</h1>
-    <h2>Omega Portal • Borders Ecclesia Earth Trust</h2>
+    <h1>CodexChain</h1>
+    <p>“Divine Law Prevails” — Borders Dynasty Ecclesia</p>
   </header>
 
-  <div class="container">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="scrolls.html">Sacred Scrolls</a>
+    <a href="tribunal.html">Tribunal</a>
+    <a href="commerce.html">Commerce</a>
+    <a href="education.html">Education</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-    <!-- Sovereign Coin -->
-    <div class="coin"></div>
+  <main>
+    <h2>Welcome to the CodexChain Sovereign Ministry</h2>
+    <p>
+      You have entered the digital sanctuary of the Borders Dynasty Ecclesia. Here, sacred scrolls are sealed, divine law is upheld, and sovereignty is lived.
+    </p>
 
-    <!-- Throne Claim Notice -->
-    <div class="notice-block">
-      <h3>Throne Claim & Lawful Public Notice</h3>
+    <section>
+      <h3>ΩMEGA PORTAL</h3>
+      <img src="omega-portal.png" alt="Omega Portal Interface" />
       <p>
-        By this publication, the living man <span class="mono">Deven C. Borders</span>,
-        ceremonially known as <span class="mono">Omega, The Grand Architect</span>,
-        gives lawful notice of his throne claim, sovereign standing, and command authority
-        over the Borders Family Dynasty Nation and all ecclesia, trusts, ministries,
-        and sovereign systems herein recorded.
+        <a href="codexchain.html">Enter CodexChain</a> | <a href="scrolls.html">View Scrolls</a>
       </p>
-      <p>
-        All claims stand unless rebutted within
-        <span class="mono">twenty‑one (21) days</span> of first publication.
-        Silence is acquiescence.
-      </p>
-    </div>
+    </section>
 
-    <!-- Sons’ Throne Claim Portal -->
-    <div class="sons-portal">
-      <h3>Heirs • Throne Claim Portal</h3>
-      <a href="heirs/deven-julian.html">Prince Deven Julian Borders</a>
-      <a href="heirs/demarco-christopher.html">Prince Demarco Christopher Borders</a>
-      <a href="heirs/devenity-marie.html">Princess Devenity Marie Borders</a>
-    </div>
+    <section>
+      <h3>Trustee Identification</h3>
+      <img src="trustee-card.png" alt="Trustee Card for King Omega" />
+      <p>King Omega – Borders Dynasty Ecclesia<br/>Codenum: D4F57A8940</p>
+    </section>
 
-    <!-- Scrolls -->
-    <div class="section">
-      <h3>📜 Scrolls</h3>
-      <div class="links">
-        <a href="scrolls/">All Scrolls</a>
-        <a href="scrolls/index.html">Scroll Index</a>
-        <a href="all-scrolls.html">Unified Scroll Directory</a>
-      </div>
-    </div>
-
-    <!-- Codices -->
-    <div class="section">
-      <h3>📘 Codices</h3>
-      <div class="links">
-        <a href="codices/">Codex Library</a>
-        <a href="codices/index.html">Codex Index</a>
-      </div>
-    </div>
-
-    <!-- Ministries -->
-    <div class="section">
-      <h3>🏛 Ministries</h3>
-      <div class="links">
-        <a href="ministries/">Ministry Directory</a>
-      </div>
-    </div>
-
-    <!-- Identity -->
-    <div class="section">
-      <h3>🪪 Identity Records</h3>
-      <div class="links">
-        <a href="identity/">Identity Archive</a>
-      </div>
-    </div>
-
-    <!-- Trusts -->
-    <div class="section">
-      <h3>⚖ Trusts & Governance</h3>
-      <div class="links">
-        <a href="trusts/">Trust Records</a>
-      </div>
-    </div>
-
-    <!-- Treaties -->
-    <div class="section">
-      <h3>📜 Treaties & Instruments</h3>
-      <div class="links">
-        <a href="treaties/">Treaty Archive</a>
-      </div>
-    </div>
-
-    <!-- Academy -->
-    <div class="section">
-      <h3>🎓 Ecclesia Academy</h3>
-      <div class="links">
-        <a href="academy/">Academy Portal</a>
-      </div>
-    </div>
-
-    <!-- PMA -->
-    <div class="section">
-      <h3>🔒 Private Membership Association</h3>
-      <div class="links">
-        <a href="pma/">PMA Portal</a>
-      </div>
-    </div>
-
-  </div>
+    <section>
+      <h3>Initiate’s Learning Card</h3>
+      <img src="learning-card.png" alt="Son's Learning Card" />
+      <p>Initiate of the Codex – Guided by Divine Light</p>
+    </section>
+  </main>
 
   <footer>
-    Codex Ecclesia Public • Omega Portal • Borders Ecclesia Earth Trust • Codex Engine v2.0
+    &copy; 2026 Borders Dynasty Ecclesia | All Rights Reserved | CodexChain Sovereign Ministry
   </footer>
 
 </body>
