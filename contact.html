@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Portal | Borders Ecclesia Earth Trust</title>
+  <style>
+    body { font-family: Georgia, serif; background: #fdfaf4; color: #1a1a1a; padding: 2rem; }
+    h1, h2 { text-align: center; }
+    form { max-width: 600px; margin: 2rem auto; background: #fff; padding: 1.5rem; border: 1px solid #ccc; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+    label { display: block; margin-top: 1rem; }
+    input, textarea { width: 100%; padding: 0.5rem; margin-top: 0.25rem; }
+    button { margin-top: 1.5rem; padding: 0.75rem 1.5rem; background: #222; color: #fff; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <h1>📬 Ecclesiastical Contact Portal</h1>
+  <p style="text-align:center;">File scrolls, affidavits, or tribunal claims with the CodexChain Sovereign Ministry</p>
+
+  <form action="mailto:codex@bordersdynasty.org" method="POST" enctype="text/plain">
+    <label for="name">Full Name or Ecclesiastical Title</label>
+    <input type="text" id="name" name="name" required />
+
+    <label for="email">Email Address (for response)</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="subject">Subject of Scroll or Filing</label>
+    <input type="text" id="subject" name="subject" required />
+
+    <label for="message">Message or Declaration</label>
+    <textarea id="message" name="message" rows="6" required></textarea>
+
+    <button type="submit">📜 Submit Scroll</button>
+  </form>
+
+</body>
+</html>
