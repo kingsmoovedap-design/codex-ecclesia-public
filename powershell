@@ -1,0 +1,1 @@
+Get-FileHash .\your-scroll-file.md -Algorithm SHA256
