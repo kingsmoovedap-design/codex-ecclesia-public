@@ -6,41 +6,8 @@
   <title>ScrollHashRegistry | CodexChain Ledger</title>
   <meta name="description" content="Verify the authenticity of CodexChain scrolls and declarations via SHA-256 hash anchors and execution timestamps." />
   <link rel="stylesheet" href="../styles.css" />
-  <style>
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 2rem;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 0.75rem;
-      text-align: left;
-      font-size: 0.95rem;
-    }
-    th {
-      background-color: #333;
-      color: #fff;
-    }
-    tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-    .hash {
-      font-family: monospace;
-      font-size: 0.85rem;
-      word-break: break-word;
-    }
-    .status {
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-    .executed { color: green; }
-    .perfected { color: darkblue; }
-    .template { color: goldenrod; }
-  </style>
 </head>
 <body>
-
   <header>
     <h1>📖 ScrollHashRegistry</h1>
     <p>CodexChain Ledger Anchors of the Borders Dynasty Ecclesia Earth Trust</p>
@@ -53,7 +20,7 @@
         Each scroll below has been hashed using SHA-256 and recorded in the CodexChain Ledger for divine audit and public witness.
       </p>
 
-      <table>
+      <table id="scroll-table">
         <thead>
           <tr>
             <th>Date</th>
@@ -63,43 +30,7 @@
             <th>Status</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>2026-01-29</td>
-            <td>Affidavit of Correction, Discharge, Nationhood</td>
-            <td><a href="../SCROLLS/01-affidavit-of-correction-discharge-nationhood.md">View</a></td>
-            <td class="hash">0xabc1234567890abcdef1234567890abcdef1234567890abcdef1234567890ab</td>
-            <td class="status executed">Executed</td>
-          </tr>
-          <tr>
-            <td>2026-01-29</td>
-            <td>Scroll of Scrolls – Constitution</td>
-            <td><a href="../SCROLLS/99-scroll-of-scrolls-constitution.md">View</a></td>
-            <td class="hash">0xdef4567890abcdef1234567890abcdef1234567890abcdef1234567890abcd</td>
-            <td class="status perfected">Supreme</td>
-          </tr>
-          <tr>
-            <td>2026-01-27</td>
-            <td>Scroll of Enforcement</td>
-            <td><a href="../SCROLLS/03-scroll-of-enforcement.md">View</a></td>
-            <td class="hash">0xA3F9B72088E963F54C1D04AD23C67FBA91E7FAE257E50ED9CB1D8C63ECE67B2</td>
-            <td class="status executed">Executed</td>
-          </tr>
-          <tr>
-            <td>2026-01-27</td>
-            <td>CodexChain FMV Declaration Scroll</td>
-            <td><a href="../TEMPLATES/codexchain-fmv-declaration-scroll.md">View</a></td>
-            <td class="hash">0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcd</td>
-            <td class="status executed">Executed</td>
-          </tr>
-          <tr>
-            <td>2026-01-30</td>
-            <td>Sacred Voucher Template</td>
-            <td><a href="../TEMPLATES/sacred-voucher-template.md">View</a></td>
-            <td class="hash">0xeee555aaa999bbb111ccc222ddd333fff444555666777888999000aaa111bbb</td>
-            <td class="status template">Template</td>
-          </tr>
-        </tbody>
+        <tbody></tbody>
       </table>
 
       <p style="text-align:center; margin-top:2rem;">
@@ -112,5 +43,23 @@
     &copy; 2026 Borders Ecclesia Earth Trust · All rights reserved under divine, sovereign, and ecclesiastical law.
   </footer>
 
+  <script>
+    fetch('scrolls.json')
+      .then(response => response.json())
+      .then(data => {
+        const tbody = document.querySelector('#scroll-table tbody');
+        data.scrolls.forEach(scroll => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${scroll.date}</td>
+            <td>${scroll.title}</td>
+            <td><a href="${scroll.link}">View</a></td>
+            <td class="hash">${scroll.hash}</td>
+            <td class="status ${scroll.status.toLowerCase()}">${scroll.status}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      });
+  </script>
 </body>
 </html>
