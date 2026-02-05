@@ -6,6 +6,7 @@
   <title>Codex Ecclesia | Borders Dynasty Ecclesia Earth Trust</title>
   <meta name="description" content="The official CodexChain portal of the Borders Dynasty Ecclesia Earth Trust — sacred scrolls, declarations, and divine governance." />
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -52,9 +53,48 @@
         <div class="card"><h3>Grants Issued</h3><p id="grantCount">—</p></div>
         <div class="card"><h3>Active Trusts</h3><p id="trustCount">—</p></div>
         <div class="card"><h3>Ledger Anchors</h3><p id="ledgerCount">—</p></div>
+        <script>
+  fetch('omega-portal/dashboard-data.json')
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('scrollCount').textContent = data.stats.totalScrolls;
+      document.getElementById('grantCount').textContent = data.stats.grantsIssued;
+      document.getElementById('trustCount').textContent = data.stats.activeTrusts;
+      document.getElementById('ledgerCount').textContent = data.stats.ledgerAnchors;
+      document.getElementById('lastUpdated').textContent = new Date(data.lastUpdated).toLocaleString();
+
+      new Chart(document.getElementById('metricsChart'), {
+        type: 'bar',
+        data: {
+          labels: ['Scrolls', 'Grants', 'Trusts', 'Anchors'],
+          datasets: [{
+            label: 'CodexChain Metrics',
+            data: [
+              data.stats.totalScrolls,
+              data.stats.grantsIssued,
+              data.stats.activeTrusts,
+              data.stats.ledgerAnchors
+            ],
+            backgroundColor: ['#d4af37', '#4caf50', '#2196f3', '#9c27b0']
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            title: {
+              display: true,
+              text: 'CodexChain Ecclesiastical Metrics'
+            }
+          }
+        }
+      });
+    });
+</script>
       </div>
       <p style="text-align:center; font-size: 0.9rem; margin-top: 1rem;">
         Last updated: <span id="lastUpdated">—</span>
+        <canvas id="metricsChart" width="400" height="200" style="margin-top:2rem;"></canvas>
       </p>
     </section>
   </main>
