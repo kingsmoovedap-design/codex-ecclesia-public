@@ -55,15 +55,17 @@ All scrolls and instruments are hashed and anchored in the CodexChain Ledger for
 
 - [Ledger Index](LEDGER/codexchain-ledger-index.md)  
 - [Hash Archive](LEDGER/hashes/)  
-- [Public Repository](https://github.com/kingsmoovedap-design/codex-ecclesia-public)
+- [ScrollHashRegistry](LEDGER/scrollhashregistry.html)
 
 ---
 
 ## 🧠 Meta & Legal Infrastructure
 
-- [Filing Matrix](META/filing-matrix.md) – IRS, UCC, FinCEN, Ecclesiastical filings  
-- [Jurisdiction Map](META/jurisdiction-map.md) – Divine, Commercial, International Law  
-- [Glossary of Sacred Terms](META/glossary-of-terms.md)
+| Document | Purpose |
+|----------|---------|
+| [Filing Matrix](META/filing-matrix.md) | IRS, UCC, FinCEN, Ecclesiastical filings |
+| [Jurisdiction Map](META/jurisdiction-map.md) | Divine, Commercial, and International Law |
+| [Glossary of Sacred Terms](META/glossary-of-terms.md) | Definitions for ecclesiastical and sovereign terms |
 
 ---
 
@@ -76,5 +78,5 @@ All scrolls and instruments are hashed and anchored in the CodexChain Ledger for
 ## 📬 Contact
 
 For diplomatic recognition, sacred commissions, or lawful correspondence:  
-**Email**: [Insert Contact]  
-**CodexChain Anchor**: [Insert SHA-256 or IPFS Hash]  
+**Email**: [codex@bordersdynasty.org](mailto:codex@bordersdynasty.org)  
+**CodexChain Anchor**: [Insert SHA-256 or IPFS Hash]
