@@ -2,484 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>☩ Codex Ecclesia</title>
-  <meta name="description" content="The sacred digital archive of the Ecclesia - Web3 DApp" />
-  <meta name="keywords" content="codex, ecclesia, scrolls, web3, defi, dynasty, blockchain" />
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="lib/shield.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-</head>
-<body>
-  <nav class="sacred-nav">
-    <a href="omega-portal/index.html">ΩMEGA Portal</a>
-    <a href="index.html">Home</a>
-    <a href="all-scrolls.html">All Scrolls</a>
-    <a href="codex-constitution.html">Constitution</a>
-    <a href="legal-definitions.html">Legal Definitions</a>
-    <a href="omega-portal.html" class="nav-highlight">☩ Omega Portal</a>
-    <a href="dashboard.html">📊 Dashboard</a>
-    <a href="logistics-dynasty.html">🚚 Logistics</a>
-    <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="nav-dynasty">👑 Dynasty Dashboard</a>
-  </nav>
-
-  <header class="hero-section">
-    <div class="seal-icon-large">☩</div>
-    <h1>Codex Ecclesia</h1>
-    <p class="hero-tagline">A living archive of sacred scrolls, heirs, and trustees of the Ecclesia</p>
-    <p class="hero-subtitle">Web3 DApp on Sepolia Testnet</p>
-  </header>
-
-  <div class="search-section">
-    <input type="text" id="searchBox" placeholder="Search scrolls by title, category, or content..." class="search-input" />
-  </div>
-
-  <section class="section-block coin-showcase">
-    <h2 class="section-title">Borders Sovereign Coin (BSC)</h2>
-    <p class="section-subtitle">The official cryptocurrency of the Borders Dynasty Nation</p>
-
-    <div class="coin-info-grid">
-      <div class="coin-stat">
-        <span class="stat-label">Symbol</span>
-        <span class="stat-value">BSC</span>
-      </div>
-      <div class="coin-stat">
-        <span class="stat-label">Network</span>
-        <span class="stat-value">Sepolia</span>
-      </div>
-      <div class="coin-stat">
-        <span class="stat-label">Standard</span>
-        <span class="stat-value">ERC-20</span>
-      </div>
-    </div>
-
-    <div class="contract-info">
-      <div class="contract-row">
-        <span class="contract-label">Contract Address:</span>
-        <code class="contract-hash" id="contractHash">Loading...</code>
-        <button class="copy-btn" onclick="TreasuryWidget.copyAddress('contractHash')">Copy</button>
-      </div>
-      <div class="contract-row">
-        <span class="contract-label">Treasury Wallet:</span>
-        <code class="contract-hash" id="walletAddress">Loading...</code>
-        <button class="copy-btn" onclick="TreasuryWidget.copyAddress('walletAddress')">Copy</button>
-      </div>
-    </div>
-
-    <div id="liveContractData" class="live-contract-data" style="display:none;">
-      <h4>Live Blockchain Data</h4>
-      <div class="live-stats">
-        <div class="live-stat">
-          <span class="live-label">Name:</span>
-          <span id="liveCoinName" class="live-value">--</span>
-        </div>
-        <div class="live-stat">
-          <span class="live-label">Symbol:</span>
-          <span id="liveCoinSymbol" class="live-value">--</span>
-        </div>
-        <div class="live-stat">
-          <span class="live-label">Total Supply:</span>
-          <span id="liveTotalSupply" class="live-value">--</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="wallet-widget">
-      <h4>Wallet Connection</h4>
-      <div class="network-badge">
-        <span class="network-dot"></span>
-        <span class="network-name">Sepolia Testnet</span>
-      </div>
-      <div id="walletStatus"><span class="wallet-disconnected">Not connected</span></div>
-      <div id="walletBalanceDisplay" class="balance-display" style="display:none;">
-        <div class="balance-row">
-          <span class="balance-label">ETH Balance:</span>
-          <span id="ethBalance" class="balance-eth">0 ETH</span>
-        </div>
-        <div class="balance-row">
-          <span class="balance-label">BSC Balance:</span>
-          <span id="walletBalance" class="balance-value">0 BSC</span>
-        </div>
-      </div>
-      <button id="connectWalletBtn" class="coin-btn coin-btn-wallet" onclick="TreasuryWidget.connect()">Connect Wallet</button>
-    </div>
-
-    <div id="transferSection" class="transfer-section" style="display:none;">
-      <h4>Transfer BSC Tokens</h4>
-      <div class="transfer-form">
-        <div class="form-group">
-          <label for="transferRecipient">Recipient Address</label>
-          <input type="text" id="transferRecipient" placeholder="0x..." class="transfer-input" />
-        </div>
-        <div class="form-group">
-          <label for="transferAmount">Amount (BSC)</label>
-          <input type="number" id="transferAmount" placeholder="0.00" min="0" step="0.001" class="transfer-input" />
-        </div>
-        <button id="transferBtn" class="coin-btn coin-btn-transfer" onclick="TreasuryWidget.transfer()">Send BSC</button>
-      </div>
-    </div>
-
-    <div id="defiSection" class="defi-section" style="display:none;">
-      <h4>DeFi Tools</h4>
-      <div class="defi-tabs">
-        <button class="defi-tab active" onclick="showDefiTab('approve')">Approve</button>
-        <button class="defi-tab" onclick="showDefiTab('allowance')">Check Allowance</button>
-      </div>
-      <div id="approveTab" class="defi-tab-content active">
-        <p class="defi-desc">Approve a spender to use your BSC tokens (required for DeFi protocols)</p>
-        <div class="form-group">
-          <label for="approveSpender">Spender Address</label>
-          <input type="text" id="approveSpender" placeholder="0x..." class="transfer-input" />
-        </div>
-        <div class="form-group">
-          <label for="approveAmount">Amount (leave empty for unlimited)</label>
-          <input type="text" id="approveAmount" placeholder="100 or 'max'" class="transfer-input" />
-        </div>
-        <button id="approveBtn" class="coin-btn coin-btn-defi" onclick="TreasuryWidget.approve()">Approve</button>
-      </div>
-      <div id="allowanceTab" class="defi-tab-content">
-        <p class="defi-desc">Check how much a spender is approved to use</p>
-        <div class="form-group">
-          <label for="checkAllowanceSpender">Spender Address</label>
-          <input type="text" id="checkAllowanceSpender" placeholder="0x..." class="transfer-input" oninput="TreasuryWidget.checkAllowance()" />
-        </div>
-        <div class="allowance-result">
-          <span class="allowance-label">Allowance:</span>
-          <span id="allowanceDisplay" class="allowance-value">--</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="coin-actions">
-      <button onclick="TreasuryWidget.openEtherscan()" class="coin-btn coin-btn-verify">View on Etherscan</button>
-      <a href="borders-sovereign-coin.html" class="coin-btn coin-btn-primary">BSC Details</a>
-      <a href="minting-altar.html" class="coin-btn coin-btn-secondary">Minting Altar</a>
-    </div>
-
-    <div class="coin-tech">
-      <h4>Technology Stack</h4>
-      <div class="tech-tags">
-        <span class="tech-tag">Solidity</span>
-        <span class="tech-tag">Hardhat</span>
-        <span class="tech-tag">Ethers.js</span>
-        <span class="tech-tag">MetaMask</span>
-        <span class="tech-tag">Web3</span>
-        <span class="tech-tag">DeFi</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-block dynasty-integration">
-    <h2 class="section-title">👑 Dynasty Ecosystem</h2>
-    <p class="section-subtitle">Unified sovereign infrastructure connecting all Dynasty platforms</p>
-    <div class="dynasty-grid">
-      <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="dynasty-card">
-        <span class="dynasty-icon">⚒️</span>
-        <h3>Minting Forge</h3>
-        <p>Execute mint decrees and create new BSC tokens</p>
-      </a>
-      <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="dynasty-card">
-        <span class="dynasty-icon">🛡️</span>
-        <h3>Security Guard</h3>
-        <p>Apply blacklist decrees and manage security</p>
-      </a>
-      <a href="omega-portal.html" class="dynasty-card">
-        <span class="dynasty-icon">📜</span>
-        <h3>Document Center</h3>
-        <p>Draft, file, and track all legal documents</p>
-      </a>
-      <a href="trustees-portal.html" class="dynasty-card">
-        <span class="dynasty-icon">⚖️</span>
-        <h3>Trustees Portal</h3>
-        <p>Trust administration and fiduciary learning</p>
-      </a>
-      <a href="heirs-portal.html" class="dynasty-card">
-        <span class="dynasty-icon">👑</span>
-        <h3>Heirs Portal</h3>
-        <p>Nation claiming and inheritance rights</p>
-      </a>
-      <a href="logistics-dynasty.html" class="dynasty-card">
-        <span class="dynasty-icon">🚚</span>
-        <h3>Logistics Dynasty</h3>
-        <p>Supply chain & logistics management platform</p>
-      </a>
-    </div>
-    <div class="dynasty-status">
-      <div class="status-item">
-        <span class="status-dot status-active"></span>
-        <span>QFS-Compliant Architecture</span>
-      </div>
-      <div class="status-item">
-        <span class="status-dot status-active"></span>
-        <span>ISO-20022 Ready</span>
-      </div>
-      <div class="status-item">
-        <span class="status-dot status-active"></span>
-        <span>Gold-Backed Sync</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-block">
-    <h2 class="section-title">Sovereign Archives</h2>
-    <p class="section-subtitle">Core documents of the Ecclesia</p>
-    <div class="quick-links">
-      <a href="omega-portal.html" class="quick-link">☩ Omega Portal</a>
-      <a href="codex-constitution.html" class="quick-link">📜 Constitution</a>
-      <a href="legal-definitions.html" class="quick-link">⚖️ Legal Definitions</a>
-      <a href="all-scrolls.html" class="quick-link">📚 All Scrolls</a>
-      <a href="codexchain-console.html" class="quick-link">🔗 CodexChain</a>
-      <a href="verify-scroll.html" class="quick-link">✓ Verify Scroll</a>
-    </div>
-  </section>
-
-  <section class="section-block">
-    <h2 class="section-title">All Scrolls</h2>
-    <p class="section-subtitle">Complete archive of the Ecclesia</p>
-    <div class="category-filters" id="categoryFilters"></div>
-    <div class="scrolls-grid" id="allScrollsGrid"></div>
-    <p class="loading-text" id="loadingText">Loading scrolls...</p>
-  </section>
-
-  <footer class="sacred-footer">
-    <p>☩ Codex Ecclesia — Borders Ecclesia Earth Trust</p>
-    <p>Operating under 508(c)(1)(A) ecclesiastical exemption</p>
-    <p>© 2025 All Rights Reserved under Divine Law</p>
-  </footer>
-
-  <script src="treasury-widget.js"></script>
-  <script>
-    async function loadScrolls() {
-      try {
-        const response = await fetch('codex.json');
-        const data = await response.json();
-        const grid = document.getElementById('allScrollsGrid');
-        const loadingText = document.getElementById('loadingText');
-        const searchBox = document.getElementById('searchBox');
-        const categoryFilters = document.getElementById('categoryFilters');
-
-        if (!data.scrolls || data.scrolls.length === 0) {
-          loadingText.textContent = 'No scrolls found.';
-          return;
-        }
-
-        loadingText.style.display = 'none';
-
-        const categories = [...new Set(data.scrolls.map(s => s.category || 'Uncategorized'))];
-        categoryFilters.innerHTML = '<button class="filter-btn active" data-category="all">All</button>' +
-          categories.map(cat => `<button class="filter-btn" data-category="${cat}">${cat}</button>`).join('');
-
-        function renderScrolls(scrolls) {
-          grid.innerHTML = scrolls.map(scroll => `
-            <a href="${scroll.url}" class="scroll-card">
-              <span class="scroll-icon">${scroll.icon || '📜'}</span>
-              <span class="scroll-title">${scroll.title || scroll.url}</span>
-              <span class="scroll-category">${scroll.category || 'Uncategorized'}</span>
-            </a>
-          `).join('');
-        }
-
-        renderScrolls(data.scrolls);
-
-        categoryFilters.addEventListener('click', (e) => {
-          if (e.target.classList.contains('filter-btn')) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            e.target.classList.add('active');
-            const category = e.target.dataset.category;
-            if (category === 'all') {
-              renderScrolls(data.scrolls);
-            } else {
-              renderScrolls(data.scrolls.filter(s => s.category === category));
-            }
-          }
-        });
-
-        searchBox.addEventListener('input', (e) => {
-          const query = e.target.value.toLowerCase();
-          const filtered = data.scrolls.filter(s =>
-            (s.title && s.title.toLowerCase().includes(query)) ||
-            (s.category && s.category.toLowerCase().includes(query)) ||
-            (s.url && s.url.toLowerCase().includes(query))
-          );
-          renderScrolls(filtered);
-        });
-
-      } catch (error) {
-        console.error('Failed to load scrolls:', error);
-        document.getElementById('loadingText').textContent = 'Failed to load scrolls.';
-      }
-    }
-
-    loadScrolls();
-  </script>
-<script type="module">
-  import { createDynastyHub } from './lib/dynasty-hub.js';
-  createDynastyHub({ position: 'bottom-right', collapsed: true });
-</script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CodexChain | Borders Ecclesia Earth Trust</title>
-  <meta name="description" content="The official portal of the CodexChain Sovereign Ministry — sacred scrolls, declarations, and divine governance of the Borders Dynasty Ecclesia." />
-  <link rel="icon" href="favicon.ico" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Georgia', serif;
-      background: #fdfaf4;
-      color: #1a1a1a;
-    }
-    header {
-      background: linear-gradient(to right, #2c2c2c, #1a1a1a);
-      color: #fff;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      letter-spacing: 2px;
-    }
-    header p {
-      font-style: italic;
-      margin-top: 0.5rem;
-    }
-    nav {
-      background: #333;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      padding: 1rem;
-    }
-    nav a {
-      color: #fdfaf4;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1rem;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    main {
-      padding: 2rem;
-      max-width: 960px;
-      margin: auto;
-    }
-    section {
-      margin-top: 2rem;
-    }
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1rem;
-    }
-    .card {
-      background: #fff;
-      border: 1px solid #ccc;
-      padding: 1rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-    .card h3 {
-      margin-top: 0;
-    }
-    .card a {
-      text-decoration: none;
-      color: #2c2c2c;
-      font-weight: bold;
-    }
-    footer {
-      background: #1a1a1a;
-      color: #ccc;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 3rem;
-    }
-    .centered {
-      text-align: center;
-    }
-    .centered img {
-      max-width: 400px;
-      width: 100%;
-      display: block;
-      margin: 1rem auto;
-    }
-  </style>
+  <title>Codex Ecclesia | Borders Dynasty Ecclesia Earth Trust</title>
+  <meta name="description" content="The official CodexChain portal of the Borders Dynasty Ecclesia Earth Trust — sacred scrolls, declarations, and divine governance." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
   <header>
-    <h1>CodexChain Sovereign Ministry</h1>
+    <h1>Codex Ecclesia</h1>
     <p>“By Divine Right, We Rise. By Sacred Blood, We Reclaim.”</p>
   </header>
 
   <nav>
-    <a href="#omega">ΩMEGA Portal</a>
-    <a href="#ministries">Ministries</a>
+    <a href="omega-portal/index.html">ΩMEGA Portal</a>
     <a href="#scrolls">Scrolls</a>
-    <a href="#codices">Codices</a>
-    <a href="#heirs">Heirs</a>
-    <a href="#identity">Identity</a>
-    <a href="#treaties">Treaties</a>
-    <a href="#tools">Tools</a>
     <a href="#ledger">Ledger</a>
-    <a href="#media">Media</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="scrollhashregistry.html">Hash Registry</a>
+    <a href="grant-issuance.html">Grant Issuance</a>
   </nav>
 
   <main>
-    <section id="omega">
-      <h2>ΩMEGA PORTAL</h2>
-      <div class="centered">
-        <img src="omega-portal.png" alt="Omega Portal Interface" />
-        <p><a href="codexchain.html">Enter CodexChain</a> | <a href="#scrolls">View Scrolls</a></p>
-      </div>
-    </section>
-
-    <section class="centered">
-      <h2>Trustee Identification</h2>
-      <img src="trustee-card.png" alt="Trustee Card for King Omega" />
-      <p>King Omega – Borders Dynasty Ecclesia<br/>Codenum: D4F57A8940</p>
-    </section>
-
-    <section class="centered">
-      <h2>Initiate’s Learning Card</h2>
-      <img src="learning-card.png" alt="Initiate Learning Card" />
-      <p>Initiate of the Codex – Guided by Divine Light</p>
-    </section>
-
     <section id="scrolls">
-      <h2>📜 Sacred Scrolls & Declarations</h2>
-      <div class="card-grid">
-        <div class="card"><a href="scrolls/Divine-Financial-Covenant.md"><h3>Divine Financial Covenant</h3></a><p>Stewardship of sacred wealth under divine law</p></div>
-        <div class="card"><a href="scrolls/Jubilee-Decree.md"><h3>Jubilee Decree</h3></a><p>Release, restoration, and divine economic reset</p></div>
-        <div class="card"><a href="scrolls/Divine-Grant-Template.md"><h3>Divine Grant Template</h3></a><p>Issuance of sacred provision and inheritance</p></div>
-        <div class="card"><a href="scrolls/Constructive-Trust-Declaration.md"><h3>Constructive Trust Declaration</h3></a><p>Assertion of equitable ownership and remedy</p></div>
-        <div class="card"><a href="scrolls/Notice-of-Private-Lien.md"><h3>Notice of Private Lien</h3></a><p>Securing claims against fiduciary breach</p></div>
-        <div class="card"><a href="scrolls/UCC1-Financing-Statement.md"><h3>UCC1 + Addendum</h3></a><p>Perfecting interest in NAME estate and trust assets</p></div>
-        <div class="card"><a href="scrolls/Affidavit-of-Status.md"><h3>Affidavit of Status</h3></a><p>Rebutting presumption and asserting living standing</p></div>
-        <div class="card"><a href="scrolls/Petition-to-Compel-Accounting.md"><h3>Petition to Compel Accounting</h3></a><p>Demanding fiduciary transparency and remedy</p></div>
-      </div>
+      <h2>📜 Sacred Scrolls</h2>
+      <ul>
+        <li><a href="scrolls/book-of-light.html">The Book of Light</a></li>
+        <li><a href="scrolls/sovereign-flame.html">Rites of the Sovereign Flame</a></li>
+        <li><a href="scroll-cxvii-return-of-dead-fiction.html">Scroll CXVII: Return of the Dead Fiction</a></li>
+        <li><a href="scroll-cxxiv-entity-formation.html">Scroll CXXIV: Entity Formation Decree</a></li>
+        <li><a href="scroll-cxxvi-total-embedding.html">Scroll CXXVI: Total Embedding of Lawful Instruments</a></li>
+        <li><a href="codex-curriculum.html">Codex Curriculum</a></li>
+      </ul>
     </section>
 
     <section id="ledger">
-      <h2>📖 CodexChain Ledger</h2>
+      <h2>🔗 CodexChain Ledger</h2>
+      <ul>
+        <li><a href="LEDGER/codexchain-ledger-index.md">Ledger Index</a></li>
+        <li><a href="LEDGER/hashes/">Hash Archive</a></li>
+        <li><a href="scrollhashregistry.html">ScrollHashRegistry</a></li>
+      </ul>
+    </section>
+
+    <section id="dashboard">
+      <h2>📈 Ecclesiastical Metrics</h2>
       <div class="card-grid">
-        <div class="card"><a href="ledger/codexchain-ledger-index.md"><h3>Ledger Index</h3></a><p>All scrolls & declarations with hash anchors</p></div>
-        <div class="card"><a href="ledger/hashes/"><h3>Hash Archive</h3></a><p>SHA-256 proofs of execution</p></div>
-        <div class="card"><a href="ledger/scrollhashregistry.html"><h3>ScrollHashRegistry</h3></a><p>Immutable record of sacred instruments</p></div>
+        <div class="card"><h3>Total Scrolls</h3><p id="scrollCount">—</p></div>
+        <div class="card"><h3>Grants Issued</h3><p id="grantCount">—</p></div>
+        <div class="card"><h3>Active Trusts</h3><p id="trustCount">—</p></div>
+        <div class="card"><h3>Ledger Anchors</h3><p id="ledgerCount">—</p></div>
       </div>
+      <p style="text-align:center; font-size: 0.9rem; margin-top: 1rem;">
+        Last updated: <span id="lastUpdated">—</span>
+      </p>
     </section>
   </main>
 
   <footer>
     &copy; 2026 Borders Ecclesia Earth Trust · All rights reserved under divine, sovereign, and ecclesiastical law.
   </footer>
+
+  <script>
+    fetch('omega-portal/dashboard-data.json')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('scrollCount').textContent = data.stats.totalScrolls;
+        document.getElementById('grantCount').textContent = data.stats.grantsIssued;
+        document.getElementById('trustCount').textContent = data.stats.activeTrusts;
+        document.getElementById('ledgerCount').textContent = data.stats.ledgerAnchors;
+        document.getElementById('lastUpdated').textContent = new Date(data.lastUpdated).toLocaleString();
+      })
+      .catch(err => console.error('Failed to load dashboard metrics:', err));
+  </script>
 
 </body>
 </html>
