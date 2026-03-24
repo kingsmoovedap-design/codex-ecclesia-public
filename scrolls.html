@@ -2,122 +2,169 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>☩ The Borders Family Legacy Scroll</title>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet"/>
-  <style>
-    body {
-      background: #0e0e0e;
-      color: #f0e6d2;
-      font-family: 'EB Garamond', serif;
-      padding: 2rem;
-      line-height: 1.6;
-      transition: background 0.3s, color 0.3s;
-    }
-    h1 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      color: #d4af37;
-      border-bottom: 2px solid #d4af37;
-      padding-bottom: 0.5rem;
-    }
-    .scroll {
-      max-width: 800px;
-      margin: auto;
-      border: 2px solid #d4af37;
-      padding: 2rem;
-      background: #1a1a1a;
-      border-radius: 8px;
-    }
-    .scroll p {
-      margin-bottom: 1.5rem;
-    }
-    .oracle {
-      margin-top: 3rem;
-      text-align: center;
-      font-style: italic;
-      color: #aaa;
-    }
-    a {
-      color: #d4af37;
-      text-decoration: none;
-      border-bottom: 1px dashed #d4af37;
-    }
-    a:hover {
-      color: #fff;
-      border-bottom: 1px solid #fff;
-    }
-    .toggle {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      background: #444;
-      color: #f0e6d2;
-      border: none;
-      padding: 0.5em 1em;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .dark-mode {
-      background-color: #fdfaf6;
-      color: #2c1a0f;
-    }
-    .dark-mode .scroll {
-      background: #fffdf7;
-      color: #2c1a0f;
-      border-color: #5e3b1d;
-    }
-    .dark-mode h1 {
-      color: #5e3b1d;
-      border-color: #5e3b1d;
-    }
-    .dark-mode .oracle {
-      color: #555;
-    }
-    .dark-mode a {
-      color: #5e3b1d;
-      border-bottom: 1px dashed #5e3b1d;
-    }
-    .dark-mode a:hover {
-      color: #003366;
-      border-bottom: 1px solid #003366;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📚 Sacred Scrolls – Borders Ecclesia</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <nav class="sacred-nav">
+    <a href="index.html">Home</a>
+    <a href="scrolls.html" class="nav-highlight">📚 All Scrolls</a>
+    <a href="codex-constitution.html">Constitution</a>
+    <a href="legal-definitions.html">Legal Definitions</a>
+    <a href="omega/login.html">☩ Omega Portal</a>
+    <a href="borders-sovereign-coin.html">🪙 BSC</a>
+    <a href="logistics-dynasty.html">🚚 Logistics</a>
+    <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="nav-dynasty">👑 Dynasty</a>
+  </nav>
 
-  <button class="toggle" onclick="toggleMode()">🌓 Toggle Mode</button>
+  <header class="page-header">
+    <h1>📚 Sacred Scrolls Archive</h1>
+    <p>The complete collection of ecclesiastical records and documents</p>
+  </header>
 
-  <h1>☩ The Borders Family Legacy Scroll ☩</h1>
+  <main class="content-main">
+    <div class="search-section" style="margin: 2rem 0;">
+      <input type="text" id="searchBox" placeholder="Search scrolls by title, category, or content..." class="search-input" />
+    </div>
 
-  <div class="scroll">
-    <p><strong>The Borders Family Legacy Message.</strong> These words are not about perfection. They are about becoming. They are about learning to breathe again, choosing peace over chaos, clarity over confusion, and growth over fear...</p>
+    <div id="scrollsGrid" class="scrolls-grid"></div>
 
-    <p>This message is for myself, for my children, and for anyone who walks beside me...</p>
+    <div id="noResults" class="no-results" style="display:none; text-align: center; padding: 3rem; color: #94a3b8;">
+      <p>No scrolls found matching your search.</p>
+    </div>
+  </main>
 
-    <p><em>Devenity my soul. Demarco my heart. Deven my brain.</em> You three are the best of my everything. Not because you’re perfect, but because you’re mine, and because you’re growing into yourselves every day...</p>
-
-    <p><strong>These words are yours now. Carry them gently. Live them boldly.</strong></p>
-  </div>
-
-  <div class="oracle">
-    🔮 This scroll is sealed in the Codex for all time.
-    <br><br>
-    <a href="index.html">← Return to the Minting Altar</a>
-  </div>
+  <style>
+    .page-header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin: 0.5rem 0;
+    }
+    .page-header p {
+      color: #bbb;
+      font-size: 1.1rem;
+    }
+    .content-main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+    .scrolls-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .scroll-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+    }
+    .scroll-card:hover {
+      border-color: #d4a017;
+      box-shadow: 0 8px 24px rgba(212,160,23,0.2);
+      transform: translateY(-4px);
+    }
+    .scroll-card h3 {
+      color: #d4a017;
+      margin: 0 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .scroll-category {
+      color: #60a5fa;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 0 0 0.75rem 0;
+    }
+    .scroll-card p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin: 0.5rem 0;
+    }
+    .scroll-link {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #334155;
+      color: #e2e8f0;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .scroll-link:hover {
+      background: #d4a017;
+      color: #0f172a;
+    }
+    .no-results {
+      background: #1e293b;
+      padding: 3rem;
+      border-radius: 10px;
+    }
+  </style>
 
   <script>
-    function toggleMode() {
-      document.body.classList.toggle('dark-mode');
-      localStorage.setItem('codex-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-    }
-    window.onload = () => {
-      if (localStorage.getItem('codex-theme') === 'dark') {
-        document.body.classList.add('dark-mode');
+    // Load scrolls from codex.json
+    async function loadScrolls() {
+      try {
+        const res = await fetch('codex.json');
+        const data = res.ok ? await res.json() : { scrolls: [] };
+        displayScrolls(data.scrolls || []);
+      } catch (e) {
+        console.error('Error loading scrolls:', e);
+        displayScrolls([]);
       }
-    };
-  </script>
+    }
 
+    function displayScrolls(scrolls) {
+      const grid = document.getElementById('scrollsGrid');
+      const noResults = document.getElementById('noResults');
+      grid.innerHTML = '';
+
+      if (!scrolls.length) {
+        noResults.style.display = 'block';
+        return;
+      }
+
+      scrolls.forEach(scroll => {
+        const div = document.createElement('div');
+        div.className = 'scroll-card';
+        div.innerHTML = `
+          <h3>${scroll.title || 'Untitled'}</h3>
+          <p class="scroll-category">${scroll.category || 'Uncategorized'}</p>
+          <p>${(scroll.description || scroll.summary || 'No description').substring(0, 120)}...</p>
+          <a href="${scroll.url || '#'}" class="scroll-link">Read Scroll →</a>
+        `;
+        grid.appendChild(div);
+      });
+    }
+
+    // Search functionality
+    const searchBox = document.getElementById('searchBox');
+    if (searchBox) {
+      searchBox.addEventListener('input', async (e) => {
+        const query = e.target.value.toLowerCase();
+        const res = await fetch('codex.json');
+        const data = res.ok ? await res.json() : { scrolls: [] };
+        const filtered = (data.scrolls || []).filter(s =>
+          (s.title || '').toLowerCase().includes(query) ||
+          (s.category || '').toLowerCase().includes(query) ||
+          (s.description || '').toLowerCase().includes(query)
+        );
+        displayScrolls(filtered);
+      });
+    }
+
+    loadScrolls();
+  </script>
 </body>
 </html>

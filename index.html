@@ -3,31 +3,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>☩ Codex Ecclesia</title>
-  <meta name="description" content="The sacred digital archive of the Ecclesia - Web3 DApp" />
+  <title>☩ Codex Ecclesia – Borders Dynasty</title>
+  <meta name="description" content="The sacred digital archive of the Ecclesia - Web3 DApp on BSC" />
   <meta name="keywords" content="codex, ecclesia, scrolls, web3, defi, dynasty, blockchain" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="stylesheet" href="style.css" />
-  <script src="lib/shield.js"></script>
+  <script src="config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <style>
+    .hero-section {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      padding: 5rem 2rem;
+      text-align: center;
+      color: white;
+    }
+    .seal-icon-large {
+      font-size: 4rem;
+      color: #d4a017;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 20px rgba(212,160,23,0.3);
+    }
+    .hero-section h1 {
+      font-size: 3.5rem;
+      font-weight: bold;
+      margin: 0.5rem 0;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    .hero-tagline {
+      font-size: 1.3rem;
+      color: #bbb;
+      margin: 0.5rem 0;
+    }
+    .hero-subtitle {
+      font-size: 0.95rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .cta-button {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      background: #d4a017;
+      color: #1a1a2e;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .cta-button:hover {
+      background: #b8860b;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(212,160,23,0.3);
+    }
+  </style>
 </head>
 <body>
   <nav class="sacred-nav">
-    <a href="index.html">Home</a>
-    <a href="all-scrolls.html">All Scrolls</a>
+    <a href="index.html" class="nav-home">☩ Codex Ecclesia</a>
+    <a href="scrolls.html">All Scrolls</a>
     <a href="codex-constitution.html">Constitution</a>
     <a href="legal-definitions.html">Legal Definitions</a>
-    <a href="omega-portal.html" class="nav-highlight">☩ Omega Portal</a>
-    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="omega/login.html" class="nav-highlight">☩ Omega Portal</a>
+    <a href="borders-sovereign-coin.html">🪙 BSC</a>
     <a href="logistics-dynasty.html">🚚 Logistics</a>
-    <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="nav-dynasty">👑 Dynasty Dashboard</a>
+    <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="nav-dynasty">👑 Dynasty</a>
   </nav>
 
   <header class="hero-section">
     <div class="seal-icon-large">☩</div>
     <h1>Codex Ecclesia</h1>
-    <p class="hero-tagline">A living archive of sacred scrolls, heirs, and trustees of the Ecclesia</p>
-    <p class="hero-subtitle">Web3 DApp on Sepolia Testnet</p>
+    <p class="hero-tagline">The sovereign archive of sacred scrolls, divine trustees, and ecclesiastical governance</p>
+    <p class="hero-subtitle">Web3 DApp on BSC &nbsp;•&nbsp; Borders Dynasty Nation</p>
+    <a href="omega/login.html" class="cta-button">→ Enter Omega Portal</a>
   </header>
 
   <div class="search-section">
@@ -36,8 +84,7 @@
 
   <section class="section-block coin-showcase">
     <h2 class="section-title">Borders Sovereign Coin (BSC)</h2>
-    <p class="section-subtitle">The official cryptocurrency of the Borders Dynasty Nation</p>
-
+    <p class="section-subtitle">The official utility token of Borders Dynasty</p>
     <div class="coin-info-grid">
       <div class="coin-stat">
         <span class="stat-label">Symbol</span>
@@ -45,276 +92,269 @@
       </div>
       <div class="coin-stat">
         <span class="stat-label">Network</span>
-        <span class="stat-value">Sepolia</span>
+        <span class="stat-value">Binance Smart Chain</span>
       </div>
       <div class="coin-stat">
         <span class="stat-label">Standard</span>
         <span class="stat-value">ERC-20</span>
       </div>
     </div>
-
-    <div class="contract-info">
-      <div class="contract-row">
-        <span class="contract-label">Contract Address:</span>
-        <code class="contract-hash" id="contractHash">Loading...</code>
-        <button class="copy-btn" onclick="TreasuryWidget.copyAddress('contractHash')">Copy</button>
-      </div>
-      <div class="contract-row">
-        <span class="contract-label">Treasury Wallet:</span>
-        <code class="contract-hash" id="walletAddress">Loading...</code>
-        <button class="copy-btn" onclick="TreasuryWidget.copyAddress('walletAddress')">Copy</button>
-      </div>
-    </div>
-
-    <div id="liveContractData" class="live-contract-data" style="display:none;">
-      <h4>Live Blockchain Data</h4>
-      <div class="live-stats">
-        <div class="live-stat">
-          <span class="live-label">Name:</span>
-          <span id="liveCoinName" class="live-value">--</span>
-        </div>
-        <div class="live-stat">
-          <span class="live-label">Symbol:</span>
-          <span id="liveCoinSymbol" class="live-value">--</span>
-        </div>
-        <div class="live-stat">
-          <span class="live-label">Total Supply:</span>
-          <span id="liveTotalSupply" class="live-value">--</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="wallet-widget">
-      <h4>Wallet Connection</h4>
-      <div class="network-badge">
-        <span class="network-dot"></span>
-        <span class="network-name">Sepolia Testnet</span>
-      </div>
-      <div id="walletStatus"><span class="wallet-disconnected">Not connected</span></div>
-      <div id="walletBalanceDisplay" class="balance-display" style="display:none;">
-        <div class="balance-row">
-          <span class="balance-label">ETH Balance:</span>
-          <span id="ethBalance" class="balance-eth">0 ETH</span>
-        </div>
-        <div class="balance-row">
-          <span class="balance-label">BSC Balance:</span>
-          <span id="walletBalance" class="balance-value">0 BSC</span>
-        </div>
-      </div>
-      <button id="connectWalletBtn" class="coin-btn coin-btn-wallet" onclick="TreasuryWidget.connect()">Connect Wallet</button>
-    </div>
-
-    <div id="transferSection" class="transfer-section" style="display:none;">
-      <h4>Transfer BSC Tokens</h4>
-      <div class="transfer-form">
-        <div class="form-group">
-          <label for="transferRecipient">Recipient Address</label>
-          <input type="text" id="transferRecipient" placeholder="0x..." class="transfer-input" />
-        </div>
-        <div class="form-group">
-          <label for="transferAmount">Amount (BSC)</label>
-          <input type="number" id="transferAmount" placeholder="0.00" min="0" step="0.001" class="transfer-input" />
-        </div>
-        <button id="transferBtn" class="coin-btn coin-btn-transfer" onclick="TreasuryWidget.transfer()">Send BSC</button>
-      </div>
-    </div>
-
-    <div id="defiSection" class="defi-section" style="display:none;">
-      <h4>DeFi Tools</h4>
-      <div class="defi-tabs">
-        <button class="defi-tab active" onclick="showDefiTab('approve')">Approve</button>
-        <button class="defi-tab" onclick="showDefiTab('allowance')">Check Allowance</button>
-      </div>
-      <div id="approveTab" class="defi-tab-content active">
-        <p class="defi-desc">Approve a spender to use your BSC tokens (required for DeFi protocols)</p>
-        <div class="form-group">
-          <label for="approveSpender">Spender Address</label>
-          <input type="text" id="approveSpender" placeholder="0x..." class="transfer-input" />
-        </div>
-        <div class="form-group">
-          <label for="approveAmount">Amount (leave empty for unlimited)</label>
-          <input type="text" id="approveAmount" placeholder="100 or 'max'" class="transfer-input" />
-        </div>
-        <button id="approveBtn" class="coin-btn coin-btn-defi" onclick="TreasuryWidget.approve()">Approve</button>
-      </div>
-      <div id="allowanceTab" class="defi-tab-content">
-        <p class="defi-desc">Check how much a spender is approved to use</p>
-        <div class="form-group">
-          <label for="checkAllowanceSpender">Spender Address</label>
-          <input type="text" id="checkAllowanceSpender" placeholder="0x..." class="transfer-input" oninput="TreasuryWidget.checkAllowance()" />
-        </div>
-        <div class="allowance-result">
-          <span class="allowance-label">Allowance:</span>
-          <span id="allowanceDisplay" class="allowance-value">--</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="coin-actions">
-      <button onclick="TreasuryWidget.openEtherscan()" class="coin-btn coin-btn-verify">View on Etherscan</button>
-      <a href="borders-sovereign-coin.html" class="coin-btn coin-btn-primary">BSC Details</a>
-      <a href="minting-altar.html" class="coin-btn coin-btn-secondary">Minting Altar</a>
-    </div>
-
-    <div class="coin-tech">
-      <h4>Technology Stack</h4>
-      <div class="tech-tags">
-        <span class="tech-tag">Solidity</span>
-        <span class="tech-tag">Hardhat</span>
-        <span class="tech-tag">Ethers.js</span>
-        <span class="tech-tag">MetaMask</span>
-        <span class="tech-tag">Web3</span>
-        <span class="tech-tag">DeFi</span>
-      </div>
+    <div class="coin-buttons" style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <a href="borders-sovereign-coin.html" class="coin-btn coin-btn-primary">Learn More</a>
+      <a href="omega/login.html" class="coin-btn coin-btn-secondary">Portal Access</a>
     </div>
   </section>
 
-  <section class="section-block dynasty-integration">
-    <h2 class="section-title">👑 Dynasty Ecosystem</h2>
-    <p class="section-subtitle">Unified sovereign infrastructure connecting all Dynasty platforms</p>
-    <div class="dynasty-grid">
-      <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="dynasty-card">
-        <span class="dynasty-icon">⚒️</span>
-        <h3>Minting Forge</h3>
-        <p>Execute mint decrees and create new BSC tokens</p>
-      </a>
-      <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="dynasty-card">
-        <span class="dynasty-icon">🛡️</span>
-        <h3>Security Guard</h3>
-        <p>Apply blacklist decrees and manage security</p>
-      </a>
-      <a href="omega-portal.html" class="dynasty-card">
-        <span class="dynasty-icon">📜</span>
-        <h3>Document Center</h3>
-        <p>Draft, file, and track all legal documents</p>
-      </a>
-      <a href="trustees-portal.html" class="dynasty-card">
-        <span class="dynasty-icon">⚖️</span>
-        <h3>Trustees Portal</h3>
-        <p>Trust administration and fiduciary learning</p>
-      </a>
-      <a href="heirs-portal.html" class="dynasty-card">
-        <span class="dynasty-icon">👑</span>
-        <h3>Heirs Portal</h3>
-        <p>Nation claiming and inheritance rights</p>
-      </a>
-      <a href="logistics-dynasty.html" class="dynasty-card">
-        <span class="dynasty-icon">🚚</span>
+  <section class="section-block dynasty-grid">
+    <h2 class="section-title">Dynasty Ecosystem</h2>
+    <p class="section-subtitle">Integrated platforms for governance, logistics, and treasury</p>
+    <div class="grid-2col">
+      <div class="card ecosystem-card">
+        <span class="card-icon">⚖️</span>
+        <h3>Constitution &amp; Law</h3>
+        <p>Divine governance structures and ecclesiastical law</p>
+        <a href="codex-constitution.html" class="card-link">→ View Constitution</a>
+      </div>
+      <div class="card ecosystem-card">
+        <span class="card-icon">📜</span>
+        <h3>Sacred Scrolls</h3>
+        <p>Archive of scrolls, heirs, trusts, and records</p>
+        <a href="scrolls.html" class="card-link">→ Browse Scrolls</a>
+      </div>
+      <div class="card ecosystem-card">
+        <span class="card-icon">🚚</span>
         <h3>Logistics Dynasty</h3>
-        <p>Supply chain & logistics management platform</p>
-      </a>
-    </div>
-    <div class="dynasty-status">
-      <div class="status-item">
-        <span class="status-dot status-active"></span>
-        <span>QFS-Compliant Architecture</span>
+        <p>Supply chain, loadboard, dispatch, and fleet management</p>
+        <a href="logistics-dynasty.html" class="card-link">→ Logistics Portal</a>
       </div>
-      <div class="status-item">
-        <span class="status-dot status-active"></span>
-        <span>ISO-20022 Ready</span>
+      <div class="card ecosystem-card">
+        <span class="card-icon">👑</span>
+        <h3>Dynasty Dashboard</h3>
+        <p>Cross-platform ecosystem integration and sync</p>
+        <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="card-link">→ Open Dashboard</a>
       </div>
-      <div class="status-item">
-        <span class="status-dot status-active"></span>
-        <span>Gold-Backed Sync</span>
+      <div class="card ecosystem-card">
+        <span class="card-icon">⚖️</span>
+        <h3>Legal Definitions</h3>
+        <p>Ecclesiastical and legal terminology</p>
+        <a href="legal-definitions.html" class="card-link">→ Legal Glossary</a>
+      </div>
+      <div class="card ecosystem-card">
+        <span class="card-icon">☩</span>
+        <h3>Omega Portal</h3>
+        <p>Master control center for Dynasty operations</p>
+        <a href="omega/login.html" class="card-link">→ Command Center</a>
       </div>
     </div>
   </section>
 
-  <section class="section-block">
-    <h2 class="section-title">Sovereign Archives</h2>
-    <p class="section-subtitle">Core documents of the Ecclesia</p>
+  <section class="section-block quick-nav">
+    <h2 class="section-title">Quick Navigation</h2>
     <div class="quick-links">
-      <a href="omega-portal.html" class="quick-link">☩ Omega Portal</a>
+      <a href="omega/login.html" class="quick-link">☩ Omega Portal</a>
       <a href="codex-constitution.html" class="quick-link">📜 Constitution</a>
-      <a href="legal-definitions.html" class="quick-link">⚖️ Legal Definitions</a>
-      <a href="all-scrolls.html" class="quick-link">📚 All Scrolls</a>
-      <a href="codexchain-console.html" class="quick-link">🔗 CodexChain</a>
-      <a href="verify-scroll.html" class="quick-link">✓ Verify Scroll</a>
+      <a href="legal-definitions.html" class="quick-link">⚖️ Legal Glossary</a>
+      <a href="scrolls.html" class="quick-link">📚 All Scrolls</a>
+      <a href="borders-sovereign-coin.html" class="quick-link">🪙 BSC Token</a>
+      <a href="logistics-dynasty.html" class="quick-link">🚚 Logistics</a>
     </div>
   </section>
 
-  <section class="section-block">
-    <h2 class="section-title">All Scrolls</h2>
-    <p class="section-subtitle">Complete archive of the Ecclesia</p>
-    <div class="category-filters" id="categoryFilters"></div>
-    <div class="scrolls-grid" id="allScrollsGrid"></div>
-    <p class="loading-text" id="loadingText">Loading scrolls...</p>
+  <section class="section-block" id="scrolls-preview">
+    <h2 class="section-title">Recent Scrolls</h2>
+    <p class="section-subtitle">Featured documents from the sacred archive</p>
+    <div id="scrollsGrid" class="scrolls-grid"></div>
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="scrolls.html" class="cta-button">View All Scrolls →</a>
+    </div>
   </section>
 
-  <footer class="sacred-footer">
-    <p>☩ Codex Ecclesia — Borders Ecclesia Earth Trust</p>
-    <p>Operating under 508(c)(1)(A) ecclesiastical exemption</p>
-    <p>© 2025 All Rights Reserved under Divine Law</p>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Codex Ecclesia</h4>
+        <p>The sovereign archive of Borders Dynasty Nation</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="scrolls.html">Scrolls</a></li>
+          <li><a href="codex-constitution.html">Constitution</a></li>
+          <li><a href="omega/login.html">Omega Portal</a></li>
+          <li><a href="logistics-dynasty.html">Logistics</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Legal</h4>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="legal-definitions.html">Definitions</a></li>
+          <li><a href="SECURITY.md">Security</a></li>
+          <li><a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank">Dynasty</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Borders Ecclesia Earth Trust. All rights reserved.</p>
+    </div>
   </footer>
 
-  <script src="treasury-widget.js"></script>
+  <style>
+    .nav-home {
+      font-weight: bold;
+      color: #d4a017;
+      font-size: 1.1rem;
+    }
+    .grid-2col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .ecosystem-card {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 1px solid #334155;
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .ecosystem-card:hover {
+      border-color: #d4a017;
+      box-shadow: 0 8px 24px rgba(212,160,23,0.2);
+      transform: translateY(-4px);
+    }
+    .card-icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .card-link {
+      display: inline-block;
+      margin-top: 1rem;
+      color: #60a5fa;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .card-link:hover {
+      color: #93c5fd;
+    }
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .quick-link {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #e2e8f0;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .quick-link:hover {
+      background: #334155;
+      border-color: #d4a017;
+      color: #d4a017;
+    }
+    .footer {
+      background: #0f172a;
+      border-top: 1px solid #334155;
+      padding: 3rem 2rem 1rem;
+      margin-top: 4rem;
+    }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-section h4 {
+      color: #d4a017;
+      margin-bottom: 0.5rem;
+    }
+    .footer-section a {
+      color: #64748b;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-section a:hover {
+      color: #d4a017;
+    }
+    .footer-section ul li {
+      margin: 0.3rem 0;
+    }
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid #334155;
+      padding-top: 1rem;
+      color: #475569;
+      font-size: 0.9rem;
+    }
+    .coin-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .coin-btn {
+      display: inline-block;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .coin-btn-primary {
+      background: #d4a017;
+      color: #0f172a;
+    }
+    .coin-btn-primary:hover {
+      background: #b8860b;
+      transform: translateY(-2px);
+    }
+    .coin-btn-secondary {
+      background: transparent;
+      color: #d4a017;
+      border: 2px solid #d4a017;
+    }
+    .coin-btn-secondary:hover {
+      background: #d4a017;
+      color: #0f172a;
+    }
+  </style>
+
   <script>
+    // Load scrolls from codex.json
     async function loadScrolls() {
       try {
-        const response = await fetch('codex.json');
-        const data = await response.json();
-        const grid = document.getElementById('allScrollsGrid');
-        const loadingText = document.getElementById('loadingText');
-        const searchBox = document.getElementById('searchBox');
-        const categoryFilters = document.getElementById('categoryFilters');
-
-        if (!data.scrolls || data.scrolls.length === 0) {
-          loadingText.textContent = 'No scrolls found.';
-          return;
-        }
-
-        loadingText.style.display = 'none';
-
-        const categories = [...new Set(data.scrolls.map(s => s.category || 'Uncategorized'))];
-        categoryFilters.innerHTML = '<button class="filter-btn active" data-category="all">All</button>' +
-          categories.map(cat => `<button class="filter-btn" data-category="${cat}">${cat}</button>`).join('');
-
-        function renderScrolls(scrolls) {
-          grid.innerHTML = scrolls.map(scroll => `
-            <a href="${scroll.url}" class="scroll-card">
-              <span class="scroll-icon">${scroll.icon || '📜'}</span>
-              <span class="scroll-title">${scroll.title || scroll.url}</span>
-              <span class="scroll-category">${scroll.category || 'Uncategorized'}</span>
-            </a>
-          `).join('');
-        }
-
-        renderScrolls(data.scrolls);
-
-        categoryFilters.addEventListener('click', (e) => {
-          if (e.target.classList.contains('filter-btn')) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            e.target.classList.add('active');
-            const category = e.target.dataset.category;
-            if (category === 'all') {
-              renderScrolls(data.scrolls);
-            } else {
-              renderScrolls(data.scrolls.filter(s => s.category === category));
-            }
-          }
+        const res = await fetch('codex.json');
+        const data = await res.json();
+        const grid = document.getElementById('scrollsGrid');
+        if (!grid) return;
+        grid.innerHTML = '';
+        const scrolls = (data.scrolls || []).slice(0, 6);
+        scrolls.forEach(scroll => {
+          const div = document.createElement('div');
+          div.className = 'scroll-card';
+          div.innerHTML = `
+            <h3>${scroll.title || 'Untitled'}</h3>
+            <p class="scroll-category">${scroll.category || 'Uncategorized'}</p>
+            <p>${(scroll.description || scroll.summary || 'No description').substring(0, 80)}...</p>
+            <a href="${scroll.url || '#'}" class="scroll-link">Read →</a>
+          `;
+          grid.appendChild(div);
         });
-
-        searchBox.addEventListener('input', (e) => {
-          const query = e.target.value.toLowerCase();
-          const filtered = data.scrolls.filter(s =>
-            (s.title && s.title.toLowerCase().includes(query)) ||
-            (s.category && s.category.toLowerCase().includes(query)) ||
-            (s.url && s.url.toLowerCase().includes(query))
-          );
-          renderScrolls(filtered);
-        });
-
-      } catch (error) {
-        console.error('Failed to load scrolls:', error);
-        document.getElementById('loadingText').textContent = 'Failed to load scrolls.';
+      } catch (e) {
+        console.error('Error loading scrolls:', e);
       }
     }
-
     loadScrolls();
   </script>
-<script type="module">
-  import { createDynastyHub } from './lib/dynasty-hub.js';
-  createDynastyHub({ position: 'bottom-right', collapsed: true });
-</script>
 </body>
 </html>
