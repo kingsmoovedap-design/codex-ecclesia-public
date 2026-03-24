@@ -3,358 +3,653 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>☩ Codex Ecclesia – Borders Dynasty</title>
-  <meta name="description" content="The sacred digital archive of the Ecclesia - Web3 DApp on BSC" />
-  <meta name="keywords" content="codex, ecclesia, scrolls, web3, defi, dynasty, blockchain" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Borders Ecclesia - Ecclesiastical governance, blockchain verification, and Dynasty ecosystem integration." />
+  <meta name="keywords" content="ecclesia, governance, blockchain, dynasty, borders" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Borders Ecclesia – Sovereign Governance Platform</title>
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="config.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%23d4a017'>☩</text></svg>" />
+  <script src="config.js" defer></script>
   <style>
-    .hero-section {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-      padding: 5rem 2rem;
-      text-align: center;
-      color: white;
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    .seal-icon-large {
-      font-size: 4rem;
-      color: #d4a017;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 20px rgba(212,160,23,0.3);
+    
+    html {
+      scroll-behavior: smooth;
+      --primary: #d4a017;
+      --primary-dark: #b8860b;
+      --primary-light: #e6c55d;
+      --bg-dark: #0f172a;
+      --bg-darker: #0a0f1a;
+      --bg-card: #1e293b;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --accent: #60a5fa;
     }
-    .hero-section h1 {
-      font-size: 3.5rem;
-      font-weight: bold;
-      margin: 0.5rem 0;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+      background: linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
-    .hero-tagline {
-      font-size: 1.3rem;
-      color: #bbb;
-      margin: 0.5rem 0;
+    
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 0;
     }
-    .hero-subtitle {
-      font-size: 0.95rem;
-      color: #888;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .cta-button {
-      display: inline-block;
-      margin-top: 2rem;
-      padding: 0.75rem 2rem;
-      background: #d4a017;
-      color: #1a1a2e;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: 600;
-      transition: all 0.3s;
-    }
-    .cta-button:hover {
-      background: #b8860b;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(212,160,23,0.3);
-    }
-  </style>
-</head>
-<body>
-  <nav class="sacred-nav">
-    <a href="index.html" class="nav-home">☩ Codex Ecclesia</a>
-    <a href="scrolls.html">All Scrolls</a>
-    <a href="codex-constitution.html">Constitution</a>
-    <a href="legal-definitions.html">Legal Definitions</a>
-    <a href="omega/login.html" class="nav-highlight">☩ Omega Portal</a>
-    <a href="borders-sovereign-coin.html">🪙 BSC</a>
-    <a href="logistics-dynasty.html">🚚 Logistics</a>
-    <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="nav-dynasty">👑 Dynasty</a>
-  </nav>
-
-  <header class="hero-section">
-    <div class="seal-icon-large">☩</div>
-    <h1>Codex Ecclesia</h1>
-    <p class="hero-tagline">The sovereign archive of sacred scrolls, divine trustees, and ecclesiastical governance</p>
-    <p class="hero-subtitle">Web3 DApp on BSC &nbsp;•&nbsp; Borders Dynasty Nation</p>
-    <a href="omega/login.html" class="cta-button">→ Enter Omega Portal</a>
-  </header>
-
-  <div class="search-section">
-    <input type="text" id="searchBox" placeholder="Search scrolls by title, category, or content..." class="search-input" />
-  </div>
-
-  <section class="section-block coin-showcase">
-    <h2 class="section-title">Borders Sovereign Coin (BSC)</h2>
-    <p class="section-subtitle">The official utility token of Borders Dynasty</p>
-    <div class="coin-info-grid">
-      <div class="coin-stat">
-        <span class="stat-label">Symbol</span>
-        <span class="stat-value">BSC</span>
-      </div>
-      <div class="coin-stat">
-        <span class="stat-label">Network</span>
-        <span class="stat-value">Binance Smart Chain</span>
-      </div>
-      <div class="coin-stat">
-        <span class="stat-label">Standard</span>
-        <span class="stat-value">ERC-20</span>
-      </div>
-    </div>
-    <div class="coin-buttons" style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-      <a href="borders-sovereign-coin.html" class="coin-btn coin-btn-primary">Learn More</a>
-      <a href="omega/login.html" class="coin-btn coin-btn-secondary">Portal Access</a>
-    </div>
-  </section>
-
-  <section class="section-block dynasty-grid">
-    <h2 class="section-title">Dynasty Ecosystem</h2>
-    <p class="section-subtitle">Integrated platforms for governance, logistics, and treasury</p>
-    <div class="grid-2col">
-      <div class="card ecosystem-card">
-        <span class="card-icon">⚖️</span>
-        <h3>Constitution &amp; Law</h3>
-        <p>Divine governance structures and ecclesiastical law</p>
-        <a href="codex-constitution.html" class="card-link">→ View Constitution</a>
-      </div>
-      <div class="card ecosystem-card">
-        <span class="card-icon">📜</span>
-        <h3>Sacred Scrolls</h3>
-        <p>Archive of scrolls, heirs, trusts, and records</p>
-        <a href="scrolls.html" class="card-link">→ Browse Scrolls</a>
-      </div>
-      <div class="card ecosystem-card">
-        <span class="card-icon">🚚</span>
-        <h3>Logistics Dynasty</h3>
-        <p>Supply chain, loadboard, dispatch, and fleet management</p>
-        <a href="logistics-dynasty.html" class="card-link">→ Logistics Portal</a>
-      </div>
-      <div class="card ecosystem-card">
-        <span class="card-icon">👑</span>
-        <h3>Dynasty Dashboard</h3>
-        <p>Cross-platform ecosystem integration and sync</p>
-        <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="card-link">→ Open Dashboard</a>
-      </div>
-      <div class="card ecosystem-card">
-        <span class="card-icon">⚖️</span>
-        <h3>Legal Definitions</h3>
-        <p>Ecclesiastical and legal terminology</p>
-        <a href="legal-definitions.html" class="card-link">→ Legal Glossary</a>
-      </div>
-      <div class="card ecosystem-card">
-        <span class="card-icon">☩</span>
-        <h3>Omega Portal</h3>
-        <p>Master control center for Dynasty operations</p>
-        <a href="omega/login.html" class="card-link">→ Command Center</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-block quick-nav">
-    <h2 class="section-title">Quick Navigation</h2>
-    <div class="quick-links">
-      <a href="omega/login.html" class="quick-link">☩ Omega Portal</a>
-      <a href="codex-constitution.html" class="quick-link">📜 Constitution</a>
-      <a href="legal-definitions.html" class="quick-link">⚖️ Legal Glossary</a>
-      <a href="scrolls.html" class="quick-link">📚 All Scrolls</a>
-      <a href="borders-sovereign-coin.html" class="quick-link">🪙 BSC Token</a>
-      <a href="logistics-dynasty.html" class="quick-link">🚚 Logistics</a>
-    </div>
-  </section>
-
-  <section class="section-block" id="scrolls-preview">
-    <h2 class="section-title">Recent Scrolls</h2>
-    <p class="section-subtitle">Featured documents from the sacred archive</p>
-    <div id="scrollsGrid" class="scrolls-grid"></div>
-    <div style="text-align: center; margin-top: 2rem;">
-      <a href="scrolls.html" class="cta-button">View All Scrolls →</a>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>Codex Ecclesia</h4>
-        <p>The sovereign archive of Borders Dynasty Nation</p>
-      </div>
-      <div class="footer-section">
-        <h4>Quick Links</h4>
-        <ul style="list-style: none; padding: 0;">
-          <li><a href="scrolls.html">Scrolls</a></li>
-          <li><a href="codex-constitution.html">Constitution</a></li>
-          <li><a href="omega/login.html">Omega Portal</a></li>
-          <li><a href="logistics-dynasty.html">Logistics</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Legal</h4>
-        <ul style="list-style: none; padding: 0;">
-          <li><a href="legal-definitions.html">Definitions</a></li>
-          <li><a href="SECURITY.md">Security</a></li>
-          <li><a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank">Dynasty</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Borders Ecclesia Earth Trust. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <style>
-    .nav-home {
-      font-weight: bold;
-      color: #d4a017;
-      font-size: 1.1rem;
-    }
-    .grid-2col {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .ecosystem-card {
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-      border: 1px solid #334155;
-      padding: 1.5rem;
-      border-radius: 10px;
-      text-align: center;
-      transition: all 0.3s;
-    }
-    .ecosystem-card:hover {
-      border-color: #d4a017;
-      box-shadow: 0 8px 24px rgba(212,160,23,0.2);
-      transform: translateY(-4px);
-    }
-    .card-icon {
-      font-size: 2rem;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-    .card-link {
-      display: inline-block;
-      margin-top: 1rem;
-      color: #60a5fa;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .card-link:hover {
-      color: #93c5fd;
-    }
-    .quick-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-    }
-    .quick-link {
-      display: inline-block;
-      padding: 0.6rem 1.2rem;
-      background: #1e293b;
-      border: 1px solid #334155;
-      color: #e2e8f0;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: all 0.2s;
-    }
-    .quick-link:hover {
-      background: #334155;
-      border-color: #d4a017;
-      color: #d4a017;
-    }
-    .footer {
-      background: #0f172a;
-      border-top: 1px solid #334155;
-      padding: 3rem 2rem 1rem;
-      margin-top: 4rem;
-    }
-    .footer-content {
+    
+    nav .container {
       max-width: 1200px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    .footer-section h4 {
-      color: #d4a017;
-      margin-bottom: 0.5rem;
-    }
-    .footer-section a {
-      color: #64748b;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-section a:hover {
-      color: #d4a017;
-    }
-    .footer-section ul li {
-      margin: 0.3rem 0;
-    }
-    .footer-bottom {
-      text-align: center;
-      border-top: 1px solid #334155;
-      padding-top: 1rem;
-      color: #475569;
-      font-size: 0.9rem;
-    }
-    .coin-buttons {
+      padding: 0 1.5rem;
       display: flex;
-      gap: 1rem;
-      justify-content: center;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
       flex-wrap: wrap;
     }
-    .coin-btn {
-      display: inline-block;
-      padding: 0.7rem 1.5rem;
+    
+    nav .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    nav .links {
+      display: flex;
+      gap: 0;
+      flex: 1;
+      list-style: none;
+    }
+    
+    nav .links a {
+      padding: 0.75rem 1rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+      font-size: 0.95rem;
+    }
+    
+    nav .links a:hover {
+      color: var(--primary);
+      background: rgba(212, 160, 23, 0.1);
+    }
+    
+    nav .cta {
+      padding: 0.6rem 1.5rem;
+      background: var(--primary);
+      color: var(--bg-dark);
       border: none;
       border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.95rem;
       text-decoration: none;
-      transition: all 0.3s;
+      display: inline-block;
     }
-    .coin-btn-primary {
-      background: #d4a017;
-      color: #0f172a;
-    }
-    .coin-btn-primary:hover {
-      background: #b8860b;
+    
+    nav .cta:hover {
+      background: var(--primary-dark);
       transform: translateY(-2px);
     }
-    .coin-btn-secondary {
+    
+    /* Hero */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1.5rem;
+      background: linear-gradient(135deg, #0f172a 0%, #1a1a3e 50%, #0f3460 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(212,160,23,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    
+    .hero .content {
+      max-width: 700px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero .icon {
+      font-size: 5rem;
+      margin-bottom: 1.5rem;
+      display: block;
+      filter: drop-shadow(0 0 20px rgba(212,160,23,0.3));
+    }
+    
+    .hero h1 {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.75rem;
+      line-height: 1.6;
+    }
+    
+    .hero .tagline {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 2rem;
+    }
+    
+    .hero .ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 1rem;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: var(--bg-dark);
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(212,160,23,0.3);
+    }
+    
+    .btn-secondary {
       background: transparent;
-      color: #d4a017;
-      border: 2px solid #d4a017;
+      color: var(--primary);
+      border: 2px solid var(--primary);
     }
-    .coin-btn-secondary:hover {
-      background: #d4a017;
-      color: #0f172a;
+    
+    .btn-secondary:hover {
+      background: var(--primary);
+      color: var(--bg-dark);
     }
-  </style>
-
-  <script>
-    // Load scrolls from codex.json
-    async function loadScrolls() {
-      try {
-        const res = await fetch('codex.json');
-        const data = await res.json();
-        const grid = document.getElementById('scrollsGrid');
-        if (!grid) return;
-        grid.innerHTML = '';
-        const scrolls = (data.scrolls || []).slice(0, 6);
-        scrolls.forEach(scroll => {
-          const div = document.createElement('div');
-          div.className = 'scroll-card';
-          div.innerHTML = `
-            <h3>${scroll.title || 'Untitled'}</h3>
-            <p class="scroll-category">${scroll.category || 'Uncategorized'}</p>
-            <p>${(scroll.description || scroll.summary || 'No description').substring(0, 80)}...</p>
-            <a href="${scroll.url || '#'}" class="scroll-link">Read →</a>
-          `;
-          grid.appendChild(div);
-        });
-      } catch (e) {
-        console.error('Error loading scrolls:', e);
+    
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    section {
+      padding: 5rem 1.5rem;
+      margin: 0;
+    }
+    
+    .section-title {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+    }
+    
+    /* Platform Grid */
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .platform-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .platform-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    
+    .platform-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 12px 32px rgba(212,160,23,0.15);
+      transform: translateY(-8px);
+    }
+    
+    .platform-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .platform-card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .platform-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: var(--primary);
+    }
+    
+    .platform-card p {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .platform-card a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .platform-card a:hover {
+      color: var(--primary-light);
+      transform: translateX(4px);
+    }
+    
+    /* Features Grid */
+    .features {
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 12px;
+      padding: 3rem;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .feature {
+      padding: 1.5rem;
+      border-left: 3px solid var(--primary);
+    }
+    
+    .feature h4 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .feature p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(212,160,23,0.1) 0%, rgba(96,165,250,0.1) 100%);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 3rem;
+      text-align: center;
+      margin-top: 5rem;
+    }
+    
+    .cta-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+    
+    .cta-section p {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--bg-darker);
+      border-top: 1px solid var(--border);
+      padding: 3rem 1.5rem 1rem;
+      margin-top: 5rem;
+    }
+    
+    footer .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    footer h4 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    footer a {
+      display: block;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
+    }
+    
+    footer a:hover {
+      color: var(--primary);
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav .links {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        display: none;
+      }
+      
+      nav .links.active {
+        display: flex;
+      }
+      
+      section {
+        padding: 3rem 1rem;
+      }
+      
+      .hero {
+        min-height: 70vh;
+        padding: 2rem 1rem;
+      }
+      
+      .hero .ctas {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
       }
     }
-    loadScrolls();
-  </script>
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <a href="index.html" class="logo">☩ Borders Ecclesia</a>
+      <ul class="links">
+        <li><a href="#platforms">Platforms</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#governance">Governance</a></li>
+        <li><a href="scrolls.html">Scrolls</a></li>
+        <li><a href="codex-constitution.html">Constitution</a></li>
+      </ul>
+      <a href="omega/login.html" class="cta">☩ Omega Portal</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="content">
+      <span class="icon">☩</span>
+      <h1>Borders Ecclesia</h1>
+      <p>Sovereign ecclesiastical governance platform with blockchain verification and Dynasty ecosystem integration</p>
+      <p class="tagline">Enterprise-Grade Security • Web3 Ready • Fully Decentralized</p>
+      <div class="ctas">
+        <a href="omega/login.html" class="btn btn-primary">→ Enter Omega Portal</a>
+        <a href="#platforms" class="btn btn-secondary">Explore Platforms</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platforms Section -->
+  <section id="platforms">
+    <div class="container">
+      <h2 class="section-title">Integrated Platforms</h2>
+      <p class="section-subtitle">Complete ecosystem for governance, logistics, and blockchain operations</p>
+      
+      <div class="platform-grid">
+        <div class="platform-card">
+          <span class="icon">⚖️</span>
+          <h3>Sacred Governance</h3>
+          <p>Ecclesiastical law, constitutional framework, and trustee oversight</p>
+          <a href="codex-constitution.html">View Constitution →</a>
+        </div>
+        
+        <div class="platform-card">
+          <span class="icon">🪙</span>
+          <h3>Borders Sovereign Coin</h3>
+          <p>Utility token for transactions, governance, and treasury operations</p>
+          <a href="borders-sovereign-coin.html">Token Details →</a>
+        </div>
+        
+        <div class="platform-card">
+          <span class="icon">🚚</span>
+          <h3>Logistics Dynasty</h3>
+          <p>Supply chain management, dispatch, fleet operations, and analytics</p>
+          <a href="logistics-dynasty.html">Logistics Portal →</a>
+        </div>
+        
+        <div class="platform-card">
+          <span class="icon">☩</span>
+          <h3>Omega Command Center</h3>
+          <p>Master control panel for all Dynasty operations and cross-platform sync</p>
+          <a href="omega/login.html">Command Center →</a>
+        </div>
+        
+        <div class="platform-card">
+          <span class="icon">📜</span>
+          <h3>Scroll Archive</h3>
+          <p>Complete collection of ecclesiastical records and sacred documents</p>
+          <a href="scrolls.html">Browse Scrolls →</a>
+        </div>
+        
+        <div class="platform-card">
+          <span class="icon">⚖️</span>
+          <h3>Legal Framework</h3>
+          <p>Ecclesiastical terminology, definitions, and legal reference materials</p>
+          <a href="legal-definitions.html">Legal Glossary →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features">
+    <div class="container">
+      <h2 class="section-title">Enterprise Security & Compliance</h2>
+      <p class="section-subtitle">Built with security-first principles and modern standards</p>
+      
+      <div class="features">
+        <div class="features-grid">
+          <div class="feature">
+            <h4>✓ Security Headers</h4>
+            <p>X-Content-Type-Options, CSP, X-XSS-Protection, and Referrer-Policy</p>
+          </div>
+          
+          <div class="feature">
+            <h4>✓ Blockchain Verification</h4>
+            <p>Immutable document hashing and verification on-chain</p>
+          </div>
+          
+          <div class="feature">
+            <h4>✓ Authentication</h4>
+            <p>Secure access control for Omega Portal and admin interfaces</p>
+          </div>
+          
+          <div class="feature">
+            <h4>✓ Data Encryption</h4>
+            <p>TLS/SSL for all communications and sensitive data</p>
+          </div>
+          
+          <div class="feature">
+            <h4>✓ Audit Logging</h4>
+            <p>Complete audit trails for all operations and changes</p>
+          </div>
+          
+          <div class="feature">
+            <h4>✓ Compliance Ready</h4>
+            <p>508(c)(1)(A) ecclesiastical organization standards</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Governance Section -->
+  <section id="governance">
+    <div class="container">
+      <h2 class="section-title">Governance Structure</h2>
+      <p class="section-subtitle">Three-tier authority model ensuring checks and balances</p>
+      
+      <div class="platform-grid">
+        <div class="platform-card">
+          <span class="icon">👑</span>
+          <h3>Grand Architect</h3>
+          <p>Supreme executive authority responsible for strategic direction and final authority on all matters</p>
+        </div>
+        
+        <div class="platform-card">
+          <span class="icon">⚖️</span>
+          <h3>Council of Trustees</h3>
+          <p>Legislative and fiduciary oversight with authority over treasury, records, and policy</p>
+        </div>
+        
+        <div class="platform-card">
+          <span class="icon">🏛️</span>
+          <h3>Ministerial Assembly</h3>
+          <p>Operational administration handling day-to-day functions and public interface</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section>
+    <div class="container">
+      <div class="cta-section">
+        <h2>Ready to Access the Portal?</h2>
+        <p>Enter Omega Command Center for full ecosystem control and management</p>
+        <a href="omega/login.html" class="btn btn-primary">Launch Omega Portal →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div>
+        <h4>Platform</h4>
+        <a href="index.html">Home</a>
+        <a href="scrolls.html">Scrolls</a>
+        <a href="codex-constitution.html">Constitution</a>
+        <a href="omega/login.html">Omega Portal</a>
+      </div>
+      
+      <div>
+        <h4>Governance</h4>
+        <a href="legal-definitions.html">Legal Definitions</a>
+        <a href="borders-sovereign-coin.html">BSC Token</a>
+        <a href="logistics-dynasty.html">Logistics</a>
+        <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank">Dynasty Dashboard</a>
+      </div>
+      
+      <div>
+        <h4>Security</h4>
+        <a href="SECURITY.md">Security Policy</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#terms">Terms of Service</a>
+        <a href="CONTRIBUTING.md">Contributing</a>
+      </div>
+      
+      <div>
+        <h4>Resources</h4>
+        <a href="README.md">Documentation</a>
+        <a href="replit.md">Project Info</a>
+        <a href="manifest.webmanifest">Web Manifest</a>
+        <a href="robots.txt">Robots.txt</a>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 Borders Ecclesia Earth Trust. All rights reserved. | 508(c)(1)(A) Ecclesiastical Organization</p>
+    </div>
+  </footer>
 </body>
 </html>
