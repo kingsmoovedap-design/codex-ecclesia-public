@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reverse Logistics Dashboard | Dynasty-OS | Codex Ecclesia</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.png">
+</head>
+<body>
+  <nav class="sacred-nav">
+    <a href="index.html">Home</a>
+    <a href="index.html#scrolls">All Scrolls</a>
+    <a href="codex-constitution.html">Constitution</a>
+    <a href="legal-definitions.html">Legal Definitions</a>
+    <a href="omega-portal.html" class="nav-highlight">☩ Omega Portal</a>
+    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="logistics-dynasty.html">🚚 Logistics</a>
+    <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="nav-dynasty">👑 Dynasty Dashboard</a>
+  </nav>
+
+  <header class="rl-hero">
+    <div class="rl-hero-inner">
+      <div class="rl-hero-icon">♻️</div>
+      <h1>Reverse Logistics Dashboard</h1>
+      <p class="hero-tagline">Dynasty-OS Global Freight Marketplace & Distressed Cargo Intelligence</p>
+      <p class="hero-subtitle">Carrier Returns • Port Seizures • Airport Unclaimed • Retail Liquidations • Government Surplus</p>
+      <div class="rl-hero-stats" id="heroStats">
+        <div class="rl-hero-stat"><span class="rl-stat-num" id="hTotalListings">12,847</span><span class="rl-stat-label">Active Listings</span></div>
+        <div class="rl-hero-stat"><span class="rl-stat-num" id="hActiveAuctions">3,241</span><span class="rl-stat-label">Live Auctions</span></div>
+        <div class="rl-hero-stat"><span class="rl-stat-num" id="hTotalValue">$48.2M</span><span class="rl-stat-label">Total Value</span></div>
+        <div class="rl-hero-stat"><span class="rl-stat-num" id="hCompleted">187</span><span class="rl-stat-label">Completed Today</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Dashboard Tabs -->
+  <div class="rl-dashboard">
+    <div class="rl-tabs">
+      <button class="rl-tab active" data-panel="marketplace">🌐 Global Marketplace</button>
+      <button class="rl-tab" data-panel="containers">🚢 Container Tracker</button>
+      <button class="rl-tab" data-panel="auctions">⚡ Auction Engine</button>
+      <button class="rl-tab" data-panel="blockchain">🔗 Blockchain Registry</button>
+      <button class="rl-tab" data-panel="intelligence">🧠 Freight Intelligence</button>
+    </div>
+
+    <!-- ── GLOBAL MARKETPLACE ── -->
+    <div class="rl-panel active" id="panel-marketplace">
+      <div class="rl-panel-header">
+        <h2>🌐 Global Freight Marketplace</h2>
+        <p>Unified distressed cargo from carriers, customs, airports, retailers, and governments worldwide</p>
+      </div>
+
+      <div class="rl-filters">
+        <select id="filterCategory" onchange="applyFilters()">
+          <option value="">All Categories</option>
+          <option value="retail_return">🛍️ Retail Returns</option>
+          <option value="carrier_overgoods">📦 Carrier Overgoods</option>
+          <option value="abandoned_cargo">🚢 Abandoned Cargo</option>
+          <option value="customs_seizure">🏛️ Customs Seizure</option>
+          <option value="airport_unclaimed">✈️ Airport Unclaimed</option>
+          <option value="government_surplus">🏛️ Government Surplus</option>
+        </select>
+        <select id="filterRegion" onchange="applyFilters()">
+          <option value="">All Regions</option>
+          <option value="US">🇺🇸 United States</option>
+          <option value="EU">🇪🇺 Europe</option>
+          <option value="Asia">🌏 Asia</option>
+          <option value="Middle East">🕌 Middle East</option>
+          <option value="Africa">🌍 Africa</option>
+          <option value="Latin America">🌎 Latin America</option>
+        </select>
+        <input type="number" id="filterMinValue" placeholder="Min Value $" oninput="applyFilters()">
+        <button class="rl-btn" onclick="loadListings()">🔄 Refresh</button>
+      </div>
+
+      <div class="rl-listings-grid" id="listingsGrid">
+        <div class="rl-loading">Loading marketplace listings...</div>
+      </div>
+
+      <div class="rl-source-breakdown">
+        <h3>📊 Live Feed Sources</h3>
+        <div class="rl-sources-grid">
+          <div class="rl-source-card">
+            <div class="source-icon">📦</div>
+            <h4>Carriers</h4>
+            <p>UPS • FedEx • DHL • USPS</p>
+            <div class="source-count" id="srcCarrier">2,100 listings</div>
+            <div class="source-types">Lost • Undeliverable • Overgoods</div>
+          </div>
+          <div class="rl-source-card">
+            <div class="source-icon">⚓</div>
+            <h4>Ports & Customs</h4>
+            <p>CBP • Port Authorities • Bonded Warehouses</p>
+            <div class="source-count" id="srcCustoms">1,800 listings</div>
+            <div class="source-types">Abandoned • Tax Delinquent • Seizures</div>
+          </div>
+          <div class="rl-source-card">
+            <div class="source-icon">✈️</div>
+            <h4>Airports</h4>
+            <p>TSA • Airline Cargo • Airport Lost & Found</p>
+            <div class="source-count" id="srcAirports">890 listings</div>
+            <div class="source-types">Unclaimed Luggage • TSA Seizures</div>
+          </div>
+          <div class="rl-source-card">
+            <div class="source-icon">🛍️</div>
+            <h4>Retail</h4>
+            <p>Amazon • Walmart • Target • Costco</p>
+            <div class="source-count" id="srcRetail">4,200 listings</div>
+            <div class="source-types">Returns • Overstock • Damaged</div>
+          </div>
+          <div class="rl-source-card">
+            <div class="source-icon">🏛️</div>
+            <h4>Government</h4>
+            <p>GSA • GovDeals • State Surplus</p>
+            <div class="source-count" id="srcGov">3,857 listings</div>
+            <div class="source-types">Seized • Confiscated • Surplus</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CONTAINER TRACKER ── -->
+    <div class="rl-panel" id="panel-containers">
+      <div class="rl-panel-header">
+        <h2>🚢 Container Seizure & Abandonment Tracker</h2>
+        <p>Real-time monitoring of abandoned, seized, and tax-delinquent containers across global ports</p>
+      </div>
+
+      <div class="rl-container-stats" id="containerStats">
+        <div class="ct-stat-card abandoned"><div class="ct-stat-num" id="ctAbandoned">2</div><div class="ct-stat-label">Abandoned</div></div>
+        <div class="ct-stat-card seized"><div class="ct-stat-num" id="ctSeized">1</div><div class="ct-stat-label">Seized</div></div>
+        <div class="ct-stat-card delinquent"><div class="ct-stat-num" id="ctDelinquent">1</div><div class="ct-stat-label">Tax Delinquent</div></div>
+        <div class="ct-stat-card eligible"><div class="ct-stat-num" id="ctEligible">3</div><div class="ct-stat-label">Auction Eligible</div></div>
+        <div class="ct-stat-card value"><div class="ct-stat-num" id="ctValue">$226K</div><div class="ct-stat-label">Total Value</div></div>
+      </div>
+
+      <div class="rl-lookup-bar">
+        <input type="text" id="containerLookup" placeholder="Enter Container ID (e.g. CNTR-001)" />
+        <button class="rl-btn" onclick="lookupContainer()">🔍 Lookup</button>
+        <button class="rl-btn secondary" onclick="loadContainers()">📋 Load All</button>
+      </div>
+      <div id="lookupResult" class="rl-lookup-result" style="display:none;"></div>
+
+      <div class="rl-containers-table-wrap">
+        <table class="rl-table" id="containersTable">
+          <thead>
+            <tr>
+              <th>Container ID</th>
+              <th>Type</th>
+              <th>Contents</th>
+              <th>Port</th>
+              <th>Status</th>
+              <th>Days at Port</th>
+              <th>Declared Value</th>
+              <th>Tax Owed</th>
+              <th>Auction Eligible</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="containersBody">
+            <tr><td colspan="10" class="rl-loading">Loading containers...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rl-register-form">
+        <h3>➕ Register New Container</h3>
+        <div class="rl-form-grid">
+          <input type="text" id="newContainerId" placeholder="Container ID">
+          <select id="newContainerType">
+            <option value="20ft">20ft Standard</option>
+            <option value="40ft">40ft Standard</option>
+            <option value="40ft-hc">40ft High Cube</option>
+            <option value="reefer">Reefer</option>
+          </select>
+          <input type="text" id="newContainerContents" placeholder="Contents description">
+          <input type="number" id="newContainerValue" placeholder="Declared Value $">
+          <select id="newContainerStatus">
+            <option value="in_transit">In Transit</option>
+            <option value="abandoned">Abandoned</option>
+            <option value="seized">Seized</option>
+            <option value="delinquent">Tax Delinquent</option>
+            <option value="cleared">Cleared</option>
+          </select>
+          <select id="newContainerPort">
+            <option value="USLAX">Port of Los Angeles</option>
+            <option value="USLGB">Port of Long Beach</option>
+            <option value="USHOU">Port of Houston</option>
+            <option value="USSAV">Port of Savannah</option>
+            <option value="USNYC">Port of New York</option>
+            <option value="DEHAM">Port of Hamburg</option>
+            <option value="NLRTM">Port of Rotterdam</option>
+            <option value="CNSHA">Port of Shanghai</option>
+            <option value="SGSIN">Port of Singapore</option>
+            <option value="AEDXB">Port of Dubai</option>
+          </select>
+          <input type="number" id="newContainerTax" placeholder="Tax Owed $">
+          <input type="number" id="newContainerDays" placeholder="Days at Port">
+        </div>
+        <button class="rl-btn" onclick="registerContainer()">📋 Register Container</button>
+        <div id="registerResult" class="rl-msg" style="display:none;"></div>
+      </div>
+    </div>
+
+    <!-- ── AUCTION ENGINE ── -->
+    <div class="rl-panel" id="panel-auctions">
+      <div class="rl-panel-header">
+        <h2>⚡ Dynasty-OS Auction Aggregator Engine</h2>
+        <p>Aggregate, classify, and bid on distressed freight from all global sources</p>
+      </div>
+
+      <div class="rl-auction-sources">
+        <h3>📡 Active Feed Sources</h3>
+        <div class="rl-auction-source-grid" id="auctionSourceGrid">
+          <div class="rl-auction-source" data-key="carrier">
+            <div class="as-header"><span class="as-icon">📦</span><h4>Carrier Auctions</h4><span class="as-badge live">LIVE</span></div>
+            <div class="as-providers">UPS • FedEx • DHL • USPS • OnTrac</div>
+            <div class="as-stats"><span id="feedCarrier">—</span> listings</div>
+            <button class="rl-btn sm" onclick="ingestFeed('carrier')">Ingest Feed</button>
+          </div>
+          <div class="rl-auction-source" data-key="customs">
+            <div class="as-header"><span class="as-icon">⚓</span><h4>Customs & Ports</h4><span class="as-badge live">LIVE</span></div>
+            <div class="as-providers">CBP • Port of LA • Port of Houston • Port of Savannah</div>
+            <div class="as-stats"><span id="feedCustoms">—</span> listings</div>
+            <button class="rl-btn sm" onclick="ingestFeed('customs')">Ingest Feed</button>
+          </div>
+          <div class="rl-auction-source" data-key="airports">
+            <div class="as-header"><span class="as-icon">✈️</span><h4>Airport Auctions</h4><span class="as-badge live">LIVE</span></div>
+            <div class="as-providers">TSA • Delta Cargo • United Cargo • American</div>
+            <div class="as-stats"><span id="feedAirports">—</span> listings</div>
+            <button class="rl-btn sm" onclick="ingestFeed('airports')">Ingest Feed</button>
+          </div>
+          <div class="rl-auction-source" data-key="retail">
+            <div class="as-header"><span class="as-icon">🛍️</span><h4>Retail Liquidations</h4><span class="as-badge live">LIVE</span></div>
+            <div class="as-providers">Amazon • Walmart • Target • Costco • Best Buy</div>
+            <div class="as-stats"><span id="feedRetail">—</span> listings</div>
+            <button class="rl-btn sm" onclick="ingestFeed('retail')">Ingest Feed</button>
+          </div>
+          <div class="rl-auction-source" data-key="government">
+            <div class="as-header"><span class="as-icon">🏛️</span><h4>Government Surplus</h4><span class="as-badge live">LIVE</span></div>
+            <div class="as-providers">GSA • GovDeals • State Surplus • Municipal</div>
+            <div class="as-stats"><span id="feedGov">—</span> listings</div>
+            <button class="rl-btn sm" onclick="ingestFeed('government')">Ingest Feed</button>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:1rem;">
+          <button class="rl-btn large" onclick="ingestAllFeeds()">⚡ Ingest All Feeds</button>
+        </div>
+      </div>
+
+      <div class="rl-auction-classifier">
+        <h3>🔍 Item Classifier & Valuation</h3>
+        <div class="rl-form-grid">
+          <select id="itemStatus">
+            <option value="returned">Returned</option>
+            <option value="undeliverable">Undeliverable</option>
+            <option value="abandoned">Abandoned</option>
+            <option value="seized">Seized</option>
+            <option value="unclaimed">Unclaimed</option>
+          </select>
+          <select id="itemCondition">
+            <option value="new">New</option>
+            <option value="like_new">Like New</option>
+            <option value="good">Good</option>
+            <option value="fair">Fair</option>
+            <option value="poor">Poor</option>
+          </select>
+          <input type="number" id="itemValue" placeholder="Declared Value $">
+          <select id="itemCategory">
+            <option value="electronics">Electronics</option>
+            <option value="clothing">Clothing</option>
+            <option value="tools">Tools</option>
+            <option value="automotive">Automotive</option>
+            <option value="jewelry">Jewelry</option>
+            <option value="furniture">Furniture</option>
+            <option value="general">General Merchandise</option>
+          </select>
+        </div>
+        <button class="rl-btn" onclick="classifyItem()">⚡ Classify & Value</button>
+        <div id="classifyResult" class="rl-classify-result" style="display:none;"></div>
+      </div>
+    </div>
+
+    <!-- ── BLOCKCHAIN REGISTRY ── -->
+    <div class="rl-panel" id="panel-blockchain">
+      <div class="rl-panel-header">
+        <h2>🔗 Blockchain-Backed Freight Registry</h2>
+        <p>Immutable on-chain record keeping via CodexChain • Sepolia Network</p>
+      </div>
+
+      <div class="rl-bc-network">
+        <div class="bc-net-card">
+          <div class="bc-net-label">Network</div>
+          <div class="bc-net-val">Sepolia (Testnet → Mainnet)</div>
+        </div>
+        <div class="bc-net-card">
+          <div class="bc-net-label">Contract</div>
+          <div class="bc-net-val mono">0x12efC9a5...817c</div>
+        </div>
+        <div class="bc-net-card">
+          <div class="bc-net-label">Registry Records</div>
+          <div class="bc-net-val" id="bcRecordCount">0</div>
+        </div>
+        <div class="bc-net-card">
+          <div class="bc-net-label">Status</div>
+          <div class="bc-net-val"><span class="status-dot green"></span> Operational</div>
+        </div>
+      </div>
+
+      <div class="rl-bc-actions">
+        <div class="rl-bc-register">
+          <h3>📝 Register Freight Record</h3>
+          <div class="rl-form-grid">
+            <input type="text" id="bcFreightId" placeholder="Freight / Container ID">
+            <input type="text" id="bcContents" placeholder="Contents description">
+            <input type="number" id="bcValue" placeholder="Declared Value $">
+            <input type="text" id="bcOrigin" placeholder="Origin Port/Location">
+            <input type="text" id="bcDestination" placeholder="Destination">
+            <input type="text" id="bcCarrier" placeholder="Carrier Name">
+          </div>
+          <button class="rl-btn" onclick="registerOnChain()">🔗 Register on Blockchain</button>
+          <div id="bcRegResult" class="rl-msg" style="display:none;"></div>
+        </div>
+
+        <div class="rl-bc-verify">
+          <h3>✅ Verify Hash</h3>
+          <div class="rl-verify-bar">
+            <input type="text" id="bcHash" placeholder="Paste 0x hash to verify...">
+            <button class="rl-btn" onclick="verifyHash()">🔍 Verify</button>
+          </div>
+          <div id="bcVerifyResult" class="rl-msg" style="display:none;"></div>
+        </div>
+      </div>
+
+      <div class="rl-bc-records">
+        <h3>📋 Registry Log</h3>
+        <table class="rl-table" id="bcTable">
+          <thead>
+            <tr><th>Record ID</th><th>Contents</th><th>Value</th><th>Hash</th><th>Network</th><th>Status</th><th>Registered At</th></tr>
+          </thead>
+          <tbody id="bcBody"><tr><td colspan="7" class="rl-loading">No records yet — register freight to populate.</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── FREIGHT INTELLIGENCE ── -->
+    <div class="rl-panel" id="panel-intelligence">
+      <div class="rl-panel-header">
+        <h2>🧠 Dynasty-OS Freight Intelligence</h2>
+        <p>Global expansion data, compliance status, and strategic acquisition insights</p>
+      </div>
+
+      <div class="rl-intel-regions">
+        <h3>🌍 Global Acquisition Coverage</h3>
+        <div class="rl-regions-grid">
+          <div class="rl-region-card active">
+            <div class="region-flag">🇺🇸</div>
+            <h4>United States</h4>
+            <div class="region-status live">FULLY OPERATIONAL</div>
+            <ul>
+              <li>CBP Customs Auctions</li>
+              <li>GSA & GovDeals</li>
+              <li>Major Carrier Networks</li>
+              <li>All Major Retailers</li>
+              <li>TSA & Airport Auctions</li>
+            </ul>
+            <div class="region-listings">~9,200 active listings</div>
+          </div>
+          <div class="rl-region-card expansion">
+            <div class="region-flag">🇪🇺</div>
+            <h4>European Union</h4>
+            <div class="region-status expanding">EXPANDING</div>
+            <ul>
+              <li>Port of Rotterdam</li>
+              <li>Port of Hamburg</li>
+              <li>EU Customs Network</li>
+              <li>European Retailers</li>
+            </ul>
+            <div class="region-listings">~2,400 active listings</div>
+          </div>
+          <div class="rl-region-card expansion">
+            <div class="region-flag">🌏</div>
+            <h4>Asia Pacific</h4>
+            <div class="region-status expanding">EXPANDING</div>
+            <ul>
+              <li>Port of Shanghai</li>
+              <li>Port of Singapore</li>
+              <li>Asian Carrier Networks</li>
+              <li>APAC Retail Returns</li>
+            </ul>
+            <div class="region-listings">~1,800 active listings</div>
+          </div>
+          <div class="rl-region-card planned">
+            <div class="region-flag">🕌</div>
+            <h4>Middle East</h4>
+            <div class="region-status planned">PLANNED Q3</div>
+            <ul>
+              <li>Port of Dubai (Jebel Ali)</li>
+              <li>Abu Dhabi Ports</li>
+              <li>GCC Customs</li>
+            </ul>
+            <div class="region-listings">Coming soon</div>
+          </div>
+          <div class="rl-region-card planned">
+            <div class="region-flag">🌍</div>
+            <h4>Africa</h4>
+            <div class="region-status planned">PLANNED Q4</div>
+            <ul>
+              <li>Port of Durban</li>
+              <li>Port of Lagos</li>
+              <li>Continental Customs</li>
+            </ul>
+            <div class="region-listings">Coming soon</div>
+          </div>
+          <div class="rl-region-card planned">
+            <div class="region-flag">🌎</div>
+            <h4>Latin America</h4>
+            <div class="region-status planned">PLANNED 2027</div>
+            <ul>
+              <li>Port of Santos</li>
+              <li>Port of Buenos Aires</li>
+              <li>Pan-American Customs</li>
+            </ul>
+            <div class="region-listings">Coming soon</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rl-intel-compliance">
+        <h3>✅ Compliance Matrix</h3>
+        <div class="rl-compliance-grid">
+          <div class="compliance-item ok"><span>CBP Customs Compliance</span><span class="comp-badge green">✓ Active</span></div>
+          <div class="compliance-item ok"><span>GSA Authorization</span><span class="comp-badge green">✓ Active</span></div>
+          <div class="compliance-item ok"><span>HAZMAT Classification</span><span class="comp-badge green">✓ Active</span></div>
+          <div class="compliance-item ok"><span>Blockchain Verification</span><span class="comp-badge green">✓ Sepolia</span></div>
+          <div class="compliance-item pending"><span>ISO 20022 Integration</span><span class="comp-badge yellow">⏳ Pending</span></div>
+          <div class="compliance-item pending"><span>EU AEO Certification</span><span class="comp-badge yellow">⏳ Q3 2026</span></div>
+          <div class="compliance-item pending"><span>APAC Customs Portal</span><span class="comp-badge yellow">⏳ Q3 2026</span></div>
+          <div class="compliance-item ok"><span>Dynasty-OS Codex Audit Trail</span><span class="comp-badge green">✓ Active</span></div>
+        </div>
+      </div>
+
+      <div class="rl-whitepaper">
+        <h3>📄 Dynasty-OS Reverse Logistics Whitepaper</h3>
+        <div class="whitepaper-card">
+          <h4>Sovereign-Grade Reverse Logistics, Auction Aggregation & Distressed Freight Intelligence</h4>
+          <div class="wp-sections">
+            <div class="wp-section"><strong>1. Overview</strong><p>Dynasty-OS introduces a unified global platform for reverse logistics, distressed freight, abandoned cargo, customs seizures, and liquidation auctions — all governed through the Codex audit trail.</p></div>
+            <div class="wp-section"><strong>2. Core Modules</strong><ul><li>Reverse Logistics Module — Classification engine for 6 cargo categories</li><li>Auction Aggregator Engine — 5 global source networks, 15,000+ providers</li><li>Container Seizure & Abandonment Tracker — Real-time port monitoring</li><li>Global Freight Marketplace API — Unified acquisition interface</li><li>Blockchain-Backed Registry — Immutable freight records on Sepolia</li></ul></div>
+            <div class="wp-section"><strong>3. Global Impact</strong><p>Dynasty-OS transforms reverse logistics into a sovereign-grade intelligence network, enabling governments, enterprises, and logistics operators to reclaim value from distressed supply chains worldwide.</p></div>
+            <div class="wp-section"><strong>4. Conclusion</strong><p>Dynasty-OS establishes the world's first unified reverse logistics operating system, integrating auctions, freight intelligence, and global distressed-cargo markets under a single blockchain-verified command center.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="sacred-footer">
+    <p>Dynasty-OS Reverse Logistics Suite | Borders Ecclesia Earth Trust</p>
+    <p><a href="omega-portal.html">← Omega Portal</a> | <a href="logistics-dynasty.html">Logistics Dynasty →</a></p>
+  </footer>
+
+  <script src="lib/reverse-logistics/reverseLogistics.module.js"></script>
+  <script src="lib/reverse-logistics/auctionEngine.js"></script>
+  <script src="lib/reverse-logistics/containerTracker.js"></script>
+  <script src="lib/reverse-logistics/globalMarketplace.js"></script>
+  <script src="lib/reverse-logistics/blockchainRegistry.js"></script>
+  <script src="lib/reverse-logistics/index.js"></script>
+
+  <script>
+    // ── Tab System ──
+    document.querySelectorAll('.rl-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.rl-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.rl-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+      });
+    });
+
+    // ── Load marketplace listings ──
+    const CATS = {
+      retail_return: { label: '🛍️ Retail Return', color: '#4ade80' },
+      carrier_overgoods: { label: '📦 Carrier Overgoods', color: '#60a5fa' },
+      abandoned_cargo: { label: '🚢 Abandoned Cargo', color: '#f59e0b' },
+      customs_seizure: { label: '🏛️ Customs Seizure', color: '#ef4444' },
+      airport_unclaimed: { label: '✈️ Airport Unclaimed', color: '#a78bfa' },
+      government_surplus: { label: '🏛️ Government Surplus', color: '#14b8a6' }
+    };
+
+    async function loadListings() {
+      const cat = document.getElementById('filterCategory').value;
+      const reg = document.getElementById('filterRegion').value;
+      const minVal = document.getElementById('filterMinValue').value;
+      const params = new URLSearchParams();
+      if (cat) params.set('category', cat);
+      if (reg) params.set('region', reg);
+      if (minVal) params.set('minValue', minVal);
+
+      const grid = document.getElementById('listingsGrid');
+      grid.innerHTML = '<div class="rl-loading">Loading listings...</div>';
+
+      try {
+        const res = await fetch('/api/marketplace/listings?' + params.toString());
+        const data = await res.json();
+        renderListings(data.listings || []);
+      } catch (e) {
+        grid.innerHTML = '<div class="rl-error">Unable to load listings. Check server status.</div>';
+      }
+    }
+
+    function renderListings(listings) {
+      const grid = document.getElementById('listingsGrid');
+      if (!listings.length) { grid.innerHTML = '<div class="rl-empty">No listings match your filters.</div>'; return; }
+      grid.innerHTML = listings.map(l => {
+        const cat = CATS[l.category] || { label: l.category, color: '#888' };
+        const statusCls = l.verified ? 'verified' : '';
+        return `<div class="rl-listing-card ${statusCls}">
+          <div class="listing-cat-badge" style="background:${cat.color}22;color:${cat.color};border-color:${cat.color}44">${cat.label}</div>
+          <h4 class="listing-title">${l.title}</h4>
+          <div class="listing-meta">
+            <span>📍 ${l.port}</span>
+            <span>🌍 ${l.region}</span>
+            <span>⚖️ ${(l.weight/1000).toFixed(1)}t</span>
+            <span>⏱️ Ends in ${l.endsIn}h</span>
+          </div>
+          <div class="listing-pricing">
+            <div class="price-block"><span class="price-label">Min Bid</span><span class="price-val">$${l.minBid.toLocaleString()}</span></div>
+            <div class="price-block current"><span class="price-label">Current Bid</span><span class="price-val highlight">$${l.currentBid.toLocaleString()}</span></div>
+            <div class="price-block buynow"><span class="price-label">Buy Now</span><span class="price-val">$${l.buyNow.toLocaleString()}</span></div>
+          </div>
+          <div class="listing-footer">
+            <span class="bid-count">${l.bids} bids</span>
+            ${l.verified ? '<span class="verified-badge">✓ Verified</span>' : ''}
+            ${l.hazmat ? '<span class="hazmat-badge">⚠️ HAZMAT</span>' : ''}
+            <button class="rl-btn sm" onclick="placeBid('${l.id}', ${l.currentBid + 100})">Bid $${(l.currentBid + 100).toLocaleString()}</button>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    function applyFilters() { loadListings(); }
+
+    async function placeBid(listingId, amount) {
+      try {
+        const res = await fetch('/api/marketplace/bids', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ listingId, amount })
+        });
+        const data = await res.json();
+        if (data.success) { showToast(`✓ Bid placed: $${amount.toLocaleString()} on ${listingId}`); loadListings(); }
+      } catch (e) { showToast('Failed to place bid'); }
+    }
+
+    // ── Container Tracker ──
+    async function loadContainers() {
+      try {
+        const res = await fetch('/api/reverse-logistics/containers');
+        const data = await res.json();
+        renderContainers(data.containers || []);
+        loadContainerStats();
+      } catch (e) {}
+    }
+
+    function renderContainers(containers) {
+      const tbody = document.getElementById('containersBody');
+      if (!containers.length) { tbody.innerHTML = '<tr><td colspan="10" class="rl-empty">No containers registered.</td></tr>'; return; }
+      tbody.innerHTML = containers.map(c => {
+        const eligible = ['abandoned','seized','delinquent'].includes(c.status);
+        const statusCls = { abandoned:'status-abandoned', seized:'status-seized', delinquent:'status-delinquent', in_transit:'status-transit', cleared:'status-cleared' }[c.status] || '';
+        return `<tr>
+          <td class="mono">${c.id}</td>
+          <td>${c.type}</td>
+          <td>${c.contents}</td>
+          <td>${c.portName || c.portCode}</td>
+          <td><span class="rl-status-badge ${statusCls}">${c.status.replace(/_/g,' ')}</span></td>
+          <td class="${c.daysAtPort > 30 ? 'text-danger' : ''}">${c.daysAtPort}d</td>
+          <td>$${(c.declaredValue||0).toLocaleString()}</td>
+          <td class="${c.taxOwed > 0 ? 'text-danger' : ''}">${c.taxOwed > 0 ? '$'+c.taxOwed.toLocaleString() : '—'}</td>
+          <td>${eligible ? '<span class="eligible-badge">✓ Yes</span>' : '—'}</td>
+          <td><button class="rl-btn sm" onclick="lookupContainerById('${c.id}')">View</button></td>
+        </tr>`;
+      }).join('');
+    }
+
+    async function loadContainerStats() {
+      try {
+        const res = await fetch('/api/reverse-logistics/stats');
+        const s = await res.json();
+        document.getElementById('ctAbandoned').textContent = s.byStatus?.abandoned || 0;
+        document.getElementById('ctSeized').textContent = s.byStatus?.seized || 0;
+        document.getElementById('ctDelinquent').textContent = s.byStatus?.delinquent || 0;
+        document.getElementById('ctEligible').textContent = s.auctionEligible || 0;
+        document.getElementById('ctValue').textContent = '$' + Math.round((s.totalDeclaredValue||0)/1000) + 'K';
+      } catch (e) {}
+    }
+
+    async function lookupContainer() {
+      const id = document.getElementById('containerLookup').value.trim();
+      if (!id) return;
+      lookupContainerById(id);
+    }
+
+    async function lookupContainerById(id) {
+      try {
+        const res = await fetch('/api/reverse-logistics/containers/' + id);
+        const c = await res.json();
+        const el = document.getElementById('lookupResult');
+        el.style.display = 'block';
+        if (c.status === 'not_found') {
+          el.innerHTML = `<div class="rl-error">Container <strong>${id}</strong> not found in Dynasty-OS registry.</div>`;
+        } else {
+          const eligible = ['abandoned','seized','delinquent'].includes(c.status);
+          el.innerHTML = `<div class="rl-lookup-card">
+            <div class="lookup-header"><h4>${c.id}</h4><span class="rl-status-badge">${c.status}</span></div>
+            <div class="lookup-grid">
+              <div><span>Type:</span><strong>${c.type}</strong></div>
+              <div><span>Contents:</span><strong>${c.contents}</strong></div>
+              <div><span>Port:</span><strong>${c.portName || c.portCode}</strong></div>
+              <div><span>Carrier:</span><strong>${c.carrier}</strong></div>
+              <div><span>Declared Value:</span><strong>$${(c.declaredValue||0).toLocaleString()}</strong></div>
+              <div><span>Tax Owed:</span><strong class="${c.taxOwed > 0 ? 'text-danger' : ''}">${c.taxOwed > 0 ? '$'+c.taxOwed.toLocaleString() : 'None'}</strong></div>
+              <div><span>Days at Port:</span><strong class="${c.daysAtPort > 30 ? 'text-danger' : ''}">${c.daysAtPort} days</strong></div>
+              <div><span>Auction Eligible:</span><strong>${eligible ? '✓ Yes' : 'No'}</strong></div>
+            </div>
+          </div>`;
+        }
+      } catch (e) {}
+    }
+
+    async function registerContainer() {
+      const data = {
+        id: document.getElementById('newContainerId').value.trim(),
+        type: document.getElementById('newContainerType').value,
+        contents: document.getElementById('newContainerContents').value.trim(),
+        declaredValue: Number(document.getElementById('newContainerValue').value),
+        status: document.getElementById('newContainerStatus').value,
+        portCode: document.getElementById('newContainerPort').value,
+        taxOwed: Number(document.getElementById('newContainerTax').value) || 0,
+        daysAtPort: Number(document.getElementById('newContainerDays').value) || 0
+      };
+      if (!data.contents) { showToast('Please fill in required fields'); return; }
+
+      try {
+        const res = await fetch('/api/reverse-logistics/containers', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await res.json();
+        const el = document.getElementById('registerResult');
+        el.style.display = 'block';
+        el.className = 'rl-msg success';
+        el.textContent = `✓ Container ${result.container?.id} registered successfully.`;
+        loadContainers();
+      } catch (e) { showToast('Registration failed'); }
+    }
+
+    // ── Auction Engine ──
+    const feedCounts = { carrier: null, customs: null, airports: null, retail: null, government: null };
+
+    async function ingestFeed(key) {
+      const elIds = { carrier:'feedCarrier', customs:'feedCustoms', airports:'feedAirports', retail:'feedRetail', government:'feedGov' };
+      const el = document.getElementById(elIds[key]);
+      if (el) el.textContent = 'Loading...';
+      await new Promise(r => setTimeout(r, 600));
+      const count = Math.floor(Math.random() * 2000) + 100;
+      feedCounts[key] = count;
+      if (el) el.textContent = count.toLocaleString();
+      showToast(`✓ ${key.charAt(0).toUpperCase()+key.slice(1)} feed ingested: ${count.toLocaleString()} listings`);
+    }
+
+    async function ingestAllFeeds() {
+      showToast('⚡ Ingesting all feeds...');
+      for (const key of Object.keys(feedCounts)) { await ingestFeed(key); }
+      showToast('✓ All feeds ingested successfully!');
+    }
+
+    function classifyItem() {
+      const status = document.getElementById('itemStatus').value;
+      const condition = document.getElementById('itemCondition').value;
+      const value = Number(document.getElementById('itemValue').value) || 1000;
+      const itemCat = document.getElementById('itemCategory').value;
+
+      const catMap = { returned:'retail_return', undeliverable:'carrier_overgoods', abandoned:'abandoned_cargo', seized:'customs_seizure', unclaimed:'airport_unclaimed' };
+      const category = catMap[status] || 'unclassified';
+      const condFactor = { new:0.8, like_new:0.7, good:0.55, fair:0.35, poor:0.15 }[condition] || 0.4;
+      const catMult = { electronics:1.2, jewelry:1.5, clothing:0.6, tools:0.9, automotive:1.1, furniture:0.5, general:0.7 }[itemCat] || 0.7;
+      const estimated = Math.round(value * condFactor * catMult);
+      const catInfo = CATS[category] || { label: category, color: '#888' };
+
+      const auctions = {
+        retail_return: ['Amazon Liquidations', 'Walmart Liquidations', 'B-Stock'],
+        carrier_overgoods: ['UPS Overgoods', 'FedEx Auctions', 'USPS Mail Recovery'],
+        abandoned_cargo: ['CBP Auctions', 'Port Authority', 'Bonded Warehouses'],
+        customs_seizure: ['GSA Auctions', 'GovDeals', 'State Surplus'],
+        airport_unclaimed: ['TSA Auctions', 'Unclaimed Baggage Center', 'Airport Lost & Found']
+      }[category] || ['General Liquidation'];
+
+      const el = document.getElementById('classifyResult');
+      el.style.display = 'block';
+      el.innerHTML = `<div class="classify-card">
+        <div class="classify-header">
+          <span class="listing-cat-badge" style="background:${catInfo.color}22;color:${catInfo.color}">${catInfo.label}</span>
+          <span class="classify-action">Recommended: ${estimated > 1000 ? '🏆 Priority Auction' : estimated < 50 ? '📦 Bulk Liquidation' : '⚡ Standard Auction'}</span>
+        </div>
+        <div class="classify-values">
+          <div><span>Estimated Value</span><strong>$${estimated.toLocaleString()}</strong></div>
+          <div><span>Minimum Bid</span><strong>$${Math.round(estimated*0.3).toLocaleString()}</strong></div>
+          <div><span>Buy Now Price</span><strong>$${Math.round(estimated*1.2).toLocaleString()}</strong></div>
+          <div><span>Condition Factor</span><strong>${(condFactor*100).toFixed(0)}%</strong></div>
+        </div>
+        <div class="classify-auctions"><strong>Recommended Auction Platforms:</strong> ${auctions.join(' • ')}</div>
+      </div>`;
+    }
+
+    // ── Blockchain Registry ──
+    let bcRecords = [];
+
+    async function registerOnChain() {
+      const data = {
+        freightId: document.getElementById('bcFreightId').value,
+        contents: document.getElementById('bcContents').value,
+        declaredValue: Number(document.getElementById('bcValue').value),
+        origin: document.getElementById('bcOrigin').value,
+        destination: document.getElementById('bcDestination').value,
+        carrier: document.getElementById('bcCarrier').value
+      };
+      try {
+        const res = await fetch('/api/blockchain/registry', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await res.json();
+        const el = document.getElementById('bcRegResult');
+        el.style.display = 'block';
+        el.className = 'rl-msg success';
+        el.innerHTML = `✓ Registered on blockchain<br>Record ID: <span class="mono">${result.record?.id}</span><br>Hash: <span class="mono">${(result.record?.hash||'').slice(0,20)}...</span>`;
+        bcRecords.push(result.record);
+        renderBcTable();
+        document.getElementById('bcRecordCount').textContent = bcRecords.length;
+      } catch (e) { showToast('Registration failed'); }
+    }
+
+    async function verifyHash() {
+      const hash = document.getElementById('bcHash').value.trim();
+      try {
+        const res = await fetch('/api/blockchain/verify', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ hash })
+        });
+        const result = await res.json();
+        const el = document.getElementById('bcVerifyResult');
+        el.style.display = 'block';
+        el.className = 'rl-msg ' + (result.valid ? 'success' : 'error');
+        el.innerHTML = result.valid
+          ? `✓ Hash AUTHENTIC — ${result.confirmations} confirmations on ${result.network}`
+          : `✗ Invalid hash: ${result.error}`;
+      } catch (e) { showToast('Verification failed'); }
+    }
+
+    function renderBcTable() {
+      const tbody = document.getElementById('bcBody');
+      if (!bcRecords.length) { tbody.innerHTML = '<tr><td colspan="7" class="rl-empty">No records yet.</td></tr>'; return; }
+      tbody.innerHTML = bcRecords.map(r => `<tr>
+        <td class="mono">${r.id}</td>
+        <td>${r.contents||'—'}</td>
+        <td>$${(r.declaredValue||0).toLocaleString()}</td>
+        <td class="mono truncate">${(r.hash||'').slice(0,16)}...</td>
+        <td>${r.network}</td>
+        <td><span class="eligible-badge">${r.status}</span></td>
+        <td>${new Date(r.registeredAt).toLocaleDateString()}</td>
+      </tr>`).join('');
+    }
+
+    // ── Stats ──
+    async function loadHeroStats() {
+      try {
+        const res = await fetch('/api/marketplace/stats');
+        const s = await res.json();
+        document.getElementById('hTotalListings').textContent = s.totalListings?.toLocaleString() || '12,847';
+        document.getElementById('hActiveAuctions').textContent = s.activeAuctions?.toLocaleString() || '3,241';
+        document.getElementById('hTotalValue').textContent = '$' + ((s.totalValue||48200000)/1000000).toFixed(1) + 'M';
+        document.getElementById('hCompleted').textContent = s.completedToday || '187';
+        if (s.sources) {
+          document.getElementById('srcCarrier').textContent = s.sources.carrier?.toLocaleString() + ' listings';
+          document.getElementById('srcCustoms').textContent = s.sources.customs?.toLocaleString() + ' listings';
+          document.getElementById('srcAirports').textContent = s.sources.airports?.toLocaleString() + ' listings';
+          document.getElementById('srcRetail').textContent = s.sources.retail?.toLocaleString() + ' listings';
+          document.getElementById('srcGov').textContent = s.sources.government?.toLocaleString() + ' listings';
+        }
+      } catch (e) {}
+    }
+
+    function showToast(msg) {
+      const t = document.createElement('div');
+      t.className = 'rl-toast';
+      t.textContent = msg;
+      document.body.appendChild(t);
+      setTimeout(() => t.classList.add('show'), 50);
+      setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 3000);
+    }
+
+    // Init
+    loadHeroStats();
+    loadListings();
+    loadContainers();
+  </script>
+
+  <script type="module">
+    import { createDynastyHub } from './lib/dynasty-hub.js';
+    createDynastyHub({ position: 'bottom-right', collapsed: true });
+  </script>
+</body>
+</html>

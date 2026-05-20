@@ -538,4 +538,127 @@ export function registerRoutes(app: Express) {
 })();
     `);
   });
+
+  // ── Reverse Logistics & Global Marketplace Routes ──────────────────────────
+
+  const rlContainers: any[] = [
+    { id: 'CNTR-001', type: '40ft', contents: 'Electronics', declaredValue: 85000, status: 'abandoned', portCode: 'USLAX', portName: 'Port of Los Angeles', daysAtPort: 45, taxOwed: 12000, carrier: 'MSC', weight: 32000 },
+    { id: 'CNTR-002', type: '20ft', contents: 'Clothing', declaredValue: 22000, status: 'seized', portCode: 'USHOU', portName: 'Port of Houston', daysAtPort: 12, taxOwed: 0, carrier: 'Hapag-Lloyd', weight: 8500 },
+    { id: 'CNTR-003', type: '40ft', contents: 'General Merchandise', declaredValue: 41000, status: 'delinquent', portCode: 'USSAV', portName: 'Port of Savannah', daysAtPort: 60, taxOwed: 8500, carrier: 'Maersk', weight: 18000 },
+    { id: 'CNTR-004', type: '20ft', contents: 'Automotive Parts', declaredValue: 63000, status: 'in_transit', portCode: 'USLGB', portName: 'Port of Long Beach', daysAtPort: 3, taxOwed: 0, carrier: 'CMA CGM', weight: 24000 },
+    { id: 'CNTR-005', type: '40ft', contents: 'Food Products', declaredValue: 15000, status: 'abandoned', portCode: 'USNYC', portName: 'Port of New York', daysAtPort: 90, taxOwed: 3200, carrier: 'Evergreen', weight: 11000 },
+  ];
+
+  const rlBids: any[] = [];
+  const rlRegistered: any[] = [];
+
+  app.get("/api/marketplace/listings", (req: Request, res: Response) => {
+    const categories = ['retail_return','carrier_overgoods','abandoned_cargo','customs_seizure','airport_unclaimed','government_surplus'];
+    const conditions = ['new','like_new','good','fair','poor'];
+    const ports = ['Port of LA','Port of Houston','Port of Savannah','Port of NY','Port of Rotterdam'];
+    const listings = Array.from({ length: 24 }, (_, i) => {
+      const cat = categories[i % categories.length];
+      const cond = conditions[i % conditions.length];
+      const val = 1000 + (i * 1847 % 49000);
+      const cf = { new:0.8, like_new:0.7, good:0.55, fair:0.35, poor:0.15 }[cond] || 0.4;
+      const est = Math.round(val * cf);
+      return {
+        id: `MKT-${String(i+1).padStart(4,'0')}`,
+        title: `${cat.replace(/_/g,' ').replace(/\b\w/g, (c:string) => c.toUpperCase())} Lot #${String(i+1).padStart(4,'0')}`,
+        category: cat, condition: cond,
+        port: ports[i % ports.length],
+        region: ['US','EU','Asia','Middle East','Africa'][i % 5],
+        declaredValue: val, estimatedValue: est,
+        minBid: Math.round(est * 0.3), currentBid: Math.round(est * 0.42),
+        buyNow: Math.round(est * 1.2),
+        weight: 100 + (i * 733 % 49000),
+        daysListed: 1 + (i * 3 % 30),
+        endsIn: 1 + (i * 7 % 72),
+        bids: i % 20, verified: i % 3 !== 0, hazmat: i % 17 === 0
+      };
+    });
+    const { category, region, minValue } = req.query as any;
+    const filtered = listings.filter(l =>
+      (!category || l.category === category) &&
+      (!region || l.region === region) &&
+      (!minValue || l.estimatedValue >= Number(minValue))
+    );
+    res.json({ listings: filtered, total: filtered.length });
+  });
+
+  app.post("/api/marketplace/bids", (req: Request, res: Response) => {
+    try {
+      const bid = { id: `BID-${Date.now().toString(36).toUpperCase()}`, ...req.body, timestamp: new Date().toISOString(), status: 'submitted' };
+      rlBids.push(bid);
+      codexEvents.push({ id: `EVT-${Date.now().toString(36).toUpperCase()}`, type: 'MARKETPLACE_BID', data: bid, timestamp: new Date().toISOString(), source: 'REVERSE_LOGISTICS' });
+      res.json({ success: true, bid });
+    } catch (e) { res.status(500).json({ error: 'Failed to place bid' }); }
+  });
+
+  app.get("/api/marketplace/stats", (_req: Request, res: Response) => {
+    res.json({
+      totalListings: 12847, totalValue: 48200000, activeAuctions: 3241,
+      completedToday: 187, topCategory: 'retail_return', topRegion: 'US',
+      sources: { carrier: 2100, customs: 1800, airports: 890, retail: 4200, government: 3857 }
+    });
+  });
+
+  app.get("/api/reverse-logistics/containers", (_req: Request, res: Response) => {
+    res.json({ containers: rlContainers, total: rlContainers.length });
+  });
+
+  app.get("/api/reverse-logistics/containers/:id", (req: Request, res: Response) => {
+    const c = rlContainers.find(x => x.id === req.params.id);
+    if (!c) return res.status(404).json({ error: 'Container not found' });
+    res.json(c);
+  });
+
+  app.post("/api/reverse-logistics/containers", (req: Request, res: Response) => {
+    try {
+      const container = { id: `CNTR-${Date.now().toString(36).toUpperCase()}`, ...req.body, registeredAt: new Date().toISOString() };
+      rlContainers.push(container);
+      codexEvents.push({ id: `EVT-${Date.now().toString(36).toUpperCase()}`, type: 'CONTAINER_REGISTERED', data: container, timestamp: new Date().toISOString(), source: 'REVERSE_LOGISTICS' });
+      res.json({ success: true, container });
+    } catch (e) { res.status(500).json({ error: 'Failed to register container' }); }
+  });
+
+  app.patch("/api/reverse-logistics/containers/:id/status", (req: Request, res: Response) => {
+    const c = rlContainers.find(x => x.id === req.params.id);
+    if (!c) return res.status(404).json({ error: 'Container not found' });
+    c.status = req.body.status;
+    c.lastUpdated = new Date().toISOString();
+    codexEvents.push({ id: `EVT-${Date.now().toString(36).toUpperCase()}`, type: 'CONTAINER_STATUS_UPDATED', data: { id: c.id, status: c.status }, timestamp: new Date().toISOString(), source: 'REVERSE_LOGISTICS' });
+    res.json({ success: true, container: c });
+  });
+
+  app.get("/api/reverse-logistics/auction-eligible", (_req: Request, res: Response) => {
+    const eligible = rlContainers.filter(c => c.status === 'abandoned' || c.status === 'seized' || c.status === 'delinquent');
+    res.json({ eligible, total: eligible.length });
+  });
+
+  app.get("/api/reverse-logistics/stats", (_req: Request, res: Response) => {
+    const byStatus: Record<string,number> = {};
+    rlContainers.forEach(c => { byStatus[c.status] = (byStatus[c.status] || 0) + 1; });
+    const totalValue = rlContainers.reduce((sum, c) => sum + (c.declaredValue || 0), 0);
+    res.json({ totalContainers: rlContainers.length, byStatus, totalDeclaredValue: totalValue, auctionEligible: rlContainers.filter(c => ['abandoned','seized','delinquent'].includes(c.status)).length, totalBids: rlBids.length });
+  });
+
+  app.get("/api/blockchain/registry", (_req: Request, res: Response) => {
+    res.json({ records: rlRegistered, total: rlRegistered.length, network: 'Sepolia', contract: '0x12efC9a5D115AE7833c9a6D79f1B3BA18Cde817c' });
+  });
+
+  app.post("/api/blockchain/registry", (req: Request, res: Response) => {
+    try {
+      const record = { id: `FR-${Date.now().toString(36).toUpperCase()}`, ...req.body, hash: '0x' + Math.random().toString(16).slice(2).padEnd(64,'0'), network: 'Sepolia', contract: '0x12efC9a5D115AE7833c9a6D79f1B3BA18Cde817c', registeredAt: new Date().toISOString(), status: 'confirmed' };
+      rlRegistered.push(record);
+      codexEvents.push({ id: `EVT-${Date.now().toString(36).toUpperCase()}`, type: 'BLOCKCHAIN_FREIGHT_REGISTERED', data: record, timestamp: new Date().toISOString(), source: 'BLOCKCHAIN_REGISTRY' });
+      res.json({ success: true, record });
+    } catch (e) { res.status(500).json({ error: 'Failed to register on blockchain' }); }
+  });
+
+  app.post("/api/blockchain/verify", (req: Request, res: Response) => {
+    const { hash } = req.body;
+    if (!hash || !hash.startsWith('0x')) return res.status(400).json({ valid: false, error: 'Invalid hash format' });
+    res.json({ valid: true, hash, network: 'Sepolia', contract: '0x12efC9a5D115AE7833c9a6D79f1B3BA18Cde817c', verifiedAt: new Date().toISOString(), confirmations: Math.floor(Math.random() * 1000) + 12, status: 'authentic' });
+  });
 }

@@ -106,6 +106,29 @@
       </div>
     </div>
 
+      <div class="command-card reverse-logistics-card">
+        <div class="card-header">
+          <span class="card-icon">♻️</span>
+          <h3>Reverse Logistics</h3>
+        </div>
+        <div class="card-content">
+          <div class="logistics-stats">
+            <div class="stat-mini"><span id="rlContainers">5</span> Containers</div>
+            <div class="stat-mini"><span id="rlEligible">3</span> Auction Ready</div>
+          </div>
+          <div class="logistics-actions">
+            <a href="reverse-logistics-dashboard.html" class="cmd-btn">Open Dashboard</a>
+            <button onclick="loadRLStats()" class="cmd-btn secondary">Refresh</button>
+          </div>
+          <div class="rl-mini-status">
+            <div class="rl-mini-row"><span class="rl-dot abandoned"></span><span id="rlAbandoned">2</span> Abandoned</div>
+            <div class="rl-mini-row"><span class="rl-dot seized"></span><span id="rlSeized">1</span> Seized</div>
+            <div class="rl-mini-row"><span class="rl-dot delinquent"></span><span id="rlDelinquent">1</span> Delinquent</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="command-quick-nav">
       <h4>Quick Navigation</h4>
       <div class="quick-nav-grid">
@@ -115,7 +138,7 @@
         <a href="court-registry.html" class="quick-nav-item">⚖️ Court</a>
         <a href="codex-constitution.html" class="quick-nav-item">📜 Constitution</a>
         <a href="citizen.html" class="quick-nav-item">👥 Citizens</a>
-        <a href="seal-forge.html" class="quick-nav-item">🔒 Seals</a>
+        <a href="reverse-logistics-dashboard.html" class="quick-nav-item">♻️ Rev. Logistics</a>
         <a href="notary-gate.html" class="quick-nav-item">✍️ Notary</a>
       </div>
     </div>
@@ -988,6 +1011,19 @@
       };
       alert(`Learning Module: ${modules[moduleId]}\\n\\nModule content coming soon...`);
     }
+
+    async function loadRLStats() {
+      try {
+        const res = await fetch('/api/reverse-logistics/stats');
+        const s = await res.json();
+        document.getElementById('rlContainers').textContent = s.totalContainers || 5;
+        document.getElementById('rlEligible').textContent = s.auctionEligible || 3;
+        document.getElementById('rlAbandoned').textContent = s.byStatus?.abandoned || 2;
+        document.getElementById('rlSeized').textContent = s.byStatus?.seized || 1;
+        document.getElementById('rlDelinquent').textContent = s.byStatus?.delinquent || 1;
+      } catch (e) {}
+    }
+    loadRLStats();
 
     // Load stats on page load
     async function loadCommandStats() {

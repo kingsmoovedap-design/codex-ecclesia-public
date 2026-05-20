@@ -1,0 +1,132 @@
+Skip to content
+kingsmoovedap-design
+Dynasty-os
+Repository navigation
+Code
+Issues
+8
+ (8)
+Pull requests
+Agents
+Actions
+Projects
+Security and quality
+Insights
+Settings
+Commit 326039b
+kingsmoovedap-design
+kingsmoovedap-design
+committed
+on Apr 14
+Dynasty‑OS: planetary installer, AI kernel, config engine, neural interface
+master
+0 parents  commit 
+326039b
+73 files changed
+
++1,201
+Lines changed: 1201 additions & 0 deletions
+Some content is hidden
+Large Commits have some content hidden by default. Use the searchbox below for content that may be hidden.
+Search within code
+ 
+‎apps/ai-overseer/package.json‎
++7
+Lines changed: 7 additions & 0 deletions
+Original file line number	Original file line	Diff line number	Diff line change
+@@ -0,0 +1,7 @@
+{
+  "name": "ai-overseer",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  }
+}
+‎apps/ai-overseer/src/index.ts‎
++1
+Lines changed: 1 addition & 0 deletions
+Original file line number	Original file line	Diff line number	Diff line change
+@@ -0,0 +1 @@
+console.log("🔥 ai-overseer initialized");
+‎apps/api-rule-engine/package.json‎
++12
+Lines changed: 12 additions & 0 deletions
+Original file line number	Original file line	Diff line number	Diff line change
+@@ -0,0 +1,12 @@
+{
+  "name": "api-rule-engine",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "ts-node src/rules.ts"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0"
+  }
+}
+‎apps/api-rule-engine/src/rules.ts‎
++21
+Lines changed: 21 additions & 0 deletions
+Original file line number	Original file line	Diff line number	Diff line change
+@@ -0,0 +1,21 @@
+import axios from "axios";
+async function loop() {
+  console.log("🧠 AI API Rule Engine Active");
+  while (true) {
+    const metrics = await axios.get("http://gateway:8080/api/system/metrics");
+    const rules = {
+      throttle: metrics.data.load > 0.8,
+      rerouteFailed: metrics.data.failures > 0,
+      prioritizeAI: metrics.data.queue > 50
+    };
+    await axios.post("http://gateway:8080/api/gateway/rules", rules);
+    await new Promise(r => setTimeout(r, 2000));
+  }
+}
+loop();
+‎apps/auto-restarter/package.json‎
++12
+Lines changed: 12 additions & 0 deletions
+Original file line number	Original file line	Diff line number	Diff line change
+@@ -0,0 +1,12 @@
+{
+  "name": "auto-restarter",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "ts-node src/watch.ts"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0"
+  }
+}
+‎apps/auto-restarter/src/watch.ts‎
++20
+Lines changed: 20 additions & 0 deletions
+Original file line number	Original file line	Diff line number	Diff line change
+@@ -0,0 +1,20 @@
+import axios from "axios";
+async function loop() {
+  console.log("🔁 Auto‑Restarter Active");
+  while (true) {
+    const health = await axios.get("http://gateway:8080/api/system/health");
+    for (const service of health.data.services) {
+      if (!service.healthy) {
+        console.log("⚠️ Restarting:", service.name);
+        await axios.post("http://gateway:8080/api/system/restart", { name: service.name });
+      }
+    }
+    await new Promise(r => setTimeout(r, 2000));
+  }
+}
+loop();
+0 commit comments
+Comments
+0
+ (0)
+Comment
+You're not receiving notifications from this thread.
+
+25 files remain
