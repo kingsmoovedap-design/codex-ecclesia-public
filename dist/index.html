@@ -3,55 +3,285 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>☩ Codex Ecclesia</title>
-  <meta name="description" content="The sacred digital archive of the Ecclesia - Web3 DApp" />
-  <meta name="keywords" content="codex, ecclesia, scrolls, web3, defi, dynasty, blockchain" />
+  <title>Codex Ecclesia — Sovereign Archive & Dynasty-OS Command Platform</title>
+  <meta name="description" content="The sovereign scroll archive of the Borders Ecclesia Earth Trust, vertically integrated with Dynasty-OS planetary computing infrastructure." />
+  <meta name="keywords" content="codex, ecclesia, dynasty-os, sovereign, scrolls, web3, defi, blockchain, logistics, ai, divinityVX" />
   <link rel="manifest" href="/assets/manifest-BZE2Ntrf.webmanifest" />
   <script src="lib/shield.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-  <script type="module" crossorigin src="/assets/index-CVLP3xqb.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-CD_82yT3.css">
+  <script type="module" crossorigin src="/assets/index-CdGJQPDh.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-BEp48dqa.css">
 </head>
 <body>
+
+  <!-- ── Navigation ── -->
   <nav class="sacred-nav">
-    <a href="index.html">Home</a>
+    <a href="index.html" class="active">Home</a>
     <a href="all-scrolls.html">All Scrolls</a>
     <a href="codex-constitution.html">Constitution</a>
-    <a href="legal-definitions.html">Legal Definitions</a>
     <a href="omega-portal.html" class="nav-highlight">☩ Omega Portal</a>
+    <a href="reverse-logistics-dashboard.html">♻️ Rev. Logistics</a>
+    <a href="dynasty-os-modules.html" class="nav-dynasty-os">⚙️ Dynasty-OS</a>
     <a href="dashboard.html">📊 Dashboard</a>
-    <a href="logistics-dynasty.html">🚚 Logistics</a>
     <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="nav-dynasty">👑 Dynasty Dashboard</a>
   </nav>
 
-  <header class="hero-section">
-    <div class="seal-icon-large">☩</div>
-    <h1>Codex Ecclesia</h1>
-    <p class="hero-tagline">A living archive of sacred scrolls, heirs, and trustees of the Ecclesia</p>
-    <p class="hero-subtitle">Web3 DApp on Sepolia Testnet</p>
+  <!-- ── Hero ── -->
+  <header class="home-hero">
+    <div class="home-hero-bg"></div>
+    <div class="home-hero-content">
+      <div class="home-hero-badge">508(c)(1)(A) Ecclesiastical Organization</div>
+      <div class="home-seal">☩</div>
+      <h1 class="home-hero-title">Codex Ecclesia</h1>
+      <p class="home-hero-sub">Sovereign Scroll Archive &amp; Dynasty-OS Planetary Command Platform</p>
+      <p class="home-hero-desc">The Borders Ecclesia Earth Trust — operating a vertically integrated sovereign tech stack spanning ecclesiastical law, blockchain treasury, global logistics, and planetary-scale AI governance.</p>
+      <div class="home-hero-cta">
+        <a href="omega-portal.html" class="hero-btn primary">☩ Enter Omega Portal</a>
+        <a href="dynasty-os-modules.html" class="hero-btn secondary">⚙️ Dynasty-OS Modules</a>
+        <a href="reverse-logistics-dashboard.html" class="hero-btn outline">♻️ Rev. Logistics</a>
+      </div>
+    </div>
+
+    <div class="home-live-stats" id="liveStats">
+      <div class="live-stat-pill"><span class="lsp-num" id="statScrolls">—</span><span class="lsp-label">Scrolls</span></div>
+      <div class="live-stat-pill"><span class="lsp-num" id="statDocs">—</span><span class="lsp-label">Documents</span></div>
+      <div class="live-stat-pill"><span class="lsp-num" id="statModules">28</span><span class="lsp-label">OS Modules</span></div>
+      <div class="live-stat-pill"><span class="lsp-num" id="statListings">12,847</span><span class="lsp-label">Mkt Listings</span></div>
+      <div class="live-stat-pill"><span class="lsp-num" id="statContainers">5</span><span class="lsp-label">Containers</span></div>
+      <div class="live-stat-pill"><span class="lsp-num" id="statNetwork">Sepolia</span><span class="lsp-label">Network</span></div>
+    </div>
   </header>
 
-  <div class="search-section">
-    <input type="text" id="searchBox" placeholder="Search scrolls by title, category, or content..." class="search-input" />
-  </div>
+  <!-- ── Dynasty-OS Platform Overview ── -->
+  <section class="dos-overview">
+    <div class="dos-overview-inner">
+      <div class="dos-ov-label">Dynasty-OS — github.com/kingsmoovedap-design/Dynasty-os</div>
+      <h2 class="dos-ov-title">Planetary Computing Infrastructure</h2>
+      <p class="dos-ov-sub">28 sovereign-grade OS modules spanning AI oversight, quantum compute, interstellar governance, zero-trust security, and global marketplace operations — all anchored to the Codex Ecclesia legal spine.</p>
 
+      <div class="dos-module-ticker" id="moduleTicker">
+        <div class="dos-ticker-track">
+          <span>⚡ ai-overseer</span><span>🧠 divinityVX-neural</span><span>🌐 interstellar-governance</span><span>⚛️ quantum</span><span>🔒 zero-trust</span><span>🚀 warp-engine</span><span>🌆 city-sim</span><span>🏛️ governance</span><span>🤖 robotics</span><span>🌌 galactic-compute</span><span>📡 cosmic-router</span><span>⚙️ hypervisor</span><span>🔗 service-mesh</span><span>🧪 simulation-engine</span><span>🪐 planetary</span><span>🏗️ megastructure-planner</span><span>🛒 marketplace</span><span>👁️ digital-twin</span><span>📋 doc-engine</span><span>🔄 auto-restarter</span><span>⚡ ai-overseer</span><span>🧠 divinityVX-neural</span><span>🌐 interstellar-governance</span><span>⚛️ quantum</span><span>🔒 zero-trust</span><span>🚀 warp-engine</span>
+        </div>
+      </div>
+
+      <div class="dos-ov-grid">
+        <div class="dos-ov-card">
+          <span class="dos-ov-icon">🧠</span>
+          <h4>AI & Neural Layer</h4>
+          <p>DivinityVX neural interface, AI overseer, API rule engine with autonomous self-healing</p>
+          <div class="dos-ov-modules">divinityVX • divinityVX-neural • ai-overseer • api-rule-engine</div>
+        </div>
+        <div class="dos-ov-card">
+          <span class="dos-ov-icon">⚙️</span>
+          <h4>Core Infrastructure</h4>
+          <p>Hypervisor, cluster builder, service mesh, config engine, and zero-trust security</p>
+          <div class="dos-ov-modules">hypervisor • cluster-builder • service-mesh • config-engine • zero-trust</div>
+        </div>
+        <div class="dos-ov-card">
+          <span class="dos-ov-icon">🌌</span>
+          <h4>Simulation & Compute</h4>
+          <p>Quantum compute, galactic routing, civilization simulation, and warp-speed data transfer</p>
+          <div class="dos-ov-modules">quantum • galactic-compute • cosmic-router • warp-engine • city-sim</div>
+        </div>
+        <div class="dos-ov-card">
+          <span class="dos-ov-icon">🏛️</span>
+          <h4>Governance Layer</h4>
+          <p>Interstellar governance, doc engine, planetary scheduling, and compliance automation</p>
+          <div class="dos-ov-modules">governance • interstellar-governance • doc-engine • planetary-scheduler</div>
+        </div>
+        <div class="dos-ov-card">
+          <span class="dos-ov-icon">🛒</span>
+          <h4>Marketplace & Commerce</h4>
+          <p>Global marketplace, digital twin management, and reverse logistics intelligence</p>
+          <div class="dos-ov-modules">marketplace • digital-twin • backend/src • robotics</div>
+        </div>
+        <div class="dos-ov-card">
+          <span class="dos-ov-icon">☩</span>
+          <h4>Codex Legal Spine</h4>
+          <p>Ecclesiastical trust law, UCC filings, entity formation, and blockchain-verified documents</p>
+          <div class="dos-ov-modules">omega-portal • codex-chain • reverse-logistics • BSC-treasury</div>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:2rem;">
+        <a href="dynasty-os-modules.html" class="hero-btn primary">View All 28 Modules →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Vertical Integration Stack ── -->
+  <section class="vert-stack-section">
+    <div class="vert-stack-inner">
+      <h2 class="section-title">Vertical Integration Stack</h2>
+      <p class="section-subtitle">From sovereign law to planetary compute — one unified command structure</p>
+      <div class="vert-stack">
+        <div class="vert-layer layer-1">
+          <div class="vl-label">Layer 1 — Legal Foundation</div>
+          <div class="vl-items">
+            <span>508(c)(1)(A) Trust</span><span>UCC Filings</span><span>Codex Constitution</span><span>Omega Portal</span>
+          </div>
+        </div>
+        <div class="vert-arrow">▼</div>
+        <div class="vert-layer layer-2">
+          <div class="vl-label">Layer 2 — Blockchain & Treasury</div>
+          <div class="vl-items">
+            <span>BSC Token (ERC-20)</span><span>CodexChain</span><span>QFS-Compliant</span><span>ISO-20022</span>
+          </div>
+        </div>
+        <div class="vert-arrow">▼</div>
+        <div class="vert-layer layer-3">
+          <div class="vl-label">Layer 3 — Logistics & Commerce</div>
+          <div class="vl-items">
+            <span>Reverse Logistics</span><span>Global Marketplace</span><span>Container Tracker</span><span>Auction Engine</span>
+          </div>
+        </div>
+        <div class="vert-arrow">▼</div>
+        <div class="vert-layer layer-4">
+          <div class="vl-label">Layer 4 — Dynasty-OS Infrastructure</div>
+          <div class="vl-items">
+            <span>Hypervisor</span><span>Service Mesh</span><span>Zero-Trust</span><span>Cluster Builder</span>
+          </div>
+        </div>
+        <div class="vert-arrow">▼</div>
+        <div class="vert-layer layer-5">
+          <div class="vl-label">Layer 5 — AI & Planetary Compute</div>
+          <div class="vl-items">
+            <span>DivinityVX Neural</span><span>Quantum Engine</span><span>Galactic Compute</span><span>AI Overseer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DivinityVX Neural Interface ── -->
+  <section class="divinity-section">
+    <div class="divinity-inner">
+      <div class="divinity-badge">Dynasty-OS Core Module</div>
+      <h2 class="divinity-title">⚡ DivinityVX Neural Interface</h2>
+      <p class="divinity-sub">Autonomous AI command layer — self-healing, self-optimizing, sovereign-controlled</p>
+      <div class="divinity-grid">
+        <div class="divinity-stat">
+          <div class="dv-num">99.9%</div>
+          <div class="dv-label">Uptime SLA</div>
+        </div>
+        <div class="divinity-stat">
+          <div class="dv-num">&lt;2ms</div>
+          <div class="dv-label">Latency Target</div>
+        </div>
+        <div class="divinity-stat">
+          <div class="dv-num">∞</div>
+          <div class="dv-label">Scale Factor</div>
+        </div>
+        <div class="divinity-stat">
+          <div class="dv-num">28</div>
+          <div class="dv-label">Modules Connected</div>
+        </div>
+      </div>
+      <div class="divinity-features">
+        <div class="dv-feature"><span class="dv-feat-icon">🧠</span><h4>Neural Routing</h4><p>Intelligent request routing via DivinityVX neural pathways across all OS modules</p></div>
+        <div class="dv-feature"><span class="dv-feat-icon">🔄</span><h4>Auto-Restarter</h4><p>Self-healing infrastructure that detects and recovers failed services autonomously</p></div>
+        <div class="dv-feature"><span class="dv-feat-icon">📡</span><h4>Cosmic Router</h4><p>Planetary-scale routing mesh connecting all Dynasty-OS nodes globally</p></div>
+        <div class="dv-feature"><span class="dv-feat-icon">⚛️</span><h4>Quantum Compute</h4><p>Quantum-ready computation layer for cryptographic and optimization workloads</p></div>
+      </div>
+      <div style="text-align:center; margin-top:2rem;">
+        <a href="dynasty-os-modules.html#divinity" class="hero-btn secondary">Explore DivinityVX →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Quick Command Grid ── -->
+  <section class="command-grid-section">
+    <div class="cg-inner">
+      <h2 class="section-title">Command Center</h2>
+      <p class="section-subtitle">Direct access to every sovereign platform</p>
+      <div class="cg-grid">
+        <a href="omega-portal.html" class="cg-card primary">
+          <span class="cg-icon">☩</span>
+          <h3>Omega Portal</h3>
+          <p>Grand Architect Command Center — legal documents, entity formation, Codex event spine</p>
+          <div class="cg-tag">Grand Architect</div>
+        </a>
+        <a href="reverse-logistics-dashboard.html" class="cg-card logistics">
+          <span class="cg-icon">♻️</span>
+          <h3>Reverse Logistics</h3>
+          <p>Global marketplace, container tracker, auction engine, blockchain freight registry</p>
+          <div class="cg-tag">12,847 Active Listings</div>
+        </a>
+        <a href="dynasty-os-modules.html" class="cg-card os">
+          <span class="cg-icon">⚙️</span>
+          <h3>Dynasty-OS Modules</h3>
+          <p>All 28 modules: AI, quantum compute, governance, simulation, marketplace, zero-trust</p>
+          <div class="cg-tag">28 Modules Live</div>
+        </a>
+        <a href="dashboard.html" class="cg-card">
+          <span class="cg-icon">📊</span>
+          <h3>Analytics Dashboard</h3>
+          <p>Real-time stats, activity logs, document counts, and platform health monitoring</p>
+          <div class="cg-tag">Live Data</div>
+        </a>
+        <a href="treasury-console.html" class="cg-card">
+          <span class="cg-icon">💎</span>
+          <h3>Treasury Console</h3>
+          <p>BSC token management, QFS compliance, ISO-20022 financial operations</p>
+          <div class="cg-tag">Blockchain</div>
+        </a>
+        <a href="codex-constitution.html" class="cg-card">
+          <span class="cg-icon">📜</span>
+          <h3>Codex Constitution</h3>
+          <p>10 articles + Bill of Rights — the supreme law of the Borders Ecclesia Earth Trust</p>
+          <div class="cg-tag">Sovereign Law</div>
+        </a>
+        <a href="trustees-portal.html" class="cg-card">
+          <span class="cg-icon">⚖️</span>
+          <h3>Trustees Portal</h3>
+          <p>6-module learning curriculum, checklists, and fiduciary administration</p>
+          <div class="cg-tag">Trustees</div>
+        </a>
+        <a href="heirs-portal.html" class="cg-card">
+          <span class="cg-icon">👑</span>
+          <h3>Heirs Portal</h3>
+          <p>Nation claiming roadmap, Bill of Rights summary, inheritance rights education</p>
+          <div class="cg-tag">Heirs</div>
+        </a>
+        <a href="logistics-dynasty.html" class="cg-card">
+          <span class="cg-icon">🚚</span>
+          <h3>Logistics Dynasty</h3>
+          <p>Forward logistics: Load Board, Dispatch, Warehouse, Supply Chain Analytics</p>
+          <div class="cg-tag">Logistics</div>
+        </a>
+        <a href="court-registry.html" class="cg-card">
+          <span class="cg-icon">🏛️</span>
+          <h3>Court Registry</h3>
+          <p>Ecclesiastical court structure, proceedings, and tribunal records</p>
+          <div class="cg-tag">Ecclesiastical Court</div>
+        </a>
+        <a href="council-chamber.html" class="cg-card">
+          <span class="cg-icon">🪑</span>
+          <h3>Council Chamber</h3>
+          <p>Twelve Thrones governance council, deliberation records, and resolutions</p>
+          <div class="cg-tag">Governance</div>
+        </a>
+        <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="cg-card dynasty-ext">
+          <span class="cg-icon">👑</span>
+          <h3>Dynasty Dashboard</h3>
+          <p>External sovereign dashboard — full Dynasty ecosystem management console</p>
+          <div class="cg-tag">External Platform ↗</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BSC Coin ── -->
   <section class="section-block coin-showcase">
     <h2 class="section-title">Borders Sovereign Coin (BSC)</h2>
-    <p class="section-subtitle">The official cryptocurrency of the Borders Dynasty Nation</p>
+    <p class="section-subtitle">The official cryptocurrency of the Borders Dynasty Nation — ERC-20 on Sepolia</p>
 
     <div class="coin-info-grid">
-      <div class="coin-stat">
-        <span class="stat-label">Symbol</span>
-        <span class="stat-value">BSC</span>
-      </div>
-      <div class="coin-stat">
-        <span class="stat-label">Network</span>
-        <span class="stat-value">Sepolia</span>
-      </div>
-      <div class="coin-stat">
-        <span class="stat-label">Standard</span>
-        <span class="stat-value">ERC-20</span>
-      </div>
+      <div class="coin-stat"><span class="stat-label">Symbol</span><span class="stat-value">BSC</span></div>
+      <div class="coin-stat"><span class="stat-label">Network</span><span class="stat-value">Sepolia</span></div>
+      <div class="coin-stat"><span class="stat-label">Standard</span><span class="stat-value">ERC-20</span></div>
+      <div class="coin-stat"><span class="stat-label">QFS Status</span><span class="stat-value" style="color:#4ade80">✓ Compliant</span></div>
     </div>
 
     <div class="contract-info">
@@ -70,18 +300,9 @@
     <div id="liveContractData" class="live-contract-data" style="display:none;">
       <h4>Live Blockchain Data</h4>
       <div class="live-stats">
-        <div class="live-stat">
-          <span class="live-label">Name:</span>
-          <span id="liveCoinName" class="live-value">--</span>
-        </div>
-        <div class="live-stat">
-          <span class="live-label">Symbol:</span>
-          <span id="liveCoinSymbol" class="live-value">--</span>
-        </div>
-        <div class="live-stat">
-          <span class="live-label">Total Supply:</span>
-          <span id="liveTotalSupply" class="live-value">--</span>
-        </div>
+        <div class="live-stat"><span class="live-label">Name:</span><span id="liveCoinName" class="live-value">--</span></div>
+        <div class="live-stat"><span class="live-label">Symbol:</span><span id="liveCoinSymbol" class="live-value">--</span></div>
+        <div class="live-stat"><span class="live-label">Total Supply:</span><span id="liveTotalSupply" class="live-value">--</span></div>
       </div>
     </div>
 
@@ -93,14 +314,8 @@
       </div>
       <div id="walletStatus"><span class="wallet-disconnected">Not connected</span></div>
       <div id="walletBalanceDisplay" class="balance-display" style="display:none;">
-        <div class="balance-row">
-          <span class="balance-label">ETH Balance:</span>
-          <span id="ethBalance" class="balance-eth">0 ETH</span>
-        </div>
-        <div class="balance-row">
-          <span class="balance-label">BSC Balance:</span>
-          <span id="walletBalance" class="balance-value">0 BSC</span>
-        </div>
+        <div class="balance-row"><span class="balance-label">ETH Balance:</span><span id="ethBalance" class="balance-eth">0 ETH</span></div>
+        <div class="balance-row"><span class="balance-label">BSC Balance:</span><span id="walletBalance" class="balance-value">0 BSC</span></div>
       </div>
       <button id="connectWalletBtn" class="coin-btn coin-btn-wallet" onclick="TreasuryWidget.connect()">Connect Wallet</button>
     </div>
@@ -160,70 +375,74 @@
     <div class="coin-tech">
       <h4>Technology Stack</h4>
       <div class="tech-tags">
-        <span class="tech-tag">Solidity</span>
-        <span class="tech-tag">Hardhat</span>
-        <span class="tech-tag">Ethers.js</span>
-        <span class="tech-tag">MetaMask</span>
-        <span class="tech-tag">Web3</span>
-        <span class="tech-tag">DeFi</span>
+        <span class="tech-tag">Solidity</span><span class="tech-tag">Hardhat</span><span class="tech-tag">Ethers.js</span>
+        <span class="tech-tag">MetaMask</span><span class="tech-tag">Web3</span><span class="tech-tag">DeFi</span>
+        <span class="tech-tag">QFS</span><span class="tech-tag">ISO-20022</span>
       </div>
     </div>
   </section>
 
+  <!-- ── Dynasty Ecosystem ── -->
   <section class="section-block dynasty-integration">
     <h2 class="section-title">👑 Dynasty Ecosystem</h2>
-    <p class="section-subtitle">Unified sovereign infrastructure connecting all Dynasty platforms</p>
+    <p class="section-subtitle">Unified sovereign infrastructure — Codex Ecclesia × Dynasty-OS × Borders Blockchain</p>
     <div class="dynasty-grid">
-      <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="dynasty-card">
-        <span class="dynasty-icon">⚒️</span>
-        <h3>Minting Forge</h3>
-        <p>Execute mint decrees and create new BSC tokens</p>
-      </a>
-      <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="dynasty-card">
-        <span class="dynasty-icon">🛡️</span>
-        <h3>Security Guard</h3>
-        <p>Apply blacklist decrees and manage security</p>
-      </a>
       <a href="omega-portal.html" class="dynasty-card">
-        <span class="dynasty-icon">📜</span>
-        <h3>Document Center</h3>
-        <p>Draft, file, and track all legal documents</p>
+        <span class="dynasty-icon">☩</span>
+        <h3>Omega Portal</h3>
+        <p>Grand Architect Command Center with full legal + logistics integration</p>
+      </a>
+      <a href="dynasty-os-modules.html" class="dynasty-card featured">
+        <span class="dynasty-icon">⚙️</span>
+        <h3>Dynasty-OS</h3>
+        <p>28 planetary-grade modules: AI, quantum, governance, commerce, zero-trust</p>
+        <div class="dynasty-card-badge">NEW</div>
+      </a>
+      <a href="reverse-logistics-dashboard.html" class="dynasty-card featured">
+        <span class="dynasty-icon">♻️</span>
+        <h3>Reverse Logistics</h3>
+        <p>Global distressed freight marketplace — 12,847 listings across 5 source networks</p>
+        <div class="dynasty-card-badge">LIVE</div>
       </a>
       <a href="trustees-portal.html" class="dynasty-card">
         <span class="dynasty-icon">⚖️</span>
         <h3>Trustees Portal</h3>
-        <p>Trust administration and fiduciary learning</p>
+        <p>Trust administration and fiduciary learning curriculum</p>
       </a>
       <a href="heirs-portal.html" class="dynasty-card">
         <span class="dynasty-icon">👑</span>
         <h3>Heirs Portal</h3>
-        <p>Nation claiming and inheritance rights</p>
+        <p>Nation claiming roadmap and inheritance rights education</p>
       </a>
       <a href="logistics-dynasty.html" class="dynasty-card">
         <span class="dynasty-icon">🚚</span>
         <h3>Logistics Dynasty</h3>
-        <p>Supply chain & logistics management platform</p>
+        <p>Forward logistics: Load Board, Dispatch, Warehouse, Supply Chain</p>
+      </a>
+      <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="dynasty-card">
+        <span class="dynasty-icon">⚒️</span>
+        <h3>Dynasty Dashboard</h3>
+        <p>External sovereign command — minting, security, full ecosystem management</p>
+      </a>
+      <a href="codexchain-console.html" class="dynasty-card">
+        <span class="dynasty-icon">🔗</span>
+        <h3>CodexChain</h3>
+        <p>Blockchain verification for all documents, filings, and freight records</p>
       </a>
     </div>
     <div class="dynasty-status">
-      <div class="status-item">
-        <span class="status-dot status-active"></span>
-        <span>QFS-Compliant Architecture</span>
-      </div>
-      <div class="status-item">
-        <span class="status-dot status-active"></span>
-        <span>ISO-20022 Ready</span>
-      </div>
-      <div class="status-item">
-        <span class="status-dot status-active"></span>
-        <span>Gold-Backed Sync</span>
-      </div>
+      <div class="status-item"><span class="status-dot status-active"></span><span>QFS-Compliant Architecture</span></div>
+      <div class="status-item"><span class="status-dot status-active"></span><span>ISO-20022 Ready</span></div>
+      <div class="status-item"><span class="status-dot status-active"></span><span>Gold-Backed Sync</span></div>
+      <div class="status-item"><span class="status-dot status-active"></span><span>Dynasty-OS Integration</span></div>
+      <div class="status-item"><span class="status-dot status-active"></span><span>Blockchain Anchored</span></div>
     </div>
   </section>
 
+  <!-- ── Sovereign Archives ── -->
   <section class="section-block">
     <h2 class="section-title">Sovereign Archives</h2>
-    <p class="section-subtitle">Core documents of the Ecclesia</p>
+    <p class="section-subtitle">Core legal documents of the Ecclesia</p>
     <div class="quick-links">
       <a href="omega-portal.html" class="quick-link">☩ Omega Portal</a>
       <a href="codex-constitution.html" class="quick-link">📜 Constitution</a>
@@ -231,21 +450,58 @@
       <a href="all-scrolls.html" class="quick-link">📚 All Scrolls</a>
       <a href="codexchain-console.html" class="quick-link">🔗 CodexChain</a>
       <a href="verify-scroll.html" class="quick-link">✓ Verify Scroll</a>
+      <a href="court-registry.html" class="quick-link">🏛️ Court Registry</a>
+      <a href="notary-gate.html" class="quick-link">✍️ Notary Gate</a>
     </div>
   </section>
 
+  <!-- ── Scroll Archive ── -->
   <section class="section-block">
     <h2 class="section-title">All Scrolls</h2>
     <p class="section-subtitle">Complete archive of the Ecclesia</p>
+    <div class="search-section">
+      <input type="text" id="searchBox" placeholder="Search scrolls by title, category, or content..." class="search-input" />
+    </div>
     <div class="category-filters" id="categoryFilters"></div>
     <div class="scrolls-grid" id="allScrollsGrid"></div>
     <p class="loading-text" id="loadingText">Loading scrolls...</p>
   </section>
 
   <footer class="sacred-footer">
-    <p>☩ Codex Ecclesia — Borders Ecclesia Earth Trust</p>
-    <p>Operating under 508(c)(1)(A) ecclesiastical exemption</p>
-    <p>© 2025 All Rights Reserved under Divine Law</p>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">☩</div>
+        <h4>Codex Ecclesia</h4>
+        <p>Sovereign scroll archive of the Borders Ecclesia Earth Trust</p>
+        <p style="font-size:0.75rem; color:#475569;">508(c)(1)(A) Ecclesiastical Organization</p>
+      </div>
+      <div class="footer-col">
+        <h5>Platform</h5>
+        <a href="omega-portal.html">Omega Portal</a>
+        <a href="dynasty-os-modules.html">Dynasty-OS</a>
+        <a href="reverse-logistics-dashboard.html">Reverse Logistics</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <a href="codex-constitution.html">Constitution</a>
+        <a href="legal-definitions.html">Legal Definitions</a>
+        <a href="court-registry.html">Court Registry</a>
+        <a href="trustees-portal.html">Trustees Portal</a>
+      </div>
+      <div class="footer-col">
+        <h5>Dynasty-OS</h5>
+        <a href="https://github.com/kingsmoovedap-design/Dynasty-os" target="_blank">GitHub Repo ↗</a>
+        <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank">Dynasty Dashboard ↗</a>
+        <a href="logistics-dynasty.html">Logistics</a>
+        <a href="codexchain-console.html">CodexChain</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>☩ Codex Ecclesia — Borders Ecclesia Earth Trust</span>
+      <span>Operating under 508(c)(1)(A) ecclesiastical exemption</span>
+      <span>© 2026 All Rights Reserved under Divine Law</span>
+    </div>
   </footer>
 
   <script src="treasury-widget.js"></script>
@@ -263,7 +519,6 @@
           loadingText.textContent = 'No scrolls found.';
           return;
         }
-
         loadingText.style.display = 'none';
 
         const categories = [...new Set(data.scrolls.map(s => s.category || 'Uncategorized'))];
@@ -287,31 +542,47 @@
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             e.target.classList.add('active');
             const category = e.target.dataset.category;
-            if (category === 'all') {
-              renderScrolls(data.scrolls);
-            } else {
-              renderScrolls(data.scrolls.filter(s => s.category === category));
-            }
+            renderScrolls(category === 'all' ? data.scrolls : data.scrolls.filter(s => s.category === category));
           }
         });
 
         searchBox.addEventListener('input', (e) => {
-          const query = e.target.value.toLowerCase();
-          const filtered = data.scrolls.filter(s =>
-            (s.title && s.title.toLowerCase().includes(query)) ||
-            (s.category && s.category.toLowerCase().includes(query)) ||
-            (s.url && s.url.toLowerCase().includes(query))
-          );
-          renderScrolls(filtered);
+          const q = e.target.value.toLowerCase();
+          renderScrolls(data.scrolls.filter(s =>
+            (s.title && s.title.toLowerCase().includes(q)) ||
+            (s.category && s.category.toLowerCase().includes(q)) ||
+            (s.url && s.url.toLowerCase().includes(q))
+          ));
         });
 
+        // Update scroll count stat
+        document.getElementById('statScrolls').textContent = data.scrolls.length;
       } catch (error) {
-        console.error('Failed to load scrolls:', error);
         document.getElementById('loadingText').textContent = 'Failed to load scrolls.';
       }
     }
 
+    async function loadLiveStats() {
+      try {
+        const res = await fetch('/api/public/stats');
+        const s = await res.json();
+        document.getElementById('statDocs').textContent = s.totalDocuments || '—';
+      } catch (e) {}
+      try {
+        const res = await fetch('/api/marketplace/stats');
+        const s = await res.json();
+        document.getElementById('statListings').textContent = (s.totalListings || 12847).toLocaleString();
+      } catch (e) {}
+      try {
+        const res = await fetch('/api/reverse-logistics/stats');
+        const s = await res.json();
+        document.getElementById('statContainers').textContent = s.totalContainers || 5;
+      } catch (e) {}
+    }
+
     loadScrolls();
+    loadLiveStats();
   </script>
+
 </body>
 </html>
