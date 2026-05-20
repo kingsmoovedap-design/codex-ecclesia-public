@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynasty Partner Onboarding | Borders Ecclesia Earth Trust</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.png">
+</head>
+<body class="onboarding-body">
+
+  <!-- Header -->
+  <div class="ob-header">
+    <div class="ob-logo">☩</div>
+    <h1 class="ob-title">Dynasty Partner Onboarding</h1>
+    <p class="ob-sub">Borders Ecclesia Earth Trust | 508(c)(1)(A) Ecclesiastical Organization</p>
+    <div class="ob-badge">Secure Partner Registration & Assessment Portal</div>
+  </div>
+
+  <!-- Step Progress -->
+  <div class="ob-progress" id="obProgress">
+    <div class="ob-step active" data-step="1"><span class="obs-num">1</span><span class="obs-label">Profile</span></div>
+    <div class="ob-step-line"></div>
+    <div class="ob-step" data-step="2"><span class="obs-num">2</span><span class="obs-label">Sovereignty Test</span></div>
+    <div class="ob-step-line"></div>
+    <div class="ob-step" data-step="3"><span class="obs-num">3</span><span class="obs-label">Platform Test</span></div>
+    <div class="ob-step-line"></div>
+    <div class="ob-step" data-step="4"><span class="obs-num">4</span><span class="obs-label">Results</span></div>
+  </div>
+
+  <div class="ob-container">
+
+    <!-- ── STEP 1: Profile Setup ── -->
+    <div class="ob-stage active" id="stage-1">
+      <div class="ob-stage-header">
+        <h2>Step 1: Partner Profile</h2>
+        <p>Create your Dynasty partner account. Your profile will be reviewed by the Grand Architect.</p>
+      </div>
+
+      <div class="ob-form">
+        <div class="ob-form-row">
+          <div class="ob-field">
+            <label>Full Name *</label>
+            <input type="text" id="pName" placeholder="Your full legal name" class="ob-input">
+          </div>
+          <div class="ob-field">
+            <label>Email Address *</label>
+            <input type="email" id="pEmail" placeholder="your@email.com" class="ob-input">
+          </div>
+        </div>
+        <div class="ob-form-row">
+          <div class="ob-field">
+            <label>Phone (Optional)</label>
+            <input type="tel" id="pPhone" placeholder="+1 (555) 000-0000" class="ob-input">
+          </div>
+          <div class="ob-field">
+            <label>State / Country *</label>
+            <input type="text" id="pLocation" placeholder="e.g. Texas, USA" class="ob-input">
+          </div>
+        </div>
+        <div class="ob-form-row">
+          <div class="ob-field">
+            <label>Partnership Role *</label>
+            <select id="pRole" class="ob-select">
+              <option value="">Select your role...</option>
+              <option value="sovereign_trustee">Sovereign Trustee</option>
+              <option value="logistics_operator">Logistics Operator</option>
+              <option value="legal_heir">Legal Heir</option>
+              <option value="ministry_leader">Ministry Leader</option>
+              <option value="marketplace_agent">Marketplace Agent</option>
+              <option value="community_member">Community Member</option>
+            </select>
+          </div>
+          <div class="ob-field">
+            <label>How did you hear about us? *</label>
+            <select id="pSource" class="ob-select">
+              <option value="">Select source...</option>
+              <option value="grand_architect">Grand Architect</option>
+              <option value="existing_partner">Existing Partner</option>
+              <option value="social_media">Social Media</option>
+              <option value="research">Independent Research</option>
+              <option value="divine_calling">Divine Calling</option>
+            </select>
+          </div>
+        </div>
+        <div class="ob-field full">
+          <label>Brief Introduction *</label>
+          <textarea id="pBio" placeholder="Tell us about yourself, your background, and why you want to join the Dynasty ecosystem..." class="ob-textarea" rows="4"></textarea>
+        </div>
+        <div class="ob-field full">
+          <label>Intended Contribution to the Ecclesia *</label>
+          <textarea id="pContribution" placeholder="How do you plan to contribute? What skills, resources, or knowledge do you bring?" class="ob-textarea" rows="3"></textarea>
+        </div>
+
+        <div class="ob-agreement">
+          <label class="ob-check">
+            <input type="checkbox" id="agreeTerms">
+            <span>I agree to operate in accordance with the Codex Constitution and the laws of the Borders Ecclesia Earth Trust.</span>
+          </label>
+          <label class="ob-check">
+            <input type="checkbox" id="agreePlatform">
+            <span>I understand my test results will be reviewed by the Grand Architect for role assignment.</span>
+          </label>
+        </div>
+
+        <div class="ob-error" id="profileError" style="display:none"></div>
+        <div class="ob-actions">
+          <button class="ob-btn primary" onclick="submitProfile()">Continue to Assessment →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STEP 2: Sovereignty Knowledge Test ── -->
+    <div class="ob-stage" id="stage-2">
+      <div class="ob-stage-header">
+        <h2>Step 2: Sovereignty Knowledge Assessment</h2>
+        <p>Test your understanding of sovereign law, ecclesiastical trusts, and the Codex Ecclesia framework. 10 questions — take your time.</p>
+        <div class="ob-test-timer"><span id="s2Timer">10:00</span> remaining</div>
+      </div>
+
+      <div class="ob-quiz" id="sovereigntyQuiz">
+        <!-- Questions injected by JS -->
+      </div>
+
+      <div class="ob-actions">
+        <button class="ob-btn secondary" onclick="goToStage(1)">← Back</button>
+        <button class="ob-btn primary" onclick="submitSovereignty()">Submit Answers →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 3: Platform Competency Test ── -->
+    <div class="ob-stage" id="stage-3">
+      <div class="ob-stage-header">
+        <h2>Step 3: Dynasty Platform Competency Test</h2>
+        <p>Demonstrate your knowledge of the Dynasty-OS ecosystem, reverse logistics, and blockchain operations. 10 questions.</p>
+        <div class="ob-test-timer"><span id="s3Timer">10:00</span> remaining</div>
+      </div>
+
+      <div class="ob-quiz" id="platformQuiz">
+        <!-- Questions injected by JS -->
+      </div>
+
+      <div class="ob-actions">
+        <button class="ob-btn secondary" onclick="goToStage(2)">← Back</button>
+        <button class="ob-btn primary" onclick="submitPlatform()">Submit Final Assessment →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 4: Results ── -->
+    <div class="ob-stage" id="stage-4">
+      <div class="ob-results" id="resultsPanel">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+  </div><!-- end container -->
+
+  <!-- Broadcasts from Grand Architect -->
+  <div class="ob-broadcasts" id="obBroadcasts" style="display:none">
+    <h4>📢 Messages from the Grand Architect</h4>
+    <div id="broadcastItems"></div>
+  </div>
+
+  <footer class="ob-footer">
+    <p>☩ Borders Ecclesia Earth Trust — 508(c)(1)(A) Ecclesiastical Organization</p>
+    <p>Your data is encrypted and reviewed only by the Grand Architect.</p>
+    <a href="index.html">← Return to Codex Ecclesia</a>
+  </footer>
+
+  <script>
+    let partnerProfile = {};
+    let stage2Timer, stage3Timer;
+
+    // ── Questions ──
+    const sovereigntyQuestions = [
+      { q: 'What is a 508(c)(1)(A) organization?', options: ['A for-profit corporation', 'A faith-based ecclesiastical organization exempt from taxation', 'A government agency', 'A nonprofit LLC'], answer: 1 },
+      { q: 'What is the Uniform Commercial Code (UCC)?', options: ['A federal criminal statute', 'A set of laws governing commercial transactions across US states', 'A tax code provision', 'An international treaty'], answer: 1 },
+      { q: 'What is an Express Trust?', options: ['A fast shipping service', 'A trust created explicitly by a settlor with clearly stated terms', 'A government trust fund', 'A corporate holding structure'], answer: 1 },
+      { q: 'What does "sovereign" mean in the context of ecclesiastical law?', options: ['Subject to federal authority', 'Self-governing under divine or natural law, not subject to statutory jurisdiction', 'A type of business entity', 'A government title'], answer: 1 },
+      { q: 'What is a Private Membership Association (PMA)?', options: ['A public corporation', 'A government-registered charity', 'A private organization whose activities are protected from public regulatory interference', 'A type of LLC'], answer: 2 },
+      { q: 'What is the purpose of a UCC-1 filing?', options: ['To pay taxes', 'To perfect a security interest in personal property', 'To register a business name', 'To apply for a license'], answer: 1 },
+      { q: 'What does "ecclesiastical" mean?', options: ['Relating to commerce', 'Relating to the church or religious organization', 'Relating to government', 'Relating to finance'], answer: 1 },
+      { q: 'What is a Bill of Rights in sovereign context?', options: ['A shopping list', 'A declaration of fundamental rights that cannot be infringed by any authority', 'A financial statement', 'A business plan'], answer: 1 },
+      { q: 'What is the Codex Ecclesia?', options: ['A computer program', 'A restaurant menu', 'The sovereign scroll archive and living legal document system of the Borders Ecclesia Earth Trust', 'A government database'], answer: 2 },
+      { q: 'What is the role of a Trustee in an ecclesiastical trust?', options: ['To spend trust assets freely', 'To manage and protect trust assets in accordance with the trust document for the benefit of beneficiaries', 'To dissolve the trust', 'To report to the IRS'], answer: 1 }
+    ];
+
+    const platformQuestions = [
+      { q: 'What is Dynasty-OS?', options: ['A video game', 'A music streaming service', 'A planetary-grade operating system with 28 sovereign modules for AI, logistics, governance, and commerce', 'A social media platform'], answer: 2 },
+      { q: 'What does the Omega Portal do?', options: ['Plays music', 'Serves as the Grand Architect Command Center for legal documents, entity formation, and logistics command', 'Books flights', 'Manages email'], answer: 1 },
+      { q: 'What is the Borders Sovereign Coin (BSC)?', options: ['A physical gold coin', 'An ERC-20 token on the Sepolia network — the official cryptocurrency of the Borders Dynasty Nation', 'A bank account', 'A loyalty points program'], answer: 1 },
+      { q: 'What does the Reverse Logistics Dashboard do?', options: ['Books hotel rooms', 'Manages distressed freight — abandoned containers, customs seizures, retail returns, and auction pipelines', 'Processes tax returns', 'Manages social media'], answer: 1 },
+      { q: 'What is DivinityVX?', options: ['A beauty brand', 'The core AI neural interface for Dynasty-OS — autonomous routing, self-healing, and sovereign decision-making', 'A cryptocurrency exchange', 'A messaging app'], answer: 1 },
+      { q: 'What is CodexChain?', options: ['A blockchain-based verification system that anchors all Codex documents and freight records immutably', 'A supply chain company', 'A food delivery app', 'A coding language'], answer: 0 },
+      { q: 'Which auction sources does the Dynasty marketplace aggregate?', options: ['Only eBay and Amazon', 'Only government auctions', 'Carriers, Ports/Customs, Airports, Retail, and Government — all 5 global distressed freight networks', 'Only retail returns'], answer: 2 },
+      { q: 'What is the zero-trust module in Dynasty-OS?', options: ['A financial product', 'A security architecture where every request is verified — no implicit trust granted to any user or system', 'A meditation practice', 'A shipping method'], answer: 1 },
+      { q: 'What does the Container Tracker do?', options: ['Tracks packages from Amazon', 'Monitors abandoned, seized, and tax-delinquent shipping containers across global ports in real-time', 'Manages Netflix subscriptions', 'Tracks gym equipment'], answer: 1 },
+      { q: 'How does the Dynasty Partner Onboarding system work?', options: ['Partners sign up and are immediately active', 'Partners complete a profile and two assessments — results are reviewed by the Grand Architect for role assignment', 'Partners buy access', 'Partners are randomly assigned roles'], answer: 1 }
+    ];
+
+    // ── Stage Navigation ──
+    function goToStage(n) {
+      document.querySelectorAll('.ob-stage').forEach(s => s.classList.remove('active'));
+      document.getElementById('stage-' + n).classList.add('active');
+      document.querySelectorAll('.ob-step').forEach(s => {
+        s.classList.toggle('active', parseInt(s.dataset.step) <= n);
+        s.classList.toggle('completed', parseInt(s.dataset.step) < n);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── Profile Submit ──
+    function submitProfile() {
+      const name = document.getElementById('pName').value.trim();
+      const email = document.getElementById('pEmail').value.trim();
+      const location = document.getElementById('pLocation').value.trim();
+      const role = document.getElementById('pRole').value;
+      const bio = document.getElementById('pBio').value.trim();
+      const contribution = document.getElementById('pContribution').value.trim();
+      const terms = document.getElementById('agreeTerms').checked;
+      const platform = document.getElementById('agreePlatform').checked;
+      const err = document.getElementById('profileError');
+
+      if (!name || !email || !location || !role || !bio || !contribution) {
+        err.style.display = 'block'; err.textContent = '⚠ Please fill in all required fields.'; return;
+      }
+      if (!terms || !platform) {
+        err.style.display = 'block'; err.textContent = '⚠ Please agree to both agreements.'; return;
+      }
+      err.style.display = 'none';
+
+      partnerProfile = { name, email, phone: document.getElementById('pPhone').value, location, role, source: document.getElementById('pSource').value, bio, contribution };
+
+      renderQuiz('sovereigntyQuiz', sovereigntyQuestions);
+      goToStage(2);
+      startTimer('s2Timer', 600, () => submitSovereignty());
+    }
+
+    // ── Quiz Rendering ──
+    function renderQuiz(containerId, questions) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = questions.map((q, i) => `
+        <div class="ob-question" id="q${containerId}${i}">
+          <div class="ob-q-num">Question ${i+1} of ${questions.length}</div>
+          <div class="ob-q-text">${q.q}</div>
+          <div class="ob-options">
+            ${q.options.map((opt, j) => `
+              <label class="ob-option">
+                <input type="radio" name="${containerId}_q${i}" value="${j}">
+                <span class="ob-opt-letter">${String.fromCharCode(65+j)}</span>
+                <span class="ob-opt-text">${opt}</span>
+              </label>`).join('')}
+          </div>
+        </div>`).join('');
+    }
+
+    function scoreQuiz(containerId, questions) {
+      let correct = 0;
+      const results = [];
+      questions.forEach((q, i) => {
+        const sel = document.querySelector(`input[name="${containerId}_q${i}"]:checked`);
+        const userAns = sel ? parseInt(sel.value) : -1;
+        const isCorrect = userAns === q.answer;
+        if (isCorrect) correct++;
+        results.push({ question: q.q, userAnswer: userAns, correct: q.answer, isCorrect });
+      });
+      return { score: Math.round((correct / questions.length) * 100), correct, total: questions.length, results };
+    }
+
+    // ── Submit Sovereignty ──
+    function submitSovereignty() {
+      clearInterval(stage2Timer);
+      const result = scoreQuiz('sovereigntyQuiz', sovereigntyQuestions);
+      partnerProfile.sovereigntyResult = result;
+      renderQuiz('platformQuiz', platformQuestions);
+      goToStage(3);
+      startTimer('s3Timer', 600, () => submitPlatform());
+    }
+
+    // ── Submit Platform ──
+    async function submitPlatform() {
+      clearInterval(stage3Timer);
+      const result = scoreQuiz('platformQuiz', platformQuestions);
+      partnerProfile.platformResult = result;
+
+      const sScore = partnerProfile.sovereigntyResult.score;
+      const pScore = result.score;
+      const total = Math.round((sScore + pScore) / 2);
+      const grade = total >= 90 ? 'A' : total >= 80 ? 'B' : total >= 70 ? 'C' : total >= 60 ? 'D' : 'F';
+      const roleAssigned = total >= 80 ? 'Senior Partner' : total >= 60 ? 'Junior Partner' : 'Trainee Member';
+
+      const payload = {
+        name: partnerProfile.name,
+        email: partnerProfile.email,
+        phone: partnerProfile.phone,
+        location: partnerProfile.location,
+        role: partnerProfile.role,
+        source: partnerProfile.source,
+        bio: partnerProfile.bio,
+        contribution: partnerProfile.contribution,
+        sovereigntyScore: sScore,
+        platformScore: pScore,
+        totalScore: total,
+        grade,
+        roleAssigned,
+        sovereigntyResults: partnerProfile.sovereigntyResult.results,
+        platformResults: result.results,
+        joinedAt: new Date().toISOString(),
+        status: 'pending'
+      };
+
+      let partnerId = null;
+      try {
+        const r = await fetch('/api/onboarding/register', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const d = await r.json();
+        partnerId = d.partner?.id;
+      } catch (e) {}
+
+      await fetch('/api/codex/events', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'PARTNER_ONBOARDED', data: { name: payload.name, grade, total, roleAssigned }, source: 'ONBOARDING_PORTAL', timestamp: new Date().toISOString() })
+      }).catch(() => {});
+
+      renderResults(payload, partnerId);
+      goToStage(4);
+      loadBroadcasts();
+    }
+
+    // ── Results ──
+    function renderResults(data, id) {
+      const gradeCls = data.grade === 'A' ? 'excellent' : data.grade === 'B' ? 'good' : data.grade === 'C' ? 'average' : 'below';
+      const gradeMsg = { A: 'Outstanding — Senior Partner qualification achieved.', B: 'Strong performance — Junior Partner qualification.', C: 'Satisfactory — Member status with training recommended.', D: 'Below threshold — Trainee status. Retake encouraged.', F: 'Did not pass — Please review the Codex materials and retake.' }[data.grade] || '';
+
+      document.getElementById('resultsPanel').innerHTML = `
+        <div class="ob-results-header">
+          <div class="ob-results-seal">☩</div>
+          <h2>Assessment Complete</h2>
+          <p>Welcome to the Dynasty ecosystem, <strong>${data.name}</strong>.</p>
+          <p>Your results have been submitted to the Grand Architect for review.</p>
+        </div>
+
+        <div class="ob-score-card">
+          <div class="ob-score-main grade-${gradeCls}">
+            <div class="osm-grade">${data.grade}</div>
+            <div class="osm-score">${data.totalScore}%</div>
+            <div class="osm-label">Overall Score</div>
+          </div>
+          <div class="ob-score-breakdown">
+            <div class="ob-score-item">
+              <span class="osi-label">Sovereignty Knowledge</span>
+              <div class="osi-bar"><div class="osi-fill" style="width:${data.sovereigntyScore}%"></div></div>
+              <span class="osi-val">${data.sovereigntyScore}%</span>
+            </div>
+            <div class="ob-score-item">
+              <span class="osi-label">Platform Competency</span>
+              <div class="osi-bar"><div class="osi-fill" style="width:${data.platformScore}%"></div></div>
+              <span class="osi-val">${data.platformScore}%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ob-result-verdict">
+          <div class="ob-verdict-role">Assigned Role: <strong>${data.roleAssigned}</strong></div>
+          <div class="ob-verdict-msg">${gradeMsg}</div>
+        </div>
+
+        <div class="ob-next-steps">
+          <h3>Next Steps</h3>
+          <div class="ob-ns-grid">
+            <div class="ob-ns-item"><span class="ns-num">1</span><div><strong>Await Approval</strong><p>The Grand Architect will review your profile and test results.</p></div></div>
+            <div class="ob-ns-item"><span class="ns-num">2</span><div><strong>Explore the Platform</strong><p>Browse the <a href="index.html">Codex Ecclesia</a> and learn the ecosystem.</p></div></div>
+            <div class="ob-ns-item"><span class="ns-num">3</span><div><strong>Review Study Materials</strong><p>Study the <a href="codex-constitution.html">Constitution</a> and <a href="legal-definitions.html">Legal Definitions</a>.</p></div></div>
+            <div class="ob-ns-item"><span class="ns-num">4</span><div><strong>Retake (Optional)</strong><p>${data.grade !== 'A' ? 'Score was below A — consider reviewing materials and retaking.' : 'Excellent! No retake needed.'}</p></div></div>
+          </div>
+        </div>
+
+        <div class="ob-result-links">
+          <a href="codex-constitution.html" class="ob-btn secondary">📜 Read Constitution</a>
+          <a href="legal-definitions.html" class="ob-btn secondary">⚖️ Legal Definitions</a>
+          <a href="dynasty-os-modules.html" class="ob-btn secondary">⚙️ Dynasty-OS</a>
+          <button class="ob-btn outline" onclick="location.reload()">↺ Retake Assessment</button>
+        </div>
+
+        <div class="ob-partner-id">
+          <span>Your Partner Reference: <strong class="mono">${id || 'PENDING-' + Date.now().toString(36).toUpperCase()}</strong></span>
+        </div>`;
+    }
+
+    // ── Timer ──
+    function startTimer(elId, seconds, onEnd) {
+      const el = document.getElementById(elId);
+      let remaining = seconds;
+      const interval = setInterval(() => {
+        remaining--;
+        const m = Math.floor(remaining / 60).toString().padStart(2,'0');
+        const s = (remaining % 60).toString().padStart(2,'0');
+        el.textContent = m + ':' + s;
+        if (remaining <= 0) { clearInterval(interval); onEnd(); }
+      }, 1000);
+      return interval;
+    }
+
+    // ── Broadcasts ──
+    async function loadBroadcasts() {
+      try {
+        const r = await fetch('/api/onboarding/broadcasts');
+        const d = await r.json();
+        const items = d.broadcasts || [];
+        if (!items.length) return;
+        document.getElementById('obBroadcasts').style.display = 'block';
+        document.getElementById('broadcastItems').innerHTML = items.map(b => `
+          <div class="ob-broadcast-item">
+            <span class="bc-type ${b.type}">${b.type?.toUpperCase() || 'MESSAGE'}</span>
+            <span class="bc-from">From: Grand Architect</span>
+            <p class="bc-text">${b.message}</p>
+            <span class="bc-time">${new Date(b.timestamp).toLocaleString()}</span>
+          </div>`).join('');
+      } catch (e) {}
+    }
+
+    // Init broadcasts on load
+    loadBroadcasts();
+  </script>
+</body>
+</html>

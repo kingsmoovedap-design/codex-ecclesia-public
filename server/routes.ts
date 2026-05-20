@@ -661,4 +661,103 @@ export function registerRoutes(app: Express) {
     if (!hash || !hash.startsWith('0x')) return res.status(400).json({ valid: false, error: 'Invalid hash format' });
     res.json({ valid: true, hash, network: 'Sepolia', contract: '0x12efC9a5D115AE7833c9a6D79f1B3BA18Cde817c', verifiedAt: new Date().toISOString(), confirmations: Math.floor(Math.random() * 1000) + 12, status: 'authentic' });
   });
+
+  // ══════════════════════════════════════════════════════════════
+  // PARTNER ONBOARDING API
+  // ══════════════════════════════════════════════════════════════
+
+  // In-memory store (persists per server session)
+  const partners: any[] = [];
+  const broadcasts: any[] = [];
+
+  app.post("/api/onboarding/register", (req: Request, res: Response) => {
+    const p = req.body;
+    if (!p.name || !p.email) return res.status(400).json({ error: 'Name and email required' });
+    const existing = partners.find(x => x.email === p.email);
+    if (existing) {
+      Object.assign(existing, p, { updatedAt: new Date().toISOString() });
+      return res.json({ success: true, partner: existing, updated: true });
+    }
+    const partner = {
+      id: 'PTR-' + Date.now().toString(36).toUpperCase(),
+      ...p,
+      status: 'pending',
+      joinedAt: p.joinedAt || new Date().toISOString(),
+    };
+    partners.push(partner);
+    res.json({ success: true, partner });
+  });
+
+  app.get("/api/onboarding/partners", (_req: Request, res: Response) => {
+    res.json({ total: partners.length, partners });
+  });
+
+  app.patch("/api/onboarding/partners/:id/approve", (req: Request, res: Response) => {
+    const partner = partners.find(p => p.id === req.params.id);
+    if (!partner) return res.status(404).json({ error: 'Partner not found' });
+    partner.status = 'active';
+    partner.approvedAt = new Date().toISOString();
+    res.json({ success: true, partner });
+  });
+
+  app.post("/api/onboarding/broadcast", (req: Request, res: Response) => {
+    const { message, type, from } = req.body;
+    if (!message) return res.status(400).json({ error: 'Message required' });
+    const broadcast = { id: Date.now().toString(), message, type: type || 'announcement', from: from || 'Grand Architect', timestamp: new Date().toISOString() };
+    broadcasts.push(broadcast);
+    res.json({ success: true, broadcast });
+  });
+
+  app.get("/api/onboarding/broadcasts", (_req: Request, res: Response) => {
+    res.json({ total: broadcasts.length, broadcasts: broadcasts.slice().reverse() });
+  });
+
+  app.post("/api/onboarding/reset-tests", (_req: Request, res: Response) => {
+    partners.forEach(p => {
+      delete p.sovereigntyScore; delete p.platformScore; delete p.totalScore;
+      delete p.grade; delete p.roleAssigned; delete p.sovereigntyResults; delete p.platformResults;
+      p.status = 'pending';
+    });
+    res.json({ success: true, reset: partners.length });
+  });
+
+  // ══════════════════════════════════════════════════════════════
+  // DIVINITY COMMAND CENTER API
+  // ══════════════════════════════════════════════════════════════
+  // (codexEvents array already declared above — shared store)
+
+  // Anchor route (supplement to existing codex routes)
+  app.post("/api/codex/anchor", (req: Request, res: Response) => {
+    const { eventIds } = req.body;
+    const anchorHash = '0x' + Math.random().toString(16).slice(2).padEnd(64, '0');
+    const event = { id: 'ANCHOR-' + Date.now().toString(36).toUpperCase(), type: 'BLOCKCHAIN_ANCHOR', data: { eventIds, anchorHash, network: 'Sepolia' }, source: 'CODEX_CHAIN', timestamp: new Date().toISOString() };
+    codexEvents.push(event);
+    res.json({ success: true, anchorHash, network: 'Sepolia', timestamp: new Date().toISOString() });
+  });
+
+  // Dynasty Load Board
+  const loads: any[] = [];
+  app.post("/api/dynasty/load", (req: Request, res: Response) => {
+    const load = { id: 'LOAD-' + Date.now().toString(36).toUpperCase(), ...req.body, createdAt: new Date().toISOString() };
+    loads.push(load);
+    res.json({ success: true, load });
+  });
+  app.get("/api/dynasty/loads", (_req: Request, res: Response) => {
+    res.json({ total: loads.length, loads });
+  });
+
+  // Divinity Intelligence
+  app.get("/api/divinity/intelligence", (_req: Request, res: Response) => {
+    res.json({
+      securityScore: 94,
+      threatLevel: 'LOW',
+      activeModules: 28,
+      totalEvents: codexEvents.length,
+      totalPartners: partners.length,
+      activePartners: partners.filter(p => p.status === 'active').length,
+      lastAppraisal: new Date().toISOString(),
+      neuralRouting: 94,
+      selfLearningRate: 78
+    });
+  });
 }
