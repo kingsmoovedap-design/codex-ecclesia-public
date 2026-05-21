@@ -3,44 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynasty Partner Onboarding | Borders Ecclesia Earth Trust</title>
+  <title>Dynasty Logistics Partner Network | Carrier & Agent Onboarding</title>
+  <meta name="description" content="Join the Dynasty Logistics Partner Network. Carriers, freight agents, dispatchers, and load brokers — complete your logistics assessment and get assigned.">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="favicon.png">
 </head>
 <body class="onboarding-body">
 
   <!-- Header -->
-  <div class="ob-header">
-    <div class="ob-logo">☩</div>
-    <h1 class="ob-title">Dynasty Partner Onboarding</h1>
-    <p class="ob-sub">Borders Ecclesia Earth Trust | 508(c)(1)(A) Ecclesiastical Organization</p>
-    <div class="ob-badge">Secure Partner Registration & Assessment Portal</div>
+  <div class="ob-header logistics-header">
+    <div class="ob-logo">🚚</div>
+    <h1 class="ob-title">Dynasty Logistics Partner Network</h1>
+    <p class="ob-sub">Borders Ecclesia Earth Trust — Sovereign Freight & Carrier Operations</p>
+    <div class="ob-badges-row">
+      <span class="ob-badge">Load Board Access</span>
+      <span class="ob-badge">Reverse Logistics</span>
+      <span class="ob-badge">Dispatch Network</span>
+      <span class="ob-badge">Auction Engine</span>
+    </div>
   </div>
 
   <!-- Step Progress -->
   <div class="ob-progress" id="obProgress">
     <div class="ob-step active" data-step="1"><span class="obs-num">1</span><span class="obs-label">Profile</span></div>
     <div class="ob-step-line"></div>
-    <div class="ob-step" data-step="2"><span class="obs-num">2</span><span class="obs-label">Sovereignty Test</span></div>
+    <div class="ob-step" data-step="2"><span class="obs-num">2</span><span class="obs-label">Freight Ops Test</span></div>
     <div class="ob-step-line"></div>
     <div class="ob-step" data-step="3"><span class="obs-num">3</span><span class="obs-label">Platform Test</span></div>
     <div class="ob-step-line"></div>
-    <div class="ob-step" data-step="4"><span class="obs-num">4</span><span class="obs-label">Results</span></div>
+    <div class="ob-step" data-step="4"><span class="obs-num">4</span><span class="obs-label">Assignment</span></div>
   </div>
 
   <div class="ob-container">
 
-    <!-- ── STEP 1: Profile Setup ── -->
+    <!-- ── STEP 1: Logistics Profile ── -->
     <div class="ob-stage active" id="stage-1">
       <div class="ob-stage-header">
-        <h2>Step 1: Partner Profile</h2>
-        <p>Create your Dynasty partner account. Your profile will be reviewed by the Grand Architect.</p>
+        <h2>🚚 Step 1: Logistics Partner Profile</h2>
+        <p>Your carrier/operator profile. All information is reviewed by Dynasty Dispatch for network assignment.</p>
       </div>
 
       <div class="ob-form">
+
+        <!-- Personal Info -->
+        <div class="ob-section-divider">Personal Information</div>
         <div class="ob-form-row">
           <div class="ob-field">
-            <label>Full Name *</label>
+            <label>Full Legal Name *</label>
             <input type="text" id="pName" placeholder="Your full legal name" class="ob-input">
           </div>
           <div class="ob-field">
@@ -50,56 +59,144 @@
         </div>
         <div class="ob-form-row">
           <div class="ob-field">
-            <label>Phone (Optional)</label>
+            <label>Phone Number *</label>
             <input type="tel" id="pPhone" placeholder="+1 (555) 000-0000" class="ob-input">
           </div>
           <div class="ob-field">
-            <label>State / Country *</label>
-            <input type="text" id="pLocation" placeholder="e.g. Texas, USA" class="ob-input">
+            <label>Base City / State *</label>
+            <input type="text" id="pLocation" placeholder="e.g. Dallas, TX" class="ob-input">
+          </div>
+        </div>
+
+        <!-- Carrier/Operator Info -->
+        <div class="ob-section-divider">Carrier & Equipment Details</div>
+        <div class="ob-form-row">
+          <div class="ob-field">
+            <label>Partner Role *</label>
+            <select id="pRole" class="ob-select">
+              <option value="">Select your role...</option>
+              <option value="owner_operator">Owner-Operator (OO)</option>
+              <option value="company_driver">Company Driver</option>
+              <option value="freight_agent">Freight Agent / Broker</option>
+              <option value="dispatcher">Independent Dispatcher</option>
+              <option value="fleet_manager">Fleet Manager</option>
+              <option value="warehouse_manager">Warehouse Manager</option>
+              <option value="reverse_logistics_agent">Reverse Logistics Agent</option>
+              <option value="auction_buyer">Auction / Salvage Buyer</option>
+            </select>
+          </div>
+          <div class="ob-field">
+            <label>Carrier Type</label>
+            <select id="pCarrierType" class="ob-select">
+              <option value="">Select carrier type...</option>
+              <option value="OTR">OTR (Over the Road)</option>
+              <option value="regional">Regional (500 mi radius)</option>
+              <option value="local">Local / Final Mile</option>
+              <option value="LTL">LTL Specialist</option>
+              <option value="intermodal">Intermodal</option>
+              <option value="expedited">Expedited / Hot Shot</option>
+              <option value="not_carrier">Not a Carrier</option>
+            </select>
           </div>
         </div>
         <div class="ob-form-row">
           <div class="ob-field">
-            <label>Partnership Role *</label>
-            <select id="pRole" class="ob-select">
-              <option value="">Select your role...</option>
-              <option value="sovereign_trustee">Sovereign Trustee</option>
-              <option value="logistics_operator">Logistics Operator</option>
-              <option value="legal_heir">Legal Heir</option>
-              <option value="ministry_leader">Ministry Leader</option>
-              <option value="marketplace_agent">Marketplace Agent</option>
-              <option value="community_member">Community Member</option>
+            <label>Primary Equipment</label>
+            <select id="pEquipment" class="ob-select">
+              <option value="">Select equipment...</option>
+              <option value="dry_van_53">Dry Van 53'</option>
+              <option value="reefer">Refrigerated / Reefer</option>
+              <option value="flatbed">Flatbed / Step Deck</option>
+              <option value="box_truck_26">Box Truck 26'</option>
+              <option value="sprinter_cargo">Sprinter / Cargo Van</option>
+              <option value="lowboy">Lowboy / Heavy Haul</option>
+              <option value="tanker">Tanker</option>
+              <option value="no_equipment">No Equipment (Agent/Broker)</option>
             </select>
           </div>
           <div class="ob-field">
-            <label>How did you hear about us? *</label>
-            <select id="pSource" class="ob-select">
-              <option value="">Select source...</option>
-              <option value="grand_architect">Grand Architect</option>
-              <option value="existing_partner">Existing Partner</option>
-              <option value="social_media">Social Media</option>
-              <option value="research">Independent Research</option>
-              <option value="divine_calling">Divine Calling</option>
+            <label>CDL Class</label>
+            <select id="pCDL" class="ob-select">
+              <option value="none">No CDL</option>
+              <option value="CDL_A">CDL Class A</option>
+              <option value="CDL_B">CDL Class B</option>
+              <option value="CDL_C">CDL Class C</option>
+            </select>
+          </div>
+        </div>
+        <div class="ob-form-row">
+          <div class="ob-field">
+            <label>Years in Logistics *</label>
+            <select id="pExperience" class="ob-select">
+              <option value="">Select experience...</option>
+              <option value="0_1">Less than 1 year</option>
+              <option value="1_3">1–3 years</option>
+              <option value="3_5">3–5 years</option>
+              <option value="5_10">5–10 years</option>
+              <option value="10_plus">10+ years</option>
+            </select>
+          </div>
+          <div class="ob-field">
+            <label>MC / DOT Number (if applicable)</label>
+            <input type="text" id="pMCDOT" placeholder="MC-123456 or USDOT 1234567" class="ob-input">
+          </div>
+        </div>
+
+        <!-- Service Capabilities -->
+        <div class="ob-section-divider">Service Capabilities</div>
+        <div class="ob-form-row">
+          <div class="ob-field">
+            <label>Primary Service Region *</label>
+            <select id="pRegion" class="ob-select">
+              <option value="">Select region...</option>
+              <option value="northeast">Northeast (NY, NJ, PA, CT, MA)</option>
+              <option value="southeast">Southeast (FL, GA, SC, NC, VA)</option>
+              <option value="midwest">Midwest (IL, OH, IN, MI, WI)</option>
+              <option value="south_central">South Central (TX, LA, OK, AR)</option>
+              <option value="mountain_west">Mountain West (CO, UT, AZ, NM)</option>
+              <option value="northwest">Northwest (WA, OR, ID, MT)</option>
+              <option value="california">California / West Coast</option>
+              <option value="nationwide">Nationwide (48 States)</option>
+              <option value="international">International / Cross-Border</option>
+            </select>
+          </div>
+          <div class="ob-field">
+            <label>Interested In *</label>
+            <select id="pInterest" class="ob-select">
+              <option value="">Select interest...</option>
+              <option value="load_board">Load Board (Forward Logistics)</option>
+              <option value="reverse_logistics">Reverse Logistics / Distressed Freight</option>
+              <option value="auction_buying">Auction Buying (Containers / Cargo)</option>
+              <option value="dispatch_services">Dispatch Services</option>
+              <option value="warehouse_ops">Warehouse Operations</option>
+              <option value="all_services">All Dynasty Logistics Services</option>
             </select>
           </div>
         </div>
         <div class="ob-field full">
-          <label>Brief Introduction *</label>
-          <textarea id="pBio" placeholder="Tell us about yourself, your background, and why you want to join the Dynasty ecosystem..." class="ob-textarea" rows="4"></textarea>
+          <label>Operating Description *</label>
+          <textarea id="pBio" placeholder="Describe your current operation: what you haul, lanes you run, services you provide, and what you're looking for in the Dynasty Logistics network..." class="ob-textarea" rows="4"></textarea>
         </div>
         <div class="ob-field full">
-          <label>Intended Contribution to the Ecclesia *</label>
-          <textarea id="pContribution" placeholder="How do you plan to contribute? What skills, resources, or knowledge do you bring?" class="ob-textarea" rows="3"></textarea>
+          <label>Hazmat / Special Endorsements</label>
+          <div class="ob-checkboxes">
+            <label class="ob-check-inline"><input type="checkbox" value="hazmat"> HazMat</label>
+            <label class="ob-check-inline"><input type="checkbox" value="tanker_endorsement"> Tanker</label>
+            <label class="ob-check-inline"><input type="checkbox" value="doubles_triples"> Doubles/Triples</label>
+            <label class="ob-check-inline"><input type="checkbox" value="oversize_permits"> Oversize Load Permits</label>
+            <label class="ob-check-inline"><input type="checkbox" value="customs_bond"> Customs Bond</label>
+            <label class="ob-check-inline"><input type="checkbox" value="tsa_certified"> TSA Certified</label>
+          </div>
         </div>
 
         <div class="ob-agreement">
           <label class="ob-check">
             <input type="checkbox" id="agreeTerms">
-            <span>I agree to operate in accordance with the Codex Constitution and the laws of the Borders Ecclesia Earth Trust.</span>
+            <span>I agree to operate within Dynasty Logistics network standards, including compliance with FMCSA regulations and Codex Ecclesia operating guidelines.</span>
           </label>
           <label class="ob-check">
             <input type="checkbox" id="agreePlatform">
-            <span>I understand my test results will be reviewed by the Grand Architect for role assignment.</span>
+            <span>I understand my assessment results will be reviewed by the Grand Architect / Dynasty Dispatch for load assignment and network access.</span>
           </label>
         </div>
 
@@ -110,36 +207,28 @@
       </div>
     </div>
 
-    <!-- ── STEP 2: Sovereignty Knowledge Test ── -->
+    <!-- ── STEP 2: Freight Operations Test ── -->
     <div class="ob-stage" id="stage-2">
       <div class="ob-stage-header">
-        <h2>Step 2: Sovereignty Knowledge Assessment</h2>
-        <p>Test your understanding of sovereign law, ecclesiastical trusts, and the Codex Ecclesia framework. 10 questions — take your time.</p>
+        <h2>📦 Step 2: Freight Operations Assessment</h2>
+        <p>10 questions covering core freight operations knowledge — BOLs, freight classes, dispatch protocols, FMCSA compliance, and industry standards.</p>
         <div class="ob-test-timer"><span id="s2Timer">10:00</span> remaining</div>
       </div>
-
-      <div class="ob-quiz" id="sovereigntyQuiz">
-        <!-- Questions injected by JS -->
-      </div>
-
+      <div class="ob-quiz" id="freightQuiz"></div>
       <div class="ob-actions">
         <button class="ob-btn secondary" onclick="goToStage(1)">← Back</button>
-        <button class="ob-btn primary" onclick="submitSovereignty()">Submit Answers →</button>
+        <button class="ob-btn primary" onclick="submitFreight()">Submit Freight Assessment →</button>
       </div>
     </div>
 
-    <!-- ── STEP 3: Platform Competency Test ── -->
+    <!-- ── STEP 3: Dynasty Platform Test ── -->
     <div class="ob-stage" id="stage-3">
       <div class="ob-stage-header">
-        <h2>Step 3: Dynasty Platform Competency Test</h2>
-        <p>Demonstrate your knowledge of the Dynasty-OS ecosystem, reverse logistics, and blockchain operations. 10 questions.</p>
+        <h2>⚙️ Step 3: Dynasty Logistics Platform Assessment</h2>
+        <p>10 questions on the Dynasty logistics platform — Reverse Logistics Dashboard, Container Tracker, Auction Engine, Load Board, and Dispatch operations.</p>
         <div class="ob-test-timer"><span id="s3Timer">10:00</span> remaining</div>
       </div>
-
-      <div class="ob-quiz" id="platformQuiz">
-        <!-- Questions injected by JS -->
-      </div>
-
+      <div class="ob-quiz" id="platformQuiz"></div>
       <div class="ob-actions">
         <button class="ob-btn secondary" onclick="goToStage(2)">← Back</button>
         <button class="ob-btn primary" onclick="submitPlatform()">Submit Final Assessment →</button>
@@ -148,54 +237,230 @@
 
     <!-- ── STEP 4: Results ── -->
     <div class="ob-stage" id="stage-4">
-      <div class="ob-results" id="resultsPanel">
-        <!-- Populated by JS -->
-      </div>
+      <div class="ob-results" id="resultsPanel"></div>
     </div>
 
-  </div><!-- end container -->
+  </div>
 
-  <!-- Broadcasts from Grand Architect -->
+  <!-- Broadcasts -->
   <div class="ob-broadcasts" id="obBroadcasts" style="display:none">
-    <h4>📢 Messages from the Grand Architect</h4>
+    <h4>📢 Messages from Dynasty Dispatch</h4>
     <div id="broadcastItems"></div>
   </div>
 
   <footer class="ob-footer">
-    <p>☩ Borders Ecclesia Earth Trust — 508(c)(1)(A) Ecclesiastical Organization</p>
-    <p>Your data is encrypted and reviewed only by the Grand Architect.</p>
+    <p>🚚 Dynasty Logistics Partner Network | ☩ Borders Ecclesia Earth Trust</p>
+    <p>All assessments are reviewed by the Grand Architect / Dynasty Dispatch for role assignment.</p>
     <a href="index.html">← Return to Codex Ecclesia</a>
+    &nbsp;|&nbsp;
+    <a href="reverse-logistics-dashboard.html">♻️ Reverse Logistics Dashboard</a>
   </footer>
 
   <script>
     let partnerProfile = {};
     let stage2Timer, stage3Timer;
 
-    // ── Questions ──
-    const sovereigntyQuestions = [
-      { q: 'What is a 508(c)(1)(A) organization?', options: ['A for-profit corporation', 'A faith-based ecclesiastical organization exempt from taxation', 'A government agency', 'A nonprofit LLC'], answer: 1 },
-      { q: 'What is the Uniform Commercial Code (UCC)?', options: ['A federal criminal statute', 'A set of laws governing commercial transactions across US states', 'A tax code provision', 'An international treaty'], answer: 1 },
-      { q: 'What is an Express Trust?', options: ['A fast shipping service', 'A trust created explicitly by a settlor with clearly stated terms', 'A government trust fund', 'A corporate holding structure'], answer: 1 },
-      { q: 'What does "sovereign" mean in the context of ecclesiastical law?', options: ['Subject to federal authority', 'Self-governing under divine or natural law, not subject to statutory jurisdiction', 'A type of business entity', 'A government title'], answer: 1 },
-      { q: 'What is a Private Membership Association (PMA)?', options: ['A public corporation', 'A government-registered charity', 'A private organization whose activities are protected from public regulatory interference', 'A type of LLC'], answer: 2 },
-      { q: 'What is the purpose of a UCC-1 filing?', options: ['To pay taxes', 'To perfect a security interest in personal property', 'To register a business name', 'To apply for a license'], answer: 1 },
-      { q: 'What does "ecclesiastical" mean?', options: ['Relating to commerce', 'Relating to the church or religious organization', 'Relating to government', 'Relating to finance'], answer: 1 },
-      { q: 'What is a Bill of Rights in sovereign context?', options: ['A shopping list', 'A declaration of fundamental rights that cannot be infringed by any authority', 'A financial statement', 'A business plan'], answer: 1 },
-      { q: 'What is the Codex Ecclesia?', options: ['A computer program', 'A restaurant menu', 'The sovereign scroll archive and living legal document system of the Borders Ecclesia Earth Trust', 'A government database'], answer: 2 },
-      { q: 'What is the role of a Trustee in an ecclesiastical trust?', options: ['To spend trust assets freely', 'To manage and protect trust assets in accordance with the trust document for the benefit of beneficiaries', 'To dissolve the trust', 'To report to the IRS'], answer: 1 }
+    // ── Freight Operations Questions ──
+    const freightQuestions = [
+      {
+        q: 'What is a Bill of Lading (BOL)?',
+        options: [
+          'A financial invoice sent to the shipper after delivery',
+          'A legally binding document between shipper and carrier that serves as receipt of goods, evidence of contract, and title document',
+          'A form required only for hazardous materials shipments',
+          'A driver\'s daily log required by FMCSA'
+        ],
+        answer: 1
+      },
+      {
+        q: 'What does TONU stand for in trucking?',
+        options: [
+          'Transfer of Net Utility',
+          'Truck on Normal Use',
+          'Truck Order Not Used — a fee charged when a carrier is dispatched but the load is canceled after they arrive',
+          'Total Outstanding Net Units'
+        ],
+        answer: 2
+      },
+      {
+        q: 'What is detention time in freight?',
+        options: [
+          'The time a driver spends at a weigh station',
+          'A penalty assessed to a driver for running late',
+          'Additional compensation paid to a carrier when a driver is held at a shipper or receiver beyond the agreed free time (usually 2 hours)',
+          'The time required to unload a container at port'
+        ],
+        answer: 2
+      },
+      {
+        q: 'What is the FMCSA Hours of Service (HOS) 11-hour rule?',
+        options: [
+          'A driver may drive a maximum of 11 hours after 10 consecutive hours off duty',
+          'A driver must log 11 hours minimum per day',
+          'A carrier must dispatch within 11 hours of receiving a load tender',
+          'A driver can work a maximum of 11 days before mandatory reset'
+        ],
+        answer: 0
+      },
+      {
+        q: 'What is a lumper fee?',
+        options: [
+          'A surcharge added for oversized loads',
+          'A fee charged for loading/unloading freight at a warehouse, typically paid to third-party labor',
+          'A penalty for damaged cargo',
+          'An additional charge for lift gate service'
+        ],
+        answer: 1
+      },
+      {
+        q: 'What is deadhead mileage?',
+        options: [
+          'Miles driven over the speed limit',
+          'Miles driven with a full load on a return trip',
+          'Miles driven with an empty trailer — a cost to the carrier with no revenue generated',
+          'Miles driven in a construction or restricted zone'
+        ],
+        answer: 2
+      },
+      {
+        q: 'In freight class (NMFC), which class number indicates the HIGHEST density / least expensive to ship per pound?',
+        options: ['Class 400', 'Class 300', 'Class 100', 'Class 55'],
+        answer: 3
+      },
+      {
+        q: 'What is a drop-and-hook load?',
+        options: [
+          'A load requiring a driver to hand-unload at the receiver',
+          'A load where the driver drops their loaded trailer at the destination and picks up a pre-loaded trailer — no waiting required',
+          'A load that requires special safety hooks for securing oversized freight',
+          'A hazmat load requiring special handling protocol'
+        ],
+        answer: 1
+      },
+      {
+        q: 'What does LTL stand for and when is it typically used?',
+        options: [
+          'Long Term Load — used for loads over 2,000 miles',
+          'Less Than Truckload — used when a shipper\'s freight doesn\'t fill an entire trailer, sharing space with other shippers\' goods',
+          'Light Tonnage Load — used for freight under 500 lbs',
+          'Low Temperature Load — used for refrigerated shipments'
+        ],
+        answer: 1
+      },
+      {
+        q: 'What is a Proof of Delivery (POD) and why is it critical?',
+        options: [
+          'A document required only for cross-border shipments',
+          'An internal carrier form for tracking fuel costs',
+          'A signed document confirming the freight was delivered to the correct receiver in the agreed condition — required to trigger carrier payment',
+          'A government form filed with the DOT after each delivery'
+        ],
+        answer: 2
+      }
     ];
 
+    // ── Dynasty Platform Questions ──
     const platformQuestions = [
-      { q: 'What is Dynasty-OS?', options: ['A video game', 'A music streaming service', 'A planetary-grade operating system with 28 sovereign modules for AI, logistics, governance, and commerce', 'A social media platform'], answer: 2 },
-      { q: 'What does the Omega Portal do?', options: ['Plays music', 'Serves as the Grand Architect Command Center for legal documents, entity formation, and logistics command', 'Books flights', 'Manages email'], answer: 1 },
-      { q: 'What is the Borders Sovereign Coin (BSC)?', options: ['A physical gold coin', 'An ERC-20 token on the Sepolia network — the official cryptocurrency of the Borders Dynasty Nation', 'A bank account', 'A loyalty points program'], answer: 1 },
-      { q: 'What does the Reverse Logistics Dashboard do?', options: ['Books hotel rooms', 'Manages distressed freight — abandoned containers, customs seizures, retail returns, and auction pipelines', 'Processes tax returns', 'Manages social media'], answer: 1 },
-      { q: 'What is DivinityVX?', options: ['A beauty brand', 'The core AI neural interface for Dynasty-OS — autonomous routing, self-healing, and sovereign decision-making', 'A cryptocurrency exchange', 'A messaging app'], answer: 1 },
-      { q: 'What is CodexChain?', options: ['A blockchain-based verification system that anchors all Codex documents and freight records immutably', 'A supply chain company', 'A food delivery app', 'A coding language'], answer: 0 },
-      { q: 'Which auction sources does the Dynasty marketplace aggregate?', options: ['Only eBay and Amazon', 'Only government auctions', 'Carriers, Ports/Customs, Airports, Retail, and Government — all 5 global distressed freight networks', 'Only retail returns'], answer: 2 },
-      { q: 'What is the zero-trust module in Dynasty-OS?', options: ['A financial product', 'A security architecture where every request is verified — no implicit trust granted to any user or system', 'A meditation practice', 'A shipping method'], answer: 1 },
-      { q: 'What does the Container Tracker do?', options: ['Tracks packages from Amazon', 'Monitors abandoned, seized, and tax-delinquent shipping containers across global ports in real-time', 'Manages Netflix subscriptions', 'Tracks gym equipment'], answer: 1 },
-      { q: 'How does the Dynasty Partner Onboarding system work?', options: ['Partners sign up and are immediately active', 'Partners complete a profile and two assessments — results are reviewed by the Grand Architect for role assignment', 'Partners buy access', 'Partners are randomly assigned roles'], answer: 1 }
+      {
+        q: 'What is the Dynasty Reverse Logistics Dashboard primarily used for?',
+        options: [
+          'Managing employee payroll for logistics companies',
+          'Booking hotel rooms for truck drivers',
+          'Tracking and acquiring distressed freight — abandoned containers, customs seizures, retail returns, and unclaimed cargo from 5 global source networks',
+          'Filing DOT inspection reports'
+        ],
+        answer: 2
+      },
+      {
+        q: 'What are the 5 source networks aggregated by the Dynasty Auction Engine?',
+        options: [
+          'FedEx, UPS, USPS, DHL, Amazon',
+          'Carrier (abandoned trailers), Port/Customs seizures, Airports, Retail returns, and Government surplus',
+          'eBay, Amazon, Walmart, Target, Costco',
+          'Trucking, Rail, Air, Sea, and Pipeline'
+        ],
+        answer: 1
+      },
+      {
+        q: 'In the Dynasty Container Tracker, which status indicates a container is eligible for auction?',
+        options: [
+          'Cleared',
+          'In Transit',
+          'Abandoned, Seized, or Tax-Delinquent',
+          'Loaded'
+        ],
+        answer: 2
+      },
+      {
+        q: 'What is the Dynasty Load Board used for?',
+        options: [
+          'Tracking fuel prices nationwide',
+          'Posting and finding available freight loads for carriers, matching loads to available trucks in the dispatch network',
+          'Filing insurance claims for damaged cargo',
+          'Managing driver health and wellness programs'
+        ],
+        answer: 1
+      },
+      {
+        q: 'In the Dynasty Dispatch system, what does "SLA Scoring" measure?',
+        options: [
+          'The speed of a driver\'s CDL test completion',
+          'Service Level Agreement compliance — on-time pickup/delivery performance, communication, and damage rates used to rank carriers',
+          'The average salary of logistics agents in a region',
+          'The system latency of the dispatch software'
+        ],
+        answer: 1
+      },
+      {
+        q: 'What does the Dynasty Sovereign Adapter do in the logistics architecture?',
+        options: [
+          'It converts foreign currency for international shipments',
+          'It bridges the Borders Dynasty blockchain with the Sovereign Platform — normalizing treasury, logistics, and CodexChain data into a single integration point',
+          'It adapts truck dimensions to different trailer configurations',
+          'It translates shipping documents between languages'
+        ],
+        answer: 1
+      },
+      {
+        q: 'What is CodexChain anchoring in the context of Dynasty logistics?',
+        options: [
+          'Securing cargo with physical chains to prevent theft',
+          'A GPS anchor point for container tracking',
+          'Recording logistics events (load created, bid accepted, delivery confirmed) as immutable records on the blockchain for audit and verification',
+          'Connecting to the FMCSA database for compliance checks'
+        ],
+        answer: 2
+      },
+      {
+        q: 'What is the Dynasty "drop-ship distressed cargo" process?',
+        options: [
+          'Dropping off damaged cargo at a landfill',
+          'Acquiring abandoned or seized freight at auction, then reselling or redistributing through the Dynasty marketplace and reverse logistics network',
+          'Shipping cargo via air freight as a last resort',
+          'A government program for donating unclaimed packages to charity'
+        ],
+        answer: 1
+      },
+      {
+        q: 'What does the DynastySync daemon do in the logistics platform?',
+        options: [
+          'Syncs music playlists for truck drivers',
+          'Backs up driver files to cloud storage',
+          'A background process that continuously pulls logistics analytics, treasury transactions, and event data — anchoring them to CodexChain every 15 seconds',
+          'Synchronizes clocks across multiple dispatch terminals'
+        ],
+        answer: 2
+      },
+      {
+        q: 'In Dynasty\'s reverse logistics model, what is a "digital twin" of a cargo container?',
+        options: [
+          'A backup copy of shipping documents stored in a second file',
+          'A duplicate container ordered as a replacement',
+          'A real-time digital representation of a physical container — mirroring its location, contents, status, and condition into the Dynasty platform for tracking and decision-making',
+          'Two identical containers shipped together on the same vessel'
+        ],
+        answer: 2
+      }
     ];
 
     // ── Stage Navigation ──
@@ -213,41 +478,54 @@
     function submitProfile() {
       const name = document.getElementById('pName').value.trim();
       const email = document.getElementById('pEmail').value.trim();
+      const phone = document.getElementById('pPhone').value.trim();
       const location = document.getElementById('pLocation').value.trim();
       const role = document.getElementById('pRole').value;
+      const experience = document.getElementById('pExperience').value;
+      const region = document.getElementById('pRegion').value;
+      const interest = document.getElementById('pInterest').value;
       const bio = document.getElementById('pBio').value.trim();
-      const contribution = document.getElementById('pContribution').value.trim();
       const terms = document.getElementById('agreeTerms').checked;
       const platform = document.getElementById('agreePlatform').checked;
       const err = document.getElementById('profileError');
 
-      if (!name || !email || !location || !role || !bio || !contribution) {
+      if (!name || !email || !phone || !location || !role || !experience || !region || !interest || !bio) {
         err.style.display = 'block'; err.textContent = '⚠ Please fill in all required fields.'; return;
       }
       if (!terms || !platform) {
-        err.style.display = 'block'; err.textContent = '⚠ Please agree to both agreements.'; return;
+        err.style.display = 'block'; err.textContent = '⚠ Please accept both agreements to continue.'; return;
       }
       err.style.display = 'none';
 
-      partnerProfile = { name, email, phone: document.getElementById('pPhone').value, location, role, source: document.getElementById('pSource').value, bio, contribution };
+      // Collect endorsements
+      const endorsements = [];
+      document.querySelectorAll('.ob-check-inline input:checked').forEach(cb => endorsements.push(cb.value));
 
-      renderQuiz('sovereigntyQuiz', sovereigntyQuestions);
+      partnerProfile = {
+        name, email, phone, location, role,
+        carrierType: document.getElementById('pCarrierType').value,
+        equipment: document.getElementById('pEquipment').value,
+        cdl: document.getElementById('pCDL').value,
+        experience, mcdot: document.getElementById('pMCDOT').value,
+        region, interest, bio, endorsements
+      };
+
+      renderQuiz('freightQuiz', freightQuestions);
       goToStage(2);
-      startTimer('s2Timer', 600, () => submitSovereignty());
+      stage2Timer = startTimer('s2Timer', 600, () => submitFreight());
     }
 
     // ── Quiz Rendering ──
     function renderQuiz(containerId, questions) {
-      const container = document.getElementById(containerId);
-      container.innerHTML = questions.map((q, i) => `
-        <div class="ob-question" id="q${containerId}${i}">
-          <div class="ob-q-num">Question ${i+1} of ${questions.length}</div>
+      document.getElementById(containerId).innerHTML = questions.map((q, i) => `
+        <div class="ob-question">
+          <div class="ob-q-num">Question ${i + 1} of ${questions.length}</div>
           <div class="ob-q-text">${q.q}</div>
           <div class="ob-options">
             ${q.options.map((opt, j) => `
               <label class="ob-option">
                 <input type="radio" name="${containerId}_q${i}" value="${j}">
-                <span class="ob-opt-letter">${String.fromCharCode(65+j)}</span>
+                <span class="ob-opt-letter">${String.fromCharCode(65 + j)}</span>
                 <span class="ob-opt-text">${opt}</span>
               </label>`).join('')}
           </div>
@@ -262,19 +540,19 @@
         const userAns = sel ? parseInt(sel.value) : -1;
         const isCorrect = userAns === q.answer;
         if (isCorrect) correct++;
-        results.push({ question: q.q, userAnswer: userAns, correct: q.answer, isCorrect });
+        results.push({ question: q.q, userAnswer: userAns, correctAnswer: q.answer, isCorrect });
       });
       return { score: Math.round((correct / questions.length) * 100), correct, total: questions.length, results };
     }
 
-    // ── Submit Sovereignty ──
-    function submitSovereignty() {
+    // ── Submit Freight ──
+    function submitFreight() {
       clearInterval(stage2Timer);
-      const result = scoreQuiz('sovereigntyQuiz', sovereigntyQuestions);
-      partnerProfile.sovereigntyResult = result;
+      const result = scoreQuiz('freightQuiz', freightQuestions);
+      partnerProfile.freightResult = result;
       renderQuiz('platformQuiz', platformQuestions);
       goToStage(3);
-      startTimer('s3Timer', 600, () => submitPlatform());
+      stage3Timer = startTimer('s3Timer', 600, () => submitPlatform());
     }
 
     // ── Submit Platform ──
@@ -283,11 +561,25 @@
       const result = scoreQuiz('platformQuiz', platformQuestions);
       partnerProfile.platformResult = result;
 
-      const sScore = partnerProfile.sovereigntyResult.score;
+      const fScore = partnerProfile.freightResult.score;
       const pScore = result.score;
-      const total = Math.round((sScore + pScore) / 2);
+      const total = Math.round((fScore + pScore) / 2);
       const grade = total >= 90 ? 'A' : total >= 80 ? 'B' : total >= 70 ? 'C' : total >= 60 ? 'D' : 'F';
-      const roleAssigned = total >= 80 ? 'Senior Partner' : total >= 60 ? 'Junior Partner' : 'Trainee Member';
+
+      // Role assignment based on score + declared role
+      const roleMap = {
+        owner_operator: { high: 'Senior Carrier — OO Priority Network', mid: 'Carrier — Standard Network', low: 'Carrier Trainee — Pending Review' },
+        company_driver:  { high: 'Verified Driver — Elite Access', mid: 'Driver — Standard Access', low: 'Driver Trainee' },
+        freight_agent:   { high: 'Senior Freight Agent — Full Platform Access', mid: 'Freight Agent — Standard Access', low: 'Agent Trainee' },
+        dispatcher:      { high: 'Lead Dispatcher — Command Access', mid: 'Dispatcher — Standard Access', low: 'Dispatch Trainee' },
+        fleet_manager:   { high: 'Fleet Director', mid: 'Fleet Manager — Standard', low: 'Fleet Manager Trainee' },
+        warehouse_manager: { high: 'Warehouse Director', mid: 'Warehouse Manager', low: 'Warehouse Trainee' },
+        reverse_logistics_agent: { high: 'Senior RL Agent — Auction + Container Full Access', mid: 'RL Agent — Standard Access', low: 'RL Trainee' },
+        auction_buyer:   { high: 'Preferred Buyer — Direct Auction Access', mid: 'Registered Buyer', low: 'Provisional Buyer' }
+      };
+      const roleKey = partnerProfile.role || 'owner_operator';
+      const tier = total >= 80 ? 'high' : total >= 60 ? 'mid' : 'low';
+      const roleAssigned = (roleMap[roleKey] || roleMap.owner_operator)[tier];
 
       const payload = {
         name: partnerProfile.name,
@@ -295,18 +587,25 @@
         phone: partnerProfile.phone,
         location: partnerProfile.location,
         role: partnerProfile.role,
-        source: partnerProfile.source,
+        carrierType: partnerProfile.carrierType,
+        equipment: partnerProfile.equipment,
+        cdl: partnerProfile.cdl,
+        experience: partnerProfile.experience,
+        mcdot: partnerProfile.mcdot,
+        region: partnerProfile.region,
+        interest: partnerProfile.interest,
         bio: partnerProfile.bio,
-        contribution: partnerProfile.contribution,
-        sovereigntyScore: sScore,
+        endorsements: partnerProfile.endorsements,
+        sovereigntyScore: fScore,
         platformScore: pScore,
         totalScore: total,
         grade,
         roleAssigned,
-        sovereigntyResults: partnerProfile.sovereigntyResult.results,
+        sovereigntyResults: partnerProfile.freightResult.results,
         platformResults: result.results,
         joinedAt: new Date().toISOString(),
-        status: 'pending'
+        status: 'pending',
+        networkType: 'logistics'
       };
 
       let partnerId = null;
@@ -321,7 +620,12 @@
 
       await fetch('/api/codex/events', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ type: 'PARTNER_ONBOARDED', data: { name: payload.name, grade, total, roleAssigned }, source: 'ONBOARDING_PORTAL', timestamp: new Date().toISOString() })
+        body: JSON.stringify({
+          type: 'LOGISTICS_PARTNER_ONBOARDED',
+          data: { name: payload.name, grade, total, roleAssigned, role: payload.role, region: payload.region },
+          source: 'LOGISTICS_ONBOARDING',
+          timestamp: new Date().toISOString()
+        })
       }).catch(() => {});
 
       renderResults(payload, partnerId);
@@ -332,14 +636,28 @@
     // ── Results ──
     function renderResults(data, id) {
       const gradeCls = data.grade === 'A' ? 'excellent' : data.grade === 'B' ? 'good' : data.grade === 'C' ? 'average' : 'below';
-      const gradeMsg = { A: 'Outstanding — Senior Partner qualification achieved.', B: 'Strong performance — Junior Partner qualification.', C: 'Satisfactory — Member status with training recommended.', D: 'Below threshold — Trainee status. Retake encouraged.', F: 'Did not pass — Please review the Codex materials and retake.' }[data.grade] || '';
+      const gradeMessages = {
+        A: '🏆 Outstanding — Elite network access granted. Dynasty Dispatch will contact you within 24 hours.',
+        B: '✅ Strong performance — Standard network access. Expect outreach from Dynasty Dispatch.',
+        C: '📋 Satisfactory — Provisional access. Review recommended materials and confirm with Dispatch.',
+        D: '⚠️ Below threshold — Please review the logistics training materials and consider retaking.',
+        F: '❌ Did not pass — Study the freight operations guide and retake the assessment.'
+      };
+
+      const interestLabels = {
+        load_board: 'Load Board (Forward Logistics)',
+        reverse_logistics: 'Reverse Logistics / Distressed Freight',
+        auction_buying: 'Auction Buying (Containers / Cargo)',
+        dispatch_services: 'Dispatch Services',
+        warehouse_ops: 'Warehouse Operations',
+        all_services: 'All Dynasty Logistics Services'
+      };
 
       document.getElementById('resultsPanel').innerHTML = `
         <div class="ob-results-header">
-          <div class="ob-results-seal">☩</div>
-          <h2>Assessment Complete</h2>
-          <p>Welcome to the Dynasty ecosystem, <strong>${data.name}</strong>.</p>
-          <p>Your results have been submitted to the Grand Architect for review.</p>
+          <div class="ob-results-seal">🚚</div>
+          <h2>Assessment Complete — Welcome to the Network</h2>
+          <p>Welcome, <strong>${data.name}</strong>. Your logistics profile has been submitted to Dynasty Dispatch.</p>
         </div>
 
         <div class="ob-score-card">
@@ -350,12 +668,12 @@
           </div>
           <div class="ob-score-breakdown">
             <div class="ob-score-item">
-              <span class="osi-label">Sovereignty Knowledge</span>
+              <span class="osi-label">Freight Operations</span>
               <div class="osi-bar"><div class="osi-fill" style="width:${data.sovereigntyScore}%"></div></div>
               <span class="osi-val">${data.sovereigntyScore}%</span>
             </div>
             <div class="ob-score-item">
-              <span class="osi-label">Platform Competency</span>
+              <span class="osi-label">Dynasty Platform</span>
               <div class="osi-bar"><div class="osi-fill" style="width:${data.platformScore}%"></div></div>
               <span class="osi-val">${data.platformScore}%</span>
             </div>
@@ -363,29 +681,38 @@
         </div>
 
         <div class="ob-result-verdict">
-          <div class="ob-verdict-role">Assigned Role: <strong>${data.roleAssigned}</strong></div>
-          <div class="ob-verdict-msg">${gradeMsg}</div>
+          <div class="ob-verdict-role">🎖️ Assigned Role: <strong>${data.roleAssigned}</strong></div>
+          <div class="ob-result-profile-summary">
+            <span><strong>Region:</strong> ${data.region?.replace(/_/g, ' ') || '—'}</span>
+            <span><strong>Equipment:</strong> ${data.equipment?.replace(/_/g, ' ') || '—'}</span>
+            <span><strong>Interest:</strong> ${interestLabels[data.interest] || data.interest || '—'}</span>
+            ${data.cdl !== 'none' ? '<span><strong>CDL:</strong> ' + data.cdl + '</span>' : ''}
+            ${data.mcdot ? '<span><strong>MC/DOT:</strong> ' + data.mcdot + '</span>' : ''}
+            ${data.endorsements?.length ? '<span><strong>Endorsements:</strong> ' + data.endorsements.join(', ') + '</span>' : ''}
+          </div>
+          <div class="ob-verdict-msg">${gradeMessages[data.grade] || ''}</div>
         </div>
 
         <div class="ob-next-steps">
           <h3>Next Steps</h3>
           <div class="ob-ns-grid">
-            <div class="ob-ns-item"><span class="ns-num">1</span><div><strong>Await Approval</strong><p>The Grand Architect will review your profile and test results.</p></div></div>
-            <div class="ob-ns-item"><span class="ns-num">2</span><div><strong>Explore the Platform</strong><p>Browse the <a href="index.html">Codex Ecclesia</a> and learn the ecosystem.</p></div></div>
-            <div class="ob-ns-item"><span class="ns-num">3</span><div><strong>Review Study Materials</strong><p>Study the <a href="codex-constitution.html">Constitution</a> and <a href="legal-definitions.html">Legal Definitions</a>.</p></div></div>
-            <div class="ob-ns-item"><span class="ns-num">4</span><div><strong>Retake (Optional)</strong><p>${data.grade !== 'A' ? 'Score was below A — consider reviewing materials and retaking.' : 'Excellent! No retake needed.'}</p></div></div>
+            <div class="ob-ns-item"><span class="ns-num">1</span><div><strong>Await Dispatch Contact</strong><p>Dynasty Dispatch will review your profile and reach out via email for network onboarding.</p></div></div>
+            <div class="ob-ns-item"><span class="ns-num">2</span><div><strong>Explore the Platform</strong><p>Browse the <a href="reverse-logistics-dashboard.html">Reverse Logistics Dashboard</a> and <a href="logistics-dynasty.html">Load Board</a>.</p></div></div>
+            <div class="ob-ns-item"><span class="ns-num">3</span><div><strong>Review Resources</strong><p>Study the <a href="dynasty-os-modules.html">Dynasty-OS Modules</a> — especially marketplace, digital-twin, and dispatch.</p></div></div>
+            <div class="ob-ns-item"><span class="ns-num">4</span><div><strong>${data.grade !== 'A' ? 'Improve Your Score' : 'Elite Access'}</strong><p>${data.grade !== 'A' ? 'Consider retaking after reviewing freight operations and platform materials.' : 'A-grade earns priority load assignments and direct auction access.'}</p></div></div>
           </div>
         </div>
 
         <div class="ob-result-links">
-          <a href="codex-constitution.html" class="ob-btn secondary">📜 Read Constitution</a>
-          <a href="legal-definitions.html" class="ob-btn secondary">⚖️ Legal Definitions</a>
+          <a href="reverse-logistics-dashboard.html" class="ob-btn secondary">♻️ Reverse Logistics</a>
+          <a href="logistics-dynasty.html" class="ob-btn secondary">🚚 Load Board</a>
           <a href="dynasty-os-modules.html" class="ob-btn secondary">⚙️ Dynasty-OS</a>
           <button class="ob-btn outline" onclick="location.reload()">↺ Retake Assessment</button>
         </div>
 
         <div class="ob-partner-id">
-          <span>Your Partner Reference: <strong class="mono">${id || 'PENDING-' + Date.now().toString(36).toUpperCase()}</strong></span>
+          <span>Partner Network ID: <strong class="mono">${id || 'DLP-' + Date.now().toString(36).toUpperCase()}</strong></span>
+          <span style="margin-left:1.5rem">Status: <span class="badge yellow">Pending Dispatch Review</span></span>
         </div>`;
     }
 
@@ -395,9 +722,10 @@
       let remaining = seconds;
       const interval = setInterval(() => {
         remaining--;
-        const m = Math.floor(remaining / 60).toString().padStart(2,'0');
-        const s = (remaining % 60).toString().padStart(2,'0');
+        const m = Math.floor(remaining / 60).toString().padStart(2, '0');
+        const s = (remaining % 60).toString().padStart(2, '0');
         el.textContent = m + ':' + s;
+        if (remaining <= 60) el.style.color = '#f87171';
         if (remaining <= 0) { clearInterval(interval); onEnd(); }
       }, 1000);
       return interval;
@@ -408,20 +736,19 @@
       try {
         const r = await fetch('/api/onboarding/broadcasts');
         const d = await r.json();
-        const items = d.broadcasts || [];
+        const items = (d.broadcasts || []).filter(b => !b.networkType || b.networkType === 'logistics');
         if (!items.length) return;
         document.getElementById('obBroadcasts').style.display = 'block';
         document.getElementById('broadcastItems').innerHTML = items.map(b => `
           <div class="ob-broadcast-item">
-            <span class="bc-type ${b.type}">${b.type?.toUpperCase() || 'MESSAGE'}</span>
-            <span class="bc-from">From: Grand Architect</span>
+            <span class="bc-type ${b.type || 'announcement'}">${(b.type || 'MESSAGE').toUpperCase()}</span>
+            <span class="bc-from">From: Dynasty Dispatch</span>
             <p class="bc-text">${b.message}</p>
             <span class="bc-time">${new Date(b.timestamp).toLocaleString()}</span>
           </div>`).join('');
       } catch (e) {}
     }
 
-    // Init broadcasts on load
     loadBroadcasts();
   </script>
 </body>
