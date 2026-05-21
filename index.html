@@ -28,6 +28,7 @@
 
   <!-- ── Hero ── -->
   <header class="home-hero">
+    <div class="scan-overlay"></div>
     <div class="home-hero-bg"></div>
     <div class="home-hero-content">
       <div class="home-hero-badge">508(c)(1)(A) Ecclesiastical Organization</div>
@@ -269,6 +270,107 @@
           <div class="cg-tag">External Platform ↗</div>
         </a>
       </div>
+    </div>
+  </section>
+
+  <!-- ── Sovereign Platform Infrastructure HUD ── -->
+  <section class="sov-infra-section">
+    <div class="sov-infra-inner">
+      <div class="sov-infra-header">
+        <div style="font-size:0.65rem;color:#00d4ff;text-transform:uppercase;letter-spacing:0.15em;border:1px solid rgba(0,212,255,0.3);background:rgba(0,212,255,0.06);display:inline-block;padding:0.25rem 0.9rem;border-radius:2px;margin-bottom:0.75rem;">Sovereign Platform v1.1 — Ready to Activate</div>
+        <h2>⚡ Sovereign Infrastructure Stack</h2>
+        <p>SaaS · LaaS · MaS — Dynasty-OS licensing, logistics operations, and treasury markets in one sovereign layer</p>
+      </div>
+
+      <div class="sov-service-tiers" id="sovTiers">
+
+        <!-- SaaS -->
+        <div class="sov-tier sov-tier-saas">
+          <div class="sov-tier-header">
+            <span class="sov-tier-icon">⚙️</span>
+            <div>
+              <div class="sov-tier-title">SaaS</div>
+              <div class="sov-tier-sub">Software-as-a-Service — Dynasty-OS Licensing</div>
+            </div>
+          </div>
+          <div class="sov-service-row"><span class="sov-service-name">Dynasty-OS Module Licensing (28 modules)</span><span class="sov-service-status sov-status-ready" id="saas-status">READY</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">DivinityVX Neural Interface</span><span class="sov-service-status sov-status-active">ACTIVE</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">AI Overseer + Auto-Restarter</span><span class="sov-service-status sov-status-active">ACTIVE</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">Zero-Trust Security Layer</span><span class="sov-service-status sov-status-active">ACTIVE</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">API Rule Engine</span><span class="sov-service-status sov-status-active">ACTIVE</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">Org Signup + BSC Fee Collection</span><span class="sov-service-status sov-status-ready">READY</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">Revenue: $175k–$350k/yr (50–100 orgs)</span><span class="sov-service-status sov-status-pending">PROJECTED</span></div>
+          <div class="sov-tier-footer">
+            <div class="sov-tier-total" id="saas-total">28 modules · $350/mo per org</div>
+            <div style="margin-top:0.5rem">
+              <button class="sov-activate-btn" onclick="activateService('saas')">🔗 Configure Licensing →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- LaaS -->
+        <div class="sov-tier sov-tier-laas">
+          <div class="sov-tier-header">
+            <span class="sov-tier-icon">🚚</span>
+            <div>
+              <div class="sov-tier-title">LaaS</div>
+              <div class="sov-tier-sub">Logistics-as-a-Service — Full Operations</div>
+            </div>
+          </div>
+          <div class="sov-service-row"><span class="sov-service-name">Load Board (Forward Logistics)</span><span class="sov-service-status sov-status-active" id="laas-load-status">ACTIVE</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">Container Tracker (5 Sources)</span><span class="sov-service-status sov-status-active">ACTIVE</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">Reverse Logistics Auction Engine</span><span class="sov-service-status sov-status-active">ACTIVE</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">Dispatch Analytics + SLA Scoring</span><span class="sov-service-status sov-status-active">ACTIVE</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">Private Security Escorts</span><span class="sov-service-status sov-status-ready" id="laas-security-status">READY</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">Last-Mile Delivery Routing</span><span class="sov-service-status sov-status-ready" id="laas-lastmile-status">READY</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">Rideshare Partner Network</span><span class="sov-service-status sov-status-ready" id="laas-rideshare-status">READY</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">Courier / Same-Day Delivery</span><span class="sov-service-status sov-status-ready" id="laas-courier-status">READY</span></div>
+          <div class="sov-tier-footer">
+            <div class="sov-tier-total" id="laas-total">Loading...</div>
+            <div style="margin-top:0.5rem">
+              <a href="reverse-logistics-dashboard.html" class="sov-activate-btn">♻️ Open Logistics Dashboard →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- MaS -->
+        <div class="sov-tier sov-tier-maas">
+          <div class="sov-tier-header">
+            <span class="sov-tier-icon">💎</span>
+            <div>
+              <div class="sov-tier-title">MaS</div>
+              <div class="sov-tier-sub">Markets-as-a-Service — BSC Treasury &amp; Commerce</div>
+            </div>
+          </div>
+          <div class="sov-service-row"><span class="sov-service-name">BSC Token (ERC-20, Sepolia)</span><span class="sov-service-status sov-status-active">ACTIVE</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">Global Marketplace (12,847 listings)</span><span class="sov-service-status sov-status-active">ACTIVE</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">CodexChain Event Spine</span><span class="sov-service-status sov-status-ready" id="maas-codex-status">READY</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">DynastySync Daemon (15s polling)</span><span class="sov-service-status sov-status-ready" id="maas-sync-status">READY</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">Treasury Balance &amp; Transactions</span><span class="sov-service-status sov-status-ready" id="maas-treasury-status">READY</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">Token Minting (Minting Altar)</span><span class="sov-service-status sov-status-ready">READY</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">BSC Buyback Mechanism</span><span class="sov-service-status sov-status-ready" id="maas-buyback-status">READY</span></div>
+          <div class="sov-service-row"><span class="sov-service-name">QFS Compliance · ISO-20022</span><span class="sov-service-status sov-status-active">COMPLIANT</span></div>
+          <div class="sov-tier-footer">
+            <div class="sov-tier-total" id="maas-total">Set SOVEREIGN_TREASURY_URL to activate live treasury</div>
+            <div style="margin-top:0.5rem">
+              <a href="treasury-console.html" class="sov-activate-btn">💎 Open Treasury Console →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Platform Config Notice -->
+      <div id="sovConfigNotice" style="margin-top:2rem;background:rgba(0,212,255,0.04);border:1px solid rgba(0,212,255,0.15);border-radius:4px;padding:1.25rem 1.5rem;display:none;">
+        <div style="font-size:0.7rem;color:#00d4ff;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:0.5rem;">🔧 Activate Full Infrastructure</div>
+        <div style="font-size:0.78rem;color:#6a8fa8;line-height:1.8;">
+          Set these environment variables in Replit Secrets to connect live external services:<br>
+          <code style="color:#00d4ff;background:rgba(0,212,255,0.07);padding:0.1rem 0.4rem;border-radius:2px;">SOVEREIGN_LOGISTICS_URL</code> — External logistics API (loads, containers, analytics)<br>
+          <code style="color:#ffd700;background:rgba(255,215,0,0.07);padding:0.1rem 0.4rem;border-radius:2px;">SOVEREIGN_TREASURY_URL</code> — BSC treasury API (balance, mint, buyback)<br>
+          <code style="color:#9b4dff;background:rgba(155,77,255,0.07);padding:0.1rem 0.4rem;border-radius:2px;">SOVEREIGN_CODEXCHAIN_URL</code> — CodexChain event spine API
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -582,6 +684,60 @@
 
     loadScrolls();
     loadLiveStats();
+    loadSovereignInfra();
+
+    async function loadSovereignInfra() {
+      try {
+        const res = await fetch('/api/sovereign/health');
+        const d = await res.json();
+        const s = d.services || {};
+
+        // SaaS
+        const saasEl = document.getElementById('saas-status');
+        if (saasEl) saasEl.textContent = s.saas?.configured ? 'ACTIVE' : 'READY';
+
+        // LaaS load board
+        const laasTotalEl = document.getElementById('laas-total');
+        if (laasTotalEl) laasTotalEl.textContent = `${s.loadBoard?.loads || 0} active loads · ${(s.partnerNetwork?.partners || 0)} partners`;
+
+        // MaS treasury
+        const maasTotalEl = document.getElementById('maas-total');
+        if (s.maas?.configured && maasTotalEl) {
+          maasTotalEl.textContent = 'Treasury API connected — live balance tracking active';
+        }
+        if (s.codexchain?.configured) {
+          const el = document.getElementById('maas-codex-status');
+          if (el) { el.textContent = 'ACTIVE'; el.className = 'sov-service-status sov-status-active'; }
+        }
+        if (s.saas?.configured) {
+          const el2 = document.getElementById('maas-sync-status');
+          if (el2) { el2.textContent = 'ACTIVE'; el2.className = 'sov-service-status sov-status-active'; }
+        }
+
+        // Show config notice if any service is not yet configured
+        const anyNotConfigured = !s.saas?.configured || !s.laas?.configured || !s.maas?.configured;
+        if (anyNotConfigured) {
+          document.getElementById('sovConfigNotice').style.display = 'block';
+        }
+      } catch (e) {}
+
+      // Load LaaS stats
+      try {
+        const r2 = await fetch('/api/laas/analytics');
+        const a = await r2.json();
+        const el = document.getElementById('laas-total');
+        if (el && a.loadsCreated) el.textContent = `${a.loadsCreated} loads · ${a.activeCarriers} carriers · ${a.onTimeDeliveryRate}% on-time`;
+      } catch (e) {}
+    }
+
+    function activateService(type) {
+      const msgs = {
+        saas: 'To activate Dynasty-OS SaaS licensing:\n\n1. Set SOVEREIGN_TREASURY_URL in Replit Secrets\n2. Set SIGNUP_FEE_AMOUNT (default: 25 BSC)\n3. Set BUYBACK_WALLET to your treasury address\n\nAPI ready: POST /api/saas/signup',
+        laas: 'LaaS services are already active!\n\nTo connect external logistics feeds:\nSet SOVEREIGN_LOGISTICS_URL in Replit Secrets\n\nActive now: Load Board · Containers · Auctions · Analytics\nReady: Security · Last-Mile · Rideshare · Couriers',
+        maas: 'To activate live treasury (MaS):\n\nSet SOVEREIGN_TREASURY_URL in Replit Secrets\nSet SOVEREIGN_CODEXCHAIN_URL for event spine\n\nActive now: BSC Token · Marketplace · QFS Compliance',
+      };
+      alert(msgs[type] || 'See /api/sovereign/health for configuration details.');
+    }
   </script>
 
   <script type="module">
