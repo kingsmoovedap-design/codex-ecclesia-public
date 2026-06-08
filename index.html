@@ -1,748 +1,570 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Codex Ecclesia — Sovereign Archive & Dynasty-OS Command Platform</title>
-  <meta name="description" content="The sovereign scroll archive of the Borders Ecclesia Earth Trust, vertically integrated with Dynasty-OS planetary computing infrastructure." />
-  <meta name="keywords" content="codex, ecclesia, dynasty-os, sovereign, scrolls, web3, defi, blockchain, logistics, ai, divinityVX" />
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="lib/shield.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DivinityVX — Architect Command Hub · Borders Dynasty</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="favicon.png">
+  <script src="lib/access-gate.js"></script>
+  <script src="lib/divinity-copilot.js" defer></script>
+  <style>
+    :root {
+      --cyan:#00d4ff;--purple:#9b4dff;--gold:#ffd700;
+      --green:#00ff88;--red:#ff3b6b;--bg:#020b18;
+      --panel:rgba(4,18,40,0.94);--border:rgba(0,212,255,0.18);
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{background:var(--bg);font-family:'Courier New',monospace;color:#c5d8f0;min-height:100vh;overflow-x:hidden;padding-bottom:3rem;}
+    .grid-bg{position:fixed;inset:0;z-index:0;
+      background-image:linear-gradient(rgba(0,212,255,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.035) 1px,transparent 1px);
+      background-size:60px 60px;animation:gridScroll 30s linear infinite;}
+    @keyframes gridScroll{to{transform:translate(60px,60px);}}
+    .scan{position:fixed;inset:0;z-index:1;pointer-events:none;
+      background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,212,255,0.007) 3px,rgba(0,212,255,0.007) 4px);}
+
+    /* TOP BAR */
+    .topbar{position:sticky;top:0;z-index:100;background:rgba(2,11,24,0.97);
+      border-bottom:1px solid var(--border);display:flex;align-items:center;
+      justify-content:space-between;padding:0 1.5rem;height:52px;backdrop-filter:blur(8px);}
+    .topbar-left{display:flex;align-items:center;gap:1rem;}
+    .tb-seal{font-size:1.3rem;filter:drop-shadow(0 0 8px rgba(255,215,0,0.7));animation:sealPulse 3s ease-in-out infinite;}
+    @keyframes sealPulse{0%,100%{filter:drop-shadow(0 0 6px rgba(255,215,0,0.5));}50%{filter:drop-shadow(0 0 18px rgba(255,215,0,1));}}
+    .tb-brand{font-size:0.9rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;
+      background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .tb-role{font-size:0.58rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);
+      border:1px solid rgba(255,215,0,0.3);background:rgba(255,215,0,0.06);padding:0.15rem 0.5rem;border-radius:2px;}
+    .topbar-nav{display:flex;gap:0.2rem;flex-wrap:wrap;}
+    .tn{font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;text-decoration:none;
+      padding:0.3rem 0.65rem;border-radius:3px;border:1px solid transparent;transition:all 0.2s;color:#4a6580;}
+    .tn:hover{color:var(--cyan);border-color:rgba(0,212,255,0.3);background:rgba(0,212,255,0.06);}
+    .tn.purple{color:#7b4dcc;}.tn.purple:hover{color:var(--purple);border-color:rgba(155,77,255,0.4);background:rgba(155,77,255,0.08);}
+    .tn.green{color:#00aa66;}.tn.green:hover{color:var(--green);border-color:rgba(0,255,136,0.4);background:rgba(0,255,136,0.06);}
+    .tn.gold{color:#ccaa00;}.tn.gold:hover{color:var(--gold);border-color:rgba(255,215,0,0.4);background:rgba(255,215,0,0.06);}
+    .topbar-right{display:flex;align-items:center;gap:0.75rem;}
+    .tb-clock{font-size:0.72rem;color:var(--cyan);letter-spacing:0.06em;}
+    .tb-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(0,255,136,0.9);animation:blink 2s ease-in-out infinite;}
+    @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+    .tb-lock{font-size:0.58rem;color:#3a5060;text-decoration:none;text-transform:uppercase;letter-spacing:0.08em;
+      border:1px solid rgba(0,212,255,0.12);padding:0.25rem 0.5rem;border-radius:2px;transition:all 0.2s;}
+    .tb-lock:hover{color:var(--red);border-color:rgba(255,59,107,0.3);}
+
+    /* LAYOUT */
+    .page{position:relative;z-index:2;max-width:1600px;margin:0 auto;padding:1.25rem 1.25rem 1.5rem;}
+
+    /* HERO STRIP */
+    .hero{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+      background:var(--panel);border:1px solid var(--border);
+      border-top:2px solid transparent;
+      background-clip:padding-box;
+      border-radius:4px;padding:1.25rem 2rem;margin-bottom:1.25rem;
+      box-shadow:0 0 40px rgba(0,212,255,0.04);}
+    .hero-l{}
+    .hero-title{font-size:1.5rem;font-weight:900;text-transform:uppercase;letter-spacing:0.08em;
+      background:linear-gradient(135deg,#fff 0%,var(--cyan) 50%,var(--purple) 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.2rem;}
+    .hero-sub{font-size:0.62rem;color:#4a6580;text-transform:uppercase;letter-spacing:0.12em;}
+    .hero-r{display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap;}
+    .hbtn{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;
+      padding:0.55rem 1.1rem;border-radius:3px;text-decoration:none;border:1px solid;transition:all 0.2s;cursor:pointer;font-family:inherit;}
+    .hbtn.cyan{color:#020b18;background:var(--cyan);border-color:var(--cyan);box-shadow:0 0 12px rgba(0,212,255,0.4);}
+    .hbtn.cyan:hover{box-shadow:0 0 25px rgba(0,212,255,0.8);}
+    .hbtn.ghost{color:var(--purple);border-color:rgba(155,77,255,0.45);background:rgba(155,77,255,0.08);}
+    .hbtn.ghost:hover{background:rgba(155,77,255,0.15);}
+    .hbtn.ghost2{color:var(--green);border-color:rgba(0,255,136,0.4);background:rgba(0,255,136,0.06);}
+    .hbtn.ghost2:hover{background:rgba(0,255,136,0.12);}
+
+    /* STAT ROW */
+    .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.25rem;}
+    .sc{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:1rem 1.25rem;position:relative;overflow:hidden;}
+    .sc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+    .sc.c::before{background:linear-gradient(90deg,var(--cyan),transparent);}
+    .sc.g::before{background:linear-gradient(90deg,var(--green),transparent);}
+    .sc.p::before{background:linear-gradient(90deg,var(--purple),transparent);}
+    .sc.o::before{background:linear-gradient(90deg,var(--gold),transparent);}
+    .sc-lbl{font-size:0.57rem;text-transform:uppercase;letter-spacing:0.12em;color:#3a5060;margin-bottom:0.35rem;display:flex;align-items:center;gap:0.3rem;}
+    .dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+    .dot.c{background:var(--cyan);box-shadow:0 0 5px rgba(0,212,255,0.9);}
+    .dot.g{background:var(--green);box-shadow:0 0 5px rgba(0,255,136,0.9);}
+    .dot.p{background:var(--purple);box-shadow:0 0 5px rgba(155,77,255,0.9);}
+    .dot.o{background:var(--gold);box-shadow:0 0 5px rgba(255,215,0,0.9);}
+    .sc-num{font-size:2rem;font-weight:900;line-height:1;margin-bottom:0.1rem;}
+    .sc-num.c{color:var(--cyan);}
+    .sc-num.g{color:var(--green);}
+    .sc-num.p{color:var(--purple);}
+    .sc-num.o{color:var(--gold);}
+    .sc-sub{font-size:0.6rem;color:#4a6580;}
+
+    /* MAIN GRID */
+    .mgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.1rem;}
+    .pnl{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:1.1rem;}
+    .pnl.w2{grid-column:span 2;}
+    .pnl.w3{grid-column:span 3;}
+    .ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.85rem;padding-bottom:0.55rem;border-bottom:1px solid rgba(0,212,255,0.1);}
+    .ph-t{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#c5d8f0;display:flex;align-items:center;gap:0.35rem;}
+    .badge{font-size:0.54rem;text-transform:uppercase;letter-spacing:0.09em;padding:0.12rem 0.45rem;border-radius:2px;border:1px solid;}
+    .badge.live{color:var(--green);border-color:rgba(0,255,136,0.35);background:rgba(0,255,136,0.06);}
+    .badge.rdy{color:var(--cyan);border-color:rgba(0,212,255,0.35);background:rgba(0,212,255,0.06);}
+    .ph-a{font-size:0.6rem;color:var(--cyan);text-decoration:none;text-transform:uppercase;letter-spacing:0.07em;
+      border:1px solid rgba(0,212,255,0.2);padding:0.18rem 0.45rem;border-radius:2px;transition:all 0.2s;}
+    .ph-a:hover{background:rgba(0,212,255,0.1);}
+
+    /* CMD TILES */
+    .cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.65rem;}
+    .ctile{display:flex;flex-direction:column;align-items:flex-start;background:rgba(0,0,0,0.3);
+      border:1px solid rgba(0,212,255,0.1);border-radius:4px;padding:0.85rem 0.9rem 0.8rem;
+      text-decoration:none;transition:all 0.2s;position:relative;overflow:hidden;}
+    .ctile::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;}
+    .ctile.dvx::before{background:var(--purple);}
+    .ctile.lg::before{background:var(--green);}
+    .ctile.om::before{background:var(--gold);}
+    .ctile.rv::before{background:var(--cyan);}
+    .ctile.cr::before{background:#00aaff;}
+    .ctile.dy::before{background:var(--gold);}
+    .ctile.tr::before{background:var(--gold);}
+    .ctile.sc::before{background:#5a7a90;}
+    .ctile.db::before{background:#7b97b0;}
+    .ctile:hover{transform:translateY(-2px);background:rgba(0,212,255,0.04);border-color:rgba(0,212,255,0.3);box-shadow:0 4px 16px rgba(0,212,255,0.08);}
+    .ct-ico{font-size:1.3rem;margin-bottom:0.4rem;}
+    .ct-lbl{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#c5d8f0;margin-bottom:0.15rem;}
+    .ct-desc{font-size:0.58rem;color:#4a6580;line-height:1.4;}
+    .ct-st{font-size:0.54rem;text-transform:uppercase;letter-spacing:0.07em;margin-top:0.4rem;}
+    .ct-st.live{color:var(--green);}
+    .ct-st.rdy{color:var(--cyan);}
+    .ct-st.ext{color:var(--gold);}
+
+    /* LOAD TABLE */
+    .ltbl{width:100%;border-collapse:collapse;font-size:0.66rem;}
+    .ltbl th{padding:0.3rem 0.55rem;text-align:left;color:#2a4255;text-transform:uppercase;letter-spacing:0.07em;font-size:0.57rem;font-weight:400;border-bottom:1px solid rgba(0,212,255,0.14);}
+    .ltbl td{padding:0.38rem 0.55rem;border-bottom:1px solid rgba(0,212,255,0.05);color:#7aabb0;vertical-align:middle;}
+    .ltbl tr:hover td{background:rgba(0,212,255,0.025);}
+    .ltbl tr:last-child td{border-bottom:none;}
+    .pill{display:inline-block;font-size:0.54rem;text-transform:uppercase;letter-spacing:0.07em;padding:0.1rem 0.38rem;border-radius:2px;font-weight:700;}
+    .pill.open{color:var(--green);background:rgba(0,255,136,0.07);border:1px solid rgba(0,255,136,0.2);}
+    .pill.assigned,.pill.in_transit{color:var(--cyan);background:rgba(0,212,255,0.07);border:1px solid rgba(0,212,255,0.2);}
+    .pill.customs_hold{color:var(--gold);background:rgba(255,215,0,0.07);border:1px solid rgba(255,215,0,0.2);}
+    .pill.abandoned,.pill.seized{color:var(--red);background:rgba(255,59,107,0.07);border:1px solid rgba(255,59,107,0.2);}
+    .pill.bidding{color:var(--purple);background:rgba(155,77,255,0.07);border:1px solid rgba(155,77,255,0.2);}
+    .utag{font-size:0.5rem;color:var(--red);border:1px solid rgba(255,59,107,0.3);padding:0.08rem 0.28rem;border-radius:2px;margin-left:0.2rem;}
+
+    /* TIER TABS */
+    .ttabs{display:flex;gap:0.35rem;margin-bottom:0.65rem;}
+    .ttab{font-size:0.58rem;text-transform:uppercase;letter-spacing:0.07em;padding:0.28rem 0.6rem;border-radius:2px;
+      border:1px solid rgba(0,212,255,0.12);background:transparent;color:#3a5060;cursor:pointer;font-family:inherit;transition:all 0.2s;}
+    .ttab.active,.ttab:hover{border-color:rgba(0,212,255,0.4);color:var(--cyan);background:rgba(0,212,255,0.08);}
+    .tcnt{display:none;}
+    .tcnt.active{display:block;}
+
+    /* DRIVERS */
+    .drow{display:flex;align-items:center;justify-content:space-between;padding:0.45rem 0;border-bottom:1px solid rgba(0,212,255,0.06);}
+    .drow:last-child{border-bottom:none;}
+    .d-name{font-size:0.68rem;color:#c5d8f0;font-weight:700;}
+    .d-sub{font-size:0.58rem;color:#3a5060;margin-top:0.05rem;}
+    .d-rating{font-size:0.62rem;color:var(--gold);}
+    .d-avail{font-size:0.57rem;font-weight:700;text-transform:uppercase;}
+    .d-avail.available{color:var(--green);}
+    .d-avail.on_dispatch{color:var(--cyan);}
+
+    /* DISPATCH FORM */
+    .dform{display:flex;flex-direction:column;gap:0.55rem;}
+    .ds,.di{width:100%;background:rgba(0,0,0,0.5);border:1px solid rgba(0,212,255,0.18);color:#c5d8f0;
+      font-family:'Courier New',monospace;font-size:0.68rem;padding:0.5rem 0.7rem;border-radius:3px;outline:none;}
+    .ds:focus,.di:focus{border-color:var(--cyan);box-shadow:0 0 8px rgba(0,212,255,0.2);}
+    .dbtn{background:var(--green);color:#020b18;font-family:'Courier New',monospace;font-weight:900;
+      font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;padding:0.58rem;border:none;
+      border-radius:3px;cursor:pointer;transition:all 0.2s;box-shadow:0 0 10px rgba(0,255,136,0.3);}
+    .dbtn:hover{box-shadow:0 0 20px rgba(0,255,136,0.6);}
+
+    /* ANALYTICS */
+    .agrid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.55rem;}
+    .acard{background:rgba(0,0,0,0.3);border:1px solid rgba(0,212,255,0.1);border-radius:3px;padding:0.6rem 0.7rem;}
+    .albl{font-size:0.56rem;text-transform:uppercase;letter-spacing:0.09em;color:#2a4255;margin-bottom:0.2rem;}
+    .aval{font-size:0.88rem;font-weight:700;}
+    .aval.c{color:var(--cyan);}
+    .aval.g{color:var(--green);}
+    .aval.o{color:var(--gold);}
+    .aval.p{color:var(--purple);}
+
+    /* ACTIVITY FEED */
+    .fitem{display:flex;align-items:flex-start;gap:0.65rem;padding:0.42rem 0;border-bottom:1px solid rgba(0,212,255,0.05);}
+    .fitem:last-child{border-bottom:none;}
+    .fdot{width:6px;height:6px;border-radius:50%;margin-top:0.3rem;flex-shrink:0;}
+    .fdot.c{background:var(--cyan);box-shadow:0 0 5px rgba(0,212,255,0.8);}
+    .fdot.g{background:var(--green);box-shadow:0 0 5px rgba(0,255,136,0.8);}
+    .fdot.o{background:var(--gold);box-shadow:0 0 5px rgba(255,215,0,0.8);}
+    .fdot.p{background:var(--purple);}
+    .fdot.r{background:var(--red);}
+    .f-title{font-size:0.68rem;color:#c5d8f0;}
+    .f-ts{font-size:0.57rem;color:#2a4255;margin-top:0.05rem;}
+
+    /* BOTTOM TICKER */
+    .ticker{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(2,11,24,0.97);
+      border-top:1px solid rgba(0,212,255,0.12);padding:0.3rem 1rem;display:flex;align-items:center;gap:1rem;overflow:hidden;}
+    .tick-lbl{font-size:0.57rem;color:var(--cyan);text-transform:uppercase;letter-spacing:0.1em;font-weight:700;flex-shrink:0;}
+    .tick-scroll{flex:1;overflow:hidden;}
+    .tick-inner{display:flex;gap:2.5rem;animation:tickMove 45s linear infinite;white-space:nowrap;}
+    @keyframes tickMove{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+    .tick-it{font-size:0.6rem;color:#2a4255;flex-shrink:0;}
+    .tick-it span{color:var(--cyan);}
+
+    @media(max-width:1100px){.mgrid{grid-template-columns:1fr 1fr;}.pnl.w2{grid-column:span 2;}.pnl.w3{grid-column:span 2;}}
+    @media(max-width:768px){.mgrid{grid-template-columns:1fr;}.pnl.w2,.pnl.w3{grid-column:span 1;}.stat-row{grid-template-columns:repeat(2,1fr);}.cgrid{grid-template-columns:repeat(2,1fr);}.topbar-nav{display:none;}}
+  </style>
 </head>
 <body>
+  <div class="grid-bg"></div>
+  <div class="scan"></div>
 
-  <!-- ── Navigation ── -->
-  <nav class="sacred-nav">
-    <a href="index.html" class="active">Home</a>
-    <a href="all-scrolls.html">All Scrolls</a>
-    <a href="omega-portal.html" class="nav-highlight">☩ Omega Portal</a>
-    <a href="reverse-logistics-dashboard.html">♻️ Rev. Logistics</a>
-    <a href="dynasty-os-modules.html" class="nav-dynasty-os">⚙️ Dynasty-OS</a>
-    <a href="divinity-command.html" class="nav-divinity">⚡ DivinityVX</a>
-    <a href="dynasty-onboarding.html" class="nav-onboarding">🚚 Carrier Portal</a>
-    <a href="dashboard.html">📊 Dashboard</a>
-    <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="nav-dynasty">👑 Dynasty Dashboard</a>
+  <!-- TOP BAR -->
+  <nav class="topbar">
+    <div class="topbar-left">
+      <span class="tb-seal">☩</span>
+      <span class="tb-brand">DivinityVX</span>
+      <span class="tb-role" id="tbRole">Grand Architect</span>
+    </div>
+    <div class="topbar-nav">
+      <a href="divinity-command.html" class="tn purple">⚡ Command Center</a>
+      <a href="reverse-logistics-dashboard.html" class="tn green">♻ Rev. Logistics</a>
+      <a href="dynasty-onboarding.html" class="tn">🚚 Carrier Portal</a>
+      <a href="omega-portal.html" class="tn">☩ Omega Portal</a>
+      <a href="dynasty-os-modules.html" class="tn">⚙️ Dynasty-OS</a>
+      <a href="all-scrolls.html" class="tn">📜 Scrolls</a>
+      <a href="https://borders-dynasty--kingsmoovedap.replit.app" class="tn gold" target="_blank">👑 Dynasty HQ</a>
+    </div>
+    <div class="topbar-right">
+      <span class="tb-clock" id="tbClock">00:00:00 UTC</span>
+      <span class="tb-dot" title="All Systems Operational"></span>
+      <a href="gateway.html" class="tb-lock" id="lockBtn">🔒 Lock</a>
+    </div>
   </nav>
 
-  <!-- ── Hero ── -->
-  <header class="home-hero">
-    <div class="scan-overlay"></div>
-    <div class="home-hero-bg"></div>
-    <div class="home-hero-content">
-      <div class="home-hero-badge">508(c)(1)(A) Ecclesiastical Organization</div>
-      <div class="home-seal">☩</div>
-      <h1 class="home-hero-title">Codex Ecclesia</h1>
-      <p class="home-hero-sub">Sovereign Scroll Archive &amp; Dynasty-OS Planetary Command Platform</p>
-      <p class="home-hero-desc">The Borders Ecclesia Earth Trust — operating a vertically integrated sovereign tech stack spanning ecclesiastical law, blockchain treasury, global logistics, and planetary-scale AI governance.</p>
-      <div class="home-hero-cta">
-        <a href="omega-portal.html" class="hero-btn primary">☩ Enter Omega Portal</a>
-        <a href="dynasty-os-modules.html" class="hero-btn secondary">⚙️ Dynasty-OS Modules</a>
-        <a href="reverse-logistics-dashboard.html" class="hero-btn outline">♻️ Rev. Logistics</a>
+  <div class="page">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-l">
+        <div class="hero-title">⚡ DivinityVX Architect Hub</div>
+        <div class="hero-sub">Borders Ecclesia Earth Trust · 508(c)(1)(A) · Dynasty-OS · Logistics Command · All Systems Operational</div>
+      </div>
+      <div class="hero-r">
+        <a href="divinity-command.html" class="hbtn cyan">⚡ Command Center</a>
+        <a href="divinity-command.html" class="hbtn ghost" onclick="sessionStorage.setItem('dvx_panel','copilot')">🤝 Co-Pilot</a>
+        <a href="reverse-logistics-dashboard.html" class="hbtn ghost2">♻ Rev. Logistics</a>
       </div>
     </div>
 
-    <div class="home-live-stats" id="liveStats">
-      <div class="live-stat-pill"><span class="lsp-num" id="statScrolls">—</span><span class="lsp-label">Scrolls</span></div>
-      <div class="live-stat-pill"><span class="lsp-num" id="statDocs">—</span><span class="lsp-label">Documents</span></div>
-      <div class="live-stat-pill"><span class="lsp-num" id="statModules">28</span><span class="lsp-label">OS Modules</span></div>
-      <div class="live-stat-pill"><span class="lsp-num" id="statListings">12,847</span><span class="lsp-label">Mkt Listings</span></div>
-      <div class="live-stat-pill"><span class="lsp-num" id="statContainers">5</span><span class="lsp-label">Containers</span></div>
-      <div class="live-stat-pill"><span class="lsp-num" id="statNetwork">Sepolia</span><span class="lsp-label">Network</span></div>
-    </div>
-  </header>
-
-  <!-- ── Dynasty-OS Platform Overview ── -->
-  <section class="dos-overview">
-    <div class="dos-overview-inner">
-      <div class="dos-ov-label">Dynasty-OS — github.com/kingsmoovedap-design/Dynasty-os</div>
-      <h2 class="dos-ov-title">Planetary Computing Infrastructure</h2>
-      <p class="dos-ov-sub">28 sovereign-grade OS modules spanning AI oversight, quantum compute, interstellar governance, zero-trust security, and global marketplace operations — all anchored to the Codex Ecclesia legal spine.</p>
-
-      <div class="dos-module-ticker" id="moduleTicker">
-        <div class="dos-ticker-track">
-          <span>⚡ ai-overseer</span><span>🧠 divinityVX-neural</span><span>🌐 interstellar-governance</span><span>⚛️ quantum</span><span>🔒 zero-trust</span><span>🚀 warp-engine</span><span>🌆 city-sim</span><span>🏛️ governance</span><span>🤖 robotics</span><span>🌌 galactic-compute</span><span>📡 cosmic-router</span><span>⚙️ hypervisor</span><span>🔗 service-mesh</span><span>🧪 simulation-engine</span><span>🪐 planetary</span><span>🏗️ megastructure-planner</span><span>🛒 marketplace</span><span>👁️ digital-twin</span><span>📋 doc-engine</span><span>🔄 auto-restarter</span><span>⚡ ai-overseer</span><span>🧠 divinityVX-neural</span><span>🌐 interstellar-governance</span><span>⚛️ quantum</span><span>🔒 zero-trust</span><span>🚀 warp-engine</span>
-        </div>
+    <!-- LIVE STATS -->
+    <div class="stat-row">
+      <div class="sc c">
+        <div class="sc-lbl"><span class="dot c"></span>Local / Last-Mile</div>
+        <div class="sc-num c" id="sLocalLoads">—</div>
+        <div class="sc-sub">Open loads · <span id="sLocalUrgent">—</span> urgent</div>
       </div>
-
-      <div class="dos-ov-grid">
-        <div class="dos-ov-card">
-          <span class="dos-ov-icon">🧠</span>
-          <h4>AI & Neural Layer</h4>
-          <p>DivinityVX neural interface, AI overseer, API rule engine with autonomous self-healing</p>
-          <div class="dos-ov-modules">divinityVX • divinityVX-neural • ai-overseer • api-rule-engine</div>
-        </div>
-        <div class="dos-ov-card">
-          <span class="dos-ov-icon">⚙️</span>
-          <h4>Core Infrastructure</h4>
-          <p>Hypervisor, cluster builder, service mesh, config engine, and zero-trust security</p>
-          <div class="dos-ov-modules">hypervisor • cluster-builder • service-mesh • config-engine • zero-trust</div>
-        </div>
-        <div class="dos-ov-card">
-          <span class="dos-ov-icon">🌌</span>
-          <h4>Simulation & Compute</h4>
-          <p>Quantum compute, galactic routing, civilization simulation, and warp-speed data transfer</p>
-          <div class="dos-ov-modules">quantum • galactic-compute • cosmic-router • warp-engine • city-sim</div>
-        </div>
-        <div class="dos-ov-card">
-          <span class="dos-ov-icon">🏛️</span>
-          <h4>Governance Layer</h4>
-          <p>Interstellar governance, doc engine, planetary scheduling, and compliance automation</p>
-          <div class="dos-ov-modules">governance • interstellar-governance • doc-engine • planetary-scheduler</div>
-        </div>
-        <div class="dos-ov-card">
-          <span class="dos-ov-icon">🛒</span>
-          <h4>Marketplace & Commerce</h4>
-          <p>Global marketplace, digital twin management, and reverse logistics intelligence</p>
-          <div class="dos-ov-modules">marketplace • digital-twin • backend/src • robotics</div>
-        </div>
-        <div class="dos-ov-card">
-          <span class="dos-ov-icon">☩</span>
-          <h4>Codex Legal Spine</h4>
-          <p>Ecclesiastical trust law, UCC filings, entity formation, and blockchain-verified documents</p>
-          <div class="dos-ov-modules">omega-portal • codex-chain • reverse-logistics • BSC-treasury</div>
-        </div>
+      <div class="sc g">
+        <div class="sc-lbl"><span class="dot g"></span>National OTR/LTL</div>
+        <div class="sc-num g" id="sNatLoads">—</div>
+        <div class="sc-sub">Active · <span id="sNatVal">—</span>/wk revenue</div>
       </div>
-
-      <div style="text-align:center; margin-top:2rem;">
-        <a href="dynasty-os-modules.html" class="hero-btn primary">View All 28 Modules →</a>
+      <div class="sc p">
+        <div class="sc-lbl"><span class="dot p"></span>Global Containers</div>
+        <div class="sc-num p" id="sGlobal">—</div>
+        <div class="sc-sub">Tracked · <span id="sAuction">—</span> auction-eligible</div>
+      </div>
+      <div class="sc o">
+        <div class="sc-lbl"><span class="dot o"></span>Driver Roster</div>
+        <div class="sc-num o" id="sDrivers">—</div>
+        <div class="sc-sub"><span id="sAvail">—</span> available · <span id="sDisp">—</span> dispatched</div>
       </div>
     </div>
-  </section>
 
-  <!-- ── Vertical Integration Stack ── -->
-  <section class="vert-stack-section">
-    <div class="vert-stack-inner">
-      <h2 class="section-title">Vertical Integration Stack</h2>
-      <p class="section-subtitle">From sovereign law to planetary compute — one unified command structure</p>
-      <div class="vert-stack">
-        <div class="vert-layer layer-1">
-          <div class="vl-label">Layer 1 — Legal Foundation</div>
-          <div class="vl-items">
-            <span>508(c)(1)(A) Trust</span><span>UCC Filings</span><span>Codex Constitution</span><span>Omega Portal</span>
-          </div>
-        </div>
-        <div class="vert-arrow">▼</div>
-        <div class="vert-layer layer-2">
-          <div class="vl-label">Layer 2 — Blockchain & Treasury</div>
-          <div class="vl-items">
-            <span>BSC Token (ERC-20)</span><span>CodexChain</span><span>QFS-Compliant</span><span>ISO-20022</span>
-          </div>
-        </div>
-        <div class="vert-arrow">▼</div>
-        <div class="vert-layer layer-3">
-          <div class="vl-label">Layer 3 — Logistics & Commerce</div>
-          <div class="vl-items">
-            <span>Reverse Logistics</span><span>Global Marketplace</span><span>Container Tracker</span><span>Auction Engine</span>
-          </div>
-        </div>
-        <div class="vert-arrow">▼</div>
-        <div class="vert-layer layer-4">
-          <div class="vl-label">Layer 4 — Dynasty-OS Infrastructure</div>
-          <div class="vl-items">
-            <span>Hypervisor</span><span>Service Mesh</span><span>Zero-Trust</span><span>Cluster Builder</span>
-          </div>
-        </div>
-        <div class="vert-arrow">▼</div>
-        <div class="vert-layer layer-5">
-          <div class="vl-label">Layer 5 — AI & Planetary Compute</div>
-          <div class="vl-items">
-            <span>DivinityVX Neural</span><span>Quantum Engine</span><span>Galactic Compute</span><span>AI Overseer</span>
-          </div>
+    <!-- MAIN GRID -->
+    <div class="mgrid">
+
+      <!-- COMMAND TILES -->
+      <div class="pnl">
+        <div class="ph"><div class="ph-t">🖥 Platform Access</div><span class="badge live">⬤ All Online</span></div>
+        <div class="cgrid">
+          <a href="divinity-command.html" class="ctile dvx">
+            <span class="ct-ico">⚡</span><div class="ct-lbl">DivinityVX</div>
+            <div class="ct-desc">AI command center · intelligence · co-pilot</div>
+            <div class="ct-st live">⬤ Online</div>
+          </a>
+          <a href="reverse-logistics-dashboard.html" class="ctile rv">
+            <span class="ct-ico">♻</span><div class="ct-lbl">Rev. Logistics</div>
+            <div class="ct-desc">Containers · seizures · auction pipeline</div>
+            <div class="ct-st live">⬤ Active</div>
+          </a>
+          <a href="dynasty-onboarding.html" class="ctile cr">
+            <span class="ct-ico">🚚</span><div class="ct-lbl">Carrier Portal</div>
+            <div class="ct-desc">Driver ops · freight · partner onboarding</div>
+            <div class="ct-st live">⬤ Open</div>
+          </a>
+          <a href="omega-portal.html" class="ctile om">
+            <span class="ct-ico">☩</span><div class="ct-lbl">Omega Portal</div>
+            <div class="ct-desc">Filings · legal documents · trust instruments</div>
+            <div class="ct-st rdy">⬤ Ready</div>
+          </a>
+          <a href="dynasty-os-modules.html" class="ctile lg">
+            <span class="ct-ico">⚙️</span><div class="ct-lbl">Dynasty-OS</div>
+            <div class="ct-desc">Platform modules · SaaS · integrations</div>
+            <div class="ct-st live">⬤ 28 Modules</div>
+          </a>
+          <a href="https://borders-dynasty--kingsmoovedap.replit.app" class="ctile dy" target="_blank">
+            <span class="ct-ico">👑</span><div class="ct-lbl">Dynasty HQ</div>
+            <div class="ct-desc">Nation dashboard · treasury · command</div>
+            <div class="ct-st ext">↗ External</div>
+          </a>
+          <a href="dashboard.html" class="ctile db">
+            <span class="ct-ico">📊</span><div class="ct-lbl">User Dashboard</div>
+            <div class="ct-desc">Activity · documents · filings · stats</div>
+            <div class="ct-st rdy">⬤ Ready</div>
+          </a>
+          <a href="all-scrolls.html" class="ctile sc">
+            <span class="ct-ico">📜</span><div class="ct-lbl">Scroll Archive</div>
+            <div class="ct-desc">186 sovereign scrolls · codex · constitutions</div>
+            <div class="ct-st rdy">⬤ 186 Scrolls</div>
+          </a>
+          <a href="treasury-console.html" class="ctile tr">
+            <span class="ct-ico">🏦</span><div class="ct-lbl">Treasury</div>
+            <div class="ct-desc">BSC coin · mint · buyback · Sepolia</div>
+            <div class="ct-st rdy">⬤ Sepolia</div>
+          </a>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ── DivinityVX Neural Interface ── -->
-  <section class="divinity-section">
-    <div class="divinity-inner">
-      <div class="divinity-badge">Dynasty-OS Core Module</div>
-      <h2 class="divinity-title">⚡ DivinityVX Neural Interface</h2>
-      <p class="divinity-sub">Autonomous AI command layer — self-healing, self-optimizing, sovereign-controlled</p>
-      <div class="divinity-grid">
-        <div class="divinity-stat">
-          <div class="dv-num">99.9%</div>
-          <div class="dv-label">Uptime SLA</div>
-        </div>
-        <div class="divinity-stat">
-          <div class="dv-num">&lt;2ms</div>
-          <div class="dv-label">Latency Target</div>
-        </div>
-        <div class="divinity-stat">
-          <div class="dv-num">∞</div>
-          <div class="dv-label">Scale Factor</div>
-        </div>
-        <div class="divinity-stat">
-          <div class="dv-num">28</div>
-          <div class="dv-label">Modules Connected</div>
-        </div>
-      </div>
-      <div class="divinity-features">
-        <div class="dv-feature"><span class="dv-feat-icon">🧠</span><h4>Neural Routing</h4><p>Intelligent request routing via DivinityVX neural pathways across all OS modules</p></div>
-        <div class="dv-feature"><span class="dv-feat-icon">🔄</span><h4>Auto-Restarter</h4><p>Self-healing infrastructure that detects and recovers failed services autonomously</p></div>
-        <div class="dv-feature"><span class="dv-feat-icon">📡</span><h4>Cosmic Router</h4><p>Planetary-scale routing mesh connecting all Dynasty-OS nodes globally</p></div>
-        <div class="dv-feature"><span class="dv-feat-icon">⚛️</span><h4>Quantum Compute</h4><p>Quantum-ready computation layer for cryptographic and optimization workloads</p></div>
-      </div>
-      <div style="text-align:center; margin-top:2rem;">
-        <a href="dynasty-os-modules.html#divinity" class="hero-btn secondary">Explore DivinityVX →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Quick Command Grid ── -->
-  <section class="command-grid-section">
-    <div class="cg-inner">
-      <h2 class="section-title">Command Center</h2>
-      <p class="section-subtitle">Direct access to every sovereign platform</p>
-      <div class="cg-grid">
-        <a href="omega-portal.html" class="cg-card primary">
-          <span class="cg-icon">☩</span>
-          <h3>Omega Portal</h3>
-          <p>Grand Architect Command Center — legal documents, entity formation, Codex event spine</p>
-          <div class="cg-tag">Grand Architect</div>
-        </a>
-        <a href="reverse-logistics-dashboard.html" class="cg-card logistics">
-          <span class="cg-icon">♻️</span>
-          <h3>Reverse Logistics</h3>
-          <p>Global marketplace, container tracker, auction engine, blockchain freight registry</p>
-          <div class="cg-tag">12,847 Active Listings</div>
-        </a>
-        <a href="dynasty-os-modules.html" class="cg-card os">
-          <span class="cg-icon">⚙️</span>
-          <h3>Dynasty-OS Modules</h3>
-          <p>All 28 modules: AI, quantum compute, governance, simulation, marketplace, zero-trust</p>
-          <div class="cg-tag">28 Modules Live</div>
-        </a>
-        <a href="dashboard.html" class="cg-card">
-          <span class="cg-icon">📊</span>
-          <h3>Analytics Dashboard</h3>
-          <p>Real-time stats, activity logs, document counts, and platform health monitoring</p>
-          <div class="cg-tag">Live Data</div>
-        </a>
-        <a href="treasury-console.html" class="cg-card">
-          <span class="cg-icon">💎</span>
-          <h3>Treasury Console</h3>
-          <p>BSC token management, QFS compliance, ISO-20022 financial operations</p>
-          <div class="cg-tag">Blockchain</div>
-        </a>
-        <a href="codex-constitution.html" class="cg-card">
-          <span class="cg-icon">📜</span>
-          <h3>Codex Constitution</h3>
-          <p>10 articles + Bill of Rights — the supreme law of the Borders Ecclesia Earth Trust</p>
-          <div class="cg-tag">Sovereign Law</div>
-        </a>
-        <a href="trustees-portal.html" class="cg-card">
-          <span class="cg-icon">⚖️</span>
-          <h3>Trustees Portal</h3>
-          <p>6-module learning curriculum, checklists, and fiduciary administration</p>
-          <div class="cg-tag">Trustees</div>
-        </a>
-        <a href="heirs-portal.html" class="cg-card">
-          <span class="cg-icon">👑</span>
-          <h3>Heirs Portal</h3>
-          <p>Nation claiming roadmap, Bill of Rights summary, inheritance rights education</p>
-          <div class="cg-tag">Heirs</div>
-        </a>
-        <a href="logistics-dynasty.html" class="cg-card">
-          <span class="cg-icon">🚚</span>
-          <h3>Logistics Dynasty</h3>
-          <p>Forward logistics: Load Board, Dispatch, Warehouse, Supply Chain Analytics</p>
-          <div class="cg-tag">Logistics</div>
-        </a>
-        <a href="court-registry.html" class="cg-card">
-          <span class="cg-icon">🏛️</span>
-          <h3>Court Registry</h3>
-          <p>Ecclesiastical court structure, proceedings, and tribunal records</p>
-          <div class="cg-tag">Ecclesiastical Court</div>
-        </a>
-        <a href="council-chamber.html" class="cg-card">
-          <span class="cg-icon">🪑</span>
-          <h3>Council Chamber</h3>
-          <p>Twelve Thrones governance council, deliberation records, and resolutions</p>
-          <div class="cg-tag">Governance</div>
-        </a>
-        <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="cg-card dynasty-ext">
-          <span class="cg-icon">👑</span>
-          <h3>Dynasty Dashboard</h3>
-          <p>External sovereign dashboard — full Dynasty ecosystem management console</p>
-          <div class="cg-tag">External Platform ↗</div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Sovereign Platform Infrastructure HUD ── -->
-  <section class="sov-infra-section">
-    <div class="sov-infra-inner">
-      <div class="sov-infra-header">
-        <div style="font-size:0.65rem;color:#00d4ff;text-transform:uppercase;letter-spacing:0.15em;border:1px solid rgba(0,212,255,0.3);background:rgba(0,212,255,0.06);display:inline-block;padding:0.25rem 0.9rem;border-radius:2px;margin-bottom:0.75rem;">Sovereign Platform v1.1 — Ready to Activate</div>
-        <h2>⚡ Sovereign Infrastructure Stack</h2>
-        <p>SaaS · LaaS · MaS — Dynasty-OS licensing, logistics operations, and treasury markets in one sovereign layer</p>
-      </div>
-
-      <div class="sov-service-tiers" id="sovTiers">
-
-        <!-- SaaS -->
-        <div class="sov-tier sov-tier-saas">
-          <div class="sov-tier-header">
-            <span class="sov-tier-icon">⚙️</span>
-            <div>
-              <div class="sov-tier-title">SaaS</div>
-              <div class="sov-tier-sub">Software-as-a-Service — Dynasty-OS Licensing</div>
+      <!-- LIVE LOAD BOARD -->
+      <div class="pnl w2">
+        <div class="ph">
+          <div class="ph-t">🚚 Live Load Board</div>
+          <div style="display:flex;gap:0.5rem;align-items:center;">
+            <div class="ttabs" style="margin:0;">
+              <button class="ttab active" onclick="switchTier('local',this)">📍 Local</button>
+              <button class="ttab" onclick="switchTier('national',this)">🌎 National</button>
+              <button class="ttab" onclick="switchTier('global',this)">🌐 Global</button>
             </div>
-          </div>
-          <div class="sov-service-row"><span class="sov-service-name">Dynasty-OS Module Licensing (28 modules)</span><span class="sov-service-status sov-status-ready" id="saas-status">READY</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">DivinityVX Neural Interface</span><span class="sov-service-status sov-status-active">ACTIVE</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">AI Overseer + Auto-Restarter</span><span class="sov-service-status sov-status-active">ACTIVE</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">Zero-Trust Security Layer</span><span class="sov-service-status sov-status-active">ACTIVE</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">API Rule Engine</span><span class="sov-service-status sov-status-active">ACTIVE</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">Org Signup + BSC Fee Collection</span><span class="sov-service-status sov-status-ready">READY</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">Revenue: $175k–$350k/yr (50–100 orgs)</span><span class="sov-service-status sov-status-pending">PROJECTED</span></div>
-          <div class="sov-tier-footer">
-            <div class="sov-tier-total" id="saas-total">28 modules · $350/mo per org</div>
-            <div style="margin-top:0.5rem">
-              <button class="sov-activate-btn" onclick="activateService('saas')">🔗 Configure Licensing →</button>
-            </div>
+            <a href="divinity-command.html" class="ph-a">Full Board →</a>
           </div>
         </div>
-
-        <!-- LaaS -->
-        <div class="sov-tier sov-tier-laas">
-          <div class="sov-tier-header">
-            <span class="sov-tier-icon">🚚</span>
-            <div>
-              <div class="sov-tier-title">LaaS</div>
-              <div class="sov-tier-sub">Logistics-as-a-Service — Full Operations</div>
-            </div>
-          </div>
-          <div class="sov-service-row"><span class="sov-service-name">Load Board (Forward Logistics)</span><span class="sov-service-status sov-status-active" id="laas-load-status">ACTIVE</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">Container Tracker (5 Sources)</span><span class="sov-service-status sov-status-active">ACTIVE</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">Reverse Logistics Auction Engine</span><span class="sov-service-status sov-status-active">ACTIVE</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">Dispatch Analytics + SLA Scoring</span><span class="sov-service-status sov-status-active">ACTIVE</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">Private Security Escorts</span><span class="sov-service-status sov-status-ready" id="laas-security-status">READY</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">Last-Mile Delivery Routing</span><span class="sov-service-status sov-status-ready" id="laas-lastmile-status">READY</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">Rideshare Partner Network</span><span class="sov-service-status sov-status-ready" id="laas-rideshare-status">READY</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">Courier / Same-Day Delivery</span><span class="sov-service-status sov-status-ready" id="laas-courier-status">READY</span></div>
-          <div class="sov-tier-footer">
-            <div class="sov-tier-total" id="laas-total">Loading...</div>
-            <div style="margin-top:0.5rem">
-              <a href="reverse-logistics-dashboard.html" class="sov-activate-btn">♻️ Open Logistics Dashboard →</a>
-            </div>
-          </div>
+        <div class="tcnt active" id="tier-local">
+          <table class="ltbl"><thead><tr><th>ID</th><th>Type</th><th>Pickup</th><th>Drop</th><th>Dist</th><th>Rate</th><th>Status</th></tr></thead>
+          <tbody id="localBody"><tr><td colspan="7" style="padding:1rem;text-align:center;color:#2a4255;">Loading...</td></tr></tbody></table>
         </div>
-
-        <!-- MaS -->
-        <div class="sov-tier sov-tier-maas">
-          <div class="sov-tier-header">
-            <span class="sov-tier-icon">💎</span>
-            <div>
-              <div class="sov-tier-title">MaS</div>
-              <div class="sov-tier-sub">Markets-as-a-Service — BSC Treasury &amp; Commerce</div>
-            </div>
-          </div>
-          <div class="sov-service-row"><span class="sov-service-name">BSC Token (ERC-20, Sepolia)</span><span class="sov-service-status sov-status-active">ACTIVE</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">Global Marketplace (12,847 listings)</span><span class="sov-service-status sov-status-active">ACTIVE</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">CodexChain Event Spine</span><span class="sov-service-status sov-status-ready" id="maas-codex-status">READY</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">DynastySync Daemon (15s polling)</span><span class="sov-service-status sov-status-ready" id="maas-sync-status">READY</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">Treasury Balance &amp; Transactions</span><span class="sov-service-status sov-status-ready" id="maas-treasury-status">READY</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">Token Minting (Minting Altar)</span><span class="sov-service-status sov-status-ready">READY</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">BSC Buyback Mechanism</span><span class="sov-service-status sov-status-ready" id="maas-buyback-status">READY</span></div>
-          <div class="sov-service-row"><span class="sov-service-name">QFS Compliance · ISO-20022</span><span class="sov-service-status sov-status-active">COMPLIANT</span></div>
-          <div class="sov-tier-footer">
-            <div class="sov-tier-total" id="maas-total">Set SOVEREIGN_TREASURY_URL to activate live treasury</div>
-            <div style="margin-top:0.5rem">
-              <a href="treasury-console.html" class="sov-activate-btn">💎 Open Treasury Console →</a>
-            </div>
-          </div>
+        <div class="tcnt" id="tier-national">
+          <table class="ltbl"><thead><tr><th>ID</th><th>Type</th><th>Origin</th><th>Dest</th><th>Mi</th><th>Rate</th><th>Status</th></tr></thead>
+          <tbody id="natBody"><tr><td colspan="7" style="padding:1rem;text-align:center;color:#2a4255;">Loading...</td></tr></tbody></table>
         </div>
-
-      </div>
-
-      <!-- Platform Config Notice -->
-      <div id="sovConfigNotice" style="margin-top:2rem;background:rgba(0,212,255,0.04);border:1px solid rgba(0,212,255,0.15);border-radius:4px;padding:1.25rem 1.5rem;display:none;">
-        <div style="font-size:0.7rem;color:#00d4ff;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:0.5rem;">🔧 Activate Full Infrastructure</div>
-        <div style="font-size:0.78rem;color:#6a8fa8;line-height:1.8;">
-          Set these environment variables in Replit Secrets to connect live external services:<br>
-          <code style="color:#00d4ff;background:rgba(0,212,255,0.07);padding:0.1rem 0.4rem;border-radius:2px;">SOVEREIGN_LOGISTICS_URL</code> — External logistics API (loads, containers, analytics)<br>
-          <code style="color:#ffd700;background:rgba(255,215,0,0.07);padding:0.1rem 0.4rem;border-radius:2px;">SOVEREIGN_TREASURY_URL</code> — BSC treasury API (balance, mint, buyback)<br>
-          <code style="color:#9b4dff;background:rgba(155,77,255,0.07);padding:0.1rem 0.4rem;border-radius:2px;">SOVEREIGN_CODEXCHAIN_URL</code> — CodexChain event spine API
+        <div class="tcnt" id="tier-global">
+          <table class="ltbl"><thead><tr><th>Container</th><th>Origin</th><th>Dest</th><th>Status</th><th>ETA</th><th>Value</th><th>Type</th></tr></thead>
+          <tbody id="globalBody"><tr><td colspan="7" style="padding:1rem;text-align:center;color:#2a4255;">Loading...</td></tr></tbody></table>
         </div>
       </div>
 
-    </div>
-  </section>
+      <!-- DRIVER ROSTER -->
+      <div class="pnl">
+        <div class="ph"><div class="ph-t">👤 Driver Roster</div><a href="divinity-command.html" class="ph-a">Full Dispatch →</a></div>
+        <div id="driverList"><div style="color:#2a4255;font-size:0.68rem;padding:0.75rem;text-align:center;">Loading...</div></div>
+      </div>
 
-  <!-- ── BSC Coin ── -->
-  <section class="section-block coin-showcase">
-    <h2 class="section-title">Borders Sovereign Coin (BSC)</h2>
-    <p class="section-subtitle">The official cryptocurrency of the Borders Dynasty Nation — ERC-20 on Sepolia</p>
-
-    <div class="coin-info-grid">
-      <div class="coin-stat"><span class="stat-label">Symbol</span><span class="stat-value">BSC</span></div>
-      <div class="coin-stat"><span class="stat-label">Network</span><span class="stat-value">Sepolia</span></div>
-      <div class="coin-stat"><span class="stat-label">Standard</span><span class="stat-value">ERC-20</span></div>
-      <div class="coin-stat"><span class="stat-label">QFS Status</span><span class="stat-value" style="color:#4ade80">✓ Compliant</span></div>
-    </div>
-
-    <div class="contract-info">
-      <div class="contract-row">
-        <span class="contract-label">Contract Address:</span>
-        <code class="contract-hash" id="contractHash">Loading...</code>
-        <button class="copy-btn" onclick="TreasuryWidget.copyAddress('contractHash')">Copy</button>
-      </div>
-      <div class="contract-row">
-        <span class="contract-label">Treasury Wallet:</span>
-        <code class="contract-hash" id="walletAddress">Loading...</code>
-        <button class="copy-btn" onclick="TreasuryWidget.copyAddress('walletAddress')">Copy</button>
-      </div>
-    </div>
-
-    <div id="liveContractData" class="live-contract-data" style="display:none;">
-      <h4>Live Blockchain Data</h4>
-      <div class="live-stats">
-        <div class="live-stat"><span class="live-label">Name:</span><span id="liveCoinName" class="live-value">--</span></div>
-        <div class="live-stat"><span class="live-label">Symbol:</span><span id="liveCoinSymbol" class="live-value">--</span></div>
-        <div class="live-stat"><span class="live-label">Total Supply:</span><span id="liveTotalSupply" class="live-value">--</span></div>
-      </div>
-    </div>
-
-    <div class="wallet-widget">
-      <h4>Wallet Connection</h4>
-      <div class="network-badge">
-        <span class="network-dot"></span>
-        <span class="network-name">Sepolia Testnet</span>
-      </div>
-      <div id="walletStatus"><span class="wallet-disconnected">Not connected</span></div>
-      <div id="walletBalanceDisplay" class="balance-display" style="display:none;">
-        <div class="balance-row"><span class="balance-label">ETH Balance:</span><span id="ethBalance" class="balance-eth">0 ETH</span></div>
-        <div class="balance-row"><span class="balance-label">BSC Balance:</span><span id="walletBalance" class="balance-value">0 BSC</span></div>
-      </div>
-      <button id="connectWalletBtn" class="coin-btn coin-btn-wallet" onclick="TreasuryWidget.connect()">Connect Wallet</button>
-    </div>
-
-    <div id="transferSection" class="transfer-section" style="display:none;">
-      <h4>Transfer BSC Tokens</h4>
-      <div class="transfer-form">
-        <div class="form-group">
-          <label for="transferRecipient">Recipient Address</label>
-          <input type="text" id="transferRecipient" placeholder="0x..." class="transfer-input" />
-        </div>
-        <div class="form-group">
-          <label for="transferAmount">Amount (BSC)</label>
-          <input type="number" id="transferAmount" placeholder="0.00" min="0" step="0.001" class="transfer-input" />
-        </div>
-        <button id="transferBtn" class="coin-btn coin-btn-transfer" onclick="TreasuryWidget.transfer()">Send BSC</button>
-      </div>
-    </div>
-
-    <div id="defiSection" class="defi-section" style="display:none;">
-      <h4>DeFi Tools</h4>
-      <div class="defi-tabs">
-        <button class="defi-tab active" onclick="showDefiTab('approve')">Approve</button>
-        <button class="defi-tab" onclick="showDefiTab('allowance')">Check Allowance</button>
-      </div>
-      <div id="approveTab" class="defi-tab-content active">
-        <p class="defi-desc">Approve a spender to use your BSC tokens (required for DeFi protocols)</p>
-        <div class="form-group">
-          <label for="approveSpender">Spender Address</label>
-          <input type="text" id="approveSpender" placeholder="0x..." class="transfer-input" />
-        </div>
-        <div class="form-group">
-          <label for="approveAmount">Amount (leave empty for unlimited)</label>
-          <input type="text" id="approveAmount" placeholder="100 or 'max'" class="transfer-input" />
-        </div>
-        <button id="approveBtn" class="coin-btn coin-btn-defi" onclick="TreasuryWidget.approve()">Approve</button>
-      </div>
-      <div id="allowanceTab" class="defi-tab-content">
-        <p class="defi-desc">Check how much a spender is approved to use</p>
-        <div class="form-group">
-          <label for="checkAllowanceSpender">Spender Address</label>
-          <input type="text" id="checkAllowanceSpender" placeholder="0x..." class="transfer-input" oninput="TreasuryWidget.checkAllowance()" />
-        </div>
-        <div class="allowance-result">
-          <span class="allowance-label">Allowance:</span>
-          <span id="allowanceDisplay" class="allowance-value">--</span>
+      <!-- QUICK DISPATCH -->
+      <div class="pnl">
+        <div class="ph"><div class="ph-t">📡 Quick Dispatch</div><span class="badge rdy">⬤ Ready</span></div>
+        <div class="dform">
+          <select class="ds" id="qdDrv"><option value="">Select Available Driver...</option></select>
+          <select class="ds" id="qdLoad"><option value="">Select Load ID...</option></select>
+          <select class="ds" id="qdTier">
+            <option value="local">📍 Local / Last-Mile</option>
+            <option value="national">🌎 National / OTR</option>
+            <option value="global">🌐 Global / Intermodal</option>
+          </select>
+          <input type="text" class="di" id="qdNotes" placeholder="Dispatch notes (optional)">
+          <button class="dbtn" onclick="quickDispatch()">📡 DISPATCH NOW</button>
+          <div id="qdRes" style="font-size:0.63rem;color:#4a6580;display:none;margin-top:0.2rem;"></div>
         </div>
       </div>
-    </div>
 
-    <div class="coin-actions">
-      <button onclick="TreasuryWidget.openEtherscan()" class="coin-btn coin-btn-verify">View on Etherscan</button>
-      <a href="borders-sovereign-coin.html" class="coin-btn coin-btn-primary">BSC Details</a>
-      <a href="minting-altar.html" class="coin-btn coin-btn-secondary">Minting Altar</a>
-    </div>
-
-    <div class="coin-tech">
-      <h4>Technology Stack</h4>
-      <div class="tech-tags">
-        <span class="tech-tag">Solidity</span><span class="tech-tag">Hardhat</span><span class="tech-tag">Ethers.js</span>
-        <span class="tech-tag">MetaMask</span><span class="tech-tag">Web3</span><span class="tech-tag">DeFi</span>
-        <span class="tech-tag">QFS</span><span class="tech-tag">ISO-20022</span>
+      <!-- ANALYTICS -->
+      <div class="pnl">
+        <div class="ph"><div class="ph-t">📊 Analytics</div><span class="badge live">⬤ Live</span></div>
+        <div class="agrid">
+          <div class="acard"><div class="albl">Local Revenue</div><div class="aval c" id="aLocal">—</div></div>
+          <div class="acard"><div class="albl">National Revenue</div><div class="aval g" id="aNat">—</div></div>
+          <div class="acard"><div class="albl">Global Pipeline</div><div class="aval p" id="aGlb">—</div></div>
+          <div class="acard"><div class="albl">30-Day Revenue</div><div class="aval o" id="a30">—</div></div>
+          <div class="acard"><div class="albl">Local On-Time</div><div class="aval c" id="aOtL">—</div></div>
+          <div class="acard"><div class="albl">National On-Time</div><div class="aval g" id="aOtN">—</div></div>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ── Dynasty Ecosystem ── -->
-  <section class="section-block dynasty-integration">
-    <h2 class="section-title">👑 Dynasty Ecosystem</h2>
-    <p class="section-subtitle">Unified sovereign infrastructure — Codex Ecclesia × Dynasty-OS × Borders Blockchain</p>
-    <div class="dynasty-grid">
-      <a href="omega-portal.html" class="dynasty-card">
-        <span class="dynasty-icon">☩</span>
-        <h3>Omega Portal</h3>
-        <p>Grand Architect Command Center with full legal + logistics integration</p>
-      </a>
-      <a href="dynasty-os-modules.html" class="dynasty-card featured">
-        <span class="dynasty-icon">⚙️</span>
-        <h3>Dynasty-OS</h3>
-        <p>28 planetary-grade modules: AI, quantum, governance, commerce, zero-trust</p>
-        <div class="dynasty-card-badge">NEW</div>
-      </a>
-      <a href="reverse-logistics-dashboard.html" class="dynasty-card featured">
-        <span class="dynasty-icon">♻️</span>
-        <h3>Reverse Logistics</h3>
-        <p>Global distressed freight marketplace — 12,847 listings across 5 source networks</p>
-        <div class="dynasty-card-badge">LIVE</div>
-      </a>
-      <a href="trustees-portal.html" class="dynasty-card">
-        <span class="dynasty-icon">⚖️</span>
-        <h3>Trustees Portal</h3>
-        <p>Trust administration and fiduciary learning curriculum</p>
-      </a>
-      <a href="heirs-portal.html" class="dynasty-card">
-        <span class="dynasty-icon">👑</span>
-        <h3>Heirs Portal</h3>
-        <p>Nation claiming roadmap and inheritance rights education</p>
-      </a>
-      <a href="logistics-dynasty.html" class="dynasty-card">
-        <span class="dynasty-icon">🚚</span>
-        <h3>Logistics Dynasty</h3>
-        <p>Forward logistics: Load Board, Dispatch, Warehouse, Supply Chain</p>
-      </a>
-      <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="dynasty-card">
-        <span class="dynasty-icon">⚒️</span>
-        <h3>Dynasty Dashboard</h3>
-        <p>External sovereign command — minting, security, full ecosystem management</p>
-      </a>
-      <a href="codexchain-console.html" class="dynasty-card">
-        <span class="dynasty-icon">🔗</span>
-        <h3>CodexChain</h3>
-        <p>Blockchain verification for all documents, filings, and freight records</p>
-      </a>
-    </div>
-    <div class="dynasty-status">
-      <div class="status-item"><span class="status-dot status-active"></span><span>QFS-Compliant Architecture</span></div>
-      <div class="status-item"><span class="status-dot status-active"></span><span>ISO-20022 Ready</span></div>
-      <div class="status-item"><span class="status-dot status-active"></span><span>Gold-Backed Sync</span></div>
-      <div class="status-item"><span class="status-dot status-active"></span><span>Dynasty-OS Integration</span></div>
-      <div class="status-item"><span class="status-dot status-active"></span><span>Blockchain Anchored</span></div>
-    </div>
-  </section>
-
-  <!-- ── Sovereign Archives ── -->
-  <section class="section-block">
-    <h2 class="section-title">Sovereign Archives</h2>
-    <p class="section-subtitle">Core legal documents of the Ecclesia</p>
-    <div class="quick-links">
-      <a href="omega-portal.html" class="quick-link">☩ Omega Portal</a>
-      <a href="codex-constitution.html" class="quick-link">📜 Constitution</a>
-      <a href="legal-definitions.html" class="quick-link">⚖️ Legal Definitions</a>
-      <a href="all-scrolls.html" class="quick-link">📚 All Scrolls</a>
-      <a href="codexchain-console.html" class="quick-link">🔗 CodexChain</a>
-      <a href="verify-scroll.html" class="quick-link">✓ Verify Scroll</a>
-      <a href="court-registry.html" class="quick-link">🏛️ Court Registry</a>
-      <a href="notary-gate.html" class="quick-link">✍️ Notary Gate</a>
-    </div>
-  </section>
-
-  <!-- ── Scroll Archive ── -->
-  <section class="section-block">
-    <h2 class="section-title">All Scrolls</h2>
-    <p class="section-subtitle">Complete archive of the Ecclesia</p>
-    <div class="search-section">
-      <input type="text" id="searchBox" placeholder="Search scrolls by title, category, or content..." class="search-input" />
-    </div>
-    <div class="category-filters" id="categoryFilters"></div>
-    <div class="scrolls-grid" id="allScrollsGrid"></div>
-    <p class="loading-text" id="loadingText">Loading scrolls...</p>
-  </section>
-
-  <footer class="sacred-footer">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <div class="footer-logo">☩</div>
-        <h4>Codex Ecclesia</h4>
-        <p>Sovereign scroll archive of the Borders Ecclesia Earth Trust</p>
-        <p style="font-size:0.75rem; color:#475569;">508(c)(1)(A) Ecclesiastical Organization</p>
+      <!-- ACTIVITY FEED -->
+      <div class="pnl">
+        <div class="ph"><div class="ph-t">⚡ Platform Activity</div><span class="badge live">⬤ Live</span></div>
+        <div id="actFeed"></div>
       </div>
-      <div class="footer-col">
-        <h5>Platform</h5>
-        <a href="omega-portal.html">Omega Portal</a>
-        <a href="dynasty-os-modules.html">Dynasty-OS</a>
-        <a href="reverse-logistics-dashboard.html">Reverse Logistics</a>
-        <a href="dashboard.html">Dashboard</a>
-      </div>
-      <div class="footer-col">
-        <h5>Legal</h5>
-        <a href="codex-constitution.html">Constitution</a>
-        <a href="legal-definitions.html">Legal Definitions</a>
-        <a href="court-registry.html">Court Registry</a>
-        <a href="trustees-portal.html">Trustees Portal</a>
-      </div>
-      <div class="footer-col">
-        <h5>Dynasty-OS</h5>
-        <a href="https://github.com/kingsmoovedap-design/Dynasty-os" target="_blank">GitHub Repo ↗</a>
-        <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank">Dynasty Dashboard ↗</a>
-        <a href="logistics-dynasty.html">Logistics</a>
-        <a href="codexchain-console.html">CodexChain</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>☩ Codex Ecclesia — Borders Ecclesia Earth Trust</span>
-      <span>Operating under 508(c)(1)(A) ecclesiastical exemption</span>
-      <span>© 2026 All Rights Reserved under Divine Law</span>
-    </div>
-  </footer>
 
-  <script src="treasury-widget.js"></script>
+    </div><!-- /mgrid -->
+  </div><!-- /page -->
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="tick-lbl">⚡ Live</div>
+    <div class="tick-scroll"><div class="tick-inner" id="tickerInner">
+      <span class="tick-it"><span>LOCAL</span> Last-Mile Active</span>
+      <span class="tick-it"><span>NATIONAL</span> OTR Board Open</span>
+      <span class="tick-it"><span>GLOBAL</span> Containers Tracked</span>
+      <span class="tick-it"><span>DIVINITYVX</span> Neural Layer Online</span>
+      <span class="tick-it"><span>CODEXCHAIN</span> Event Spine Active</span>
+      <span class="tick-it"><span>BSC</span> 0x12efC9a5D115AE7833c9a6D79f1B3BA18Cde817c</span>
+      <span class="tick-it"><span>TRUST</span> 508(c)(1)(A) Borders Ecclesia Earth Trust</span>
+      <span class="tick-it"><span>LOCAL</span> Last-Mile Active</span>
+      <span class="tick-it"><span>NATIONAL</span> OTR Board Open</span>
+      <span class="tick-it"><span>GLOBAL</span> Containers Tracked</span>
+      <span class="tick-it"><span>DIVINITYVX</span> Neural Layer Online</span>
+      <span class="tick-it"><span>CODEXCHAIN</span> Event Spine Active</span>
+    </div></div>
+  </div>
+
   <script>
-    async function loadScrolls() {
-      try {
-        const response = await fetch('codex.json');
-        const data = await response.json();
-        const grid = document.getElementById('allScrollsGrid');
-        const loadingText = document.getElementById('loadingText');
-        const searchBox = document.getElementById('searchBox');
-        const categoryFilters = document.getElementById('categoryFilters');
+    // Clock
+    setInterval(() => {
+      const t = new Date().toUTCString().match(/\d\d:\d\d:\d\d/);
+      document.getElementById('tbClock').textContent = (t ? t[0] : '00:00:00') + ' UTC';
+    }, 1000);
 
-        if (!data.scrolls || data.scrolls.length === 0) {
-          loadingText.textContent = 'No scrolls found.';
-          return;
-        }
-        loadingText.style.display = 'none';
+    // Role
+    document.getElementById('tbRole').textContent = sessionStorage.getItem('dvx_name') || 'Grand Architect';
 
-        const categories = [...new Set(data.scrolls.map(s => s.category || 'Uncategorized'))];
-        categoryFilters.innerHTML = '<button class="filter-btn active" data-category="all">All</button>' +
-          categories.map(cat => `<button class="filter-btn" data-category="${cat}">${cat}</button>`).join('');
+    // Lock
+    document.getElementById('lockBtn').addEventListener('click', e => {
+      e.preventDefault(); sessionStorage.clear(); window.location.href = 'gateway.html';
+    });
 
-        function renderScrolls(scrolls) {
-          grid.innerHTML = scrolls.map(scroll => `
-            <a href="${scroll.url}" class="scroll-card">
-              <span class="scroll-icon">${scroll.icon || '📜'}</span>
-              <span class="scroll-title">${scroll.title || scroll.url}</span>
-              <span class="scroll-category">${scroll.category || 'Uncategorized'}</span>
-            </a>
-          `).join('');
-        }
+    // Helpers
+    const sc = s => s === 'open' ? 'open' : s === 'assigned' ? 'assigned' : s === 'in_transit' ? 'in_transit' : s === 'customs_hold' ? 'customs_hold' : (s === 'abandoned' || s === 'seized') ? 'abandoned' : s === 'bidding' ? 'bidding' : '';
 
-        renderScrolls(data.scrolls);
-
-        categoryFilters.addEventListener('click', (e) => {
-          if (e.target.classList.contains('filter-btn')) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            e.target.classList.add('active');
-            const category = e.target.dataset.category;
-            renderScrolls(category === 'all' ? data.scrolls : data.scrolls.filter(s => s.category === category));
-          }
-        });
-
-        searchBox.addEventListener('input', (e) => {
-          const q = e.target.value.toLowerCase();
-          renderScrolls(data.scrolls.filter(s =>
-            (s.title && s.title.toLowerCase().includes(q)) ||
-            (s.category && s.category.toLowerCase().includes(q)) ||
-            (s.url && s.url.toLowerCase().includes(q))
-          ));
-        });
-
-        // Update scroll count stat
-        document.getElementById('statScrolls').textContent = data.scrolls.length;
-      } catch (error) {
-        document.getElementById('loadingText').textContent = 'Failed to load scrolls.';
-      }
+    // Tier switch
+    function switchTier(tier, btn) {
+      document.querySelectorAll('.tcnt').forEach(e => e.classList.remove('active'));
+      document.querySelectorAll('.ttab').forEach(b => b.classList.remove('active'));
+      document.getElementById('tier-' + tier).classList.add('active');
+      btn.classList.add('active');
     }
 
-    async function loadLiveStats() {
-      try {
-        const res = await fetch('/api/public/stats');
-        const s = await res.json();
-        document.getElementById('statDocs').textContent = s.totalDocuments || '—';
-      } catch (e) {}
-      try {
-        const res = await fetch('/api/marketplace/stats');
-        const s = await res.json();
-        document.getElementById('statListings').textContent = (s.totalListings || 12847).toLocaleString();
-      } catch (e) {}
-      try {
-        const res = await fetch('/api/reverse-logistics/stats');
-        const s = await res.json();
-        document.getElementById('statContainers').textContent = s.totalContainers || 5;
-      } catch (e) {}
+    // Activity feed
+    const events = [];
+    function addEvent(msg, col='c') {
+      events.unshift({ msg, col, ts: new Date().toLocaleTimeString() });
+      if (events.length > 10) events.pop();
+      document.getElementById('actFeed').innerHTML = events.map(e =>
+        `<div class="fitem"><span class="fdot ${e.col}"></span><div><div class="f-title">${e.msg}</div><div class="f-ts">${e.ts}</div></div></div>`
+      ).join('');
     }
 
-    loadScrolls();
-    loadLiveStats();
-    loadSovereignInfra();
-
-    async function loadSovereignInfra() {
-      try {
-        const res = await fetch('/api/sovereign/health');
-        const d = await res.json();
-        const s = d.services || {};
-
-        // SaaS
-        const saasEl = document.getElementById('saas-status');
-        if (saasEl) saasEl.textContent = s.saas?.configured ? 'ACTIVE' : 'READY';
-
-        // LaaS load board
-        const laasTotalEl = document.getElementById('laas-total');
-        if (laasTotalEl) laasTotalEl.textContent = `${s.loadBoard?.loads || 0} active loads · ${(s.partnerNetwork?.partners || 0)} partners`;
-
-        // MaS treasury
-        const maasTotalEl = document.getElementById('maas-total');
-        if (s.maas?.configured && maasTotalEl) {
-          maasTotalEl.textContent = 'Treasury API connected — live balance tracking active';
-        }
-        if (s.codexchain?.configured) {
-          const el = document.getElementById('maas-codex-status');
-          if (el) { el.textContent = 'ACTIVE'; el.className = 'sov-service-status sov-status-active'; }
-        }
-        if (s.saas?.configured) {
-          const el2 = document.getElementById('maas-sync-status');
-          if (el2) { el2.textContent = 'ACTIVE'; el2.className = 'sov-service-status sov-status-active'; }
-        }
-
-        // Show config notice if any service is not yet configured
-        const anyNotConfigured = !s.saas?.configured || !s.laas?.configured || !s.maas?.configured;
-        if (anyNotConfigured) {
-          document.getElementById('sovConfigNotice').style.display = 'block';
-        }
-      } catch (e) {}
-
-      // Load LaaS stats
-      try {
-        const r2 = await fetch('/api/laas/analytics');
-        const a = await r2.json();
-        const el = document.getElementById('laas-total');
-        if (el && a.loadsCreated) el.textContent = `${a.loadsCreated} loads · ${a.activeCarriers} carriers · ${a.onTimeDeliveryRate}% on-time`;
-      } catch (e) {}
+    // Load local loads
+    async function fetchLocal() {
+      const r = await fetch('/api/logistics/local/loads');
+      const d = await r.json();
+      document.getElementById('sLocalLoads').textContent = d.stats.active;
+      document.getElementById('sLocalUrgent').textContent = d.stats.urgent;
+      document.getElementById('localBody').innerHTML = d.loads.map(l =>
+        `<tr><td style="color:var(--cyan);font-weight:700;">${l.id}</td><td>${l.type}</td>
+         <td title="${l.pickup}" style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${(l.pickup||'').slice(0,20)}…</td>
+         <td title="${l.drop}" style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${(l.drop||'').slice(0,20)}…</td>
+         <td>${l.distance}</td><td style="color:var(--green);font-weight:700;">${l.rate}</td>
+         <td><span class="pill ${sc(l.status)}">${l.status}</span>${l.urgent?'<span class="utag">!</span>':''}</td></tr>`
+      ).join('');
+      // Populate load select
+      document.getElementById('qdLoad').innerHTML = '<option value="">Select Load...</option>' +
+        d.loads.map(l => `<option value="${l.id}">${l.id} — ${l.type}</option>`).join('');
     }
 
-    function activateService(type) {
-      const msgs = {
-        saas: 'To activate Dynasty-OS SaaS licensing:\n\n1. Set SOVEREIGN_TREASURY_URL in Replit Secrets\n2. Set SIGNUP_FEE_AMOUNT (default: 25 BSC)\n3. Set BUYBACK_WALLET to your treasury address\n\nAPI ready: POST /api/saas/signup',
-        laas: 'LaaS services are already active!\n\nTo connect external logistics feeds:\nSet SOVEREIGN_LOGISTICS_URL in Replit Secrets\n\nActive now: Load Board · Containers · Auctions · Analytics\nReady: Security · Last-Mile · Rideshare · Couriers',
-        maas: 'To activate live treasury (MaS):\n\nSet SOVEREIGN_TREASURY_URL in Replit Secrets\nSet SOVEREIGN_CODEXCHAIN_URL for event spine\n\nActive now: BSC Token · Marketplace · QFS Compliance',
-      };
-      alert(msgs[type] || 'See /api/sovereign/health for configuration details.');
+    async function fetchNational() {
+      const r = await fetch('/api/logistics/national/loads');
+      const d = await r.json();
+      document.getElementById('sNatLoads').textContent = d.loads.length;
+      document.getElementById('sNatVal').textContent = d.stats.avgValue;
+      document.getElementById('natBody').innerHTML = d.loads.map(l =>
+        `<tr><td style="color:var(--cyan);font-weight:700;">${l.id}</td><td>${l.type}</td>
+         <td>${l.origin}</td><td>${l.dest}</td>
+         <td>${Number(l.miles).toLocaleString()}</td><td style="color:var(--green);font-weight:700;">${l.rate}</td>
+         <td><span class="pill ${sc(l.status)}">${l.status}</span></td></tr>`
+      ).join('');
     }
-  </script>
 
-  <script type="module">
-    import { createDynastyHub } from './lib/dynasty-hub.js';
-    createDynastyHub({ position: 'bottom-right', collapsed: true });
+    async function fetchGlobal() {
+      const r = await fetch('/api/logistics/global/containers');
+      const d = await r.json();
+      document.getElementById('sGlobal').textContent = d.containers.length;
+      document.getElementById('sAuction').textContent = d.stats.auctionEligible;
+      document.getElementById('globalBody').innerHTML = d.containers.map(c =>
+        `<tr><td style="color:var(--cyan);font-weight:700;font-size:0.6rem;">${c.id}</td>
+         <td>${c.origin}</td><td>${c.dest}</td>
+         <td><span class="pill ${sc(c.status)}">${c.status}</span></td>
+         <td>${c.eta||'—'}</td><td style="color:var(--gold);">${c.value}</td><td>${c.type}</td></tr>`
+      ).join('');
+    }
+
+    async function fetchDrivers() {
+      const r = await fetch('/api/logistics/drivers');
+      const d = await r.json();
+      document.getElementById('sDrivers').textContent = d.stats.total;
+      document.getElementById('sAvail').textContent = d.stats.available;
+      document.getElementById('sDisp').textContent = d.stats.onDispatch;
+      document.getElementById('driverList').innerHTML = d.drivers.slice(0,6).map(dr =>
+        `<div class="drow">
+           <div><div class="d-name">${dr.name}</div><div class="d-sub">${dr.vehicle} · ${dr.tier} · ${dr.location}</div></div>
+           <div style="text-align:right"><div class="d-rating">★ ${dr.rating}</div><div class="d-avail ${dr.status}">${dr.status}</div></div>
+         </div>`
+      ).join('');
+      document.getElementById('qdDrv').innerHTML = '<option value="">Select Available Driver...</option>' +
+        d.drivers.filter(dr => dr.status === 'available').map(dr => `<option value="${dr.id}">${dr.name} (${dr.tier})</option>`).join('');
+    }
+
+    async function fetchAnalytics() {
+      const r = await fetch('/api/logistics/analytics');
+      const d = await r.json();
+      document.getElementById('aLocal').textContent = d.local.revenue;
+      document.getElementById('aNat').textContent   = d.national.revenue;
+      document.getElementById('aGlb').textContent   = d.global.auctionPipeline;
+      document.getElementById('a30').textContent    = d.summary.revenue30d;
+      document.getElementById('aOtL').textContent   = d.local.onTimeRate;
+      document.getElementById('aOtN').textContent   = d.national.onTimeRate;
+    }
+
+    // Quick dispatch
+    async function quickDispatch() {
+      const driverId = document.getElementById('qdDrv').value;
+      const loadId   = document.getElementById('qdLoad').value;
+      const tier     = document.getElementById('qdTier').value;
+      const notes    = document.getElementById('qdNotes').value;
+      const res      = document.getElementById('qdRes');
+      if (!driverId || !loadId) { res.style.cssText='display:block;color:var(--red)'; res.textContent='⚠ Select driver and load.'; return; }
+      try {
+        const r = await fetch('/api/logistics/dispatch', { method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ driverId, loadId, tier, notes }) });
+        const d = await r.json();
+        res.style.display = 'block';
+        if (d.success) {
+          res.style.color = 'var(--green)'; res.textContent = '✅ ' + d.message;
+          addEvent('Dispatch: ' + d.dispatch.driverName + ' → ' + loadId, 'g');
+          fetchDrivers(); fetchLocal();
+        } else { res.style.color = 'var(--red)'; res.textContent = '⚠ ' + (d.error || 'Failed'); }
+      } catch(e) { res.style.cssText='display:block;color:var(--red)'; res.textContent='⚠ Server error'; }
+    }
+
+    // Init all data
+    Promise.all([fetchLocal(), fetchNational(), fetchGlobal(), fetchDrivers(), fetchAnalytics()])
+      .then(() => {
+        addEvent('Platform initialized — all logistics tiers online', 'c');
+        addEvent('DivinityVX co-pilot active — monitoring all actions', 'p');
+        addEvent('Driver roster loaded — ' + (document.getElementById('sAvail').textContent) + ' drivers available', 'g');
+        addEvent('Codexchain event spine · BSC Sepolia connected', 'o');
+      }).catch(() => addEvent('Init error — check server', 'r'));
+
+    // Auto-refresh every 30s
+    setInterval(() => {
+      Promise.all([fetchLocal(), fetchNational(), fetchGlobal(), fetchDrivers(), fetchAnalytics()])
+        .then(() => addEvent('Auto-refresh: all logistics data updated', 'c'));
+    }, 30000);
   </script>
 </body>
 </html>
