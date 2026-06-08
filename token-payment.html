@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Token Treasury — Borders Dynasty Nation</title>
+  <link rel="icon" href="favicon.png">
+  <script src="lib/access-gate.js"></script>
+  <style>
+    :root {
+      --cyan: #00d4ff; --purple: #9b4dff; --gold: #ffd700;
+      --green: #00ff88; --red: #ff3b6b; --bg: #020b18;
+      --card: rgba(4,18,40,0.96);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); font-family: 'Courier New', monospace; color: #c5d8f0; min-height: 100vh; }
+    .grid-bg {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px; animation: gridMove 30s linear infinite;
+    }
+    @keyframes gridMove { to { transform: translate(60px, 60px); } }
+    .scan { position: fixed; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,212,255,0.008) 3px, rgba(0,212,255,0.008) 4px); pointer-events: none; z-index: 0; }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(2,11,24,0.95); border-bottom: 1px solid rgba(0,212,255,0.1);
+      padding: 0.75rem 2rem; display: flex; align-items: center; justify-content: space-between; backdrop-filter: blur(8px);
+    }
+    .topbar-brand { font-size: 0.72rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); }
+    .topbar-nav { display: flex; gap: 1.5rem; }
+    .topbar-nav a { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: #4a6580; text-decoration: none; transition: color 0.2s; }
+    .topbar-nav a:hover { color: var(--cyan); }
+
+    .container { position: relative; z-index: 10; max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+    .page-header { text-align: center; margin-bottom: 3rem; }
+    .page-header h1 { font-size: 2rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em; background: linear-gradient(135deg, #fff, var(--gold), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .page-header p { font-size: 0.68rem; color: #4a6580; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem; }
+
+    /* Status bar */
+    .status-row { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .badge { font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.7rem; border-radius: 2px; border: 1px solid; }
+    .b-gold   { color: var(--gold);   border-color: rgba(255,215,0,0.3);  background: rgba(255,215,0,0.05); }
+    .b-cyan   { color: var(--cyan);   border-color: rgba(0,212,255,0.3);  background: rgba(0,212,255,0.05); }
+    .b-green  { color: var(--green);  border-color: rgba(0,255,136,0.3);  background: rgba(0,255,136,0.05); }
+    .b-purple { color: var(--purple); border-color: rgba(155,77,255,0.3); background: rgba(155,77,255,0.05); }
+
+    /* Token Cards */
+    .token-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    @media(max-width:640px){ .token-grid { grid-template-columns: 1fr; } }
+    .token-card {
+      background: var(--card); border-radius: 10px; padding: 1.75rem;
+      border: 1px solid rgba(0,212,255,0.15); transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .token-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .token-card.brc::before { background: linear-gradient(90deg, var(--gold), var(--cyan)); }
+    .token-card.bbi::before { background: linear-gradient(90deg, var(--purple), var(--cyan)); }
+    .token-card:hover { border-color: rgba(0,212,255,0.35); box-shadow: 0 0 30px rgba(0,212,255,0.08); }
+
+    .token-symbol { font-size: 2.5rem; font-weight: 900; letter-spacing: 0.05em; }
+    .brc .token-symbol { background: linear-gradient(135deg, var(--gold), #f5c842); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .bbi .token-symbol { background: linear-gradient(135deg, var(--purple), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .token-name { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: #7fb3cc; margin-top: 0.25rem; }
+    .token-price { font-size: 1.5rem; font-weight: 900; color: #fff; margin: 0.75rem 0 0.25rem; }
+    .token-type { font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.15rem 0.5rem; border-radius: 2px; display: inline-block; margin-bottom: 1rem; }
+    .brc .token-type { color: var(--gold); border: 1px solid rgba(255,215,0,0.3); background: rgba(255,215,0,0.05); }
+    .bbi .token-type { color: var(--purple); border: 1px solid rgba(155,77,255,0.3); background: rgba(155,77,255,0.05); }
+    .token-desc { font-size: 0.68rem; color: #7fb3cc; line-height: 1.6; margin-bottom: 1rem; }
+    .token-features { list-style: none; margin-bottom: 1.25rem; }
+    .token-features li { font-size: 0.62rem; color: #4a6580; padding: 0.2rem 0; }
+    .token-features li::before { content: '✓ '; color: var(--green); }
+    .token-contract { font-size: 0.55rem; color: #2a4255; word-break: break-all; background: rgba(0,0,0,0.3); padding: 0.4rem 0.6rem; border-radius: 3px; margin-bottom: 1rem; }
+    .token-contract span { color: #4a6580; }
+
+    .btn-buy, .btn-sell {
+      width: 100%; padding: 0.75rem; border: none; border-radius: 4px;
+      font-family: 'Courier New', monospace; font-weight: 900; font-size: 0.72rem;
+      text-transform: uppercase; letter-spacing: 0.12em; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem;
+    }
+    .btn-buy { background: var(--gold); color: #020b18; box-shadow: 0 0 15px rgba(255,215,0,0.3); }
+    .btn-buy:hover { box-shadow: 0 0 30px rgba(255,215,0,0.6); }
+    .btn-sell { background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.3); color: var(--cyan); margin-top: 0.5rem; }
+    .btn-sell:hover { background: rgba(0,212,255,0.15); }
+    .btn-disabled { opacity: 0.35; cursor: not-allowed; }
+
+    /* Purchase Panel */
+    .panel {
+      background: var(--card); border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 10px; padding: 2rem; margin-bottom: 1.5rem;
+    }
+    .panel-title { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--cyan); margin-bottom: 1.5rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(0,212,255,0.1); }
+    .field { margin-bottom: 1rem; }
+    .field label { display: block; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(0,212,255,0.5); margin-bottom: 0.4rem; }
+    .field input, .field select {
+      width: 100%; background: rgba(2,11,24,0.8); border: 1px solid rgba(0,212,255,0.2);
+      color: #c5d8f0; font-family: 'Courier New', monospace; font-size: 0.85rem;
+      padding: 0.7rem 0.9rem; border-radius: 3px; outline: none; transition: all 0.2s;
+    }
+    .field input:focus, .field select:focus { border-color: var(--cyan); box-shadow: 0 0 10px rgba(0,212,255,0.2); }
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .flow-steps { display: flex; gap: 0; margin: 1.5rem 0; }
+    .flow-step { flex: 1; text-align: center; padding: 0.75rem 0.5rem; background: rgba(0,212,255,0.03); border: 1px solid rgba(0,212,255,0.1); position: relative; }
+    .flow-step:not(:last-child)::after { content: '→'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); color: rgba(0,212,255,0.3); z-index: 1; font-size: 0.7rem; }
+    .flow-step-num { font-size: 1rem; margin-bottom: 0.3rem; }
+    .flow-step-label { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.08em; color: #4a6580; }
+
+    .info-box { background: rgba(0,212,255,0.03); border: 1px solid rgba(0,212,255,0.12); border-radius: 4px; padding: 0.75rem 1rem; font-size: 0.65rem; color: #4a6580; line-height: 1.7; margin: 1rem 0; }
+    .info-box.gold { background: rgba(255,215,0,0.03); border-color: rgba(255,215,0,0.15); color: #c5a200; }
+
+    .action-btn {
+      background: var(--gold); color: #020b18;
+      font-family: 'Courier New', monospace; font-weight: 900; font-size: 0.8rem;
+      text-transform: uppercase; letter-spacing: 0.15em; padding: 0.85rem 2rem;
+      border: none; border-radius: 4px; cursor: pointer; transition: all 0.2s;
+      box-shadow: 0 0 15px rgba(255,215,0,0.3); width: 100%; margin-top: 0.5rem;
+    }
+    .action-btn:hover { box-shadow: 0 0 30px rgba(255,215,0,0.6); }
+    .action-btn.secondary { background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.3); color: var(--cyan); box-shadow: none; }
+    .action-btn.secondary:hover { background: rgba(0,212,255,0.15); box-shadow: 0 0 15px rgba(0,212,255,0.2); }
+    .action-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .alert { padding: 0.6rem 0.9rem; border-radius: 3px; font-size: 0.65rem; letter-spacing: 0.06em; margin-top: 0.75rem; display: none; }
+    .alert.ok  { background: rgba(0,255,136,0.08); border: 1px solid rgba(0,255,136,0.3); color: var(--green); }
+    .alert.err { background: rgba(255,59,107,0.08); border: 1px solid rgba(255,59,107,0.3); color: var(--red); }
+
+    /* Tx table */
+    .tx-table { width: 100%; border-collapse: collapse; font-size: 0.65rem; }
+    .tx-table th { text-align: left; padding: 0.5rem 0.75rem; color: rgba(0,212,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid rgba(0,212,255,0.1); }
+    .tx-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid rgba(0,212,255,0.05); color: #7fb3cc; }
+    .status-pill { padding: 0.15rem 0.5rem; border-radius: 2px; font-size: 0.55rem; text-transform: uppercase; }
+    .sp-pending   { background: rgba(255,215,0,0.1); color: var(--gold); border: 1px solid rgba(255,215,0,0.2); }
+    .sp-confirmed { background: rgba(0,255,136,0.1); color: var(--green); border: 1px solid rgba(0,255,136,0.2); }
+    .sp-failed    { background: rgba(255,59,107,0.1); color: var(--red); border: 1px solid rgba(255,59,107,0.2); }
+
+    .empty-state { text-align: center; padding: 2rem; color: #2a4255; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="scan"></div>
+
+  <nav class="topbar">
+    <div class="topbar-brand">☩ Borders Dynasty Nation</div>
+    <div class="topbar-nav">
+      <a href="index.html">Command</a>
+      <a href="omega-portal.html">Omega Portal</a>
+      <a href="borders-sovereign-coin.html">BSC Coin</a>
+      <a href="gateway.html" data-logout>Sign Out</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>🪙 Token Treasury</h1>
+      <p>Borders Reserve Claim (BRC) &amp; Bond Instrument (BBI) — Purchase &amp; Sellback Portal</p>
+    </div>
+
+    <div class="status-row">
+      <span class="badge b-gold">⬤ BRC Active — $1.00</span>
+      <span class="badge b-purple">⬤ BBI Active — $10.00</span>
+      <span class="badge b-green">⬤ Sellback Enabled (BRC)</span>
+      <span class="badge b-cyan">⬤ LayerZero OFT-v2</span>
+    </div>
+
+    <!-- Token Cards -->
+    <div class="token-grid">
+      <!-- BRC -->
+      <div class="token-card brc">
+        <div class="token-symbol">BRC</div>
+        <div class="token-name">Borders Reserve Claim</div>
+        <div class="token-price">$1.00 <span style="font-size:0.65rem;color:#4a6580">USD</span></div>
+        <div class="token-type">Reserve Claim (OFT-v2)</div>
+        <div class="token-desc">Treasury-backed reserve claim instrument. Represents a proportional claim on the Borders Dynasty Nation reserve assets.</div>
+        <ul class="token-features">
+          <li>Treasury-backed &amp; governance-controlled</li>
+          <li>Omnichain — LayerZero OFT-v2</li>
+          <li>Sellback eligible — return at treasury rate</li>
+          <li>Compliance-enforced transfers</li>
+          <li>Upgradeable contract architecture</li>
+        </ul>
+        <div class="token-contract"><span>Contract (Sepolia):</span> 0x12efC9a5D115AE7833c9a6D79f1B3BA18Cde817c</div>
+        <button class="btn-buy" onclick="openPurchasePanel('BRC')">⚡ Purchase BRC</button>
+        <button class="btn-sell" onclick="openSellbackPanel('BRC')">↩ Sellback BRC</button>
+      </div>
+
+      <!-- BBI -->
+      <div class="token-card bbi">
+        <div class="token-symbol">BBI</div>
+        <div class="token-name">Borders Bond Instrument</div>
+        <div class="token-price">$10.00 <span style="font-size:0.65rem;color:#4a6580">USD</span></div>
+        <div class="token-type">Bond Instrument (OFT-v2)</div>
+        <div class="token-desc">Sovereign debt instrument class for bills, notes, bonds, and zero-coupon structures. The debt layer of the Borders sovereign economy.</div>
+        <ul class="token-features">
+          <li>Sovereign debt — bills, notes, bonds</li>
+          <li>Coupon-bearing &amp; callable structures</li>
+          <li>Omnichain — LayerZero OFT-v2</li>
+          <li>Governance-controlled issuance</li>
+          <li>Treasury-redeemable at maturity</li>
+        </ul>
+        <div class="token-contract"><span>Contract:</span> Deploying to BSC Mainnet — Coming Soon</div>
+        <button class="btn-buy" onclick="openPurchasePanel('BBI')">⚡ Purchase BBI</button>
+        <button class="btn-sell btn-disabled" title="BBI sellback not available — holds to maturity">🔒 Hold to Maturity</button>
+      </div>
+    </div>
+
+    <!-- Purchase Panel -->
+    <div class="panel" id="purchasePanel" style="display:none">
+      <div class="panel-title" id="purchasePanelTitle">Purchase Tokens — Via Partner App</div>
+
+      <div class="flow-steps">
+        <div class="flow-step"><div class="flow-step-num">1️⃣</div><div class="flow-step-label">Configure</div></div>
+        <div class="flow-step"><div class="flow-step-num">2️⃣</div><div class="flow-step-label">Partner App</div></div>
+        <div class="flow-step"><div class="flow-step-num">3️⃣</div><div class="flow-step-label">Confirm</div></div>
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label>Token Symbol</label>
+          <input type="text" id="buySymbol" readonly>
+        </div>
+        <div class="field">
+          <label>Amount (tokens)</label>
+          <input type="number" id="buyAmount" placeholder="e.g. 100" min="1" step="1">
+        </div>
+      </div>
+      <div class="field">
+        <label>Receiving Wallet Address</label>
+        <input type="text" id="buyWallet" placeholder="0x... (required to receive tokens)">
+      </div>
+      <div class="field" id="buyEstimate" style="display:none">
+        <label>Estimated Cost</label>
+        <div style="padding:0.7rem 0.9rem;background:rgba(0,0,0,0.3);border:1px solid rgba(0,212,255,0.15);border-radius:3px;font-size:0.85rem;color:var(--gold);" id="buyEstimateVal">—</div>
+      </div>
+
+      <div class="info-box gold">
+        ⚡ Payment is processed through the Borders Dynasty Partner App. You'll be redirected to complete payment — then returned here automatically with a confirmation reference.
+      </div>
+
+      <button class="action-btn" id="buyBtn" onclick="initiatePurchase()">⚡ PROCEED TO PARTNER APP →</button>
+      <button class="action-btn secondary" onclick="closePurchasePanel()" style="margin-top:0.5rem">Cancel</button>
+      <div class="alert ok" id="buyOk"></div>
+      <div class="alert err" id="buyErr"></div>
+    </div>
+
+    <!-- Sellback Panel -->
+    <div class="panel" id="sellbackPanel" style="display:none">
+      <div class="panel-title">↩ Sellback BRC — Return to Treasury</div>
+
+      <div class="info-box">
+        ℹ️ Sellback allows you to return BRC tokens to the Treasury at the current treasury rate. The partner app will process the buyback and transfer funds to your wallet.
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label>Token Symbol</label>
+          <input type="text" id="sellSymbol" readonly value="BRC">
+        </div>
+        <div class="field">
+          <label>Amount to Sell Back</label>
+          <input type="number" id="sellAmount" placeholder="e.g. 50" min="1" step="1">
+        </div>
+      </div>
+      <div class="field">
+        <label>Your Wallet Address (holding tokens)</label>
+        <input type="text" id="sellWallet" placeholder="0x... wallet that holds BRC">
+      </div>
+
+      <div class="info-box gold">
+        ↩ Treasury will process sellback within 24–48 hours. Payout to your wallet after verification.
+      </div>
+
+      <button class="action-btn" id="sellBtn" onclick="initiateSellback()">↩ PROCEED WITH SELLBACK →</button>
+      <button class="action-btn secondary" onclick="closeSellbackPanel()" style="margin-top:0.5rem">Cancel</button>
+      <div class="alert ok" id="sellOk"></div>
+      <div class="alert err" id="sellErr"></div>
+    </div>
+
+    <!-- Transaction History -->
+    <div class="panel">
+      <div class="panel-title">Transaction History</div>
+      <div id="txTableWrap">
+        <div class="empty-state">Loading transactions...</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Check for confirmation return from partner app
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('confirm')) {
+      showAlert('buyOk', '✅ Purchase confirmed by partner app. Reference: ' + params.get('confirm'));
+      document.getElementById('purchasePanel').style.display = 'block';
+    }
+    if (params.get('sellback')) {
+      showAlert('sellOk', '✅ Sellback submitted. Reference: ' + params.get('sellback') + ' — Treasury will process within 24-48 hours.');
+      document.getElementById('sellbackPanel').style.display = 'block';
+    }
+
+    // Load transactions
+    async function loadTx() {
+      try {
+        const res = await fetch('/api/token/transactions');
+        const data = await res.json();
+        renderTx(data.transactions || []);
+      } catch { renderTx([]); }
+    }
+
+    function renderTx(txs) {
+      const wrap = document.getElementById('txTableWrap');
+      if (!txs.length) { wrap.innerHTML = '<div class="empty-state">No transactions yet — purchase or sellback tokens above.</div>'; return; }
+      wrap.innerHTML = `
+        <table class="tx-table">
+          <thead><tr><th>Type</th><th>Token</th><th>Amount</th><th>Status</th><th>Reference</th><th>Date</th></tr></thead>
+          <tbody>${txs.slice(0, 20).map(tx => `
+            <tr>
+              <td>${tx.type}</td>
+              <td>${tx.tokenSymbol}</td>
+              <td>${tx.amount}</td>
+              <td><span class="status-pill sp-${tx.status}">${tx.status}</span></td>
+              <td style="font-size:0.55rem;color:#2a4255">${tx.partnerRef || '—'}</td>
+              <td style="font-size:0.55rem">${new Date(tx.createdAt).toLocaleDateString()}</td>
+            </tr>`).join('')}
+          </tbody>
+        </table>`;
+    }
+
+    loadTx();
+
+    // Purchase
+    let selectedBuySymbol = 'BRC';
+    const TOKEN_PRICES = { BRC: 1.00, BBI: 10.00 };
+
+    function openPurchasePanel(symbol) {
+      selectedBuySymbol = symbol;
+      document.getElementById('purchasePanel').style.display = 'block';
+      document.getElementById('purchasePanelTitle').textContent = `Purchase ${symbol} — Via Partner App`;
+      document.getElementById('buySymbol').value = symbol;
+      document.getElementById('buyAmount').value = '';
+      document.getElementById('buyEstimate').style.display = 'none';
+      document.getElementById('purchasePanel').scrollIntoView({ behavior: 'smooth' });
+    }
+    function closePurchasePanel() { document.getElementById('purchasePanel').style.display = 'none'; }
+
+    document.getElementById && document.getElementById('buyAmount') && document.getElementById('buyAmount').addEventListener('input', function() {
+      const amt = parseFloat(this.value) || 0;
+      const price = TOKEN_PRICES[selectedBuySymbol] || 1;
+      const cost = (amt * price).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+      document.getElementById('buyEstimateVal').textContent = `${amt.toLocaleString()} ${selectedBuySymbol} = ${cost} USD`;
+      document.getElementById('buyEstimate').style.display = amt > 0 ? 'block' : 'none';
+    });
+
+    async function initiatePurchase() {
+      const symbol = document.getElementById('buySymbol').value;
+      const amount = parseFloat(document.getElementById('buyAmount').value);
+      const wallet = document.getElementById('buyWallet').value.trim();
+      if (!amount || amount < 1) { showAlert('buyErr', 'Enter a valid token amount.'); return; }
+      const btn = document.getElementById('buyBtn');
+      btn.disabled = true; btn.textContent = '⏳ Creating intent...';
+      try {
+        const res = await fetch('/api/token/purchase-intent', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ symbol, amount, walletAddress: wallet }),
+        });
+        const data = await res.json();
+        if (data.partnerUrl) {
+          showAlert('buyOk', `✅ Intent created (${data.intentId}). Redirecting to partner app...`);
+          setTimeout(() => { window.open(data.partnerUrl, '_blank'); }, 1200);
+        } else {
+          showAlert('buyErr', data.error || 'Failed to create purchase intent.');
+        }
+      } catch { showAlert('buyErr', 'Network error. Please try again.'); }
+      btn.disabled = false; btn.textContent = '⚡ PROCEED TO PARTNER APP →';
+    }
+
+    // Sellback
+    function openSellbackPanel(symbol) {
+      document.getElementById('sellbackPanel').style.display = 'block';
+      document.getElementById('sellSymbol').value = symbol;
+      document.getElementById('sellbackPanel').scrollIntoView({ behavior: 'smooth' });
+    }
+    function closeSellbackPanel() { document.getElementById('sellbackPanel').style.display = 'none'; }
+
+    async function initiateSellback() {
+      const symbol = document.getElementById('sellSymbol').value;
+      const amount = parseFloat(document.getElementById('sellAmount').value);
+      const wallet = document.getElementById('sellWallet').value.trim();
+      if (!amount || amount < 1) { showAlert('sellErr', 'Enter a valid amount to sell back.'); return; }
+      if (!wallet) { showAlert('sellErr', 'Wallet address is required for sellback.'); return; }
+      const btn = document.getElementById('sellBtn');
+      btn.disabled = true; btn.textContent = '⏳ Creating sellback...';
+      try {
+        const res = await fetch('/api/token/sellback-intent', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ symbol, amount, walletAddress: wallet }),
+        });
+        const data = await res.json();
+        if (data.partnerUrl) {
+          showAlert('sellOk', `↩ Sellback initiated (${data.intentId}). Redirecting to partner app...`);
+          setTimeout(() => { window.open(data.partnerUrl, '_blank'); }, 1200);
+        } else {
+          showAlert('sellErr', data.error || 'Failed to create sellback intent.');
+        }
+      } catch { showAlert('sellErr', 'Network error. Please try again.'); }
+      btn.disabled = false; btn.textContent = '↩ PROCEED WITH SELLBACK →';
+    }
+
+    function showAlert(id, msg) {
+      const el = document.getElementById(id);
+      el.textContent = msg; el.style.display = 'block';
+      setTimeout(() => el.style.display = 'none', 8000);
+    }
+
+    // Re-load on buy/sell amount input
+    window.addEventListener('load', () => {
+      const buyAmtEl = document.getElementById('buyAmount');
+      if (buyAmtEl) buyAmtEl.addEventListener('input', function() {
+        const amt = parseFloat(this.value) || 0;
+        const price = TOKEN_PRICES[selectedBuySymbol] || 1;
+        const cost = (amt * price).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+        document.getElementById('buyEstimateVal').textContent = `${amt.toLocaleString()} ${selectedBuySymbol} = ${cost} USD`;
+        document.getElementById('buyEstimate').style.display = amt > 0 ? 'block' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply — Borders Dynasty Nation</title>
+  <link rel="icon" href="favicon.png">
+  <style>
+    :root {
+      --cyan: #00d4ff; --purple: #9b4dff; --gold: #ffd700;
+      --green: #00ff88; --red: #ff3b6b; --bg: #020b18;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); font-family: 'Courier New', monospace; color: #c5d8f0; min-height: 100vh; }
+    .grid-bg {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridMove 30s linear infinite;
+    }
+    @keyframes gridMove { to { transform: translate(60px, 60px); } }
+    .scan { position: fixed; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,212,255,0.008) 3px, rgba(0,212,255,0.008) 4px); pointer-events: none; z-index: 0; }
+
+    .container { position: relative; z-index: 10; max-width: 680px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+
+    .header { text-align: center; margin-bottom: 2.5rem; }
+    .header-seal { font-size: 3rem; filter: drop-shadow(0 0 20px rgba(255,215,0,0.6)); margin-bottom: 0.5rem; display: block; animation: sealGlow 3s ease-in-out infinite; }
+    @keyframes sealGlow { 0%,100%{filter:drop-shadow(0 0 10px rgba(255,215,0,0.5))} 50%{filter:drop-shadow(0 0 30px rgba(255,215,0,1))} }
+    .header-org { font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(0,212,255,0.6); border: 1px solid rgba(0,212,255,0.2); background: rgba(0,212,255,0.05); display: inline-block; padding: 0.2rem 0.75rem; border-radius: 2px; margin-bottom: 0.75rem; }
+    .header-title { font-size: 2rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em; background: linear-gradient(135deg, #fff, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .header-sub { font-size: 0.7rem; color: #4a6580; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.4rem; }
+
+    /* Role Selector */
+    .role-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(0,212,255,0.6); margin-bottom: 0.75rem; }
+    .role-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 0.75rem; margin-bottom: 2rem; }
+    @media(min-width:500px){ .role-grid { grid-template-columns: repeat(4,1fr); } }
+    .role-tile {
+      background: rgba(4,18,40,0.9); border: 1px solid rgba(0,212,255,0.15);
+      border-radius: 6px; padding: 1.25rem 0.75rem; text-align: center; cursor: pointer;
+      transition: all 0.2s; position: relative; overflow: hidden;
+    }
+    .role-tile:hover { border-color: rgba(0,212,255,0.4); background: rgba(0,212,255,0.04); }
+    .role-tile.selected { border-color: var(--cyan); background: rgba(0,212,255,0.08); box-shadow: 0 0 20px rgba(0,212,255,0.15); }
+    .role-tile.selected::after { content:'✓'; position:absolute; top:6px; right:8px; font-size:0.65rem; color:var(--green); }
+    .role-icon { font-size: 1.8rem; margin-bottom: 0.4rem; display: block; }
+    .role-name { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: #7fb3cc; }
+    .role-tile.selected .role-name { color: var(--cyan); }
+
+    /* Card */
+    .card {
+      background: rgba(4,18,40,0.96); border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 8px; padding: 2rem; margin-bottom: 1.5rem;
+      box-shadow: 0 0 40px rgba(0,212,255,0.04);
+    }
+    .card-title { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--cyan); margin-bottom: 1.25rem; border-bottom: 1px solid rgba(0,212,255,0.1); padding-bottom: 0.5rem; }
+
+    /* Form elements */
+    .field { margin-bottom: 1rem; }
+    .field label { display: block; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(0,212,255,0.5); margin-bottom: 0.4rem; }
+    .field input, .field select, .field textarea {
+      width: 100%; background: rgba(2,11,24,0.8); border: 1px solid rgba(0,212,255,0.2);
+      color: #c5d8f0; font-family: 'Courier New', monospace; font-size: 0.85rem;
+      padding: 0.7rem 0.9rem; border-radius: 3px; outline: none; transition: all 0.2s;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--cyan); box-shadow: 0 0 10px rgba(0,212,255,0.2); }
+    .field input::placeholder { color: #2a4255; }
+    .field select option { background: #020b18; }
+    .field textarea { resize: vertical; min-height: 70px; }
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* Conditional sections */
+    .section-driver, .section-partner, .section-member, .section-heir { display: none; }
+
+    /* Terms */
+    .terms-box {
+      background: rgba(0,0,0,0.3); border: 1px solid rgba(0,212,255,0.1);
+      border-radius: 4px; padding: 1rem; margin-bottom: 1rem;
+      font-size: 0.65rem; color: #4a6580; line-height: 1.7;
+      max-height: 120px; overflow-y: auto;
+    }
+    .check-row { display: flex; align-items: flex-start; gap: 0.75rem; }
+    .check-row input[type=checkbox] { width: 16px; height: 16px; margin-top: 2px; flex-shrink: 0; accent-color: var(--cyan); }
+    .check-row label { font-size: 0.65rem; color: #7fb3cc; line-height: 1.5; }
+
+    /* Buttons */
+    .btn-submit {
+      width: 100%; background: var(--cyan); color: #020b18;
+      font-family: 'Courier New', monospace; font-weight: 900; font-size: 0.82rem;
+      text-transform: uppercase; letter-spacing: 0.15em; padding: 0.9rem;
+      border: none; border-radius: 3px; cursor: pointer; transition: all 0.2s;
+      box-shadow: 0 0 15px rgba(0,212,255,0.4); margin-top: 1rem;
+    }
+    .btn-submit:hover { box-shadow: 0 0 30px rgba(0,212,255,0.8); }
+    .btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* Alert */
+    .alert { padding: 0.6rem 0.9rem; border-radius: 3px; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 1rem; display: none; }
+    .alert.err { background: rgba(255,59,107,0.08); border: 1px solid rgba(255,59,107,0.3); color: var(--red); }
+    .alert.ok  { background: rgba(0,255,136,0.08); border: 1px solid rgba(0,255,136,0.3); color: var(--green); }
+
+    /* Confirmation screen */
+    .confirm-screen {
+      display: none; text-align: center; padding: 3rem 2rem;
+      background: rgba(4,18,40,0.96); border: 1px solid rgba(0,255,136,0.3);
+      border-radius: 8px; box-shadow: 0 0 40px rgba(0,255,136,0.06);
+    }
+    .confirm-check { font-size: 4rem; margin-bottom: 1rem; }
+    .confirm-id { background: rgba(0,212,255,0.05); border: 1px solid rgba(0,212,255,0.2); border-radius: 4px; padding: 0.75rem 1.5rem; font-size: 1.1rem; letter-spacing: 0.2em; color: var(--cyan); display: inline-block; margin: 1rem 0; }
+    .confirm-msg { font-size: 0.72rem; color: #7fb3cc; line-height: 1.8; margin-top: 0.5rem; }
+    .confirm-note { font-size: 0.6rem; color: #4a6580; margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 0.1em; }
+
+    /* Back link */
+    .back-link { display: block; text-align: center; margin-top: 2rem; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: #4a6580; text-decoration: none; }
+    .back-link:hover { color: var(--cyan); }
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="scan"></div>
+
+  <div class="container">
+    <div class="header">
+      <span class="header-seal">☩</span>
+      <div class="header-org">508(c)(1)(A) · Borders Ecclesia Earth Trust</div>
+      <div class="header-title">Apply for Access</div>
+      <div class="header-sub">Borders Dynasty Nation — Membership & Partner Registration</div>
+    </div>
+
+    <div id="formView">
+      <!-- Role Selection -->
+      <div class="role-label">Step 1 — Select your role</div>
+      <div class="role-grid">
+        <div class="role-tile" onclick="selectRole('driver')" id="tile-driver">
+          <span class="role-icon">🚛</span>
+          <div class="role-name">Driver</div>
+        </div>
+        <div class="role-tile" onclick="selectRole('partner')" id="tile-partner">
+          <span class="role-icon">🤝</span>
+          <div class="role-name">Partner</div>
+        </div>
+        <div class="role-tile" onclick="selectRole('member')" id="tile-member">
+          <span class="role-icon">👤</span>
+          <div class="role-name">Member</div>
+        </div>
+        <div class="role-tile" onclick="selectRole('heir')" id="tile-heir">
+          <span class="role-icon">⚜️</span>
+          <div class="role-name">Sovereign Heir</div>
+        </div>
+      </div>
+
+      <div id="mainForm" style="display:none">
+        <!-- Basic Info -->
+        <div class="card">
+          <div class="card-title">Step 2 — Personal Information</div>
+          <div class="field">
+            <label>Full Legal Name *</label>
+            <input type="text" id="fullName" placeholder="As it appears on your ID" required>
+          </div>
+          <div class="row-2">
+            <div class="field">
+              <label>Email Address *</label>
+              <input type="email" id="email" placeholder="your@email.com" required>
+            </div>
+            <div class="field">
+              <label>Phone Number</label>
+              <input type="tel" id="phone" placeholder="+1 (555) 000-0000">
+            </div>
+          </div>
+          <div class="field">
+            <label>BRC Token Wallet Address <span style="color:#4a6580">(optional — for token payments)</span></label>
+            <input type="text" id="walletAddress" placeholder="0x... or leave blank">
+          </div>
+          <div class="field">
+            <label>Referral Code <span style="color:#4a6580">(optional)</span></label>
+            <input type="text" id="referralCode" placeholder="BDN-XXXX">
+          </div>
+        </div>
+
+        <!-- Driver Fields -->
+        <div class="card section-driver" id="driverFields">
+          <div class="card-title">Driver Details — CDL &amp; Equipment</div>
+          <div class="row-2">
+            <div class="field">
+              <label>CDL License Number *</label>
+              <input type="text" id="licenseNumber" placeholder="CDL#">
+            </div>
+            <div class="field">
+              <label>State Issued</label>
+              <input type="text" id="cdlState" placeholder="e.g. GA">
+            </div>
+          </div>
+          <div class="row-2">
+            <div class="field">
+              <label>DOT Number</label>
+              <input type="text" id="dotNumber" placeholder="USDOT#">
+            </div>
+            <div class="field">
+              <label>MC Number</label>
+              <input type="text" id="mcNumber" placeholder="MC-XXXXXX">
+            </div>
+          </div>
+          <div class="row-2">
+            <div class="field">
+              <label>Equipment Type</label>
+              <select id="equipmentType">
+                <option value="">Select...</option>
+                <option>Dry Van 53'</option>
+                <option>Reefer</option>
+                <option>Flatbed</option>
+                <option>Step Deck</option>
+                <option>Tanker</option>
+                <option>Hazmat</option>
+                <option>Box Truck 26'</option>
+                <option>Sprinter Van</option>
+                <option>LTL Only</option>
+                <option>Owner-Operator (Any)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Years of Experience</label>
+              <select id="yearsExperience">
+                <option value="">Select...</option>
+                <option>Less than 1</option>
+                <option>1–3</option>
+                <option>3–5</option>
+                <option>5–10</option>
+                <option>10+</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Partner Fields -->
+        <div class="card section-partner" id="partnerFields">
+          <div class="card-title">Partner / Business Information</div>
+          <div class="field">
+            <label>Business / Company Name *</label>
+            <input type="text" id="businessName" placeholder="Legal entity name">
+          </div>
+          <div class="row-2">
+            <div class="field">
+              <label>Business Type</label>
+              <select id="partnerType">
+                <option value="">Select...</option>
+                <option>Carrier / Trucking</option>
+                <option>Broker / Freight</option>
+                <option>Warehouse / Storage</option>
+                <option>Legal / Compliance</option>
+                <option>Financial / Treasury</option>
+                <option>Technology</option>
+                <option>Consulting</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Years in Business</label>
+              <input type="text" id="partnerYears" placeholder="e.g. 5">
+            </div>
+          </div>
+          <div class="field">
+            <label>DOT / MC Number <span style="color:#4a6580">(if applicable)</span></label>
+            <input type="text" id="partnerDot" placeholder="USDOT# or MC-XXXXXX">
+          </div>
+        </div>
+
+        <!-- Member Fields -->
+        <div class="card section-member" id="memberFields">
+          <div class="card-title">Membership Details</div>
+          <div class="field">
+            <label>Membership Tier</label>
+            <select id="memberTier">
+              <option value="standard">Standard Member — Basic platform access</option>
+              <option value="premium">Premium Member — Full platform + token benefits</option>
+              <option value="associate">Associate — Limited observer access</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>How did you hear about us?</label>
+            <input type="text" id="memberRef" placeholder="Referral, social media, event...">
+          </div>
+        </div>
+
+        <!-- Heir Fields -->
+        <div class="card section-heir" id="heirFields">
+          <div class="card-title">Sovereign Heir — Nation Claiming</div>
+          <div class="field" style="background:rgba(255,215,0,0.04);border:1px solid rgba(255,215,0,0.15);border-radius:4px;padding:0.75rem 1rem;margin-bottom:1rem;font-size:0.65rem;color:#c5a200;line-height:1.7;">
+            ⚜️ Sovereign Heir status requires verification and approval. You will be contacted by the Codex Secretariat to complete the 5-step Throne Claiming process.
+          </div>
+          <div class="field">
+            <label>Bloodline / Lineage Claim</label>
+            <input type="text" id="lineage" placeholder="Self-sovereign declaration or lineage reference">
+          </div>
+          <div class="field">
+            <label>Intended Jurisdiction</label>
+            <input type="text" id="jurisdiction" placeholder="State, territory, or sovereign land">
+          </div>
+        </div>
+
+        <!-- Terms -->
+        <div class="card">
+          <div class="card-title">Step 3 — Terms &amp; Agreement</div>
+          <div class="terms-box">
+By submitting this application you agree to: (1) Operate in accordance with Borders Ecclesia Earth Trust governing documents and the Codex Constitutionalis. (2) Payments and transactions within this platform may be denominated in BRC (Borders Reserve Claim) tokens or USD at the platform's discretion. (3) All drivers and partners must maintain current licensing, insurance, and DOT compliance. (4) Access codes are non-transferable and revocable by the Grand Architect at any time. (5) This application does not guarantee access — approval is at the sole discretion of the Borders Dynasty Nation Governance Council. (6) Token holdings through the partner platform are subject to the Borders Dynasty Token Terms and the Treasury Reserve Policy. (7) All data submitted is kept confidential and used only for platform access administration. (8) Misrepresentation of credentials is grounds for permanent revocation. Borders Ecclesia Earth Trust · 508(c)(1)(A) · All Rights Reserved · Divine Law
+          </div>
+          <div class="check-row">
+            <input type="checkbox" id="agreeTerms">
+            <label for="agreeTerms">I have read and agree to the Borders Dynasty Nation terms, platform policies, and acknowledge that my access code will be issued upon approval.</label>
+          </div>
+        </div>
+
+        <button class="btn-submit" id="submitBtn" onclick="submitForm()">⚡ SUBMIT APPLICATION</button>
+        <div class="alert err" id="errAlert"></div>
+      </div>
+    </div>
+
+    <!-- Confirmation Screen -->
+    <div class="confirm-screen" id="confirmScreen">
+      <div class="confirm-check">✅</div>
+      <div style="font-size:1.1rem;font-weight:900;text-transform:uppercase;letter-spacing:0.08em;color:#fff;margin-bottom:0.25rem;">Application Received</div>
+      <div class="confirm-id" id="confirmId">APP-XXXX</div>
+      <div class="confirm-msg">
+        Your application has been submitted to the Borders Dynasty Nation Governance Council.<br>
+        You will be contacted at your provided email within <strong style="color:var(--cyan)">24–48 hours</strong>.<br>
+        Upon approval, your personal access code will be issued — keep it secure.
+      </div>
+      <div class="confirm-note">Save your application ID above for reference · Do not share your access code when received</div>
+    </div>
+
+    <a href="gateway.html" class="back-link">← Already have an access code? Sign in here</a>
+  </div>
+
+  <script>
+    let selectedRole = null;
+
+    function selectRole(role) {
+      selectedRole = role;
+      document.querySelectorAll('.role-tile').forEach(t => t.classList.remove('selected'));
+      document.getElementById('tile-' + role).classList.add('selected');
+      document.querySelectorAll('[class*="section-"]').forEach(s => s.style.display = 'none');
+      const sec = document.querySelector('.section-' + role);
+      if (sec) sec.style.display = 'block';
+      document.getElementById('mainForm').style.display = 'block';
+      document.getElementById('mainForm').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    async function submitForm() {
+      if (!selectedRole) { showErr('Please select your role first.'); return; }
+      const fullName = document.getElementById('fullName').value.trim();
+      const email    = document.getElementById('email').value.trim();
+      if (!fullName || !email) { showErr('Full name and email are required.'); return; }
+      if (!document.getElementById('agreeTerms').checked) { showErr('You must agree to the terms to proceed.'); return; }
+
+      const payload = {
+        type: selectedRole,
+        fullName,
+        email,
+        phone:         document.getElementById('phone')?.value.trim() || null,
+        walletAddress: document.getElementById('walletAddress')?.value.trim() || null,
+        referralCode:  document.getElementById('referralCode')?.value.trim() || null,
+        agreeToTerms:  true,
+        // Driver
+        licenseNumber:   document.getElementById('licenseNumber')?.value.trim() || null,
+        dotNumber:       document.getElementById('dotNumber')?.value.trim() || (document.getElementById('partnerDot')?.value.trim() || null),
+        mcNumber:        document.getElementById('mcNumber')?.value.trim() || null,
+        equipmentType:   document.getElementById('equipmentType')?.value || null,
+        yearsExperience: document.getElementById('yearsExperience')?.value || null,
+        // Partner
+        businessName:    document.getElementById('businessName')?.value.trim() || null,
+        metadata: {
+          partnerType: document.getElementById('partnerType')?.value || null,
+          memberTier:  document.getElementById('memberTier')?.value || null,
+          lineage:     document.getElementById('lineage')?.value.trim() || null,
+          jurisdiction: document.getElementById('jurisdiction')?.value.trim() || null,
+          memberRef:   document.getElementById('memberRef')?.value.trim() || null,
+        }
+      };
+
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = '⏳ SUBMITTING...';
+
+      try {
+        const res = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('formView').style.display = 'none';
+          document.getElementById('confirmId').textContent = data.applicationId;
+          document.getElementById('confirmScreen').style.display = 'block';
+        } else {
+          showErr(data.error || 'Submission failed. Please try again.');
+          btn.disabled = false;
+          btn.textContent = '⚡ SUBMIT APPLICATION';
+        }
+      } catch (e) {
+        showErr('Network error. Please check your connection and try again.');
+        btn.disabled = false;
+        btn.textContent = '⚡ SUBMIT APPLICATION';
+      }
+    }
+
+    function showErr(msg) {
+      const el = document.getElementById('errAlert');
+      el.textContent = '⚠ ' + msg;
+      el.style.display = 'block';
+      el.className = 'alert err';
+      setTimeout(() => el.style.display = 'none', 5000);
+    }
+  </script>
+</body>
+</html>

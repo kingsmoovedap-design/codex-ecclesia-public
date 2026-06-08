@@ -1213,6 +1213,149 @@ export function registerRoutes(app: Express) {
   });
 
   // ══════════════════════════════════════════════════════════════
+  //  REGISTRATION ROUTES — Public signup for drivers / partners / members
+  //  No auth required — these are the public-facing onboarding endpoints
+  // ══════════════════════════════════════════════════════════════
+
+  // POST /api/register — submit a new application
+  app.post("/api/register", async (req: Request, res: Response) => {
+    try {
+      const { type, fullName, email, phone, businessName, licenseNumber, dotNumber,
+              mcNumber, equipmentType, yearsExperience, walletAddress, referralCode, agreeToTerms } = req.body;
+      if (!type || !fullName || !email) return res.status(400).json({ success: false, error: 'type, fullName, and email are required' });
+      if (!agreeToTerms) return res.status(400).json({ success: false, error: 'You must agree to the terms' });
+      const reg = await storage.createRegistration({ type, fullName, email, phone, businessName, licenseNumber, dotNumber, mcNumber, equipmentType, yearsExperience, walletAddress, referralCode, agreeToTerms: !!agreeToTerms });
+      res.json({ success: true, applicationId: `APP-${reg.id}-${reg.createdAt.getFullYear()}`, type: reg.type, status: 'pending', message: 'Application received. You will be contacted within 24-48 hours.' });
+    } catch (error: any) {
+      res.status(500).json({ success: false, error: 'Registration failed. Please try again.' });
+    }
+  });
+
+  // GET /api/admin/registrations — all registrations (owner only)
+  app.get("/api/admin/registrations", async (req: Request, res: Response) => {
+    try {
+      const status = (req.query.status as string) || undefined;
+      const regs = await storage.getRegistrations(status);
+      res.json({ total: regs.length, registrations: regs });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to fetch registrations' });
+    }
+  });
+
+  // GET /api/admin/registrations/pending/count
+  app.get("/api/admin/registrations/pending/count", async (_req: Request, res: Response) => {
+    const count = await storage.getPendingRegistrationCount();
+    res.json({ count });
+  });
+
+  // PATCH /api/admin/registrations/:id — approve or reject
+  app.patch("/api/admin/registrations/:id", async (req: Request, res: Response) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { status, adminNotes } = req.body;
+      if (!['approved', 'rejected', 'suspended', 'pending'].includes(status)) {
+        return res.status(400).json({ error: 'Invalid status' });
+      }
+      let updates: any = { status, adminNotes };
+      if (status === 'approved') {
+        // Generate unique access code for approved members
+        const code = 'BDN-' + Math.random().toString(36).slice(2, 6).toUpperCase() + '-' + Date.now().toString(36).slice(-4).toUpperCase();
+        updates.accessCode = code;
+        updates.approvedAt = new Date();
+      }
+      const reg = await storage.updateRegistration(id, updates);
+      if (!reg) return res.status(404).json({ error: 'Registration not found' });
+      res.json({ success: true, registration: reg });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to update registration' });
+    }
+  });
+
+  // ══════════════════════════════════════════════════════════════
+  //  TOKEN ROUTES — BRC / BBI purchase, sellback, price
+  //  Payment processes through partner app (borders-dynasty)
+  // ══════════════════════════════════════════════════════════════
+  const PARTNER_APP = 'https://borders-dynasty--kingsmoovedap.replit.app';
+  const TOKEN_INFO = {
+    BRC: {
+      name: 'Borders Reserve Claim',
+      symbol: 'BRC',
+      description: 'Treasury-backed reserve claim instrument. Represents a claim on the Borders Dynasty Nation reserves.',
+      contract: { sepolia: '0x12efC9a5D115AE7833c9a6D79f1B3BA18Cde817c' },
+      type: 'Reserve Claim (OFT-v2)',
+      features: ['Treasury-backed', 'Omnichain LayerZero', 'Governance-controlled', 'Compliance-enforced', 'Sellback eligible'],
+      sellbackEnabled: true,
+      priceUsd: '1.00',
+    },
+    BBI: {
+      name: 'Borders Bond Instrument',
+      symbol: 'BBI',
+      description: 'Sovereign debt instrument for bills, notes, bonds, and zero-coupon structures.',
+      contract: { sepolia: '' },
+      type: 'Bond Instrument (OFT-v2)',
+      features: ['Sovereign debt', 'Omnichain LayerZero', 'Coupon-bearing', 'Callable structures', 'Governance-controlled'],
+      sellbackEnabled: false,
+      priceUsd: '10.00',
+    },
+  };
+
+  // GET /api/token/info
+  app.get("/api/token/info", (_req: Request, res: Response) => {
+    res.json({ tokens: TOKEN_INFO, partnerApp: PARTNER_APP, ts: new Date().toISOString() });
+  });
+
+  // POST /api/token/purchase-intent — creates intent, returns redirect URL to partner app
+  app.post("/api/token/purchase-intent", async (req: Request, res: Response) => {
+    try {
+      const { symbol, amount, walletAddress } = req.body;
+      if (!symbol || !amount) return res.status(400).json({ error: 'symbol and amount required' });
+      const info = TOKEN_INFO[symbol as keyof typeof TOKEN_INFO];
+      if (!info) return res.status(400).json({ error: 'Unknown token symbol' });
+      const intentId = 'INTENT-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+      const tx = await storage.createTokenTransaction({ type: 'purchase', walletAddress, tokenSymbol: symbol, amount: String(amount), status: 'pending', partnerRef: intentId });
+      const callbackUrl = encodeURIComponent(`${req.protocol}://${req.get('host')}/token-payment.html?confirm=${intentId}`);
+      const partnerUrl = `${PARTNER_APP}/token-purchase?intent=${intentId}&token=${symbol}&amount=${amount}&wallet=${walletAddress || ''}&callback=${callbackUrl}&source=codex-ecclesia`;
+      res.json({ success: true, intentId, txId: tx.id, partnerUrl, token: info.name, amount, symbol });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to create purchase intent' });
+    }
+  });
+
+  // POST /api/token/sellback-intent — initiate sellback through partner app
+  app.post("/api/token/sellback-intent", async (req: Request, res: Response) => {
+    try {
+      const { symbol, amount, walletAddress } = req.body;
+      if (!symbol || !amount || !walletAddress) return res.status(400).json({ error: 'symbol, amount, walletAddress required' });
+      const info = TOKEN_INFO[symbol as keyof typeof TOKEN_INFO];
+      if (!info) return res.status(400).json({ error: 'Unknown token symbol' });
+      if (!info.sellbackEnabled) return res.status(400).json({ error: `${symbol} does not support sellback` });
+      const intentId = 'SELL-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+      const tx = await storage.createTokenTransaction({ type: 'sellback', walletAddress, tokenSymbol: symbol, amount: String(amount), status: 'pending', partnerRef: intentId });
+      const callbackUrl = encodeURIComponent(`${req.protocol}://${req.get('host')}/token-payment.html?sellback=${intentId}`);
+      const partnerUrl = `${PARTNER_APP}/token-sellback?intent=${intentId}&token=${symbol}&amount=${amount}&wallet=${walletAddress}&callback=${callbackUrl}&source=codex-ecclesia`;
+      res.json({ success: true, intentId, txId: tx.id, partnerUrl, note: 'You will be redirected to the partner app to complete the sellback.' });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to create sellback intent' });
+    }
+  });
+
+  // POST /api/token/confirm — called by partner app when transaction is confirmed
+  app.post("/api/token/confirm", async (req: Request, res: Response) => {
+    try {
+      const { intentId, txHash, status } = req.body;
+      res.json({ success: true, intentId, txHash, status: status || 'confirmed', ts: new Date().toISOString() });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to confirm transaction' });
+    }
+  });
+
+  // GET /api/token/transactions
+  app.get("/api/token/transactions", async (_req: Request, res: Response) => {
+    const txs = await storage.getTokenTransactions(100);
+    res.json({ total: txs.length, transactions: txs });
+  });
+
+  // ══════════════════════════════════════════════════════════════
   //  AUTH ROUTES — Platform Access Gate
   // ══════════════════════════════════════════════════════════════
   const PLATFORM_CODE = process.env.PLATFORM_ACCESS_CODE || 'DYNASTY2026';

@@ -173,12 +173,57 @@ export const documentVersionsRelations = relations(documentVersions, ({ one }) =
   changedByUser: one(users, { fields: [documentVersions.changedBy], references: [users.id] }),
 }));
 
+// ── Registrations — public-facing signup for drivers, partners, members, heirs
+export const registrations = pgTable("registrations", {
+  id: serial("id").primaryKey(),
+  type: text("type").notNull(),                         // driver | partner | member | heir
+  fullName: text("full_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  businessName: text("business_name"),
+  licenseNumber: text("license_number"),                // CDL# for drivers
+  dotNumber: text("dot_number"),
+  mcNumber: text("mc_number"),
+  equipmentType: text("equipment_type"),
+  yearsExperience: text("years_experience"),
+  walletAddress: text("wallet_address"),
+  referralCode: text("referral_code"),
+  agreeToTerms: boolean("agree_to_terms").default(false),
+  status: text("status").default("pending").notNull(),  // pending | approved | rejected | suspended
+  accessCode: text("access_code"),
+  adminNotes: text("admin_notes"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  approvedAt: timestamp("approved_at"),
+});
+
+// ── Token Transactions — BRC/BBI purchase, sellback, reward events
+export const tokenTransactions = pgTable("token_transactions", {
+  id: serial("id").primaryKey(),
+  type: text("type").notNull(),          // purchase | sellback | transfer | reward
+  walletAddress: text("wallet_address"),
+  tokenSymbol: text("token_symbol").notNull(),   // BRC | BBI
+  amount: text("amount").notNull(),
+  usdValue: text("usd_value"),
+  txHash: text("tx_hash"),
+  status: text("status").default("pending").notNull(), // pending | confirmed | failed | cancelled
+  partnerRef: text("partner_ref"),       // reference ID from partner app
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  confirmedAt: timestamp("confirmed_at"),
+});
+
 export const insertUserSchema = createInsertSchema(users).omit({ id: true, createdAt: true, updatedAt: true });
 export const insertDocumentSchema = createInsertSchema(documents).omit({ id: true, createdAt: true, updatedAt: true });
 export const insertFilingSchema = createInsertSchema(filings).omit({ id: true, createdAt: true });
 export const insertAuditLogSchema = createInsertSchema(auditLogs).omit({ id: true, createdAt: true });
+export const insertRegistrationSchema = createInsertSchema(registrations).omit({ id: true, createdAt: true, updatedAt: true, approvedAt: true, accessCode: true, status: true });
 
 export type User = typeof users.$inferSelect;
+export type Registration = typeof registrations.$inferSelect;
+export type InsertRegistration = z.infer<typeof insertRegistrationSchema>;
+export type TokenTransaction = typeof tokenTransactions.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type Document = typeof documents.$inferSelect;
 export type InsertDocument = z.infer<typeof insertDocumentSchema>;

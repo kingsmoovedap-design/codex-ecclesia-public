@@ -1,12 +1,14 @@
 import { 
   users, documents, filings, auditLogs, analytics, walletConnections, documentVersions,
+  registrations, tokenTransactions,
   type User, type InsertUser, 
   type Document, type InsertDocument,
   type Filing, type InsertFiling,
-  type AuditLog, type InsertAuditLog
+  type AuditLog, type InsertAuditLog,
+  type Registration, type InsertRegistration,
 } from "../shared/schema.js";
 import { db } from "./db.js";
-import { eq, desc, and, count } from "drizzle-orm";
+import { eq, desc, and, count, sql } from "drizzle-orm";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -31,6 +33,14 @@ export interface IStorage {
   trackAnalytics(event: any): Promise<void>;
   getAnalytics(filters?: any): Promise<any[]>;
   getPublicStats(): Promise<{ totalDocuments: number; totalFilings: number; totalUsers: number; recentActivity: any[] }>;
+
+  createRegistration(reg: InsertRegistration): Promise<Registration>;
+  getRegistration(id: number): Promise<Registration | undefined>;
+  getRegistrations(status?: string): Promise<Registration[]>;
+  updateRegistration(id: number, updates: Partial<Registration>): Promise<Registration | undefined>;
+  getPendingRegistrationCount(): Promise<number>;
+  createTokenTransaction(tx: any): Promise<any>;
+  getTokenTransactions(limit?: number): Promise<any[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -124,20 +134,53 @@ export class DatabaseStorage implements IStorage {
       const [filingResult] = await db.select({ count: count() }).from(filings);
       const [userResult] = await db.select({ count: count() }).from(users);
       const recentLogs = await db.select().from(auditLogs).orderBy(desc(auditLogs.createdAt)).limit(5);
-      
       return {
         totalDocuments: docResult?.count || 0,
         totalFilings: filingResult?.count || 0,
         totalUsers: userResult?.count || 0,
-        recentActivity: recentLogs.map(log => ({
-          action: log.action,
-          entityType: log.entityType,
-          createdAt: log.createdAt,
-        })),
+        recentActivity: recentLogs.map(log => ({ action: log.action, entityType: log.entityType, createdAt: log.createdAt })),
       };
     } catch (error) {
       return { totalDocuments: 0, totalFilings: 0, totalUsers: 0, recentActivity: [] };
     }
+  }
+
+  async createRegistration(reg: InsertRegistration): Promise<Registration> {
+    const [created] = await db.insert(registrations).values(reg).returning();
+    return created;
+  }
+
+  async getRegistration(id: number): Promise<Registration | undefined> {
+    const [reg] = await db.select().from(registrations).where(eq(registrations.id, id));
+    return reg || undefined;
+  }
+
+  async getRegistrations(status?: string): Promise<Registration[]> {
+    if (status) {
+      return await db.select().from(registrations).where(eq(registrations.status, status)).orderBy(desc(registrations.createdAt));
+    }
+    return await db.select().from(registrations).orderBy(desc(registrations.createdAt));
+  }
+
+  async updateRegistration(id: number, updates: Partial<Registration>): Promise<Registration | undefined> {
+    const [reg] = await db.update(registrations).set({ ...updates, updatedAt: new Date() }).where(eq(registrations.id, id)).returning();
+    return reg || undefined;
+  }
+
+  async getPendingRegistrationCount(): Promise<number> {
+    try {
+      const [result] = await db.select({ count: count() }).from(registrations).where(eq(registrations.status, 'pending'));
+      return result?.count || 0;
+    } catch { return 0; }
+  }
+
+  async createTokenTransaction(tx: any): Promise<any> {
+    const [created] = await db.insert(tokenTransactions).values(tx).returning();
+    return created;
+  }
+
+  async getTokenTransactions(limit: number = 50): Promise<any[]> {
+    return await db.select().from(tokenTransactions).orderBy(desc(tokenTransactions.createdAt)).limit(limit);
   }
 }
 
