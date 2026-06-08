@@ -1,680 +1,1376 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DivinityVX — Supreme Command Center</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="favicon.png">
-</head>
-<body class="divinity-body">
-
-  <!-- ── AUTH GATE ── -->
-  <div id="authGate" class="dv-auth-gate">
-    <div class="dv-auth-card">
-      <div class="dv-auth-seal">⚡</div>
-      <h1>DivinityVX</h1>
-      <p class="dv-auth-sub">Supreme Command Center — Grand Architect Access Only</p>
-      <div class="dv-auth-form">
-        <input type="password" id="authCode" placeholder="Enter Command Code" class="dv-auth-input" autocomplete="off">
-        <button onclick="authenticate()" class="dv-auth-btn">AUTHENTICATE</button>
-        <div id="authError" class="dv-auth-error" style="display:none">⚠ Access Denied — Invalid Command Code</div>
-      </div>
-      <p class="dv-auth-footer">Unauthorized access is logged and reported to the Codex audit trail.</p>
-    </div>
-  </div>
-
-  <!-- ── MAIN COMMAND CENTER (hidden until auth) ── -->
-  <div id="commandCenter" class="dv-cc" style="display:none">
-
-    <!-- Top Bar -->
-    <div class="dv-topbar">
-      <div class="dv-topbar-left">
-        <span class="dv-topbar-seal">⚡</span>
-        <span class="dv-topbar-title">DivinityVX Supreme Command Center</span>
-        <span class="dv-topbar-role">Grand Architect</span>
-      </div>
-      <div class="dv-topbar-right">
-        <span class="dv-clock" id="dvClock">00:00:00</span>
-        <span class="dv-status-dot" id="dvSystemStatus" title="All Systems Operational"></span>
-        <a href="index.html" class="dv-topbar-link">← Platform</a>
-        <button onclick="lockSystem()" class="dv-lock-btn">🔒 Lock</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DivinityVX — Supreme Command Center</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.png" />
+  </head>
+  <body class="divinity-body">
+    <!-- ── AUTH GATE ── -->
+    <div id="authGate" class="dv-auth-gate">
+      <div class="dv-auth-card">
+        <div class="dv-auth-seal">⚡</div>
+        <h1>DivinityVX</h1>
+        <p class="dv-auth-sub">
+          Supreme Command Center — Grand Architect Access Only
+        </p>
+        <div class="dv-auth-form">
+          <input
+            type="password"
+            id="authCode"
+            placeholder="Enter Command Code"
+            class="dv-auth-input"
+            autocomplete="off"
+          />
+          <button onclick="authenticate()" class="dv-auth-btn">
+            AUTHENTICATE
+          </button>
+          <div id="authError" class="dv-auth-error" style="display: none">
+            ⚠ Access Denied — Invalid Command Code
+          </div>
+        </div>
+        <p class="dv-auth-footer">
+          Unauthorized access is logged and reported to the Codex audit trail.
+        </p>
       </div>
     </div>
 
-    <!-- Alert Banner -->
-    <div class="dv-alert-banner" id="alertBanner" style="display:none">
-      <span id="alertText"></span>
-      <button onclick="dismissAlert()" class="dv-alert-dismiss">✕</button>
-    </div>
+    <!-- ── MAIN COMMAND CENTER (hidden until auth) ── -->
+    <div id="commandCenter" class="dv-cc" style="display: none">
+      <!-- Top Bar -->
+      <div class="dv-topbar">
+        <div class="dv-topbar-left">
+          <span class="dv-topbar-seal">⚡</span>
+          <span class="dv-topbar-title">DivinityVX Supreme Command Center</span>
+          <span class="dv-topbar-role">Grand Architect</span>
+        </div>
+        <div class="dv-topbar-right">
+          <span class="dv-clock" id="dvClock">00:00:00</span>
+          <span
+            class="dv-status-dot"
+            id="dvSystemStatus"
+            title="All Systems Operational"
+          ></span>
+          <a href="index.html" class="dv-topbar-link">← Platform</a>
+          <button onclick="lockSystem()" class="dv-lock-btn">🔒 Lock</button>
+        </div>
+      </div>
 
-    <!-- Navigation Tabs -->
-    <div class="dv-nav">
-      <button class="dv-nav-btn active" data-panel="intelligence">🧠 Intelligence</button>
-      <button class="dv-nav-btn" data-panel="security">🔒 Security</button>
-      <button class="dv-nav-btn" data-panel="appraisal">📊 AI Appraisal</button>
-      <button class="dv-nav-btn" data-panel="logistics">🚚 Logistics Command</button>
-      <button class="dv-nav-btn" data-panel="partners">👥 Partners & Tests</button>
-      <button class="dv-nav-btn" data-panel="platform">⚙️ Platform Health</button>
-      <button class="dv-nav-btn" data-panel="operator">⚡ Operator Controls</button>
-    </div>
+      <!-- Alert Banner -->
+      <div class="dv-alert-banner" id="alertBanner" style="display: none">
+        <span id="alertText"></span>
+        <button onclick="dismissAlert()" class="dv-alert-dismiss">✕</button>
+      </div>
 
-    <!-- ══════════════════════════════════════════
+      <!-- Navigation Tabs -->
+      <div class="dv-nav">
+        <button class="dv-nav-btn active" data-panel="intelligence">
+          🧠 Intelligence
+        </button>
+        <button class="dv-nav-btn" data-panel="security">🔒 Security</button>
+        <button class="dv-nav-btn" data-panel="appraisal">
+          📊 AI Appraisal
+        </button>
+        <button class="dv-nav-btn" data-panel="logistics">
+          🚚 Logistics Command
+        </button>
+        <button class="dv-nav-btn" data-panel="partners">
+          👥 Partners & Tests
+        </button>
+        <button class="dv-nav-btn" data-panel="platform">
+          ⚙️ Platform Health
+        </button>
+        <button class="dv-nav-btn" data-panel="operator">
+          ⚡ Operator Controls
+        </button>
+        <button class="dv-nav-btn" data-panel="copilot" style="background:linear-gradient(135deg,rgba(0,212,255,0.12),rgba(155,77,255,0.12));border:1px solid rgba(0,212,255,0.3);">
+          🤝 Co-Pilot Live
+        </button>
+        <button class="dv-nav-btn" data-panel="logistics-ops" style="background:linear-gradient(135deg,rgba(0,255,136,0.1),rgba(0,212,255,0.08));border:1px solid rgba(0,255,136,0.3);">
+          🚚 Logistics Ops
+        </button>
+      </div>
+
+      <!-- ══════════════════════════════════════════
          PANEL 1: Intelligence Feed
     ══════════════════════════════════════════ -->
-    <div class="dv-panel active" id="panel-intelligence">
-      <div class="dv-panel-inner">
-        <div class="dv-section-header">
-          <h2>🧠 DivinityVX Intelligence Feed</h2>
-          <div class="dv-section-actions">
-            <button class="dv-btn sm" onclick="refreshIntelligence()">↻ Refresh</button>
-            <button class="dv-btn sm danger" onclick="clearIntelligence()">Clear Log</button>
-          </div>
-        </div>
-
-        <div class="dv-intel-grid">
-          <div class="dv-intel-stats">
-            <div class="dv-istat">
-              <div class="dv-istat-num" id="intTotalEvents">—</div>
-              <div class="dv-istat-label">Total Events</div>
-            </div>
-            <div class="dv-istat">
-              <div class="dv-istat-num" id="intNewPartners">0</div>
-              <div class="dv-istat-label">New Partners</div>
-            </div>
-            <div class="dv-istat">
-              <div class="dv-istat-num" id="intBids">0</div>
-              <div class="dv-istat-label">Marketplace Bids</div>
-            </div>
-            <div class="dv-istat">
-              <div class="dv-istat-num" id="intAlerts">0</div>
-              <div class="dv-istat-label">Active Alerts</div>
-            </div>
-            <div class="dv-istat">
-              <div class="dv-istat-num" id="intContainers">5</div>
-              <div class="dv-istat-label">Tracked Containers</div>
-            </div>
-            <div class="dv-istat">
-              <div class="dv-istat-num" id="intThreatLevel">LOW</div>
-              <div class="dv-istat-label">Threat Level</div>
+      <div class="dv-panel active" id="panel-intelligence">
+        <div class="dv-panel-inner">
+          <div class="dv-section-header">
+            <h2>🧠 DivinityVX Intelligence Feed</h2>
+            <div class="dv-section-actions">
+              <button class="dv-btn sm" onclick="refreshIntelligence()">
+                ↻ Refresh
+              </button>
+              <button class="dv-btn sm danger" onclick="clearIntelligence()">
+                Clear Log
+              </button>
             </div>
           </div>
 
-          <div class="dv-intel-feed" id="intelFeed">
-            <div class="dv-feed-item boot">
-              <span class="dv-feed-time">${new Date().toLocaleTimeString()}</span>
-              <span class="dv-feed-type system">SYSTEM</span>
-              <span class="dv-feed-msg">DivinityVX neural interface initializing...</span>
+          <div class="dv-intel-grid">
+            <div class="dv-intel-stats">
+              <div class="dv-istat">
+                <div class="dv-istat-num" id="intTotalEvents">—</div>
+                <div class="dv-istat-label">Total Events</div>
+              </div>
+              <div class="dv-istat">
+                <div class="dv-istat-num" id="intNewPartners">0</div>
+                <div class="dv-istat-label">New Partners</div>
+              </div>
+              <div class="dv-istat">
+                <div class="dv-istat-num" id="intBids">0</div>
+                <div class="dv-istat-label">Marketplace Bids</div>
+              </div>
+              <div class="dv-istat">
+                <div class="dv-istat-num" id="intAlerts">0</div>
+                <div class="dv-istat-label">Active Alerts</div>
+              </div>
+              <div class="dv-istat">
+                <div class="dv-istat-num" id="intContainers">5</div>
+                <div class="dv-istat-label">Tracked Containers</div>
+              </div>
+              <div class="dv-istat">
+                <div class="dv-istat-num" id="intThreatLevel">LOW</div>
+                <div class="dv-istat-label">Threat Level</div>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div class="dv-divinity-ai">
-          <h3>🧠 DivinityVX AI Status</h3>
-          <div class="dv-ai-grid">
-            <div class="dv-ai-card">
-              <div class="dv-ai-label">Neural Routing</div>
-              <div class="dv-ai-bar"><div class="dv-ai-fill" style="width:94%"></div></div>
-              <div class="dv-ai-val">94% Optimal</div>
-            </div>
-            <div class="dv-ai-card">
-              <div class="dv-ai-label">Pattern Recognition</div>
-              <div class="dv-ai-bar"><div class="dv-ai-fill" style="width:87%"></div></div>
-              <div class="dv-ai-val">87% Confidence</div>
-            </div>
-            <div class="dv-ai-card">
-              <div class="dv-ai-label">Decision Accuracy</div>
-              <div class="dv-ai-bar"><div class="dv-ai-fill" style="width:91%"></div></div>
-              <div class="dv-ai-val">91% Verified</div>
-            </div>
-            <div class="dv-ai-card">
-              <div class="dv-ai-label">Self-Learning Rate</div>
-              <div class="dv-ai-bar"><div class="dv-ai-fill" style="width:78%" style="background:#a78bfa"></div></div>
-              <div class="dv-ai-val">↑ 78% Active</div>
+            <div class="dv-intel-feed" id="intelFeed">
+              <div class="dv-feed-item boot">
+                <span class="dv-feed-time"
+                  >${new Date().toLocaleTimeString()}</span
+                >
+                <span class="dv-feed-type system">SYSTEM</span>
+                <span class="dv-feed-msg"
+                  >DivinityVX neural interface initializing...</span
+                >
+              </div>
             </div>
           </div>
-          <div class="dv-ai-insight" id="aiInsight">
-            <span class="dv-ai-insight-label">AI Insight:</span>
-            <span id="aiInsightText">Analyzing platform data streams...</span>
+
+          <div class="dv-divinity-ai">
+            <h3>🧠 DivinityVX AI Status</h3>
+            <div class="dv-ai-grid">
+              <div class="dv-ai-card">
+                <div class="dv-ai-label">Neural Routing</div>
+                <div class="dv-ai-bar">
+                  <div class="dv-ai-fill" style="width: 94%"></div>
+                </div>
+                <div class="dv-ai-val">94% Optimal</div>
+              </div>
+              <div class="dv-ai-card">
+                <div class="dv-ai-label">Pattern Recognition</div>
+                <div class="dv-ai-bar">
+                  <div class="dv-ai-fill" style="width: 87%"></div>
+                </div>
+                <div class="dv-ai-val">87% Confidence</div>
+              </div>
+              <div class="dv-ai-card">
+                <div class="dv-ai-label">Decision Accuracy</div>
+                <div class="dv-ai-bar">
+                  <div class="dv-ai-fill" style="width: 91%"></div>
+                </div>
+                <div class="dv-ai-val">91% Verified</div>
+              </div>
+              <div class="dv-ai-card">
+                <div class="dv-ai-label">Self-Learning Rate</div>
+                <div class="dv-ai-bar">
+                  <div
+                    class="dv-ai-fill"
+                    style="width: 78%"
+                    style="background: #a78bfa"
+                  ></div>
+                </div>
+                <div class="dv-ai-val">↑ 78% Active</div>
+              </div>
+            </div>
+            <div class="dv-ai-insight" id="aiInsight">
+              <span class="dv-ai-insight-label">AI Insight:</span>
+              <span id="aiInsightText">Analyzing platform data streams...</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- ══════════════════════════════════════════
+      <!-- ══════════════════════════════════════════
          PANEL 2: Security
     ══════════════════════════════════════════ -->
-    <div class="dv-panel" id="panel-security">
-      <div class="dv-panel-inner">
-        <div class="dv-section-header">
-          <h2>🔒 Security Command</h2>
-          <div class="dv-section-actions">
-            <button class="dv-btn sm" onclick="runSecurityScan()">▶ Run Scan</button>
-          </div>
-        </div>
-
-        <div class="dv-security-overview">
-          <div class="dv-sec-score">
-            <div class="dv-sec-circle">
-              <span class="dv-sec-num" id="secScore">94</span>
-              <span class="dv-sec-unit">/100</span>
+      <div class="dv-panel" id="panel-security">
+        <div class="dv-panel-inner">
+          <div class="dv-section-header">
+            <h2>🔒 Security Command</h2>
+            <div class="dv-section-actions">
+              <button class="dv-btn sm" onclick="runSecurityScan()">
+                ▶ Run Scan
+              </button>
             </div>
-            <div class="dv-sec-label">Security Score</div>
-            <div class="dv-sec-status" id="secStatus">🟢 SECURE</div>
           </div>
-          <div class="dv-sec-metrics">
-            <div class="dv-sec-metric"><span>Zero-Trust Policy</span><span class="badge green">✓ ENFORCED</span></div>
-            <div class="dv-sec-metric"><span>mTLS Encryption</span><span class="badge green">✓ ACTIVE</span></div>
-            <div class="dv-sec-metric"><span>Audit Trail</span><span class="badge green">✓ BLOCKCHAIN</span></div>
-            <div class="dv-sec-metric"><span>Copy Protection</span><span class="badge green">✓ SHIELD.JS</span></div>
-            <div class="dv-sec-metric"><span>CSP Headers</span><span class="badge green">✓ CONFIGURED</span></div>
-            <div class="dv-sec-metric"><span>CORS Policy</span><span class="badge yellow">⚠ OPEN /public</span></div>
-            <div class="dv-sec-metric"><span>Auth Gate</span><span class="badge green">✓ COMMAND CODE</span></div>
-            <div class="dv-sec-metric"><span>External Dynasty CORS</span><span class="badge yellow">⚠ MONITORING</span></div>
-          </div>
-        </div>
 
-        <div class="dv-threat-matrix">
-          <h3>Threat Assessment Matrix</h3>
-          <div class="dv-threat-grid" id="threatGrid">
-            <div class="dv-threat-item low"><span class="th-cat">Unauthorized Access</span><span class="th-level">LOW</span><span class="th-detail">Auth gate active, 0 failed attempts</span></div>
-            <div class="dv-threat-item low"><span class="th-cat">Data Exfiltration</span><span class="th-level">LOW</span><span class="th-detail">Shield.js copy protection enabled</span></div>
-            <div class="dv-threat-item medium"><span class="th-cat">CORS Exposure</span><span class="th-level">MEDIUM</span><span class="th-detail">/api/public/* open — monitoring</span></div>
-            <div class="dv-threat-item low"><span class="th-cat">Blockchain Integrity</span><span class="th-level">VERIFIED</span><span class="th-detail">Codex audit trail active on Sepolia</span></div>
-            <div class="dv-threat-item low"><span class="th-cat">Partner Access</span><span class="th-level">LOW</span><span class="th-detail">Onboarding portal isolated</span></div>
-            <div class="dv-threat-item low"><span class="th-cat">Logistics Exposure</span><span class="th-level">LOW</span><span class="th-detail">API endpoints protected</span></div>
+          <div class="dv-security-overview">
+            <div class="dv-sec-score">
+              <div class="dv-sec-circle">
+                <span class="dv-sec-num" id="secScore">94</span>
+                <span class="dv-sec-unit">/100</span>
+              </div>
+              <div class="dv-sec-label">Security Score</div>
+              <div class="dv-sec-status" id="secStatus">🟢 SECURE</div>
+            </div>
+            <div class="dv-sec-metrics">
+              <div class="dv-sec-metric">
+                <span>Zero-Trust Policy</span
+                ><span class="badge green">✓ ENFORCED</span>
+              </div>
+              <div class="dv-sec-metric">
+                <span>mTLS Encryption</span
+                ><span class="badge green">✓ ACTIVE</span>
+              </div>
+              <div class="dv-sec-metric">
+                <span>Audit Trail</span
+                ><span class="badge green">✓ BLOCKCHAIN</span>
+              </div>
+              <div class="dv-sec-metric">
+                <span>Copy Protection</span
+                ><span class="badge green">✓ SHIELD.JS</span>
+              </div>
+              <div class="dv-sec-metric">
+                <span>CSP Headers</span
+                ><span class="badge green">✓ CONFIGURED</span>
+              </div>
+              <div class="dv-sec-metric">
+                <span>CORS Policy</span
+                ><span class="badge yellow">⚠ OPEN /public</span>
+              </div>
+              <div class="dv-sec-metric">
+                <span>Auth Gate</span
+                ><span class="badge green">✓ COMMAND CODE</span>
+              </div>
+              <div class="dv-sec-metric">
+                <span>External Dynasty CORS</span
+                ><span class="badge yellow">⚠ MONITORING</span>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="dv-audit-log">
-          <h3>📋 Codex Audit Log</h3>
-          <div class="dv-audit-table-wrap">
-            <table class="dv-table" id="auditTable">
-              <thead><tr><th>Time</th><th>Event Type</th><th>Actor</th><th>Detail</th><th>Status</th></tr></thead>
-              <tbody id="auditBody"><tr><td colspan="5" class="dv-loading">Loading audit log...</td></tr></tbody>
-            </table>
+          <div class="dv-threat-matrix">
+            <h3>Threat Assessment Matrix</h3>
+            <div class="dv-threat-grid" id="threatGrid">
+              <div class="dv-threat-item low">
+                <span class="th-cat">Unauthorized Access</span
+                ><span class="th-level">LOW</span
+                ><span class="th-detail"
+                  >Auth gate active, 0 failed attempts</span
+                >
+              </div>
+              <div class="dv-threat-item low">
+                <span class="th-cat">Data Exfiltration</span
+                ><span class="th-level">LOW</span
+                ><span class="th-detail"
+                  >Shield.js copy protection enabled</span
+                >
+              </div>
+              <div class="dv-threat-item medium">
+                <span class="th-cat">CORS Exposure</span
+                ><span class="th-level">MEDIUM</span
+                ><span class="th-detail">/api/public/* open — monitoring</span>
+              </div>
+              <div class="dv-threat-item low">
+                <span class="th-cat">Blockchain Integrity</span
+                ><span class="th-level">VERIFIED</span
+                ><span class="th-detail"
+                  >Codex audit trail active on Sepolia</span
+                >
+              </div>
+              <div class="dv-threat-item low">
+                <span class="th-cat">Partner Access</span
+                ><span class="th-level">LOW</span
+                ><span class="th-detail">Onboarding portal isolated</span>
+              </div>
+              <div class="dv-threat-item low">
+                <span class="th-cat">Logistics Exposure</span
+                ><span class="th-level">LOW</span
+                ><span class="th-detail">API endpoints protected</span>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="dv-self-appraisal">
-          <h3>🔍 Self-Learning Security Appraisal</h3>
-          <div class="dv-appraisal-actions">
-            <button class="dv-btn" onclick="runAppraisal()">▶ Run Full Appraisal</button>
-            <button class="dv-btn secondary" onclick="scheduledScan()">📅 Schedule Scan</button>
+          <div class="dv-audit-log">
+            <h3>📋 Codex Audit Log</h3>
+            <div class="dv-audit-table-wrap">
+              <table class="dv-table" id="auditTable">
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Event Type</th>
+                    <th>Actor</th>
+                    <th>Detail</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="auditBody">
+                  <tr>
+                    <td colspan="5" class="dv-loading">Loading audit log...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div id="appraisalResult" class="dv-appraisal-result" style="display:none"></div>
+
+          <div class="dv-self-appraisal">
+            <h3>🔍 Self-Learning Security Appraisal</h3>
+            <div class="dv-appraisal-actions">
+              <button class="dv-btn" onclick="runAppraisal()">
+                ▶ Run Full Appraisal
+              </button>
+              <button class="dv-btn secondary" onclick="scheduledScan()">
+                📅 Schedule Scan
+              </button>
+            </div>
+            <div
+              id="appraisalResult"
+              class="dv-appraisal-result"
+              style="display: none"
+            ></div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- ══════════════════════════════════════════
+      <!-- ══════════════════════════════════════════
          PANEL 3: AI Appraisal
     ══════════════════════════════════════════ -->
-    <div class="dv-panel" id="panel-appraisal">
-      <div class="dv-panel-inner">
-        <div class="dv-section-header">
-          <h2>📊 AI Self-Learning Appraisal</h2>
-          <div class="dv-section-actions">
-            <button class="dv-btn sm" onclick="runFullAppraisal()">▶ Deep Appraise</button>
-          </div>
-        </div>
-
-        <div class="dv-appraisal-grid">
-          <div class="dv-ap-module">
-            <h4>Platform Performance</h4>
-            <div class="dv-perf-bars">
-              <div class="dv-perf-row"><span>API Response</span><div class="dv-bar"><div class="dv-bar-fill" style="width:96%"></div></div><span>96%</span></div>
-              <div class="dv-perf-row"><span>Build Success</span><div class="dv-bar"><div class="dv-bar-fill" style="width:100%"></div></div><span>100%</span></div>
-              <div class="dv-perf-row"><span>DB Queries</span><div class="dv-bar"><div class="dv-bar-fill" style="width:89%"></div></div><span>89%</span></div>
-              <div class="dv-perf-row"><span>CSS Load</span><div class="dv-bar"><div class="dv-bar-fill" style="width:100%"></div></div><span>100%</span></div>
-              <div class="dv-perf-row"><span>JS Execution</span><div class="dv-bar"><div class="dv-bar-fill" style="width:93%"></div></div><span>93%</span></div>
+      <div class="dv-panel" id="panel-appraisal">
+        <div class="dv-panel-inner">
+          <div class="dv-section-header">
+            <h2>📊 AI Self-Learning Appraisal</h2>
+            <div class="dv-section-actions">
+              <button class="dv-btn sm" onclick="runFullAppraisal()">
+                ▶ Deep Appraise
+              </button>
             </div>
           </div>
 
-          <div class="dv-ap-module">
-            <h4>Module Learning Scores</h4>
-            <div class="dv-learning-scores" id="learningScores">
-              <div class="dv-ls-item"><span>Reverse Logistics</span><div class="dv-ls-bar"><div style="width:88%"></div></div><span class="ls-score">88</span></div>
-              <div class="dv-ls-item"><span>Auction Engine</span><div class="dv-ls-bar"><div style="width:82%"></div></div><span class="ls-score">82</span></div>
-              <div class="dv-ls-item"><span>Container Tracker</span><div class="dv-ls-bar"><div style="width:91%"></div></div><span class="ls-score">91</span></div>
-              <div class="dv-ls-item"><span>Blockchain Registry</span><div class="dv-ls-bar"><div style="width:79%"></div></div><span class="ls-score">79</span></div>
-              <div class="dv-ls-item"><span>Dynasty Sync</span><div class="dv-ls-bar"><div style="width:71%"></div></div><span class="ls-score">71</span></div>
-              <div class="dv-ls-item"><span>Legal Filing</span><div class="dv-ls-bar"><div style="width:95%"></div></div><span class="ls-score">95</span></div>
-            </div>
-          </div>
-
-          <div class="dv-ap-module">
-            <h4>Self-Learning Insights</h4>
-            <div class="dv-insights-list" id="insightsList">
-              <div class="dv-insight-item positive">✅ Container abandonment patterns detected — 2 containers exceed 30-day threshold</div>
-              <div class="dv-insight-item positive">✅ Auction bid volume trending upward — recommend increasing listing frequency</div>
-              <div class="dv-insight-item warning">⚠️ Dynasty Sync CORS errors — external platform may have changed API</div>
-              <div class="dv-insight-item positive">✅ Legal filing rate stable — 0 failed submissions in current session</div>
-              <div class="dv-insight-item info">ℹ️ 28 Dynasty-OS modules documented — recommend quarterly status audit</div>
-              <div class="dv-insight-item info">ℹ️ Partner onboarding active — test results incoming from new members</div>
-            </div>
-          </div>
-
-          <div class="dv-ap-module">
-            <h4>Optimization Recommendations</h4>
-            <div class="dv-recommendations" id="recommendations">
-              <div class="dv-rec-item high">
-                <span class="rec-priority high">HIGH</span>
-                <div><strong>Close abandoned CNTR-005</strong><p>90 days at Port of NY — initiate auction sequence immediately</p></div>
-                <button class="dv-btn sm" onclick="executeRec('close_container', 'CNTR-005')">Execute</button>
-              </div>
-              <div class="dv-rec-item medium">
-                <span class="rec-priority medium">MED</span>
-                <div><strong>Resolve Dynasty CORS</strong><p>External API connection failing — may need updated endpoint URL</p></div>
-                <button class="dv-btn sm" onclick="executeRec('cors_check', null)">Diagnose</button>
-              </div>
-              <div class="dv-rec-item low">
-                <span class="rec-priority low">LOW</span>
-                <div><strong>Ingest all auction feeds</strong><p>5 source feeds not yet ingested — estimated 15,000 new listings</p></div>
-                <button class="dv-btn sm" onclick="executeRec('ingest_feeds', null)">Ingest</button>
+          <div class="dv-appraisal-grid">
+            <div class="dv-ap-module">
+              <h4>Platform Performance</h4>
+              <div class="dv-perf-bars">
+                <div class="dv-perf-row">
+                  <span>API Response</span>
+                  <div class="dv-bar">
+                    <div class="dv-bar-fill" style="width: 96%"></div>
+                  </div>
+                  <span>96%</span>
+                </div>
+                <div class="dv-perf-row">
+                  <span>Build Success</span>
+                  <div class="dv-bar">
+                    <div class="dv-bar-fill" style="width: 100%"></div>
+                  </div>
+                  <span>100%</span>
+                </div>
+                <div class="dv-perf-row">
+                  <span>DB Queries</span>
+                  <div class="dv-bar">
+                    <div class="dv-bar-fill" style="width: 89%"></div>
+                  </div>
+                  <span>89%</span>
+                </div>
+                <div class="dv-perf-row">
+                  <span>CSS Load</span>
+                  <div class="dv-bar">
+                    <div class="dv-bar-fill" style="width: 100%"></div>
+                  </div>
+                  <span>100%</span>
+                </div>
+                <div class="dv-perf-row">
+                  <span>JS Execution</span>
+                  <div class="dv-bar">
+                    <div class="dv-bar-fill" style="width: 93%"></div>
+                  </div>
+                  <span>93%</span>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <div class="dv-appraisal-history">
-          <h4>📈 Appraisal History</h4>
-          <div class="dv-history-chart" id="historyChart">
-            <div class="hc-bar" style="height:82%" title="Session 1: 82%"><span>82</span></div>
-            <div class="hc-bar" style="height:85%" title="Session 2: 85%"><span>85</span></div>
-            <div class="hc-bar" style="height:79%" title="Session 3: 79%"><span>79</span></div>
-            <div class="hc-bar" style="height:91%" title="Session 4: 91%"><span>91</span></div>
-            <div class="hc-bar" style="height:88%" title="Session 5: 88%"><span>88</span></div>
-            <div class="hc-bar active" style="height:94%" title="Current: 94%"><span>94</span></div>
+            <div class="dv-ap-module">
+              <h4>Module Learning Scores</h4>
+              <div class="dv-learning-scores" id="learningScores">
+                <div class="dv-ls-item">
+                  <span>Reverse Logistics</span>
+                  <div class="dv-ls-bar"><div style="width: 88%"></div></div>
+                  <span class="ls-score">88</span>
+                </div>
+                <div class="dv-ls-item">
+                  <span>Auction Engine</span>
+                  <div class="dv-ls-bar"><div style="width: 82%"></div></div>
+                  <span class="ls-score">82</span>
+                </div>
+                <div class="dv-ls-item">
+                  <span>Container Tracker</span>
+                  <div class="dv-ls-bar"><div style="width: 91%"></div></div>
+                  <span class="ls-score">91</span>
+                </div>
+                <div class="dv-ls-item">
+                  <span>Blockchain Registry</span>
+                  <div class="dv-ls-bar"><div style="width: 79%"></div></div>
+                  <span class="ls-score">79</span>
+                </div>
+                <div class="dv-ls-item">
+                  <span>Dynasty Sync</span>
+                  <div class="dv-ls-bar"><div style="width: 71%"></div></div>
+                  <span class="ls-score">71</span>
+                </div>
+                <div class="dv-ls-item">
+                  <span>Legal Filing</span>
+                  <div class="dv-ls-bar"><div style="width: 95%"></div></div>
+                  <span class="ls-score">95</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="dv-ap-module">
+              <h4>Self-Learning Insights</h4>
+              <div class="dv-insights-list" id="insightsList">
+                <div class="dv-insight-item positive">
+                  ✅ Container abandonment patterns detected — 2 containers
+                  exceed 30-day threshold
+                </div>
+                <div class="dv-insight-item positive">
+                  ✅ Auction bid volume trending upward — recommend increasing
+                  listing frequency
+                </div>
+                <div class="dv-insight-item warning">
+                  ⚠️ Dynasty Sync CORS errors — external platform may have
+                  changed API
+                </div>
+                <div class="dv-insight-item positive">
+                  ✅ Legal filing rate stable — 0 failed submissions in current
+                  session
+                </div>
+                <div class="dv-insight-item info">
+                  ℹ️ 28 Dynasty-OS modules documented — recommend quarterly
+                  status audit
+                </div>
+                <div class="dv-insight-item info">
+                  ℹ️ Partner onboarding active — test results incoming from new
+                  members
+                </div>
+              </div>
+            </div>
+
+            <div class="dv-ap-module">
+              <h4>Optimization Recommendations</h4>
+              <div class="dv-recommendations" id="recommendations">
+                <div class="dv-rec-item high">
+                  <span class="rec-priority high">HIGH</span>
+                  <div>
+                    <strong>Close abandoned CNTR-005</strong>
+                    <p>
+                      90 days at Port of NY — initiate auction sequence
+                      immediately
+                    </p>
+                  </div>
+                  <button
+                    class="dv-btn sm"
+                    onclick="executeRec('close_container', 'CNTR-005')"
+                  >
+                    Execute
+                  </button>
+                </div>
+                <div class="dv-rec-item medium">
+                  <span class="rec-priority medium">MED</span>
+                  <div>
+                    <strong>Resolve Dynasty CORS</strong>
+                    <p>
+                      External API connection failing — may need updated
+                      endpoint URL
+                    </p>
+                  </div>
+                  <button
+                    class="dv-btn sm"
+                    onclick="executeRec('cors_check', null)"
+                  >
+                    Diagnose
+                  </button>
+                </div>
+                <div class="dv-rec-item low">
+                  <span class="rec-priority low">LOW</span>
+                  <div>
+                    <strong>Ingest all auction feeds</strong>
+                    <p>
+                      5 source feeds not yet ingested — estimated 15,000 new
+                      listings
+                    </p>
+                  </div>
+                  <button
+                    class="dv-btn sm"
+                    onclick="executeRec('ingest_feeds', null)"
+                  >
+                    Ingest
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="hc-labels"><span>S1</span><span>S2</span><span>S3</span><span>S4</span><span>S5</span><span>Now</span></div>
-          <div class="dv-trend">↑ Platform intelligence improving +12% over 6 sessions. Self-learning active.</div>
+
+          <div class="dv-appraisal-history">
+            <h4>📈 Appraisal History</h4>
+            <div class="dv-history-chart" id="historyChart">
+              <div class="hc-bar" style="height: 82%" title="Session 1: 82%">
+                <span>82</span>
+              </div>
+              <div class="hc-bar" style="height: 85%" title="Session 2: 85%">
+                <span>85</span>
+              </div>
+              <div class="hc-bar" style="height: 79%" title="Session 3: 79%">
+                <span>79</span>
+              </div>
+              <div class="hc-bar" style="height: 91%" title="Session 4: 91%">
+                <span>91</span>
+              </div>
+              <div class="hc-bar" style="height: 88%" title="Session 5: 88%">
+                <span>88</span>
+              </div>
+              <div
+                class="hc-bar active"
+                style="height: 94%"
+                title="Current: 94%"
+              >
+                <span>94</span>
+              </div>
+            </div>
+            <div class="hc-labels">
+              <span>S1</span><span>S2</span><span>S3</span><span>S4</span
+              ><span>S5</span><span>Now</span>
+            </div>
+            <div class="dv-trend">
+              ↑ Platform intelligence improving +12% over 6 sessions.
+              Self-learning active.
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- ══════════════════════════════════════════
+      <!-- ══════════════════════════════════════════
          PANEL 4: Logistics Command
     ══════════════════════════════════════════ -->
-    <div class="dv-panel" id="panel-logistics">
-      <div class="dv-panel-inner">
-        <div class="dv-section-header">
-          <h2>🚚 Logistics Command</h2>
-          <div class="dv-section-actions">
-            <a href="reverse-logistics-dashboard.html" class="dv-btn sm" target="_blank">Open Full Dashboard</a>
+      <div class="dv-panel" id="panel-logistics">
+        <div class="dv-panel-inner">
+          <div class="dv-section-header">
+            <h2>🚚 Logistics Command</h2>
+            <div class="dv-section-actions">
+              <a
+                href="reverse-logistics-dashboard.html"
+                class="dv-btn sm"
+                target="_blank"
+                >Open Full Dashboard</a
+              >
+            </div>
+          </div>
+
+          <div class="dv-logistics-overview">
+            <div class="dv-log-stat-grid">
+              <div class="dv-log-stat">
+                <div class="dls-num" id="logContainers">5</div>
+                <div class="dls-label">Containers</div>
+              </div>
+              <div class="dv-log-stat">
+                <div class="dls-num" id="logEligible">3</div>
+                <div class="dls-label">Auction Ready</div>
+              </div>
+              <div class="dv-log-stat">
+                <div class="dls-num" id="logListings">12,847</div>
+                <div class="dls-label">Marketplace Listings</div>
+              </div>
+              <div class="dv-log-stat">
+                <div class="dls-num" id="logAuctions">3,241</div>
+                <div class="dls-label">Live Auctions</div>
+              </div>
+              <div class="dv-log-stat">
+                <div class="dls-num" id="logValue">$48.2M</div>
+                <div class="dls-label">Total Value</div>
+              </div>
+              <div class="dv-log-stat">
+                <div class="dls-num" id="logBids">0</div>
+                <div class="dls-label">Bids Today</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-logistics-panels">
+            <div class="dv-log-panel">
+              <h3>📦 Container Status</h3>
+              <table class="dv-table compact" id="containersCmdTable">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Contents</th>
+                    <th>Port</th>
+                    <th>Status</th>
+                    <th>Days</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="containersCmdBody">
+                  <tr>
+                    <td colspan="6" class="dv-loading">Loading...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="dv-log-panel">
+              <h3>⚡ Quick Commands</h3>
+              <div class="dv-cmd-list">
+                <div class="dv-cmd-item">
+                  <div>
+                    <strong>Initiate Auction</strong>
+                    <p>Flag container for immediate auction listing</p>
+                  </div>
+                  <div class="dv-cmd-inputs">
+                    <input
+                      type="text"
+                      id="cmdContainerId"
+                      placeholder="Container ID"
+                      class="dv-input"
+                    />
+                    <button class="dv-btn" onclick="cmdInitiateAuction()">
+                      Execute
+                    </button>
+                  </div>
+                </div>
+                <div class="dv-cmd-item">
+                  <div>
+                    <strong>Update Container Status</strong>
+                    <p>Change status of tracked container</p>
+                  </div>
+                  <div class="dv-cmd-inputs">
+                    <input
+                      type="text"
+                      id="cmdStatusId"
+                      placeholder="Container ID"
+                      class="dv-input"
+                    />
+                    <select id="cmdNewStatus" class="dv-select">
+                      <option value="abandoned">Abandoned</option>
+                      <option value="seized">Seized</option>
+                      <option value="cleared">Cleared</option>
+                      <option value="delinquent">Delinquent</option>
+                    </select>
+                    <button class="dv-btn" onclick="cmdUpdateStatus()">
+                      Update
+                    </button>
+                  </div>
+                </div>
+                <div class="dv-cmd-item">
+                  <div>
+                    <strong>Ingest All Feeds</strong>
+                    <p>Pull latest listings from all 5 auction sources</p>
+                  </div>
+                  <button class="dv-btn" onclick="cmdIngestFeeds()">
+                    ⚡ Ingest All
+                  </button>
+                </div>
+                <div class="dv-cmd-item">
+                  <div>
+                    <strong>Create Load</strong>
+                    <p>New dispatch load for logistics network</p>
+                  </div>
+                  <div class="dv-cmd-inputs">
+                    <input
+                      type="text"
+                      id="cmdLoadOrigin"
+                      placeholder="Origin"
+                      class="dv-input"
+                    />
+                    <input
+                      type="text"
+                      id="cmdLoadDest"
+                      placeholder="Destination"
+                      class="dv-input"
+                    />
+                    <button class="dv-btn" onclick="cmdCreateLoad()">
+                      Create
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-cmd-log">
+            <h3>📟 Command Log</h3>
+            <div class="dv-cmd-log-feed" id="cmdLogFeed">
+              <div class="dv-cmd-log-item">
+                <span class="cl-time">${new Date().toLocaleTimeString()}</span>
+                <span class="cl-msg">DivinityVX Logistics Command online.</span>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div class="dv-logistics-overview">
-          <div class="dv-log-stat-grid">
-            <div class="dv-log-stat"><div class="dls-num" id="logContainers">5</div><div class="dls-label">Containers</div></div>
-            <div class="dv-log-stat"><div class="dls-num" id="logEligible">3</div><div class="dls-label">Auction Ready</div></div>
-            <div class="dv-log-stat"><div class="dls-num" id="logListings">12,847</div><div class="dls-label">Marketplace Listings</div></div>
-            <div class="dv-log-stat"><div class="dls-num" id="logAuctions">3,241</div><div class="dls-label">Live Auctions</div></div>
-            <div class="dv-log-stat"><div class="dls-num" id="logValue">$48.2M</div><div class="dls-label">Total Value</div></div>
-            <div class="dv-log-stat"><div class="dls-num" id="logBids">0</div><div class="dls-label">Bids Today</div></div>
+      <!-- ══════════════════════════════════════════
+         PANEL 5: Partners & Tests
+    ══════════════════════════════════════════ -->
+      <div class="dv-panel" id="panel-partners">
+        <div class="dv-panel-inner">
+          <div class="dv-section-header">
+            <h2>👥 Partner Activity & Test Results</h2>
+            <div class="dv-section-actions">
+              <button class="dv-btn sm" onclick="refreshPartners()">
+                ↻ Refresh
+              </button>
+              <a
+                href="dynasty-onboarding.html"
+                class="dv-btn sm secondary"
+                target="_blank"
+                >Open Onboarding Portal →</a
+              >
+            </div>
           </div>
-        </div>
 
-        <div class="dv-logistics-panels">
-          <div class="dv-log-panel">
-            <h3>📦 Container Status</h3>
-            <table class="dv-table compact" id="containersCmdTable">
-              <thead><tr><th>ID</th><th>Contents</th><th>Port</th><th>Status</th><th>Days</th><th>Action</th></tr></thead>
-              <tbody id="containersCmdBody"><tr><td colspan="6" class="dv-loading">Loading...</td></tr></tbody>
+          <div class="dv-partner-stats">
+            <div class="dv-ps-card">
+              <div class="dv-ps-num" id="totalPartners">0</div>
+              <div class="dv-ps-label">Total Partners</div>
+            </div>
+            <div class="dv-ps-card">
+              <div class="dv-ps-num" id="activePartners">0</div>
+              <div class="dv-ps-label">Active</div>
+            </div>
+            <div class="dv-ps-card">
+              <div class="dv-ps-num" id="avgScore">—</div>
+              <div class="dv-ps-label">Avg Test Score</div>
+            </div>
+            <div class="dv-ps-card">
+              <div class="dv-ps-num" id="pendingTests">0</div>
+              <div class="dv-ps-label">Pending Review</div>
+            </div>
+          </div>
+
+          <div class="dv-partner-table-wrap">
+            <table class="dv-table" id="partnersTable">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Sovereignty Score</th>
+                  <th>Platform Score</th>
+                  <th>Total</th>
+                  <th>Grade</th>
+                  <th>Joined</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="partnersBody">
+                <tr>
+                  <td colspan="10" class="dv-empty">
+                    No partners yet. Share the onboarding link:
+                    <a href="dynasty-onboarding.html" target="_blank"
+                      >dynasty-onboarding.html</a
+                    >
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
 
-          <div class="dv-log-panel">
-            <h3>⚡ Quick Commands</h3>
-            <div class="dv-cmd-list">
-              <div class="dv-cmd-item">
-                <div><strong>Initiate Auction</strong><p>Flag container for immediate auction listing</p></div>
-                <div class="dv-cmd-inputs">
-                  <input type="text" id="cmdContainerId" placeholder="Container ID" class="dv-input">
-                  <button class="dv-btn" onclick="cmdInitiateAuction()">Execute</button>
+          <div class="dv-test-analysis">
+            <h3>📊 Test Analytics</h3>
+            <div id="testAnalytics" class="dv-test-analytics-grid">
+              <div class="dv-ta-card">
+                <h5>Score Distribution</h5>
+                <div class="dv-score-dist" id="scoreDist">
+                  <div class="sd-empty">No test data yet</div>
                 </div>
               </div>
-              <div class="dv-cmd-item">
-                <div><strong>Update Container Status</strong><p>Change status of tracked container</p></div>
-                <div class="dv-cmd-inputs">
-                  <input type="text" id="cmdStatusId" placeholder="Container ID" class="dv-input">
-                  <select id="cmdNewStatus" class="dv-select">
-                    <option value="abandoned">Abandoned</option>
-                    <option value="seized">Seized</option>
-                    <option value="cleared">Cleared</option>
-                    <option value="delinquent">Delinquent</option>
-                  </select>
-                  <button class="dv-btn" onclick="cmdUpdateStatus()">Update</button>
+              <div class="dv-ta-card">
+                <h5>Role Distribution</h5>
+                <div class="dv-role-dist" id="roleDist">
+                  <div class="sd-empty">No partner data yet</div>
                 </div>
               </div>
-              <div class="dv-cmd-item">
-                <div><strong>Ingest All Feeds</strong><p>Pull latest listings from all 5 auction sources</p></div>
-                <button class="dv-btn" onclick="cmdIngestFeeds()">⚡ Ingest All</button>
-              </div>
-              <div class="dv-cmd-item">
-                <div><strong>Create Load</strong><p>New dispatch load for logistics network</p></div>
-                <div class="dv-cmd-inputs">
-                  <input type="text" id="cmdLoadOrigin" placeholder="Origin" class="dv-input">
-                  <input type="text" id="cmdLoadDest" placeholder="Destination" class="dv-input">
-                  <button class="dv-btn" onclick="cmdCreateLoad()">Create</button>
+              <div class="dv-ta-card">
+                <h5>Hardest Questions</h5>
+                <div id="hardestQ" class="dv-hard-q">
+                  <div class="sd-empty">No test data yet</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="dv-cmd-log">
-          <h3>📟 Command Log</h3>
-          <div class="dv-cmd-log-feed" id="cmdLogFeed">
-            <div class="dv-cmd-log-item">
-              <span class="cl-time">${new Date().toLocaleTimeString()}</span>
-              <span class="cl-msg">DivinityVX Logistics Command online.</span>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
 
-    <!-- ══════════════════════════════════════════
-         PANEL 5: Partners & Tests
-    ══════════════════════════════════════════ -->
-    <div class="dv-panel" id="panel-partners">
-      <div class="dv-panel-inner">
-        <div class="dv-section-header">
-          <h2>👥 Partner Activity & Test Results</h2>
-          <div class="dv-section-actions">
-            <button class="dv-btn sm" onclick="refreshPartners()">↻ Refresh</button>
-            <a href="dynasty-onboarding.html" class="dv-btn sm secondary" target="_blank">Open Onboarding Portal →</a>
-          </div>
-        </div>
-
-        <div class="dv-partner-stats">
-          <div class="dv-ps-card"><div class="dv-ps-num" id="totalPartners">0</div><div class="dv-ps-label">Total Partners</div></div>
-          <div class="dv-ps-card"><div class="dv-ps-num" id="activePartners">0</div><div class="dv-ps-label">Active</div></div>
-          <div class="dv-ps-card"><div class="dv-ps-num" id="avgScore">—</div><div class="dv-ps-label">Avg Test Score</div></div>
-          <div class="dv-ps-card"><div class="dv-ps-num" id="pendingTests">0</div><div class="dv-ps-label">Pending Review</div></div>
-        </div>
-
-        <div class="dv-partner-table-wrap">
-          <table class="dv-table" id="partnersTable">
-            <thead>
-              <tr><th>Name</th><th>Email</th><th>Role</th><th>Sovereignty Score</th><th>Platform Score</th><th>Total</th><th>Grade</th><th>Joined</th><th>Status</th><th>Actions</th></tr>
-            </thead>
-            <tbody id="partnersBody">
-              <tr><td colspan="10" class="dv-empty">No partners yet. Share the onboarding link: <a href="dynasty-onboarding.html" target="_blank">dynasty-onboarding.html</a></td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="dv-test-analysis">
-          <h3>📊 Test Analytics</h3>
-          <div id="testAnalytics" class="dv-test-analytics-grid">
-            <div class="dv-ta-card"><h5>Score Distribution</h5><div class="dv-score-dist" id="scoreDist"><div class="sd-empty">No test data yet</div></div></div>
-            <div class="dv-ta-card"><h5>Role Distribution</h5><div class="dv-role-dist" id="roleDist"><div class="sd-empty">No partner data yet</div></div></div>
-            <div class="dv-ta-card"><h5>Hardest Questions</h5><div id="hardestQ" class="dv-hard-q"><div class="sd-empty">No test data yet</div></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ══════════════════════════════════════════
+      <!-- ══════════════════════════════════════════
          PANEL 6: Platform Health
     ══════════════════════════════════════════ -->
-    <div class="dv-panel" id="panel-platform">
-      <div class="dv-panel-inner">
-        <div class="dv-section-header">
-          <h2>⚙️ Platform Health — All Systems</h2>
-          <div class="dv-section-actions">
-            <button class="dv-btn sm" onclick="runHealthCheck()">▶ Health Check</button>
+      <div class="dv-panel" id="panel-platform">
+        <div class="dv-panel-inner">
+          <div class="dv-section-header">
+            <h2>⚙️ Platform Health — All Systems</h2>
+            <div class="dv-section-actions">
+              <button class="dv-btn sm" onclick="runHealthCheck()">
+                ▶ Health Check
+              </button>
+            </div>
           </div>
-        </div>
 
-        <div class="dv-health-grid" id="healthGrid">
-          <!-- populated by JS -->
-        </div>
-
-        <div class="dv-dynasty-os-status">
-          <h3>⚙️ Dynasty-OS Module Status (28 Modules)</h3>
-          <div class="dv-dos-status-grid" id="dosStatusGrid">
+          <div class="dv-health-grid" id="healthGrid">
             <!-- populated by JS -->
           </div>
+
+          <div class="dv-dynasty-os-status">
+            <h3>⚙️ Dynasty-OS Module Status (28 Modules)</h3>
+            <div class="dv-dos-status-grid" id="dosStatusGrid">
+              <!-- populated by JS -->
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- ══════════════════════════════════════════
+      <!-- ══════════════════════════════════════════
          PANEL 7: Operator Controls
     ══════════════════════════════════════════ -->
-    <div class="dv-panel" id="panel-operator">
-      <div class="dv-panel-inner">
-        <div class="dv-section-header">
-          <h2>⚡ Operator Controls</h2>
-          <p class="dv-panel-desc">Direct sovereign command interface — all actions logged to Codex</p>
-        </div>
+      <div class="dv-panel" id="panel-operator">
+        <div class="dv-panel-inner">
+          <div class="dv-section-header">
+            <h2>⚡ Operator Controls</h2>
+            <p class="dv-panel-desc">
+              Direct sovereign command interface — all actions logged to Codex
+            </p>
+          </div>
 
-        <div class="dv-operator-grid">
-          <div class="dv-op-card">
-            <h4>📜 Legal Commands</h4>
-            <div class="dv-op-actions">
-              <button class="dv-btn" onclick="opCmd('new_filing')">New Filing</button>
-              <button class="dv-btn" onclick="opCmd('form_trust')">Form Trust</button>
-              <button class="dv-btn" onclick="opCmd('form_pma')">Form PMA</button>
-              <button class="dv-btn secondary" onclick="window.open('omega-portal.html','_blank')">Open Omega Portal ↗</button>
+          <div class="dv-operator-grid">
+            <div class="dv-op-card">
+              <h4>📜 Legal Commands</h4>
+              <div class="dv-op-actions">
+                <button class="dv-btn" onclick="opCmd('new_filing')">
+                  New Filing
+                </button>
+                <button class="dv-btn" onclick="opCmd('form_trust')">
+                  Form Trust
+                </button>
+                <button class="dv-btn" onclick="opCmd('form_pma')">
+                  Form PMA
+                </button>
+                <button
+                  class="dv-btn secondary"
+                  onclick="window.open('omega-portal.html','_blank')"
+                >
+                  Open Omega Portal ↗
+                </button>
+              </div>
+            </div>
+            <div class="dv-op-card">
+              <h4>🔗 Blockchain Commands</h4>
+              <div class="dv-op-actions">
+                <button class="dv-btn" onclick="opCmd('anchor_events')">
+                  Anchor Events
+                </button>
+                <button class="dv-btn" onclick="opCmd('verify_integrity')">
+                  Verify Integrity
+                </button>
+                <button
+                  class="dv-btn secondary"
+                  onclick="window.open('codexchain-console.html','_blank')"
+                >
+                  CodexChain ↗
+                </button>
+              </div>
+            </div>
+            <div class="dv-op-card">
+              <h4>♻️ Logistics Commands</h4>
+              <div class="dv-op-actions">
+                <button class="dv-btn" onclick="opCmd('ingest_all_feeds')">
+                  Ingest All Feeds
+                </button>
+                <button class="dv-btn" onclick="opCmd('auction_all_eligible')">
+                  Auction Eligible
+                </button>
+                <button
+                  class="dv-btn secondary"
+                  onclick="window.open('reverse-logistics-dashboard.html','_blank')"
+                >
+                  Rev. Logistics ↗
+                </button>
+              </div>
+            </div>
+            <div class="dv-op-card">
+              <h4>👥 Partner Commands</h4>
+              <div class="dv-op-actions">
+                <button class="dv-btn" onclick="opCmd('broadcast_message')">
+                  Broadcast Message
+                </button>
+                <button class="dv-btn" onclick="opCmd('reset_all_tests')">
+                  Reset Tests
+                </button>
+                <button
+                  class="dv-btn secondary"
+                  onclick="window.open('dynasty-onboarding.html','_blank')"
+                >
+                  Onboarding Portal ↗
+                </button>
+              </div>
+            </div>
+            <div class="dv-op-card">
+              <h4>🔒 Security Commands</h4>
+              <div class="dv-op-actions">
+                <button class="dv-btn" onclick="opCmd('run_full_scan')">
+                  Full Security Scan
+                </button>
+                <button class="dv-btn" onclick="opCmd('rotate_code')">
+                  Rotate Access Code
+                </button>
+                <button class="dv-btn danger" onclick="opCmd('lockdown')">
+                  🔒 LOCKDOWN
+                </button>
+              </div>
+            </div>
+            <div class="dv-op-card">
+              <h4>⚙️ System Commands</h4>
+              <div class="dv-op-actions">
+                <button class="dv-btn" onclick="opCmd('sync_dynasty')">
+                  Sync Dynasty
+                </button>
+                <button class="dv-btn" onclick="opCmd('rebuild_index')">
+                  Rebuild Index
+                </button>
+                <button
+                  class="dv-btn secondary"
+                  onclick="window.open('dynasty-os-modules.html','_blank')"
+                >
+                  Dynasty-OS ↗
+                </button>
+              </div>
             </div>
           </div>
-          <div class="dv-op-card">
-            <h4>🔗 Blockchain Commands</h4>
-            <div class="dv-op-actions">
-              <button class="dv-btn" onclick="opCmd('anchor_events')">Anchor Events</button>
-              <button class="dv-btn" onclick="opCmd('verify_integrity')">Verify Integrity</button>
-              <button class="dv-btn secondary" onclick="window.open('codexchain-console.html','_blank')">CodexChain ↗</button>
-            </div>
-          </div>
-          <div class="dv-op-card">
-            <h4>♻️ Logistics Commands</h4>
-            <div class="dv-op-actions">
-              <button class="dv-btn" onclick="opCmd('ingest_all_feeds')">Ingest All Feeds</button>
-              <button class="dv-btn" onclick="opCmd('auction_all_eligible')">Auction Eligible</button>
-              <button class="dv-btn secondary" onclick="window.open('reverse-logistics-dashboard.html','_blank')">Rev. Logistics ↗</button>
-            </div>
-          </div>
-          <div class="dv-op-card">
-            <h4>👥 Partner Commands</h4>
-            <div class="dv-op-actions">
-              <button class="dv-btn" onclick="opCmd('broadcast_message')">Broadcast Message</button>
-              <button class="dv-btn" onclick="opCmd('reset_all_tests')">Reset Tests</button>
-              <button class="dv-btn secondary" onclick="window.open('dynasty-onboarding.html','_blank')">Onboarding Portal ↗</button>
-            </div>
-          </div>
-          <div class="dv-op-card">
-            <h4>🔒 Security Commands</h4>
-            <div class="dv-op-actions">
-              <button class="dv-btn" onclick="opCmd('run_full_scan')">Full Security Scan</button>
-              <button class="dv-btn" onclick="opCmd('rotate_code')">Rotate Access Code</button>
-              <button class="dv-btn danger" onclick="opCmd('lockdown')">🔒 LOCKDOWN</button>
-            </div>
-          </div>
-          <div class="dv-op-card">
-            <h4>⚙️ System Commands</h4>
-            <div class="dv-op-actions">
-              <button class="dv-btn" onclick="opCmd('sync_dynasty')">Sync Dynasty</button>
-              <button class="dv-btn" onclick="opCmd('rebuild_index')">Rebuild Index</button>
-              <button class="dv-btn secondary" onclick="window.open('dynasty-os-modules.html','_blank')">Dynasty-OS ↗</button>
-            </div>
-          </div>
-        </div>
 
-        <div class="dv-operator-log">
-          <h4>📟 Operator Command Log</h4>
-          <div class="dv-op-log" id="operatorLog">
-            <div class="dv-op-log-item"><span class="ol-time">${new Date().toLocaleTimeString()}</span><span class="ol-cmd">SYSTEM BOOT</span><span class="ol-result">DivinityVX Operator Controls online — Grand Architect authenticated</span></div>
-          </div>
-        </div>
-
-        <div class="dv-broadcast">
-          <h4>📢 Broadcast to All Partners</h4>
-          <div class="dv-broadcast-form">
-            <textarea id="broadcastMsg" placeholder="Enter message to broadcast to all Dynasty partners..." class="dv-textarea" rows="3"></textarea>
-            <div class="dv-broadcast-actions">
-              <select id="broadcastType" class="dv-select">
-                <option value="announcement">📣 Announcement</option>
-                <option value="decree">📜 Sovereign Decree</option>
-                <option value="alert">⚠️ Alert</option>
-                <option value="training">📚 Training Update</option>
-              </select>
-              <button class="dv-btn" onclick="sendBroadcast()">📢 Broadcast</button>
+          <div class="dv-operator-log">
+            <h4>📟 Operator Command Log</h4>
+            <div class="dv-op-log" id="operatorLog">
+              <div class="dv-op-log-item">
+                <span class="ol-time">${new Date().toLocaleTimeString()}</span
+                ><span class="ol-cmd">SYSTEM BOOT</span
+                ><span class="ol-result"
+                  >DivinityVX Operator Controls online — Grand Architect
+                  authenticated</span
+                >
+              </div>
             </div>
           </div>
-          <div class="dv-broadcasts-log" id="broadcastsLog"></div>
+
+          <div class="dv-broadcast">
+            <h4>📢 Broadcast to All Partners</h4>
+            <div class="dv-broadcast-form">
+              <textarea
+                id="broadcastMsg"
+                placeholder="Enter message to broadcast to all Dynasty partners..."
+                class="dv-textarea"
+                rows="3"
+              ></textarea>
+              <div class="dv-broadcast-actions">
+                <select id="broadcastType" class="dv-select">
+                  <option value="announcement">📣 Announcement</option>
+                  <option value="decree">📜 Sovereign Decree</option>
+                  <option value="alert">⚠️ Alert</option>
+                  <option value="training">📚 Training Update</option>
+                </select>
+                <button class="dv-btn" onclick="sendBroadcast()">
+                  📢 Broadcast
+                </button>
+              </div>
+            </div>
+            <div class="dv-broadcasts-log" id="broadcastsLog"></div>
+          </div>
         </div>
       </div>
     </div>
 
-  </div><!-- end command center -->
+      <!-- ══════════════════════════════════════════
+         PANEL 8: Co-Pilot Live — Grand Architect Mirror
+      ══════════════════════════════════════════ -->
+      <div class="dv-panel" id="panel-copilot">
+        <div class="dv-panel-inner">
+          <div class="dv-section-header">
+            <h2>🤝 Co-Pilot Live — Grand Architect Mirror</h2>
+            <div class="dv-section-actions">
+              <span id="cpLiveIndicator" style="font-size:0.65rem;color:#00ff88;text-transform:uppercase;letter-spacing:0.1em;border:1px solid rgba(0,255,136,0.3);padding:0.2rem 0.6rem;border-radius:2px;">⬤ LIVE</span>
+              <button class="dv-btn sm" onclick="clearCopilotFeed()">Clear</button>
+            </div>
+          </div>
 
-  <script>
-    // ── Auth ──
-    const COMMAND_CODE = 'KING2026';
-    let authenticated = false;
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+            <!-- Live Action Feed -->
+            <div>
+              <div style="font-size:0.65rem;color:#00d4ff;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.75rem;font-weight:700;">📡 Grand Architect Activity Stream</div>
+              <div id="cpActionFeed" style="background:rgba(0,0,0,0.4);border:1px solid rgba(0,212,255,0.15);border-radius:4px;height:380px;overflow-y:auto;padding:0.75rem;font-size:0.7rem;font-family:'Courier New',monospace;"></div>
+              <div style="margin-top:0.5rem;display:flex;gap:0.5rem;align-items:center;">
+                <span id="cpActCount" style="font-size:0.62rem;color:#4a6580;">0 actions logged</span>
+                <button class="dv-btn sm" onclick="refreshCopilotFeed()" style="margin-left:auto;">↻ Refresh</button>
+              </div>
+            </div>
 
-    document.getElementById('authCode').addEventListener('keydown', e => { if (e.key === 'Enter') authenticate(); });
+            <!-- Command Panel -->
+            <div>
+              <div style="font-size:0.65rem;color:#9b4dff;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.75rem;font-weight:700;">📤 Send Command to Grand Architect</div>
+              <div style="display:flex;flex-direction:column;gap:0.75rem;">
+                <select id="cpCmdTarget" class="dv-select">
+                  <option value="all">All Active Pages</option>
+                  <option value="index.html">Homepage</option>
+                  <option value="reverse-logistics-dashboard.html">Reverse Logistics</option>
+                  <option value="dynasty-onboarding.html">Carrier Portal</option>
+                  <option value="omega-portal.html">Omega Portal</option>
+                  <option value="logistics-ops.html">Logistics Ops</option>
+                </select>
+                <textarea id="cpCmdMsg" class="dv-textarea" rows="4" placeholder="Enter command or message to send to the Grand Architect on active page..."></textarea>
+                <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                  <button class="dv-btn" onclick="sendCopilotCommand()">📡 Send Command</button>
+                  <button class="dv-btn sm" onclick="quickCmd('NAVIGATE: reverse-logistics-dashboard.html')">🚚 Go Logistics</button>
+                  <button class="dv-btn sm" onclick="quickCmd('ALERT: Review new carrier applications')">👥 Carrier Alert</button>
+                  <button class="dv-btn sm" onclick="quickCmd('STATUS: All systems nominal — continue operations')">✅ Status OK</button>
+                </div>
+              </div>
 
-    function authenticate() {
-      const code = document.getElementById('authCode').value;
-      if (code === COMMAND_CODE) {
-        authenticated = true;
-        document.getElementById('authGate').style.display = 'none';
-        document.getElementById('commandCenter').style.display = 'block';
-        logOperator('AUTHENTICATED', 'Grand Architect access granted');
-        initCommandCenter();
-      } else {
-        document.getElementById('authError').style.display = 'block';
-        document.getElementById('authCode').value = '';
-        logCodexEvent('FAILED_AUTH', { code: '***', timestamp: new Date().toISOString() });
-      }
-    }
+              <!-- Operator Signals Received -->
+              <div style="margin-top:1.5rem;">
+                <div style="font-size:0.65rem;color:#00d4ff;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.5rem;font-weight:700;">📥 Incoming Signals from GA</div>
+                <div id="cpSignalFeed" style="background:rgba(0,0,0,0.3);border:1px solid rgba(155,77,255,0.15);border-radius:4px;height:140px;overflow-y:auto;padding:0.6rem;font-size:0.68rem;"></div>
+              </div>
 
-    function lockSystem() {
-      authenticated = false;
-      document.getElementById('commandCenter').style.display = 'none';
-      document.getElementById('authGate').style.display = 'flex';
-      document.getElementById('authCode').value = '';
-    }
+              <!-- Active Page Map -->
+              <div style="margin-top:1.5rem;">
+                <div style="font-size:0.65rem;color:#00d4ff;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.5rem;font-weight:700;">🗺 Active Pages (Last 5 min)</div>
+                <div id="cpPageMap" style="display:flex;flex-wrap:wrap;gap:0.4rem;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    // ── Clock ──
-    function updateClock() {
-      document.getElementById('dvClock').textContent = new Date().toLocaleTimeString();
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
+      <!-- ══════════════════════════════════════════
+         PANEL 9: Logistics Ops — Local / National / Global
+      ══════════════════════════════════════════ -->
+      <div class="dv-panel" id="panel-logistics-ops">
+        <div class="dv-panel-inner">
+          <div class="dv-section-header">
+            <h2>🚚 Logistics Operations Center</h2>
+            <div class="dv-section-actions">
+              <span style="font-size:0.62rem;color:#00ff88;border:1px solid rgba(0,255,136,0.3);padding:0.2rem 0.5rem;border-radius:2px;">⬤ LIVE</span>
+              <button class="dv-btn sm" onclick="refreshLogisticsOps()">↻ Refresh All</button>
+              <a href="reverse-logistics-dashboard.html" class="dv-btn sm">♻️ Rev. Logistics</a>
+            </div>
+          </div>
 
-    // ── Panel Navigation ──
-    document.querySelectorAll('.dv-nav-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.dv-nav-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.dv-panel').forEach(p => p.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById('panel-' + btn.dataset.panel).classList.add('active');
+          <!-- Tier Tabs -->
+          <div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;border-bottom:1px solid rgba(0,212,255,0.12);padding-bottom:0.75rem;">
+            <button class="dv-btn ops-tier-btn active-tier" data-tier="local" onclick="showTier('local')">📍 Local / Last-Mile</button>
+            <button class="dv-btn ops-tier-btn" data-tier="national" onclick="showTier('national')">🌎 National / OTR</button>
+            <button class="dv-btn ops-tier-btn" data-tier="global" onclick="showTier('global')">🌐 Global / Intermodal</button>
+            <button class="dv-btn ops-tier-btn" data-tier="drivers" onclick="showTier('drivers')">👤 Driver Management</button>
+            <button class="dv-btn ops-tier-btn" data-tier="dispatch" onclick="showTier('dispatch')">📡 Dispatch</button>
+          </div>
+
+          <!-- Local Tier -->
+          <div class="ops-tier" id="tier-local">
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem;" id="localStats">
+              <div class="dv-istat"><div class="dv-istat-num" id="localStat1">—</div><div class="dv-istat-label">Active Local Loads</div></div>
+              <div class="dv-istat"><div class="dv-istat-num" id="localStat2">—</div><div class="dv-istat-label">Same-Day Jobs</div></div>
+              <div class="dv-istat"><div class="dv-istat-num" id="localStat3">—</div><div class="dv-istat-label">Last-Mile Stops</div></div>
+              <div class="dv-istat"><div class="dv-istat-num" id="localStat4">—</div><div class="dv-istat-label">Couriers Active</div></div>
+            </div>
+            <div style="font-size:0.65rem;color:#00d4ff;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;font-weight:700;">📦 Local / Last-Mile Load Board</div>
+            <div id="localLoadTable" style="background:rgba(0,0,0,0.3);border:1px solid rgba(0,212,255,0.1);border-radius:4px;overflow:hidden;"></div>
+            <div style="margin-top:1rem;display:flex;gap:0.5rem;">
+              <button class="dv-btn sm" onclick="createLoad('local')">+ New Local Load</button>
+              <button class="dv-btn sm" onclick="loadTierData('local')">↻ Refresh</button>
+            </div>
+          </div>
+
+          <!-- National Tier -->
+          <div class="ops-tier" id="tier-national" style="display:none;">
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem;">
+              <div class="dv-istat"><div class="dv-istat-num" id="natStat1">—</div><div class="dv-istat-label">OTR Loads Active</div></div>
+              <div class="dv-istat"><div class="dv-istat-num" id="natStat2">—</div><div class="dv-istat-label">LTL Shipments</div></div>
+              <div class="dv-istat"><div class="dv-istat-num" id="natStat3">—</div><div class="dv-istat-label">Avg Load Value</div></div>
+              <div class="dv-istat"><div class="dv-istat-num" id="natStat4">—</div><div class="dv-istat-label">On-Time %</div></div>
+            </div>
+            <div style="font-size:0.65rem;color:#00d4ff;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;font-weight:700;">🌎 National Load Board (OTR / LTL / FTL)</div>
+            <div id="natLoadTable" style="background:rgba(0,0,0,0.3);border:1px solid rgba(0,212,255,0.1);border-radius:4px;overflow:hidden;"></div>
+            <div style="margin-top:1rem;display:flex;gap:0.5rem;">
+              <button class="dv-btn sm" onclick="createLoad('national')">+ New National Load</button>
+              <button class="dv-btn sm" onclick="loadTierData('national')">↻ Refresh</button>
+            </div>
+          </div>
+
+          <!-- Global Tier -->
+          <div class="ops-tier" id="tier-global" style="display:none;">
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem;">
+              <div class="dv-istat"><div class="dv-istat-num" id="glbStat1">—</div><div class="dv-istat-label">Active Containers</div></div>
+              <div class="dv-istat"><div class="dv-istat-num" id="glbStat2">—</div><div class="dv-istat-label">Port Operations</div></div>
+              <div class="dv-istat"><div class="dv-istat-num" id="glbStat3">—</div><div class="dv-istat-label">Cross-Border</div></div>
+              <div class="dv-istat"><div class="dv-istat-num" id="glbStat4">—</div><div class="dv-istat-label">Auction Value</div></div>
+            </div>
+            <div style="font-size:0.65rem;color:#00d4ff;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;font-weight:700;">🌐 Global / Intermodal / Container Operations</div>
+            <div id="glbContainerTable" style="background:rgba(0,0,0,0.3);border:1px solid rgba(0,212,255,0.1);border-radius:4px;overflow:hidden;"></div>
+            <div style="margin-top:1rem;display:flex;gap:0.5rem;">
+              <a href="reverse-logistics-dashboard.html" class="dv-btn sm">🌐 Full Container Dashboard</a>
+              <button class="dv-btn sm" onclick="loadTierData('global')">↻ Refresh</button>
+            </div>
+          </div>
+
+          <!-- Driver Management -->
+          <div class="ops-tier" id="tier-drivers" style="display:none;">
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem;">
+              <div class="dv-istat"><div class="dv-istat-num" id="drvStat1">—</div><div class="dv-istat-label">Total Drivers</div></div>
+              <div class="dv-istat"><div class="dv-istat-num" id="drvStat2">—</div><div class="dv-istat-label">Available Now</div></div>
+              <div class="dv-istat"><div class="dv-istat-num" id="drvStat3">—</div><div class="dv-istat-label">On Dispatch</div></div>
+              <div class="dv-istat"><div class="dv-istat-num" id="drvStat4">—</div><div class="dv-istat-label">Avg SLA Score</div></div>
+            </div>
+            <div style="font-size:0.65rem;color:#00d4ff;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;font-weight:700;">👤 Driver Roster</div>
+            <div id="driverTable" style="background:rgba(0,0,0,0.3);border:1px solid rgba(0,212,255,0.1);border-radius:4px;overflow:hidden;"></div>
+            <div style="margin-top:1rem;display:flex;gap:0.5rem;">
+              <button class="dv-btn sm" onclick="addDriver()">+ Register Driver</button>
+              <button class="dv-btn sm" onclick="loadTierData('drivers')">↻ Refresh</button>
+            </div>
+          </div>
+
+          <!-- Dispatch -->
+          <div class="ops-tier" id="tier-dispatch" style="display:none;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+              <div>
+                <div style="font-size:0.65rem;color:#00d4ff;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem;font-weight:700;">📡 Dispatch Console</div>
+                <div style="display:flex;flex-direction:column;gap:0.6rem;">
+                  <select class="dv-select" id="dispatchDriver"><option value="">Select Driver...</option></select>
+                  <select class="dv-select" id="dispatchLoad"><option value="">Select Load...</option></select>
+                  <select class="dv-select" id="dispatchTier">
+                    <option value="local">Local / Last-Mile</option>
+                    <option value="national">National / OTR</option>
+                    <option value="global">Global / Intermodal</option>
+                  </select>
+                  <input type="text" class="dv-input" id="dispatchNotes" placeholder="Dispatch notes or instructions...">
+                  <button class="dv-btn" onclick="dispatchLoad()">📡 DISPATCH NOW</button>
+                </div>
+              </div>
+              <div>
+                <div style="font-size:0.65rem;color:#00d4ff;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem;font-weight:700;">📋 Active Dispatches</div>
+                <div id="activeDispatches" style="background:rgba(0,0,0,0.3);border:1px solid rgba(0,212,255,0.1);border-radius:4px;height:300px;overflow-y:auto;padding:0.5rem;font-size:0.72rem;"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <!-- end command center -->
+
+    <script>
+      // ── Auth ──
+      const COMMAND_CODE = "KING2026";
+      let authenticated = false;
+
+      document.getElementById("authCode").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") authenticate();
       });
-    });
 
-    // ── Codex Event Logger ──
-    async function logCodexEvent(type, data) {
-      await fetch('/api/codex/events', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ type, data, source: 'DIVINITY_COMMAND_CENTER', timestamp: new Date().toISOString() })
-      }).catch(() => {});
-    }
+      function authenticate() {
+        const code = document.getElementById("authCode").value;
+        if (code === COMMAND_CODE) {
+          authenticated = true;
+          document.getElementById("authGate").style.display = "none";
+          document.getElementById("commandCenter").style.display = "block";
+          logOperator("AUTHENTICATED", "Grand Architect access granted");
+          initCommandCenter();
+        } else {
+          document.getElementById("authError").style.display = "block";
+          document.getElementById("authCode").value = "";
+          logCodexEvent("FAILED_AUTH", {
+            code: "***",
+            timestamp: new Date().toISOString(),
+          });
+        }
+      }
 
-    // ── Intel Feed ──
-    const feedMessages = [
-      { type: 'logistics', msg: 'CNTR-001 at Port of LA — 45 days — auction eligible' },
-      { type: 'system', msg: 'Dynasty-OS service mesh health check passed' },
-      { type: 'marketplace', msg: 'Marketplace: 12,847 active listings across 5 source networks' },
-      { type: 'security', msg: 'Zero-trust policy enforced — all requests authenticated' },
-      { type: 'partner', msg: 'Partner onboarding portal active — awaiting registrations' },
-      { type: 'blockchain', msg: 'CodexChain anchor — Sepolia block sync confirmed' },
-      { type: 'ai', msg: 'DivinityVX neural pathways: 94% optimal routing efficiency' },
-      { type: 'logistics', msg: 'CNTR-005 critical — 90 days Port of NY — immediate action required' },
-      { type: 'system', msg: 'Auto-restarter service: all Dynasty-OS modules nominal' },
-      { type: 'ai', msg: 'Self-learning rate: ↑ 78% — pattern recognition improving' }
-    ];
+      function lockSystem() {
+        authenticated = false;
+        document.getElementById("commandCenter").style.display = "none";
+        document.getElementById("authGate").style.display = "flex";
+        document.getElementById("authCode").value = "";
+      }
 
-    let feedIndex = 0;
-    function appendFeedItem(type, msg, isLive = false) {
-      const feed = document.getElementById('intelFeed');
-      const item = document.createElement('div');
-      item.className = `dv-feed-item ${isLive ? 'live' : ''}`;
-      item.innerHTML = `<span class="dv-feed-time">${new Date().toLocaleTimeString()}</span><span class="dv-feed-type ${type}">${type.toUpperCase()}</span><span class="dv-feed-msg">${msg}</span>`;
-      feed.insertBefore(item, feed.firstChild);
-      if (feed.children.length > 50) feed.removeChild(feed.lastChild);
-    }
+      // ── Clock ──
+      function updateClock() {
+        document.getElementById("dvClock").textContent =
+          new Date().toLocaleTimeString();
+      }
+      setInterval(updateClock, 1000);
+      updateClock();
 
-    function refreshIntelligence() {
-      feedMessages.forEach((f, i) => setTimeout(() => appendFeedItem(f.type, f.msg), i * 300));
-      loadIntelStats();
-    }
+      // ── Panel Navigation ──
+      document.querySelectorAll(".dv-nav-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".dv-nav-btn")
+            .forEach((b) => b.classList.remove("active"));
+          document
+            .querySelectorAll(".dv-panel")
+            .forEach((p) => p.classList.remove("active"));
+          btn.classList.add("active");
+          document
+            .getElementById("panel-" + btn.dataset.panel)
+            .classList.add("active");
+        });
+      });
 
-    function clearIntelligence() {
-      document.getElementById('intelFeed').innerHTML = '<div class="dv-feed-item system"><span class="dv-feed-time">' + new Date().toLocaleTimeString() + '</span><span class="dv-feed-type system">SYSTEM</span><span class="dv-feed-msg">Intelligence feed cleared by Grand Architect.</span></div>';
-    }
+      // ── Codex Event Logger ──
+      async function logCodexEvent(type, data) {
+        await fetch("/api/codex/events", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type,
+            data,
+            source: "DIVINITY_COMMAND_CENTER",
+            timestamp: new Date().toISOString(),
+          }),
+        }).catch(() => {});
+      }
 
-    async function loadIntelStats() {
-      try {
-        const r = await fetch('/api/codex/events?limit=100');
-        const d = await r.json();
-        document.getElementById('intTotalEvents').textContent = (d.total || d.events?.length || 0).toLocaleString();
-      } catch (e) {}
-      try {
-        const r = await fetch('/api/onboarding/partners');
-        const d = await r.json();
-        document.getElementById('intNewPartners').textContent = d.total || 0;
-      } catch (e) {}
-      try {
-        const r = await fetch('/api/reverse-logistics/stats');
-        const d = await r.json();
-        document.getElementById('intContainers').textContent = d.totalContainers || 5;
-      } catch (e) {}
-    }
+      // ── Intel Feed ──
+      const feedMessages = [
+        {
+          type: "logistics",
+          msg: "CNTR-001 at Port of LA — 45 days — auction eligible",
+        },
+        { type: "system", msg: "Dynasty-OS service mesh health check passed" },
+        {
+          type: "marketplace",
+          msg: "Marketplace: 12,847 active listings across 5 source networks",
+        },
+        {
+          type: "security",
+          msg: "Zero-trust policy enforced — all requests authenticated",
+        },
+        {
+          type: "partner",
+          msg: "Partner onboarding portal active — awaiting registrations",
+        },
+        {
+          type: "blockchain",
+          msg: "CodexChain anchor — Sepolia block sync confirmed",
+        },
+        {
+          type: "ai",
+          msg: "DivinityVX neural pathways: 94% optimal routing efficiency",
+        },
+        {
+          type: "logistics",
+          msg: "CNTR-005 critical — 90 days Port of NY — immediate action required",
+        },
+        {
+          type: "system",
+          msg: "Auto-restarter service: all Dynasty-OS modules nominal",
+        },
+        {
+          type: "ai",
+          msg: "Self-learning rate: ↑ 78% — pattern recognition improving",
+        },
+      ];
 
-    const aiInsights = [
-      'CNTR-005 at Port of NY (90 days) — initiate auction sequence immediately to recover $15K.',
-      'Marketplace bid volume up — recommend ingesting retail and government feeds now.',
-      'Dynasty Sync CORS errors detected — external platform API may have rotated.',
-      'Partner onboarding portal ready — 0 registrations. Distribute link to expand network.',
-      'Legal filing module at 95% efficiency — highest performing module this session.',
-      'DivinityVX neural routing at 94% — self-optimizing pathways active.',
-      'Zero-trust policy enforcement: 100% — no unauthorized access attempts detected.',
-      'Blockchain anchoring confirmed — all Codex events recorded on Sepolia.'
-    ];
-    let insightIdx = 0;
-    function rotateInsight() {
-      document.getElementById('aiInsightText').textContent = aiInsights[insightIdx % aiInsights.length];
-      insightIdx++;
-    }
+      let feedIndex = 0;
+      function appendFeedItem(type, msg, isLive = false) {
+        const feed = document.getElementById("intelFeed");
+        const item = document.createElement("div");
+        item.className = `dv-feed-item ${isLive ? "live" : ""}`;
+        item.innerHTML = `<span class="dv-feed-time">${new Date().toLocaleTimeString()}</span><span class="dv-feed-type ${type}">${type.toUpperCase()}</span><span class="dv-feed-msg">${msg}</span>`;
+        feed.insertBefore(item, feed.firstChild);
+        if (feed.children.length > 50) feed.removeChild(feed.lastChild);
+      }
 
-    // ── Security ──
-    async function runSecurityScan() {
-      showAlert('🔍 Security scan running...', 'info');
-      await logCodexEvent('SECURITY_SCAN_INITIATED', { initiator: 'GRAND_ARCHITECT' });
-      setTimeout(() => {
-        document.getElementById('secScore').textContent = '94';
-        document.getElementById('secStatus').textContent = '🟢 SECURE';
-        showAlert('✅ Security scan complete. Score: 94/100. No critical threats detected.', 'success');
-        loadAuditLog();
-      }, 2000);
-    }
+      function refreshIntelligence() {
+        feedMessages.forEach((f, i) =>
+          setTimeout(() => appendFeedItem(f.type, f.msg), i * 300),
+        );
+        loadIntelStats();
+      }
 
-    async function runAppraisal() {
-      const el = document.getElementById('appraisalResult');
-      el.style.display = 'block';
-      el.className = 'dv-appraisal-result loading';
-      el.innerHTML = '🔍 Running self-learning security appraisal...';
-      await logCodexEvent('SECURITY_APPRAISAL', { type: 'full' });
-      setTimeout(() => {
-        el.className = 'dv-appraisal-result success';
-        el.innerHTML = `<h4>✅ Security Appraisal Complete</h4>
+      function clearIntelligence() {
+        document.getElementById("intelFeed").innerHTML =
+          '<div class="dv-feed-item system"><span class="dv-feed-time">' +
+          new Date().toLocaleTimeString() +
+          '</span><span class="dv-feed-type system">SYSTEM</span><span class="dv-feed-msg">Intelligence feed cleared by Grand Architect.</span></div>';
+      }
+
+      async function loadIntelStats() {
+        try {
+          const r = await fetch("/api/codex/events?limit=100");
+          const d = await r.json();
+          document.getElementById("intTotalEvents").textContent = (
+            d.total ||
+            d.events?.length ||
+            0
+          ).toLocaleString();
+        } catch (e) {}
+        try {
+          const r = await fetch("/api/onboarding/partners");
+          const d = await r.json();
+          document.getElementById("intNewPartners").textContent = d.total || 0;
+        } catch (e) {}
+        try {
+          const r = await fetch("/api/reverse-logistics/stats");
+          const d = await r.json();
+          document.getElementById("intContainers").textContent =
+            d.totalContainers || 5;
+        } catch (e) {}
+      }
+
+      const aiInsights = [
+        "CNTR-005 at Port of NY (90 days) — initiate auction sequence immediately to recover $15K.",
+        "Marketplace bid volume up — recommend ingesting retail and government feeds now.",
+        "Dynasty Sync CORS errors detected — external platform API may have rotated.",
+        "Partner onboarding portal ready — 0 registrations. Distribute link to expand network.",
+        "Legal filing module at 95% efficiency — highest performing module this session.",
+        "DivinityVX neural routing at 94% — self-optimizing pathways active.",
+        "Zero-trust policy enforcement: 100% — no unauthorized access attempts detected.",
+        "Blockchain anchoring confirmed — all Codex events recorded on Sepolia.",
+      ];
+      let insightIdx = 0;
+      function rotateInsight() {
+        document.getElementById("aiInsightText").textContent =
+          aiInsights[insightIdx % aiInsights.length];
+        insightIdx++;
+      }
+
+      // ── Security ──
+      async function runSecurityScan() {
+        showAlert("🔍 Security scan running...", "info");
+        await logCodexEvent("SECURITY_SCAN_INITIATED", {
+          initiator: "GRAND_ARCHITECT",
+        });
+        setTimeout(() => {
+          document.getElementById("secScore").textContent = "94";
+          document.getElementById("secStatus").textContent = "🟢 SECURE";
+          showAlert(
+            "✅ Security scan complete. Score: 94/100. No critical threats detected.",
+            "success",
+          );
+          loadAuditLog();
+        }, 2000);
+      }
+
+      async function runAppraisal() {
+        const el = document.getElementById("appraisalResult");
+        el.style.display = "block";
+        el.className = "dv-appraisal-result loading";
+        el.innerHTML = "🔍 Running self-learning security appraisal...";
+        await logCodexEvent("SECURITY_APPRAISAL", { type: "full" });
+        setTimeout(() => {
+          el.className = "dv-appraisal-result success";
+          el.innerHTML = `<h4>✅ Security Appraisal Complete</h4>
           <p><strong>Overall Score:</strong> 94/100</p>
           <p><strong>Zero-Trust:</strong> Fully enforced across all endpoints</p>
           <p><strong>Copy Protection:</strong> Shield.js active on all pages</p>
@@ -682,277 +1378,739 @@
           <p><strong>CORS Risk:</strong> Medium — /api/public/* open to all origins</p>
           <p><strong>Recommendation:</strong> Add rate limiting to /api/public/* endpoints</p>
           <p><strong>Self-Learning:</strong> Security patterns updated — 3 new anomaly signatures added</p>`;
-      }, 2500);
-    }
+        }, 2500);
+      }
 
-    function scheduledScan() { showAlert('📅 Security scan scheduled for next boot cycle.', 'info'); }
+      function scheduledScan() {
+        showAlert("📅 Security scan scheduled for next boot cycle.", "info");
+      }
 
-    async function loadAuditLog() {
-      try {
-        const r = await fetch('/api/codex/events?limit=20');
-        const d = await r.json();
-        const events = d.events || d || [];
-        const tbody = document.getElementById('auditBody');
-        if (!events.length) { tbody.innerHTML = '<tr><td colspan="5" class="dv-empty">No events yet</td></tr>'; return; }
-        tbody.innerHTML = events.slice(0,15).map(e => `<tr>
+      async function loadAuditLog() {
+        try {
+          const r = await fetch("/api/codex/events?limit=20");
+          const d = await r.json();
+          const events = d.events || d || [];
+          const tbody = document.getElementById("auditBody");
+          if (!events.length) {
+            tbody.innerHTML =
+              '<tr><td colspan="5" class="dv-empty">No events yet</td></tr>';
+            return;
+          }
+          tbody.innerHTML = events
+            .slice(0, 15)
+            .map(
+              (e) => `<tr>
           <td class="mono">${new Date(e.timestamp || Date.now()).toLocaleTimeString()}</td>
-          <td><span class="dv-event-badge">${e.type || 'UNKNOWN'}</span></td>
-          <td>${e.source || 'SYSTEM'}</td>
-          <td class="truncate-cell">${JSON.stringify(e.data || {}).slice(0,60)}...</td>
+          <td><span class="dv-event-badge">${e.type || "UNKNOWN"}</span></td>
+          <td>${e.source || "SYSTEM"}</td>
+          <td class="truncate-cell">${JSON.stringify(e.data || {}).slice(0, 60)}...</td>
           <td><span class="badge green">LOGGED</span></td>
-        </tr>`).join('');
-      } catch (e) { document.getElementById('auditBody').innerHTML = '<tr><td colspan="5" class="dv-empty">Error loading audit log</td></tr>'; }
-    }
+        </tr>`,
+            )
+            .join("");
+        } catch (e) {
+          document.getElementById("auditBody").innerHTML =
+            '<tr><td colspan="5" class="dv-empty">Error loading audit log</td></tr>';
+        }
+      }
 
-    // ── Logistics ──
-    async function loadContainersCmd() {
-      try {
-        const r = await fetch('/api/reverse-logistics/containers');
-        const d = await r.json();
-        const tbody = document.getElementById('containersCmdBody');
-        const containers = d.containers || [];
-        const statsCont = await (await fetch('/api/reverse-logistics/stats')).json().catch(() => ({}));
-        document.getElementById('logContainers').textContent = statsCont.totalContainers || containers.length;
-        document.getElementById('logEligible').textContent = statsCont.auctionEligible || 0;
-        if (!containers.length) { tbody.innerHTML = '<tr><td colspan="6" class="dv-empty">No containers</td></tr>'; return; }
-        tbody.innerHTML = containers.map(c => {
-          const eligible = ['abandoned','seized','delinquent'].includes(c.status);
-          return `<tr>
+      // ── Logistics ──
+      async function loadContainersCmd() {
+        try {
+          const r = await fetch("/api/reverse-logistics/containers");
+          const d = await r.json();
+          const tbody = document.getElementById("containersCmdBody");
+          const containers = d.containers || [];
+          const statsCont = await (await fetch("/api/reverse-logistics/stats"))
+            .json()
+            .catch(() => ({}));
+          document.getElementById("logContainers").textContent =
+            statsCont.totalContainers || containers.length;
+          document.getElementById("logEligible").textContent =
+            statsCont.auctionEligible || 0;
+          if (!containers.length) {
+            tbody.innerHTML =
+              '<tr><td colspan="6" class="dv-empty">No containers</td></tr>';
+            return;
+          }
+          tbody.innerHTML = containers
+            .map((c) => {
+              const eligible = ["abandoned", "seized", "delinquent"].includes(
+                c.status,
+              );
+              return `<tr>
             <td class="mono">${c.id}</td>
             <td>${c.contents}</td>
             <td>${c.portName || c.portCode}</td>
-            <td><span class="rl-status-badge status-${c.status.replace('_','-')}">${c.status}</span></td>
-            <td class="${c.daysAtPort > 30 ? 'text-danger' : ''}">${c.daysAtPort}d</td>
-            <td>${eligible ? '<button class="dv-btn sm" onclick="cmdAuction(\''+c.id+'\')">Auction</button>' : '—'}</td>
+            <td><span class="rl-status-badge status-${c.status.replace("_", "-")}">${c.status}</span></td>
+            <td class="${c.daysAtPort > 30 ? "text-danger" : ""}">${c.daysAtPort}d</td>
+            <td>${eligible ? '<button class="dv-btn sm" onclick="cmdAuction(\'' + c.id + "')\">Auction</button>" : "—"}</td>
           </tr>`;
-        }).join('');
-      } catch (e) {}
-      try {
-        const ms = await (await fetch('/api/marketplace/stats')).json().catch(() => ({}));
-        document.getElementById('logListings').textContent = (ms.totalListings||12847).toLocaleString();
-        document.getElementById('logAuctions').textContent = (ms.activeAuctions||3241).toLocaleString();
-        document.getElementById('logValue').textContent = '$' + ((ms.totalValue||48200000)/1000000).toFixed(1) + 'M';
-      } catch (e) {}
-    }
+            })
+            .join("");
+        } catch (e) {}
+        try {
+          const ms = await (await fetch("/api/marketplace/stats"))
+            .json()
+            .catch(() => ({}));
+          document.getElementById("logListings").textContent = (
+            ms.totalListings || 12847
+          ).toLocaleString();
+          document.getElementById("logAuctions").textContent = (
+            ms.activeAuctions || 3241
+          ).toLocaleString();
+          document.getElementById("logValue").textContent =
+            "$" + ((ms.totalValue || 48200000) / 1000000).toFixed(1) + "M";
+        } catch (e) {}
+      }
 
-    function cmdAuction(id) { showAlert('⚡ Auction sequence initiated for ' + id, 'success'); addCmdLog('INITIATE_AUCTION ' + id + ' — sequence started'); }
-    async function cmdInitiateAuction() { const id = document.getElementById('cmdContainerId').value; if (!id) return; cmdAuction(id); await logCodexEvent('COMMAND_AUCTION', { containerId: id }); }
-    async function cmdUpdateStatus() {
-      const id = document.getElementById('cmdStatusId').value;
-      const status = document.getElementById('cmdNewStatus').value;
-      if (!id) return;
-      try {
-        await fetch('/api/reverse-logistics/containers/' + id + '/status', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status }) });
-        showAlert('✅ Container ' + id + ' status updated to: ' + status, 'success');
-        addCmdLog('UPDATE_STATUS ' + id + ' → ' + status);
-        loadContainersCmd();
-      } catch (e) { showAlert('Failed to update status', 'danger'); }
-    }
-    async function cmdIngestFeeds() { showAlert('⚡ Ingesting all 5 auction feeds...', 'info'); addCmdLog('INGEST_ALL_FEEDS — initiated'); setTimeout(() => showAlert('✅ All feeds ingested. ~15,000 new listings available.', 'success'), 2000); }
-    async function cmdCreateLoad() {
-      const origin = document.getElementById('cmdLoadOrigin').value;
-      const dest = document.getElementById('cmdLoadDest').value;
-      if (!origin || !dest) return;
-      await fetch('/api/dynasty/load', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ origin, destination: dest, status: 'pending' }) }).catch(() => {});
-      showAlert('✅ Load created: ' + origin + ' → ' + dest, 'success');
-      addCmdLog('CREATE_LOAD ' + origin + ' → ' + dest);
-    }
-
-    function addCmdLog(msg) {
-      const feed = document.getElementById('cmdLogFeed');
-      const item = document.createElement('div');
-      item.className = 'dv-cmd-log-item';
-      item.innerHTML = `<span class="cl-time">${new Date().toLocaleTimeString()}</span><span class="cl-msg">${msg}</span>`;
-      feed.insertBefore(item, feed.firstChild);
-    }
-
-    // ── Partners ──
-    async function refreshPartners() {
-      try {
-        const r = await fetch('/api/onboarding/partners');
-        const d = await r.json();
-        const partners = d.partners || [];
-        document.getElementById('totalPartners').textContent = partners.length;
-        document.getElementById('activePartners').textContent = partners.filter(p => p.status === 'active').length;
-        const scores = partners.filter(p => p.totalScore != null).map(p => p.totalScore);
-        document.getElementById('avgScore').textContent = scores.length ? Math.round(scores.reduce((a,b)=>a+b,0)/scores.length) + '%' : '—';
-        document.getElementById('pendingTests').textContent = partners.filter(p => p.status === 'pending').length;
-        document.getElementById('intNewPartners').textContent = partners.length;
-
-        const tbody = document.getElementById('partnersBody');
-        if (!partners.length) {
-          tbody.innerHTML = '<tr><td colspan="10" class="dv-empty">No partners yet. Share: <a href="dynasty-onboarding.html" target="_blank">dynasty-onboarding.html</a></td></tr>';
-          return;
+      function cmdAuction(id) {
+        showAlert("⚡ Auction sequence initiated for " + id, "success");
+        addCmdLog("INITIATE_AUCTION " + id + " — sequence started");
+      }
+      async function cmdInitiateAuction() {
+        const id = document.getElementById("cmdContainerId").value;
+        if (!id) return;
+        cmdAuction(id);
+        await logCodexEvent("COMMAND_AUCTION", { containerId: id });
+      }
+      async function cmdUpdateStatus() {
+        const id = document.getElementById("cmdStatusId").value;
+        const status = document.getElementById("cmdNewStatus").value;
+        if (!id) return;
+        try {
+          await fetch("/api/reverse-logistics/containers/" + id + "/status", {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ status }),
+          });
+          showAlert(
+            "✅ Container " + id + " status updated to: " + status,
+            "success",
+          );
+          addCmdLog("UPDATE_STATUS " + id + " → " + status);
+          loadContainersCmd();
+        } catch (e) {
+          showAlert("Failed to update status", "danger");
         }
-        tbody.innerHTML = partners.map(p => {
-          const grade = p.totalScore >= 90 ? 'A' : p.totalScore >= 80 ? 'B' : p.totalScore >= 70 ? 'C' : p.totalScore >= 60 ? 'D' : 'F';
-          const gradeCls = p.totalScore >= 80 ? 'green' : p.totalScore >= 60 ? 'yellow' : 'red';
-          return `<tr>
+      }
+      async function cmdIngestFeeds() {
+        showAlert("⚡ Ingesting all 5 auction feeds...", "info");
+        addCmdLog("INGEST_ALL_FEEDS — initiated");
+        setTimeout(
+          () =>
+            showAlert(
+              "✅ All feeds ingested. ~15,000 new listings available.",
+              "success",
+            ),
+          2000,
+        );
+      }
+      async function cmdCreateLoad() {
+        const origin = document.getElementById("cmdLoadOrigin").value;
+        const dest = document.getElementById("cmdLoadDest").value;
+        if (!origin || !dest) return;
+        await fetch("/api/dynasty/load", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            origin,
+            destination: dest,
+            status: "pending",
+          }),
+        }).catch(() => {});
+        showAlert("✅ Load created: " + origin + " → " + dest, "success");
+        addCmdLog("CREATE_LOAD " + origin + " → " + dest);
+      }
+
+      function addCmdLog(msg) {
+        const feed = document.getElementById("cmdLogFeed");
+        const item = document.createElement("div");
+        item.className = "dv-cmd-log-item";
+        item.innerHTML = `<span class="cl-time">${new Date().toLocaleTimeString()}</span><span class="cl-msg">${msg}</span>`;
+        feed.insertBefore(item, feed.firstChild);
+      }
+
+      // ── Partners ──
+      async function refreshPartners() {
+        try {
+          const r = await fetch("/api/onboarding/partners");
+          const d = await r.json();
+          const partners = d.partners || [];
+          document.getElementById("totalPartners").textContent =
+            partners.length;
+          document.getElementById("activePartners").textContent =
+            partners.filter((p) => p.status === "active").length;
+          const scores = partners
+            .filter((p) => p.totalScore != null)
+            .map((p) => p.totalScore);
+          document.getElementById("avgScore").textContent = scores.length
+            ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) +
+              "%"
+            : "—";
+          document.getElementById("pendingTests").textContent = partners.filter(
+            (p) => p.status === "pending",
+          ).length;
+          document.getElementById("intNewPartners").textContent =
+            partners.length;
+
+          const tbody = document.getElementById("partnersBody");
+          if (!partners.length) {
+            tbody.innerHTML =
+              '<tr><td colspan="10" class="dv-empty">No partners yet. Share: <a href="dynasty-onboarding.html" target="_blank">dynasty-onboarding.html</a></td></tr>';
+            return;
+          }
+          tbody.innerHTML = partners
+            .map((p) => {
+              const grade =
+                p.totalScore >= 90
+                  ? "A"
+                  : p.totalScore >= 80
+                    ? "B"
+                    : p.totalScore >= 70
+                      ? "C"
+                      : p.totalScore >= 60
+                        ? "D"
+                        : "F";
+              const gradeCls =
+                p.totalScore >= 80
+                  ? "green"
+                  : p.totalScore >= 60
+                    ? "yellow"
+                    : "red";
+              return `<tr>
             <td><strong>${p.name}</strong></td>
             <td>${p.email}</td>
-            <td><span class="dv-role-badge">${p.role||'member'}</span></td>
-            <td>${p.sovereigntyScore != null ? p.sovereigntyScore + '%' : '—'}</td>
-            <td>${p.platformScore != null ? p.platformScore + '%' : '—'}</td>
-            <td>${p.totalScore != null ? p.totalScore + '%' : '—'}</td>
-            <td><span class="dv-grade grade-${gradeCls}">${p.totalScore != null ? grade : '—'}</span></td>
-            <td>${p.joinedAt ? new Date(p.joinedAt).toLocaleDateString() : '—'}</td>
-            <td><span class="badge ${p.status==='active'?'green':p.status==='pending'?'yellow':'red'}">${p.status||'pending'}</span></td>
+            <td><span class="dv-role-badge">${p.role || "member"}</span></td>
+            <td>${p.sovereigntyScore != null ? p.sovereigntyScore + "%" : "—"}</td>
+            <td>${p.platformScore != null ? p.platformScore + "%" : "—"}</td>
+            <td>${p.totalScore != null ? p.totalScore + "%" : "—"}</td>
+            <td><span class="dv-grade grade-${gradeCls}">${p.totalScore != null ? grade : "—"}</span></td>
+            <td>${p.joinedAt ? new Date(p.joinedAt).toLocaleDateString() : "—"}</td>
+            <td><span class="badge ${p.status === "active" ? "green" : p.status === "pending" ? "yellow" : "red"}">${p.status || "pending"}</span></td>
             <td><button class="dv-btn sm" onclick="approvePartner('${p.id}')">Approve</button></td>
           </tr>`;
-        }).join('');
-      } catch (e) {}
-    }
+            })
+            .join("");
+        } catch (e) {}
+      }
 
-    async function approvePartner(id) {
-      try {
-        await fetch('/api/onboarding/partners/' + id + '/approve', { method: 'PATCH' });
-        showAlert('✅ Partner approved', 'success');
-        refreshPartners();
-        await logCodexEvent('PARTNER_APPROVED', { partnerId: id });
-      } catch (e) {}
-    }
+      async function approvePartner(id) {
+        try {
+          await fetch("/api/onboarding/partners/" + id + "/approve", {
+            method: "PATCH",
+          });
+          showAlert("✅ Partner approved", "success");
+          refreshPartners();
+          await logCodexEvent("PARTNER_APPROVED", { partnerId: id });
+        } catch (e) {}
+      }
 
-    // ── Platform Health ──
-    const platforms = [
-      { name: 'Express Server', status: 'operational', path: '/', icon: '⚡' },
-      { name: 'Omega Portal', status: 'operational', path: '/omega-portal.html', icon: '☩' },
-      { name: 'Reverse Logistics', status: 'operational', path: '/reverse-logistics-dashboard.html', icon: '♻️' },
-      { name: 'Dynasty-OS Modules', status: 'operational', path: '/dynasty-os-modules.html', icon: '⚙️' },
-      { name: 'Partner Onboarding', status: 'operational', path: '/dynasty-onboarding.html', icon: '👥' },
-      { name: 'Dashboard', status: 'operational', path: '/dashboard.html', icon: '📊' },
-      { name: 'CodexChain', status: 'operational', path: '/codexchain-console.html', icon: '🔗' },
-      { name: 'Treasury Console', status: 'operational', path: '/treasury-console.html', icon: '💎' },
-      { name: 'Marketplace API', status: 'operational', path: '/api/marketplace/stats', icon: '🛒' },
-      { name: 'Blockchain API', status: 'operational', path: '/api/blockchain/registry', icon: '⛓️' },
-      { name: 'Codex Events API', status: 'operational', path: '/api/codex/events', icon: '📋' },
-      { name: 'Dynasty Dashboard', status: 'external', path: 'https://borders-dynasty--kingsmoovedap.replit.app', icon: '👑' }
-    ];
+      // ── Platform Health ──
+      const platforms = [
+        {
+          name: "Express Server",
+          status: "operational",
+          path: "/",
+          icon: "⚡",
+        },
+        {
+          name: "Omega Portal",
+          status: "operational",
+          path: "/omega-portal.html",
+          icon: "☩",
+        },
+        {
+          name: "Reverse Logistics",
+          status: "operational",
+          path: "/reverse-logistics-dashboard.html",
+          icon: "♻️",
+        },
+        {
+          name: "Dynasty-OS Modules",
+          status: "operational",
+          path: "/dynasty-os-modules.html",
+          icon: "⚙️",
+        },
+        {
+          name: "Partner Onboarding",
+          status: "operational",
+          path: "/dynasty-onboarding.html",
+          icon: "👥",
+        },
+        {
+          name: "Dashboard",
+          status: "operational",
+          path: "/dashboard.html",
+          icon: "📊",
+        },
+        {
+          name: "CodexChain",
+          status: "operational",
+          path: "/codexchain-console.html",
+          icon: "🔗",
+        },
+        {
+          name: "Treasury Console",
+          status: "operational",
+          path: "/treasury-console.html",
+          icon: "💎",
+        },
+        {
+          name: "Marketplace API",
+          status: "operational",
+          path: "/api/marketplace/stats",
+          icon: "🛒",
+        },
+        {
+          name: "Blockchain API",
+          status: "operational",
+          path: "/api/blockchain/registry",
+          icon: "⛓️",
+        },
+        {
+          name: "Codex Events API",
+          status: "operational",
+          path: "/api/codex/events",
+          icon: "📋",
+        },
+        {
+          name: "Dynasty Dashboard",
+          status: "external",
+          path: "https://borders-dynasty--kingsmoovedap.replit.app",
+          icon: "👑",
+        },
+      ];
 
-    const dosModules = [
-      'divinityVX','divinityVX-neural','ai-overseer','api-rule-engine','hypervisor','service-mesh',
-      'cluster-builder','config-engine','zero-trust','auto-restarter','quantum','galactic-compute',
-      'cosmic-router','warp-engine','city-sim','civilization-sim','simulation-engine','planetary',
-      'planetary-scheduler','chaos-engine','megastructure-planner','governance','interstellar-governance',
-      'doc-engine','robotics','marketplace','digital-twin','backend/src'
-    ];
+      const dosModules = [
+        "divinityVX",
+        "divinityVX-neural",
+        "ai-overseer",
+        "api-rule-engine",
+        "hypervisor",
+        "service-mesh",
+        "cluster-builder",
+        "config-engine",
+        "zero-trust",
+        "auto-restarter",
+        "quantum",
+        "galactic-compute",
+        "cosmic-router",
+        "warp-engine",
+        "city-sim",
+        "civilization-sim",
+        "simulation-engine",
+        "planetary",
+        "planetary-scheduler",
+        "chaos-engine",
+        "megastructure-planner",
+        "governance",
+        "interstellar-governance",
+        "doc-engine",
+        "robotics",
+        "marketplace",
+        "digital-twin",
+        "backend/src",
+      ];
 
-    function runHealthCheck() {
-      const grid = document.getElementById('healthGrid');
-      grid.innerHTML = platforms.map(p => `
+      function runHealthCheck() {
+        const grid = document.getElementById("healthGrid");
+        grid.innerHTML = platforms
+          .map(
+            (p) => `
         <div class="dv-health-card ${p.status}">
           <span class="dhc-icon">${p.icon}</span>
           <div class="dhc-info">
             <div class="dhc-name">${p.name}</div>
             <div class="dhc-path mono">${p.path}</div>
           </div>
-          <span class="dhc-status ${p.status}">${p.status === 'operational' ? '✓ UP' : p.status === 'external' ? '↗ EXT' : '✗ DOWN'}</span>
-        </div>`).join('');
+          <span class="dhc-status ${p.status}">${p.status === "operational" ? "✓ UP" : p.status === "external" ? "↗ EXT" : "✗ DOWN"}</span>
+        </div>`,
+          )
+          .join("");
 
-      document.getElementById('dosStatusGrid').innerHTML = dosModules.map(m => `
+        document.getElementById("dosStatusGrid").innerHTML = dosModules
+          .map(
+            (m) => `
         <div class="dv-dos-mod">
           <span class="dom-dot green"></span>
           <span class="dom-name">${m}</span>
           <span class="dom-status">NOMINAL</span>
-        </div>`).join('');
-    }
+        </div>`,
+          )
+          .join("");
+      }
 
-    // ── Operator Controls ──
-    async function opCmd(cmd) {
-      const actions = {
-        new_filing: () => window.open('omega-portal.html', '_blank'),
-        form_trust: () => window.open('omega-portal.html', '_blank'),
-        form_pma: () => window.open('omega-portal.html', '_blank'),
-        anchor_events: async () => {
-          await fetch('/api/codex/anchor', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ eventIds: ['batch'] }) }).catch(() => {});
-          showAlert('✅ Events anchored to blockchain', 'success');
-        },
-        verify_integrity: async () => {
-          await fetch('/api/blockchain/verify', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ hash: '0x12efC9a5D115AE7833c9a6D79f1B3BA18Cde817c' }) }).catch(() => {});
-          showAlert('✅ Blockchain integrity verified — Sepolia confirmed', 'success');
-        },
-        ingest_all_feeds: () => cmdIngestFeeds(),
-        auction_all_eligible: () => showAlert('⚡ All eligible containers queued for auction', 'success'),
-        broadcast_message: () => { document.querySelector('[data-panel="operator"]').click(); document.getElementById('broadcastMsg').focus(); },
-        reset_all_tests: async () => {
-          await fetch('/api/onboarding/reset-tests', { method: 'POST' }).catch(() => {});
-          showAlert('✅ All partner tests reset', 'success');
-        },
-        run_full_scan: () => runSecurityScan(),
-        rotate_code: () => showAlert('⚠️ Code rotation requires manual update in source.', 'warning'),
-        lockdown: () => { lockSystem(); showAlert('🔒 System locked.', 'danger'); },
-        sync_dynasty: async () => {
-          await fetch('https://borders-dynasty--kingsmoovedap.replit.app/api/public/stats').catch(() => {});
-          showAlert('↻ Dynasty sync attempted', 'info');
-        },
-        rebuild_index: () => showAlert('✅ Platform index rebuilt', 'success')
-      };
-      const fn = actions[cmd];
-      if (fn) { await fn(); await logCodexEvent('OPERATOR_COMMAND', { command: cmd }); logOperator(cmd.toUpperCase(), 'Executed by Grand Architect'); }
-    }
+      // ── Operator Controls ──
+      async function opCmd(cmd) {
+        const actions = {
+          new_filing: () => window.open("omega-portal.html", "_blank"),
+          form_trust: () => window.open("omega-portal.html", "_blank"),
+          form_pma: () => window.open("omega-portal.html", "_blank"),
+          anchor_events: async () => {
+            await fetch("/api/codex/anchor", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ eventIds: ["batch"] }),
+            }).catch(() => {});
+            showAlert("✅ Events anchored to blockchain", "success");
+          },
+          verify_integrity: async () => {
+            await fetch("/api/blockchain/verify", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                hash: "0x12efC9a5D115AE7833c9a6D79f1B3BA18Cde817c",
+              }),
+            }).catch(() => {});
+            showAlert(
+              "✅ Blockchain integrity verified — Sepolia confirmed",
+              "success",
+            );
+          },
+          ingest_all_feeds: () => cmdIngestFeeds(),
+          auction_all_eligible: () =>
+            showAlert(
+              "⚡ All eligible containers queued for auction",
+              "success",
+            ),
+          broadcast_message: () => {
+            document.querySelector('[data-panel="operator"]').click();
+            document.getElementById("broadcastMsg").focus();
+          },
+          reset_all_tests: async () => {
+            await fetch("/api/onboarding/reset-tests", {
+              method: "POST",
+            }).catch(() => {});
+            showAlert("✅ All partner tests reset", "success");
+          },
+          run_full_scan: () => runSecurityScan(),
+          rotate_code: () =>
+            showAlert(
+              "⚠️ Code rotation requires manual update in source.",
+              "warning",
+            ),
+          lockdown: () => {
+            lockSystem();
+            showAlert("🔒 System locked.", "danger");
+          },
+          sync_dynasty: async () => {
+            await fetch(
+              "https://borders-dynasty--kingsmoovedap.replit.app/api/public/stats",
+            ).catch(() => {});
+            showAlert("↻ Dynasty sync attempted", "info");
+          },
+          rebuild_index: () =>
+            showAlert("✅ Platform index rebuilt", "success"),
+        };
+        const fn = actions[cmd];
+        if (fn) {
+          await fn();
+          await logCodexEvent("OPERATOR_COMMAND", { command: cmd });
+          logOperator(cmd.toUpperCase(), "Executed by Grand Architect");
+        }
+      }
 
-    function logOperator(cmd, result) {
-      const log = document.getElementById('operatorLog');
-      if (!log) return;
-      const item = document.createElement('div');
-      item.className = 'dv-op-log-item';
-      item.innerHTML = `<span class="ol-time">${new Date().toLocaleTimeString()}</span><span class="ol-cmd">${cmd}</span><span class="ol-result">${result}</span>`;
-      log.insertBefore(item, log.firstChild);
-    }
+      function logOperator(cmd, result) {
+        const log = document.getElementById("operatorLog");
+        if (!log) return;
+        const item = document.createElement("div");
+        item.className = "dv-op-log-item";
+        item.innerHTML = `<span class="ol-time">${new Date().toLocaleTimeString()}</span><span class="ol-cmd">${cmd}</span><span class="ol-result">${result}</span>`;
+        log.insertBefore(item, log.firstChild);
+      }
 
-    async function runFullAppraisal() {
-      showAlert('🧠 Deep appraisal running — DivinityVX analyzing all modules...', 'info');
-      await logCodexEvent('FULL_APPRAISAL', { depth: 'deep' });
-      setTimeout(() => { showAlert('✅ Deep appraisal complete. Platform score: 94/100. See AI Appraisal panel.', 'success'); }, 3000);
-    }
+      async function runFullAppraisal() {
+        showAlert(
+          "🧠 Deep appraisal running — DivinityVX analyzing all modules...",
+          "info",
+        );
+        await logCodexEvent("FULL_APPRAISAL", { depth: "deep" });
+        setTimeout(() => {
+          showAlert(
+            "✅ Deep appraisal complete. Platform score: 94/100. See AI Appraisal panel.",
+            "success",
+          );
+        }, 3000);
+      }
 
-    function sendBroadcast() {
-      const msg = document.getElementById('broadcastMsg').value.trim();
-      const type = document.getElementById('broadcastType').value;
-      if (!msg) return;
-      fetch('/api/onboarding/broadcast', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: msg, type, from: 'Grand Architect', timestamp: new Date().toISOString() }) }).catch(() => {});
-      const log = document.getElementById('broadcastsLog');
-      const item = document.createElement('div');
-      item.className = 'dv-broadcast-item';
-      item.innerHTML = `<span class="bc-type ${type}">${type.toUpperCase()}</span><span class="bc-msg">${msg}</span><span class="bc-time">${new Date().toLocaleTimeString()}</span>`;
-      log.insertBefore(item, log.firstChild);
-      document.getElementById('broadcastMsg').value = '';
-      showAlert('📢 Broadcast sent to all partners', 'success');
-      logCodexEvent('BROADCAST_SENT', { type, message: msg.slice(0, 50) });
-    }
+      function sendBroadcast() {
+        const msg = document.getElementById("broadcastMsg").value.trim();
+        const type = document.getElementById("broadcastType").value;
+        if (!msg) return;
+        fetch("/api/onboarding/broadcast", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message: msg,
+            type,
+            from: "Grand Architect",
+            timestamp: new Date().toISOString(),
+          }),
+        }).catch(() => {});
+        const log = document.getElementById("broadcastsLog");
+        const item = document.createElement("div");
+        item.className = "dv-broadcast-item";
+        item.innerHTML = `<span class="bc-type ${type}">${type.toUpperCase()}</span><span class="bc-msg">${msg}</span><span class="bc-time">${new Date().toLocaleTimeString()}</span>`;
+        log.insertBefore(item, log.firstChild);
+        document.getElementById("broadcastMsg").value = "";
+        showAlert("📢 Broadcast sent to all partners", "success");
+        logCodexEvent("BROADCAST_SENT", { type, message: msg.slice(0, 50) });
+      }
 
-    // ── Alerts ──
-    function showAlert(text, type = 'info') {
-      const banner = document.getElementById('alertBanner');
-      banner.style.display = 'flex';
-      banner.className = 'dv-alert-banner ' + type;
-      document.getElementById('alertText').textContent = text;
-      setTimeout(dismissAlert, 5000);
-    }
-    function dismissAlert() { document.getElementById('alertBanner').style.display = 'none'; }
+      // ── Alerts ──
+      function showAlert(text, type = "info") {
+        const banner = document.getElementById("alertBanner");
+        banner.style.display = "flex";
+        banner.className = "dv-alert-banner " + type;
+        document.getElementById("alertText").textContent = text;
+        setTimeout(dismissAlert, 5000);
+      }
+      function dismissAlert() {
+        document.getElementById("alertBanner").style.display = "none";
+      }
 
-    function executeRec(action, id) {
-      if (action === 'close_container') cmdAuction(id || 'CNTR-005');
-      if (action === 'cors_check') showAlert('🔍 Diagnosing Dynasty CORS — checking endpoint...', 'info');
-      if (action === 'ingest_feeds') cmdIngestFeeds();
-      logCodexEvent('RECOMMENDATION_EXECUTED', { action, id });
-    }
+      function executeRec(action, id) {
+        if (action === "close_container") cmdAuction(id || "CNTR-005");
+        if (action === "cors_check")
+          showAlert(
+            "🔍 Diagnosing Dynasty CORS — checking endpoint...",
+            "info",
+          );
+        if (action === "ingest_feeds") cmdIngestFeeds();
+        logCodexEvent("RECOMMENDATION_EXECUTED", { action, id });
+      }
 
-    // ── Init ──
-    function initCommandCenter() {
-      refreshIntelligence();
-      loadAuditLog();
-      loadContainersCmd();
-      refreshPartners();
-      runHealthCheck();
-      setInterval(rotateInsight, 8000);
-      rotateInsight();
-      setInterval(() => appendFeedItem(
-        feedMessages[feedIndex % feedMessages.length].type,
-        feedMessages[feedIndex % feedMessages.length].msg,
-        true
-      ), 15000);
-      appendFeedItem('system', 'Grand Architect authenticated — DivinityVX Supreme Command Center online.', true);
-    }
-  </script>
-</body>
+      // ── Co-Pilot Live ──
+      let cpPollTimer = null;
+
+      async function refreshCopilotFeed() {
+        try {
+          const r = await fetch('/api/divinity/copilot/stream?limit=80');
+          const d = await r.json();
+          const feed = document.getElementById('cpActionFeed');
+          if (!feed) return;
+          feed.innerHTML = d.actions.slice().reverse().map(a => {
+            const color = a.action === 'PAGE_VISIT' ? '#00d4ff' : a.action === 'CLICK' ? '#00ff88' : a.action === 'SIGNAL_SENT' ? '#9b4dff' : '#4a6580';
+            return `<div style="border-bottom:1px solid rgba(255,255,255,0.04);padding:0.3rem 0;line-height:1.5;">
+              <span style="color:#2a4255;font-size:0.62rem;">${a.ts?.slice(11,19) || ''}</span>
+              <span style="color:${color};font-weight:700;margin:0 0.4rem;">${a.action}</span>
+              <span style="color:#3a5060;">[${a.page || ''}]</span>
+              ${a.detail?.text ? `<span style="color:#4a7080;"> — ${a.detail.text.slice(0,60)}</span>` : ''}
+              ${a.detail?.href ? `<span style="color:#2a4255;font-size:0.6rem;display:block;padding-left:0.5rem;">↗ ${a.detail.href?.slice(0,60)}</span>` : ''}
+            </div>`;
+          }).join('');
+          document.getElementById('cpActCount').textContent = d.total + ' total actions logged';
+
+          // Page map
+          const pages = [...new Set(d.actions.map(a => a.page))];
+          const pm = document.getElementById('cpPageMap');
+          if (pm) pm.innerHTML = pages.map(p => `<span style="font-size:0.6rem;color:#00d4ff;border:1px solid rgba(0,212,255,0.2);background:rgba(0,212,255,0.05);padding:0.15rem 0.4rem;border-radius:2px;">${p}</span>`).join('');
+        } catch(e) {}
+      }
+
+      async function loadSignals() {
+        try {
+          const r = await fetch('/api/divinity/copilot/signals');
+          const d = await r.json();
+          const feed = document.getElementById('cpSignalFeed');
+          if (!feed) return;
+          feed.innerHTML = d.signals.slice().reverse().map(s =>
+            `<div style="padding:0.3rem 0;border-bottom:1px solid rgba(155,77,255,0.08);font-size:0.68rem;">
+              <span style="color:#2a4255;">${s.ts?.slice(11,19) || ''}</span>
+              <span style="color:#9b4dff;margin:0 0.4rem;">${s.from || 'GA'}</span>
+              <span style="color:#5a7080;">${s.message || ''}</span>
+            </div>`
+          ).join('') || '<span style="color:#2a4255;font-size:0.65rem;">No signals yet</span>';
+        } catch(e) {}
+      }
+
+      async function sendCopilotCommand() {
+        const msg = document.getElementById('cpCmdMsg')?.value?.trim();
+        const target = document.getElementById('cpCmdTarget')?.value || 'all';
+        if (!msg) { showAlert('⚠ Enter a command message first', 'warn'); return; }
+        try {
+          await fetch('/api/divinity/copilot/command', {
+            method: 'POST', headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({ target, message: msg, from: 'DivinityVX' })
+          });
+          showAlert('📡 Command dispatched to: ' + target, 'success');
+          document.getElementById('cpCmdMsg').value = '';
+        } catch(e) { showAlert('⚠ Failed to send command', 'warn'); }
+      }
+
+      function quickCmd(msg) {
+        const ta = document.getElementById('cpCmdMsg');
+        if (ta) ta.value = msg;
+      }
+
+      function clearCopilotFeed() {
+        const f = document.getElementById('cpActionFeed');
+        if (f) f.innerHTML = '';
+        document.getElementById('cpActCount').textContent = 'Feed cleared';
+      }
+
+      function startCopilotPoll() {
+        if (cpPollTimer) return;
+        refreshCopilotFeed();
+        loadSignals();
+        cpPollTimer = setInterval(() => { refreshCopilotFeed(); loadSignals(); }, 4000);
+      }
+
+      // Start polling when co-pilot panel is activated
+      document.querySelectorAll('.dv-nav-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.dataset.panel === 'copilot') startCopilotPoll();
+          if (btn.dataset.panel === 'logistics-ops') { showTier('local'); loadTierData('local'); }
+        });
+      });
+
+      // ── Logistics Ops Panels ──
+      function showTier(tier) {
+        document.querySelectorAll('.ops-tier').forEach(el => el.style.display = 'none');
+        const el = document.getElementById('tier-' + tier);
+        if (el) el.style.display = 'block';
+        document.querySelectorAll('.ops-tier-btn').forEach(b => b.classList.remove('active-tier'));
+        document.querySelectorAll('[data-tier="' + tier + '"]').forEach(b => b.classList.add('active-tier'));
+        loadTierData(tier);
+      }
+
+      async function loadTierData(tier) {
+        try {
+          if (tier === 'local') {
+            const r = await fetch('/api/logistics/local/loads');
+            const d = await r.json();
+            document.getElementById('localStat1').textContent = d.stats.active;
+            document.getElementById('localStat2').textContent = d.stats.sameDay;
+            document.getElementById('localStat3').textContent = d.loads.reduce((n,l) => n + (l.type==='last_mile'?1:0), 0);
+            document.getElementById('localStat4').textContent = d.stats.couriers;
+            document.getElementById('localLoadTable').innerHTML = renderLoadTable(d.loads, ['id','type','pickup','drop','weight','distance','rate','status','urgent']);
+          } else if (tier === 'national') {
+            const r = await fetch('/api/logistics/national/loads');
+            const d = await r.json();
+            document.getElementById('natStat1').textContent = d.loads.filter(l=>l.status==='open').length;
+            document.getElementById('natStat2').textContent = d.stats.ltl;
+            document.getElementById('natStat3').textContent = d.stats.avgValue;
+            document.getElementById('natStat4').textContent = d.stats.onTime;
+            document.getElementById('natLoadTable').innerHTML = renderLoadTable(d.loads, ['id','type','origin','dest','miles','weight','rate','status','equipment']);
+          } else if (tier === 'global') {
+            const r = await fetch('/api/logistics/global/containers');
+            const d = await r.json();
+            document.getElementById('glbStat1').textContent = d.stats.active;
+            document.getElementById('glbStat2').textContent = d.stats.customs;
+            document.getElementById('glbStat3').textContent = d.containers.filter(c=>c.status==='in_transit').length;
+            document.getElementById('glbStat4').textContent = '$' + d.stats.totalAuctionValue?.toLocaleString();
+            document.getElementById('glbContainerTable').innerHTML = renderLoadTable(d.containers, ['id','origin','dest','status','eta','value','type']);
+          } else if (tier === 'drivers') {
+            const r = await fetch('/api/logistics/drivers');
+            const d = await r.json();
+            document.getElementById('drvStat1').textContent = d.stats.total;
+            document.getElementById('drvStat2').textContent = d.stats.available;
+            document.getElementById('drvStat3').textContent = d.stats.onDispatch;
+            document.getElementById('drvStat4').textContent = d.stats.avgRating;
+            document.getElementById('driverTable').innerHTML = renderLoadTable(d.drivers, ['id','name','tier','status','rating','loads','vehicle','location']);
+            populateDispatchSelects(d.drivers);
+          } else if (tier === 'dispatch') {
+            const r = await fetch('/api/logistics/dispatch/active');
+            const d = await r.json();
+            const el = document.getElementById('activeDispatches');
+            if (el) el.innerHTML = d.dispatches.length ? d.dispatches.map(dp =>
+              `<div style="padding:0.4rem;border-bottom:1px solid rgba(0,212,255,0.08);">
+                <span style="color:#00ff88;font-weight:700;">${dp.id}</span>
+                <span style="color:#4a6580;margin:0 0.5rem;">—</span>
+                <span style="color:#c5d8f0;">${dp.driverName}</span>
+                <span style="color:#4a6580;"> → ${dp.loadId}</span>
+                <span style="color:#2a4255;font-size:0.6rem;display:block;">${dp.tier?.toUpperCase()} · ${dp.dispatchedAt?.slice(11,19)}</span>
+              </div>`).join('') : '<span style="color:#2a4255;font-size:0.65rem;">No active dispatches</span>';
+            const r2 = await fetch('/api/logistics/drivers');
+            const d2 = await r2.json();
+            populateDispatchSelects(d2.drivers);
+          }
+        } catch(e) {}
+      }
+
+      function renderLoadTable(rows, cols) {
+        if (!rows || !rows.length) return '<div style="padding:1rem;color:#2a4255;font-size:0.7rem;text-align:center;">No records found</div>';
+        const statusColor = s => s==='open'?'#00ff88':s==='assigned'||s==='in_transit'?'#00d4ff':s==='abandoned'||s==='seized'?'#ff3b6b':s==='bidding'?'#ffd700':'#4a6580';
+        return `<div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.68rem;">
+          <thead><tr style="border-bottom:1px solid rgba(0,212,255,0.2);">${cols.map(c=>`<th style="padding:0.4rem 0.6rem;text-align:left;color:#4a6580;text-transform:uppercase;letter-spacing:0.08em;font-size:0.6rem;font-weight:400;">${c}</th>`).join('')}</tr></thead>
+          <tbody>${rows.map((row,i)=>`<tr style="border-bottom:1px solid rgba(0,212,255,0.06);background:${i%2?'rgba(0,212,255,0.02)':'transparent'}">
+            ${cols.map(c=>{
+              let v = row[c] ?? '—';
+              if (c==='status') v = `<span style="color:${statusColor(v)};font-weight:700;">${v}</span>`;
+              if (c==='urgent' || c==='auctionEligible') v = v ? '<span style="color:#ffd700;">✓</span>' : '—';
+              if (c==='rating') v = `<span style="color:#ffd700;">★ ${v}</span>`;
+              return `<td style="padding:0.4rem 0.6rem;color:#c5d8f0;">${v}</td>`;
+            }).join('')}
+          </tr>`).join('')}</tbody></table></div>`;
+      }
+
+      function populateDispatchSelects(drivers) {
+        const sel = document.getElementById('dispatchDriver');
+        if (!sel) return;
+        sel.innerHTML = '<option value="">Select Driver...</option>' + drivers.filter(d=>d.status==='available').map(d=>`<option value="${d.id}">${d.name} (${d.tier})</option>`).join('');
+      }
+
+      async function dispatchLoad() {
+        const driverId = document.getElementById('dispatchDriver')?.value;
+        const loadId   = document.getElementById('dispatchLoad')?.value;
+        const tier     = document.getElementById('dispatchTier')?.value;
+        const notes    = document.getElementById('dispatchNotes')?.value;
+        if (!driverId || !loadId) { showAlert('⚠ Select driver and enter a load ID', 'warn'); return; }
+        const r = await fetch('/api/logistics/dispatch', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ driverId, loadId, tier, notes }) });
+        const d = await r.json();
+        if (d.success) { showAlert('📡 ' + d.message, 'success'); loadTierData('dispatch'); }
+      }
+
+      async function createLoad(tier) {
+        const origin = prompt('Origin address:');
+        if (!origin) return;
+        const dest   = prompt('Destination address:');
+        const rate   = prompt('Rate ($):');
+        const r = await fetch('/api/logistics/loads', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ tier, origin: origin||'', pickup: origin||'', dest: dest||'', drop: dest||'', rate: rate ? '$'+rate : 'TBD' }) });
+        const d = await r.json();
+        if (d.success) { showAlert('✅ Load created: ' + d.load.id, 'success'); loadTierData(tier); }
+      }
+
+      async function addDriver() {
+        const name    = prompt('Driver full name:');
+        if (!name) return;
+        const tier    = prompt('Tier (local / national / global):') || 'local';
+        const vehicle = prompt('Vehicle type:') || 'Van';
+        const r = await fetch('/api/logistics/drivers', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ name, tier, vehicle }) });
+        const d = await r.json();
+        if (d.success) { showAlert('✅ Driver registered: ' + d.driver.id, 'success'); loadTierData('drivers'); }
+      }
+
+      function refreshLogisticsOps() {
+        const tiers = ['local','national','global','drivers','dispatch'];
+        tiers.forEach(t => { const el = document.getElementById('tier-'+t); if (el && el.style.display !== 'none') loadTierData(t); });
+      }
+
+      // ── Init ──
+      function initCommandCenter() {
+        refreshIntelligence();
+        loadAuditLog();
+        loadContainersCmd();
+        refreshPartners();
+        runHealthCheck();
+        setInterval(rotateInsight, 8000);
+        rotateInsight();
+        setInterval(
+          () =>
+            appendFeedItem(
+              feedMessages[feedIndex % feedMessages.length].type,
+              feedMessages[feedIndex % feedMessages.length].msg,
+              true,
+            ),
+          15000,
+        );
+        appendFeedItem(
+          "system",
+          "Grand Architect authenticated — DivinityVX Supreme Command Center online.",
+          true,
+        );
+      }
+    </script>
+  </body>
 </html>

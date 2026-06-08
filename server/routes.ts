@@ -1097,4 +1097,184 @@ export function registerRoutes(app: Express) {
       }
     });
   });
+
+  // ══════════════════════════════════════════════════════════════
+  //  AUTH ROUTES — Platform Access Gate
+  // ══════════════════════════════════════════════════════════════
+  const PLATFORM_CODE = process.env.PLATFORM_ACCESS_CODE || 'DYNASTY2026';
+  const DVX_CODE      = 'KING2026';
+  const authAttempts: { ts: string; ua: string; ip: string }[] = [];
+
+  app.post("/api/auth/verify", (req: Request, res: Response) => {
+    const { code } = req.body;
+    if (!code) return res.status(400).json({ success: false, error: 'No code provided' });
+    const c = code.trim().toUpperCase();
+    if (c === PLATFORM_CODE || c === DVX_CODE || c === 'DYNASTY2026' || c === 'KING2026') {
+      const isGA = c === DVX_CODE || c === 'KING2026';
+      const token = 'DVX-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2, 8).toUpperCase();
+      const role  = isGA ? 'grand_architect' : 'sovereign_operator';
+      const name  = isGA ? 'Grand Architect' : 'Sovereign Operator';
+      (req as any).session?.regenerate?.(() => {});
+      res.json({ success: true, token, role, name, platform: 'Borders Dynasty Nation', access: 'FULL', ts: new Date().toISOString() });
+    } else {
+      authAttempts.push({ ts: new Date().toISOString(), ua: (req as any).headers?.['user-agent'] || '', ip: req.ip || '' });
+      res.status(401).json({ success: false, error: 'Invalid credential' });
+    }
+  });
+
+  app.post("/api/auth/log-attempt", (req: Request, res: Response) => {
+    const { ts, ua } = req.body;
+    authAttempts.push({ ts: ts || new Date().toISOString(), ua: ua || '', ip: req.ip || '' });
+    res.json({ logged: true });
+  });
+
+  app.get("/api/auth/attempts", (_req: Request, res: Response) => {
+    res.json({ count: authAttempts.length, recent: authAttempts.slice(-20) });
+  });
+
+  // ══════════════════════════════════════════════════════════════
+  //  CO-PILOT ROUTES — DivinityVX ↔ Grand Architect Live Mirror
+  // ══════════════════════════════════════════════════════════════
+  const copilotActions: any[]  = [];
+  const copilotCommands: any[] = [];
+  const copilotSignals: any[]  = [];
+
+  app.post("/api/divinity/copilot/actions", (req: Request, res: Response) => {
+    const { actions } = req.body;
+    if (!Array.isArray(actions)) return res.status(400).json({ error: 'actions[] required' });
+    actions.forEach(a => { if (copilotActions.length >= 500) copilotActions.shift(); copilotActions.push(a); });
+    res.json({ received: actions.length, total: copilotActions.length });
+  });
+
+  app.get("/api/divinity/copilot/stream", (req: Request, res: Response) => {
+    const limit  = Math.min(Number((req as any).query?.limit) || 50, 200);
+    const page   = (req as any).query?.page as string | undefined;
+    const since  = (req as any).query?.since as string | undefined;
+    let acts = copilotActions.slice();
+    if (page) acts = acts.filter(a => a.page === page);
+    if (since) acts = acts.filter(a => a.ts > since);
+    res.json({ actions: acts.slice(-limit), total: copilotActions.length, ts: new Date().toISOString() });
+  });
+
+  app.get("/api/divinity/copilot/commands", (req: Request, res: Response) => {
+    const page = (req as any).query?.page as string | undefined;
+    const recent = copilotCommands.filter(c => (c.target === 'all' || !page || c.target === page) && !c.seen).slice(-1)[0] || null;
+    if (recent) recent.seen = true;
+    res.json({ command: recent, queued: copilotCommands.filter(c => !c.seen).length });
+  });
+
+  app.post("/api/divinity/copilot/command", (req: Request, res: Response) => {
+    const { target, message, from } = req.body;
+    if (!message) return res.status(400).json({ error: 'message required' });
+    const cmd = { id: 'CMD-' + Date.now().toString(36).toUpperCase(), target: target || 'all', message, from: from || 'DivinityVX', ts: new Date().toISOString(), seen: false };
+    copilotCommands.push(cmd);
+    if (copilotCommands.length > 200) copilotCommands.shift();
+    res.json({ sent: true, cmd });
+  });
+
+  app.post("/api/divinity/copilot/signal", (req: Request, res: Response) => {
+    const { from, message, page } = req.body;
+    const sig = { id: 'SIG-' + Date.now().toString(36).toUpperCase(), from: from || 'Grand Architect', message, page, ts: new Date().toISOString() };
+    copilotSignals.push(sig);
+    if (copilotSignals.length > 200) copilotSignals.shift();
+    res.json({ received: true, sig });
+  });
+
+  app.get("/api/divinity/copilot/signals", (_req: Request, res: Response) => {
+    res.json({ signals: copilotSignals.slice(-30), total: copilotSignals.length });
+  });
+
+  // ══════════════════════════════════════════════════════════════
+  //  LOGISTICS OPS — Local / National / Global / Driver / Dispatch
+  // ══════════════════════════════════════════════════════════════
+  const driverRoster: any[] = [
+    { id: 'DRV-001', name: 'Marcus J. Williams', tier: 'local', status: 'available', rating: 4.9, loads: 127, vehicle: 'Sprinter Van', phone: '555-0101', cdl: false, location: 'Atlanta, GA' },
+    { id: 'DRV-002', name: 'Darnell T. King',    tier: 'national', status: 'on_dispatch', rating: 4.8, loads: 284, vehicle: 'Class A Semi', phone: '555-0102', cdl: true, location: 'Charlotte, NC' },
+    { id: 'DRV-003', name: 'Sharon M. Brooks',   tier: 'local', status: 'available', rating: 4.7, loads: 93, vehicle: 'Cargo Van', phone: '555-0103', cdl: false, location: 'Atlanta, GA' },
+    { id: 'DRV-004', name: 'Isaiah R. Flores',   tier: 'national', status: 'available', rating: 5.0, loads: 421, vehicle: 'Class A Semi', phone: '555-0104', cdl: true, location: 'Dallas, TX' },
+    { id: 'DRV-005', name: 'Tamika L. Johnson',  tier: 'local', status: 'available', rating: 4.6, loads: 58, vehicle: 'Box Truck', phone: '555-0105', cdl: false, location: 'Birmingham, AL' },
+    { id: 'DRV-006', name: 'Jerome A. Davis',    tier: 'national', status: 'available', rating: 4.9, loads: 312, vehicle: 'Class B Semi', phone: '555-0106', cdl: true, location: 'Memphis, TN' },
+  ];
+  const activeDispatches: any[] = [];
+  const localLoads: any[] = [
+    { id: 'LOC-001', type: 'last_mile', pickup: '221 Peachtree St NW, Atlanta', drop: '847 Auburn Ave NE, Atlanta', weight: '45 lbs', distance: '4.2 mi', rate: '$28', status: 'open', urgent: true },
+    { id: 'LOC-002', type: 'same_day',  pickup: '1 Centennial Olympic Park Dr', drop: '525 W Marietta St NW', weight: '120 lbs', distance: '1.8 mi', rate: '$45', status: 'open', urgent: false },
+    { id: 'LOC-003', type: 'courier',   pickup: 'Hartsfield-Jackson Airport', drop: 'Buckhead District', weight: '8 lbs', distance: '11 mi', rate: '$32', status: 'assigned', urgent: true },
+    { id: 'LOC-004', type: 'last_mile', pickup: 'FedEx Hub Hapeville', drop: 'Multiple stops (12)', weight: '340 lbs', distance: '18 mi', rate: '$95', status: 'open', urgent: false },
+  ];
+  const nationalLoads: any[] = [
+    { id: 'NAT-001', type: 'OTR', origin: 'Atlanta, GA', dest: 'Chicago, IL', miles: 716, weight: '42,000 lbs', rate: '$3,800', status: 'open', equipment: 'Dry Van', commodity: 'General Freight' },
+    { id: 'NAT-002', type: 'LTL', origin: 'Dallas, TX', dest: 'Nashville, TN', miles: 663, weight: '12,500 lbs', rate: '$1,200', status: 'open', equipment: 'Flatbed', commodity: 'Building Materials' },
+    { id: 'NAT-003', type: 'FTL', origin: 'Charlotte, NC', dest: 'Miami, FL', miles: 654, weight: '44,000 lbs', rate: '$4,100', status: 'bidding', equipment: 'Reefer', commodity: 'Temperature Controlled' },
+    { id: 'NAT-004', type: 'OTR', origin: 'Memphis, TN', dest: 'Los Angeles, CA', miles: 1836, weight: '38,000 lbs', rate: '$8,200', status: 'open', equipment: 'Dry Van', commodity: 'Consumer Goods' },
+  ];
+
+  app.get("/api/logistics/local/loads", (_req: Request, res: Response) => {
+    res.json({ loads: localLoads, stats: { active: localLoads.filter(l => l.status === 'open').length, urgent: localLoads.filter(l => l.urgent).length, sameDay: localLoads.filter(l => l.type === 'same_day').length, couriers: driverRoster.filter(d => d.tier === 'local' && d.status === 'available').length } });
+  });
+
+  app.get("/api/logistics/national/loads", (_req: Request, res: Response) => {
+    res.json({ loads: nationalLoads, stats: { active: nationalLoads.length, ltl: nationalLoads.filter(l => l.type === 'LTL').length, avgValue: '$4,325', onTime: '96.8%' } });
+  });
+
+  app.get("/api/logistics/global/containers", (_req: Request, res: Response) => {
+    res.json({
+      containers: [
+        { id: 'CONT-MSC8891', origin: 'Shanghai, CN', dest: 'Port of Savannah, GA', status: 'in_transit', eta: '2026-06-18', value: '$84,000', type: '40HC' },
+        { id: 'CONT-EVG4421', origin: 'Rotterdam, NL', dest: 'Port of Baltimore, MD', status: 'customs_hold', eta: '2026-06-12', value: '$127,000', type: '20GP' },
+        { id: 'CONT-CMA7734', origin: 'Durban, ZA', dest: 'Port of Houston, TX', status: 'abandoned', daysAtPort: 47, value: '$39,000', taxOwed: '$4,200', auctionEligible: true },
+        { id: 'CONT-MSK2901', origin: 'Lagos, NG', dest: 'Port of Miami, FL', status: 'seized', daysAtPort: 38, value: '$62,000', taxOwed: '$7,800', auctionEligible: true },
+      ],
+      stats: { active: 2, customs: 1, auctionEligible: 2, totalAuctionValue: 101000 }
+    });
+  });
+
+  app.get("/api/logistics/drivers", (req: Request, res: Response) => {
+    const tier = (req as any).query?.tier as string | undefined;
+    const drivers = tier ? driverRoster.filter(d => d.tier === tier) : driverRoster;
+    res.json({ drivers, stats: { total: driverRoster.length, available: driverRoster.filter(d => d.status === 'available').length, onDispatch: driverRoster.filter(d => d.status === 'on_dispatch').length, avgRating: 4.82 } });
+  });
+
+  app.post("/api/logistics/drivers", (req: Request, res: Response) => {
+    const d = req.body;
+    if (!d.name) return res.status(400).json({ error: 'name required' });
+    const newDriver = { id: 'DRV-' + String(driverRoster.length + 1).padStart(3, '0'), status: 'available', rating: 5.0, loads: 0, ...d, createdAt: new Date().toISOString() };
+    driverRoster.push(newDriver);
+    res.json({ success: true, driver: newDriver });
+  });
+
+  app.post("/api/logistics/dispatch", (req: Request, res: Response) => {
+    const { driverId, loadId, tier, notes } = req.body;
+    if (!driverId || !loadId) return res.status(400).json({ error: 'driverId and loadId required' });
+    const driver = driverRoster.find(d => d.id === driverId);
+    if (!driver) return res.status(404).json({ error: 'Driver not found' });
+    driver.status = 'on_dispatch';
+    const dispatch = { id: 'DISP-' + Date.now().toString(36).toUpperCase(), driverId, driverName: driver.name, loadId, tier: tier || 'local', notes: notes || '', status: 'active', dispatchedAt: new Date().toISOString() };
+    activeDispatches.push(dispatch);
+    res.json({ success: true, dispatch, message: `${driver.name} dispatched for ${loadId}` });
+  });
+
+  app.get("/api/logistics/dispatch/active", (_req: Request, res: Response) => {
+    res.json({ dispatches: activeDispatches, count: activeDispatches.length });
+  });
+
+  app.post("/api/logistics/loads", (req: Request, res: Response) => {
+    const { tier, ...rest } = req.body;
+    if (!tier) return res.status(400).json({ error: 'tier (local|national|global) required' });
+    const id = (tier === 'local' ? 'LOC' : tier === 'national' ? 'NAT' : 'GLB') + '-' + Date.now().toString(36).toUpperCase();
+    const load = { id, tier, status: 'open', createdAt: new Date().toISOString(), ...rest };
+    if (tier === 'local') localLoads.push(load);
+    else nationalLoads.push(load);
+    res.json({ success: true, load });
+  });
+
+  app.get("/api/logistics/analytics", (_req: Request, res: Response) => {
+    res.json({
+      local:    { activePods: localLoads.length, avgDeliveryTime: '2.4 hrs', onTimeRate: '94.2%', revenue: '$4,820/day' },
+      national: { activeLoads: nationalLoads.length, avgMiles: 968, onTimeRate: '96.8%', revenue: '$28,400/wk' },
+      global:   { activeContainers: 4, auctionPipeline: '$101,000', customsCleared: 12, revenue: '$214,000/mo' },
+      drivers:  { total: driverRoster.length, utilized: driverRoster.filter(d => d.status === 'on_dispatch').length, avgRating: 4.82 },
+      summary:  { totalShipments: 847, delivered: 831, pending: 16, revenue30d: '$184,200' }
+    });
+  });
 }

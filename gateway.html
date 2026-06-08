@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Borders Dynasty — Sovereign Platform Access</title>
+  <link rel="icon" href="favicon.png">
+  <style>
+    :root {
+      --neon-cyan: #00d4ff; --neon-purple: #9b4dff; --neon-gold: #ffd700;
+      --neon-green: #00ff88; --neon-red: #ff3b6b; --cyber-bg: #020b18;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--cyber-bg);
+      font-family: 'Courier New', monospace;
+      color: #c5d8f0;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .grid-bg {
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridMove 25s linear infinite;
+    }
+    @keyframes gridMove { to { transform: translate(60px, 60px); } }
+    .scan { position: fixed; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,212,255,0.012) 3px, rgba(0,212,255,0.012) 4px); pointer-events: none; }
+    .radial { position: fixed; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 45%, rgba(0,212,255,0.06) 0%, transparent 70%); }
+
+    .gate-card {
+      position: relative; z-index: 10;
+      background: rgba(4,18,40,0.96);
+      border: 1px solid rgba(0,212,255,0.3);
+      border-radius: 8px;
+      padding: 3.5rem 3rem;
+      width: 100%;
+      max-width: 480px;
+      text-align: center;
+      box-shadow: 0 0 60px rgba(0,212,255,0.08), 0 0 120px rgba(155,77,255,0.04);
+      animation: cardAppear 0.6s ease-out;
+    }
+    @keyframes cardAppear {
+      from { opacity: 0; transform: translateY(20px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0)   scale(1); }
+    }
+    .gate-top-bar {
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-cyan));
+      background-size: 200% 100%;
+      animation: topBarFlow 3s linear infinite;
+      border-radius: 8px 8px 0 0;
+    }
+    @keyframes topBarFlow { from { background-position: 0 0; } to { background-position: 200% 0; } }
+
+    .gate-seal {
+      font-size: 3.5rem;
+      display: block; margin-bottom: 0.5rem;
+      filter: drop-shadow(0 0 20px rgba(255,215,0,0.6));
+      animation: sealGlow 3s ease-in-out infinite;
+    }
+    @keyframes sealGlow {
+      0%,100% { filter: drop-shadow(0 0 10px rgba(255,215,0,0.5)); }
+      50% { filter: drop-shadow(0 0 30px rgba(255,215,0,1)) drop-shadow(0 0 60px rgba(255,215,0,0.3)); }
+    }
+    .gate-org {
+      font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.2em;
+      color: rgba(0,212,255,0.6); margin-bottom: 0.25rem;
+      border: 1px solid rgba(0,212,255,0.2); background: rgba(0,212,255,0.05);
+      display: inline-block; padding: 0.2rem 0.75rem; border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+    .gate-title {
+      font-size: 1.6rem; font-weight: 900; text-transform: uppercase;
+      letter-spacing: 0.08em; margin-bottom: 0.25rem;
+      background: linear-gradient(135deg, #fff, var(--neon-cyan), var(--neon-purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .gate-sub {
+      font-size: 0.72rem; color: #4a6580; text-transform: uppercase;
+      letter-spacing: 0.1em; margin-bottom: 2.5rem;
+    }
+
+    .gate-input {
+      width: 100%; background: rgba(2,11,24,0.8);
+      border: 1px solid rgba(0,212,255,0.25);
+      color: var(--neon-cyan); font-family: 'Courier New', monospace;
+      font-size: 1rem; letter-spacing: 0.15em; text-align: center;
+      padding: 0.9rem 1.2rem; border-radius: 3px;
+      outline: none; transition: all 0.2s; margin-bottom: 1rem;
+    }
+    .gate-input:focus {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 15px rgba(0,212,255,0.35), 0 0 40px rgba(0,212,255,0.1);
+    }
+    .gate-input::placeholder { color: #2a4255; letter-spacing: 0.05em; }
+
+    .gate-btn {
+      width: 100%; background: var(--neon-cyan); color: #020b18;
+      font-family: 'Courier New', monospace; font-weight: 900;
+      font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em;
+      padding: 0.9rem; border: none; border-radius: 3px; cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 0 15px rgba(0,212,255,0.4);
+    }
+    .gate-btn:hover { box-shadow: 0 0 30px rgba(0,212,255,0.8), 0 0 60px rgba(0,212,255,0.3); }
+    .gate-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .gate-err {
+      display: none; margin-top: 1rem;
+      background: rgba(255,59,107,0.08); border: 1px solid rgba(255,59,107,0.3);
+      color: var(--neon-red); font-size: 0.72rem; padding: 0.5rem 0.75rem;
+      border-radius: 3px; text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .gate-footer {
+      margin-top: 2.5rem; font-size: 0.58rem; color: #1e3045;
+      text-transform: uppercase; letter-spacing: 0.1em;
+    }
+
+    .gate-status-row {
+      display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap;
+    }
+    .gate-badge {
+      font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 0.2rem 0.6rem; border-radius: 2px; border: 1px solid;
+    }
+    .gb-green  { color: var(--neon-green); border-color: rgba(0,255,136,0.3); background: rgba(0,255,136,0.05); }
+    .gb-cyan   { color: var(--neon-cyan);  border-color: rgba(0,212,255,0.3); background: rgba(0,212,255,0.05); }
+    .gb-purple { color: var(--neon-purple);border-color: rgba(155,77,255,0.3); background: rgba(155,77,255,0.05); }
+    .gb-gold   { color: var(--neon-gold);  border-color: rgba(255,215,0,0.3);  background: rgba(255,215,0,0.05); }
+
+    .keypad {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 0.5rem;
+      margin: 1rem 0;
+    }
+    .kp-btn {
+      background: rgba(0,212,255,0.04); border: 1px solid rgba(0,212,255,0.15);
+      color: #7fb3cc; font-family: 'Courier New', monospace; font-size: 1rem;
+      padding: 0.75rem; border-radius: 3px; cursor: pointer; transition: all 0.15s;
+    }
+    .kp-btn:hover { background: rgba(0,212,255,0.1); border-color: rgba(0,212,255,0.5); color: var(--neon-cyan); }
+    .kp-btn.wide { grid-column: span 2; }
+    .kp-btn.clear { color: var(--neon-red); border-color: rgba(255,59,107,0.2); }
+
+    .access-log {
+      margin-top: 1.5rem; font-size: 0.6rem; color: #1e3045;
+      text-align: left; height: 3rem; overflow: hidden;
+    }
+    .log-line { animation: logFade 0.3s ease-in; }
+    @keyframes logFade { from { opacity: 0; } to { opacity: 1; } }
+
+    .loading-overlay {
+      display: none; position: fixed; inset: 0; background: var(--cyber-bg);
+      z-index: 999; align-items: center; justify-content: center; flex-direction: column;
+      gap: 1rem;
+    }
+    .loading-overlay.show { display: flex; }
+    .load-bar-wrap { width: 300px; background: rgba(0,212,255,0.1); border-radius: 2px; height: 2px; }
+    .load-bar { height: 100%; background: var(--neon-cyan); border-radius: 2px; width: 0; transition: width 0.1s; box-shadow: 0 0 10px rgba(0,212,255,0.8); }
+    .load-msg { font-size: 0.65rem; color: var(--neon-cyan); text-transform: uppercase; letter-spacing: 0.15em; }
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="scan"></div>
+  <div class="radial"></div>
+
+  <div class="gate-card">
+    <div class="gate-top-bar"></div>
+    <span class="gate-seal">☩</span>
+    <div class="gate-org">508(c)(1)(A) · Borders Ecclesia Earth Trust</div>
+    <div class="gate-title">Sovereign Platform</div>
+    <div class="gate-sub">Authorized Personnel Only — Borders Dynasty Nation</div>
+
+    <div class="gate-status-row">
+      <span class="gate-badge gb-green">⬤ Platform Online</span>
+      <span class="gate-badge gb-cyan">⬤ LaaS Active</span>
+      <span class="gate-badge gb-purple">⬤ DivinityVX Online</span>
+      <span class="gate-badge gb-gold">⬤ CodexChain Live</span>
+    </div>
+
+    <input type="password" id="gateInput" class="gate-input" placeholder="ENTER ACCESS CODE" autocomplete="off" maxlength="20" onkeydown="if(event.key==='Enter')verifyAccess()">
+
+    <button class="gate-btn" id="gateBtn" onclick="verifyAccess()">⚡ AUTHORIZE ACCESS</button>
+    <div class="gate-err" id="gateErr">⚠ ACCESS DENIED — Unauthorized entry logged</div>
+
+    <div class="access-log" id="accessLog"></div>
+
+    <div class="gate-footer">
+      Unauthorized access attempts are logged, timestamped, and reported to the Codex audit trail.<br>
+      Borders Ecclesia Earth Trust · All Rights Reserved · Divine Law
+    </div>
+  </div>
+
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="load-msg" id="loadMsg">VERIFYING CREDENTIALS...</div>
+    <div class="load-bar-wrap"><div class="load-bar" id="loadBar"></div></div>
+  </div>
+
+  <script>
+    const REDIRECT_KEY = 'dvx_redirect';
+    const AUTH_KEY = 'dvx_auth';
+
+    // Auto-focus
+    window.addEventListener('load', () => {
+      document.getElementById('gateInput').focus();
+      addLog('[ ' + new Date().toISOString() + ' ] Access attempt detected from client...');
+      setTimeout(() => addLog('[ SYSTEM ] Awaiting authorization credential...'), 800);
+    });
+
+    function addLog(msg) {
+      const log = document.getElementById('accessLog');
+      const line = document.createElement('div');
+      line.className = 'log-line';
+      line.textContent = msg;
+      log.appendChild(line);
+      if (log.children.length > 3) log.removeChild(log.firstChild);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    async function verifyAccess() {
+      const code = document.getElementById('gateInput').value.trim();
+      if (!code) { shake(); return; }
+
+      const btn = document.getElementById('gateBtn');
+      btn.disabled = true;
+      addLog('[ AUTH ] Submitting credential...');
+
+      try {
+        const res = await fetch('/api/auth/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          addLog('[ AUTH ] Credential accepted — initializing platform...');
+          sessionStorage.setItem(AUTH_KEY, data.token);
+          sessionStorage.setItem('dvx_role', data.role || 'operator');
+          sessionStorage.setItem('dvx_name', data.name || 'Sovereign Operator');
+          bootSequence();
+        } else {
+          showError();
+          addLog('[ DENIED ] Invalid credential — attempt logged.');
+          btn.disabled = false;
+          document.getElementById('gateInput').value = '';
+          document.getElementById('gateInput').focus();
+          // Log to server
+          fetch('/api/auth/log-attempt', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ ts: new Date().toISOString(), ua: navigator.userAgent }) }).catch(()=>{});
+        }
+      } catch (e) {
+        addLog('[ ERROR ] Server unreachable — retrying...');
+        btn.disabled = false;
+      }
+    }
+
+    function showError() {
+      const err = document.getElementById('gateErr');
+      err.style.display = 'block';
+      setTimeout(() => err.style.display = 'none', 4000);
+    }
+    function shake() {
+      const card = document.querySelector('.gate-card');
+      card.style.animation = 'none'; card.offsetHeight;
+      card.style.animation = 'shake 0.4s ease';
+    }
+
+    const bootMessages = [
+      'VERIFYING CREDENTIALS...', 'INITIALIZING SECURE CHANNEL...', 'LOADING DYNASTY-OS MODULES...',
+      'CONNECTING CODEXCHAIN EVENT SPINE...', 'ACTIVATING DIVINITYVX NEURAL LAYER...',
+      'MOUNTING LOGISTICS INFRASTRUCTURE...', 'PLATFORM READY — WELCOME, SOVEREIGN.'
+    ];
+
+    function bootSequence() {
+      const overlay = document.getElementById('loadingOverlay');
+      const bar = document.getElementById('loadBar');
+      const msg = document.getElementById('loadMsg');
+      overlay.classList.add('show');
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < bootMessages.length) {
+          msg.textContent = bootMessages[i];
+          bar.style.width = (((i + 1) / bootMessages.length) * 100) + '%';
+          i++;
+        } else {
+          clearInterval(interval);
+          const dest = sessionStorage.getItem(REDIRECT_KEY) || 'index.html';
+          sessionStorage.removeItem(REDIRECT_KEY);
+          window.location.href = dest;
+        }
+      }, 350);
+    }
+  </script>
+</body>
+</html>
