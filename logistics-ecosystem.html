@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Logistics Ecosystem · DivinityVX · Borders Dynasty</title>
+  <link rel="icon" href="favicon.png"/>
+  <script src="lib/access-gate.js"></script>
+  <script src="lib/dvx-nav.js"></script>
+  <style>
+    :root{--cyan:#00d4ff;--purple:#9b4dff;--gold:#ffd700;--green:#00ff88;--red:#ff3b6b;--orange:#ff8c00;--bg:#020b18;--panel:rgba(4,18,40,0.94);--border:rgba(0,212,255,0.18);}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{background:var(--bg);font-family:'Courier New',monospace;color:#c5d8f0;min-height:100vh;overflow-x:hidden;padding-bottom:3rem;}
+    .grid-bg{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px);background-size:60px 60px;animation:gs 30s linear infinite;}
+    @keyframes gs{to{transform:translate(60px,60px);}}
+    .scan{position:fixed;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,212,255,0.005) 3px,rgba(0,212,255,0.005) 4px);}
+    .page{position:relative;z-index:2;max-width:1600px;margin:0 auto;padding:1.25rem;}
+
+    /* HERO */
+    .hero{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:1.1rem 1.75rem;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+    .hero-title{font-size:1.35rem;font-weight:900;text-transform:uppercase;letter-spacing:0.08em;background:linear-gradient(135deg,#fff 0%,var(--cyan) 40%,var(--green) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .hero-sub{font-size:0.58rem;color:#3a5060;text-transform:uppercase;letter-spacing:0.12em;margin-top:0.2rem;}
+    .hero-r{display:flex;gap:0.65rem;flex-wrap:wrap;align-items:center;}
+    .hbtn{font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;padding:0.48rem 0.95rem;border-radius:3px;text-decoration:none;border:1px solid;transition:all 0.2s;cursor:pointer;font-family:inherit;}
+    .hbtn.cyan{color:#020b18;background:var(--cyan);border-color:var(--cyan);}
+    .hbtn.green{color:#020b18;background:var(--green);border-color:var(--green);}
+    .hbtn.ghost{color:var(--purple);border-color:rgba(155,77,255,0.4);background:rgba(155,77,255,0.07);}
+    .hbtn.gold{color:var(--gold);border-color:rgba(255,215,0,0.4);background:rgba(255,215,0,0.06);}
+
+    /* STAT ROW */
+    .srow{display:grid;grid-template-columns:repeat(6,1fr);gap:0.85rem;margin-bottom:1.25rem;}
+    .sc{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:0.8rem 1rem;position:relative;overflow:hidden;}
+    .sc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+    .sc.c::before{background:linear-gradient(90deg,var(--cyan),transparent);}
+    .sc.g::before{background:linear-gradient(90deg,var(--green),transparent);}
+    .sc.p::before{background:linear-gradient(90deg,var(--purple),transparent);}
+    .sc.o::before{background:linear-gradient(90deg,var(--gold),transparent);}
+    .sc.r::before{background:linear-gradient(90deg,var(--red),transparent);}
+    .sc.n::before{background:linear-gradient(90deg,var(--orange),transparent);}
+    .sc-lbl{font-size:0.52rem;text-transform:uppercase;letter-spacing:0.1em;color:#2a4255;margin-bottom:0.25rem;}
+    .sc-num{font-size:1.7rem;font-weight:900;line-height:1;}
+    .sc-num.c{color:var(--cyan);}.sc-num.g{color:var(--green);}.sc-num.p{color:var(--purple);}
+    .sc-num.o{color:var(--gold);}.sc-num.r{color:var(--red);}.sc-num.n{color:var(--orange);}
+    .sc-sub{font-size:0.55rem;color:#2a4255;margin-top:0.1rem;}
+
+    /* TAB NAV */
+    .tabnav{display:flex;gap:0.3rem;margin-bottom:1.1rem;flex-wrap:wrap;background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:0.5rem;}
+    .tab{font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:0.38rem 0.8rem;border-radius:3px;border:1px solid transparent;cursor:pointer;background:transparent;color:#3a5060;font-family:inherit;transition:all 0.2s;}
+    .tab:hover{color:#c5d8f0;border-color:rgba(0,212,255,0.2);}
+    .tab.active{color:var(--cyan);border-color:rgba(0,212,255,0.4);background:rgba(0,212,255,0.08);}
+    .tab.green.active{color:var(--green);border-color:rgba(0,255,136,0.4);background:rgba(0,255,136,0.07);}
+    .tab.gold.active{color:var(--gold);border-color:rgba(255,215,0,0.4);background:rgba(255,215,0,0.07);}
+    .tab.purple.active{color:var(--purple);border-color:rgba(155,77,255,0.4);background:rgba(155,77,255,0.07);}
+    .tab.red.active{color:var(--red);border-color:rgba(255,59,107,0.4);background:rgba(255,59,107,0.07);}
+    .tabcnt{display:none;}.tabcnt.active{display:block;}
+
+    /* PANEL */
+    .pnl{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:1.1rem;margin-bottom:1.1rem;}
+    .ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.85rem;padding-bottom:0.5rem;border-bottom:1px solid rgba(0,212,255,0.1);}
+    .ph-t{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#c5d8f0;display:flex;align-items:center;gap:0.35rem;}
+    .badge{font-size:0.52rem;text-transform:uppercase;padding:0.1rem 0.4rem;border-radius:2px;border:1px solid;}
+    .badge.live{color:var(--green);border-color:rgba(0,255,136,0.3);background:rgba(0,255,136,0.05);}
+    .badge.rdy{color:var(--cyan);border-color:rgba(0,212,255,0.3);background:rgba(0,212,255,0.05);}
+    .badge.ext{color:var(--gold);border-color:rgba(255,215,0,0.3);background:rgba(255,215,0,0.05);}
+    .ph-a{font-size:0.57rem;color:var(--cyan);text-decoration:none;text-transform:uppercase;letter-spacing:0.07em;border:1px solid rgba(0,212,255,0.18);padding:0.15rem 0.4rem;border-radius:2px;cursor:pointer;font-family:inherit;background:transparent;transition:all 0.2s;}
+    .ph-a:hover{background:rgba(0,212,255,0.08);}
+
+    /* LOAD TABLE */
+    .ltbl{width:100%;border-collapse:collapse;font-size:0.64rem;}
+    .ltbl th{padding:0.28rem 0.5rem;text-align:left;color:#1a3040;text-transform:uppercase;letter-spacing:0.06em;font-size:0.52rem;font-weight:400;border-bottom:1px solid rgba(0,212,255,0.12);}
+    .ltbl td{padding:0.34rem 0.5rem;border-bottom:1px solid rgba(0,212,255,0.04);color:#6a9bb0;vertical-align:middle;}
+    .ltbl tr:hover td{background:rgba(0,212,255,0.02);}
+    .ltbl tr:last-child td{border-bottom:none;}
+    .src-tag{font-size:0.5rem;font-weight:900;text-transform:uppercase;padding:0.08rem 0.3rem;border-radius:2px;white-space:nowrap;}
+    .src-divinity{color:var(--purple);background:rgba(155,77,255,0.12);border:1px solid rgba(155,77,255,0.25);}
+    .src-dat{color:var(--cyan);background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);}
+    .src-truckstop{color:var(--green);background:rgba(0,255,136,0.06);border:1px solid rgba(0,255,136,0.18);}
+    .src-convoy{color:var(--gold);background:rgba(255,215,0,0.07);border:1px solid rgba(255,215,0,0.2);}
+    .src-amazon{color:#ff9900;background:rgba(255,153,0,0.08);border:1px solid rgba(255,153,0,0.2);}
+    .src-uber{color:#fff;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);}
+    .pill{display:inline-block;font-size:0.51rem;text-transform:uppercase;letter-spacing:0.07em;padding:0.08rem 0.32rem;border-radius:2px;font-weight:700;}
+    .pill.open{color:var(--green);background:rgba(0,255,136,0.06);border:1px solid rgba(0,255,136,0.2);}
+    .pill.assigned,.pill.in_transit{color:var(--cyan);background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.2);}
+    .pill.bidding{color:var(--purple);background:rgba(155,77,255,0.06);border:1px solid rgba(155,77,255,0.2);}
+    .pill.customs_hold,.pill.delinquent{color:var(--gold);background:rgba(255,215,0,0.06);border:1px solid rgba(255,215,0,0.2);}
+    .pill.abandoned,.pill.seized{color:var(--red);background:rgba(255,59,107,0.06);border:1px solid rgba(255,59,107,0.2);}
+    .dispatch-btn{font-size:0.55rem;font-weight:700;text-transform:uppercase;padding:0.18rem 0.5rem;border-radius:2px;border:1px solid rgba(0,255,136,0.3);color:var(--green);background:rgba(0,255,136,0.06);cursor:pointer;font-family:inherit;transition:all 0.2s;}
+    .dispatch-btn:hover{background:rgba(0,255,136,0.14);}
+
+    /* 2-COL GRID */
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;}
+    .g3{display:grid;grid-template-columns:2fr 1fr;gap:1.1rem;}
+
+    /* CONTRACTOR CARD */
+    .ccard{display:flex;align-items:center;gap:0.75rem;padding:0.55rem;background:rgba(0,0,0,0.25);border:1px solid rgba(0,212,255,0.08);border-radius:3px;margin-bottom:0.45rem;transition:all 0.2s;}
+    .ccard:hover{border-color:rgba(0,212,255,0.25);background:rgba(0,212,255,0.03);}
+    .ccard-ico{font-size:1.3rem;flex-shrink:0;}
+    .ccard-name{font-size:0.67rem;color:#c5d8f0;font-weight:700;}
+    .ccard-sub{font-size:0.56rem;color:#2a4255;margin-top:0.04rem;}
+    .ccard-right{margin-left:auto;text-align:right;}
+    .ccard-earn{font-size:0.68rem;color:var(--green);font-weight:700;}
+    .tier-badge{font-size:0.5rem;text-transform:uppercase;font-weight:700;padding:0.1rem 0.35rem;border-radius:2px;}
+    .tier-laas{color:var(--cyan);background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.2);}
+    .tier-maas{color:var(--green);background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.18);}
+    .tier-saas{color:var(--purple);background:rgba(155,77,255,0.08);border:1px solid rgba(155,77,255,0.2);}
+    .tier-warehouse{color:var(--gold);background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.2);}
+    .tier-reverse{color:var(--red);background:rgba(255,59,107,0.07);border:1px solid rgba(255,59,107,0.18);}
+
+    /* DISPATCH FORM */
+    .dform{display:flex;flex-direction:column;gap:0.5rem;}
+    .ds,.di{width:100%;background:rgba(0,0,0,0.5);border:1px solid rgba(0,212,255,0.18);color:#c5d8f0;font-family:'Courier New',monospace;font-size:0.67rem;padding:0.48rem 0.65rem;border-radius:3px;outline:none;}
+    .ds:focus,.di:focus{border-color:var(--cyan);}
+    .dbtn{background:var(--green);color:#020b18;font-family:'Courier New',monospace;font-weight:900;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;padding:0.55rem;border:none;border-radius:3px;cursor:pointer;transition:all 0.2s;}
+    .dbtn:hover{box-shadow:0 0 20px rgba(0,255,136,0.5);}
+    .msg-box{font-size:0.62rem;padding:0.35rem 0.55rem;border-radius:3px;border:1px solid;margin-top:0.35rem;display:none;}
+    .msg-box.ok{color:var(--green);border-color:rgba(0,255,136,0.3);background:rgba(0,255,136,0.05);}
+    .msg-box.err{color:var(--red);border-color:rgba(255,59,107,0.3);background:rgba(255,59,107,0.05);}
+
+    /* TIER CARDS */
+    .tier-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0.9rem;}
+    .tcard{background:rgba(0,0,0,0.35);border:1px solid rgba(0,212,255,0.12);border-radius:4px;padding:1.1rem;transition:all 0.2s;position:relative;overflow:hidden;}
+    .tcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+    .tcard.laas::before{background:var(--cyan);}
+    .tcard.maas::before{background:var(--green);}
+    .tcard.saas::before{background:var(--purple);}
+    .tcard.warehouse::before{background:var(--gold);}
+    .tcard.reverse::before{background:var(--red);}
+    .tcard:hover{transform:translateY(-3px);border-color:rgba(0,212,255,0.3);box-shadow:0 6px 20px rgba(0,0,0,0.4);}
+    .tc-ico{font-size:1.8rem;margin-bottom:0.6rem;}
+    .tc-name{font-size:0.75rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;}
+    .tc-name.laas{color:var(--cyan);}.tc-name.maas{color:var(--green);}.tc-name.saas{color:var(--purple);}.tc-name.warehouse{color:var(--gold);}.tc-name.reverse{color:var(--red);}
+    .tc-full{font-size:0.6rem;color:#4a6580;margin-bottom:0.65rem;}
+    .tc-price{font-size:1.5rem;font-weight:900;color:#c5d8f0;margin-bottom:0.1rem;}
+    .tc-enroll{font-size:0.56rem;color:#3a5060;margin-bottom:0.75rem;}
+    .tc-features{list-style:none;margin-bottom:0.85rem;}
+    .tc-features li{font-size:0.59rem;color:#5a7a90;padding:0.2rem 0;display:flex;align-items:flex-start;gap:0.4rem;}
+    .tc-features li::before{content:'⬤';font-size:0.35rem;margin-top:0.3rem;flex-shrink:0;}
+    .tcard.laas .tc-features li::before{color:var(--cyan);}
+    .tcard.maas .tc-features li::before{color:var(--green);}
+    .tcard.saas .tc-features li::before{color:var(--purple);}
+    .tcard.warehouse .tc-features li::before{color:var(--gold);}
+    .tcard.reverse .tc-features li::before{color:var(--red);}
+    .tc-btn{display:block;width:100%;text-align:center;font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;padding:0.48rem;border-radius:3px;border:1px solid;text-decoration:none;transition:all 0.2s;cursor:pointer;font-family:inherit;}
+    .tcard.laas .tc-btn{color:var(--cyan);border-color:rgba(0,212,255,0.4);background:rgba(0,212,255,0.08);}
+    .tcard.maas .tc-btn{color:var(--green);border-color:rgba(0,255,136,0.4);background:rgba(0,255,136,0.07);}
+    .tcard.saas .tc-btn{color:var(--purple);border-color:rgba(155,77,255,0.4);background:rgba(155,77,255,0.08);}
+    .tcard.warehouse .tc-btn{color:var(--gold);border-color:rgba(255,215,0,0.4);background:rgba(255,215,0,0.07);}
+    .tcard.reverse .tc-btn{color:var(--red);border-color:rgba(255,59,107,0.4);background:rgba(255,59,107,0.07);}
+
+    /* AI INSIGHT */
+    .ai-strip{background:rgba(0,212,255,0.04);border:1px solid rgba(0,212,255,0.15);border-radius:4px;padding:0.65rem 1.1rem;margin-bottom:1.1rem;display:flex;align-items:flex-start;gap:0.85rem;}
+    .ai-ico{font-size:1.2rem;flex-shrink:0;}
+    .ai-lbl{font-size:0.55rem;color:var(--cyan);text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:0.2rem;}
+    .ai-msg{font-size:0.68rem;color:#a5c8e0;line-height:1.5;}
+    .ai-ts{font-size:0.52rem;color:#1e3040;margin-top:0.3rem;}
+
+    /* BOTTOM TICKER */
+    .ticker{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(2,11,24,0.97);border-top:1px solid rgba(0,212,255,0.1);padding:0.28rem 1rem;display:flex;align-items:center;gap:1rem;overflow:hidden;}
+    .tick-lbl{font-size:0.55rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;font-weight:700;flex-shrink:0;}
+    .tick-scroll{flex:1;overflow:hidden;}
+    .tick-inner{display:flex;gap:2rem;animation:tickMove 60s linear infinite;white-space:nowrap;}
+    @keyframes tickMove{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+    .tick-it{font-size:0.58rem;color:#1e3040;flex-shrink:0;}
+    .tick-it span{color:var(--cyan);}
+
+    @media(max-width:1100px){.tier-grid{grid-template-columns:repeat(3,1fr);}.srow{grid-template-columns:repeat(3,1fr);}}
+    @media(max-width:768px){.tier-grid{grid-template-columns:1fr 1fr;}.srow{grid-template-columns:repeat(2,1fr);}.g2,.g3{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="scan"></div>
+  <div class="page">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div>
+        <div class="hero-title">🚚 Divinity Logistics Ecosystem</div>
+        <div class="hero-sub">AI-aggregated loadboard · Divinity Dispatch · 1099 Contractors · LaaS · MaaS · Warehouse · Reverse · All tiers</div>
+      </div>
+      <div class="hero-r">
+        <a href="carrier-enrollment.html" class="hbtn green">+ Enroll Contractor</a>
+        <a href="#dispatch" class="hbtn cyan" onclick="openTab('dispatch')">📡 Dispatch</a>
+        <a href="divinity-command.html" class="hbtn ghost">⚡ Command Center</a>
+        <a href="reverse-logistics-dashboard.html" class="hbtn gold">♻ Reverse</a>
+      </div>
+    </div>
+
+    <!-- DVX AI INSIGHT -->
+    <div class="ai-strip" id="aiStrip">
+      <span class="ai-ico">🧠</span>
+      <div>
+        <div class="ai-lbl">DivinityVX Neural Analysis</div>
+        <div class="ai-msg" id="aiMsg">Scanning all load boards — aggregating DAT, Truckstop, Convoy, Amazon Relay, Uber Freight, and Divinity Board...</div>
+        <div class="ai-ts" id="aiTs"></div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="srow">
+      <div class="sc c"><div class="sc-lbl">Total Open Loads</div><div class="sc-num c" id="sTotal">—</div><div class="sc-sub">All sources combined</div></div>
+      <div class="sc g"><div class="sc-lbl">Divinity Board</div><div class="sc-num g" id="sDivinity">—</div><div class="sc-sub">Our platform</div></div>
+      <div class="sc p"><div class="sc-lbl">External Feeds</div><div class="sc-num p" id="sExternal">—</div><div class="sc-sub">DAT · Truckstop · Convoy +</div></div>
+      <div class="sc o"><div class="sc-lbl">Active Contractors</div><div class="sc-num o" id="sContractors">—</div><div class="sc-sub">1099 · all tiers</div></div>
+      <div class="sc r"><div class="sc-lbl">Active Dispatches</div><div class="sc-num r" id="sDispatches">—</div><div class="sc-sub">In flight right now</div></div>
+      <div class="sc n"><div class="sc-lbl">30-Day Revenue</div><div class="sc-num n" id="sRevenue">—</div><div class="sc-sub">Platform + fees</div></div>
+    </div>
+
+    <!-- TAB NAV -->
+    <div class="tabnav">
+      <button class="tab active" onclick="openTab('all',this)">🌐 All Loads</button>
+      <button class="tab" onclick="openTab('divinity',this)">⚡ Divinity Board</button>
+      <button class="tab green" onclick="openTab('laas',this)">🚛 LaaS Board</button>
+      <button class="tab green" onclick="openTab('maas',this)">📦 MaaS / Last-Mile</button>
+      <button class="tab gold" onclick="openTab('warehouse',this)">🏭 Warehouse</button>
+      <button class="tab red" onclick="openTab('reverse',this)">♻ Reverse Logistics</button>
+      <button class="tab" id="tab-dispatch" onclick="openTab('dispatch',this)">📡 Dispatch Console</button>
+      <button class="tab purple" onclick="openTab('contractors',this)">👤 1099 Contractors</button>
+      <button class="tab gold" onclick="openTab('tiers',this)">💎 Tier Plans</button>
+    </div>
+
+    <!-- ALL LOADS -->
+    <div class="tabcnt active" id="tc-all">
+      <div class="pnl">
+        <div class="ph">
+          <div class="ph-t">🌐 Aggregated Load Board <span style="font-size:0.58rem;color:#2a4255;font-weight:400;margin-left:0.5rem;">— All sources · Dispatch routes through Divinity platform</span></div>
+          <div style="display:flex;gap:0.5rem;align-items:center;">
+            <select class="ds" id="filterEquip" style="width:120px;padding:0.2rem 0.4rem;font-size:0.58rem;" onchange="renderLoads()">
+              <option value="">All Equipment</option>
+              <option value="Dry Van">Dry Van</option>
+              <option value="Flatbed">Flatbed</option>
+              <option value="Reefer">Reefer</option>
+              <option value="Van">Van/Cargo</option>
+              <option value="Box">Box Truck</option>
+            </select>
+            <button class="ph-a" onclick="fetchAllLoads()">↻ Refresh</button>
+          </div>
+        </div>
+        <table class="ltbl" id="allLoadsTbl">
+          <thead><tr><th>Source</th><th>ID</th><th>Type</th><th>Origin</th><th>Destination</th><th>Miles</th><th>Weight</th><th>Equipment</th><th>Rate</th><th>Status</th><th>Posted</th><th>Action</th></tr></thead>
+          <tbody id="allLoadsBody"><tr><td colspan="12" style="padding:1.5rem;text-align:center;color:#1e3040;">Loading all sources...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- DIVINITY BOARD -->
+    <div class="tabcnt" id="tc-divinity">
+      <div class="g3">
+        <div>
+          <div class="pnl">
+            <div class="ph"><div class="ph-t">⚡ Divinity Platform Loads</div><button class="ph-a" onclick="fetchDivinity()">↻ Refresh</button></div>
+            <table class="ltbl">
+              <thead><tr><th>ID</th><th>Type</th><th>Origin/Pickup</th><th>Destination</th><th>Miles/Dist</th><th>Rate</th><th>Status</th><th>Dispatch</th></tr></thead>
+              <tbody id="divLoadsBody"><tr><td colspan="8" style="padding:1rem;text-align:center;color:#1e3040;">Loading...</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <div class="pnl">
+            <div class="ph"><div class="ph-t">📊 Board Stats</div></div>
+            <div id="divStats" style="font-size:0.65rem;color:#3a5060;padding:0.5rem;">Loading...</div>
+          </div>
+          <div class="pnl" style="margin-top:1.1rem;">
+            <div class="ph"><div class="ph-t">+ Post New Load</div></div>
+            <div class="dform">
+              <select class="ds" id="nlTier"><option value="local">📍 Local / Last-Mile</option><option value="national">🌎 National / OTR</option><option value="global">🌐 Global / Intermodal</option></select>
+              <input class="di" id="nlOrigin" placeholder="Origin / Pickup address">
+              <input class="di" id="nlDest" placeholder="Destination / Drop address">
+              <input class="di" id="nlRate" placeholder="Rate ($)">
+              <input class="di" id="nlWeight" placeholder="Weight (lbs)">
+              <select class="ds" id="nlEquip"><option value="Dry Van">Dry Van</option><option value="Flatbed">Flatbed</option><option value="Reefer">Reefer</option><option value="Box Truck">Box Truck</option><option value="Cargo Van">Cargo Van</option></select>
+              <button class="dbtn" onclick="postLoad()">POST LOAD TO DIVINITY BOARD</button>
+              <div class="msg-box" id="nlMsg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LaaS BOARD -->
+    <div class="tabcnt" id="tc-laas">
+      <div class="pnl">
+        <div class="ph"><div class="ph-t">🚛 LaaS — Logistics as a Service Board</div><span class="badge live">⬤ Full Access</span></div>
+        <div style="font-size:0.6rem;color:#2a4255;margin-bottom:0.85rem;">OTR · FTL · LTL · National · International · Full truckload dispatch. LaaS subscribers get priority load matching and AI dispatch optimization.</div>
+        <table class="ltbl">
+          <thead><tr><th>Source</th><th>ID</th><th>Type</th><th>Origin</th><th>Destination</th><th>Miles</th><th>Equipment</th><th>Rate</th><th>Status</th><th>Dispatch</th></tr></thead>
+          <tbody id="laasBody"><tr><td colspan="10" style="padding:1rem;text-align:center;color:#1e3040;">Loading LaaS loads...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- MaaS BOARD -->
+    <div class="tabcnt" id="tc-maas">
+      <div class="pnl">
+        <div class="ph"><div class="ph-t">📦 MaaS — Mobility / Last-Mile Board</div><span class="badge live">⬤ Active</span></div>
+        <div style="font-size:0.6rem;color:#2a4255;margin-bottom:0.85rem;">Courier · same-day · last-mile · rideshare. All MaaS contractors are 1099 independents. Sign up through our app — no direct board access without enrollment.</div>
+        <table class="ltbl">
+          <thead><tr><th>Source</th><th>ID</th><th>Type</th><th>Pickup</th><th>Drop</th><th>Distance</th><th>Vehicle</th><th>Rate</th><th>Status</th><th>Dispatch</th></tr></thead>
+          <tbody id="maasBody"><tr><td colspan="10" style="padding:1rem;text-align:center;color:#1e3040;">Loading MaaS loads...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- WAREHOUSE -->
+    <div class="tabcnt" id="tc-warehouse">
+      <div class="pnl">
+        <div class="ph"><div class="ph-t">🏭 Warehouse Logic Operations</div><span class="badge rdy">⬤ Active</span></div>
+        <div style="font-size:0.6rem;color:#2a4255;margin-bottom:0.85rem;">Receiving · outbound · put-away · inventory · pick/pack. All warehouse ops routed through Divinity platform. Workers are 1099 independent contractors.</div>
+        <div id="whBody" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.85rem;"></div>
+      </div>
+    </div>
+
+    <!-- REVERSE LOGISTICS -->
+    <div class="tabcnt" id="tc-reverse">
+      <div class="pnl">
+        <div class="ph"><div class="ph-t">♻ Reverse Logistics Pipeline</div><a href="reverse-logistics-dashboard.html" class="ph-a">Full Dashboard →</a></div>
+        <div style="font-size:0.6rem;color:#2a4255;margin-bottom:0.85rem;">Returns · abandoned containers · customs seizures · auction pipeline. All reverse logistics processed through Divinity platform. Auction proceeds distributed to platform treasury.</div>
+        <table class="ltbl">
+          <thead><tr><th>Container</th><th>Origin</th><th>Port</th><th>Status</th><th>Days</th><th>Value</th><th>Tax Owed</th><th>Eligible</th><th>Action</th></tr></thead>
+          <tbody id="reverseBody"><tr><td colspan="9" style="padding:1rem;text-align:center;color:#1e3040;">Loading containers...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- DISPATCH CONSOLE -->
+    <div class="tabcnt" id="tc-dispatch">
+      <div class="g2">
+        <div>
+          <div class="pnl">
+            <div class="ph"><div class="ph-t">📡 Divinity Dispatch Console</div><span class="badge live">⬤ All routes through our platform</span></div>
+            <div class="dform">
+              <select class="ds" id="ddDriver"><option value="">Select 1099 Contractor / Driver...</option></select>
+              <select class="ds" id="ddLoad"><option value="">Select Load from Divinity Board...</option></select>
+              <select class="ds" id="ddTier">
+                <option value="local">📍 Local / Last-Mile (MaaS)</option>
+                <option value="national">🌎 National / OTR (LaaS)</option>
+                <option value="global">🌐 Global / Intermodal (LaaS)</option>
+                <option value="warehouse">🏭 Warehouse Job</option>
+                <option value="reverse">♻ Reverse Logistics</option>
+              </select>
+              <input class="di" id="ddRate" placeholder="Confirmed rate ($) — platform takes 3%">
+              <textarea class="di" id="ddNotes" placeholder="Dispatch instructions / notes..." rows="2" style="resize:vertical;"></textarea>
+              <button class="dbtn" onclick="dispatchNow()">📡 DISPATCH VIA DIVINITY PLATFORM</button>
+              <div class="msg-box" id="ddMsg"></div>
+            </div>
+          </div>
+          <div class="pnl" style="margin-top:1.1rem;">
+            <div class="ph"><div class="ph-t">⚡ Active Dispatches</div><button class="ph-a" onclick="loadActiveDispatches()">↻</button></div>
+            <div id="activeDispList"><div style="font-size:0.63rem;color:#1e3040;text-align:center;padding:0.75rem;">Loading...</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="pnl">
+            <div class="ph"><div class="ph-t">👤 Available Contractors</div><span class="badge live">⬤ 1099</span></div>
+            <div id="availContractors"><div style="font-size:0.63rem;color:#1e3040;text-align:center;padding:0.75rem;">Loading...</div></div>
+          </div>
+          <div class="pnl" style="margin-top:1.1rem;">
+            <div class="ph"><div class="ph-t">🧠 DVX AI Suggestions</div></div>
+            <div id="dvxSuggestions"><div style="font-size:0.63rem;color:#1e3040;padding:0.5rem;">Loading AI recommendations...</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1099 CONTRACTORS -->
+    <div class="tabcnt" id="tc-contractors">
+      <div class="pnl">
+        <div class="ph">
+          <div class="ph-t">👤 1099 Independent Contractors</div>
+          <div style="display:flex;gap:0.5rem;">
+            <select class="ds" id="filterTierC" style="width:120px;padding:0.2rem 0.4rem;font-size:0.58rem;" onchange="filterContractors()">
+              <option value="">All Tiers</option>
+              <option value="laas">LaaS</option>
+              <option value="maas">MaaS</option>
+              <option value="saas">SaaS</option>
+              <option value="warehouse">Warehouse</option>
+              <option value="reverse">Reverse</option>
+            </select>
+            <a href="carrier-enrollment.html" class="ph-a">+ Enroll →</a>
+          </div>
+        </div>
+        <table class="ltbl">
+          <thead><tr><th>ID</th><th>Name</th><th>Type</th><th>Tier</th><th>Vehicle</th><th>Area</th><th>Loads</th><th>Rating</th><th>Earnings</th><th>Status</th></tr></thead>
+          <tbody id="contractorsBody"><tr><td colspan="10" style="padding:1rem;text-align:center;color:#1e3040;">Loading contractors...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TIER PLANS -->
+    <div class="tabcnt" id="tc-tiers">
+      <div class="pnl">
+        <div class="ph"><div class="ph-t">💎 Contractor Tier Plans — All workers are 1099 Independent Contractors</div><a href="carrier-enrollment.html" class="ph-a">Enroll Now →</a></div>
+        <div style="font-size:0.62rem;color:#2a4255;margin-bottom:1.1rem;">Platform commission: <span style="color:var(--cyan);">3% per load</span> · Enrollment fee applies once · Monthly subscription required · All contractors are independent (1099) — not employees.</div>
+        <div class="tier-grid" id="tierGrid">Loading tier plans...</div>
+      </div>
+    </div>
+
+  </div><!-- /page -->
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="tick-lbl">🚚 LIVE</div>
+    <div class="tick-scroll"><div class="tick-inner" id="tickInner">
+      <span class="tick-it"><span>DIVINITY</span> Board Active — All Loads Routed Through Platform</span>
+      <span class="tick-it"><span>DAT</span> FreightBoard Feed — Live Aggregation</span>
+      <span class="tick-it"><span>TRUCKSTOP</span> National OTR Board — AI Matched</span>
+      <span class="tick-it"><span>CONVOY</span> Digital Freight — Auto-Import</span>
+      <span class="tick-it"><span>AMAZON RELAY</span> Last-Mile Feed — Integrated</span>
+      <span class="tick-it"><span>UBER FREIGHT</span> Spot Market — Monitored</span>
+      <span class="tick-it"><span>1099</span> All Contractors — Independent · Platform Fee 3%</span>
+      <span class="tick-it"><span>LaaS</span> $149/mo · <span>MaaS</span> $79/mo · <span>Warehouse</span> $199/mo · <span>Reverse</span> $129/mo</span>
+      <span class="tick-it"><span>DIVINITY</span> Board Active — All Loads Routed Through Platform</span>
+      <span class="tick-it"><span>DAT</span> FreightBoard Feed — Live Aggregation</span>
+      <span class="tick-it"><span>TRUCKSTOP</span> National OTR Board — AI Matched</span>
+    </div></div>
+  </div>
+
+  <script>
+    // ─── Data ───────────────────────────────────────────────────
+    const TIERS_DATA = {
+      laas:      { name: 'LaaS', full: 'Logistics as a Service', ico: '🚛', monthly: 149, enroll: 50, color: 'laas',
+        features: ['Full load board access (local + national + global)', 'AI dispatch matching & route optimization', 'Priority load assignments', 'Driver & contractor management', '1099 tax earnings dashboard', 'Multi-tier access (all boards)', 'Platform commission: 3% per load'] },
+      maas:      { name: 'MaaS', full: 'Mobility as a Service', ico: '📦', monthly: 79, enroll: 50, color: 'maas',
+        features: ['Last-mile delivery board', 'Courier & rideshare network', 'App-based tracking', 'Same-day & scheduled delivery', 'Per-stop earnings tracking', '1099 tax dashboard', 'Platform commission: 3% per stop'] },
+      saas:      { name: 'SaaS', full: 'Platform Software Access', ico: '⚙️', monthly: 99, enroll: 25, color: 'saas',
+        features: ['Dashboard & analytics access', 'Document management tools', 'Codex scroll library', 'API access for integrations', 'Reporting & export', 'No load assignments', 'Knowledge base access'] },
+      warehouse: { name: 'Warehouse', full: 'Warehouse Logic Operations', ico: '🏭', monthly: 199, enroll: 100, color: 'warehouse',
+        features: ['Inventory management system', 'Inbound receiving workflows', 'Outbound shipping management', 'Pick / pack / label tools', 'Returns & reverse processing', 'Cycle count & audit tools', 'Platform commission: 3% per order'] },
+      reverse:   { name: 'Reverse', full: 'Reverse Logistics Pipeline', ico: '♻', monthly: 129, enroll: 50, color: 'reverse',
+        features: ['Abandoned container pipeline', 'Customs seizure access', 'Auction eligibility tracking', 'Returns processing workflow', 'Resale & liquidation tools', 'Port coordination access', 'Platform commission: 3%'] }
+    };
+
+    // External load board simulation data
+    const externalFeeds = [
+      // DAT
+      { id: 'DAT-78421', source: 'DAT', tier: 'laas', type: 'OTR', origin: 'Houston, TX', dest: 'Atlanta, GA', miles: 791, equipment: 'Dry Van', weight: '44,000 lbs', rate: '$3,200', status: 'open', posted: '2 min ago' },
+      { id: 'DAT-78452', source: 'DAT', tier: 'laas', type: 'FTL', origin: 'Chicago, IL', dest: 'Dallas, TX', miles: 921, equipment: 'Reefer', weight: '40,000 lbs', rate: '$4,800', status: 'open', posted: '8 min ago' },
+      { id: 'DAT-78489', source: 'DAT', tier: 'laas', type: 'LTL', origin: 'Phoenix, AZ', dest: 'Denver, CO', miles: 598, equipment: 'Flatbed', weight: '18,000 lbs', rate: '$1,900', status: 'bidding', posted: '15 min ago' },
+      { id: 'DAT-78501', source: 'DAT', tier: 'laas', type: 'OTR', origin: 'Memphis, TN', dest: 'Newark, NJ', miles: 1104, equipment: 'Dry Van', weight: '38,000 lbs', rate: '$5,200', status: 'open', posted: '22 min ago' },
+      // Truckstop
+      { id: 'TS-44821', source: 'TRUCKSTOP', tier: 'laas', type: 'OTR', origin: 'Los Angeles, CA', dest: 'Seattle, WA', miles: 1136, equipment: 'Dry Van', weight: '42,000 lbs', rate: '$5,800', status: 'open', posted: '4 min ago' },
+      { id: 'TS-44899', source: 'TRUCKSTOP', tier: 'laas', type: 'FTL', origin: 'Miami, FL', dest: 'Charlotte, NC', miles: 654, equipment: 'Reefer', weight: '44,000 lbs', rate: '$3,600', status: 'open', posted: '31 min ago' },
+      { id: 'TS-44913', source: 'TRUCKSTOP', tier: 'laas', type: 'LTL', origin: 'Kansas City, MO', dest: 'Indianapolis, IN', miles: 484, equipment: 'Flatbed', weight: '22,000 lbs', rate: '$1,650', status: 'open', posted: '45 min ago' },
+      // Convoy
+      { id: 'CVY-21104', source: 'CONVOY', tier: 'laas', type: 'FTL', origin: 'Nashville, TN', dest: 'Louisville, KY', miles: 175, equipment: 'Dry Van', weight: '40,000 lbs', rate: '$1,100', status: 'open', posted: '11 min ago' },
+      { id: 'CVY-21198', source: 'CONVOY', tier: 'laas', type: 'OTR', origin: 'Portland, OR', dest: 'Sacramento, CA', miles: 641, equipment: 'Reefer', weight: '36,000 lbs', rate: '$3,100', status: 'bidding', posted: '1 hr ago' },
+      // Amazon Relay (last-mile)
+      { id: 'AMZ-LM-5521', source: 'AMAZON', tier: 'maas', type: 'last_mile', origin: 'ATL Fulfillment Ctr', dest: 'Multiple stops (24)', miles: '28 mi', equipment: 'Van', weight: '580 lbs', rate: '$175', status: 'open', posted: '1 min ago' },
+      { id: 'AMZ-LM-5548', source: 'AMAZON', tier: 'maas', type: 'last_mile', origin: 'CLT Fulfillment Ctr', dest: 'Multiple stops (18)', miles: '22 mi', equipment: 'Box Truck', weight: '840 lbs', rate: '$210', status: 'open', posted: '3 min ago' },
+      { id: 'AMZ-LM-5571', source: 'AMAZON', tier: 'maas', type: 'same_day', origin: 'DFW Fulfillment Ctr', dest: 'Multiple stops (9)', miles: '14 mi', equipment: 'Van', weight: '280 lbs', rate: '$95', status: 'open', posted: '7 min ago' },
+      // Uber Freight
+      { id: 'UBR-91221', source: 'UBER', tier: 'laas', type: 'OTR', origin: 'Detroit, MI', dest: 'Columbus, OH', miles: 170, equipment: 'Dry Van', weight: '35,000 lbs', rate: '$1,250', status: 'open', posted: '19 min ago' },
+      { id: 'UBR-91248', source: 'UBER', tier: 'maas', type: 'courier', origin: 'Midtown Atlanta', dest: 'Airport Buckhead Zone', miles: '9 mi', equipment: 'Van', weight: '45 lbs', rate: '$38', status: 'open', posted: '5 min ago' },
+    ];
+
+    // Platform contractor roster (1099)
+    const contractors1099 = [
+      { id: 'CNT-001', name: 'Marcus J. Williams', type: 'driver', tier: 'laas', vehicle: 'Class A Semi', area: 'Southeast', loads: 127, rating: '4.9', earnings: '$18,400', status: 'available' },
+      { id: 'CNT-002', name: 'Darnell T. King',    type: 'driver', tier: 'laas', vehicle: 'Class A Semi', area: 'Mid-Atlantic', loads: 284, rating: '4.8', earnings: '$39,200', status: 'on_dispatch' },
+      { id: 'CNT-003', name: 'Sharon M. Brooks',   type: 'courier', tier: 'maas', vehicle: 'Cargo Van', area: 'Atlanta, GA', loads: 93, rating: '4.7', earnings: '$8,100', status: 'available' },
+      { id: 'CNT-004', name: 'Isaiah R. Flores',   type: 'driver', tier: 'laas', vehicle: 'Class A Semi', area: 'Southwest', loads: 421, rating: '5.0', earnings: '$61,800', status: 'available' },
+      { id: 'CNT-005', name: 'Tamika L. Johnson',  type: 'last_mile', tier: 'maas', vehicle: 'Box Truck', area: 'Birmingham, AL', loads: 58, rating: '4.6', earnings: '$5,200', status: 'available' },
+      { id: 'CNT-006', name: 'Jerome A. Davis',    type: 'driver', tier: 'laas', vehicle: 'Class B Semi', area: 'Mid-South', loads: 312, rating: '4.9', earnings: '$44,100', status: 'available' },
+      { id: 'CNT-007', name: 'Keisha M. Carter',   type: 'warehouse', tier: 'warehouse', vehicle: 'Forklift Certified', area: 'Charlotte, NC', loads: 44, rating: '4.8', earnings: '$12,800', status: 'available' },
+      { id: 'CNT-008', name: 'Devon L. Pierce',    type: 'reverse', tier: 'reverse', vehicle: 'Box Truck', area: 'Port of Savannah', loads: 21, rating: '4.9', earnings: '$9,400', status: 'available' },
+    ];
+
+    let allLoadsCache = [];
+    let activeDis = [];
+
+    // ─── Tab switching ────────────────────────────────────────
+    function openTab(id, btn) {
+      document.querySelectorAll('.tabcnt').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      const tc = document.getElementById('tc-' + id);
+      if (tc) tc.classList.add('active');
+      if (btn) btn.classList.add('active');
+      if (id === 'all' || id === 'divinity' || id === 'laas' || id === 'maas') fetchAllLoads();
+      if (id === 'dispatch') { loadDispatchDrivers(); loadActiveDispatches(); buildSuggestions(); }
+      if (id === 'contractors') renderContractors(contractors1099);
+      if (id === 'tiers') renderTiers();
+      if (id === 'reverse') loadReverse();
+      if (id === 'warehouse') renderWarehouse();
+    }
+
+    // ─── Fetch all loads ──────────────────────────────────────
+    async function fetchAllLoads() {
+      try {
+        // Fetch our own board
+        const [locR, natR] = await Promise.all([
+          fetch('/api/logistics/local/loads').then(r => r.json()),
+          fetch('/api/logistics/national/loads').then(r => r.json()),
+        ]);
+        const platform = [
+          ...locR.loads.map(l => ({ ...l, source: 'DIVINITY', tier: 'maas', miles: l.distance || '—', origin: l.pickup, dest: l.drop, equipment: 'Van/Truck', weight: l.weight || '—', posted: 'Live' })),
+          ...natR.loads.map(l => ({ ...l, source: 'DIVINITY', tier: 'laas', posted: 'Live' })),
+        ];
+        allLoadsCache = [...platform, ...externalFeeds];
+        updateStats(platform.length);
+        renderLoads();
+        setAI();
+      } catch(e) {
+        allLoadsCache = [...externalFeeds];
+        renderLoads();
+        setAI();
+      }
+    }
+
+    function updateStats(platformCount) {
+      document.getElementById('sTotal').textContent = allLoadsCache.length;
+      document.getElementById('sDivinity').textContent = platformCount;
+      document.getElementById('sExternal').textContent = externalFeeds.length;
+      document.getElementById('sContractors').textContent = contractors1099.length;
+      document.getElementById('sDispatches').textContent = activeDis.length;
+      document.getElementById('sRevenue').textContent = '$184K';
+    }
+
+    function srcClass(src) {
+      if (src === 'DIVINITY') return 'src-divinity';
+      if (src === 'DAT') return 'src-dat';
+      if (src === 'TRUCKSTOP') return 'src-truckstop';
+      if (src === 'CONVOY') return 'src-convoy';
+      if (src === 'AMAZON') return 'src-amazon';
+      if (src === 'UBER') return 'src-uber';
+      return '';
+    }
+
+    function renderLoads() {
+      const filter = document.getElementById('filterEquip')?.value || '';
+      const loads = allLoadsCache.filter(l => !filter || (l.equipment||'').includes(filter));
+      const body = document.getElementById('allLoadsBody');
+      if (!body) return;
+      body.innerHTML = loads.map(l => `
+        <tr>
+          <td><span class="src-tag ${srcClass(l.source)}">${l.source}</span></td>
+          <td style="color:var(--cyan);font-weight:700;font-family:'Courier New',monospace;font-size:0.58rem;">${l.id}</td>
+          <td style="color:#c5d8f0;">${l.type||'—'}</td>
+          <td>${(l.origin||l.pickup||'').slice(0,20)}</td>
+          <td>${(l.dest||l.drop||l.destination||'').slice(0,20)}</td>
+          <td>${l.miles||'—'}</td>
+          <td style="font-size:0.58rem;">${l.weight||'—'}</td>
+          <td style="font-size:0.58rem;">${l.equipment||'—'}</td>
+          <td style="color:var(--green);font-weight:700;">${l.rate||'—'}</td>
+          <td><span class="pill ${l.status||'open'}">${l.status||'open'}</span></td>
+          <td style="color:#1e3040;font-size:0.57rem;">${l.posted||l.createdAt?.slice(11,16)||'—'}</td>
+          <td>${l.status === 'open' || l.status === 'bidding' ? `<button class="dispatch-btn" onclick="quickDispatch('${l.id}','${l.source}')">Dispatch</button>` : '—'}</td>
+        </tr>`).join('') || '<tr><td colspan="12" style="padding:1rem;text-align:center;color:#1e3040;">No loads found</td></tr>';
+
+      // Also update laas/maas tabs
+      const laas = allLoadsCache.filter(l => l.tier === 'laas' || ['OTR','FTL','LTL','national','global'].includes(l.type));
+      const maas = allLoadsCache.filter(l => l.tier === 'maas' || ['last_mile','courier','same_day','local'].includes(l.type));
+
+      const laasBody = document.getElementById('laasBody');
+      if (laasBody) laasBody.innerHTML = laas.map(l => `
+        <tr>
+          <td><span class="src-tag ${srcClass(l.source)}">${l.source}</span></td>
+          <td style="color:var(--cyan);font-weight:700;font-family:'Courier New',monospace;font-size:0.58rem;">${l.id}</td>
+          <td>${l.type||'—'}</td>
+          <td>${(l.origin||l.pickup||'').slice(0,22)}</td>
+          <td>${(l.dest||l.drop||'').slice(0,22)}</td>
+          <td>${l.miles||'—'}</td>
+          <td style="font-size:0.58rem;">${l.equipment||'—'}</td>
+          <td style="color:var(--green);font-weight:700;">${l.rate||'—'}</td>
+          <td><span class="pill ${l.status||'open'}">${l.status||'open'}</span></td>
+          <td>${l.status === 'open' ? `<button class="dispatch-btn" onclick="quickDispatch('${l.id}','${l.source}')">Dispatch</button>` : '—'}</td>
+        </tr>`).join('') || '<tr><td colspan="10" style="padding:1rem;text-align:center;color:#1e3040;">No LaaS loads</td></tr>';
+
+      const maasBody = document.getElementById('maasBody');
+      if (maasBody) maasBody.innerHTML = maas.map(l => `
+        <tr>
+          <td><span class="src-tag ${srcClass(l.source)}">${l.source}</span></td>
+          <td style="color:var(--cyan);font-weight:700;font-family:'Courier New',monospace;font-size:0.58rem;">${l.id}</td>
+          <td>${l.type||'—'}</td>
+          <td>${(l.origin||l.pickup||'').slice(0,22)}</td>
+          <td>${(l.dest||l.drop||'').slice(0,22)}</td>
+          <td>${l.miles||l.distance||'—'}</td>
+          <td style="font-size:0.58rem;">${l.equipment||'—'}</td>
+          <td style="color:var(--green);font-weight:700;">${l.rate||'—'}</td>
+          <td><span class="pill ${l.status||'open'}">${l.status||'open'}</span></td>
+          <td>${l.status === 'open' ? `<button class="dispatch-btn" onclick="quickDispatch('${l.id}','${l.source}')">Dispatch</button>` : '—'}</td>
+        </tr>`).join('') || '<tr><td colspan="10" style="padding:1rem;text-align:center;color:#1e3040;">No MaaS loads</td></tr>';
+
+      // Divinity board tab
+      const divBody = document.getElementById('divLoadsBody');
+      const divOnly = allLoadsCache.filter(l => l.source === 'DIVINITY');
+      if (divBody) divBody.innerHTML = divOnly.map(l => `
+        <tr>
+          <td style="color:var(--cyan);font-weight:700;font-family:'Courier New',monospace;font-size:0.6rem;">${l.id}</td>
+          <td>${l.type||'—'}</td>
+          <td>${(l.origin||l.pickup||'').slice(0,22)}</td>
+          <td>${(l.dest||l.drop||'').slice(0,22)}</td>
+          <td>${l.miles||l.distance||'—'}</td>
+          <td style="color:var(--green);font-weight:700;">${l.rate||'—'}</td>
+          <td><span class="pill ${l.status||'open'}">${l.status||'open'}</span></td>
+          <td>${l.status === 'open' ? `<button class="dispatch-btn" onclick="quickDispatch('${l.id}','DIVINITY')">Dispatch</button>` : '—'}</td>
+        </tr>`).join('') || '<tr><td colspan="8" style="padding:1rem;text-align:center;color:#1e3040;">No Divinity board loads — post one above</td></tr>';
+
+      const divStats = document.getElementById('divStats');
+      if (divStats) divStats.innerHTML = `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+          <div><div style="color:#2a4255;font-size:0.54rem;margin-bottom:0.2rem;">Platform Loads</div><div style="font-size:1.2rem;font-weight:900;color:var(--cyan);">${divOnly.length}</div></div>
+          <div><div style="color:#2a4255;font-size:0.54rem;margin-bottom:0.2rem;">External Feeds</div><div style="font-size:1.2rem;font-weight:900;color:var(--purple);">${externalFeeds.length}</div></div>
+          <div><div style="color:#2a4255;font-size:0.54rem;margin-bottom:0.2rem;">Open Loads</div><div style="font-size:1.2rem;font-weight:900;color:var(--green);">${allLoadsCache.filter(l=>l.status==='open').length}</div></div>
+          <div><div style="color:#2a4255;font-size:0.54rem;margin-bottom:0.2rem;">Bidding</div><div style="font-size:1.2rem;font-weight:900;color:var(--gold);">${allLoadsCache.filter(l=>l.status==='bidding').length}</div></div>
+        </div>`;
+    }
+
+    // ─── Quick dispatch ───────────────────────────────────────
+    function quickDispatch(loadId, source) {
+      openTab('dispatch', document.getElementById('tab-dispatch'));
+      document.getElementById('ddLoad').innerHTML = `<option value="${loadId}" selected>${loadId} (${source})</option>`;
+      loadDispatchDrivers();
+    }
+
+    // ─── Post load ────────────────────────────────────────────
+    async function postLoad() {
+      const tier = document.getElementById('nlTier').value;
+      const origin = document.getElementById('nlOrigin').value.trim();
+      const dest = document.getElementById('nlDest').value.trim();
+      const rate = document.getElementById('nlRate').value.trim();
+      const weight = document.getElementById('nlWeight').value.trim();
+      const equipment = document.getElementById('nlEquip').value;
+      const msg = document.getElementById('nlMsg');
+      if (!origin || !dest) { showMsg(msg, '⚠ Origin and destination required', 'err'); return; }
+      try {
+        const r = await fetch('/api/logistics/loads', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ tier, origin, dest, pickup: origin, drop: dest, rate: rate ? '$'+rate : 'TBD', weight: weight || 'TBD', equipment }) });
+        const d = await r.json();
+        showMsg(msg, `✅ Load ${d.load?.id} posted to Divinity Board`, 'ok');
+        await fetchAllLoads();
+      } catch(e) { showMsg(msg, '⚠ Failed to post load', 'err'); }
+    }
+
+    // ─── Dispatch now ─────────────────────────────────────────
+    async function dispatchNow() {
+      const driverId = document.getElementById('ddDriver').value;
+      const loadId = document.getElementById('ddLoad').value;
+      const tier = document.getElementById('ddTier').value;
+      const notes = document.getElementById('ddNotes').value;
+      const msg = document.getElementById('ddMsg');
+      if (!driverId || !loadId) { showMsg(msg, '⚠ Select a contractor and load', 'err'); return; }
+      try {
+        const r = await fetch('/api/logistics/dispatch', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ driverId, loadId, tier, notes }) });
+        const d = await r.json();
+        if (d.success) {
+          activeDis.push(d.dispatch);
+          showMsg(msg, `✅ ${d.dispatch.driverName} dispatched → ${loadId} via Divinity Platform`, 'ok');
+          document.getElementById('sDispatches').textContent = activeDis.length;
+          loadActiveDispatches();
+        } else showMsg(msg, '⚠ Dispatch failed', 'err');
+      } catch(e) { showMsg(msg, '⚠ Server error', 'err'); }
+    }
+
+    async function loadDispatchDrivers() {
+      try {
+        const r = await fetch('/api/logistics/drivers');
+        const d = await r.json();
+        const avail = d.drivers.filter(dr => dr.status === 'available');
+        document.getElementById('ddDriver').innerHTML = '<option value="">Select 1099 Contractor...</option>' +
+          avail.map(dr => `<option value="${dr.id}">${dr.name} — ${dr.vehicle} · ${dr.tier} · ${dr.location||dr.area||''}</option>`).join('');
+        document.getElementById('availContractors').innerHTML = avail.slice(0,6).map(dr => `
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:0.4rem 0;border-bottom:1px solid rgba(0,212,255,0.05);">
+            <div><div style="font-size:0.65rem;color:#c5d8f0;font-weight:700;">${dr.name}</div><div style="font-size:0.55rem;color:#2a4255;">${dr.vehicle} · ${dr.tier} · ★${dr.rating}</div></div>
+            <span style="font-size:0.57rem;color:var(--green);font-weight:700;">Available</span>
+          </div>`).join('');
+        if (!allLoadsCache.length) await fetchAllLoads();
+        const openLoads = allLoadsCache.filter(l => l.source === 'DIVINITY' && (l.status === 'open' || l.status === 'bidding'));
+        document.getElementById('ddLoad').innerHTML = '<option value="">Select Load from Divinity Board...</option>' +
+          [...openLoads, ...allLoadsCache.filter(l => l.source !== 'DIVINITY' && l.status === 'open').slice(0,5)].map(l => `<option value="${l.id}">${l.id} (${l.source}) — ${(l.origin||l.pickup||'').slice(0,20)} → ${l.rate||'TBD'}</option>`).join('');
+      } catch(e) {}
+    }
+
+    async function loadActiveDispatches() {
+      try {
+        const r = await fetch('/api/logistics/dispatch/active');
+        const d = await r.json();
+        activeDis = d.dispatches || [];
+        document.getElementById('sDispatches').textContent = activeDis.length;
+        document.getElementById('activeDispList').innerHTML = activeDis.length
+          ? activeDis.map(dis => `
+              <div style="padding:0.45rem 0;border-bottom:1px solid rgba(0,212,255,0.05);">
+                <div style="font-size:0.63rem;color:#c5d8f0;font-weight:700;">${dis.driverName} → ${dis.loadId}</div>
+                <div style="font-size:0.55rem;color:#2a4255;">${dis.tier} · ${new Date(dis.dispatchedAt).toLocaleTimeString()}</div>
+              </div>`).join('')
+          : '<div style="font-size:0.63rem;color:#1e3040;text-align:center;padding:0.75rem;">No active dispatches</div>';
+      } catch(e) {}
+    }
+
+    function buildSuggestions() {
+      const avail = contractors1099.filter(c => c.status === 'available');
+      const open = allLoadsCache.filter(l => l.status === 'open').slice(0, 4);
+      const suggs = document.getElementById('dvxSuggestions');
+      if (suggs) suggs.innerHTML = open.map((l, i) => {
+        const driver = avail[i % avail.length];
+        return `<div style="padding:0.5rem;background:rgba(0,0,0,0.25);border:1px solid rgba(155,77,255,0.12);border-radius:3px;margin-bottom:0.4rem;">
+          <div style="font-size:0.58rem;color:var(--purple);font-weight:700;margin-bottom:0.25rem;">🧠 AI Match ${i+1}</div>
+          <div style="font-size:0.62rem;color:#c5d8f0;"><strong>${driver?.name||'—'}</strong> → <strong>${l.id}</strong> (${l.source})</div>
+          <div style="font-size:0.55rem;color:#3a5060;margin-top:0.15rem;">${(l.origin||l.pickup||'').slice(0,20)} → ${l.rate||'TBD'} · ${driver?.vehicle||'—'}</div>
+          <button style="margin-top:0.35rem;font-size:0.52rem;padding:0.15rem 0.45rem;background:rgba(155,77,255,0.1);border:1px solid rgba(155,77,255,0.3);color:var(--purple);border-radius:2px;cursor:pointer;font-family:'Courier New',monospace;" onclick="document.getElementById('ddDriver').value='${driver?.id||''}';document.getElementById('ddLoad').innerHTML='<option value=${l.id} selected>${l.id} (${l.source})</option>'">Accept Match</button>
+        </div>`;
+      }).join('') || '<div style="font-size:0.63rem;color:#1e3040;padding:0.5rem;">No matches yet — fetch loads first</div>';
+    }
+
+    // ─── Contractors ──────────────────────────────────────────
+    function renderContractors(list) {
+      const body = document.getElementById('contractorsBody');
+      if (!body) return;
+      body.innerHTML = list.map(c => `
+        <tr>
+          <td style="color:var(--cyan);font-family:'Courier New',monospace;font-size:0.6rem;">${c.id}</td>
+          <td style="color:#c5d8f0;font-weight:700;">${c.name}</td>
+          <td>${c.type}</td>
+          <td><span class="tier-badge tier-${c.tier}">${c.tier.toUpperCase()}</span></td>
+          <td>${c.vehicle}</td>
+          <td>${c.area}</td>
+          <td style="color:var(--cyan);">${c.loads}</td>
+          <td style="color:var(--gold);">★ ${c.rating}</td>
+          <td style="color:var(--green);font-weight:700;">${c.earnings}</td>
+          <td><span style="font-size:0.54rem;font-weight:700;color:${c.status==='available'?'var(--green)':c.status==='on_dispatch'?'var(--cyan)':'#3a5060'}">${c.status}</span></td>
+        </tr>`).join('');
+    }
+
+    function filterContractors() {
+      const tier = document.getElementById('filterTierC').value;
+      const filtered = tier ? contractors1099.filter(c => c.tier === tier) : contractors1099;
+      renderContractors(filtered);
+    }
+
+    // ─── Tiers ────────────────────────────────────────────────
+    function renderTiers() {
+      const grid = document.getElementById('tierGrid');
+      if (!grid) return;
+      grid.innerHTML = Object.values(TIERS_DATA).map(t => `
+        <div class="tcard ${t.color}">
+          <div class="tc-ico">${t.ico}</div>
+          <div class="tc-name ${t.color}">${t.name}</div>
+          <div class="tc-full">${t.full}</div>
+          <div class="tc-price">$${t.monthly}<span style="font-size:0.65rem;font-weight:400;color:#3a5060;">/mo</span></div>
+          <div class="tc-enroll">+ $${t.enroll} one-time enrollment · 1099 independent</div>
+          <ul class="tc-features">${t.features.map(f => `<li>${f}</li>`).join('')}</ul>
+          <a href="carrier-enrollment.html?tier=${t.color}" class="tc-btn">Enroll in ${t.name} →</a>
+        </div>`).join('');
+    }
+
+    // ─── Reverse Logistics ────────────────────────────────────
+    async function loadReverse() {
+      try {
+        const r = await fetch('/api/reverse-logistics/containers');
+        const d = await r.json();
+        const body = document.getElementById('reverseBody');
+        if (!body) return;
+        body.innerHTML = (d.containers||[]).map(c => `
+          <tr>
+            <td style="color:var(--cyan);font-weight:700;font-family:'Courier New',monospace;font-size:0.6rem;">${c.id}</td>
+            <td>${c.portName||c.portCode||'—'}</td>
+            <td>${c.portCode||'—'}</td>
+            <td><span class="pill ${c.status||'abandoned'}">${c.status}</span></td>
+            <td style="color:${c.daysAtPort>30?'var(--red)':'#6a9bb0'}">${c.daysAtPort||'—'}</td>
+            <td style="color:var(--gold);">$${Number(c.declaredValue||0).toLocaleString()}</td>
+            <td style="color:var(--red);">${c.taxOwed ? '$'+Number(c.taxOwed).toLocaleString() : '—'}</td>
+            <td style="color:${c.auctionEligible?'var(--green)':'#2a4255'};">${c.auctionEligible ? '✓ Yes' : 'No'}</td>
+            <td>${c.auctionEligible ? '<button class="dispatch-btn" style="color:var(--gold);border-color:rgba(255,215,0,0.3);background:rgba(255,215,0,0.06);">Auction</button>' : '—'}</td>
+          </tr>`).join('') || '<tr><td colspan="9" style="padding:1rem;text-align:center;color:#1e3040;">No containers</td></tr>';
+      } catch(e) {}
+    }
+
+    // ─── Warehouse ────────────────────────────────────────────
+    function renderWarehouse() {
+      const el = document.getElementById('whBody');
+      if (!el) return;
+      const ops = [
+        { ico: '📥', name: 'Inbound Receiving', jobs: 8, status: 'active', workers: 3 },
+        { ico: '📤', name: 'Outbound Shipping', jobs: 12, status: 'active', workers: 5 },
+        { ico: '🗂', name: 'Put-Away / Slotting', jobs: 4, status: 'active', workers: 2 },
+        { ico: '📋', name: 'Pick / Pack / Label', jobs: 27, status: 'active', workers: 8 },
+        { ico: '🔄', name: 'Returns Processing', jobs: 6, status: 'active', workers: 2 },
+        { ico: '📊', name: 'Inventory Audit', jobs: 3, status: 'scheduled', workers: 1 },
+      ];
+      el.innerHTML = ops.map(op => `
+        <div style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,215,0,0.12);border-radius:4px;padding:0.85rem;">
+          <div style="font-size:1.5rem;margin-bottom:0.4rem;">${op.ico}</div>
+          <div style="font-size:0.65rem;font-weight:700;color:var(--gold);margin-bottom:0.35rem;">${op.name}</div>
+          <div style="font-size:0.58rem;color:#3a5060;margin-bottom:0.15rem;">${op.jobs} active jobs</div>
+          <div style="font-size:0.58rem;color:#3a5060;margin-bottom:0.5rem;">${op.workers} contractors assigned</div>
+          <span style="font-size:0.52rem;font-weight:700;text-transform:uppercase;color:${op.status==='active'?'var(--green)':'var(--gold)'};">${op.status}</span>
+        </div>`).join('');
+    }
+
+    // ─── AI Strip ─────────────────────────────────────────────
+    const aiMessages = [
+      '3 high-value loads on DAT matching available LaaS drivers — Marcus Williams, Isaiah Flores, Jerome Davis eligible. Auto-dispatch available.',
+      '2 Amazon Relay last-mile routes active in Atlanta zone — Sharon Brooks and Tamika Johnson available for MaaS dispatch.',
+      'Container CNTR-CMA7734 at Port of Savannah — 47 days delinquent, tax owed $4,200. Auction eligibility confirmed. Recommend initiating bid process.',
+      'Convoy load CVY-21198 has been bidding for 1 hr — below market rate detected. Suggest counter-offer or pass.',
+      'Keisha Carter (Warehouse) available — 44 completed jobs, 4.8 rating. No warehouse jobs assigned in last 48 hrs. Recommend re-engagement.',
+      'External feed sync complete: 14 new loads from DAT, Truckstop, Convoy, Amazon, Uber. 9 match current available contractors.',
+      'Platform analytics: $184K revenue tracked (30-day). Driver utilization at 87%. 3 drivers on dispatch right now.',
+    ];
+    let aiIdx = 0;
+    function setAI() {
+      const msg = document.getElementById('aiMsg');
+      const ts = document.getElementById('aiTs');
+      if (msg) msg.textContent = aiMessages[aiIdx % aiMessages.length];
+      if (ts) ts.textContent = new Date().toLocaleTimeString() + ' UTC · DivinityVX Neural Layer';
+      aiIdx++;
+    }
+    setInterval(setAI, 12000);
+    setAI();
+
+    // ─── Helpers ──────────────────────────────────────────────
+    function showMsg(el, txt, type) {
+      el.textContent = txt;
+      el.className = 'msg-box ' + type;
+      el.style.display = 'block';
+      setTimeout(() => { el.style.display = 'none'; }, 5000);
+    }
+
+    // ─── Init ─────────────────────────────────────────────────
+    fetchAllLoads();
+    renderTiers();
+  </script>
+</body>
+</html>

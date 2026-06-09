@@ -214,6 +214,59 @@ export const tokenTransactions = pgTable("token_transactions", {
   confirmedAt: timestamp("confirmed_at"),
 });
 
+// ── Contractors — 1099 independent contractors on the platform
+export const contractors = pgTable("contractors", {
+  id: serial("id").primaryKey(),
+  registrationId: integer("registration_id").references(() => registrations.id),
+  fullName: text("full_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  type: text("type").notNull(),           // driver | courier | partner | warehouse | last_mile
+  tier: text("tier").notNull(),           // laas | maas | saas | warehouse | reverse
+  status: text("status").default("active").notNull(),
+  taxId: text("tax_id"),
+  cdlNumber: text("cdl_number"),
+  vehicleType: text("vehicle_type"),
+  serviceArea: text("service_area"),
+  totalEarnings: text("total_earnings").default("0"),
+  platformFees: text("platform_fees").default("0"),
+  loadsCompleted: integer("loads_completed").default(0),
+  rating: text("rating").default("5.0"),
+  accessCode: text("access_code"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// ── Contractor Enrollments — tier subscription records
+export const contractorEnrollments = pgTable("contractor_enrollments", {
+  id: serial("id").primaryKey(),
+  contractorId: integer("contractor_id").references(() => contractors.id),
+  tier: text("tier").notNull(),           // laas | maas | saas | warehouse | reverse
+  status: text("status").default("pending").notNull(),
+  monthlyFee: text("monthly_fee").notNull(),
+  enrollmentFee: text("enrollment_fee").notNull(),
+  enrollmentPaid: boolean("enrollment_paid").default(false),
+  activatedAt: timestamp("activated_at"),
+  nextBillingAt: timestamp("next_billing_at"),
+  paymentRef: text("payment_ref"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// ── DVX Messages — DivinityVX ↔ Grand Architect comms channel
+export const dvxMessages = pgTable("dvx_messages", {
+  id: serial("id").primaryKey(),
+  from: text("from").notNull(),           // DIVINITYVX | GRAND_ARCHITECT
+  message: text("message").notNull(),
+  type: text("type").default("info").notNull(), // info | alert | action | insight | reply
+  priority: text("priority").default("normal").notNull(),
+  context: jsonb("context"),
+  read: boolean("read").default(false),
+  actionTaken: text("action_taken"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const insertUserSchema = createInsertSchema(users).omit({ id: true, createdAt: true, updatedAt: true });
 export const insertDocumentSchema = createInsertSchema(documents).omit({ id: true, createdAt: true, updatedAt: true });
 export const insertFilingSchema = createInsertSchema(filings).omit({ id: true, createdAt: true });

@@ -197,6 +197,60 @@
     .f-title{font-size:0.68rem;color:#c5d8f0;}
     .f-ts{font-size:0.57rem;color:#2a4255;margin-top:0.05rem;}
 
+    /* DVX COMMS PANEL */
+    .dvx-comms{background:var(--panel);border:1px solid rgba(155,77,255,0.3);border-radius:4px;
+      margin-bottom:1.25rem;overflow:hidden;box-shadow:0 0 30px rgba(155,77,255,0.08);}
+    .dvx-ch{display:flex;align-items:center;justify-content:space-between;padding:0.65rem 1.1rem;
+      background:rgba(155,77,255,0.06);border-bottom:1px solid rgba(155,77,255,0.2);}
+    .dvx-ch-l{display:flex;align-items:center;gap:0.65rem;}
+    .dvx-ai-ico{font-size:1rem;filter:drop-shadow(0 0 6px rgba(155,77,255,0.9));animation:dvxPulse 2s ease-in-out infinite;}
+    @keyframes dvxPulse{0%,100%{filter:drop-shadow(0 0 4px rgba(155,77,255,0.5));}50%{filter:drop-shadow(0 0 14px rgba(155,77,255,1));}}
+    .dvx-ch-title{font-size:0.72rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;
+      background:linear-gradient(90deg,var(--purple),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .dvx-ch-sub{font-size:0.55rem;color:#3a5060;text-transform:uppercase;letter-spacing:0.1em;}
+    .dvx-ch-r{display:flex;align-items:center;gap:0.6rem;}
+    .dvx-unread{font-size:0.55rem;font-weight:700;color:var(--red);border:1px solid rgba(255,59,107,0.3);
+      background:rgba(255,59,107,0.06);padding:0.1rem 0.42rem;border-radius:2px;text-transform:uppercase;display:none;}
+    .dvx-online{display:flex;align-items:center;gap:0.3rem;font-size:0.58rem;color:var(--purple);}
+    .dvx-online::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--purple);
+      box-shadow:0 0 8px rgba(155,77,255,0.9);animation:blink 1.5s ease-in-out infinite;flex-shrink:0;}
+    .dvx-msg-feed{max-height:220px;overflow-y:auto;padding:0.75rem 1.1rem;display:flex;flex-direction:column;gap:0.5rem;}
+    .dvx-msg-feed::-webkit-scrollbar{width:4px;}
+    .dvx-msg-feed::-webkit-scrollbar-track{background:transparent;}
+    .dvx-msg-feed::-webkit-scrollbar-thumb{background:rgba(155,77,255,0.3);border-radius:2px;}
+    .dvx-msg{display:flex;gap:0.65rem;animation:msgIn 0.3s ease-out;}
+    @keyframes msgIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+    .dvx-msg.from-dvx{flex-direction:row;}
+    .dvx-msg.from-arch{flex-direction:row-reverse;}
+    .dvx-msg-avatar{width:26px;height:26px;border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.75rem;}
+    .from-dvx .dvx-msg-avatar{background:rgba(155,77,255,0.15);border:1px solid rgba(155,77,255,0.3);}
+    .from-arch .dvx-msg-avatar{background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.25);}
+    .dvx-msg-body{flex:1;max-width:85%;}
+    .dvx-msg-sender{font-size:0.52rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.18rem;}
+    .from-dvx .dvx-msg-sender{color:var(--purple);}
+    .from-arch .dvx-msg-sender{color:var(--gold);text-align:right;}
+    .dvx-msg-text{font-size:0.65rem;line-height:1.5;padding:0.45rem 0.65rem;border-radius:3px;}
+    .from-dvx .dvx-msg-text{background:rgba(155,77,255,0.07);border:1px solid rgba(155,77,255,0.14);color:#c5d8f0;}
+    .from-arch .dvx-msg-text{background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.15);color:#c5d8f0;text-align:right;}
+    .dvx-msg-ts{font-size:0.5rem;color:#1a2840;margin-top:0.15rem;}
+    .from-arch .dvx-msg-ts{text-align:right;}
+    .dvx-msg-tag{display:inline-block;font-size:0.48rem;text-transform:uppercase;padding:0.06rem 0.3rem;border-radius:2px;margin-left:0.3rem;vertical-align:middle;}
+    .tag-alert{color:var(--red);background:rgba(255,59,107,0.08);border:1px solid rgba(255,59,107,0.2);}
+    .tag-action{color:var(--cyan);background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.18);}
+    .tag-insight{color:var(--green);background:rgba(0,255,136,0.06);border:1px solid rgba(0,255,136,0.15);}
+    .dvx-input-row{display:flex;gap:0.5rem;padding:0.6rem 1.1rem;border-top:1px solid rgba(155,77,255,0.15);background:rgba(0,0,0,0.2);}
+    .dvx-inp{flex:1;background:rgba(0,0,0,0.5);border:1px solid rgba(155,77,255,0.2);color:#c5d8f0;
+      font-family:'Courier New',monospace;font-size:0.67rem;padding:0.45rem 0.75rem;border-radius:3px;outline:none;}
+    .dvx-inp:focus{border-color:var(--purple);box-shadow:0 0 8px rgba(155,77,255,0.2);}
+    .dvx-inp::placeholder{color:#1a2840;}
+    .dvx-send{background:var(--purple);color:#fff;font-family:'Courier New',monospace;font-weight:900;font-size:0.6rem;
+      text-transform:uppercase;letter-spacing:0.1em;padding:0.45rem 0.85rem;border:none;border-radius:3px;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+    .dvx-send:hover{box-shadow:0 0 16px rgba(155,77,255,0.6);}
+    .dvx-quick{display:flex;gap:0.35rem;flex-wrap:wrap;padding:0 1.1rem 0.6rem;}
+    .dvx-qbtn{font-size:0.54rem;color:#4a3065;border:1px solid rgba(155,77,255,0.15);background:rgba(155,77,255,0.04);
+      padding:0.18rem 0.5rem;border-radius:2px;cursor:pointer;font-family:inherit;transition:all 0.2s;}
+    .dvx-qbtn:hover{color:var(--purple);border-color:rgba(155,77,255,0.35);}
+
     /* BOTTOM TICKER */
     .ticker{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(2,11,24,0.97);
       border-top:1px solid rgba(0,212,255,0.12);padding:0.3rem 1rem;display:flex;align-items:center;gap:1rem;overflow:hidden;}
@@ -248,8 +302,41 @@
       </div>
       <div class="hero-r">
         <a href="divinity-command.html" class="hbtn cyan">⚡ Command Center</a>
-        <a href="divinity-command.html" class="hbtn ghost" onclick="sessionStorage.setItem('dvx_panel','copilot')">🤝 Co-Pilot</a>
+        <a href="logistics-ecosystem.html" class="hbtn ghost2">🚚 Ecosystem</a>
+        <a href="carrier-enrollment.html" class="hbtn ghost">📝 Enroll 1099</a>
         <a href="reverse-logistics-dashboard.html" class="hbtn ghost2">♻ Rev. Logistics</a>
+      </div>
+    </div>
+
+    <!-- DVX ↔ GRAND ARCHITECT COMMS CHANNEL -->
+    <div class="dvx-comms" id="dvxCommsPanel">
+      <div class="dvx-ch">
+        <div class="dvx-ch-l">
+          <span class="dvx-ai-ico">🧠</span>
+          <div>
+            <div class="dvx-ch-title">DivinityVX Neural Link ↔ Grand Architect</div>
+            <div class="dvx-ch-sub">AI Operations Intelligence · Live Channel · All logistics reported here</div>
+          </div>
+        </div>
+        <div class="dvx-ch-r">
+          <span class="dvx-unread" id="dvxUnread">0 Unread</span>
+          <span class="dvx-online">DVX Online</span>
+          <a href="logistics-ecosystem.html" style="font-size:0.58rem;color:var(--purple);border:1px solid rgba(155,77,255,0.25);padding:0.18rem 0.55rem;border-radius:2px;text-decoration:none;transition:all 0.2s;">🚚 Full Ecosystem →</a>
+        </div>
+      </div>
+      <div class="dvx-msg-feed" id="dvxFeed">
+        <div style="text-align:center;font-size:0.62rem;color:#1e3040;padding:0.75rem;">Connecting to DivinityVX Neural Layer...</div>
+      </div>
+      <div class="dvx-quick">
+        <button class="dvx-qbtn" onclick="dvxQuick('Status report — all ops')">Status Report</button>
+        <button class="dvx-qbtn" onclick="dvxQuick('Show me available dispatch matches')">Available Matches</button>
+        <button class="dvx-qbtn" onclick="dvxQuick('Review pending enrollments')">Pending Enrollments</button>
+        <button class="dvx-qbtn" onclick="dvxQuick('Rate check — current market')">Rate Check</button>
+        <button class="dvx-qbtn" onclick="dvxQuick('Authorize Savannah container auction')">Auth Auction</button>
+      </div>
+      <div class="dvx-input-row">
+        <input class="dvx-inp" id="dvxInput" placeholder="Command DivinityVX... (type and press Enter)" onkeydown="if(event.key==='Enter')sendDvx()">
+        <button class="dvx-send" onclick="sendDvx()">▶ SEND</button>
       </div>
     </div>
 
@@ -313,6 +400,18 @@
             <span class="ct-ico">👑</span><div class="ct-lbl">Dynasty HQ</div>
             <div class="ct-desc">Nation dashboard · treasury · command</div>
             <div class="ct-st ext">↗ External</div>
+          </a>
+          <a href="logistics-ecosystem.html" class="ctile" style="--tc:#00ff88;">
+            <span style="position:absolute;top:0;left:0;width:3px;height:100%;background:var(--green);"></span>
+            <span class="ct-ico">🚚</span><div class="ct-lbl">Logistics Ecosystem</div>
+            <div class="ct-desc">All boards · DAT · Truckstop · Convoy · Amazon · Uber · 1099</div>
+            <div class="ct-st live">⬤ 14 External Feeds</div>
+          </a>
+          <a href="carrier-enrollment.html" class="ctile" style="--tc:#9b4dff;">
+            <span style="position:absolute;top:0;left:0;width:3px;height:100%;background:var(--purple);"></span>
+            <span class="ct-ico">📝</span><div class="ct-lbl">Enroll 1099</div>
+            <div class="ct-desc">LaaS · MaaS · SaaS · Warehouse · Reverse · all tiers</div>
+            <div class="ct-st rdy">⬤ 5 Tiers Open</div>
           </a>
           <a href="dashboard.html" class="ctile db">
             <span class="ct-ico">📊</span><div class="ct-lbl">User Dashboard</div>
@@ -607,6 +706,73 @@
     if (jumpPanel) {
       sessionStorage.removeItem('dvx_panel');
     }
+
+    // ─── DVX ↔ GRAND ARCHITECT COMMS ────────────────────────────
+    let lastMsgCount = 0;
+    const archName = sessionStorage.getItem('dvx_name') || 'Grand Architect';
+
+    function renderMsgs(msgs) {
+      const feed = document.getElementById('dvxFeed');
+      if (!feed) return;
+      if (!msgs.length) { feed.innerHTML = '<div style="text-align:center;font-size:0.62rem;color:#1e3040;padding:0.75rem;">No messages yet</div>'; return; }
+      feed.innerHTML = msgs.map(m => {
+        const isDvx = m.from === 'DIVINITYVX';
+        const tag = m.type !== 'info' && m.type !== 'reply' ? `<span class="dvx-msg-tag tag-${m.type}">${m.type}</span>` : '';
+        const ts = new Date(m.createdAt).toLocaleTimeString();
+        return `<div class="dvx-msg from-${isDvx ? 'dvx' : 'arch'}">
+          <div class="dvx-msg-avatar">${isDvx ? '🧠' : '👑'}</div>
+          <div class="dvx-msg-body">
+            <div class="dvx-msg-sender">${isDvx ? 'DivinityVX' : archName}${tag}</div>
+            <div class="dvx-msg-text">${m.message}</div>
+            <div class="dvx-msg-ts">${ts}</div>
+          </div>
+        </div>`;
+      }).join('');
+      feed.scrollTop = feed.scrollHeight;
+    }
+
+    async function pollDvxMsgs() {
+      try {
+        const r = await fetch('/api/dvx/messages');
+        if (!r.ok) return;
+        const d = await r.json();
+        renderMsgs(d.messages || []);
+        const unread = d.unread || 0;
+        const badge = document.getElementById('dvxUnread');
+        if (badge) {
+          badge.textContent = unread + ' Unread';
+          badge.style.display = unread > 0 ? 'inline-block' : 'none';
+        }
+        if (d.messages.length !== lastMsgCount && lastMsgCount > 0) {
+          addEvent('DivinityVX: new intelligence report received', 'p');
+        }
+        lastMsgCount = d.messages.length;
+      } catch(e) {}
+    }
+
+    async function sendDvx() {
+      const inp = document.getElementById('dvxInput');
+      if (!inp || !inp.value.trim()) return;
+      const msg = inp.value.trim();
+      inp.value = '';
+      try {
+        const r = await fetch('/api/dvx/messages', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ message: msg, type: 'reply' }) });
+        const d = await r.json();
+        if (d.success) {
+          addEvent('Command sent to DivinityVX: ' + msg.slice(0,40), 'o');
+          setTimeout(pollDvxMsgs, 1600);
+        }
+      } catch(e) {}
+    }
+
+    function dvxQuick(cmd) {
+      const inp = document.getElementById('dvxInput');
+      if (inp) { inp.value = cmd; sendDvx(); }
+    }
+
+    // Load DVX feed on init, refresh every 15s
+    pollDvxMsgs();
+    setInterval(pollDvxMsgs, 15000);
   </script>
 </body>
 </html>

@@ -1534,4 +1534,194 @@ export function registerRoutes(app: Express) {
       summary:  { totalShipments: 847, delivered: 831, pending: 16, revenue30d: '$184,200' }
     });
   });
+
+  // ══════════════════════════════════════════════════════════════
+  //  LOGISTICS ECOSYSTEM — Aggregated boards + 1099 tiers + DVX comms
+  // ══════════════════════════════════════════════════════════════
+
+  const TIER_DEFS: Record<string, any> = {
+    laas:      { name: 'LaaS', full: 'Logistics as a Service', monthlyFee: 149, enrollmentFee: 50,  commission: 0.03, type: 'driver' },
+    maas:      { name: 'MaaS', full: 'Mobility as a Service',  monthlyFee: 79,  enrollmentFee: 50,  commission: 0.03, type: 'courier' },
+    saas:      { name: 'SaaS', full: 'Platform Software',      monthlyFee: 99,  enrollmentFee: 25,  commission: 0,    type: 'partner' },
+    warehouse: { name: 'Warehouse', full: 'Warehouse Logic',   monthlyFee: 199, enrollmentFee: 100, commission: 0.03, type: 'warehouse' },
+    reverse:   { name: 'Reverse', full: 'Reverse Logistics',   monthlyFee: 129, enrollmentFee: 50,  commission: 0.03, type: 'partner' }
+  };
+
+  // Simulated external load board feeds (DAT, Truckstop, Convoy, Amazon Relay, Uber Freight)
+  const externalBoardLoads: any[] = [
+    { id: 'DAT-78421', source: 'DAT',       tier: 'laas', type: 'OTR',      origin: 'Houston, TX',           dest: 'Atlanta, GA',        miles: 791,  rate: '$3,200', equipment: 'Dry Van',  weight: '44,000 lbs', status: 'open',    postedAt: new Date(Date.now()-120000).toISOString() },
+    { id: 'DAT-78452', source: 'DAT',       tier: 'laas', type: 'FTL',      origin: 'Chicago, IL',           dest: 'Dallas, TX',         miles: 921,  rate: '$4,800', equipment: 'Reefer',   weight: '40,000 lbs', status: 'open',    postedAt: new Date(Date.now()-480000).toISOString() },
+    { id: 'DAT-78489', source: 'DAT',       tier: 'laas', type: 'LTL',      origin: 'Phoenix, AZ',           dest: 'Denver, CO',         miles: 598,  rate: '$1,900', equipment: 'Flatbed',  weight: '18,000 lbs', status: 'bidding', postedAt: new Date(Date.now()-900000).toISOString() },
+    { id: 'DAT-78501', source: 'DAT',       tier: 'laas', type: 'OTR',      origin: 'Memphis, TN',           dest: 'Newark, NJ',         miles: 1104, rate: '$5,200', equipment: 'Dry Van',  weight: '38,000 lbs', status: 'open',    postedAt: new Date(Date.now()-1320000).toISOString() },
+    { id: 'TS-44821',  source: 'TRUCKSTOP', tier: 'laas', type: 'OTR',      origin: 'Los Angeles, CA',       dest: 'Seattle, WA',        miles: 1136, rate: '$5,800', equipment: 'Dry Van',  weight: '42,000 lbs', status: 'open',    postedAt: new Date(Date.now()-240000).toISOString() },
+    { id: 'TS-44899',  source: 'TRUCKSTOP', tier: 'laas', type: 'FTL',      origin: 'Miami, FL',             dest: 'Charlotte, NC',      miles: 654,  rate: '$3,600', equipment: 'Reefer',   weight: '44,000 lbs', status: 'open',    postedAt: new Date(Date.now()-1860000).toISOString() },
+    { id: 'TS-44913',  source: 'TRUCKSTOP', tier: 'laas', type: 'LTL',      origin: 'Kansas City, MO',       dest: 'Indianapolis, IN',   miles: 484,  rate: '$1,650', equipment: 'Flatbed',  weight: '22,000 lbs', status: 'open',    postedAt: new Date(Date.now()-2700000).toISOString() },
+    { id: 'CVY-21104', source: 'CONVOY',    tier: 'laas', type: 'FTL',      origin: 'Nashville, TN',         dest: 'Louisville, KY',     miles: 175,  rate: '$1,100', equipment: 'Dry Van',  weight: '40,000 lbs', status: 'open',    postedAt: new Date(Date.now()-660000).toISOString() },
+    { id: 'CVY-21198', source: 'CONVOY',    tier: 'laas', type: 'OTR',      origin: 'Portland, OR',          dest: 'Sacramento, CA',     miles: 641,  rate: '$3,100', equipment: 'Reefer',   weight: '36,000 lbs', status: 'bidding', postedAt: new Date(Date.now()-3600000).toISOString() },
+    { id: 'AMZ-5521',  source: 'AMAZON',    tier: 'maas', type: 'last_mile',origin: 'ATL Fulfillment Ctr',   dest: 'Multiple stops (24)', miles: 28,  rate: '$175',   equipment: 'Van',      weight: '580 lbs',    status: 'open',    postedAt: new Date(Date.now()-60000).toISOString() },
+    { id: 'AMZ-5548',  source: 'AMAZON',    tier: 'maas', type: 'last_mile',origin: 'CLT Fulfillment Ctr',   dest: 'Multiple stops (18)', miles: 22,  rate: '$210',   equipment: 'Box Truck',weight: '840 lbs',    status: 'open',    postedAt: new Date(Date.now()-180000).toISOString() },
+    { id: 'AMZ-5571',  source: 'AMAZON',    tier: 'maas', type: 'same_day', origin: 'DFW Fulfillment Ctr',   dest: 'Multiple stops (9)',  miles: 14,  rate: '$95',    equipment: 'Van',      weight: '280 lbs',    status: 'open',    postedAt: new Date(Date.now()-420000).toISOString() },
+    { id: 'UBR-91221', source: 'UBER',      tier: 'laas', type: 'OTR',      origin: 'Detroit, MI',           dest: 'Columbus, OH',       miles: 170,  rate: '$1,250', equipment: 'Dry Van',  weight: '35,000 lbs', status: 'open',    postedAt: new Date(Date.now()-1140000).toISOString() },
+    { id: 'UBR-91248', source: 'UBER',      tier: 'maas', type: 'courier',  origin: 'Midtown Atlanta',       dest: 'Airport / Buckhead', miles: 9,    rate: '$38',    equipment: 'Van',      weight: '45 lbs',     status: 'open',    postedAt: new Date(Date.now()-300000).toISOString() },
+  ];
+
+  // In-memory DVX message channel (persists per server session; DB-backed via dvxMessages table for future)
+  const dvxMsgLog: any[] = [
+    { id: 1, from: 'DIVINITYVX', message: 'System online. All load board feeds active — DAT, Truckstop, Convoy, Amazon Relay, Uber Freight. 14 external loads aggregated. 8 platform contractors available.', type: 'info', priority: 'normal', read: false, createdAt: new Date(Date.now()-300000).toISOString() },
+    { id: 2, from: 'DIVINITYVX', message: 'High-value match detected: DAT load DAT-78501 (Memphis → Newark, $5,200) — Isaiah Flores (Class A, LaaS, rating 5.0) is available. Recommend auto-dispatch. Confirm?', type: 'action', priority: 'high', read: false, createdAt: new Date(Date.now()-120000).toISOString() },
+    { id: 3, from: 'DIVINITYVX', message: 'Container CNTR-CMA7734 at Port of Savannah — 47 days delinquent, $4,200 tax owed. Auction eligibility confirmed. Reverse Logistics team needed. Awaiting authorization.', type: 'alert', priority: 'high', read: false, createdAt: new Date(Date.now()-60000).toISOString() },
+  ];
+  let dvxMsgIdSeq = dvxMsgLog.length + 1;
+
+  // DVX auto-insight generator — produces periodic AI messages about ops
+  const dvxInsights = [
+    { message: '3 LaaS loads on DAT matching available drivers. Marcus Williams, Isaiah Flores, Jerome Davis eligible. Ready to dispatch.', type: 'insight', priority: 'normal' },
+    { message: 'Amazon Relay posted 3 new last-mile routes. Sharon Brooks and Tamika Johnson available for MaaS dispatch in Atlanta/Birmingham zones.', type: 'insight', priority: 'normal' },
+    { message: 'Convoy load CVY-21198 has been in bidding status for 1hr 45min — below market rate. Recommend pass or counter at $3,450.', type: 'alert', priority: 'normal' },
+    { message: 'Monthly billing cycle: 8 active contractor subscriptions. LaaS ×4 ($596) + MaaS ×2 ($158) + Warehouse ×1 ($199) + Reverse ×1 ($129) = $1,082 recurring. Treasury update pending.', type: 'insight', priority: 'normal' },
+    { message: 'New applicant submitted — driver registration pending review. DOT number provided. Recommend 24hr approval window.', type: 'info', priority: 'normal' },
+    { message: 'DAT market rate for Southeast corridor up 4.2% this week. Recommend bumping minimum rates on Divinity Board to $3,500 OTR floor.', type: 'insight', priority: 'normal' },
+    { message: 'Keisha Carter (Warehouse) — no warehouse jobs assigned in 72hrs. Consider outreach to retain contractor engagement.', type: 'alert', priority: 'normal' },
+    { message: 'Platform commission recap: 3% on 127 completed loads = estimated $1,840 platform revenue this cycle. Full report available.', type: 'insight', priority: 'low' },
+  ];
+
+  // GET /api/ecosystem/loads — aggregated platform + external boards
+  app.get("/api/ecosystem/loads", (_req: Request, res: Response) => {
+    const platformLoads = [
+      ...localLoads.map(l => ({ ...l, source: 'DIVINITY', tier: 'maas', origin: l.pickup, dest: l.drop, miles: l.distance })),
+      ...nationalLoads.map(l => ({ ...l, source: 'DIVINITY', tier: 'laas' })),
+    ];
+    const allLoads = [...platformLoads, ...externalBoardLoads];
+    res.json({
+      loads: allLoads,
+      stats: {
+        total: allLoads.length,
+        platform: platformLoads.length,
+        external: externalBoardLoads.length,
+        bySource: { DIVINITY: platformLoads.length, DAT: 4, TRUCKSTOP: 3, CONVOY: 2, AMAZON: 3, UBER: 2 },
+        open: allLoads.filter(l => l.status === 'open').length,
+        bidding: allLoads.filter(l => l.status === 'bidding').length,
+      }
+    });
+  });
+
+  // GET /api/ecosystem/tiers — all subscription tier definitions
+  app.get("/api/ecosystem/tiers", (_req: Request, res: Response) => {
+    res.json({ tiers: TIER_DEFS });
+  });
+
+  // POST /api/ecosystem/enroll — contractor tier enrollment
+  app.post("/api/ecosystem/enroll", async (req: Request, res: Response) => {
+    try {
+      const { fullName, email, phone, tier, type, serviceArea, metadata } = req.body;
+      if (!fullName || !email || !tier) return res.status(400).json({ error: 'fullName, email, tier required' });
+      if (!TIER_DEFS[tier]) return res.status(400).json({ error: 'Invalid tier' });
+      const t = TIER_DEFS[tier];
+      const enrollmentId = 'ENR-' + Date.now().toString(36).toUpperCase();
+      const event = {
+        id: enrollmentId, type: 'contractor.enrolled',
+        data: { fullName, email, phone, tier, contractorType: type || t.type, serviceArea, monthlyFee: t.monthlyFee, enrollmentFee: t.enrollmentFee, metadata },
+        source: 'ECOSYSTEM_ENROLL', timestamp: new Date().toISOString()
+      };
+      codexEvents.push(event);
+      // Add to DVX message log
+      dvxMsgLog.push({ id: dvxMsgIdSeq++, from: 'DIVINITYVX', message: `New ${t.name} contractor enrolled: ${fullName} (${email}). Enrollment fee $${t.enrollmentFee} due. Platform access pending activation. Review in Command Center.`, type: 'info', priority: 'normal', read: false, createdAt: new Date().toISOString() });
+      res.json({ success: true, enrollmentId, tier, monthlyFee: t.monthlyFee, enrollmentFee: t.enrollmentFee, totalDueToday: t.monthlyFee + t.enrollmentFee, message: `${t.name} enrollment submitted. Access activated after payment confirmation.` });
+    } catch (e: any) {
+      res.status(500).json({ error: 'Enrollment failed' });
+    }
+  });
+
+  // GET /api/ecosystem/contractors — 1099 contractor roster (registration-based + static demo)
+  app.get("/api/ecosystem/contractors", async (_req: Request, res: Response) => {
+    try {
+      const regs = await storage.getRegistrations('approved');
+      const demo = [
+        { id: 'CNT-001', fullName: 'Marcus J. Williams', type: 'driver', tier: 'laas', vehicleType: 'Class A Semi', serviceArea: 'Southeast', loadsCompleted: 127, rating: '4.9', totalEarnings: '18400', status: 'active' },
+        { id: 'CNT-002', fullName: 'Darnell T. King',    type: 'driver', tier: 'laas', vehicleType: 'Class A Semi', serviceArea: 'Mid-Atlantic', loadsCompleted: 284, rating: '4.8', totalEarnings: '39200', status: 'active' },
+        { id: 'CNT-003', fullName: 'Sharon M. Brooks',   type: 'courier', tier: 'maas', vehicleType: 'Cargo Van', serviceArea: 'Atlanta, GA', loadsCompleted: 93, rating: '4.7', totalEarnings: '8100', status: 'active' },
+        { id: 'CNT-004', fullName: 'Isaiah R. Flores',   type: 'driver', tier: 'laas', vehicleType: 'Class A Semi', serviceArea: 'Southwest', loadsCompleted: 421, rating: '5.0', totalEarnings: '61800', status: 'active' },
+        { id: 'CNT-005', fullName: 'Tamika L. Johnson',  type: 'last_mile', tier: 'maas', vehicleType: 'Box Truck', serviceArea: 'Birmingham, AL', loadsCompleted: 58, rating: '4.6', totalEarnings: '5200', status: 'active' },
+        { id: 'CNT-006', fullName: 'Jerome A. Davis',    type: 'driver', tier: 'laas', vehicleType: 'Class B Semi', serviceArea: 'Mid-South', loadsCompleted: 312, rating: '4.9', totalEarnings: '44100', status: 'active' },
+        { id: 'CNT-007', fullName: 'Keisha M. Carter',   type: 'warehouse', tier: 'warehouse', vehicleType: 'Forklift Certified', serviceArea: 'Charlotte, NC', loadsCompleted: 44, rating: '4.8', totalEarnings: '12800', status: 'active' },
+        { id: 'CNT-008', fullName: 'Devon L. Pierce',    type: 'reverse', tier: 'reverse', vehicleType: 'Box Truck', serviceArea: 'Port of Savannah', loadsCompleted: 21, rating: '4.9', totalEarnings: '9400', status: 'active' },
+      ];
+      const fromRegs = regs.map((r, i) => ({
+        id: 'CNT-REG-' + r.id, fullName: r.fullName, type: r.type, tier: (r.metadata as any)?.tier || 'laas',
+        vehicleType: r.equipmentType || 'TBD', serviceArea: r.phone || 'TBD', loadsCompleted: 0, rating: '5.0', totalEarnings: '0', status: 'new'
+      }));
+      res.json({ contractors: [...demo, ...fromRegs], total: demo.length + fromRegs.length });
+    } catch (e) {
+      res.status(500).json({ error: 'Failed to fetch contractors' });
+    }
+  });
+
+  // GET /api/dvx/messages — DivinityVX ↔ Grand Architect message channel
+  app.get("/api/dvx/messages", (_req: Request, res: Response) => {
+    res.json({ messages: dvxMsgLog.slice(-50), unread: dvxMsgLog.filter(m => !m.read).length });
+  });
+
+  // POST /api/dvx/messages — Grand Architect sends command/reply to DVX
+  app.post("/api/dvx/messages", (req: Request, res: Response) => {
+    const { message, type } = req.body;
+    if (!message) return res.status(400).json({ error: 'message required' });
+    const msg = { id: dvxMsgIdSeq++, from: 'GRAND_ARCHITECT', message, type: type || 'reply', priority: 'normal', read: true, createdAt: new Date().toISOString() };
+    dvxMsgLog.push(msg);
+    // DVX auto-responds
+    const response = genDvxResponse(message);
+    const dvxReply = { id: dvxMsgIdSeq++, from: 'DIVINITYVX', message: response, type: 'reply', priority: 'normal', read: false, createdAt: new Date(Date.now() + 1500).toISOString() };
+    dvxMsgLog.push(dvxReply);
+    res.json({ success: true, sent: msg, dvxReply });
+  });
+
+  // POST /api/dvx/messages/:id/read — mark message read
+  app.post("/api/dvx/messages/:id/read", (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    const msg = dvxMsgLog.find(m => m.id === id);
+    if (msg) msg.read = true;
+    res.json({ success: true });
+  });
+
+  // GET /api/dvx/brief — AI operations brief for Grand Architect
+  app.get("/api/dvx/brief", async (_req: Request, res: Response) => {
+    try {
+      const pendingCount = await storage.getPendingRegistrationCount();
+      const dispatchCount = activeDispatches.length;
+      const openLoads = localLoads.filter(l => l.status === 'open').length + nationalLoads.filter(l => l.status === 'open').length + externalBoardLoads.filter(l => l.status === 'open').length;
+      const availDrivers = driverRoster.filter(d => d.status === 'available').length;
+      res.json({
+        generatedAt: new Date().toISOString(),
+        summary: `${openLoads} open loads across all boards · ${availDrivers} contractors available · ${dispatchCount} active dispatches · ${pendingCount} enrollment(s) pending review`,
+        metrics: { openLoads, availableContractors: availDrivers, activeDispatches: dispatchCount, pendingEnrollments: pendingCount, externalFeeds: 5, aggregatedLoads: localLoads.length + nationalLoads.length + externalBoardLoads.length },
+        alerts: [
+          pendingCount > 0 ? { level: 'high', msg: `${pendingCount} contractor enrollment(s) awaiting your approval` } : null,
+          { level: 'info', msg: `${externalBoardLoads.filter(l => l.status==='open').length} external loads available from DAT, Truckstop, Convoy, Amazon, Uber` },
+          { level: 'info', msg: 'Container CNTR-CMA7734 at Port of Savannah — 47 days — auction eligible. Authorization needed.' },
+        ].filter(Boolean),
+        nextActions: ['Review pending enrollments', 'Dispatch DAT-78501 (Memphis→Newark $5,200) to Isaiah Flores', 'Authorize Savannah container auction'],
+      });
+    } catch (e) {
+      res.status(500).json({ error: 'Brief generation failed' });
+    }
+  });
+
+  // Inject random DVX insight every 5 min (server-side accumulation)
+  let dvxInsightIdx = 0;
+  setInterval(() => {
+    const insight = dvxInsights[dvxInsightIdx % dvxInsights.length];
+    dvxMsgLog.push({ id: dvxMsgIdSeq++, from: 'DIVINITYVX', ...insight, read: false, createdAt: new Date().toISOString() });
+    dvxInsightIdx++;
+    if (dvxMsgLog.length > 200) dvxMsgLog.splice(0, dvxMsgLog.length - 200); // cap at 200
+  }, 5 * 60 * 1000);
+
+  function genDvxResponse(cmd: string): string {
+    const c = cmd.toLowerCase();
+    if (c.includes('dispatch') || c.includes('send')) return 'Dispatch command received. Locating optimal available contractor for the specified load. Will route through Divinity platform and confirm assignment. Stand by.';
+    if (c.includes('auction') || c.includes('container')) return 'Auction authorization logged. Container flagged for reverse logistics pipeline. Devon Pierce (CNT-008) is available for Port of Savannah coordination. Initiating workflow.';
+    if (c.includes('approve') || c.includes('enrollment')) return 'Enrollment review initiated. Accessing application queue now. Pending applications will be surface-reviewed and access codes issued upon your confirmation. Awaiting your signal.';
+    if (c.includes('rate') || c.includes('price')) return 'Current DAT Southeast corridor rate: $4.12/mi OTR. Platform minimum recommended: $3,500 flat for standard dry van loads. Reefer commands +18% premium right now.';
+    if (c.includes('report') || c.includes('summary')) return 'Generating ops brief now. Active dispatches, load board status, contractor availability, and 30-day revenue data compiling. Brief will post to channel momentarily.';
+    if (c.includes('status') || c.includes('online')) return 'All systems operational. Load board feeds: DAT ✓ Truckstop ✓ Convoy ✓ Amazon Relay ✓ Uber Freight ✓. Database: ONLINE. Dispatch engine: READY. 1099 roster: 8 active contractors.';
+    return 'Command acknowledged, Grand Architect. Processing your directive through the Divinity Neural Layer. Logistics state updating — check ecosystem dashboard for live status.';
+  }
 }

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carrier Enrollment · Divinity Logistics · Borders Dynasty</title>
+  <link rel="icon" href="favicon.png"/>
+  <script src="lib/dvx-nav.js"></script>
+  <style>
+    :root{--cyan:#00d4ff;--purple:#9b4dff;--gold:#ffd700;--green:#00ff88;--red:#ff3b6b;--bg:#020b18;--panel:rgba(4,18,40,0.94);--border:rgba(0,212,255,0.18);}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{background:var(--bg);font-family:'Courier New',monospace;color:#c5d8f0;min-height:100vh;overflow-x:hidden;padding-bottom:3rem;}
+    .grid-bg{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px);background-size:60px 60px;animation:gs 30s linear infinite;}
+    @keyframes gs{to{transform:translate(60px,60px);}}
+    .scan{position:fixed;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,212,255,0.005) 3px,rgba(0,212,255,0.005) 4px);}
+    .page{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:2rem 1.25rem 4rem;}
+
+    /* HEADER */
+    .hdr{text-align:center;margin-bottom:3rem;}
+    .hdr-seal{font-size:2.5rem;margin-bottom:1rem;filter:drop-shadow(0 0 20px rgba(0,212,255,0.6));animation:pulse 3s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{filter:drop-shadow(0 0 12px rgba(0,212,255,0.4));}50%{filter:drop-shadow(0 0 30px rgba(0,212,255,0.9));}}
+    .hdr-title{font-size:2rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;background:linear-gradient(135deg,#fff,var(--cyan) 40%,var(--green) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.5rem;}
+    .hdr-sub{font-size:0.72rem;color:#3a5060;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:1.5rem;}
+    .notice-1099{display:inline-block;background:rgba(255,215,0,0.06);border:1px solid rgba(255,215,0,0.25);border-radius:4px;padding:0.6rem 1.5rem;font-size:0.62rem;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;}
+
+    /* TIER GRID */
+    .tier-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.1rem;margin-bottom:3rem;}
+    .tcard{background:rgba(0,0,0,0.35);border:1px solid rgba(0,212,255,0.1);border-radius:6px;padding:1.5rem 1.25rem;transition:all 0.25s;cursor:pointer;position:relative;overflow:hidden;}
+    .tcard::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;transition:all 0.25s;}
+    .tcard.laas::before{background:var(--cyan);}
+    .tcard.maas::before{background:var(--green);}
+    .tcard.saas::before{background:var(--purple);}
+    .tcard.warehouse::before{background:var(--gold);}
+    .tcard.reverse::before{background:var(--red);}
+    .tcard:hover,.tcard.selected{transform:translateY(-5px);border-color:rgba(0,212,255,0.3);box-shadow:0 10px 30px rgba(0,0,0,0.5);}
+    .tcard.selected{box-shadow:0 0 0 2px var(--cyan),0 10px 30px rgba(0,0,0,0.5);}
+    .tcard.maas.selected{box-shadow:0 0 0 2px var(--green),0 10px 30px rgba(0,0,0,0.5);}
+    .tcard.saas.selected{box-shadow:0 0 0 2px var(--purple),0 10px 30px rgba(0,0,0,0.5);}
+    .tcard.warehouse.selected{box-shadow:0 0 0 2px var(--gold),0 10px 30px rgba(0,0,0,0.5);}
+    .tcard.reverse.selected{box-shadow:0 0 0 2px var(--red),0 10px 30px rgba(0,0,0,0.5);}
+    .tc-ico{font-size:2rem;margin-bottom:0.65rem;}
+    .tc-name{font-size:0.8rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.18rem;}
+    .tc-name.laas{color:var(--cyan);}.tc-name.maas{color:var(--green);}.tc-name.saas{color:var(--purple);}.tc-name.warehouse{color:var(--gold);}.tc-name.reverse{color:var(--red);}
+    .tc-full{font-size:0.58rem;color:#3a5060;margin-bottom:0.85rem;}
+    .tc-price{font-size:1.8rem;font-weight:900;color:#fff;line-height:1;margin-bottom:0.12rem;}
+    .tc-price span{font-size:0.62rem;font-weight:400;color:#3a5060;}
+    .tc-enroll-fee{font-size:0.6rem;color:#4a6580;margin-bottom:1rem;}
+    .tc-feat{list-style:none;margin-bottom:1.1rem;}
+    .tc-feat li{font-size:0.6rem;color:#5a7a90;padding:0.22rem 0;display:flex;gap:0.4rem;align-items:flex-start;}
+    .tc-feat li::before{content:'✓';flex-shrink:0;font-size:0.55rem;}
+    .tcard.laas .tc-feat li::before{color:var(--cyan);}
+    .tcard.maas .tc-feat li::before{color:var(--green);}
+    .tcard.saas .tc-feat li::before{color:var(--purple);}
+    .tcard.warehouse .tc-feat li::before{color:var(--gold);}
+    .tcard.reverse .tc-feat li::before{color:var(--red);}
+    .popular{position:absolute;top:12px;right:12px;font-size:0.5rem;font-weight:900;text-transform:uppercase;padding:0.12rem 0.4rem;border-radius:2px;background:var(--cyan);color:#020b18;}
+    .sel-check{display:none;position:absolute;bottom:12px;right:12px;font-size:0.8rem;color:var(--green);font-weight:900;}
+    .tcard.selected .sel-check{display:block;}
+
+    /* FORM */
+    .form-section{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:2rem;margin-bottom:2rem;}
+    .form-title{font-size:0.75rem;font-weight:900;text-transform:uppercase;letter-spacing:0.12em;color:var(--cyan);margin-bottom:1.5rem;padding-bottom:0.75rem;border-bottom:1px solid rgba(0,212,255,0.15);}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+    .form-row.full{grid-template-columns:1fr;}
+    .form-group{display:flex;flex-direction:column;gap:0.35rem;}
+    .form-lbl{font-size:0.58rem;text-transform:uppercase;letter-spacing:0.1em;color:#3a5060;}
+    .form-inp{background:rgba(0,0,0,0.5);border:1px solid rgba(0,212,255,0.18);color:#c5d8f0;font-family:'Courier New',monospace;font-size:0.68rem;padding:0.55rem 0.75rem;border-radius:3px;outline:none;width:100%;transition:border-color 0.2s;}
+    .form-inp:focus{border-color:var(--cyan);box-shadow:0 0 8px rgba(0,212,255,0.15);}
+    .form-inp::placeholder{color:#1e3040;}
+    select.form-inp option{background:#020b18;}
+    .form-inp.err{border-color:var(--red);}
+
+    /* DYNAMIC FIELDS */
+    #dynamicFields{margin-bottom:1rem;}
+
+    /* FEE BREAKDOWN */
+    .fee-box{background:rgba(0,0,0,0.35);border:1px solid rgba(255,215,0,0.18);border-radius:4px;padding:1.25rem;margin-bottom:1.5rem;}
+    .fee-title{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:0.85rem;}
+    .fee-row{display:flex;justify-content:space-between;align-items:center;padding:0.3rem 0;border-bottom:1px solid rgba(255,215,0,0.07);}
+    .fee-row:last-child{border-bottom:none;margin-top:0.5rem;padding-top:0.5rem;font-weight:700;}
+    .fee-lbl{font-size:0.62rem;color:#5a7a90;}
+    .fee-val{font-size:0.68rem;color:var(--gold);}
+    .fee-total .fee-lbl{color:var(--gold);font-size:0.68rem;}
+    .fee-total .fee-val{font-size:0.88rem;color:#fff;}
+
+    /* 1099 NOTICE */
+    .notice-box{background:rgba(155,77,255,0.05);border:1px solid rgba(155,77,255,0.2);border-radius:4px;padding:1rem;margin-bottom:1.5rem;font-size:0.62rem;color:#7a5090;line-height:1.6;}
+    .notice-box strong{color:var(--purple);}
+
+    /* SUBMIT */
+    .submit-btn{width:100%;background:var(--cyan);color:#020b18;font-family:'Courier New',monospace;font-weight:900;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.15em;padding:0.85rem;border:none;border-radius:4px;cursor:pointer;transition:all 0.2s;box-shadow:0 0 20px rgba(0,212,255,0.3);}
+    .submit-btn:hover{box-shadow:0 0 40px rgba(0,212,255,0.6);transform:translateY(-1px);}
+    .submit-btn:disabled{opacity:0.5;cursor:not-allowed;}
+
+    /* SUCCESS */
+    .success-box{display:none;background:rgba(0,255,136,0.04);border:1px solid rgba(0,255,136,0.25);border-radius:6px;padding:2rem;text-align:center;margin-top:1.5rem;}
+    .success-ico{font-size:2.5rem;margin-bottom:0.75rem;}
+    .success-title{font-size:1rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;color:var(--green);margin-bottom:0.5rem;}
+    .success-sub{font-size:0.68rem;color:#5a7a90;line-height:1.6;}
+    .app-id{font-size:0.85rem;font-weight:900;color:var(--cyan);background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.2);padding:0.4rem 1rem;border-radius:3px;display:inline-block;margin:0.75rem 0;}
+
+    @media(max-width:900px){.tier-grid{grid-template-columns:repeat(3,1fr);}}
+    @media(max-width:600px){.tier-grid{grid-template-columns:1fr 1fr;}.form-row{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="scan"></div>
+  <div class="page">
+
+    <div class="hdr">
+      <div class="hdr-seal">🚚</div>
+      <div class="hdr-title">Enroll as a 1099 Contractor</div>
+      <div class="hdr-sub">Divinity Logistics Platform · Borders Dynasty Nation · All tiers · All classes</div>
+      <div class="notice-1099">⚖ All contractors are independent 1099 workers — not employees · Platform fee: 3% per load</div>
+    </div>
+
+    <!-- TIER SELECTION -->
+    <div class="tier-grid" id="tierGrid">
+      <div class="tcard laas" data-tier="laas" onclick="selectTier(this)">
+        <span class="popular">Most Popular</span>
+        <div class="tc-ico">🚛</div>
+        <div class="tc-name laas">LaaS</div>
+        <div class="tc-full">Logistics as a Service</div>
+        <div class="tc-price">$149<span>/mo</span></div>
+        <div class="tc-enroll-fee">+ $50 one-time enrollment</div>
+        <ul class="tc-feat">
+          <li>Full load board (local + national + global)</li>
+          <li>AI dispatch matching</li>
+          <li>Priority load assignments</li>
+          <li>1099 earnings dashboard</li>
+          <li>Multi-tier board access</li>
+          <li>Route optimization tools</li>
+        </ul>
+        <span class="sel-check">✓</span>
+      </div>
+      <div class="tcard maas" data-tier="maas" onclick="selectTier(this)">
+        <div class="tc-ico">📦</div>
+        <div class="tc-name maas">MaaS</div>
+        <div class="tc-full">Mobility as a Service</div>
+        <div class="tc-price">$79<span>/mo</span></div>
+        <div class="tc-enroll-fee">+ $50 one-time enrollment</div>
+        <ul class="tc-feat">
+          <li>Last-mile delivery board</li>
+          <li>Courier & rideshare access</li>
+          <li>App-based real-time tracking</li>
+          <li>Same-day & scheduled</li>
+          <li>Per-stop earnings tracking</li>
+          <li>1099 tax dashboard</li>
+        </ul>
+        <span class="sel-check">✓</span>
+      </div>
+      <div class="tcard saas" data-tier="saas" onclick="selectTier(this)">
+        <div class="tc-ico">⚙️</div>
+        <div class="tc-name saas">SaaS</div>
+        <div class="tc-full">Platform Software Only</div>
+        <div class="tc-price">$99<span>/mo</span></div>
+        <div class="tc-enroll-fee">+ $25 one-time enrollment</div>
+        <ul class="tc-feat">
+          <li>Dashboard & analytics</li>
+          <li>Document management tools</li>
+          <li>Codex scroll library</li>
+          <li>API integrations</li>
+          <li>Reports & exports</li>
+          <li>No load assignments</li>
+        </ul>
+        <span class="sel-check">✓</span>
+      </div>
+      <div class="tcard warehouse" data-tier="warehouse" onclick="selectTier(this)">
+        <div class="tc-ico">🏭</div>
+        <div class="tc-name warehouse">Warehouse</div>
+        <div class="tc-full">Warehouse Logic Operations</div>
+        <div class="tc-price">$199<span>/mo</span></div>
+        <div class="tc-enroll-fee">+ $100 one-time enrollment</div>
+        <ul class="tc-feat">
+          <li>Inventory management system</li>
+          <li>Receiving & outbound shipping</li>
+          <li>Pick / pack / label tools</li>
+          <li>Returns processing</li>
+          <li>Cycle count & audit</li>
+          <li>3% platform fee per order</li>
+        </ul>
+        <span class="sel-check">✓</span>
+      </div>
+      <div class="tcard reverse" data-tier="reverse" onclick="selectTier(this)">
+        <div class="tc-ico">♻</div>
+        <div class="tc-name reverse">Reverse</div>
+        <div class="tc-full">Reverse Logistics Pipeline</div>
+        <div class="tc-price">$129<span>/mo</span></div>
+        <div class="tc-enroll-fee">+ $50 one-time enrollment</div>
+        <ul class="tc-feat">
+          <li>Abandoned container pipeline</li>
+          <li>Auction eligibility access</li>
+          <li>Customs seizure workflow</li>
+          <li>Returns & liquidation tools</li>
+          <li>Port coordination access</li>
+          <li>3% platform fee</li>
+        </ul>
+        <span class="sel-check">✓</span>
+      </div>
+    </div>
+
+    <!-- ENROLLMENT FORM -->
+    <div class="form-section" id="enrollForm">
+      <div class="form-title" id="formTitle">Select a tier above to begin enrollment</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-lbl">Full Legal Name *</label>
+          <input class="form-inp" id="fName" placeholder="As it appears on ID / 1099">
+        </div>
+        <div class="form-group">
+          <label class="form-lbl">Email Address *</label>
+          <input class="form-inp" id="fEmail" type="email" placeholder="your@email.com">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-lbl">Phone Number</label>
+          <input class="form-inp" id="fPhone" placeholder="(555) 000-0000">
+        </div>
+        <div class="form-group">
+          <label class="form-lbl">Service Area / City, State</label>
+          <input class="form-inp" id="fArea" placeholder="Atlanta, GA">
+        </div>
+      </div>
+
+      <!-- Dynamic fields by tier -->
+      <div id="dynamicFields"></div>
+
+      <!-- 1099 Notice -->
+      <div class="notice-box">
+        <strong>Independent Contractor Agreement — 1099 Status</strong><br/>
+        By enrolling, you acknowledge that you are an <strong>independent contractor</strong> (1099) — not an employee of Borders Dynasty Nation or Borders Ecclesia Earth Trust. You are responsible for your own taxes, insurance, equipment, and business expenses. The platform takes a <strong>3% commission per completed load/job</strong>. Monthly subscription fees are non-refundable after activation. All work distributed through the <strong>Divinity Dispatch platform</strong> — contractors may not directly solicit loads from platform clients.
+      </div>
+
+      <!-- Fee Breakdown -->
+      <div class="fee-box" id="feeBox" style="display:none;">
+        <div class="fee-title">💳 Fee Summary</div>
+        <div class="fee-row"><span class="fee-lbl">Monthly Subscription</span><span class="fee-val" id="fbMonthly">—</span></div>
+        <div class="fee-row"><span class="fee-lbl">One-Time Enrollment Fee</span><span class="fee-val" id="fbEnroll">—</span></div>
+        <div class="fee-row"><span class="fee-lbl">Platform Commission (per load)</span><span class="fee-val">3%</span></div>
+        <div class="fee-row fee-total"><span class="fee-lbl">Due Today (Enrollment + 1st Month)</span><span class="fee-val" id="fbTotal">—</span></div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-lbl">Referral Code (optional)</label>
+          <input class="form-inp" id="fRef" placeholder="DYNASTY-XXXX">
+        </div>
+        <div class="form-group" style="justify-content:flex-end;padding-bottom:0.35rem;">
+          <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;">
+            <input type="checkbox" id="fAgree" style="accent-color:var(--cyan);">
+            <span style="font-size:0.58rem;color:#3a5060;">I agree to the 1099 contractor terms, platform commission, and fee structure above.</span>
+          </label>
+        </div>
+      </div>
+
+      <button class="submit-btn" id="submitBtn" onclick="submitEnrollment()">SUBMIT ENROLLMENT APPLICATION</button>
+
+      <div style="text-align:center;margin-top:1rem;font-size:0.58rem;color:#1e3040;">
+        Already have an access code? <a href="gateway.html" style="color:var(--cyan);">Sign in here</a> · Questions? <a href="register.html" style="color:var(--cyan);">Apply via registration form</a>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success-box" id="successBox">
+      <div class="success-ico">✅</div>
+      <div class="success-title">Application Submitted</div>
+      <div class="app-id" id="successAppId">APP-XXX-2026</div>
+      <div class="success-sub">
+        Your enrollment application has been received. The Grand Architect will review your application and issue your access code within <strong>24-48 hours</strong>.<br/><br/>
+        Once approved, you will receive a unique access code to enter the platform. All loads, dispatches, and payments route through the <strong>Divinity Dispatch system</strong>.<br/><br/>
+        <strong>Remember:</strong> You are an independent 1099 contractor. Ensure your tax information is current before your first completed load.
+      </div>
+      <a href="gateway.html" style="display:inline-block;margin-top:1.25rem;font-size:0.65rem;color:var(--cyan);border:1px solid rgba(0,212,255,0.3);padding:0.5rem 1.25rem;border-radius:3px;text-decoration:none;text-transform:uppercase;letter-spacing:0.1em;">→ Return to Gateway</a>
+    </div>
+
+  </div>
+  <script>
+    const TIERS = {
+      laas:      { label: 'LaaS — Logistics as a Service', monthly: 149, enroll: 50, type: 'driver' },
+      maas:      { label: 'MaaS — Mobility as a Service', monthly: 79, enroll: 50, type: 'courier' },
+      saas:      { label: 'SaaS — Platform Software', monthly: 99, enroll: 25, type: 'partner' },
+      warehouse: { label: 'Warehouse Logic', monthly: 199, enroll: 100, type: 'warehouse' },
+      reverse:   { label: 'Reverse Logistics', monthly: 129, enroll: 50, type: 'partner' }
+    };
+
+    const DYNAMIC = {
+      laas: `
+        <div class="form-row">
+          <div class="form-group"><label class="form-lbl">CDL Number</label><input class="form-inp" id="dCDL" placeholder="CDL license number"></div>
+          <div class="form-group"><label class="form-lbl">DOT Number</label><input class="form-inp" id="dDOT" placeholder="USDOT number (if any)"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-lbl">MC Number (if carrier)</label><input class="form-inp" id="dMC" placeholder="MC-XXXXXX"></div>
+          <div class="form-group"><label class="form-lbl">Primary Vehicle Type</label><select class="form-inp" id="dVehicle"><option>Class A Semi</option><option>Class B Semi</option><option>Box Truck</option><option>Flatbed</option><option>Reefer</option><option>Dry Van</option><option>Sprinter Van</option></select></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-lbl">Years of CDL Experience</label><select class="form-inp" id="dExp"><option>Less than 1 year</option><option>1-2 years</option><option>3-5 years</option><option>6-10 years</option><option>10+ years</option></select></div>
+          <div class="form-group"><label class="form-lbl">TWIC Card</label><select class="form-inp" id="dTWIC"><option value="">No</option><option value="yes">Yes — Port Access Eligible</option></select></div>
+        </div>`,
+      maas: `
+        <div class="form-row">
+          <div class="form-group"><label class="form-lbl">Vehicle Type</label><select class="form-inp" id="dVehicle"><option>Cargo Van</option><option>Sprinter Van</option><option>Box Truck</option><option>Pickup Truck</option><option>Sedan</option><option>SUV</option><option>Bicycle/E-Bike</option></select></div>
+          <div class="form-group"><label class="form-lbl">Years of Delivery Experience</label><select class="form-inp" id="dExp"><option>New — First Platform</option><option>1-2 years</option><option>3-5 years</option><option>5+ years</option></select></div>
+        </div>
+        <div class="form-row full">
+          <div class="form-group"><label class="form-lbl">Other Delivery Apps (FYI only)</label><input class="form-inp" id="dOther" placeholder="Amazon Flex, DoorDash, etc. (optional)"></div>
+        </div>`,
+      saas: `
+        <div class="form-row">
+          <div class="form-group"><label class="form-lbl">Business / Organization Name</label><input class="form-inp" id="dBiz" placeholder="Company or solo operator"></div>
+          <div class="form-group"><label class="form-lbl">Industry / Use Case</label><select class="form-inp" id="dIndustry"><option>Logistics / Freight</option><option>Legal / Compliance</option><option>Real Estate</option><option>General Business</option><option>Other</option></select></div>
+        </div>`,
+      warehouse: `
+        <div class="form-row">
+          <div class="form-group"><label class="form-lbl">Forklift Certified?</label><select class="form-inp" id="dFork"><option value="">No</option><option value="yes">Yes — Certified</option></select></div>
+          <div class="form-group"><label class="form-lbl">Years Warehouse Experience</label><select class="form-inp" id="dExp"><option>Less than 1</option><option>1-2 years</option><option>3-5 years</option><option>5+ years</option></select></div>
+        </div>
+        <div class="form-row full">
+          <div class="form-group"><label class="form-lbl">Special Certifications / Skills</label><input class="form-inp" id="dCert" placeholder="Hazmat, OSHA 10, Cold Storage, etc."></div>
+        </div>`,
+      reverse: `
+        <div class="form-row">
+          <div class="form-group"><label class="form-lbl">Port/Area of Operation</label><input class="form-inp" id="dPort" placeholder="Port of Savannah, Port of Houston, etc."></div>
+          <div class="form-group"><label class="form-lbl">Vehicle / Equipment Type</label><select class="form-inp" id="dVehicle"><option>Box Truck</option><option>Flatbed</option><option>Container Chassis</option><option>Dry Van</option></select></div>
+        </div>`
+    };
+
+    let selectedTier = null;
+
+    // Pre-select from URL param
+    const urlTier = new URLSearchParams(window.location.search).get('tier');
+    if (urlTier) {
+      const card = document.querySelector(`.tcard[data-tier="${urlTier}"]`);
+      if (card) setTimeout(() => selectTier(card), 100);
+    }
+
+    function selectTier(card) {
+      document.querySelectorAll('.tcard').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      selectedTier = card.dataset.tier;
+      const t = TIERS[selectedTier];
+      const total = t.monthly + t.enroll;
+      document.getElementById('formTitle').textContent = `Enrolling as: ${t.label} · 1099 Independent Contractor`;
+      document.getElementById('dynamicFields').innerHTML = DYNAMIC[selectedTier] || '';
+      document.getElementById('feeBox').style.display = 'block';
+      document.getElementById('fbMonthly').textContent = '$' + t.monthly + '/mo';
+      document.getElementById('fbEnroll').textContent = '$' + t.enroll + ' (one-time)';
+      document.getElementById('fbTotal').textContent = '$' + total + ' USD';
+    }
+
+    async function submitEnrollment() {
+      if (!selectedTier) { alert('Please select a tier'); return; }
+      const name = document.getElementById('fName').value.trim();
+      const email = document.getElementById('fEmail').value.trim();
+      const phone = document.getElementById('fPhone').value.trim();
+      const area = document.getElementById('fArea').value.trim();
+      const agree = document.getElementById('fAgree').checked;
+      if (!name || !email) { alert('Name and email are required'); return; }
+      if (!agree) { alert('You must agree to the contractor terms'); return; }
+      const t = TIERS[selectedTier];
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'SUBMITTING...';
+      try {
+        const r = await fetch('/api/register', {
+          method: 'POST', headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({
+            type: t.type, fullName: name, email, phone, agreeToTerms: true,
+            metadata: { tier: selectedTier, serviceArea: area, referralCode: document.getElementById('fRef').value }
+          })
+        });
+        const d = await r.json();
+        if (d.success) {
+          document.getElementById('enrollForm').style.display = 'none';
+          document.getElementById('tierGrid').style.display = 'none';
+          document.getElementById('successBox').style.display = 'block';
+          document.getElementById('successAppId').textContent = d.applicationId;
+        } else {
+          btn.disabled = false; btn.textContent = 'SUBMIT ENROLLMENT APPLICATION';
+          alert(d.error || 'Submission failed');
+        }
+      } catch(e) {
+        btn.disabled = false; btn.textContent = 'SUBMIT ENROLLMENT APPLICATION';
+        alert('Server error — please try again');
+      }
+    }
+  </script>
+</body>
+</html>
