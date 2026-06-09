@@ -91,6 +91,12 @@
         <button class="dv-nav-btn" data-panel="logistics-ops" style="background:linear-gradient(135deg,rgba(0,255,136,0.1),rgba(0,212,255,0.08));border:1px solid rgba(0,255,136,0.3);">
           🚚 Logistics Ops
         </button>
+        <button class="dv-nav-btn" data-panel="registrations" style="position:relative;">
+          📋 Registrations<span id="regTabBadge" style="display:none;position:absolute;top:2px;right:2px;background:#ff3b6b;color:#fff;font-size:0.48rem;font-weight:900;width:14px;height:14px;border-radius:50%;text-align:center;line-height:14px;"></span>
+        </button>
+        <button class="dv-nav-btn" data-panel="token-mgmt">
+          🪙 Token Mgmt
+        </button>
       </div>
 
       <!-- ══════════════════════════════════════════
@@ -1165,6 +1171,54 @@
         </div>
       </div>
 
+      <!-- ══════════════════════════════════════════
+         PANEL: Registrations
+      ══════════════════════════════════════════ -->
+      <div class="dv-panel" id="panel-registrations">
+        <div class="dv-panel-inner">
+          <div class="dv-section-header">
+            <h2>📋 Applicant Registrations</h2>
+            <div class="dv-section-actions">
+              <button class="dv-btn sm" onclick="filterRegs('pending')">⬤ Pending</button>
+              <button class="dv-btn sm" onclick="filterRegs('approved')">Approved</button>
+              <button class="dv-btn sm" onclick="filterRegs('all')">All</button>
+              <button class="dv-btn sm" onclick="loadRegistrations()">↻ Refresh</button>
+            </div>
+          </div>
+          <div id="regStatsRow" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem;"></div>
+          <div id="regTableWrap" style="overflow-x:auto;min-height:120px;"></div>
+          <div id="regMsg" style="font-size:0.65rem;color:#00d4ff;margin-top:0.75rem;min-height:1.2em;"></div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+         PANEL: Token Management
+      ══════════════════════════════════════════ -->
+      <div class="dv-panel" id="panel-token-mgmt">
+        <div class="dv-panel-inner">
+          <div class="dv-section-header">
+            <h2>🪙 Token Management</h2>
+            <div class="dv-section-actions">
+              <button class="dv-btn sm" onclick="loadTokenMgmt()">↻ Refresh</button>
+              <a href="token-payment.html" class="dv-btn sm" style="text-decoration:none;">↗ Treasury</a>
+            </div>
+          </div>
+          <div id="tokenStatsRow" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem;"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;">
+            <div>
+              <div style="font-size:0.63rem;color:#ffd700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem;font-weight:700;">🔵 BRC — Borders Resource Coin</div>
+              <div id="brcInfo" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,215,0,0.12);border-radius:4px;padding:0.75rem;font-size:0.68rem;color:#7aabb0;">Loading...</div>
+            </div>
+            <div>
+              <div style="font-size:0.63rem;color:#ffd700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem;font-weight:700;">🟡 BBI — Borders Benefit Index</div>
+              <div id="bbiInfo" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,215,0,0.12);border-radius:4px;padding:0.75rem;font-size:0.68rem;color:#7aabb0;">Loading...</div>
+            </div>
+          </div>
+          <div style="font-size:0.63rem;color:#00d4ff;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem;font-weight:700;">📋 Transaction History</div>
+          <div id="tokenTxTable" style="overflow-x:auto;min-height:80px;"></div>
+        </div>
+      </div>
+
     </div>
     <!-- end command center -->
 
@@ -1962,6 +2016,8 @@
         btn.addEventListener('click', () => {
           if (btn.dataset.panel === 'copilot') startCopilotPoll();
           if (btn.dataset.panel === 'logistics-ops') { showTier('local'); loadTierData('local'); }
+          if (btn.dataset.panel === 'registrations') loadRegistrations();
+          if (btn.dataset.panel === 'token-mgmt') loadTokenMgmt();
         });
       });
 
@@ -2087,6 +2143,159 @@
         tiers.forEach(t => { const el = document.getElementById('tier-'+t); if (el && el.style.display !== 'none') loadTierData(t); });
       }
 
+      // ── Registrations ──
+      let allRegs = [];
+      async function loadRegistrations() {
+        const wrap = document.getElementById('regTableWrap');
+        const statsRow = document.getElementById('regStatsRow');
+        const msg = document.getElementById('regMsg');
+        if (wrap) wrap.innerHTML = '<div style="padding:1rem;color:#2a4255;font-size:0.65rem;">Loading...</div>';
+        try {
+          const r = await fetch('/api/admin/registrations');
+          const d = await r.json();
+          allRegs = d.registrations || [];
+          const pending = allRegs.filter(x => x.status === 'pending').length;
+          const approved = allRegs.filter(x => x.status === 'approved').length;
+          const rejected = allRegs.filter(x => x.status === 'rejected').length;
+          if (statsRow) statsRow.innerHTML = [
+            ['📋 Total', allRegs.length, '#00d4ff'],
+            ['⏳ Pending', pending, '#ffd700'],
+            ['✅ Approved', approved, '#00ff88'],
+            ['❌ Rejected', rejected, '#ff3b6b']
+          ].map(([label, val, color]) => `
+            <div style="background:rgba(0,0,0,0.3);border:1px solid rgba(0,212,255,0.12);border-radius:4px;padding:0.75rem 1rem;">
+              <div style="font-size:0.55rem;text-transform:uppercase;letter-spacing:0.1em;color:#2a4255;margin-bottom:0.3rem;">${label}</div>
+              <div style="font-size:2rem;font-weight:900;color:${color};line-height:1;">${val}</div>
+            </div>`).join('');
+          // Update badge
+          const badge = document.getElementById('regTabBadge');
+          if (badge) { badge.textContent = pending; badge.style.display = pending > 0 ? 'inline-block' : 'none'; }
+          renderRegTable(allRegs);
+          if (msg) msg.textContent = pending > 0 ? `⚡ ${pending} application${pending > 1 ? 's' : ''} awaiting your review` : '⬤ No pending applications';
+        } catch(e) {
+          if (wrap) wrap.innerHTML = '<div style="padding:1rem;color:#2a4255;font-size:0.65rem;">Failed to load registrations</div>';
+        }
+      }
+
+      function filterRegs(status) {
+        const filtered = status === 'all' ? allRegs : allRegs.filter(r => r.status === status);
+        renderRegTable(filtered);
+      }
+
+      function renderRegTable(regs) {
+        const wrap = document.getElementById('regTableWrap');
+        if (!wrap) return;
+        if (!regs.length) { wrap.innerHTML = '<div style="padding:1rem;color:#2a4255;font-size:0.65rem;text-align:center;">No registrations found</div>'; return; }
+        const pillColor = s => s === 'approved' ? '#00ff88' : s === 'rejected' ? '#ff3b6b' : '#ffd700';
+        wrap.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:0.65rem;">
+          <thead><tr style="border-bottom:1px solid rgba(0,212,255,0.15);">
+            ${['ID','Name','Email','Type','Status','Code','Action'].map(h =>
+              `<th style="padding:0.3rem 0.55rem;text-align:left;color:#1e3040;text-transform:uppercase;font-size:0.54rem;letter-spacing:0.07em;font-weight:400;">${h}</th>`).join('')}
+          </tr></thead>
+          <tbody>${regs.map(reg => `
+            <tr style="border-bottom:1px solid rgba(0,212,255,0.04);">
+              <td style="padding:0.35rem 0.55rem;color:#00d4ff;font-family:'Courier New',monospace;">${reg.id}</td>
+              <td style="padding:0.35rem 0.55rem;color:#c5d8f0;font-weight:700;">${reg.fullName || '—'}</td>
+              <td style="padding:0.35rem 0.55rem;color:#4a6580;">${reg.email || '—'}</td>
+              <td style="padding:0.35rem 0.55rem;color:#4a6580;">${reg.type || '—'}</td>
+              <td style="padding:0.35rem 0.55rem;"><span style="font-size:0.54rem;text-transform:uppercase;font-weight:700;color:${pillColor(reg.status)}">${reg.status}</span></td>
+              <td style="padding:0.35rem 0.55rem;color:#00ff88;font-family:'Courier New',monospace;font-size:0.6rem;">${reg.accessCode || '—'}</td>
+              <td style="padding:0.35rem 0.55rem;">
+                ${reg.status === 'pending' ? `
+                  <button onclick="actReg(${reg.id},'approved')" style="font-size:0.52rem;padding:0.18rem 0.5rem;background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3);color:#00ff88;border-radius:2px;cursor:pointer;font-family:'Courier New',monospace;margin-right:0.25rem;">✓ Approve</button>
+                  <button onclick="actReg(${reg.id},'rejected')" style="font-size:0.52rem;padding:0.18rem 0.5rem;background:rgba(255,59,107,0.1);border:1px solid rgba(255,59,107,0.3);color:#ff3b6b;border-radius:2px;cursor:pointer;font-family:'Courier New',monospace;">✗ Reject</button>
+                ` : '—'}
+              </td>
+            </tr>`).join('')}
+          </tbody></table>`;
+      }
+
+      async function actReg(id, status) {
+        const msg = document.getElementById('regMsg');
+        try {
+          const r = await fetch('/api/admin/registrations/' + id, {
+            method: 'PATCH', headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({ status })
+          });
+          const d = await r.json();
+          if (msg) msg.textContent = status === 'approved'
+            ? `✅ Approved — Access Code: ${d.registration?.accessCode || 'generated'}`
+            : '❌ Application rejected';
+          showAlert(status === 'approved' ? '✅ Registration approved · Access code issued' : '✗ Registration rejected', 'success');
+          await loadRegistrations();
+        } catch(e) {
+          if (msg) msg.textContent = '⚠ Action failed';
+        }
+      }
+
+      // ── Token Management ──
+      async function loadTokenMgmt() {
+        const statsRow = document.getElementById('tokenStatsRow');
+        const txTable = document.getElementById('tokenTxTable');
+        const brcInfo = document.getElementById('brcInfo');
+        const bbiInfo = document.getElementById('bbiInfo');
+        try {
+          const r = await fetch('/api/token/info');
+          const d = await r.json();
+          const tokens = d.tokens || [];
+          const brc = tokens.find(t => t.symbol === 'BRC') || {};
+          const bbi = tokens.find(t => t.symbol === 'BBI') || {};
+          if (brcInfo) brcInfo.innerHTML = `
+            <div style="margin-bottom:0.4rem;"><span style="color:#2a4255;">Name:</span> <span style="color:#c5d8f0;">${brc.name || 'BRC'}</span></div>
+            <div style="margin-bottom:0.4rem;"><span style="color:#2a4255;">Price:</span> <span style="color:#ffd700;">${brc.price ? '$'+brc.price : '—'}</span></div>
+            <div style="margin-bottom:0.4rem;"><span style="color:#2a4255;">Min Purchase:</span> <span style="color:#c5d8f0;">${brc.minPurchase || '—'}</span></div>
+            <div><span style="color:#2a4255;">Description:</span> <span style="color:#4a6580;">${brc.description || 'Utility token'}</span></div>`;
+          if (bbiInfo) bbiInfo.innerHTML = `
+            <div style="margin-bottom:0.4rem;"><span style="color:#2a4255;">Name:</span> <span style="color:#c5d8f0;">${bbi.name || 'BBI'}</span></div>
+            <div style="margin-bottom:0.4rem;"><span style="color:#2a4255;">Price:</span> <span style="color:#ffd700;">${bbi.price ? '$'+bbi.price : '—'}</span></div>
+            <div style="margin-bottom:0.4rem;"><span style="color:#2a4255;">Min Purchase:</span> <span style="color:#c5d8f0;">${bbi.minPurchase || '—'}</span></div>
+            <div><span style="color:#2a4255;">Description:</span> <span style="color:#4a6580;">${bbi.description || 'Yield token'}</span></div>`;
+        } catch(e) {}
+
+        try {
+          const r2 = await fetch('/api/token/transactions?limit=200');
+          const d2 = await r2.json();
+          const txns = d2.transactions || [];
+          const totalBRC = txns.filter(t => t.tokenSymbol === 'BRC').reduce((s,t) => s+Number(t.amount||0), 0);
+          const totalBBI = txns.filter(t => t.tokenSymbol === 'BBI').reduce((s,t) => s+Number(t.amount||0), 0);
+          const totalRevenue = txns.reduce((s,t) => s+Number(t.totalCost||0), 0);
+          if (statsRow) statsRow.innerHTML = [
+            ['Transactions', txns.length, '#00d4ff'],
+            ['BRC Issued', totalBRC.toLocaleString(), '#00ff88'],
+            ['BBI Issued', totalBBI.toLocaleString(), '#ffd700'],
+            ['Revenue', '$'+totalRevenue.toFixed(2), '#9b4dff']
+          ].map(([label, val, color]) => `
+            <div style="background:rgba(0,0,0,0.3);border:1px solid rgba(0,212,255,0.12);border-radius:4px;padding:0.75rem 1rem;">
+              <div style="font-size:0.55rem;text-transform:uppercase;letter-spacing:0.1em;color:#2a4255;margin-bottom:0.3rem;">${label}</div>
+              <div style="font-size:1.6rem;font-weight:900;color:${color};line-height:1;">${val}</div>
+            </div>`).join('');
+          if (txTable) {
+            if (!txns.length) {
+              txTable.innerHTML = '<div style="padding:1rem;color:#2a4255;font-size:0.65rem;text-align:center;">No transactions yet</div>';
+            } else {
+              txTable.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:0.65rem;">
+                <thead><tr style="border-bottom:1px solid rgba(0,212,255,0.15);">
+                  ${['ID','Token','Type','Amount','Cost','Status','Date'].map(h =>
+                    `<th style="padding:0.3rem 0.55rem;text-align:left;color:#1e3040;text-transform:uppercase;font-size:0.54rem;letter-spacing:0.07em;font-weight:400;">${h}</th>`).join('')}
+                </tr></thead>
+                <tbody>${txns.map(tx => `
+                  <tr style="border-bottom:1px solid rgba(0,212,255,0.04);">
+                    <td style="padding:0.35rem 0.55rem;color:#00d4ff;font-family:'Courier New',monospace;">${tx.id}</td>
+                    <td style="padding:0.35rem 0.55rem;color:#ffd700;font-weight:700;">${tx.tokenSymbol}</td>
+                    <td style="padding:0.35rem 0.55rem;color:#4a6580;">${tx.type}</td>
+                    <td style="padding:0.35rem 0.55rem;color:#00ff88;font-weight:700;">${Number(tx.amount||0).toLocaleString()}</td>
+                    <td style="padding:0.35rem 0.55rem;color:#c5d8f0;">$${Number(tx.totalCost||0).toFixed(2)}</td>
+                    <td style="padding:0.35rem 0.55rem;"><span style="font-size:0.54rem;text-transform:uppercase;font-weight:700;color:${tx.status==='completed'?'#00ff88':tx.status==='pending'?'#ffd700':'#4a6580'}">${tx.status}</span></td>
+                    <td style="padding:0.35rem 0.55rem;color:#2a4255;">${tx.createdAt ? new Date(tx.createdAt).toLocaleDateString() : '—'}</td>
+                  </tr>`).join('')}
+                </tbody></table>`;
+            }
+          }
+        } catch(e) {
+          if (txTable) txTable.innerHTML = '<div style="padding:1rem;color:#2a4255;font-size:0.65rem;">Failed to load transactions</div>';
+        }
+      }
+
       // ── Init ──
       function initCommandCenter() {
         refreshIntelligence();
@@ -2094,6 +2303,7 @@
         loadContainersCmd();
         refreshPartners();
         runHealthCheck();
+        loadRegistrations();
         setInterval(rotateInsight, 8000);
         rotateInsight();
         setInterval(

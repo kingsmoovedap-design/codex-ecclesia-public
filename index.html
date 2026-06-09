@@ -329,6 +329,17 @@
             <div class="ct-desc">BSC coin · mint · buyback · Sepolia</div>
             <div class="ct-st rdy">⬤ Sepolia</div>
           </a>
+          <a href="token-payment.html" class="ctile tr">
+            <span class="ct-ico">🪙</span><div class="ct-lbl">Token Treasury</div>
+            <div class="ct-desc">BRC · BBI · purchase · sellback · history</div>
+            <div class="ct-st live">⬤ Active</div>
+          </a>
+          <a href="divinity-command.html" class="ctile dvx" id="regTile" onclick="sessionStorage.setItem('dvx_panel','registrations')" style="position:relative;">
+            <span class="ct-ico">📋</span><div class="ct-lbl">Applicants</div>
+            <div class="ct-desc">Registration review · approve · issue codes</div>
+            <div class="ct-st rdy" id="regTileStatus">⬤ Loading...</div>
+            <span id="regTileBadge" style="display:none;position:absolute;top:6px;right:6px;background:#ff3b6b;color:#fff;font-size:0.52rem;font-weight:900;padding:0.1rem 0.38rem;border-radius:10px;font-family:'Courier New',monospace;"></span>
+          </a>
         </div>
       </div>
 
@@ -565,6 +576,37 @@
       Promise.all([fetchLocal(), fetchNational(), fetchGlobal(), fetchDrivers(), fetchAnalytics()])
         .then(() => addEvent('Auto-refresh: all logistics data updated', 'c'));
     }, 30000);
+
+    // Pending registration badge
+    async function pollPendingRegs() {
+      try {
+        const r = await fetch('/api/admin/registrations/pending/count');
+        if (!r.ok) return;
+        const d = await r.json();
+        const badge = document.getElementById('regTileBadge');
+        const status = document.getElementById('regTileStatus');
+        if (badge) {
+          badge.textContent = d.count + ' pending';
+          badge.style.display = d.count > 0 ? 'inline-block' : 'none';
+        }
+        if (status) {
+          status.textContent = d.count > 0 ? `⚡ ${d.count} PENDING` : '⬤ Ready';
+          status.style.color = d.count > 0 ? 'var(--gold)' : '';
+        }
+        if (d.count > 0) addEvent(`${d.count} registration${d.count > 1 ? 's' : ''} awaiting review`, 'o');
+      } catch(e) {
+        const status = document.getElementById('regTileStatus');
+        if (status) status.textContent = '⬤ Ready';
+      }
+    }
+    pollPendingRegs();
+    setInterval(pollPendingRegs, 60000);
+
+    // Jump to panel if requested
+    const jumpPanel = sessionStorage.getItem('dvx_panel');
+    if (jumpPanel) {
+      sessionStorage.removeItem('dvx_panel');
+    }
   </script>
 </body>
 </html>
