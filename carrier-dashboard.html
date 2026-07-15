@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carrier Dashboard — Divine Solutions Logistics</title>
+<style>
+:root{--cyan:#00d4ff;--purple:#9b4dff;--gold:#ffd700;--green:#00ff88;--red:#ff3b6b;--orange:#ff8c00;--bg:#020b18;--card:#06151e;--border:rgba(0,212,255,.12);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:#c5d8f0;font-family:'Courier New',monospace;font-size:13px;min-height:100vh;}
+::-webkit-scrollbar{width:4px;height:4px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:rgba(0,212,255,.2);border-radius:2px;}
+.grid-bg{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(0,212,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.025) 1px,transparent 1px);background-size:52px 52px;}
+
+/* ── AUTH ── */
+.auth-gate{position:fixed;inset:0;z-index:2000;background:var(--bg);display:flex;align-items:center;justify-content:center;}
+.auth-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:2.2rem;width:380px;text-align:center;}
+.auth-seal{font-size:2.8rem;margin-bottom:.7rem;}
+.auth-title{font-size:1rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;background:linear-gradient(90deg,var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.25rem;}
+.auth-sub{font-size:.55rem;text-transform:uppercase;letter-spacing:.14em;color:#1e4050;margin-bottom:1.5rem;}
+.auth-input{width:100%;background:#020b18;border:1px solid var(--border);color:var(--cyan);padding:.7rem 1rem;border-radius:4px;font-family:inherit;font-size:.75rem;margin-bottom:.6rem;outline:none;}
+.auth-input:focus{border-color:rgba(0,212,255,.4);}
+.auth-input::placeholder{color:#1a3040;}
+.auth-btn{width:100%;padding:.7rem;background:rgba(0,212,255,.12);border:1px solid rgba(0,212,255,.35);border-radius:4px;color:var(--cyan);font-family:inherit;font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;font-weight:700;cursor:pointer;transition:all .2s;margin-bottom:.4rem;}
+.auth-btn:hover{background:rgba(0,212,255,.22);}
+.auth-err{font-size:.6rem;color:var(--red);min-height:.9rem;}
+.auth-signup{display:block;font-size:.57rem;color:#1e4050;text-align:center;margin-top:.7rem;text-decoration:none;}
+.auth-signup:hover{color:var(--cyan);}
+
+/* ── HEADER ── */
+.header{position:sticky;top:0;z-index:100;background:rgba(2,11,24,.97);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:50px;backdrop-filter:blur(8px);}
+.h-left{display:flex;align-items:center;gap:.75rem;}
+.h-icon{font-size:1.1rem;}
+.h-title{font-size:.8rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;background:linear-gradient(90deg,var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.h-tier{font-size:.5rem;text-transform:uppercase;letter-spacing:.12em;padding:.15rem .55rem;border-radius:2px;border:1px solid;font-weight:700;}
+.h-tier.BASIC{color:var(--cyan);border-color:rgba(0,212,255,.3);background:rgba(0,212,255,.06);}
+.h-tier.PRO{color:var(--purple);border-color:rgba(155,77,255,.3);background:rgba(155,77,255,.06);}
+.h-tier.EMPIRE{color:var(--gold);border-color:rgba(255,215,0,.3);background:rgba(255,215,0,.06);}
+.h-right{display:flex;align-items:center;gap:.6rem;}
+.h-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 7px rgba(0,255,136,.9);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+.h-btn{font-size:.55rem;text-transform:uppercase;letter-spacing:.08em;padding:.26rem .65rem;border-radius:2px;border:1px solid;cursor:pointer;font-family:inherit;transition:all .2s;background:transparent;text-decoration:none;display:inline-block;}
+.h-btn.lock{color:#2a5060;border-color:rgba(0,212,255,.12);}
+.h-btn.lock:hover{color:var(--red);}
+.h-btn.upgrade{color:var(--gold);border-color:rgba(255,215,0,.3);background:rgba(255,215,0,.05);}
+.h-btn.upgrade:hover{background:rgba(255,215,0,.12);}
+
+/* ── PAGE ── */
+.page{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:1rem 1.25rem 2rem;}
+
+/* ── STAT ROW ── */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem;margin-bottom:1rem;}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:.85rem 1rem;position:relative;overflow:hidden;}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.sc.c::before{background:linear-gradient(90deg,var(--cyan),transparent);}
+.sc.g::before{background:linear-gradient(90deg,var(--green),transparent);}
+.sc.o::before{background:linear-gradient(90deg,var(--gold),transparent);}
+.sc.p::before{background:linear-gradient(90deg,var(--purple),transparent);}
+.sc-lbl{font-size:.53rem;text-transform:uppercase;letter-spacing:.12em;color:#1e3a4a;margin-bottom:.28rem;}
+.sc-val{font-size:1.7rem;font-weight:900;line-height:1;margin-bottom:.1rem;}
+.sc-val.c{color:var(--cyan);}.sc-val.g{color:var(--green);}.sc-val.o{color:var(--gold);}.sc-val.p{color:var(--purple);}
+.sc-sub{font-size:.56rem;color:#2a4255;}
+
+/* ── TABS ── */
+.tabs{display:flex;gap:.3rem;margin-bottom:.85rem;border-bottom:1px solid var(--border);padding-bottom:.65rem;}
+.tab{font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;padding:.35rem .8rem;border-radius:3px;border:1px solid transparent;cursor:pointer;font-family:inherit;transition:all .15s;background:transparent;color:#2a5060;}
+.tab.active{color:var(--cyan);border-color:rgba(0,212,255,.3);background:rgba(0,212,255,.06);}
+.tab:hover:not(.active){color:var(--cyan);border-color:rgba(0,212,255,.15);}
+.tab-badge{display:inline-block;background:var(--red);color:#fff;font-size:.45rem;font-weight:900;padding:.08rem .32rem;border-radius:8px;margin-left:.3rem;vertical-align:middle;}
+.panel{display:none;}.panel.active{display:block;}
+
+/* ── UPGRADE BANNER ── */
+.upgrade-banner{background:linear-gradient(135deg,rgba(255,215,0,.07),rgba(155,77,255,.05));border:1px solid rgba(255,215,0,.25);border-radius:4px;padding:.75rem 1.1rem;margin-bottom:.85rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+.ub-text{font-size:.62rem;color:#c5a830;}
+.ub-btn{font-size:.58rem;text-transform:uppercase;letter-spacing:.09em;padding:.32rem .8rem;border:1px solid rgba(255,215,0,.4);border-radius:3px;background:rgba(255,215,0,.08);color:var(--gold);cursor:pointer;font-family:inherit;transition:all .15s;white-space:nowrap;}
+.ub-btn:hover{background:rgba(255,215,0,.16);}
+
+/* ── JOB BOARD ── */
+.job-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:1rem 1.1rem;margin-bottom:.65rem;transition:all .15s;position:relative;}
+.job-card:hover{border-color:rgba(0,212,255,.25);box-shadow:0 4px 20px rgba(0,212,255,.06);}
+.job-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;border-radius:3px 0 0 3px;background:var(--green);}
+.jc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.65rem;gap:.8rem;}
+.jc-route{flex:1;}
+.jc-ref{font-size:.55rem;text-transform:uppercase;letter-spacing:.1em;color:#2a5060;margin-bottom:.3rem;}
+.jc-cities{font-size:.95rem;font-weight:700;color:#e0f4f8;line-height:1.1;}
+.jc-states{font-size:.62rem;color:#4a7080;margin-top:.2rem;}
+.jc-rate{text-align:right;flex-shrink:0;}
+.jc-rate-val{font-size:1.2rem;font-weight:900;color:var(--green);line-height:1;}
+.jc-rpm{font-size:.57rem;color:#2a5060;margin-top:.2rem;}
+.jc-meta{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:.75rem;}
+.jc-badge{font-size:.52rem;text-transform:uppercase;letter-spacing:.07em;padding:.14rem .45rem;border-radius:2px;border:1px solid;}
+.jc-badge.eq{color:var(--cyan);border-color:rgba(0,212,255,.2);background:rgba(0,212,255,.05);}
+.jc-badge.mi{color:#6a9cb0;border-color:rgba(106,156,176,.2);}
+.jc-badge.src{color:#4a7080;border-color:rgba(0,212,255,.1);}
+.jc-badge.pick{color:var(--gold);border-color:rgba(255,215,0,.2);background:rgba(255,215,0,.04);}
+.jc-actions{display:flex;gap:.5rem;align-items:center;}
+.jc-accept{padding:.5rem 1.2rem;background:rgba(0,255,136,.12);border:1px solid rgba(0,255,136,.35);border-radius:3px;color:var(--green);font-family:inherit;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;cursor:pointer;transition:all .2s;}
+.jc-accept:hover{background:rgba(0,255,136,.22);box-shadow:0 0 12px rgba(0,255,136,.2);}
+.jc-accept:disabled{opacity:.4;cursor:not-allowed;}
+.jc-decline{padding:.5rem .75rem;background:transparent;border:1px solid rgba(255,59,107,.18);border-radius:3px;color:#3a5060;font-family:inherit;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;cursor:pointer;transition:all .15s;}
+.jc-decline:hover{border-color:rgba(255,59,107,.35);color:var(--red);}
+.jc-comm{font-size:.55rem;color:#2a5060;margin-left:auto;}
+.no-jobs{text-align:center;padding:2.5rem;color:#1e4050;font-size:.7rem;}
+.no-jobs .nj-icon{font-size:2.5rem;margin-bottom:.8rem;}
+
+/* ── MY LOADS ── */
+.load-row{display:flex;align-items:center;gap:.8rem;padding:.7rem .9rem;background:var(--card);border:1px solid var(--border);border-radius:4px;margin-bottom:.5rem;font-size:.62rem;}
+.lr-ref{color:var(--cyan);font-weight:700;width:90px;flex-shrink:0;}
+.lr-route{flex:1;color:#7aacbc;}
+.lr-rate{color:var(--green);font-weight:700;width:70px;text-align:right;flex-shrink:0;}
+.lr-status-pill{font-size:.52rem;text-transform:uppercase;letter-spacing:.07em;padding:.1rem .38rem;border-radius:2px;flex-shrink:0;}
+.lr-status-pill.assigned{background:rgba(155,77,255,.08);color:var(--purple);border:1px solid rgba(155,77,255,.2);}
+.lr-status-pill.in_transit{background:rgba(0,212,255,.08);color:var(--cyan);border:1px solid rgba(0,212,255,.2);}
+.lr-status-pill.delivered{background:rgba(0,255,136,.08);color:var(--green);border:1px solid rgba(0,255,136,.2);}
+.lr-action{font-size:.55rem;text-transform:uppercase;padding:.22rem .55rem;border-radius:2px;cursor:pointer;border:1px solid rgba(0,212,255,.2);color:var(--cyan);background:transparent;font-family:inherit;transition:all .15s;}
+.lr-action:hover{background:rgba(0,212,255,.08);}
+
+/* ── PROFILE ── */
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.pcard{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:1.1rem;}
+.pc-title{font-size:.58rem;text-transform:uppercase;letter-spacing:.12em;color:#1e4050;margin-bottom:.85rem;padding-bottom:.5rem;border-bottom:1px solid var(--border);}
+.pc-row{display:flex;justify-content:space-between;align-items:center;padding:.42rem 0;border-bottom:1px solid rgba(0,212,255,.04);font-size:.62rem;}
+.pc-row:last-child{border-bottom:none;}
+.pc-key{color:#2a5060;}
+.pc-val{color:#9ac5d0;font-weight:700;}
+.pc-val.green{color:var(--green);}
+.pc-val.gold{color:var(--gold);}
+.pc-val.red{color:var(--red);}
+.tier-options{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:.3rem;}
+.tier-opt{background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:4px;padding:.75rem .8rem;text-align:center;cursor:pointer;transition:all .2s;}
+.tier-opt:hover{transform:translateY(-1px);}
+.tier-opt.current{border-color:rgba(0,212,255,.4);background:rgba(0,212,255,.06);}
+.to-name{font-size:.62rem;font-weight:700;text-transform:uppercase;margin-bottom:.2rem;}
+.to-name.BASIC{color:var(--cyan);}.to-name.PRO{color:var(--purple);}.to-name.EMPIRE{color:var(--gold);}
+.to-price{font-size:.85rem;font-weight:900;color:var(--green);}
+.to-sub{font-size:.55rem;color:#2a4050;margin-top:.15rem;}
+.to-cta{display:block;margin-top:.55rem;font-size:.54rem;text-transform:uppercase;padding:.26rem .6rem;border-radius:2px;cursor:pointer;font-family:inherit;border:1px solid;transition:all .15s;}
+.to-cta.select{border-color:rgba(0,212,255,.3);color:var(--cyan);background:transparent;}
+.to-cta.select:hover{background:rgba(0,212,255,.08);}
+.to-cta.current-plan{border-color:rgba(0,255,136,.3);color:var(--green);background:rgba(0,255,136,.05);cursor:default;}
+
+/* ── FLASH ── */
+.flash{position:fixed;top:60px;right:1.2rem;z-index:3000;max-width:320px;background:var(--card);border:1px solid;border-radius:4px;padding:.65rem .9rem;font-size:.62rem;transform:translateX(120%);transition:transform .25s;pointer-events:none;}
+.flash.show{transform:translateX(0);}
+.flash.ok{border-color:rgba(0,255,136,.4);color:var(--green);}
+.flash.err{border-color:rgba(255,59,107,.4);color:var(--red);}
+.flash.info{border-color:rgba(0,212,255,.35);color:var(--cyan);}
+
+/* RESPONSIVE */
+@media(max-width:768px){.stat-row{grid-template-columns:repeat(2,1fr);}.profile-grid{grid-template-columns:1fr;}.tier-options{grid-template-columns:1fr;}.jc-top{flex-direction:column;}.jc-rate{text-align:left;}}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="flash" id="flash"></div>
+
+<!-- ── AUTH ── -->
+<div class="auth-gate" id="authGate">
+  <div class="auth-card">
+    <div class="auth-seal">🚚</div>
+    <div class="auth-title">Carrier Dashboard</div>
+    <div class="auth-sub">Divine Solutions Logistics, LLC · Partner Portal</div>
+    <input class="auth-input" id="authCarrierId" type="number" placeholder="Your Carrier ID (from signup email)" min="1">
+    <input class="auth-input" id="authEmail" type="email" placeholder="Email address" style="margin-top:.3rem;">
+    <button class="auth-btn" onclick="doCarrierAuth()">Access Dashboard</button>
+    <div class="auth-err" id="authErr"></div>
+    <a href="carrier-enrollment.html" class="auth-signup">Don't have an account? Sign up →</a>
+    <a href="index.html" class="auth-signup" style="margin-top:.3rem;">← Return to Platform Hub</a>
+  </div>
+</div>
+
+<!-- ── HEADER ── -->
+<div class="header" id="appHeader" style="display:none;">
+  <div class="h-left">
+    <span class="h-icon">🚚</span>
+    <span class="h-title">Carrier Dashboard</span>
+    <span class="h-tier" id="hTier">BASIC</span>
+  </div>
+  <div class="h-right">
+    <span id="hName" style="font-size:.6rem;color:#3a6070;"></span>
+    <div class="h-dot"></div>
+    <a href="carrier-enrollment.html" class="h-btn upgrade" id="upgradeBtn" style="display:none;">⬆ Upgrade Plan</a>
+    <button class="h-btn lock" onclick="doLogout()">Sign Out</button>
+  </div>
+</div>
+
+<!-- ── PAGE ── -->
+<div class="page" id="appPage" style="display:none;">
+
+  <!-- stats -->
+  <div class="stat-row">
+    <div class="sc c"><div class="sc-lbl">Available Loads</div><div class="sc-val c" id="sAvail">—</div><div class="sc-sub">Matching your equipment</div></div>
+    <div class="sc g"><div class="sc-lbl">My Active</div><div class="sc-val g" id="sActive">—</div><div class="sc-sub">In progress</div></div>
+    <div class="sc o"><div class="sc-lbl">Completed</div><div class="sc-val o" id="sCompleted">—</div><div class="sc-sub">All time</div></div>
+    <div class="sc p"><div class="sc-lbl">Daily Limit</div><div class="sc-val p" id="sLimit">—</div><div class="sc-sub" id="sLimitSub">Loads/day on your tier</div></div>
+  </div>
+
+  <!-- upgrade banner (hidden by default) -->
+  <div class="upgrade-banner" id="upgradeBanner" style="display:none;">
+    <div class="ub-text" id="upgradeText"></div>
+    <button class="ub-btn" onclick="goUpgrade()">View Plans →</button>
+  </div>
+
+  <!-- tabs -->
+  <div class="tabs">
+    <button class="tab active" data-panel="jobs" onclick="switchTab('jobs',this)">
+      📋 Available Loads <span class="tab-badge" id="jobCount" style="display:none;"></span>
+    </button>
+    <button class="tab" data-panel="myloads" onclick="switchTab('myloads',this)">
+      🚛 My Loads
+    </button>
+    <button class="tab" data-panel="profile" onclick="switchTab('profile',this)">
+      👤 Profile &amp; Billing
+    </button>
+  </div>
+
+  <!-- PANEL: Available Jobs -->
+  <div class="panel active" id="panel-jobs">
+    <div id="jobBoard">
+      <div class="no-jobs"><div class="nj-icon">🔍</div>Loading available loads...</div>
+    </div>
+  </div>
+
+  <!-- PANEL: My Loads -->
+  <div class="panel" id="panel-myloads">
+    <div id="myLoadsBoard">
+      <div class="no-jobs"><div class="nj-icon">🚚</div>Loading your loads...</div>
+    </div>
+  </div>
+
+  <!-- PANEL: Profile -->
+  <div class="panel" id="panel-profile">
+    <div class="profile-grid">
+      <div class="pcard">
+        <div class="pc-title">Carrier Profile</div>
+        <div id="profileRows"></div>
+      </div>
+      <div class="pcard">
+        <div class="pc-title">Subscription Plan</div>
+        <div class="tier-options" id="tierOptions"></div>
+        <div style="margin-top:1rem;font-size:.58rem;color:#2a4050;line-height:1.7;">
+          Revenue flows: Divine Solutions Logistics, LLC → Divine Solutions Holdings, LLC → Borders Ecclesia Earth Trust (508c1A)<br>
+          All 1099 contractors work under Divine Solutions Logistics, LLC.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── STATE ────────────────────────────────────────────────────────
+let carrierId = null;
+let carrierData = null;
+
+// ── FLASH ────────────────────────────────────────────────────────
+function flash(msg, type='ok') {
+  const el = document.getElementById('flash');
+  el.textContent = msg; el.className = `flash ${type} show`;
+  setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+// ── AUTH ─────────────────────────────────────────────────────────
+async function doCarrierAuth() {
+  const id = parseInt(document.getElementById('authCarrierId').value);
+  const email = document.getElementById('authEmail').value.trim();
+  if (!id || !email) { document.getElementById('authErr').textContent = '⚠ Enter your Carrier ID and email'; return; }
+
+  try {
+    const d = await fetch(`/api/carrier/${id}`).then(r=>r.json());
+    if (d.error) { document.getElementById('authErr').textContent = '⚠ Carrier ID not found'; return; }
+    if (d.email.toLowerCase() !== email.toLowerCase()) { document.getElementById('authErr').textContent = '⚠ Email does not match this Carrier ID'; return; }
+    carrierId = id;
+    sessionStorage.setItem('carrier_id', id);
+    sessionStorage.setItem('carrier_email', email);
+    document.getElementById('authGate').style.display = 'none';
+    document.getElementById('appHeader').style.display = 'flex';
+    document.getElementById('appPage').style.display = 'block';
+    initDashboard(d);
+  } catch(e) {
+    document.getElementById('authErr').textContent = '⚠ Server error — try again';
+  }
+}
+
+// Check URL params and session
+function checkAutoLogin() {
+  const params = new URLSearchParams(window.location.search);
+  const cId = params.get('carrier') || sessionStorage.getItem('carrier_id');
+  const tier = params.get('tier');
+  const success = params.get('success');
+  const mock = params.get('mock');
+
+  if (cId) {
+    carrierId = parseInt(cId);
+    document.getElementById('authCarrierId').value = cId;
+
+    // Auto-login if success redirect from Stripe
+    if (success) {
+      fetch(`/api/carrier/${carrierId}`).then(r=>r.json()).then(d => {
+        if (!d.error) {
+          document.getElementById('authGate').style.display = 'none';
+          document.getElementById('appHeader').style.display = 'flex';
+          document.getElementById('appPage').style.display = 'block';
+          initDashboard(d);
+          if (success === 'true') flash(mock ? `✅ Welcome! Dashboard activated — ${tier||'BASIC'} tier (test mode)` : `✅ Subscription activated! Welcome to ${tier||'your'} plan.`);
+        }
+      }).catch(()=>{});
+    }
+  }
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Enter' && document.getElementById('authGate').style.display !== 'none') doCarrierAuth(); });
+
+// ── INIT ─────────────────────────────────────────────────────────
+async function initDashboard(carrier) {
+  carrierData = carrier;
+  const tier = carrier.tier || 'BASIC';
+
+  // header
+  const tierEl = document.getElementById('hTier');
+  tierEl.textContent = tier;
+  tierEl.className = `h-tier ${tier}`;
+  document.getElementById('hName').textContent = carrier.companyName || `Carrier #${carrierId}`;
+
+  if (carrier.status === 'pending') {
+    flash('⏳ Your account is pending approval. Loads will appear once activated.', 'info');
+    document.getElementById('upgradeBtn').style.display = 'inline-block';
+  }
+
+  await refreshDashboard();
+  renderProfile(carrier);
+  renderTierOptions(tier);
+}
+
+async function refreshDashboard() {
+  try {
+    const d = await fetch(`/api/carrier/${carrierId}/dashboard`, {
+      headers: { 'x-carrier-id': String(carrierId) }
+    }).then(r=>r.json());
+
+    // stats
+    document.getElementById('sAvail').textContent = d.stats.available;
+    document.getElementById('sActive').textContent = d.stats.myActive;
+    document.getElementById('sCompleted').textContent = d.stats.myCompleted;
+    document.getElementById('sLimit').textContent = d.stats.loadsPerDay === 999 ? '∞' : d.stats.loadsPerDay;
+    document.getElementById('sLimitSub').textContent = `${d.stats.tier} tier · ${d.stats.showing} shown`;
+
+    // upgrade banner
+    if (d.upgradeAvailable) {
+      document.getElementById('upgradeBanner').style.display = 'flex';
+      document.getElementById('upgradeText').textContent = `🔒 ${d.upgradeMessage}`;
+      document.getElementById('upgradeBtn').style.display = 'inline-block';
+    }
+
+    // job badge
+    const badge = document.getElementById('jobCount');
+    if (d.stats.showing > 0) { badge.textContent = d.stats.showing; badge.style.display = 'inline-block'; }
+
+    renderJobs(d.availableLoads, d.stats.tier);
+    renderMyLoads(d.myLoads);
+  } catch(e) {
+    document.getElementById('jobBoard').innerHTML = `<div class="no-jobs"><div class="nj-icon">⚠</div>Could not load board. Refresh to retry.</div>`;
+  }
+}
+
+// ── JOB BOARD ─────────────────────────────────────────────────────
+function renderJobs(loads, tier) {
+  if (!loads.length) {
+    document.getElementById('jobBoard').innerHTML = `
+      <div class="no-jobs">
+        <div class="nj-icon">📋</div>
+        No available loads matching your equipment right now.<br>
+        <span style="font-size:.58rem;color:#1e4050;">Check back — board refreshes every 30 seconds.</span>
+      </div>`;
+    return;
+  }
+
+  const tierColors = {BASIC:'var(--cyan)',PRO:'var(--purple)',EMPIRE:'var(--gold)'};
+
+  document.getElementById('jobBoard').innerHTML = loads.map(l => {
+    const rpm = l.ratePerMile ? `$${parseFloat(l.ratePerMile).toFixed(2)}/mi` : '';
+    const comm = l.miles ? `≈ $${(parseFloat(l.rate)*0.75).toLocaleString(undefined,{maximumFractionDigits:0})} after platform fee` : '';
+    return `
+    <div class="job-card" id="jc-${l.id}">
+      <div class="jc-top">
+        <div class="jc-route">
+          <div class="jc-ref">${l.reference} · ${l.source}</div>
+          <div class="jc-cities">${l.origin.split(',')[0]} → ${l.destination.split(',')[0]}</div>
+          <div class="jc-states">${l.origin} → ${l.destination}</div>
+        </div>
+        <div class="jc-rate">
+          <div class="jc-rate-val">$${Number(l.rate).toLocaleString()}</div>
+          ${rpm ? `<div class="jc-rpm">${rpm}</div>` : ''}
+        </div>
+      </div>
+      <div class="jc-meta">
+        <span class="jc-badge eq">🚛 ${l.equipment}</span>
+        ${l.miles ? `<span class="jc-badge mi">📏 ${l.miles.toLocaleString()} mi</span>` : ''}
+        <span class="jc-badge pick">📅 Pickup: ${l.pickupWindow}</span>
+        <span class="jc-badge src">${l.commodity}</span>
+      </div>
+      <div class="jc-actions">
+        <button class="jc-accept" onclick="acceptLoad(${l.id},'${l.reference}')" id="acc-${l.id}">✅ Accept Load</button>
+        <button class="jc-decline" onclick="declineLoad(${l.id})">Pass</button>
+        ${comm ? `<span class="jc-comm">${comm}</span>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+async function acceptLoad(loadId, ref) {
+  const btn = document.getElementById(`acc-${loadId}`);
+  if (btn) { btn.disabled = true; btn.textContent = 'Accepting...'; }
+
+  try {
+    const d = await fetch(`/api/marketplace/loads/${loadId}/accept`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-carrier-id': String(carrierId) },
+      body: JSON.stringify({ carrierId })
+    }).then(r=>r.json());
+
+    if (d.success) {
+      flash(`✅ ${ref} accepted! Check "My Loads" for pickup details.`);
+      const card = document.getElementById(`jc-${loadId}`);
+      if (card) { card.style.opacity = '.4'; card.style.pointerEvents = 'none'; }
+      setTimeout(refreshDashboard, 1200);
+    } else {
+      flash(`⚠ ${d.error || 'Could not accept load'}`, 'err');
+      if (btn) { btn.disabled = false; btn.textContent = '✅ Accept Load'; }
+    }
+  } catch(e) {
+    flash('⚠ Network error — try again', 'err');
+    if (btn) { btn.disabled = false; btn.textContent = '✅ Accept Load'; }
+  }
+}
+
+function declineLoad(loadId) {
+  const card = document.getElementById(`jc-${loadId}`);
+  if (card) { card.style.opacity = '.35'; card.style.pointerEvents = 'none'; }
+}
+
+// ── MY LOADS ──────────────────────────────────────────────────────
+function renderMyLoads(loads) {
+  if (!loads.length) {
+    document.getElementById('myLoadsBoard').innerHTML = `
+      <div class="no-jobs">
+        <div class="nj-icon">🚛</div>
+        No active loads yet.<br>
+        <span style="font-size:.58rem;color:#1e4050;">Accept a load from the board to get started.</span>
+      </div>`;
+    return;
+  }
+  document.getElementById('myLoadsBoard').innerHTML = loads.map(l => `
+    <div class="load-row">
+      <div class="lr-ref">${l.reference}</div>
+      <div class="lr-route">${l.origin} → ${l.destination}</div>
+      <div class="lr-rate">$${Number(l.rate).toLocaleString()}</div>
+      <span class="lr-status-pill ${l.status}">${l.status.replace('_',' ')}</span>
+      ${l.status === 'assigned' ? `<button class="lr-action" onclick="updateLoadStatus(${l.id},'in_transit')">🚛 Start Trip</button>` : ''}
+      ${l.status === 'in_transit' ? `<button class="lr-action" onclick="updateLoadStatus(${l.id},'delivered')">✅ Mark Delivered</button>` : ''}
+    </div>`).join('');
+}
+
+async function updateLoadStatus(loadId, status) {
+  try {
+    const endpoint = status === 'in_transit' ? `/api/v1/loads/${loadId}/pickup` : `/api/v1/loads/${loadId}/pod`;
+    const d = await fetch(endpoint, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({}) }).then(r=>r.json());
+    flash(status === 'in_transit' ? '🚛 Trip started! Drive safe.' : '✅ Delivery confirmed — CodexChain event logged.');
+    setTimeout(refreshDashboard, 1000);
+  } catch(e) { flash('⚠ Update failed', 'err'); }
+}
+
+// ── PROFILE ──────────────────────────────────────────────────────
+function renderProfile(c) {
+  const sub = c.subscription;
+  document.getElementById('profileRows').innerHTML = [
+    { k: 'Company', v: c.companyName || '—' },
+    { k: 'Email', v: c.email },
+    { k: 'Equipment', v: c.equipment || '—' },
+    { k: 'DOT #', v: c.dotNumber || '—' },
+    { k: 'MC #', v: c.mcNumber || '—' },
+    { k: 'CDL #', v: c.cdlNumber || '—' },
+    { k: 'Service Area', v: c.serviceArea || 'National' },
+    { k: 'Tier', v: c.tier || 'BASIC', cls: c.tier === 'EMPIRE' ? 'gold' : c.tier === 'PRO' ? '' : '' },
+    { k: 'Status', v: c.status, cls: c.status === 'active' ? 'green' : c.status === 'pending' ? 'gold' : 'red' },
+    { k: 'Loads Completed', v: c.loadsCompleted || 0 },
+    { k: 'Rating', v: c.rating ? `★ ${c.rating}` : '★ 5.0' },
+    { k: 'Subscription', v: sub ? `${sub.status} · ${sub.tier}` : 'None — select plan below' },
+  ].map(r => `<div class="pc-row"><span class="pc-key">${r.k}</span><span class="pc-val ${r.cls||''}">${r.v}</span></div>`).join('');
+}
+
+function renderTierOptions(currentTier) {
+  const tiers = [
+    { id: 'BASIC', price: '$199', sub: '5 loads/day · Standard', features: 'Owner-operators, solo CDL drivers' },
+    { id: 'PRO', price: '$599', sub: '25 loads/day · Priority', features: 'Small fleets 2–10 trucks' },
+    { id: 'EMPIRE', price: '$1,999', sub: 'Unlimited · Architect', features: 'Enterprise carriers, 3PLs' },
+  ];
+  document.getElementById('tierOptions').innerHTML = tiers.map(t => `
+    <div class="tier-opt ${t.id === currentTier ? 'current' : ''}">
+      <div class="to-name ${t.id}">${t.id}</div>
+      <div class="to-price">${t.price}<span style="font-size:.52rem;color:#2a4050;">/mo</span></div>
+      <div class="to-sub">${t.sub}</div>
+      <div style="font-size:.52rem;color:#1e4050;margin-top:.3rem;">${t.features}</div>
+      ${t.id === currentTier
+        ? `<span class="to-cta current-plan">✓ Current Plan</span>`
+        : `<button class="to-cta select" onclick="startCheckout('${t.id}')">Select ${t.id}</button>`}
+    </div>`).join('');
+}
+
+async function startCheckout(tier) {
+  flash(`🔄 Preparing ${tier} checkout...`, 'info');
+  try {
+    const d = await fetch('/api/billing/checkout', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ tier, carrierId })
+    }).then(r=>r.json());
+    if (d.url) {
+      window.location.href = d.url;
+    } else {
+      flash(`⚠ ${d.error || 'Checkout unavailable'}`, 'err');
+    }
+  } catch(e) { flash('⚠ Checkout error', 'err'); }
+}
+
+function goUpgrade() { switchTab('profile', document.querySelector('.tab[data-panel="profile"]')); }
+
+// ── TABS ─────────────────────────────────────────────────────────
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(`panel-${id}`).classList.add('active');
+}
+
+function doLogout() {
+  sessionStorage.removeItem('carrier_id');
+  sessionStorage.removeItem('carrier_email');
+  document.getElementById('authGate').style.display = 'flex';
+  document.getElementById('appHeader').style.display = 'none';
+  document.getElementById('appPage').style.display = 'none';
+}
+
+// auto-refresh board every 30s
+setInterval(refreshDashboard, 30000);
+
+// init
+checkAutoLogin();
+</script>
+</body>
+</html>

@@ -2009,6 +2009,412 @@ export function registerRoutes(app: Express) {
     res.json({ activeEntity:DYNASTY_ENTITY, structure:{ top:'Borders Dynasty Irrevocable Trust', operating:'Borders Ecclesia Earth Trust (EIN 41-6823854) · 508(c)(1)(A)', business:'Divine Solutions Holdings, LLC', logistics:'Divine Solutions Logistics, LLC (Carrier/Broker · DOT/MC/BMC-84)' }, platforms:['Codex Ecclesia Public','Borders Dynasty Dashboard','Divinity Logistics Platform','CodexChain Event Spine'], note:'All logistics ops under Divine Solutions Logistics, LLC. Revenue flows up per licensing/royalty structure.', apiVersion:'v1', ts:new Date().toISOString() });
   });
 
+  // ══════════════════════════════════════════════════════════════
+  //  BLUEPRINT INTEGRATION: Roles · Carriers · Marketplace · Billing
+  // ══════════════════════════════════════════════════════════════
+
+  // ── Tier config ───────────────────────────────────────────────
+  const TIERS: Record<string, { label: string; price: number; priceId: string; loadsPerDay: number }> = {
+    BASIC:  { label: 'Basic',  price: 19900,  priceId: 'tier_basic',  loadsPerDay: 5  },
+    PRO:    { label: 'Pro',    price: 59900,  priceId: 'tier_pro',    loadsPerDay: 25 },
+    EMPIRE: { label: 'Empire', price: 199900, priceId: 'tier_empire', loadsPerDay: 999 },
+  };
+
+  // ── Role middleware ───────────────────────────────────────────
+  function requireOwner(req: Request, res: Response, next: Function) {
+    const key = req.headers['x-dvx-key'] || req.query.dvxKey;
+    const validKeys = ['DYNASTY2026', 'KING2026', '1234', 'divinity', 'DIVINITY'];
+    if (!key || !validKeys.includes(String(key).toUpperCase().replace('DYNASTY2026','DYNASTY2026'))) {
+      // also allow lowercase
+      const k = String(key||'');
+      if (!['DYNASTY2026','KING2026','1234','divinity'].map(x=>x.toLowerCase()).includes(k.toLowerCase())) {
+        return res.status(403).json({ error: 'DivinityVX only. Access denied.', code: 'OWNER_ONLY' });
+      }
+    }
+    next();
+  }
+
+  function carrierFromSession(req: Request) {
+    const id = req.headers['x-carrier-id'] || req.query.carrierId;
+    return id ? parseInt(String(id)) : null;
+  }
+
+  // ── POST /api/carrier/create ──────────────────────────────────
+  app.post("/api/carrier/create", async (req: Request, res: Response) => {
+    try {
+      const { companyName, email, phone, equipment, dotNumber, mcNumber, cdlNumber, serviceArea } = req.body;
+      if (!companyName || !email || !equipment) {
+        return res.status(400).json({ error: 'companyName, email, and equipment are required' });
+      }
+
+      const { db } = await import('../db/index.js');
+      const { carriers } = await import('../shared/schema.js');
+      const { eq } = await import('drizzle-orm');
+
+      // check duplicate
+      const existing = await db.select().from(carriers).where(eq(carriers.email, email));
+      if (existing.length > 0) {
+        return res.status(409).json({ error: 'Carrier already registered with this email', carrierId: existing[0].id });
+      }
+
+      const [carrier] = await db.insert(carriers).values({
+        companyName, email, phone, equipment, dotNumber, mcNumber, cdlNumber, serviceArea,
+        tier: 'BASIC', status: 'pending',
+      }).returning();
+
+      res.json({ success: true, carrierId: carrier.id, carrier, nextStep: `/pricing?carrier=${carrier.id}` });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // ── GET /api/carrier/list (owner only) ────────────────────────
+  app.get("/api/carrier/list", requireOwner, async (req: Request, res: Response) => {
+    try {
+      const { db } = await import('../db/index.js');
+      const { carriers, subscriptions } = await import('../shared/schema.js');
+      const all = await db.select().from(carriers).orderBy(carriers.createdAt);
+      const subs = await db.select().from(subscriptions);
+      const subsMap = Object.fromEntries(subs.map(s => [s.carrierId, s]));
+      res.json({ carriers: all.map(c => ({ ...c, subscription: subsMap[c.id] || null })), total: all.length });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // ── GET /api/carrier/:id ──────────────────────────────────────
+  app.get("/api/carrier/:id", async (req: Request, res: Response) => {
+    try {
+      const { db } = await import('../db/index.js');
+      const { carriers, subscriptions } = await import('../shared/schema.js');
+      const { eq } = await import('drizzle-orm');
+      const id = parseInt(req.params.id);
+      const [carrier] = await db.select().from(carriers).where(eq(carriers.id, id));
+      if (!carrier) return res.status(404).json({ error: 'Carrier not found' });
+      const [sub] = await db.select().from(subscriptions).where(eq(subscriptions.carrierId, id));
+      res.json({ ...carrier, subscription: sub || null });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // ── PATCH /api/carrier/:id/status (owner only) ─────────────────
+  app.patch("/api/carrier/:id/status", requireOwner, async (req: Request, res: Response) => {
+    try {
+      const { db } = await import('../db/index.js');
+      const { carriers } = await import('../shared/schema.js');
+      const { eq } = await import('drizzle-orm');
+      const id = parseInt(req.params.id);
+      const { status, tier } = req.body;
+      const updates: any = { updatedAt: new Date() };
+      if (status) updates.status = status;
+      if (tier) updates.tier = tier;
+      if (status === 'active') updates.activatedAt = new Date();
+      const [updated] = await db.update(carriers).set(updates).where(eq(carriers.id, id)).returning();
+      res.json({ success: true, carrier: updated });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // ── GET /api/marketplace/loads — tier-filtered for carriers ───
+  app.get("/api/marketplace/loads", async (req: Request, res: Response) => {
+    try {
+      // Get carrier from session header
+      const carrierId = carrierFromSession(req);
+      let carrier: any = null;
+
+      if (carrierId) {
+        const { db } = await import('../db/index.js');
+        const { carriers } = await import('../shared/schema.js');
+        const { eq } = await import('drizzle-orm');
+        const [c] = await db.select().from(carriers).where(eq(carriers.id, carrierId));
+        carrier = c;
+      }
+
+      const tier = carrier?.tier || (req.query.tier as string) || 'BASIC';
+      const equipment = carrier?.equipment || (req.query.equipment as string) || null;
+
+      // Get loads from dispatch engine
+      const loads = LOADS.filter(l => l.status === 'tendered');
+
+      // Filter by equipment if carrier has specific equipment
+      const filtered = equipment
+        ? loads.filter(l => !l.equipmentRequired || l.equipmentRequired.toUpperCase().replace(/[\s-]/g,'_').includes(equipment.replace(/[\s-]/g,'_').toUpperCase()) || l.equipmentRequired.includes(equipment))
+        : loads;
+
+      // Tier limits
+      const limit = TIERS[tier]?.loadsPerDay || 5;
+      const visible = filtered.slice(0, limit);
+
+      res.json({
+        loads: visible.map(l => ({
+          id: l.id, reference: l.reference,
+          origin: `${l.originCity}, ${l.originState}`,
+          destination: `${l.destinationCity}, ${l.destinationState}`,
+          equipment: l.equipmentRequired,
+          miles: l.miles, rate: l.rate,
+          ratePerMile: l.ratePerMile,
+          commodity: l.commodity || 'General Freight',
+          pickupWindow: l.pickupWindowStart ? new Date(l.pickupWindowStart).toLocaleDateString() : 'Flexible',
+          status: l.status, source: l.source || 'DIVINITY',
+        })),
+        tier, equipment, total: filtered.length, showing: visible.length,
+        upgradeAvailable: filtered.length > visible.length,
+        upgradeMessage: filtered.length > visible.length
+          ? `${filtered.length - visible.length} more loads hidden — upgrade to ${tier === 'BASIC' ? 'PRO ($599/mo)' : 'EMPIRE ($1,999/mo)'} to see all`
+          : null,
+      });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // ── POST /api/marketplace/loads (owner-only create) ───────────
+  app.post("/api/marketplace/admin/load", requireOwner, async (req: Request, res: Response) => {
+    try {
+      const {
+        shipperName, originCity, originState, destinationCity, destinationState,
+        equipment, rate, miles, commodity, notes, source
+      } = req.body;
+      if (!originCity || !destinationCity || !rate) {
+        return res.status(400).json({ error: 'originCity, destinationCity, rate required' });
+      }
+      const ref = `DVX-${Date.now().toString(36).toUpperCase()}`;
+      const load: any = {
+        id: LOADS.length + 1, reference: ref, status: 'tendered', source: source || 'DIVINITY',
+        shipperName, originCity, originState: originState||'', destinationCity, destinationState: destinationState||'',
+        rate: String(rate), miles: parseInt(miles)||0, equipmentRequired: equipment||'DRY_VAN',
+        commodity: commodity||'General Freight', notes, tier: 'laas',
+        ratePerMile: miles ? (parseFloat(rate)/parseInt(miles)).toFixed(2) : null,
+        assignedDriverId: null, pickupWindowStart: null, pickupWindowEnd: null,
+        deliveryWindowStart: null, deliveryWindowEnd: null,
+        routePlan: null, podImageUrl: null, metadata: null,
+        createdAt: new Date().toISOString(), updatedAt: new Date().toISOString(),
+      };
+      LOADS.push(load);
+      emitEvent({ loadId: load.id, driverName: null, eventType: 'load_created', notes: `Load ${ref} created via Marketplace Admin · ${originCity},${originState}→${destinationCity},${destinationState} · $${rate}` });
+      res.json({ success: true, load });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // ── POST /api/marketplace/loads/:id/accept ────────────────────
+  app.post("/api/marketplace/loads/:id/accept", async (req: Request, res: Response) => {
+    try {
+      const loadId = parseInt(req.params.id);
+      const carrierId = carrierFromSession(req) || parseInt(req.body.carrierId);
+      const load = LOADS.find(l => l.id === loadId);
+      if (!load) return res.status(404).json({ error: 'Load not found' });
+      if (load.status !== 'tendered') return res.status(409).json({ error: `Load is ${load.status}, not available` });
+
+      // Assign to carrier (via driver lookup or direct)
+      load.status = 'assigned';
+      load.assignedDriverId = carrierId;
+      load.updatedAt = new Date().toISOString();
+
+      emitEvent({ loadId, driverName: `Carrier #${carrierId}`, eventType: 'driver_assigned', notes: `Load ${load.reference} accepted by Carrier #${carrierId}` });
+      res.json({ success: true, load, message: `Load ${load.reference} accepted. Begin pickup per window.` });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // ── GET /api/billing/tiers ─────────────────────────────────────
+  app.get("/api/billing/tiers", (_req: Request, res: Response) => {
+    res.json({
+      tiers: Object.entries(TIERS).map(([key, t]) => ({
+        id: key, label: t.label, monthlyPriceCents: t.price,
+        monthlyPriceUSD: (t.price/100).toFixed(2),
+        loadsPerDay: t.loadsPerDay,
+        features: key === 'BASIC'
+          ? ['Load access (5/day)','Basic dispatch','Standard support','Owner-operator focus']
+          : key === 'PRO'
+          ? ['Priority dispatch (25/day)','Compliance guidance CDL/DOT/MC','Reverse logistics access','Rate calculator','Fleet 2–10 trucks']
+          : ['Unlimited dispatch','Dedicated DivinityVX architect channel','Fleet-as-a-Service','Custom integrations','Micro-hub access (ATL/DFW/CLT/MEM/BHM)','Full CodexChain integration'],
+      }))
+    });
+  });
+
+  // ── POST /api/billing/checkout — Stripe session ───────────────
+  app.post("/api/billing/checkout", async (req: Request, res: Response) => {
+    try {
+      const { tier, carrierId } = req.body;
+      if (!tier || !TIERS[tier]) return res.status(400).json({ error: 'Invalid tier. Must be BASIC, PRO, or EMPIRE.' });
+      if (!carrierId) return res.status(400).json({ error: 'carrierId required' });
+
+      const t = TIERS[tier];
+      const appUrl = process.env.REPLIT_DEV_DOMAIN ? `https://${process.env.REPLIT_DEV_DOMAIN}` : 'http://localhost:5000';
+
+      const stripeKey = process.env.STRIPE_SECRET_KEY;
+      if (!stripeKey) {
+        // No Stripe — return mock checkout for now
+        return res.json({
+          url: `${appUrl}/carrier-dashboard.html?carrier=${carrierId}&tier=${tier}&success=true&mock=true`,
+          mock: true,
+          message: 'Stripe not configured. Redirecting to carrier dashboard with mock activation.',
+          tier, carrierId, amount: t.price,
+        });
+      }
+
+      // @ts-ignore
+      const Stripe = (await import('stripe')).default;
+      const stripe = new Stripe(stripeKey, { apiVersion: '2023-10-16' });
+
+      const session = await stripe.checkout.sessions.create({
+        mode: 'subscription',
+        line_items: [{
+          price_data: {
+            currency: 'usd',
+            product_data: { name: `Divine Solutions Logistics — ${t.label} Plan` },
+            recurring: { interval: 'month' },
+            unit_amount: t.price,
+          },
+          quantity: 1,
+        }],
+        metadata: { carrierId: String(carrierId), tier },
+        success_url: `${appUrl}/carrier-dashboard.html?carrier=${carrierId}&tier=${tier}&session_id={CHECKOUT_SESSION_ID}&success=true`,
+        cancel_url: `${appUrl}/pricing.html?carrier=${carrierId}&cancel=true`,
+      });
+
+      // Store pending subscription record
+      try {
+        const { db } = await import('../db/index.js');
+        const { subscriptions } = await import('../shared/schema.js');
+        await db.insert(subscriptions).values({
+          carrierId: parseInt(carrierId), tier, monthlyAmount: t.price,
+          status: 'pending', stripeSessionId: session.id,
+        });
+      } catch {}
+
+      res.json({ url: session.url, sessionId: session.id });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // ── POST /api/billing/activate — manual activation (owner/dev) ─
+  app.post("/api/billing/activate", requireOwner, async (req: Request, res: Response) => {
+    try {
+      const { carrierId, tier } = req.body;
+      const { db } = await import('../db/index.js');
+      const { carriers, subscriptions } = await import('../shared/schema.js');
+      const { eq } = await import('drizzle-orm');
+
+      const [updated] = await db.update(carriers).set({
+        tier: tier || 'BASIC', status: 'active', activatedAt: new Date(), updatedAt: new Date(),
+      }).where(eq(carriers.id, parseInt(carrierId))).returning();
+
+      const t = TIERS[tier || 'BASIC'];
+      try {
+        await db.insert(subscriptions).values({
+          carrierId: parseInt(carrierId), tier: tier||'BASIC',
+          monthlyAmount: t?.price || 19900, status: 'active',
+          currentPeriodStart: new Date(), currentPeriodEnd: new Date(Date.now() + 30*24*60*60*1000),
+        });
+      } catch {}
+
+      emitEvent({ loadId: null, driverName: null, eventType: 'driver_onboarded', notes: `Carrier #${carrierId} activated on ${tier||'BASIC'} tier` });
+      res.json({ success: true, carrier: updated });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // ── GET /api/billing/portal — Stripe customer portal ──────────
+  app.get("/api/billing/portal", async (req: Request, res: Response) => {
+    try {
+      const carrierId = parseInt(String(req.query.carrierId));
+      const stripeKey = process.env.STRIPE_SECRET_KEY;
+      const appUrl = process.env.REPLIT_DEV_DOMAIN ? `https://${process.env.REPLIT_DEV_DOMAIN}` : 'http://localhost:5000';
+
+      if (!stripeKey) {
+        return res.json({ url: `${appUrl}/carrier-dashboard.html?carrier=${carrierId}`, mock: true });
+      }
+
+      const { db } = await import('../db/index.js');
+      const { subscriptions } = await import('../shared/schema.js');
+      const { eq } = await import('drizzle-orm');
+      const [sub] = await db.select().from(subscriptions).where(eq(subscriptions.carrierId, carrierId));
+
+      if (!sub?.stripeCustomerId) {
+        return res.status(404).json({ error: 'No active Stripe subscription found for this carrier.' });
+      }
+
+      // @ts-ignore
+      const Stripe = (await import('stripe')).default;
+      const stripe = new Stripe(stripeKey, { apiVersion: '2023-10-16' });
+      const session = await stripe.billingPortal.sessions.create({
+        customer: sub.stripeCustomerId,
+        return_url: `${appUrl}/carrier-dashboard.html?carrier=${carrierId}`,
+      });
+
+      res.json({ url: session.url });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // ── GET /api/carrier/:id/dashboard ────────────────────────────
+  app.get("/api/carrier/:id/dashboard", async (req: Request, res: Response) => {
+    try {
+      const carrierId = parseInt(req.params.id);
+      let carrier: any = null;
+      let sub: any = null;
+
+      try {
+        const { db } = await import('../db/index.js');
+        const { carriers, subscriptions } = await import('../shared/schema.js');
+        const { eq } = await import('drizzle-orm');
+        const [c] = await db.select().from(carriers).where(eq(carriers.id, carrierId));
+        carrier = c;
+        const [s] = await db.select().from(subscriptions).where(eq(subscriptions.carrierId, carrierId));
+        sub = s;
+      } catch {}
+
+      // Available loads filtered for this carrier
+      const equipment = carrier?.equipment || null;
+      const tier = carrier?.tier || 'BASIC';
+      const tendered = LOADS.filter(l => l.status === 'tendered');
+      const filtered = equipment ? tendered.filter(l => !l.equipmentRequired || l.equipmentRequired.replace(/[\s-]/g,'_').toLowerCase().includes(equipment.replace(/[\s-]/g,'_').toLowerCase())) : tendered;
+      const limit = TIERS[tier]?.loadsPerDay || 5;
+
+      // Active/completed loads for this carrier
+      const myLoads = LOADS.filter(l => l.assignedDriverId === carrierId);
+
+      res.json({
+        carrier: carrier || { id: carrierId, tier: 'BASIC', status: 'pending' },
+        subscription: sub,
+        availableLoads: filtered.slice(0, limit).map(l => ({
+          id: l.id, reference: l.reference,
+          origin: `${l.originCity}, ${l.originState}`,
+          destination: `${l.destinationCity}, ${l.destinationState}`,
+          equipment: l.equipmentRequired, miles: l.miles, rate: l.rate,
+          ratePerMile: l.ratePerMile, commodity: l.commodity || 'General Freight',
+          pickupWindow: l.pickupWindowStart ? new Date(l.pickupWindowStart).toLocaleDateString() : 'Flexible',
+          source: l.source || 'DIVINITY',
+        })),
+        myLoads: myLoads.map(l => ({
+          id: l.id, reference: l.reference, status: l.status,
+          origin: `${l.originCity}, ${l.originState}`,
+          destination: `${l.destinationCity}, ${l.destinationState}`,
+          rate: l.rate,
+        })),
+        stats: {
+          available: filtered.length, showing: Math.min(filtered.length, limit),
+          myActive: myLoads.filter(l=>l.status!=='delivered').length,
+          myCompleted: myLoads.filter(l=>l.status==='delivered').length,
+          loadsPerDay: limit, tier,
+        },
+        upgradeAvailable: filtered.length > limit,
+        upgradeMessage: filtered.length > limit ? `${filtered.length - limit} more loads available — upgrade to ${tier === 'BASIC' ? 'PRO' : 'EMPIRE'}` : null,
+      });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
   function genDvxResponse(cmd: string): string {
     const c = cmd.toLowerCase();
     if (c.includes('dispatch') || c.includes('send')) return 'Dispatch command received. Locating optimal available contractor for the specified load. Will route through Divinity platform and confirm assignment. Stand by.';

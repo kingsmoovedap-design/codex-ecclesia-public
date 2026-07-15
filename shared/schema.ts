@@ -367,11 +367,55 @@ export const logisticsEvents = pgTable("logistics_events", {
   metadata: jsonb("metadata"),
 });
 
+// ── Carriers — registered partner-operators with tier subscription
+export const carriers = pgTable("carriers", {
+  id: serial("id").primaryKey(),
+  registrationId: integer("registration_id").references(() => registrations.id),
+  companyName: text("company_name").notNull(),
+  email: text("email").notNull().unique(),
+  phone: text("phone"),
+  equipment: text("equipment").notNull(),          // BOX_TRUCK | CLASS_A | SPRINTER | FLATBED | REEFER
+  dotNumber: text("dot_number"),
+  mcNumber: text("mc_number"),
+  cdlNumber: text("cdl_number"),
+  serviceArea: text("service_area"),
+  role: text("role").default("CARRIER").notNull(), // OWNER | CARRIER | CUSTOMER
+  tier: text("tier").default("BASIC").notNull(),   // BASIC | PRO | EMPIRE
+  status: text("status").default("pending").notNull(), // pending | active | suspended | churned
+  accessCode: text("access_code"),
+  loadsCompleted: integer("loads_completed").default(0),
+  totalEarnings: text("total_earnings").default("0"),
+  rating: text("rating").default("5.0"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  activatedAt: timestamp("activated_at"),
+});
+
+// ── Subscriptions — Stripe/billing records per carrier
+export const subscriptions = pgTable("subscriptions", {
+  id: serial("id").primaryKey(),
+  carrierId: integer("carrier_id").notNull().references(() => carriers.id),
+  tier: text("tier").notNull(),                    // BASIC | PRO | EMPIRE
+  status: text("status").default("pending").notNull(), // pending | active | cancelled | past_due
+  stripeSessionId: text("stripe_session_id"),
+  stripeCustomerId: text("stripe_customer_id"),
+  stripeSubscriptionId: text("stripe_subscription_id"),
+  monthlyAmount: integer("monthly_amount").notNull(), // cents
+  currentPeriodStart: timestamp("current_period_start"),
+  currentPeriodEnd: timestamp("current_period_end"),
+  cancelledAt: timestamp("cancelled_at"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 export const insertUserSchema = createInsertSchema(users).omit({ id: true, createdAt: true, updatedAt: true });
 export const insertDocumentSchema = createInsertSchema(documents).omit({ id: true, createdAt: true, updatedAt: true });
 export const insertFilingSchema = createInsertSchema(filings).omit({ id: true, createdAt: true });
 export const insertAuditLogSchema = createInsertSchema(auditLogs).omit({ id: true, createdAt: true });
 export const insertRegistrationSchema = createInsertSchema(registrations).omit({ id: true, createdAt: true, updatedAt: true, approvedAt: true, accessCode: true, status: true });
+export const insertCarrierSchema = createInsertSchema(carriers).omit({ id: true, createdAt: true, updatedAt: true, activatedAt: true, accessCode: true, status: true, role: true });
 
 export type User = typeof users.$inferSelect;
 export type Registration = typeof registrations.$inferSelect;
