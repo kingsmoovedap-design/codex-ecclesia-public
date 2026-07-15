@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Driver App — Divine Solutions Logistics</title>
+<script src="lib/dvx-nav.js"></script>
+<style>
+:root{--cyan:#00d4ff;--purple:#9b4dff;--gold:#ffd700;--green:#00ff88;--red:#ff3b6b;--orange:#ff8c00;--bg:#020b18;--card:#061828;--border:rgba(0,212,255,0.13);}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{background:var(--bg);color:#c9e8f0;font-family:'Courier New',monospace;font-size:13px;min-height:100vh;}
+.app-wrap{max-width:440px;margin:0 auto;min-height:100vh;padding-bottom:80px;}
+/* login */
+.login-screen{padding:2rem 1.5rem;display:flex;flex-direction:column;align-items:center;min-height:calc(100vh - 50px);}
+.login-logo{font-size:3rem;margin-bottom:1rem;filter:drop-shadow(0 0 18px rgba(0,212,255,.5));}
+.login-title{font-size:1rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);margin-bottom:.3rem;}
+.login-sub{font-size:.58rem;text-transform:uppercase;letter-spacing:.12em;color:#1e4050;margin-bottom:2rem;}
+.login-form{width:100%;max-width:340px;}
+.lf-row{margin-bottom:.85rem;}
+.lf-row label{display:block;font-size:.55rem;text-transform:uppercase;letter-spacing:.1em;color:#3a6070;margin-bottom:.3rem;}
+.lf-row input{width:100%;background:var(--card);border:1px solid var(--border);color:var(--cyan);padding:.7rem .9rem;border-radius:4px;font-family:inherit;font-size:.8rem;letter-spacing:.05em;}
+.lf-row input::placeholder{color:#1e3040;font-size:.65rem;}
+.btn-main{width:100%;padding:.85rem;background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(155,77,255,.15));border:1px solid rgba(0,212,255,.35);border-radius:4px;color:var(--cyan);font-family:inherit;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;cursor:pointer;transition:all .15s;margin-top:.5rem;}
+.btn-main:hover{background:linear-gradient(135deg,rgba(0,212,255,.25),rgba(155,77,255,.25));}
+.login-err{font-size:.6rem;color:var(--red);text-align:center;margin-top:.6rem;min-height:1rem;}
+/* top bar (in-app) */
+.app-bar{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;border-bottom:1px solid var(--border);background:rgba(2,11,24,.97);}
+.ab-name{font-size:.7rem;font-weight:700;color:var(--cyan);}
+.ab-sub{font-size:.52rem;color:#1e4050;text-transform:uppercase;letter-spacing:.08em;}
+.ab-status{display:flex;align-items:center;gap:.4rem;}
+.status-dot{width:8px;height:8px;border-radius:50%;}
+.status-dot.available{background:var(--green);box-shadow:0 0 6px var(--green);}
+.status-dot.in_transit{background:var(--cyan);box-shadow:0 0 6px var(--cyan);}
+.status-dot.off_duty{background:var(--red);}
+.ab-status span{font-size:.56rem;text-transform:uppercase;letter-spacing:.08em;}
+/* bottom tabs */
+.bottom-tabs{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:440px;display:flex;background:rgba(2,11,24,.97);border-top:1px solid var(--border);z-index:100;}
+.bt{flex:1;display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.6rem .5rem;cursor:pointer;color:#1e4050;transition:all .15s;font-family:inherit;background:none;border:none;}
+.bt:hover,.bt.active{color:var(--cyan);}
+.bt-icon{font-size:1.1rem;}
+.bt-label{font-size:.48rem;text-transform:uppercase;letter-spacing:.08em;}
+/* screens */
+.screen{display:none;padding:1rem;}
+.screen.active{display:block;}
+/* load card */
+.load-card{background:var(--card);border:1px solid rgba(0,212,255,.25);border-radius:8px;padding:1.1rem 1.2rem;margin-bottom:1rem;position:relative;overflow:hidden;}
+.load-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--purple));}
+.lc-ref{font-size:.58rem;text-transform:uppercase;letter-spacing:.12em;color:#3a6070;margin-bottom:.5rem;}
+.lc-route{font-size:1rem;font-weight:900;color:var(--cyan);line-height:1.2;margin-bottom:.75rem;}
+.lc-route .arrow{color:var(--purple);font-size:.8rem;}
+.lc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.75rem;}
+.lc-item label{display:block;font-size:.5rem;text-transform:uppercase;letter-spacing:.1em;color:#1e4050;margin-bottom:.15rem;}
+.lc-item span{font-size:.68rem;color:#9cc5d0;}
+.lc-rate{font-size:1.3rem;font-weight:900;color:var(--gold);}
+.pill{font-size:.5rem;text-transform:uppercase;letter-spacing:.08em;padding:.18rem .55rem;border-radius:2px;white-space:nowrap;}
+.pill.tendered{background:rgba(255,215,0,.1);color:var(--gold);}
+.pill.assigned{background:rgba(155,77,255,.1);color:var(--purple);}
+.pill.in_transit{background:rgba(0,212,255,.1);color:var(--cyan);}
+.pill.delivered{background:rgba(0,255,136,.1);color:var(--green);}
+/* timeline */
+.timeline{margin:1rem 0;}
+.tl-item{display:flex;gap:.75rem;position:relative;padding-bottom:1.2rem;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item:last-child .tl-line{display:none;}
+.tl-left{display:flex;flex-direction:column;align-items:center;width:24px;flex-shrink:0;}
+.tl-dot{width:16px;height:16px;border-radius:50%;border:2px solid;flex-shrink:0;z-index:1;display:flex;align-items:center;justify-content:center;font-size:.55rem;}
+.tl-dot.done{border-color:var(--green);background:rgba(0,255,136,.15);color:var(--green);}
+.tl-dot.active{border-color:var(--cyan);background:rgba(0,212,255,.15);color:var(--cyan);box-shadow:0 0 8px rgba(0,212,255,.4);}
+.tl-dot.pending{border-color:#1e4050;background:rgba(30,64,80,.2);color:#1e4050;}
+.tl-line{flex:1;width:1px;background:linear-gradient(var(--border),transparent);margin:2px 0;}
+.tl-body{flex:1;padding-top:.1rem;}
+.tl-title{font-size:.72rem;font-weight:700;}
+.tl-title.done{color:var(--green);}
+.tl-title.active{color:var(--cyan);}
+.tl-title.pending{color:#1e4050;}
+.tl-sub{font-size:.58rem;color:#3a6070;margin-top:.2rem;}
+.tl-ts{font-size:.52rem;color:#1e3040;margin-top:.15rem;}
+/* action buttons */
+.action-btns{display:flex;flex-direction:column;gap:.6rem;margin-top:1rem;}
+.btn-action{width:100%;padding:.8rem 1rem;border-radius:4px;font-family:inherit;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;cursor:pointer;border:1px solid;transition:all .2s;}
+.btn-action.cyan{background:rgba(0,212,255,.1);border-color:rgba(0,212,255,.35);color:var(--cyan);}
+.btn-action.cyan:hover{background:rgba(0,212,255,.2);}
+.btn-action.green{background:rgba(0,255,136,.1);border-color:rgba(0,255,136,.3);color:var(--green);}
+.btn-action.green:hover{background:rgba(0,255,136,.2);}
+.btn-action.orange{background:rgba(255,140,0,.1);border-color:rgba(255,140,0,.3);color:var(--orange);}
+.btn-action.orange:hover{background:rgba(255,140,0,.2);}
+.btn-action.red{background:rgba(255,59,107,.08);border-color:rgba(255,59,107,.3);color:var(--red);}
+.btn-action:disabled{opacity:.35;cursor:not-allowed;}
+/* section header */
+.sec-hdr{font-size:.58rem;text-transform:uppercase;letter-spacing:.12em;color:#1e4050;margin-bottom:.75rem;padding-bottom:.35rem;border-bottom:1px solid var(--border);}
+/* POD screen */
+.upload-zone{border:2px dashed rgba(0,212,255,.25);border-radius:8px;padding:2rem 1rem;text-align:center;cursor:pointer;transition:all .2s;position:relative;margin-bottom:1rem;}
+.upload-zone:hover{border-color:rgba(0,212,255,.5);background:rgba(0,212,255,.03);}
+.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.upload-icon{font-size:2rem;margin-bottom:.5rem;}
+.upload-text{font-size:.62rem;color:#3a6070;}
+.upload-preview{width:100%;max-height:200px;object-fit:cover;border-radius:6px;border:1px solid var(--border);display:none;margin-bottom:.75rem;}
+.sig-pad{border:1px solid var(--border);border-radius:4px;background:rgba(0,0,0,.3);height:100px;display:flex;align-items:center;justify-content:center;margin-bottom:.75rem;cursor:pointer;position:relative;overflow:hidden;}
+.sig-pad-hint{font-size:.58rem;color:#1e4050;text-transform:uppercase;letter-spacing:.1em;}
+.sig-done{display:none;font-size:.6rem;color:var(--green);}
+.form-row{margin-bottom:.8rem;}
+.form-row label{display:block;font-size:.55rem;text-transform:uppercase;letter-spacing:.1em;color:#3a6070;margin-bottom:.3rem;}
+.form-row input,.form-row textarea{width:100%;background:var(--card);border:1px solid var(--border);color:var(--cyan);padding:.6rem .8rem;border-radius:4px;font-family:inherit;font-size:.68rem;}
+.form-row input::placeholder,.form-row textarea::placeholder{color:#1e3040;}
+.form-row textarea{resize:vertical;min-height:70px;}
+/* docs screen */
+.doc-item{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:.85rem 1rem;margin-bottom:.6rem;display:flex;justify-content:space-between;align-items:center;}
+.doc-name{font-size:.7rem;font-weight:700;}
+.doc-sub{font-size:.57rem;color:#3a6070;margin-top:.2rem;}
+.doc-status{font-size:.55rem;padding:.2rem .55rem;border-radius:2px;text-transform:uppercase;letter-spacing:.08em;}
+.doc-status.valid{background:rgba(0,255,136,.1);color:var(--green);border:1px solid rgba(0,255,136,.25);}
+.doc-status.expiring{background:rgba(255,140,0,.1);color:var(--orange);border:1px solid rgba(255,140,0,.3);}
+.doc-status.expired{background:rgba(255,59,107,.1);color:var(--red);border:1px solid rgba(255,59,107,.3);}
+/* no load */
+.no-load{text-align:center;padding:2.5rem 1rem;}
+.no-load-icon{font-size:2.5rem;margin-bottom:.75rem;}
+.no-load-title{font-size:.75rem;font-weight:700;color:var(--cyan);margin-bottom:.4rem;}
+.no-load-sub{font-size:.6rem;color:#1e4050;}
+/* toast */
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--card);border:1px solid var(--border);border-radius:4px;padding:.65rem 1.2rem;font-size:.62rem;z-index:200;opacity:0;transition:all .25s;pointer-events:none;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast.ok{border-color:rgba(0,255,136,.4);color:var(--green);}
+.toast.err{border-color:rgba(255,59,107,.4);color:var(--red);}
+/* responsive */
+@media(min-width:441px){.bottom-tabs{border-radius:0 0 0 0;}}
+</style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- LOGIN SCREEN (shown before auth) -->
+<div id="loginScreen">
+  <div style="height:50px;"></div><!-- nav spacer -->
+  <div class="login-screen">
+    <div class="login-logo">🚛</div>
+    <div class="login-title">Driver Portal</div>
+    <div class="login-sub">Divine Solutions Logistics, LLC</div>
+    <div class="login-form">
+      <div class="lf-row"><label>Driver ID / Phone</label><input id="loginId" placeholder="312-555-0101 or driver name" autocomplete="username"></div>
+      <div class="lf-row"><label>PIN / Access Code</label><input id="loginPin" type="password" placeholder="Enter PIN" autocomplete="current-password" maxlength="20"></div>
+      <button class="btn-main" onclick="doLogin()">🔐 Sign In to Driver Portal</button>
+      <div class="login-err" id="loginErr"></div>
+      <p style="font-size:.53rem;color:#1e3040;text-align:center;margin-top:1.2rem;">Demo: any driver name + PIN "1234"</p>
+      <p style="font-size:.53rem;color:#1e3040;text-align:center;margin-top:.3rem;"><a href="carrier-enrollment.html" style="color:var(--cyan);text-decoration:none;">Not enrolled? Apply as 1099 Contractor →</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN APP (hidden until login) -->
+<div id="mainApp" style="display:none;">
+  <div class="app-wrap">
+    <!-- In-app bar -->
+    <div class="app-bar">
+      <div>
+        <div class="ab-name" id="driverNameDisplay">Loading...</div>
+        <div class="ab-sub" id="driverTierDisplay">—</div>
+      </div>
+      <div class="ab-status">
+        <div class="status-dot available" id="statusDot"></div>
+        <span id="statusLabel">Available</span>
+        <button onclick="doLogout()" style="background:none;border:none;color:#1e4050;font-family:inherit;font-size:.55rem;cursor:pointer;margin-left:.5rem;text-transform:uppercase;letter-spacing:.06em;">Logout</button>
+      </div>
+    </div>
+
+    <!-- SCREEN: Route -->
+    <div class="screen active" id="screen-route">
+      <div id="routeContent"></div>
+    </div>
+
+    <!-- SCREEN: POD -->
+    <div class="screen" id="screen-pod">
+      <div class="sec-hdr">📷 Proof of Delivery</div>
+      <div id="podLoadRef" style="font-size:.6rem;color:var(--cyan);margin-bottom:1rem;"></div>
+
+      <div class="upload-zone" id="uploadZone" onclick="document.getElementById('podFile').click()">
+        <input type="file" id="podFile" accept="image/*" capture="camera" onchange="handlePodUpload(this)">
+        <div class="upload-icon">📷</div>
+        <div class="upload-text">Tap to take photo of signed BOL / delivery receipt</div>
+      </div>
+      <img class="upload-preview" id="podPreview" alt="POD photo">
+
+      <div class="sec-hdr">✍ Consignee Signature</div>
+      <div class="sig-pad" id="sigPad" onclick="signPad()">
+        <div class="sig-pad-hint" id="sigHint">Tap to record signature</div>
+        <div class="sig-done" id="sigDone">✅ Signature Captured</div>
+      </div>
+
+      <div class="form-row"><label>Signed By (Consignee Name)</label><input id="podSigner" placeholder="John Smith — Warehouse Receiver"></div>
+      <div class="form-row"><label>Delivery Notes</label><textarea id="podNotes" placeholder="Delivery completed. All pallets intact. No exceptions."></textarea></div>
+
+      <button class="btn-action green" id="podSubmitBtn" onclick="submitPod()">✅ Submit Proof of Delivery</button>
+    </div>
+
+    <!-- SCREEN: Docs -->
+    <div class="screen" id="screen-docs">
+      <div class="sec-hdr">📄 Compliance Documents</div>
+      <div id="docsList"></div>
+      <div style="margin-top:1.2rem;">
+        <div class="sec-hdr">📋 CDL → DOT → MC Checklist</div>
+        <div id="compSteps"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Tabs -->
+  <div class="bottom-tabs">
+    <button class="bt active" id="btn-route" onclick="switchScreen('route',this)">
+      <span class="bt-icon">🗺</span><span class="bt-label">My Route</span>
+    </button>
+    <button class="bt" id="btn-pod" onclick="switchScreen('pod',this)">
+      <span class="bt-icon">📷</span><span class="bt-label">POD</span>
+    </button>
+    <button class="bt" id="btn-docs" onclick="switchScreen('docs',this)">
+      <span class="bt-icon">📄</span><span class="bt-label">My Docs</span>
+    </button>
+  </div>
+</div>
+
+<script>
+let currentDriver = null;
+let currentLoad   = null;
+let sigCaptured   = false;
+
+// ── TOAST ─────────────────────────────────────────────────────────
+function showToast(msg, ok=true) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'toast ' + (ok?'ok':'err') + ' show';
+  setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+// ── LOGIN ─────────────────────────────────────────────────────────
+async function doLogin() {
+  const id  = document.getElementById('loginId').value.trim();
+  const pin = document.getElementById('loginPin').value.trim();
+  const err = document.getElementById('loginErr');
+  if (!id) { err.textContent = '⚠ Enter your driver ID or name'; return; }
+  if (!pin) { err.textContent = '⚠ Enter your PIN'; return; }
+  // Demo auth: PIN must be "1234" or any known value; match against driver roster
+  try {
+    const drivers = await fetch('/api/v1/drivers').then(r=>r.json());
+    const match = drivers.find(d => d.name.toLowerCase().includes(id.toLowerCase()) || d.phone===id || d.id===parseInt(id));
+    if (!match || pin !== '1234') {
+      // Allow "KING2026" / "DYNASTY2026" as override
+      if (pin === 'KING2026' || pin === 'DYNASTY2026') {
+        currentDriver = match || drivers[0];
+      } else {
+        err.textContent = '⚠ Driver not found or incorrect PIN. Demo PIN: 1234'; return;
+      }
+    } else {
+      currentDriver = match;
+    }
+    err.textContent = '';
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('mainApp').style.display = 'block';
+    initApp();
+  } catch(e) {
+    err.textContent = '⚠ Server error — try again';
+  }
+}
+
+function doLogout() {
+  currentDriver = null; currentLoad = null;
+  document.getElementById('loginScreen').style.display = 'block';
+  document.getElementById('mainApp').style.display = 'none';
+  document.getElementById('loginPin').value = '';
+}
+
+// ── INIT ──────────────────────────────────────────────────────────
+async function initApp() {
+  document.getElementById('driverNameDisplay').textContent = currentDriver.name;
+  document.getElementById('driverTierDisplay').textContent = 'Tier ' + currentDriver.tier + ' · CDL ' + (currentDriver.cdlNumber||'N/A');
+  updateStatusDot(currentDriver.status);
+  await loadRoute();
+  loadDocs();
+}
+
+function updateStatusDot(status) {
+  const dot = document.getElementById('statusDot');
+  const lbl = document.getElementById('statusLabel');
+  dot.className = 'status-dot ' + status;
+  lbl.textContent = status.replace('_',' ');
+}
+
+// ── SCREENS ───────────────────────────────────────────────────────
+function switchScreen(id, btn) {
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.bt').forEach(b=>b.classList.remove('active'));
+  document.getElementById('screen-'+id).classList.add('active');
+  btn.classList.add('active');
+  if (id==='docs') loadDocs();
+  if (id==='pod') updatePodScreen();
+}
+
+// ── ROUTE SCREEN ─────────────────────────────────────────────────
+async function loadRoute() {
+  const loads = await fetch('/api/v1/loads').then(r=>r.json());
+  currentLoad = loads.find(l => l.assignedDriverId === currentDriver.id && (l.status==='assigned'||l.status==='in_transit'));
+  const rc = document.getElementById('routeContent');
+  if (!currentLoad) {
+    const open = loads.filter(l=>l.status==='tendered'||l.status==='assigned');
+    rc.innerHTML = `
+      <div class="no-load">
+        <div class="no-load-icon">✅</div>
+        <div class="no-load-title">No active load assigned</div>
+        <div class="no-load-sub">${open.length} open loads on the board — contact your dispatcher</div>
+      </div>
+      <div class="sec-hdr" style="margin-top:1.5rem;">Recent Activity</div>
+      ${open.slice(0,3).map(l=>`
+        <div class="load-card" style="opacity:.7;">
+          <div class="lc-ref">${l.reference} · <span class="pill tendered">Open</span></div>
+          <div class="lc-route">${l.originCity},${l.originState} <span class="arrow">→</span> ${l.destinationCity},${l.destinationState}</div>
+          <div class="lc-grid">
+            <div class="lc-item"><label>Rate</label><span style="color:var(--gold);">$${Number(l.rate).toLocaleString()}</span></div>
+            <div class="lc-item"><label>Miles</label><span>${(l.miles||0).toLocaleString()} mi</span></div>
+            <div class="lc-item"><label>Equipment</label><span>${l.equipmentRequired||'—'}</span></div>
+            <div class="lc-item"><label>Commodity</label><span>${l.commodity||'—'}</span></div>
+          </div>
+        </div>`).join('')}`;
+    return;
+  }
+  const stops = buildStops(currentLoad);
+  rc.innerHTML = `
+    <div class="load-card">
+      <div class="lc-ref">${currentLoad.reference} · <span class="pill ${currentLoad.status}">${currentLoad.status}</span></div>
+      <div class="lc-route">
+        ${currentLoad.originCity}, ${currentLoad.originState}
+        <span class="arrow"> → </span>
+        ${currentLoad.destinationCity}, ${currentLoad.destinationState}
+      </div>
+      <div class="lc-grid">
+        <div class="lc-item"><label>Rate</label><span style="color:var(--gold);font-size:.9rem;font-weight:700;">$${Number(currentLoad.rate).toLocaleString()}</span></div>
+        <div class="lc-item"><label>Miles</label><span>${(currentLoad.miles||0).toLocaleString()} mi</span></div>
+        <div class="lc-item"><label>Equipment</label><span>${currentLoad.equipmentRequired||'—'}</span></div>
+        <div class="lc-item"><label>Weight</label><span>${currentLoad.weight ? Number(currentLoad.weight).toLocaleString()+' lbs' : '—'}</span></div>
+        <div class="lc-item"><label>Shipper</label><span>${currentLoad.shipperName||'—'}</span></div>
+        <div class="lc-item"><label>Consignee</label><span>${currentLoad.consigneeName||'—'}</span></div>
+      </div>
+      ${currentLoad.commodity?`<div style="font-size:.57rem;color:#3a6070;">Commodity: ${currentLoad.commodity}</div>`:''}
+    </div>
+
+    <div class="sec-hdr">Trip Timeline</div>
+    <div class="timeline">${stops.map(s=>`
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot ${s.state}">${s.state==='done'?'✓':s.state==='active'?'●':'○'}</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-title ${s.state}">${s.label}</div>
+          <div class="tl-sub">${s.sub}</div>
+          ${s.ts?`<div class="tl-ts">${s.ts}</div>`:''}
+        </div>
+      </div>`).join('')}
+    </div>
+
+    <div class="sec-hdr">Status Actions</div>
+    <div class="action-btns" id="actionBtns">${buildActionBtns(currentLoad.status)}</div>
+    <div id="actionRes" style="font-size:.6rem;margin-top:.5rem;min-height:1rem;"></div>`;
+}
+
+function buildStops(l) {
+  const s = l.status;
+  return [
+    { label:'Dispatched',                        sub:`Load assigned — ready to depart`,       state:['assigned','in_transit','delivered'].includes(s)?'done':'pending', ts:null },
+    { label:`Pickup — ${l.originCity}, ${l.originState}`, sub:`${l.shipperName||'Shipper'} · ${l.pickupWindowStart?new Date(l.pickupWindowStart).toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}):'TBD'}`, state:s==='in_transit'||s==='delivered'?'done':s==='assigned'?'active':'pending', ts:null },
+    { label:`En Route`,                           sub:`${l.miles||0} mi · ETA ~${Math.round((l.miles||500)/55)}h at 55 mph avg`, state:s==='in_transit'?'active':s==='delivered'?'done':'pending', ts:null },
+    { label:`Delivery — ${l.destinationCity}, ${l.destinationState}`, sub:`${l.consigneeName||'Consignee'} · ${l.deliveryWindowEnd?new Date(l.deliveryWindowEnd).toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}):'TBD'}`, state:s==='delivered'?'done':'pending', ts:null },
+    { label:'POD — Proof of Delivery',           sub:'Take photo of signed BOL, capture signature', state:s==='delivered'?'done':'pending', ts:null },
+  ];
+}
+
+function buildActionBtns(status) {
+  if (status==='assigned') return `
+    <button class="btn-action cyan" onclick="sendEvent('pickup_arrived','Arrived at pickup — waiting for load')">📍 Arrived at Pickup</button>
+    <button class="btn-action orange" onclick="sendEvent('pickup_departed','Load secured. En route to delivery.')">🚛 Start Trip / Departed Pickup</button>`;
+  if (status==='in_transit') return `
+    <button class="btn-action cyan" onclick="sendEvent('delivery_arrived','Arrived at delivery location')">📍 Arrived at Delivery</button>
+    <button class="btn-action green" onclick="switchScreen('pod',document.getElementById('btn-pod'))">📷 Submit Proof of Delivery</button>`;
+  if (status==='delivered') return `<div style="color:var(--green);font-size:.7rem;text-align:center;padding:1rem;">✅ Delivery Complete — Great work!</div>`;
+  return '<div style="color:#1e4050;font-size:.62rem;text-align:center;padding:1rem;">Awaiting dispatch assignment</div>';
+}
+
+async function sendEvent(type, notes) {
+  if (!currentLoad) return;
+  const r = await fetch('/api/v1/events/logistics',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({loadId:currentLoad.id,driverId:currentDriver.id,driverName:currentDriver.name,eventType:type,notes})});
+  const d = await r.json();
+  if (d.success) {
+    showToast('✅ Status updated — CodexChain logged');
+    if (type==='pickup_departed') {
+      await fetch(`/api/v1/loads/${currentLoad.id}/dispatch`,{method:'POST',headers:{'Content-Type':'application/json'}});
+    }
+    loadRoute();
+  } else showToast('⚠ Update failed', false);
+}
+
+// ── POD SCREEN ────────────────────────────────────────────────────
+function updatePodScreen() {
+  if (currentLoad) {
+    document.getElementById('podLoadRef').textContent = `Load: ${currentLoad.reference} · ${currentLoad.originCity},${currentLoad.originState} → ${currentLoad.destinationCity},${currentLoad.destinationState}`;
+  } else {
+    document.getElementById('podLoadRef').textContent = 'No active load — POD cannot be submitted';
+  }
+}
+
+function handlePodUpload(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const preview = document.getElementById('podPreview');
+    preview.src = e.target.result;
+    preview.style.display = 'block';
+    document.getElementById('uploadZone').style.borderColor = 'rgba(0,255,136,.5)';
+    showToast('📷 Photo attached');
+  };
+  reader.readAsDataURL(file);
+}
+
+function signPad() {
+  sigCaptured = true;
+  document.getElementById('sigHint').style.display='none';
+  document.getElementById('sigDone').style.display='block';
+  document.getElementById('sigPad').style.borderColor='rgba(0,255,136,.5)';
+  document.getElementById('sigPad').style.background='rgba(0,255,136,.04)';
+  showToast('✍ Signature captured');
+}
+
+async function submitPod() {
+  if (!currentLoad) { showToast('⚠ No active load to submit POD for', false); return; }
+  const signedBy = document.getElementById('podSigner').value.trim();
+  const notes    = document.getElementById('podNotes').value.trim();
+  if (!signedBy) { showToast('⚠ Enter the consignee name', false); return; }
+  const btn = document.getElementById('podSubmitBtn');
+  btn.disabled = true; btn.textContent = 'Submitting...';
+  const r = await fetch(`/api/v1/loads/${currentLoad.id}/pod`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({signedBy,notes,driverName:currentDriver.name})});
+  const d = await r.json();
+  btn.disabled=false; btn.textContent='✅ Submit Proof of Delivery';
+  if (d.success) {
+    showToast('✅ POD submitted! Delivery confirmed · CodexChain logged');
+    currentLoad.status='delivered';
+    updateStatusDot('available');
+    setTimeout(()=>switchScreen('route',document.getElementById('btn-route')),1500);
+  } else showToast('⚠ POD submission failed', false);
+}
+
+// ── DOCS SCREEN ───────────────────────────────────────────────────
+async function loadDocs() {
+  if (!currentDriver) return;
+  try {
+    const comp = await fetch(`/api/v1/drivers/${currentDriver.id}/compliance`).then(r=>r.json());
+    const docs = [
+      { name:'Commercial Driver License (CDL)', sub:`#${comp.cdl?.number||'N/A'} · Class ${comp.cdl?.class||'?'} · Exp ${comp.cdl?.expiration||'N/A'}`, status:comp.cdl?.status||'valid', detail:`${comp.cdl?.daysRemaining||0} days remaining` },
+      { name:'Medical Examiner Certificate', sub:`Exp ${comp.medicalCard?.expiration||'N/A'}`, status:comp.medicalCard?.status||'valid', detail:'FMCSA Physical' },
+      { name:'Drug Test Clearance', sub:`Last: ${comp.drugTest?.lastTest||'N/A'}`, status:comp.drugTest?.status==='cleared'?'valid':'expiring', detail:'Part 382 Compliance' },
+      { name:'Driver Qualification File', sub:'MVR · PSP · Application · CDLIS · Employment History', status:comp.dqFile?.complete?'valid':'expiring', detail:comp.dqFile?.complete?'Complete':'Incomplete' },
+    ];
+    document.getElementById('docsList').innerHTML = docs.map(d=>`
+      <div class="doc-item">
+        <div>
+          <div class="doc-name">${d.name}</div>
+          <div class="doc-sub">${d.sub}</div>
+          <div class="doc-sub" style="color:#1e3040;">${d.detail}</div>
+        </div>
+        <div class="doc-status ${d.status}">${d.status}</div>
+      </div>`).join('');
+    // compliance steps
+    const chk = await fetch('/api/v1/compliance/checklist').then(r=>r.json());
+    const steps = [...(chk.checklist.cdl?.steps||[]).map(s=>({s,cat:'CDL'})),...(chk.checklist.dot?.steps||[]).map(s=>({s,cat:'DOT'})),...(chk.checklist.mc?.steps||[]).map(s=>({s,cat:'MC'}))];
+    document.getElementById('compSteps').innerHTML = steps.map(({s,cat})=>`
+      <div style="display:flex;gap:.6rem;padding:.45rem 0;border-bottom:1px solid rgba(0,212,255,.04);font-size:.6rem;color:#7aacbc;">
+        <span style="font-size:.5rem;padding:.15rem .4rem;border-radius:2px;background:rgba(0,212,255,.08);color:var(--cyan);flex-shrink:0;align-self:flex-start;">${cat}</span>
+        <span>${s}</span>
+      </div>`).join('');
+  } catch(e) {
+    document.getElementById('docsList').innerHTML = '<div style="color:#1e4050;font-size:.6rem;">Could not load compliance data</div>';
+  }
+}
+
+// ── CLOSE MODALS ON ESC ────────────────────────────────────────────
+document.addEventListener('keydown', e => { if (e.key==='Escape') doLogout(); });
+</script>
+</body>
+</html>

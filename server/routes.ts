@@ -1714,6 +1714,301 @@ export function registerRoutes(app: Express) {
     if (dvxMsgLog.length > 200) dvxMsgLog.splice(0, dvxMsgLog.length - 200); // cap at 200
   }, 5 * 60 * 1000);
 
+  // ════════════════════════════════════════════════════════════════
+  //  V1 LOGISTICS API — LaaS / MaaS / Compliance / Markets / Events
+  //  Dynasty structure: Divine Solutions Logistics, LLC (carrier)
+  // ════════════════════════════════════════════════════════════════
+  const DYNASTY_ENTITY = 'BD_ECCLESIA_EARTH_TRUST';
+
+  const v1Drivers: any[] = [
+    { id:1, name:'Isaiah Flores',  tier:'L4', cdlNumber:'IL-847291', cdlClass:'A', cdlExpiration:'2027-03-15', dotNumber:'3847291',  mcNumber:'MC-847291',  status:'available',  phone:'312-555-0101', endorsements:'H,T', rating:'4.9', loadsCompleted:47 },
+    { id:2, name:'Marcus Webb',    tier:'L3', cdlNumber:'TX-293847', cdlClass:'A', cdlExpiration:'2026-11-20', dotNumber:null,         mcNumber:null,          status:'available',  phone:'214-555-0102', endorsements:'T',   rating:'4.8', loadsCompleted:31 },
+    { id:3, name:'Devon Pierce',   tier:'L3', cdlNumber:'GA-748291', cdlClass:'A', cdlExpiration:'2027-01-08', dotNumber:null,         mcNumber:null,          status:'in_transit', phone:'404-555-0103', endorsements:'',    rating:'4.7', loadsCompleted:28 },
+    { id:4, name:'Aaliyah Monroe', tier:'L2', cdlNumber:'CA-938472', cdlClass:'B', cdlExpiration:'2026-07-30', dotNumber:null,         mcNumber:null,          status:'available',  phone:'213-555-0104', endorsements:'P',   rating:'4.9', loadsCompleted:19 },
+    { id:5, name:'Reuben Castro',  tier:'L4', cdlNumber:'FL-572938', cdlClass:'A', cdlExpiration:'2028-05-12', dotNumber:'5729384',   mcNumber:'MC-572938',   status:'available',  phone:'305-555-0105', endorsements:'H,T,N', rating:'5.0', loadsCompleted:63 },
+    { id:6, name:'Tanya Rivers',   tier:'L2', cdlNumber:'OH-182934', cdlClass:'A', cdlExpiration:'2026-09-22', dotNumber:null,         mcNumber:null,          status:'off_duty',   phone:'614-555-0106', endorsements:'',    rating:'4.6', loadsCompleted:12 },
+  ];
+
+  const v1Vehicles: any[] = [
+    { id:1, unitNumber:'TRK-001', type:'tractor',  vin:'1FUJGBDV8CLBP8225', plate:'TX-7834AB', make:'Freightliner', model:'Cascadia',     year:'2022', status:'available', lastInspection:'2026-05-15', assignedDriverId:null },
+    { id:2, unitNumber:'TRK-002', type:'tractor',  vin:'3AKJHHDR4JSJA3847', plate:'GA-2291BC', make:'Kenworth',     model:'T680',          year:'2021', status:'in_use',    lastInspection:'2026-04-20', assignedDriverId:3 },
+    { id:3, unitNumber:'TRL-001', type:'trailer',  vin:'1UYVS2537KU182934', plate:'TX-TRAIL1', make:'Wabash',       model:'DryVan 53',     year:'2020', status:'available', lastInspection:'2026-06-01', assignedDriverId:null },
+    { id:4, unitNumber:'TRL-002', type:'trailer',  vin:'3HAMMMMN4GL182847', plate:'FL-TRAIL2', make:'Utility',      model:'Reefer 53',     year:'2023', status:'available', lastInspection:'2026-05-28', assignedDriverId:null },
+    { id:5, unitNumber:'VAN-001', type:'straight', vin:'1FVHG5DT9GHGF2893', plate:'CA-8820CD', make:'International', model:'MV607',        year:'2022', status:'available', lastInspection:'2026-05-10', assignedDriverId:null },
+  ];
+
+  const v1Loads: any[] = [
+    { id:1, reference:'DVX-2026-0001', shipperName:'Memphis Cold Storage',  consigneeName:'Newark Dist. Center',   originCity:'Memphis',  originState:'TN', destinationCity:'Newark',      destinationState:'NJ', pickupWindowStart:'2026-07-16T08:00:00', deliveryWindowEnd:'2026-07-17T18:00:00', weight:'42000', equipmentRequired:'Dry Van 53ft',  rate:'5200', miles:1140, commodity:'Dry Goods',        status:'tendered',   tier:'laas', source:'DIVINITY', assignedDriverId:null },
+    { id:2, reference:'DVX-2026-0002', shipperName:'AZ Produce Co.',         consigneeName:'L.A. Central Market',  originCity:'Phoenix',  originState:'AZ', destinationCity:'Los Angeles', destinationState:'CA', pickupWindowStart:'2026-07-16T06:00:00', deliveryWindowEnd:'2026-07-16T22:00:00', weight:'38000', equipmentRequired:'Reefer 53ft',    rate:'1850', miles:370,  commodity:'Fresh Produce',    status:'assigned',   tier:'laas', source:'DIVINITY', assignedDriverId:3 },
+    { id:3, reference:'DVX-2026-0003', shipperName:'Houston Steel LLC',       consigneeName:'Dallas Fabrication',   originCity:'Houston',  originState:'TX', destinationCity:'Dallas',      destinationState:'TX', pickupWindowStart:'2026-07-17T09:00:00', deliveryWindowEnd:'2026-07-17T17:00:00', weight:'44000', equipmentRequired:'Flatbed 48ft',   rate:'2100', miles:240,  commodity:'Steel Coils',      status:'tendered',   tier:'laas', source:'DIVINITY', assignedDriverId:null },
+    { id:4, reference:'DVX-2026-0004', shipperName:'Savannah Port Auth.',     consigneeName:'Atlanta Warehouse',    originCity:'Savannah', originState:'GA', destinationCity:'Atlanta',     destinationState:'GA', pickupWindowStart:'2026-07-16T14:00:00', deliveryWindowEnd:'2026-07-16T22:00:00', weight:'36000', equipmentRequired:'Dry Van 53ft',  rate:'1400', miles:255,  commodity:'Import Containers', status:'in_transit', tier:'laas', source:'DIVINITY', assignedDriverId:3 },
+    { id:5, reference:'DVX-2026-0005', shipperName:'Chicago Foods Inc.',       consigneeName:'St. Louis Grocery',    originCity:'Chicago',  originState:'IL', destinationCity:'St. Louis',   destinationState:'MO', pickupWindowStart:'2026-07-18T07:00:00', deliveryWindowEnd:'2026-07-18T15:00:00', weight:'40000', equipmentRequired:'Dry Van 53ft',  rate:'1600', miles:300,  commodity:'Packaged Foods',   status:'tendered',   tier:'laas', source:'DAT',     assignedDriverId:null },
+    { id:6, reference:'DVX-2026-0006', shipperName:'Miami Cold Logistics',     consigneeName:'Charlotte Dist Hub',   originCity:'Miami',    originState:'FL', destinationCity:'Charlotte',   destinationState:'NC', pickupWindowStart:'2026-07-19T08:00:00', deliveryWindowEnd:'2026-07-20T12:00:00', weight:'35000', equipmentRequired:'Reefer 53ft',    rate:'3800', miles:665,  commodity:'Frozen Foods',     status:'tendered',   tier:'laas', source:'TRUCKSTOP', assignedDriverId:null },
+  ];
+
+  const v1Events: any[] = [
+    { id:1, loadId:4, driverName:'Devon Pierce', eventType:'dispatched',     eventTime:'2026-07-16T14:00:00Z', notes:'Dispatched from Savannah Port', dynastyEntity:DYNASTY_ENTITY },
+    { id:2, loadId:4, driverName:'Devon Pierce', eventType:'pickup_arrived',  eventTime:'2026-07-16T15:20:00Z', notes:'Arrived at Savannah Port Terminal 4', dynastyEntity:DYNASTY_ENTITY },
+    { id:3, loadId:4, driverName:'Devon Pierce', eventType:'pickup_departed', eventTime:'2026-07-16T16:45:00Z', notes:'Load secured. En route to Atlanta.', dynastyEntity:DYNASTY_ENTITY },
+    { id:4, loadId:2, driverName:'Devon Pierce', eventType:'assigned',        eventTime:'2026-07-16T05:30:00Z', notes:'Driver assigned to AZ Produce run', dynastyEntity:DYNASTY_ENTITY },
+  ];
+
+  let v1LoadIdSeq = 7;
+  let v1EventIdSeq = 5;
+
+  function emitEvent(e: any) { v1Events.push({ id: v1EventIdSeq++, ...e, dynastyEntity: DYNASTY_ENTITY, eventTime: e.eventTime || new Date().toISOString() }); }
+
+  // ── Drivers ──────────────────────────────────────────────────────
+  app.get("/api/v1/drivers", (_req: Request, res: Response) => res.json(v1Drivers));
+
+  app.post("/api/v1/drivers", (req: Request, res: Response) => {
+    const d = { id: v1Drivers.length + 1, ...req.body, status:'available', loadsCompleted:0, rating:'5.0' };
+    v1Drivers.push(d);
+    emitEvent({ loadId:null, driverName:d.name, eventType:'driver_onboarded', notes:`New driver onboarded: ${d.name} (Tier ${d.tier})` });
+    res.status(201).json(d);
+  });
+
+  app.get("/api/v1/drivers/:id", (req: Request, res: Response) => {
+    const d = v1Drivers.find(x => x.id === parseInt(req.params.id));
+    if (!d) return res.status(404).json({ error:'Driver not found' });
+    res.json(d);
+  });
+
+  app.patch("/api/v1/drivers/:id", (req: Request, res: Response) => {
+    const i = v1Drivers.findIndex(x => x.id === parseInt(req.params.id));
+    if (i < 0) return res.status(404).json({ error:'Driver not found' });
+    Object.assign(v1Drivers[i], req.body);
+    res.json(v1Drivers[i]);
+  });
+
+  app.get("/api/v1/drivers/:id/compliance", (req: Request, res: Response) => {
+    const d = v1Drivers.find(x => x.id === parseInt(req.params.id));
+    if (!d) return res.status(404).json({ error:'Driver not found' });
+    const exp = new Date(d.cdlExpiration || '2027-01-01');
+    const days = Math.floor((exp.getTime() - Date.now()) / 86400000);
+    res.json({ driverId:d.id, name:d.name, cdl:{ number:d.cdlNumber, class:d.cdlClass, expiration:d.cdlExpiration, daysRemaining:days, status:days>90?'valid':days>0?'expiring':'expired' }, dqFile:{ complete:true, items:['driver_application','mvr','psp','medical_card','drug_test'] }, drugTest:{ status:'cleared', lastTest:'2026-01-15' }, medicalCard:{ expiration:'2027-06-30', status:'valid' } });
+  });
+
+  // ── Vehicles ─────────────────────────────────────────────────────
+  app.get("/api/v1/vehicles", (_req: Request, res: Response) => res.json(v1Vehicles));
+
+  app.post("/api/v1/vehicles", (req: Request, res: Response) => {
+    const v = { id: v1Vehicles.length + 1, ...req.body, status:'available', assignedDriverId:null };
+    v1Vehicles.push(v);
+    res.status(201).json(v);
+  });
+
+  app.patch("/api/v1/vehicles/:id", (req: Request, res: Response) => {
+    const i = v1Vehicles.findIndex(x => x.id === parseInt(req.params.id));
+    if (i < 0) return res.status(404).json({ error:'Vehicle not found' });
+    Object.assign(v1Vehicles[i], req.body);
+    res.json(v1Vehicles[i]);
+  });
+
+  // ── Loads ────────────────────────────────────────────────────────
+  app.get("/api/v1/loads", (req: Request, res: Response) => {
+    let ls = v1Loads;
+    if (req.query.status && req.query.status !== 'all') ls = ls.filter(l => l.status === req.query.status);
+    if (req.query.tier) ls = ls.filter(l => l.tier === req.query.tier);
+    res.json(ls);
+  });
+
+  app.post("/api/v1/loads", (req: Request, res: Response) => {
+    const now = new Date().toISOString();
+    const l: any = { id:v1LoadIdSeq++, reference:`DVX-${new Date().getFullYear()}-${String(v1LoadIdSeq-1).padStart(4,'0')}`, ...req.body, status:'tendered', source:req.body.source||'DIVINITY', tier:req.body.tier||'laas', assignedDriverId:null, createdAt:now, updatedAt:now };
+    v1Loads.push(l);
+    emitEvent({ loadId:l.id, driverName:null, eventType:'load_created', notes:`Load created: ${l.reference} — ${l.originCity},${l.originState} → ${l.destinationCity},${l.destinationState} · $${l.rate}` });
+    res.status(201).json(l);
+  });
+
+  app.get("/api/v1/loads/:id", (req: Request, res: Response) => {
+    const l = v1Loads.find(x => x.id === parseInt(req.params.id));
+    if (!l) return res.status(404).json({ error:'Load not found' });
+    const driver = l.assignedDriverId ? v1Drivers.find(d => d.id === l.assignedDriverId) : null;
+    res.json({ ...l, driver });
+  });
+
+  app.patch("/api/v1/loads/:id", (req: Request, res: Response) => {
+    const i = v1Loads.findIndex(x => x.id === parseInt(req.params.id));
+    if (i < 0) return res.status(404).json({ error:'Load not found' });
+    Object.assign(v1Loads[i], req.body, { updatedAt:new Date().toISOString() });
+    res.json(v1Loads[i]);
+  });
+
+  app.post("/api/v1/loads/:id/assign", (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    const { driverId, vehicleId } = req.body;
+    const i = v1Loads.findIndex(l => l.id === id);
+    if (i < 0) return res.status(404).json({ error:'Load not found' });
+    const driver = v1Drivers.find(d => d.id === driverId);
+    const vehicle = v1Vehicles.find(v => v.id === vehicleId);
+    v1Loads[i].assignedDriverId = driverId;
+    v1Loads[i].status = 'assigned';
+    v1Loads[i].updatedAt = new Date().toISOString();
+    if (driver) driver.status = 'assigned';
+    if (vehicle) vehicle.status = 'in_use';
+    emitEvent({ loadId:id, driverName:driver?.name||`Driver #${driverId}`, eventType:'driver_assigned', notes:`${driver?.name||'Driver'} assigned to ${v1Loads[i].reference}${vehicle?' · '+vehicle.unitNumber:''}` });
+    res.json({ success:true, load:v1Loads[i], driver, vehicle });
+  });
+
+  app.post("/api/v1/loads/:id/dispatch", (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    const i = v1Loads.findIndex(l => l.id === id);
+    if (i < 0) return res.status(404).json({ error:'Load not found' });
+    const l = v1Loads[i];
+    const driver = l.assignedDriverId ? v1Drivers.find(d => d.id === l.assignedDriverId) : null;
+    const etaH = Math.round((l.miles||500)/55);
+    l.status = 'in_transit';
+    l.routePlan = { segments:[{ from:`${l.originCity},${l.originState}`, to:`${l.destinationCity},${l.destinationState}`, miles:l.miles||500, etaHours:etaH }], codexContext:{ dynastyEntity:DYNASTY_ENTITY, loadId:id }, tokenEvent:{ type:'dispatch', amount:1 }, generatedAt:new Date().toISOString() };
+    l.updatedAt = new Date().toISOString();
+    emitEvent({ loadId:id, driverName:driver?.name||'Unassigned', eventType:'dispatched', notes:`Dispatched ${l.reference} — ETA ${etaH}h · ${l.miles||500}mi · $${l.rate}` });
+    res.json({ success:true, load:l, routePlan:l.routePlan });
+  });
+
+  app.post("/api/v1/loads/:id/pod", (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    const i = v1Loads.findIndex(l => l.id === id);
+    if (i < 0) return res.status(404).json({ error:'Load not found' });
+    const { podImageUrl, notes, signedBy } = req.body;
+    const l = v1Loads[i];
+    l.status = 'delivered'; l.podImageUrl = podImageUrl||null; l.updatedAt = new Date().toISOString();
+    const driver = l.assignedDriverId ? v1Drivers.find(d => d.id === l.assignedDriverId) : null;
+    if (driver) { driver.status = 'available'; driver.loadsCompleted = (driver.loadsCompleted||0)+1; }
+    emitEvent({ loadId:id, driverName:driver?.name||'Unknown', eventType:'pod_submitted', podImageUrl:podImageUrl||null, notes:notes||`POD submitted for ${l.reference}${signedBy?' · Signed: '+signedBy:''}` });
+    res.json({ success:true, load:l });
+  });
+
+  // ── Routing ──────────────────────────────────────────────────────
+  app.post("/api/v1/routing/optimize", (req: Request, res: Response) => {
+    const { stops, loadId } = req.body;
+    if (!stops?.length) return res.status(400).json({ error:'stops required' });
+    const miles = stops.length * 180 + Math.floor(Math.random()*100);
+    const etaH = Math.round(miles/55);
+    res.json({ routeId:`RT-${Date.now()}`, stops, totalMiles:miles, etaHours:etaH, fuelGallons:Math.round(miles/6.5), fuelCost:`$${(miles/6.5*4.2).toFixed(2)}`, codexContext:{ dynastyEntity:DYNASTY_ENTITY, loadId:loadId||null }, generatedAt:new Date().toISOString() });
+  });
+
+  // ── Markets / MaS ────────────────────────────────────────────────
+  const marketLanes = [
+    { lane:'Memphis,TN → Newark,NJ',       miles:1140, avgRatePerMile:4.56, trend:'+3.2%', demand:'HIGH',      equipment:'Dry Van' },
+    { lane:'Phoenix,AZ → Los Angeles,CA',  miles:370,  avgRatePerMile:5.00, trend:'+1.8%', demand:'VERY HIGH', equipment:'Reefer' },
+    { lane:'Houston,TX → Dallas,TX',        miles:240,  avgRatePerMile:8.75, trend:'-0.5%', demand:'MEDIUM',    equipment:'Flatbed' },
+    { lane:'Savannah,GA → Atlanta,GA',      miles:255,  avgRatePerMile:5.49, trend:'+5.1%', demand:'HIGH',      equipment:'Dry Van' },
+    { lane:'Chicago,IL → St. Louis,MO',    miles:300,  avgRatePerMile:5.33, trend:'+0.9%', demand:'MEDIUM',    equipment:'Dry Van' },
+    { lane:'Los Angeles,CA → Las Vegas,NV', miles:270,  avgRatePerMile:4.44, trend:'+2.4%', demand:'HIGH',      equipment:'Dry Van' },
+    { lane:'Miami,FL → Charlotte,NC',       miles:665,  avgRatePerMile:4.21, trend:'-1.1%', demand:'MEDIUM',    equipment:'Dry Van' },
+    { lane:'Dallas,TX → Kansas City,MO',   miles:490,  avgRatePerMile:3.88, trend:'+0.3%', demand:'MEDIUM',    equipment:'Dry Van' },
+  ];
+
+  app.get("/api/v1/markets/lanes", (_req: Request, res: Response) =>
+    res.json({ lanes:marketLanes, updatedAt:new Date().toISOString(), source:'Divinity MaS Engine + DAT Index' })
+  );
+
+  app.post("/api/v1/markets/price-load", (req: Request, res: Response) => {
+    const { origin, destination, miles, equipment, weight } = req.body;
+    const eq = (equipment||'').toLowerCase();
+    const mul = eq.includes('reefer')?1.22 : eq.includes('flatbed')?1.18 : eq.includes('hazmat')?1.35 : 1.0;
+    const wt = weight && parseInt(weight)>40000 ? 1.05 : 1.0;
+    const rpm = parseFloat((3.75*mul*wt).toFixed(2));
+    const total = Math.round((miles||500)*rpm);
+    const fee = Math.round(total*0.03);
+    res.json({ origin, destination, miles:miles||500, equipment:equipment||'Dry Van', ratePerMile:rpm, totalRate:total, platformFee:fee, driverRate:total-fee, breakdown:{ baseRate:3.75, equipMultiplier:mul, weightAdj:wt }, dynastyEntity:DYNASTY_ENTITY, generatedAt:new Date().toISOString() });
+  });
+
+  // ── Compliance ───────────────────────────────────────────────────
+  app.get("/api/v1/compliance/checklist", (_req: Request, res: Response) => {
+    res.json({
+      dynastyEntity:'Divine Solutions Logistics, LLC',
+      checklist:{
+        cdl:{ required:true, steps:['Obtain CDL permit (written test + FMCSA medical exam)','CDL skills test (pre-trip, basic control, road test)','Endorsements as needed (H, T, N, P, X)'], note:'Drivers are 1099 contractors under Divine Solutions Logistics, LLC — NOT employees of the Trust' },
+        dot:{ required:true, steps:['Apply for USDOT number via FMCSA portal','Register MCS-150 (company profile, mileage, fleet)','Set up drug & alcohol testing program (Part 382)','Create DQ file + vehicle inspection + HOS program'], note:'USDOT held by Divine Solutions Logistics, LLC — the operating carrier entity' },
+        mc:{ required:true, steps:['Apply for MC number (OP-1) — for-hire interstate carrier','File BOC-3 (process agent designation)','Secure liability ($750K min) & cargo ($100K min) insurance','Activate authority — await FMCSA review (21 days)'], note:'MC authority on Divine Solutions Logistics, LLC. Revenue: LLC → Holdings LLC → Ecclesia Earth Trust per royalty structure.' },
+        insurance:{ required:true, minimums:{ generalLiability:'$750,000', cargo:'$100,000', hazmat:'$5,000,000' } }
+      },
+      dynastyStructure:{ top:'Borders Dynasty Irrevocable Trust', operating:'Borders Ecclesia Earth Trust (EIN 41-6823854)', business:'Divine Solutions Holdings, LLC', logistics:'Divine Solutions Logistics, LLC (Carrier/Broker · DOT/MC/BMC-84)' }
+    });
+  });
+
+  app.post("/api/v1/compliance/profile", (req: Request, res: Response) => {
+    emitEvent({ loadId:null, driverName:req.body.carrierName||'Unknown', eventType:'compliance_profile_updated', notes:`Compliance profile saved for: ${req.body.carrierName||'Unknown'}` });
+    res.status(201).json({ message:'Compliance profile saved', profile:req.body, dynastyEntity:DYNASTY_ENTITY });
+  });
+
+  app.get("/api/v1/compliance/carrier", (_req: Request, res: Response) => {
+    res.json({ carrier:'Divine Solutions Logistics, LLC', dotNumber:'PENDING — Apply via FMCSA Portal', mcNumber:'PENDING — Apply for OP-1 Authority', authorityStatus:'Setup in Progress', insuranceExpiry:'N/A', boc3Filed:false, dqFilesOnFile:v1Drivers.length, drugTestingProgram:'Required — Setup via C/TPA', dynastyEntity:DYNASTY_ENTITY });
+  });
+
+  // ── Dispatch Engine (AI Scoring) ─────────────────────────────────
+  app.get("/api/v1/dispatch/suggestions", (_req: Request, res: Response) => {
+    const open = v1Loads.filter(l => l.status==='tendered'||l.status==='accepted');
+    const avail = v1Drivers.filter(d => d.status==='available');
+    const sugg: any[] = [];
+    for (const l of open) {
+      for (const d of avail) {
+        const tierScore = d.tier==='L4'?1.0 : d.tier==='L3'?0.9 : d.tier==='L2'?0.8 : 0.7;
+        const bonus = (parseFloat(d.rating||'5')-4)*0.05;
+        const score = Math.min(1.0, tierScore+bonus);
+        if (score>0.75) sugg.push({ loadId:l.id, loadRef:l.reference, origin:`${l.originCity},${l.originState}`, dest:`${l.destinationCity},${l.destinationState}`, rate:`$${l.rate}`, miles:l.miles, driverId:d.id, driverName:d.name, tier:d.tier, score:parseFloat(score.toFixed(2)), reason:`Tier ${d.tier} · Rating ${d.rating} · ${l.miles||0}mi` });
+      }
+    }
+    sugg.sort((a,b)=>b.score-a.score);
+    res.json({ suggestions:sugg.slice(0,50), totalOpen:open.length, totalAvailable:avail.length, generatedAt:new Date().toISOString() });
+  });
+
+  // ── Events / CodexChain ──────────────────────────────────────────
+  app.get("/api/v1/events/logistics", (req: Request, res: Response) => {
+    let evs = [...v1Events].reverse();
+    if (req.query.loadId) evs = evs.filter(e => e.loadId===parseInt(req.query.loadId as string));
+    if (req.query.driverName) evs = evs.filter(e => (e.driverName||'').toLowerCase().includes((req.query.driverName as string).toLowerCase()));
+    const cap = parseInt(req.query.limit as string)||100;
+    res.json({ events:evs.slice(0,cap), total:evs.length, dynastyEntity:DYNASTY_ENTITY, codexChainActive:true });
+  });
+
+  app.post("/api/v1/events/logistics", (req: Request, res: Response) => {
+    const { loadId, driverId, driverName, eventType, notes, latitude, longitude, podImageUrl } = req.body;
+    emitEvent({ loadId:loadId||null, driverId:driverId||null, driverName:driverName||null, eventType, notes:notes||null, latitude:latitude||null, longitude:longitude||null, podImageUrl:podImageUrl||null, codexChainHash:`0x${Math.random().toString(16).slice(2,18)}` });
+    res.status(201).json({ success:true, event:v1Events[v1Events.length-1] });
+  });
+
+  // ── Visibility ───────────────────────────────────────────────────
+  app.get("/api/v1/visibility/shipments/:id", (req: Request, res: Response) => {
+    const l = v1Loads.find(x => x.id===parseInt(req.params.id));
+    if (!l) return res.status(404).json({ error:'Load not found' });
+    const evs = v1Events.filter(e => e.loadId===l.id);
+    res.json({ loadId:l.id, reference:l.reference, status:l.status, etaHours:l.miles?Math.round(l.miles/55):null, lastEvent:evs[evs.length-1]||null, route:l.routePlan||null });
+  });
+
+  app.get("/api/v1/visibility/drivers/:id", (req: Request, res: Response) => {
+    const d = v1Drivers.find(x => x.id===parseInt(req.params.id));
+    if (!d) return res.status(404).json({ error:'Driver not found' });
+    res.json({ driverId:d.id, name:d.name, status:d.status, lat:32.77+Math.random()*5, lng:-96.80+Math.random()*5, lastUpdate:new Date().toISOString() });
+  });
+
+  // ── Treasury / Monetary ──────────────────────────────────────────
+  app.get("/api/v1/treasury/balances", (_req: Request, res: Response) => {
+    const del = v1Loads.filter(l=>l.status==='delivered');
+    const rev = del.reduce((s,l)=>s+(parseFloat(l.rate)||0),0);
+    const fees = Math.round(rev*0.03);
+    res.json({ entity:DYNASTY_ENTITY, fiatUSD:rev, platformFees:fees, netToDrivers:rev-fees, tokenBSC:del.length, deliveredLoads:del.length });
+  });
+
+  app.post("/api/v1/treasury/invoice", (req: Request, res: Response) => {
+    const { loadId, amount } = req.body;
+    const id = `INV-${Date.now()}`;
+    emitEvent({ loadId:loadId||null, driverName:null, eventType:'invoice_created', notes:`Invoice ${id} created · $${amount}` });
+    res.json({ ok:true, invoiceId:id, loadId, amount, status:'created', dynastyEntity:DYNASTY_ENTITY });
+  });
+
+  app.post("/api/v1/token/mint", (req: Request, res: Response) => {
+    const { reason, amount } = req.body;
+    emitEvent({ loadId:null, driverName:null, eventType:'token_minted', notes:`Token mint: ${amount} BRC · Reason: ${reason}` });
+    res.json({ ok:true, reason, amount, txRef:`BSC-${Date.now()}`, dynastyEntity:DYNASTY_ENTITY });
+  });
+
+  // ── Dynasty Context ───────────────────────────────────────────────
+  app.get("/api/v1/dynasty/context", (_req: Request, res: Response) => {
+    res.json({ activeEntity:DYNASTY_ENTITY, structure:{ top:'Borders Dynasty Irrevocable Trust', operating:'Borders Ecclesia Earth Trust (EIN 41-6823854) · 508(c)(1)(A)', business:'Divine Solutions Holdings, LLC', logistics:'Divine Solutions Logistics, LLC (Carrier/Broker · DOT/MC/BMC-84)' }, platforms:['Codex Ecclesia Public','Borders Dynasty Dashboard','Divinity Logistics Platform','CodexChain Event Spine'], note:'All logistics ops under Divine Solutions Logistics, LLC. Revenue flows up per licensing/royalty structure.', apiVersion:'v1', ts:new Date().toISOString() });
+  });
+
   function genDvxResponse(cmd: string): string {
     const c = cmd.toLowerCase();
     if (c.includes('dispatch') || c.includes('send')) return 'Dispatch command received. Locating optimal available contractor for the specified load. Will route through Divinity platform and confirm assignment. Stand by.';

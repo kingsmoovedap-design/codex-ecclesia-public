@@ -267,6 +267,106 @@ export const dvxMessages = pgTable("dvx_messages", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// ── Tenants — Dynasty entity context (Divine Solutions Logistics, LLC)
+export const tenants = pgTable("tenants", {
+  id: serial("id").primaryKey(),
+  code: text("code").notNull().unique(),
+  displayName: text("display_name").notNull(),
+  entityType: text("entity_type").default("llc").notNull(),
+  ein: text("ein"),
+  dotNumber: text("dot_number"),
+  mcNumber: text("mc_number"),
+  insuranceExpiry: text("insurance_expiry"),
+  authorityStatus: text("authority_status").default("active"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// ── Vehicles — Fleet management (tractors, trailers, straight trucks)
+export const vehicles = pgTable("vehicles", {
+  id: serial("id").primaryKey(),
+  tenantCode: text("tenant_code").default("divine_solutions_logistics"),
+  unitNumber: text("unit_number").notNull(),
+  vin: text("vin"),
+  plate: text("plate"),
+  type: text("type").default("tractor").notNull(),
+  status: text("status").default("available").notNull(),
+  lastInspection: text("last_inspection"),
+  make: text("make"),
+  model: text("model"),
+  year: text("year"),
+  mileage: text("mileage"),
+  assignedDriverId: integer("assigned_driver_id"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// ── Dispatch Loads — Full load lifecycle (LaaS spine)
+export const dispatchLoads = pgTable("dispatch_loads", {
+  id: serial("id").primaryKey(),
+  tenantCode: text("tenant_code").default("divine_solutions_logistics"),
+  reference: text("reference").unique(),
+  shipperName: text("shipper_name"),
+  consigneeName: text("consignee_name"),
+  originCity: text("origin_city"),
+  originState: text("origin_state"),
+  destinationCity: text("destination_city"),
+  destinationState: text("destination_state"),
+  pickupWindowStart: timestamp("pickup_window_start"),
+  pickupWindowEnd: timestamp("pickup_window_end"),
+  deliveryWindowStart: timestamp("delivery_window_start"),
+  deliveryWindowEnd: timestamp("delivery_window_end"),
+  weight: text("weight"),
+  equipmentRequired: text("equipment_required"),
+  rate: text("rate"),
+  ratePerMile: text("rate_per_mile"),
+  miles: integer("miles"),
+  commodity: text("commodity"),
+  status: text("status").default("tendered").notNull(),
+  source: text("source").default("DIVINITY"),
+  tier: text("tier").default("laas"),
+  assignedDriverId: integer("assigned_driver_id"),
+  routePlan: jsonb("route_plan"),
+  podImageUrl: text("pod_image_url"),
+  notes: text("notes"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// ── Load Assignments — Driver + vehicle assignment per load
+export const loadAssignments = pgTable("load_assignments", {
+  id: serial("id").primaryKey(),
+  loadId: integer("load_id").notNull().references(() => dispatchLoads.id),
+  driverId: integer("driver_id"),
+  vehicleId: integer("vehicle_id").references(() => vehicles.id),
+  driverName: text("driver_name"),
+  vehicleUnit: text("vehicle_unit"),
+  assignedAt: timestamp("assigned_at").defaultNow().notNull(),
+  dispatchedAt: timestamp("dispatched_at"),
+  pickedUpAt: timestamp("picked_up_at"),
+  deliveredAt: timestamp("delivered_at"),
+  notes: text("notes"),
+  metadata: jsonb("metadata"),
+});
+
+// ── Logistics Events — Codex-style event spine (CodexChain)
+export const logisticsEvents = pgTable("logistics_events", {
+  id: serial("id").primaryKey(),
+  loadId: integer("load_id").references(() => dispatchLoads.id),
+  driverId: integer("driver_id"),
+  driverName: text("driver_name"),
+  eventType: text("event_type").notNull(),
+  eventTime: timestamp("event_time").defaultNow().notNull(),
+  latitude: text("latitude"),
+  longitude: text("longitude"),
+  notes: text("notes"),
+  podImageUrl: text("pod_image_url"),
+  dynastyEntity: text("dynasty_entity").default("BD_ECCLESIA_EARTH_TRUST"),
+  codexChainHash: text("codex_chain_hash"),
+  metadata: jsonb("metadata"),
+});
+
 export const insertUserSchema = createInsertSchema(users).omit({ id: true, createdAt: true, updatedAt: true });
 export const insertDocumentSchema = createInsertSchema(documents).omit({ id: true, createdAt: true, updatedAt: true });
 export const insertFilingSchema = createInsertSchema(filings).omit({ id: true, createdAt: true });
