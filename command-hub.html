@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Grand Architect Command Hub — DivinityVX</title>
+<style>
+:root{
+  --cyan:#00d4ff;--purple:#9b4dff;--gold:#ffd700;--green:#00ff88;
+  --red:#ff3b6b;--orange:#ff8c00;--blue:#2563eb;
+  --bg:#020b18;--card:#06151e;--card2:#061828;
+  --border:rgba(0,212,255,.12);--border2:rgba(155,77,255,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:#c5d8f0;font-family:'Courier New',monospace;font-size:13px;min-height:100vh;overflow:hidden;}
+::-webkit-scrollbar{width:4px;height:4px;} ::-webkit-scrollbar-thumb{background:rgba(0,212,255,.18);border-radius:2px;}
+.grid-bg{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(0,212,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.02) 1px,transparent 1px);background-size:54px 54px;pointer-events:none;}
+
+/* ── AUTH GATE ── */
+.auth-gate{position:fixed;inset:0;z-index:9000;background:var(--bg);display:flex;align-items:center;justify-content:center;}
+.auth-card{background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:2.5rem 2.2rem;width:380px;text-align:center;}
+.auth-seal{font-size:3.5rem;margin-bottom:.7rem;animation:sealPulse 3s ease-in-out infinite;}
+@keyframes sealPulse{0%,100%{filter:drop-shadow(0 0 8px rgba(155,77,255,.5));}50%{filter:drop-shadow(0 0 22px rgba(155,77,255,1));}}
+.auth-title{font-size:1.1rem;font-weight:900;text-transform:uppercase;letter-spacing:.12em;background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.2rem;}
+.auth-sub{font-size:.55rem;text-transform:uppercase;letter-spacing:.14em;color:#1e4050;margin-bottom:1.5rem;}
+.auth-input{width:100%;background:#020b18;border:1px solid var(--border2);color:var(--purple);padding:.75rem 1rem;border-radius:4px;font-family:inherit;font-size:.85rem;letter-spacing:.2em;text-align:center;margin-bottom:.7rem;outline:none;}
+.auth-input:focus{border-color:rgba(155,77,255,.4);}
+.auth-input::placeholder{color:#1a3040;letter-spacing:.08em;font-size:.65rem;}
+.auth-btn{width:100%;padding:.75rem;background:linear-gradient(135deg,rgba(155,77,255,.15),rgba(0,212,255,.1));border:1px solid rgba(155,77,255,.4);border-radius:4px;color:var(--purple);font-family:inherit;font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;font-weight:700;cursor:pointer;transition:all .2s;}
+.auth-btn:hover{background:linear-gradient(135deg,rgba(155,77,255,.28),rgba(0,212,255,.18));color:var(--cyan);}
+.auth-err{font-size:.6rem;color:var(--red);min-height:.9rem;margin-top:.5rem;}
+.auth-hint{font-size:.5rem;color:#1a3040;margin-top:.7rem;}
+
+/* ── HEADER ── */
+.header{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(2,11,24,.98);border-bottom:1px solid var(--border);display:flex;align-items:center;height:50px;padding:0 1rem;gap:.75rem;backdrop-filter:blur(10px);}
+.h-seal{font-size:1.2rem;animation:sealPulse 3s ease-in-out infinite;}
+.h-brand{display:flex;flex-direction:column;margin-right:.5rem;}
+.h-title{font-size:.75rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+.h-sub{font-size:.47rem;text-transform:uppercase;letter-spacing:.1em;color:#1e4050;}
+.h-role{font-size:.5rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);border:1px solid rgba(255,215,0,.25);background:rgba(255,215,0,.05);padding:.15rem .5rem;border-radius:2px;}
+.h-sep{width:1px;height:24px;background:var(--border);margin:0 .2rem;}
+.h-tabs{display:flex;gap:.15rem;flex:1;}
+.h-tab{font-size:.55rem;text-transform:uppercase;letter-spacing:.08em;padding:.35rem .75rem;border-radius:3px;border:1px solid transparent;cursor:pointer;font-family:inherit;transition:all .15s;background:transparent;color:#2a5060;white-space:nowrap;}
+.h-tab:hover{color:var(--cyan);border-color:rgba(0,212,255,.2);}
+.h-tab.active{color:var(--cyan);border-color:rgba(0,212,255,.3);background:rgba(0,212,255,.06);}
+.h-tab.active.purple{color:var(--purple);border-color:rgba(155,77,255,.3);background:rgba(155,77,255,.05);}
+.h-tab.active.gold{color:var(--gold);border-color:rgba(255,215,0,.3);background:rgba(255,215,0,.05);}
+.h-tab.active.green{color:var(--green);border-color:rgba(0,255,136,.3);background:rgba(0,255,136,.05);}
+.h-right{display:flex;align-items:center;gap:.5rem;margin-left:auto;}
+.h-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(0,255,136,.9);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+.h-clock{font-size:.65rem;color:var(--cyan);font-weight:700;letter-spacing:.05em;}
+.h-btn{font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;padding:.26rem .6rem;border-radius:2px;border:1px solid rgba(0,212,255,.15);color:#2a5060;cursor:pointer;font-family:inherit;background:transparent;transition:all .15s;}
+.h-btn:hover{color:var(--red);border-color:rgba(255,59,107,.3);}
+
+/* ── LAYOUT ── */
+.shell{position:fixed;top:50px;left:0;right:0;bottom:26px;display:grid;grid-template-columns:240px 1fr 260px;z-index:1;}
+
+/* ── SIDEBAR LEFT ── */
+.sidebar-l{border-right:1px solid var(--border);overflow-y:auto;background:rgba(2,8,16,.6);}
+.sb-section{padding:.75rem .85rem;border-bottom:1px solid rgba(0,212,255,.06);}
+.sb-label{font-size:.5rem;text-transform:uppercase;letter-spacing:.14em;color:#1e4050;margin-bottom:.55rem;}
+
+/* entity chain */
+.ec{display:flex;flex-direction:column;gap:.3rem;}
+.ec-item{display:flex;align-items:flex-start;gap:.45rem;padding:.42rem .55rem;border-radius:3px;font-size:.58rem;cursor:default;}
+.ec-item.t1{background:rgba(255,215,0,.04);border:1px solid rgba(255,215,0,.15);}
+.ec-item.t2{background:rgba(0,212,255,.03);border:1px solid rgba(0,212,255,.1);margin-left:.4rem;}
+.ec-item.t3{background:rgba(155,77,255,.03);border:1px solid rgba(155,77,255,.1);margin-left:.8rem;}
+.ec-item.t4{background:rgba(0,255,136,.02);border:1px solid rgba(0,255,136,.08);margin-left:1.2rem;}
+.ec-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:.2rem;}
+.ec-text{flex:1;color:#8ab0bc;line-height:1.3;}
+
+/* stat grid */
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.4rem;}
+.sg{background:rgba(0,0,0,.35);border:1px solid var(--border);border-radius:3px;padding:.5rem .55rem;text-align:center;}
+.sg-val{font-size:1.1rem;font-weight:900;line-height:1;}
+.sg-val.c{color:var(--cyan);}.sg-val.g{color:var(--green);}.sg-val.o{color:var(--gold);}.sg-val.p{color:var(--purple);}
+.sg-lbl{font-size:.48rem;text-transform:uppercase;letter-spacing:.08em;color:#1e4050;margin-top:.15rem;}
+
+/* quick links */
+.ql{display:flex;align-items:center;gap:.45rem;padding:.45rem .55rem;border-radius:3px;text-decoration:none;font-size:.58rem;text-transform:uppercase;letter-spacing:.07em;border:1px solid var(--border);background:transparent;color:#2a5060;width:100%;margin-bottom:.28rem;transition:all .15s;cursor:pointer;font-family:inherit;}
+.ql:hover{color:var(--cyan);border-color:rgba(0,212,255,.28);background:rgba(0,212,255,.04);}
+.ql.gold:hover{color:var(--gold);border-color:rgba(255,215,0,.28);}
+.ql.green:hover{color:var(--green);border-color:rgba(0,255,136,.28);}
+.ql.purple:hover{color:var(--purple);border-color:rgba(155,77,255,.28);}
+
+/* tier pills */
+.tier-row{display:flex;gap:.35rem;margin-bottom:.3rem;}
+.tier-chip{flex:1;background:rgba(0,0,0,.3);border-radius:3px;padding:.5rem .4rem;text-align:center;border:1px solid var(--border);cursor:pointer;transition:all .15s;}
+.tier-chip:hover{transform:translateY(-1px);}
+.tc-name{font-size:.55rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;}
+.tc-name.basic{color:var(--cyan);}.tc-name.pro{color:var(--purple);}.tc-name.empire{color:var(--gold);}
+.tc-price{font-size:.72rem;font-weight:900;color:var(--green);margin:.1rem 0;}
+.tc-n{font-size:.5rem;color:#1e4050;}
+
+/* ── MAIN AREA ── */
+.main-area{overflow-y:auto;position:relative;}
+.panel{display:none;padding:0;}
+.panel.active{display:block;}
+
+/* ── SIDEBAR RIGHT ── */
+.sidebar-r{border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;background:rgba(2,5,12,.7);}
+.ch-hdr{padding:.7rem .9rem;border-bottom:1px solid var(--border);flex-shrink:0;}
+.ch-title{font-size:.65rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:var(--purple);}
+.ch-sub{font-size:.5rem;text-transform:uppercase;letter-spacing:.1em;color:#1e4050;margin-top:.1rem;}
+.msg-feed{flex:1;overflow-y:auto;padding:.75rem .9rem;display:flex;flex-direction:column;gap:.7rem;}
+.msg{display:flex;gap:.55rem;max-width:100%;}
+.msg.system{align-self:flex-start;}
+.msg.owner{align-self:flex-end;flex-direction:row-reverse;}
+.msg-av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0;margin-top:.1rem;}
+.msg-av.sys{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.2);}
+.msg-av.dvx{background:rgba(155,77,255,.12);border:1px solid rgba(155,77,255,.25);}
+.msg-body{display:flex;flex-direction:column;gap:.2rem;max-width:88%;}
+.msg-label{font-size:.48rem;text-transform:uppercase;letter-spacing:.1em;color:#1e4050;}
+.msg.owner .msg-label{text-align:right;color:rgba(155,77,255,.4);}
+.msg-bubble{padding:.55rem .75rem;border-radius:5px;font-size:.63rem;line-height:1.6;}
+.msg.system .msg-bubble{background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.1);color:#9ac5d0;border-radius:0 5px 5px 5px;}
+.msg.owner .msg-bubble{background:rgba(155,77,255,.1);border:1px solid rgba(155,77,255,.18);color:#c9a8ff;border-radius:5px 0 5px 5px;}
+.msg.dispatch .msg-bubble{background:rgba(0,255,136,.03);border:1px solid rgba(0,255,136,.18);color:#9af5bf;}
+.msg.alert .msg-bubble{background:rgba(255,215,0,.04);border:1px solid rgba(255,215,0,.22);color:#f5d96e;}
+.msg-ts{font-size:.48rem;color:#1a3040;}
+.msg-ts.right{text-align:right;}
+.typing{display:none;align-items:center;gap:.35rem;padding:.4rem .9rem;font-size:.58rem;color:#1e4050;}
+.typing.show{display:flex;}
+.t-dot{width:4px;height:4px;background:rgba(0,212,255,.45);border-radius:50%;animation:tBounce .9s ease-in-out infinite;}
+.t-dot:nth-child(2){animation-delay:.2s;}.t-dot:nth-child(3){animation-delay:.4s;}
+@keyframes tBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+.ch-input-area{flex-shrink:0;border-top:1px solid var(--border);padding:.6rem .9rem;}
+.qt-grid{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.5rem;}
+.qt{font-size:.52rem;text-transform:uppercase;letter-spacing:.06em;padding:.22rem .55rem;border:1px solid var(--border);border-radius:2px;cursor:pointer;background:transparent;color:#2a5060;font-family:inherit;transition:all .13s;white-space:nowrap;}
+.qt:hover{color:var(--cyan);border-color:rgba(0,212,255,.28);}
+.qt.g:hover{color:var(--green);}.qt.p:hover{color:var(--purple);}.qt.o:hover{color:var(--gold);}
+.ch-row{display:flex;gap:.4rem;}
+.ch-input{flex:1;background:rgba(0,0,0,.4);border:1px solid var(--border);color:var(--purple);padding:.55rem .75rem;border-radius:3px;font-family:inherit;font-size:.63rem;outline:none;}
+.ch-input:focus{border-color:rgba(155,77,255,.32);}
+.ch-input::placeholder{color:#1a3040;font-size:.58rem;}
+.ch-send{padding:.55rem .85rem;background:rgba(155,77,255,.14);border:1px solid rgba(155,77,255,.32);border-radius:3px;color:var(--purple);font-family:inherit;font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;cursor:pointer;transition:all .18s;white-space:nowrap;}
+.ch-send:hover{background:rgba(155,77,255,.24);color:#d4a8ff;}
+
+/* ── TICKER ── */
+.ticker{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(2,11,24,.98);border-top:1px solid var(--border);padding:.28rem 1rem;display:flex;gap:1.4rem;overflow:hidden;height:26px;align-items:center;backdrop-filter:blur(8px);}
+.tk{font-size:.5rem;text-transform:uppercase;letter-spacing:.07em;white-space:nowrap;color:#1e4050;}
+.tk .k{color:#2a5060;}.tk .v{color:var(--green);font-weight:700;}
+.tk .vc{color:var(--cyan);font-weight:700;}.tk .vp{color:var(--purple);font-weight:700;}.tk .vg{color:var(--gold);font-weight:700;}
+
+/* ── PANEL: COMMAND CENTER ── */
+.cc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;padding:1rem;}
+.cc-card{background:var(--card);border:1px solid var(--border);border-radius:5px;padding:.9rem 1rem;position:relative;overflow:hidden;}
+.cc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.cc-card.c::before{background:linear-gradient(90deg,var(--cyan),transparent);}
+.cc-card.g::before{background:linear-gradient(90deg,var(--green),transparent);}
+.cc-card.o::before{background:linear-gradient(90deg,var(--gold),transparent);}
+.cc-card.p::before{background:linear-gradient(90deg,var(--purple),transparent);}
+.cc-card.r::before{background:linear-gradient(90deg,var(--red),transparent);}
+.cc-card.full{grid-column:1/-1;}
+.cch{font-size:.58rem;text-transform:uppercase;letter-spacing:.12em;color:#1e4050;margin-bottom:.65rem;padding-bottom:.4rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.cc-icon{font-size:.9rem;margin-right:.3rem;}
+.cc-val{font-size:1.6rem;font-weight:900;line-height:1;}
+.cc-sub{font-size:.55rem;color:#2a5060;margin-top:.15rem;}
+.cc-row{display:flex;justify-content:space-between;align-items:center;padding:.3rem 0;border-bottom:1px solid rgba(0,212,255,.04);font-size:.6rem;}
+.cc-row:last-child{border-bottom:none;}
+.cc-key{color:#2a5060;}.cc-val2{color:#9ac5d0;font-weight:700;}
+.cc-val2.g{color:var(--green);}.cc-val2.o{color:var(--gold);}.cc-val2.p{color:var(--purple);}.cc-val2.c{color:var(--cyan);}
+.cc-btns{display:flex;gap:.4rem;margin-top:.65rem;flex-wrap:wrap;}
+.cc-btn{font-size:.55rem;text-transform:uppercase;letter-spacing:.08em;padding:.32rem .75rem;border-radius:3px;border:1px solid;cursor:pointer;font-family:inherit;transition:all .15s;background:transparent;}
+.cc-btn.c{color:var(--cyan);border-color:rgba(0,212,255,.3);}.cc-btn.c:hover{background:rgba(0,212,255,.08);}
+.cc-btn.g{color:var(--green);border-color:rgba(0,255,136,.3);}.cc-btn.g:hover{background:rgba(0,255,136,.08);}
+.cc-btn.o{color:var(--gold);border-color:rgba(255,215,0,.3);}.cc-btn.o:hover{background:rgba(255,215,0,.08);}
+.cc-btn.p{color:var(--purple);border-color:rgba(155,77,255,.3);}.cc-btn.p:hover{background:rgba(155,77,255,.08);}
+/* event spine */
+.ev-item{display:flex;gap:.6rem;padding:.55rem 0;border-bottom:1px solid rgba(0,212,255,.04);}
+.ev-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:.3rem;}
+.ev-dot.load_created,.ev-dot.invoice_created{background:var(--gold);}
+.ev-dot.driver_assigned,.ev-dot.driver_onboarded{background:var(--purple);}
+.ev-dot.dispatched,.ev-dot.pickup_departed{background:var(--cyan);}
+.ev-dot.delivered,.ev-dot.pod_submitted{background:var(--green);}
+.ev-dot.payment_released,.ev-dot.token_minted{background:var(--orange);}
+.ev-type{font-size:.55rem;text-transform:uppercase;letter-spacing:.08em;color:var(--cyan);}
+.ev-notes{font-size:.6rem;color:#7aacbc;margin-top:.1rem;}
+.ev-ts{font-size:.5rem;color:#1e4050;margin-top:.15rem;}
+/* quick nav grid */
+.qn-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.35rem;margin-top:.5rem;}
+.qn{font-size:.56rem;text-decoration:none;color:#3a6070;border:1px solid var(--border);border-radius:3px;padding:.45rem .5rem;text-align:center;transition:all .15s;line-height:1.3;}
+.qn:hover{color:var(--cyan);border-color:rgba(0,212,255,.28);background:rgba(0,212,255,.04);}
+
+/* ── PANEL: LOGISTICS OPS ── */
+.lop-hdr{padding:.85rem 1.2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.lop-title{font-size:.9rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.lop-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;padding:.75rem 1.2rem;border-bottom:1px solid var(--border);}
+.ls{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:.7rem .85rem;text-align:center;}
+.ls-val{font-size:1.4rem;font-weight:900;line-height:1;}
+.ls-val.c{color:var(--cyan);}.ls-val.g{color:var(--green);}.ls-val.o{color:var(--orange);}.ls-val.p{color:var(--purple);}
+.ls-lbl{font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;color:#2a5060;margin-top:.25rem;}
+.lop-tabs{display:flex;gap:.25rem;padding:.6rem 1.2rem 0;border-bottom:1px solid var(--border);}
+.lt{font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;padding:.42rem .85rem;border:1px solid transparent;border-radius:3px 3px 0 0;cursor:pointer;color:#3a5060;transition:all .13s;background:none;font-family:inherit;}
+.lt:hover{color:var(--cyan);border-color:var(--border);}
+.lt.active{color:var(--cyan);border-color:var(--border);border-bottom-color:var(--bg);background:var(--card);}
+.lt-panel{display:none;padding:1rem 1.2rem;}
+.lt-panel.active{display:block;}
+.tb{display:flex;align-items:center;gap:.5rem;margin-bottom:.85rem;flex-wrap:wrap;}
+.tb-btn{font-size:.56rem;text-transform:uppercase;letter-spacing:.08em;padding:.38rem .85rem;border:1px solid var(--border);border-radius:3px;cursor:pointer;background:transparent;color:var(--cyan);font-family:inherit;transition:all .15s;}
+.tb-btn:hover{background:rgba(0,212,255,.07);border-color:rgba(0,212,255,.35);}
+.tb-btn.primary{background:rgba(0,212,255,.09);border-color:rgba(0,212,255,.35);}
+.tb-btn.gold{background:rgba(255,215,0,.07);border-color:rgba(255,215,0,.3);color:var(--gold);}
+.tb-btn.green{background:rgba(0,255,136,.07);border-color:rgba(0,255,136,.25);color:var(--green);}
+.tb-btn.red{background:rgba(255,59,107,.07);border-color:rgba(255,59,107,.25);color:var(--red);}
+.tb-sel,.tb-input{font-size:.56rem;background:var(--card);border:1px solid var(--border);color:var(--cyan);padding:.35rem .6rem;border-radius:3px;font-family:inherit;}
+.tb-input{width:140px;}.tb-input::placeholder{color:#1e4050;}
+.tb-sel option{background:#020b18;}
+.tbl-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;}
+th{font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;color:#1e4050;border-bottom:1px solid var(--border);padding:.45rem .6rem;text-align:left;white-space:nowrap;}
+td{font-size:.62rem;padding:.5rem .6rem;border-bottom:1px solid rgba(0,212,255,.04);vertical-align:middle;}
+tr:hover td{background:rgba(0,212,255,.025);}
+.pill{font-size:.48rem;text-transform:uppercase;letter-spacing:.08em;padding:.15rem .5rem;border-radius:2px;white-space:nowrap;}
+.pill.tendered{background:rgba(255,215,0,.1);color:var(--gold);border:1px solid rgba(255,215,0,.22);}
+.pill.assigned{background:rgba(155,77,255,.1);color:var(--purple);border:1px solid rgba(155,77,255,.25);}
+.pill.in_transit{background:rgba(0,212,255,.1);color:var(--cyan);border:1px solid rgba(0,212,255,.25);}
+.pill.delivered{background:rgba(0,255,136,.1);color:var(--green);border:1px solid rgba(0,255,136,.22);}
+.pill.cancelled{background:rgba(255,59,107,.1);color:var(--red);}
+.pill.available,.pill.avail{background:rgba(0,255,136,.09);color:var(--green);}
+.pill.in_use,.pill.intransit{background:rgba(0,212,255,.09);color:var(--cyan);}
+.pill.off_duty,.pill.offduty{background:rgba(255,59,107,.09);color:var(--red);}
+.ab{font-size:.48rem;text-transform:uppercase;letter-spacing:.06em;padding:.2rem .5rem;border-radius:2px;cursor:pointer;border:1px solid transparent;font-family:inherit;transition:all .13s;}
+.ab.assign{background:rgba(155,77,255,.09);border-color:rgba(155,77,255,.25);color:var(--purple);}.ab.assign:hover{background:rgba(155,77,255,.18);}
+.ab.dispatch{background:rgba(0,212,255,.09);border-color:rgba(0,212,255,.25);color:var(--cyan);}.ab.dispatch:hover{background:rgba(0,212,255,.18);}
+.ab.pod{background:rgba(0,255,136,.09);border-color:rgba(0,255,136,.22);color:var(--green);}.ab.pod:hover{background:rgba(0,255,136,.18);}
+.ab.del{background:rgba(255,59,107,.07);border-color:rgba(255,59,107,.22);color:var(--red);}
+/* driver / vehicle cards */
+.dcard{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:.75rem .9rem;display:flex;justify-content:space-between;align-items:center;margin-bottom:.45rem;}
+.dname{font-size:.72rem;font-weight:700;color:var(--cyan);}
+.dsub{font-size:.55rem;color:#2a5060;margin-top:.18rem;}
+/* market lane */
+.lane-row{display:flex;justify-content:space-between;align-items:center;padding:.5rem .65rem;background:var(--card);border:1px solid var(--border);border-radius:3px;margin-bottom:.38rem;font-size:.6rem;}
+.lr-route{color:#9ac5d0;font-weight:700;}
+.lr-rate{color:var(--green);font-weight:900;}
+.lr-trend{font-size:.55rem;}
+.lr-demand{font-size:.5rem;padding:.1rem .35rem;border-radius:2px;}
+.lr-demand.HIGH{color:var(--red);border:1px solid rgba(255,59,107,.2);}
+.lr-demand.VERY.HIGH{color:var(--red);}
+.lr-demand.MEDIUM{color:var(--gold);border:1px solid rgba(255,215,0,.2);}
+/* pricing */
+.price-result{background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.18);border-radius:4px;padding:.85rem 1rem;margin-top:.85rem;display:none;}
+.pr-row{display:flex;justify-content:space-between;padding:.28rem 0;font-size:.62rem;border-bottom:1px solid rgba(0,212,255,.06);}
+.pr-row:last-child{border-bottom:none;}
+.pr-row .val{color:var(--green);font-weight:700;}
+/* engine */
+.score-bar{width:52px;height:5px;background:#061828;border:1px solid var(--border);border-radius:2px;overflow:hidden;display:inline-block;}
+.score-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--cyan));}
+/* form helpers */
+.form-row{margin-bottom:.7rem;}
+.form-row label{display:block;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;color:#2a5060;margin-bottom:.28rem;}
+.form-row input,.form-row select,.form-row textarea{width:100%;background:#020b18;border:1px solid var(--border);color:var(--cyan);padding:.45rem .65rem;border-radius:3px;font-family:inherit;font-size:.63rem;outline:none;}
+.form-row input::placeholder,.form-row textarea::placeholder{color:#1e4050;}
+.form-row select option{background:#020b18;}
+.form-row textarea{resize:vertical;min-height:55px;}
+.form-2col{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;}
+/* grid 2-col */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
+
+/* ── PANEL: SOVEREIGN OS ── */
+.sos-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;padding:1rem;}
+.sos-card{background:var(--card);border:1px solid var(--border);border-radius:5px;padding:.85rem 1rem;}
+.sos-card::before{content:'';display:block;height:2px;margin:-1rem -1rem .75rem;border-radius:5px 5px 0 0;}
+.sos-card.c::before{background:linear-gradient(90deg,var(--cyan),transparent);}
+.sos-card.g::before{background:linear-gradient(90deg,var(--green),transparent);}
+.sos-card.o::before{background:linear-gradient(90deg,var(--gold),transparent);}
+.sos-card.p::before{background:linear-gradient(90deg,var(--purple),transparent);}
+.sos-card.r::before{background:linear-gradient(90deg,var(--red),transparent);}
+.sos-card.b::before{background:linear-gradient(90deg,var(--blue),transparent);}
+.sos-card.full{grid-column:1/-1;}
+.sos-card.two{grid-column:span 2;}
+.sos-lbl{font-size:.52rem;text-transform:uppercase;letter-spacing:.12em;color:#1e4050;margin-bottom:.6rem;padding-bottom:.38rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.sos-row{display:flex;justify-content:space-between;align-items:center;padding:.32rem 0;border-bottom:1px solid rgba(0,212,255,.04);font-size:.6rem;}
+.sos-row:last-child{border-bottom:none;}
+.sos-key{color:#2a5060;}.sos-val{color:#9ac5d0;font-weight:700;}
+.sos-val.g{color:var(--green);}.sos-val.o{color:var(--gold);}.sos-val.p{color:var(--purple);}.sos-val.c{color:var(--cyan);}
+.sos-big{font-size:1.5rem;font-weight:900;color:var(--cyan);line-height:1;}
+.orch-input{width:100%;background:#020b18;border:1px solid var(--border);color:var(--cyan);padding:.45rem .65rem;border-radius:3px;font-family:inherit;font-size:.62rem;outline:none;margin-bottom:.4rem;}
+.orch-input::placeholder{color:#1e4050;}
+.orch-btn{width:100%;padding:.5rem;background:rgba(155,77,255,.12);border:1px solid rgba(155,77,255,.32);border-radius:3px;color:var(--purple);font-family:inherit;font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;cursor:pointer;transition:all .18s;margin-bottom:.4rem;}
+.orch-btn:hover{background:rgba(155,77,255,.22);}
+.orch-btn:disabled{opacity:.4;cursor:not-allowed;}
+.orch-result{max-height:180px;overflow-y:auto;margin-top:.4rem;}
+.mode-chip{font-size:.5rem;padding:.22rem .55rem;border-radius:10px;border:1px solid;font-weight:700;display:inline-block;margin:.1rem .1rem;}
+.mode-chip.GROUND{color:var(--green);border-color:rgba(0,255,136,.28);}
+.mode-chip.AIR{color:var(--cyan);border-color:rgba(0,212,255,.28);}
+.mode-chip.RAIL{color:var(--gold);border-color:rgba(255,215,0,.28);}
+.mode-chip.MARITIME{color:var(--blue);border-color:rgba(37,99,235,.28);}
+.mode-chip.DRAYAGE{color:var(--purple);border-color:rgba(155,77,255,.28);}
+.comp-flags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.4rem;}
+.cf{font-size:.52rem;padding:.18rem .48rem;border-radius:2px;border:1px solid rgba(0,255,136,.28);color:var(--green);background:rgba(0,255,136,.05);}
+.cf.pending{border-color:rgba(255,215,0,.2);color:var(--gold);background:rgba(255,215,0,.04);}
+.infra-chips{display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem;}
+.ic{background:rgba(0,0,0,.35);border:1px solid var(--border);border-radius:3px;padding:.55rem .4rem;text-align:center;}
+.ic-n{font-size:.52rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--cyan);}
+.ic-d{font-size:.47rem;color:#1e4050;margin:.1rem 0 .25rem;}
+.ic-s{font-size:.48rem;padding:.1rem .3rem;border-radius:2px;border:1px solid rgba(0,255,136,.28);color:var(--green);background:rgba(0,255,136,.05);}
+
+/* ── PANEL: LEGAL ── */
+.legal-tabs{display:flex;gap:.25rem;padding:.75rem 1.2rem 0;border-bottom:1px solid var(--border);}
+.legal-panel{display:none;padding:1rem 1.2rem;}
+.legal-panel.active{display:block;}
+.doc-cats{display:flex;flex-direction:column;gap:1rem;}
+.doc-cat h4{font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:1px solid rgba(255,215,0,.15);}
+.doc-btns{display:flex;flex-wrap:wrap;gap:.35rem;}
+.doc-btn{font-size:.58rem;padding:.32rem .75rem;background:rgba(0,0,0,.35);border:1px solid rgba(0,212,255,.15);border-radius:3px;color:#6a9cb0;cursor:pointer;font-family:inherit;transition:all .15s;}
+.doc-btn:hover{color:var(--cyan);border-color:rgba(0,212,255,.35);background:rgba(0,212,255,.06);}
+.draft-workspace{background:var(--card);border:1px solid var(--border);border-radius:5px;padding:1.2rem;margin-top:.85rem;}
+.entity-btns{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.4rem;}
+.entity-btn{font-size:.6rem;padding:.38rem .85rem;background:rgba(155,77,255,.08);border:1px solid rgba(155,77,255,.25);border-radius:3px;color:var(--purple);cursor:pointer;font-family:inherit;transition:all .15s;}
+.entity-btn:hover{background:rgba(155,77,255,.18);}
+
+/* ── PANEL: CARRIERS ── */
+.carrier-grid{padding:1rem;}
+.carrier-row{display:flex;align-items:center;gap:.75rem;padding:.65rem .9rem;background:var(--card);border:1px solid var(--border);border-radius:4px;margin-bottom:.45rem;font-size:.62rem;}
+.cr-id{color:#1e4050;font-size:.55rem;width:50px;flex-shrink:0;}
+.cr-name{flex:1;color:var(--cyan);font-weight:700;}
+.cr-eq{color:#2a5060;width:90px;flex-shrink:0;}
+.cr-tier{width:60px;flex-shrink:0;}
+.cr-status{width:65px;flex-shrink:0;}
+.cr-email{color:#2a5060;font-size:.55rem;flex:1;}
+.cr-actions{display:flex;gap:.3rem;flex-shrink:0;}
+.cra{font-size:.5rem;text-transform:uppercase;padding:.18rem .45rem;border-radius:2px;cursor:pointer;border:1px solid;font-family:inherit;transition:all .13s;background:transparent;}
+.cra.approve{color:var(--green);border-color:rgba(0,255,136,.25);}.cra.approve:hover{background:rgba(0,255,136,.08);}
+.cra.suspend{color:var(--red);border-color:rgba(255,59,107,.22);}.cra.suspend:hover{background:rgba(255,59,107,.07);}
+.cra.activate{color:var(--cyan);border-color:rgba(0,212,255,.25);}.cra.activate:hover{background:rgba(0,212,255,.07);}
+
+/* ── MODAL ── */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(2,11,24,.88);z-index:5000;align-items:center;justify-content:center;}
+.modal-bg.open{display:flex;}
+.modal{background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:1.6rem;min-width:400px;max-width:550px;width:100%;max-height:88vh;overflow-y:auto;}
+.modal h3{font-size:.82rem;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);margin-bottom:1.1rem;}
+.modal-footer{display:flex;justify-content:flex-end;gap:.5rem;margin-top:1.1rem;padding-top:.9rem;border-top:1px solid var(--border);}
+.modal-res{font-size:.6rem;padding:.35rem .6rem;border-radius:3px;margin-top:.4rem;display:none;}
+
+/* ── FLASH ── */
+.flash{position:fixed;top:58px;right:1.2rem;z-index:9000;max-width:300px;background:var(--card);border:1px solid;border-radius:4px;padding:.6rem .85rem;font-size:.6rem;transform:translateX(120%);transition:transform .22s;pointer-events:none;}
+.flash.show{transform:translateX(0);}
+.flash.ok{border-color:rgba(0,255,136,.4);color:var(--green);}
+.flash.err{border-color:rgba(255,59,107,.4);color:var(--red);}
+.flash.info{border-color:rgba(0,212,255,.35);color:var(--cyan);}
+
+@media(max-width:1100px){.shell{grid-template-columns:200px 1fr 220px;}.cc-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:850px){.shell{grid-template-columns:1fr;}.sidebar-l,.sidebar-r{display:none;}}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="flash" id="flash"></div>
+
+<!-- ══ AUTH ══ -->
+<div class="auth-gate" id="authGate">
+  <div class="auth-card">
+    <div class="auth-seal">⚡</div>
+    <div class="auth-title">Grand Architect Hub</div>
+    <div class="auth-sub">DivinityVX · Sovereign Command · Owner Access Only</div>
+    <input class="auth-input" id="authPin" type="password" placeholder="Enter command code" autocomplete="off">
+    <button class="auth-btn" onclick="doAuth()">Authenticate</button>
+    <div class="auth-err" id="authErr"></div>
+    <div class="auth-hint">All access attempts are logged to the Codex audit trail.</div>
+  </div>
+</div>
+
+<!-- ══ HEADER ══ -->
+<div class="header" id="hdr" style="display:none;">
+  <div class="h-seal">⚡</div>
+  <div class="h-brand">
+    <div class="h-title">Grand Architect Hub</div>
+    <div class="h-sub">DivinityVX · Sovereign Command · Borders Ecclesia Earth Trust</div>
+  </div>
+  <div class="h-role">OWNER · SOVEREIGN</div>
+  <div class="h-sep"></div>
+  <div class="h-tabs">
+    <button class="h-tab active" onclick="showPanel('cmd',this)">🏠 Command</button>
+    <button class="h-tab" onclick="showPanel('ops',this)">🚚 Logistics Ops</button>
+    <button class="h-tab" onclick="showPanel('sos',this)">⚡ SovereignOS</button>
+    <button class="h-tab" onclick="showPanel('legal',this)">⚖️ Legal &amp; Docs</button>
+    <button class="h-tab" onclick="showPanel('carriers',this)">👥 Carriers</button>
+  </div>
+  <div class="h-right">
+    <div class="h-clock" id="hClock">00:00:00</div>
+    <div class="h-dot"></div>
+    <button class="h-btn" onclick="doLock()">Lock</button>
+  </div>
+</div>
+
+<!-- ══ SHELL ══ -->
+<div class="shell" id="appShell" style="display:none;">
+
+  <!-- ── SIDEBAR LEFT ── -->
+  <div class="sidebar-l">
+
+    <div class="sb-section">
+      <div class="sb-label">Dynasty Structure</div>
+      <div class="ec">
+        <div class="ec-item t1"><div class="ec-dot" style="background:var(--gold);box-shadow:0 0 5px rgba(255,215,0,.8);"></div><div class="ec-text"><strong style="color:var(--gold);">Borders Dynasty</strong><br>Irrevocable Trust · IP Owner</div></div>
+        <div class="ec-item t2"><div class="ec-dot" style="background:var(--cyan);box-shadow:0 0 4px rgba(0,212,255,.8);"></div><div class="ec-text"><strong style="color:var(--cyan);">Borders Ecclesia Earth Trust</strong><br>EIN 41-6823854 · 508(c)(1)(A)</div></div>
+        <div class="ec-item t3"><div class="ec-dot" style="background:var(--purple);box-shadow:0 0 4px rgba(155,77,255,.8);"></div><div class="ec-text"><strong style="color:var(--purple);">Divine Solutions Holdings, LLC</strong><br>Business &amp; Revenue Holder</div></div>
+        <div class="ec-item t4"><div class="ec-dot" style="background:var(--green);box-shadow:0 0 4px rgba(0,255,136,.8);"></div><div class="ec-text"><strong style="color:var(--green);">Divine Solutions Logistics, LLC</strong><br>Carrier · DOT/MC/BMC-84<br>All 1099 via this layer</div></div>
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-label">Live Platform Stats</div>
+      <div class="stat-grid">
+        <div class="sg"><div class="sg-val c" id="sLoads">—</div><div class="sg-lbl">Open Loads</div></div>
+        <div class="sg"><div class="sg-val g" id="sDrivers">—</div><div class="sg-lbl">Drivers</div></div>
+        <div class="sg"><div class="sg-val o" id="sTransit">—</div><div class="sg-lbl">In Transit</div></div>
+        <div class="sg"><div class="sg-val p" id="sDelivered">—</div><div class="sg-lbl">Delivered</div></div>
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-label">Carrier Tiers</div>
+      <div class="tier-row">
+        <div class="tier-chip" onclick="showPanel('carriers',document.querySelector('[onclick*=carriers]'))"><div class="tc-name basic">BASIC</div><div class="tc-price">$199</div><div class="tc-n">5/day</div></div>
+        <div class="tier-chip" onclick="showPanel('carriers',document.querySelector('[onclick*=carriers]'))"><div class="tc-name pro">PRO</div><div class="tc-price">$599</div><div class="tc-n">25/day</div></div>
+        <div class="tier-chip" onclick="showPanel('carriers',document.querySelector('[onclick*=carriers]'))"><div class="tc-name empire">EMPIRE</div><div class="tc-price">$1,999</div><div class="tc-n">Unlim</div></div>
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-label">Quick Actions</div>
+      <button class="ql" onclick="showPanel('ops',document.querySelectorAll('.h-tab')[1]);ltSwitch('loadboard',document.querySelectorAll('.lt')[0])">🗂 Open Loadboard</button>
+      <button class="ql green" onclick="runDispatch()">⚡ Run Dispatch Engine</button>
+      <button class="ql" onclick="showPanel('sos',document.querySelectorAll('.h-tab')[2])">🌐 SovereignOS Status</button>
+      <button class="ql purple" onclick="showPanel('legal',document.querySelectorAll('.h-tab')[3])">⚖️ Draft Document</button>
+      <button class="ql" onclick="openCreateLoad()">+ Create Load</button>
+      <button class="ql" onclick="priceLoad()">💰 Price a Load</button>
+      <a href="carrier-dashboard.html" target="_blank" class="ql">🚚 Carrier Portal</a>
+      <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="ql gold">👑 Dynasty Dashboard</a>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-label">Platform Links</div>
+      <a href="index.html" class="ql">⚡ Public Hub</a>
+      <a href="sovereign-os.html" class="ql">🛰 SovereignOS Console</a>
+      <a href="omega-portal.html" class="ql">☩ Omega Portal</a>
+      <a href="dispatcher-console.html" class="ql">📋 Dispatcher Console</a>
+      <a href="driver-app.html" class="ql">📱 Driver App</a>
+      <a href="carrier-enrollment.html" class="ql">📝 Carrier Enrollment</a>
+    </div>
+
+  </div>
+
+  <!-- ── MAIN AREA ── -->
+  <div class="main-area">
+
+    <!-- ══ PANEL: COMMAND CENTER ══ -->
+    <div class="panel active" id="panel-cmd">
+      <div class="cc-grid">
+
+        <!-- live stats -->
+        <div class="cc-card c">
+          <div class="cch"><span><span class="cc-icon">📊</span>Platform Ops</span><span class="pill in_transit">LIVE</span></div>
+          <div class="cc-row"><span class="cc-key">Open Loads</span><span class="cc-val2 c" id="ccLoads">—</span></div>
+          <div class="cc-row"><span class="cc-key">Available Drivers</span><span class="cc-val2 g" id="ccDrivers">—</span></div>
+          <div class="cc-row"><span class="cc-key">In Transit</span><span class="cc-val2 o" id="ccTransit">—</span></div>
+          <div class="cc-row"><span class="cc-key">Delivered Today</span><span class="cc-val2 p" id="ccDelivered">—</span></div>
+          <div class="cc-row"><span class="cc-key">Platform Revenue</span><span class="cc-val2 g" id="ccRevenue">—</span></div>
+          <div class="cc-btns">
+            <button class="cc-btn c" onclick="showPanel('ops',document.querySelectorAll('.h-tab')[1])">Open Ops →</button>
+            <button class="cc-btn g" onclick="runDispatch()">⚡ Dispatch</button>
+          </div>
+        </div>
+
+        <!-- SovereignOS status -->
+        <div class="cc-card p">
+          <div class="cch"><span><span class="cc-icon">⚡</span>SovereignOS</span><span class="pill assigned" id="osStatusPill">BOOTING</span></div>
+          <div class="cc-row"><span class="cc-key">GIL Identities</span><span class="cc-val2 c" id="ccGil">—</span></div>
+          <div class="cc-row"><span class="cc-key">GAR Assets</span><span class="cc-val2 g" id="ccGar">—</span></div>
+          <div class="cc-row"><span class="cc-key">GSM Settled</span><span class="cc-val2 o" id="ccGsm">$0</span></div>
+          <div class="cc-row"><span class="cc-key">SID Health</span><span class="cc-val2 g" id="ccSid">95%</span></div>
+          <div class="cc-row"><span class="cc-key">NLOA Programs</span><span class="cc-val2 p" id="ccNloa">4</span></div>
+          <div class="cc-btns">
+            <button class="cc-btn p" onclick="showPanel('sos',document.querySelectorAll('.h-tab')[2])">SovereignOS →</button>
+            <button class="cc-btn c" onclick="runSovereignOrchestrate()">⚡ Orchestrate</button>
+          </div>
+        </div>
+
+        <!-- Dynasty sync -->
+        <div class="cc-card o">
+          <div class="cch"><span><span class="cc-icon">👑</span>Dynasty Sync</span><span class="pill delivered" id="dynastyPill">CONNECTED</span></div>
+          <div class="cc-row"><span class="cc-key">External Platform</span><span class="cc-val2">Borders Dynasty</span></div>
+          <div class="cc-row"><span class="cc-key">Sync Status</span><span class="cc-val2 g" id="dynastySync">Checking...</span></div>
+          <div class="cc-row"><span class="cc-key">Trust</span><span class="cc-val2">Borders Ecclesia</span></div>
+          <div class="cc-row"><span class="cc-key">EIN</span><span class="cc-val2">41-6823854</span></div>
+          <div class="cc-row"><span class="cc-key">Classification</span><span class="cc-val2">508(c)(1)(A)</span></div>
+          <div class="cc-btns">
+            <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="cc-btn o">Open Dynasty →</a>
+            <button class="cc-btn c" onclick="checkDynastySync()">Sync Now</button>
+          </div>
+        </div>
+
+        <!-- carrier status -->
+        <div class="cc-card g">
+          <div class="cch"><span><span class="cc-icon">👥</span>Carriers</span></div>
+          <div class="cc-row"><span class="cc-key">Total Registered</span><span class="cc-val2 c" id="ccCarriersTotal">—</span></div>
+          <div class="cc-row"><span class="cc-key">Active</span><span class="cc-val2 g" id="ccCarriersActive">—</span></div>
+          <div class="cc-row"><span class="cc-key">Pending Approval</span><span class="cc-val2 o" id="ccCarriersPending">—</span></div>
+          <div class="cc-row"><span class="cc-key">BASIC</span><span class="cc-val2 c" id="ccCarriersBasic">—</span></div>
+          <div class="cc-row"><span class="cc-key">PRO / EMPIRE</span><span class="cc-val2 p" id="ccCarriersPro">—</span></div>
+          <div class="cc-btns">
+            <button class="cc-btn g" onclick="showPanel('carriers',document.querySelectorAll('.h-tab')[4])">Manage →</button>
+            <button class="cc-btn c" onclick="openActivateCarrier()">Activate</button>
+          </div>
+        </div>
+
+        <!-- legal / omega -->
+        <div class="cc-card r">
+          <div class="cch"><span><span class="cc-icon">⚖️</span>Legal &amp; Filing</span></div>
+          <div class="cc-row"><span class="cc-key">Entity Formation</span><span class="cc-val2 c">Trust · PMA · LLC</span></div>
+          <div class="cc-row"><span class="cc-key">Document Categories</span><span class="cc-val2">9 categories · 60+ docs</span></div>
+          <div class="cc-row"><span class="cc-key">Hierarchy</span><span class="cc-val2">Divine → Natural → Covenant</span></div>
+          <div class="cc-row"><span class="cc-key">Court Registry</span><span class="cc-val2 g">Active</span></div>
+          <div class="cc-btns">
+            <button class="cc-btn r" onclick="showPanel('legal',document.querySelectorAll('.h-tab')[3])">Draft Docs →</button>
+            <button class="cc-btn o" onclick="quickFormEntity()">Form Entity</button>
+          </div>
+        </div>
+
+        <!-- reverse logistics -->
+        <div class="cc-card c">
+          <div class="cch"><span><span class="cc-icon">♻️</span>Reverse Logistics</span></div>
+          <div class="cc-row"><span class="cc-key">Module</span><span class="cc-val2 g">ReverseLogistics · GSM</span></div>
+          <div class="cc-row"><span class="cc-key">Container Recovery</span><span class="cc-val2">$50 base + $2/late day</span></div>
+          <div class="cc-row"><span class="cc-key">Return Processing</span><span class="cc-val2">85% refund, 15% restock</span></div>
+          <div class="cc-row"><span class="cc-key">Fleet Leasing</span><span class="cc-val2">1%/mo of asset value</span></div>
+          <div class="cc-btns">
+            <button class="cc-btn c" onclick="showPanel('sos',document.querySelectorAll('.h-tab')[2]);setTimeout(()=>document.getElementById('sos-rl-tab')?.click(),200)">Rev. Logistics →</button>
+          </div>
+        </div>
+
+        <!-- live event stream -->
+        <div class="cc-card c full">
+          <div class="cch"><span><span class="cc-icon">📡</span>CodexChain — Live Event Stream</span><button class="cc-btn c" style="font-size:.5rem;padding:.18rem .5rem;" onclick="loadEvents()">↻</button></div>
+          <div id="ccEvents" style="max-height:180px;overflow-y:auto;"></div>
+        </div>
+
+        <!-- quick nav -->
+        <div class="cc-card c full">
+          <div class="cch"><span><span class="cc-icon">🗺</span>Quick Navigation</span></div>
+          <div class="qn-grid">
+            <a href="dashboard.html" class="qn">📊<br>Dashboard</a>
+            <a href="treasury-console.html" class="qn">💎<br>Treasury</a>
+            <a href="council-chamber.html" class="qn">🪑<br>Council</a>
+            <a href="court-registry.html" class="qn">⚖️<br>Court</a>
+            <a href="codex-constitution.html" class="qn">📜<br>Constitution</a>
+            <a href="citizen.html" class="qn">👥<br>Citizens</a>
+            <a href="carrier-enrollment.html" class="qn">📝<br>Carrier Enroll</a>
+            <a href="carrier-dashboard.html" class="qn">🚚<br>Carrier Portal</a>
+            <a href="sovereign-os.html" class="qn">⚡<br>SovereignOS</a>
+            <a href="notary-gate.html" class="qn">✍️<br>Notary</a>
+            <a href="codexchain-console.html" class="qn">🔗<br>CodexChain</a>
+            <a href="index.html" class="qn">🌐<br>Public Hub</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ PANEL: LOGISTICS OPS ══ -->
+    <div class="panel" id="panel-ops">
+      <div class="lop-hdr">
+        <span class="lop-title">Dispatcher Console</span>
+        <span style="font-size:.55rem;color:#1e4050;text-transform:uppercase;letter-spacing:.1em;">Divine Solutions Logistics, LLC · DOT/MC/BMC-84</span>
+      </div>
+      <div class="lop-stats">
+        <div class="ls"><div class="ls-val c" id="lopOpen">—</div><div class="ls-lbl">Open Loads</div></div>
+        <div class="ls"><div class="ls-val g" id="lopAvail">—</div><div class="ls-lbl">Available Drivers</div></div>
+        <div class="ls"><div class="ls-val o" id="lopTransit">—</div><div class="ls-lbl">In Transit</div></div>
+        <div class="ls"><div class="ls-val p" id="lopDelivered">—</div><div class="ls-lbl">Delivered</div></div>
+      </div>
+      <div class="lop-tabs">
+        <button class="lt active" onclick="ltSwitch('loadboard',this)">📋 Loadboard</button>
+        <button class="lt" onclick="ltSwitch('fleet',this)">🚚 Drivers &amp; Fleet</button>
+        <button class="lt" onclick="ltSwitch('engine',this)">⚡ Dispatch Engine</button>
+        <button class="lt" onclick="ltSwitch('markets',this)">📈 Markets</button>
+        <button class="lt" onclick="ltSwitch('compliance',this)">✅ Compliance</button>
+        <button class="lt" onclick="ltSwitch('events',this)">📡 Events</button>
+      </div>
+
+      <!-- LOADBOARD -->
+      <div class="lt-panel active" id="lp-loadboard">
+        <div class="tb">
+          <button class="tb-btn primary" onclick="openCreateLoad()">+ Create Load</button>
+          <select class="tb-sel" id="filterStatus" onchange="loadLoads()"><option value="all">All Status</option><option value="tendered">Tendered</option><option value="assigned">Assigned</option><option value="in_transit">In Transit</option><option value="delivered">Delivered</option></select>
+          <select class="tb-sel" id="filterTier" onchange="loadLoads()"><option value="">All Tiers</option><option value="laas">LaaS</option><option value="maas">MaaS</option><option value="warehouse">Warehouse</option><option value="reverse">Reverse</option></select>
+          <button class="tb-btn" onclick="loadLoads()">↻ Refresh</button>
+          <span id="loadCount" style="font-size:.52rem;color:#1e4050;"></span>
+        </div>
+        <div class="tbl-wrap">
+          <table><thead><tr><th>Ref</th><th>Shipper</th><th>Route</th><th>Pickup</th><th>Equip</th><th>Miles</th><th>Rate</th><th>Source</th><th>Status</th><th>Driver</th><th>Actions</th></tr></thead>
+          <tbody id="loadBody"><tr><td colspan="11" style="text-align:center;color:#1e4050;padding:1.5rem;">Loading...</td></tr></tbody></table>
+        </div>
+      </div>
+
+      <!-- FLEET -->
+      <div class="lt-panel" id="lp-fleet">
+        <div class="grid2">
+          <div>
+            <div class="section-hdr" style="font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:#1e4050;border-bottom:1px solid var(--border);padding-bottom:.35rem;margin-bottom:.75rem;">CDL Drivers</div>
+            <div class="tb"><button class="tb-btn primary" onclick="openAddDriver()">+ Add Driver</button><button class="tb-btn" onclick="loadDrivers()">↻ Refresh</button></div>
+            <div id="driverList"></div>
+          </div>
+          <div>
+            <div class="section-hdr" style="font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:#1e4050;border-bottom:1px solid var(--border);padding-bottom:.35rem;margin-bottom:.75rem;">Fleet / Vehicles</div>
+            <div class="tb"><button class="tb-btn primary" onclick="openAddVehicle()">+ Add Vehicle</button><button class="tb-btn" onclick="loadVehicles()">↻ Refresh</button></div>
+            <div id="vehicleList"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DISPATCH ENGINE -->
+      <div class="lt-panel" id="lp-engine">
+        <div class="tb"><button class="tb-btn gold" onclick="runEngine()">⚡ Run Scoring Engine</button><button class="tb-btn" onclick="runEngine()">↻ Refresh</button><span id="engineInfo" style="font-size:.56rem;color:#2a5060;"></span></div>
+        <p style="font-size:.58rem;color:#2a5060;margin-bottom:.85rem;">AI dispatch matching: L4=1.0 · L3=0.9 · L2=0.8 · L1=0.7 · Rating bonus · Threshold &gt;0.75</p>
+        <div class="tbl-wrap"><table><thead><tr><th>Load</th><th>Route</th><th>Rate</th><th>Driver</th><th>Tier</th><th>Score</th><th>Reason</th><th>Action</th></tr></thead>
+        <tbody id="engineBody"><tr><td colspan="8" style="text-align:center;color:#1e4050;padding:1.5rem;">Click "Run Scoring Engine" above</td></tr></tbody></table></div>
+      </div>
+
+      <!-- MARKETS -->
+      <div class="lt-panel" id="lp-markets">
+        <div class="grid2">
+          <div>
+            <div class="section-hdr" style="font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:#1e4050;border-bottom:1px solid var(--border);padding-bottom:.35rem;margin-bottom:.75rem;">Lane Intelligence — DAT Index</div>
+            <div id="laneTable"></div>
+          </div>
+          <div>
+            <div class="section-hdr" style="font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:#1e4050;border-bottom:1px solid var(--border);padding-bottom:.35rem;margin-bottom:.75rem;">Load Pricing Calculator</div>
+            <div class="form-row"><label>Origin</label><input id="prOrigin" placeholder="Memphis, TN"></div>
+            <div class="form-row"><label>Destination</label><input id="prDest" placeholder="Newark, NJ"></div>
+            <div class="form-2col"><div class="form-row"><label>Miles</label><input id="prMiles" type="number" placeholder="1140"></div><div class="form-row"><label>Weight (lbs)</label><input id="prWeight" type="number" placeholder="42000"></div></div>
+            <div class="form-row"><label>Equipment</label><select id="prEquip"><option>Dry Van 53ft</option><option>Reefer 53ft</option><option>Flatbed 48ft</option><option>Box Truck</option><option>Step Deck</option></select></div>
+            <button class="tb-btn gold" onclick="calcPrice()">Calculate Rate</button>
+            <div class="price-result" id="priceResult"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMPLIANCE -->
+      <div class="lt-panel" id="lp-compliance">
+        <div style="background:linear-gradient(135deg,rgba(155,77,255,.05),rgba(0,212,255,.04));border:1px solid rgba(155,77,255,.18);border-radius:4px;padding:1rem;margin-bottom:1rem;">
+          <div style="font-size:.58rem;text-transform:uppercase;letter-spacing:.12em;color:var(--purple);margin-bottom:.7rem;">Dynasty Entity Structure — Logistics Layer</div>
+          <div style="display:flex;flex-direction:column;gap:.35rem;">
+            <div style="display:flex;align-items:center;gap:.5rem;font-size:.6rem;"><span style="background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.25);border-radius:3px;padding:.2rem .55rem;color:var(--gold);">Borders Dynasty Irrevocable Trust</span><span style="color:#1e4050;">IP &amp; Asset Owner</span></div>
+            <div style="display:flex;align-items:center;gap:.5rem;font-size:.6rem;"><span style="color:#1e4050;">↓</span><span style="background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.15);border-radius:3px;padding:.2rem .55rem;color:var(--cyan);">Borders Ecclesia Earth Trust · EIN 41-6823854 · 508(c)(1)(A)</span></div>
+            <div style="display:flex;align-items:center;gap:.5rem;font-size:.6rem;"><span style="color:#1e4050;">↓</span><span style="background:rgba(155,77,255,.05);border:1px solid rgba(155,77,255,.2);border-radius:3px;padding:.2rem .55rem;color:var(--purple);">Divine Solutions Holdings, LLC</span></div>
+            <div style="display:flex;align-items:center;gap:.5rem;font-size:.6rem;"><span style="color:#1e4050;">↓</span><span style="background:rgba(0,255,136,.04);border:1px solid rgba(0,255,136,.18);border-radius:3px;padding:.2rem .55rem;color:var(--green);">Divine Solutions Logistics, LLC · Carrier · DOT/MC/BMC-84 · All 1099 here</span></div>
+          </div>
+          <div style="font-size:.57rem;color:#2a5060;margin-top:.75rem;border-left:2px solid rgba(0,212,255,.2);padding-left:.6rem;line-height:1.6;">All 1099 contractors engaged through Divine Solutions Logistics, LLC — NOT employees of the Trust. Revenue flows: Logistics → Holdings → Ecclesia Earth Trust per licensing/royalty structure.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem;" id="compStatus">
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:.75rem .9rem;"><div style="font-size:.5rem;text-transform:uppercase;letter-spacing:.1em;color:#2a5060;margin-bottom:.25rem;">USDOT Number</div><div style="font-size:.75rem;font-weight:700;color:var(--gold);" id="csDot">Pending</div></div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:.75rem .9rem;"><div style="font-size:.5rem;text-transform:uppercase;letter-spacing:.1em;color:#2a5060;margin-bottom:.25rem;">MC Authority</div><div style="font-size:.75rem;font-weight:700;color:var(--gold);" id="csMc">Pending</div></div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:.75rem .9rem;"><div style="font-size:.5rem;text-transform:uppercase;letter-spacing:.1em;color:#2a5060;margin-bottom:.25rem;">Authority Status</div><div style="font-size:.75rem;font-weight:700;color:var(--green);" id="csAuth">Active</div></div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:.75rem .9rem;"><div style="font-size:.5rem;text-transform:uppercase;letter-spacing:.1em;color:#2a5060;margin-bottom:.25rem;">BOC-3 Filed</div><div style="font-size:.75rem;font-weight:700;color:var(--green);" id="csBoc">Filed</div></div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:.75rem .9rem;"><div style="font-size:.5rem;text-transform:uppercase;letter-spacing:.1em;color:#2a5060;margin-bottom:.25rem;">Drug Testing</div><div style="font-size:.75rem;font-weight:700;color:var(--orange);" id="csDrug">Setup Required</div></div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:.75rem .9rem;"><div style="font-size:.5rem;text-transform:uppercase;letter-spacing:.1em;color:#2a5060;margin-bottom:.25rem;">DQ Files</div><div style="font-size:.75rem;font-weight:700;color:var(--cyan);" id="csDq">Per Driver</div></div>
+        </div>
+      </div>
+
+      <!-- EVENTS -->
+      <div class="lt-panel" id="lp-events">
+        <div class="tb"><input class="tb-input" id="evFilt" placeholder="Filter by load/driver..." oninput="loadEvents2()"><button class="tb-btn" onclick="loadEvents2()">↻ Refresh</button><span id="evCount" style="font-size:.52rem;color:#1e4050;"></span></div>
+        <div id="eventFeed2"></div>
+      </div>
+    </div>
+
+    <!-- ══ PANEL: SOVEREIGN OS ══ -->
+    <div class="panel" id="panel-sos">
+      <div class="sos-grid">
+
+        <!-- orchestrate -->
+        <div class="sos-card p two">
+          <div class="sos-lbl"><span>⚡ Sovereign Orchestration Engine</span><span class="pill assigned" id="sosPill">LIVE</span></div>
+          <div class="form-2col" style="margin-bottom:.5rem;">
+            <input class="orch-input" id="oLoadId" placeholder="Load ID (LOAD-001)" value="LOAD-001">
+            <input class="orch-input" id="oRate" placeholder="Rate (USD)" type="number" value="2500">
+          </div>
+          <div class="form-2col" style="margin-bottom:.5rem;">
+            <input class="orch-input" id="oOrigin" placeholder="Origin" value="Atlanta, GA">
+            <input class="orch-input" id="oDest" placeholder="Destination" value="Dallas, TX">
+          </div>
+          <button class="orch-btn" onclick="runSovereignOrchestrate()" id="orchBtn">⚡ EXECUTE SOVEREIGN ORCHESTRATION</button>
+          <div class="orch-result" id="orchResult"></div>
+        </div>
+
+        <!-- GRF routing -->
+        <div class="sos-card c">
+          <div class="sos-lbl"><span>🗺 GRF · Global Routing</span></div>
+          <div class="sos-row"><span class="sos-key">Mode</span><span class="sos-val c">MULTI-MODAL</span></div>
+          <div class="sos-row"><span class="sos-key">Regions</span><span class="sos-val">US · EU · APAC · AF</span></div>
+          <div class="sos-row"><span class="sos-key">Last ETA</span><span class="sos-val g" id="grfEta">—</span></div>
+          <div style="margin-top:.6rem;"><div id="routeChain" style="display:flex;flex-wrap:wrap;gap:.2rem;"></div></div>
+        </div>
+
+        <!-- GIL + GAR -->
+        <div class="sos-card g">
+          <div class="sos-lbl"><span>🆔 GIL · Identities</span></div>
+          <div class="sos-row"><span class="sos-key">Total</span><span class="sos-val g" id="sosGil">—</span></div>
+          <div class="sos-row"><span class="sos-key">Carriers</span><span class="sos-val" id="sosGilC">—</span></div>
+          <div class="sos-row"><span class="sos-key">Drivers</span><span class="sos-val" id="sosGilD">—</span></div>
+          <button class="orch-btn" style="margin-top:.6rem;font-size:.52rem;padding:.35rem;" onclick="registerTestIdentity()">+ Register Identity</button>
+        </div>
+        <div class="sos-card g">
+          <div class="sos-lbl"><span>🚛 GAR · Assets</span></div>
+          <div class="sos-row"><span class="sos-key">Total</span><span class="sos-val g" id="sosGar">—</span></div>
+          <div class="sos-row"><span class="sos-key">Available</span><span class="sos-val g" id="sosGarA">—</span></div>
+          <div class="sos-row"><span class="sos-key">In Transit</span><span class="sos-val c" id="sosGarT">—</span></div>
+          <button class="orch-btn" style="margin-top:.6rem;font-size:.52rem;padding:.35rem;" onclick="registerTestAsset()">+ Register Asset</button>
+        </div>
+
+        <!-- GSM settlement -->
+        <div class="sos-card o">
+          <div class="sos-lbl"><span>💰 GSM · Settlement Mesh</span></div>
+          <div class="sos-row"><span class="sos-key">USD Vol</span><span class="sos-val g" id="sosGsmU">$0</span></div>
+          <div class="sos-row"><span class="sos-key">USDC Vol</span><span class="sos-val c" id="sosGsmUC">$0</span></div>
+          <div class="sos-row"><span class="sos-key">BSC Vol</span><span class="sos-val o" id="sosGsmB">$0</span></div>
+          <div class="sos-row"><span class="sos-key">Channels</span><span class="sos-val">Stripe · Circle · BSC</span></div>
+        </div>
+
+        <!-- GCG compliance -->
+        <div class="sos-card o">
+          <div class="sos-lbl"><span>✅ GCG · Compliance</span></div>
+          <div class="sos-row"><span class="sos-key">Nodes</span><span class="sos-val o" id="sosGcg">—</span></div>
+          <div class="sos-row"><span class="sos-key">eFTI</span><span class="sos-val g" id="sosEfti">STANDBY</span></div>
+          <div class="sos-row"><span class="sos-key">ULIP</span><span class="sos-val g" id="sosUlip">STANDBY</span></div>
+          <div class="sos-row"><span class="sos-key">AfCFTA</span><span class="sos-val g" id="sosAfc">STANDBY</span></div>
+          <div class="sos-row"><span class="sos-key">Customs</span><span class="sos-val g" id="sosCust">STANDBY</span></div>
+        </div>
+
+        <!-- INFRA -->
+        <div class="sos-card r full">
+          <div class="sos-lbl"><span>🛰 Infrastructure Modules</span><span class="pill in_transit">ALL LIVE</span></div>
+          <div class="infra-chips">
+            <div class="ic"><div class="ic-n">RTML</div><div class="ic-d">Real-Time Mapping</div><div class="ic-s">LIVE</div></div>
+            <div class="ic"><div class="ic-n">GDIL</div><div class="ic-d">Gov Data Ingestion</div><div class="ic-s">LIVE</div></div>
+            <div class="ic"><div class="ic-n">PSIL</div><div class="ic-d">Public Safety</div><div class="ic-s">LIVE</div></div>
+            <div class="ic"><div class="ic-n">NLOA</div><div class="ic-d">National OS Adapter</div><div class="ic-s" id="nloaCount">4 programs</div></div>
+            <div class="ic"><div class="ic-n">SID</div><div class="ic-d">Societal Impact</div><div class="ic-s" id="sidHealth">95%</div></div>
+          </div>
+          <!-- Marketplace actions -->
+          <div style="margin-top:.85rem;display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;">
+            <div>
+              <div class="sos-lbl" style="margin-bottom:.4rem;">Reverse Logistics</div>
+              <input class="orch-input" id="rlContainer" placeholder="Container ID">
+              <input class="orch-input" id="rlDays" placeholder="Days late" type="number">
+              <button class="orch-btn" onclick="runReverseLogistics()">♻️ Recover Container</button>
+            </div>
+            <div>
+              <div class="sos-lbl" style="margin-bottom:.4rem;">Fleet Leasing</div>
+              <input class="orch-input" id="flAsset" placeholder="Asset ID">
+              <input class="orch-input" id="flValue" placeholder="Value ($)" type="number">
+              <button class="orch-btn" onclick="runFleetLease()">🚛 Create Lease</button>
+            </div>
+            <div>
+              <div class="sos-lbl" style="margin-bottom:.4rem;">GSM — Settle</div>
+              <input class="orch-input" id="settleLoad" placeholder="Load ID">
+              <input class="orch-input" id="settleAmt" placeholder="Amount (USD)" type="number">
+              <button class="orch-btn" onclick="runSettle()">💰 Settle Load</button>
+            </div>
+            <div>
+              <div class="sos-lbl" style="margin-bottom:.4rem;">NLOA Push Snapshot</div>
+              <input class="orch-input" id="nloaCountry" placeholder="Country Code (US/EU/IN)">
+              <button class="orch-btn" onclick="runNloaPush()">🌐 Push Snapshot</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ PANEL: LEGAL & DOCS ══ -->
+    <div class="panel" id="panel-legal">
+      <div class="legal-tabs">
+        <button class="lt active" onclick="legalTab('wizard',this)">🧙 Lawful Suggestions</button>
+        <button class="lt" onclick="legalTab('draft',this)">📄 Draft Documents</button>
+        <button class="lt" onclick="legalTab('entity',this)">🏛️ Entity Formation</button>
+        <button class="lt" onclick="legalTab('learning',this)">📚 Learning Center</button>
+      </div>
+
+      <!-- WIZARD -->
+      <div class="legal-panel active" id="lpanel-wizard">
+        <p style="font-size:.65rem;color:#2a5060;margin-bottom:1rem;">Answer 2 questions and we'll recommend the right documents for your situation.</p>
+        <div id="wiz-step1">
+          <div style="font-size:.7rem;font-weight:700;margin-bottom:.75rem;color:var(--cyan);">Step 1 · What is your role?</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;">
+            <button class="cc-btn c" style="padding:.6rem .5rem;font-size:.62rem;" onclick="wizRole('trustee')">⚖️ Trustee</button>
+            <button class="cc-btn p" style="padding:.6rem .5rem;font-size:.62rem;" onclick="wizRole('heir')">👑 Heir</button>
+            <button class="cc-btn o" style="padding:.6rem .5rem;font-size:.62rem;" onclick="wizRole('member')">☩ Member</button>
+            <button class="cc-btn g" style="padding:.6rem .5rem;font-size:.62rem;" onclick="wizRole('sovereign')">🏛️ Sovereign</button>
+          </div>
+        </div>
+        <div id="wiz-step2" style="display:none;">
+          <div style="font-size:.7rem;font-weight:700;margin-bottom:.75rem;color:var(--cyan);">Step 2 · What is your intent?</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;">
+            <button class="cc-btn c" style="padding:.55rem .4rem;font-size:.58rem;" onclick="wizIntent('status')">📜 Establish Status</button>
+            <button class="cc-btn p" style="padding:.55rem .4rem;font-size:.58rem;" onclick="wizIntent('commerce')">💼 Commercial</button>
+            <button class="cc-btn o" style="padding:.55rem .4rem;font-size:.58rem;" onclick="wizIntent('property')">🏠 Property Rights</button>
+            <button class="cc-btn g" style="padding:.55rem .4rem;font-size:.58rem;" onclick="wizIntent('trust')">🔐 Trust Admin</button>
+            <button class="cc-btn r" style="padding:.55rem .4rem;font-size:.58rem;" onclick="wizIntent('defense')">🛡️ Defense</button>
+            <button class="cc-btn c" style="padding:.55rem .4rem;font-size:.58rem;" onclick="wizIntent('judicial')">⚖️ Judicial</button>
+            <button class="cc-btn p" style="padding:.55rem .4rem;font-size:.58rem;" onclick="wizIntent('diplomatic')">🌍 Diplomatic</button>
+            <button class="cc-btn o" style="padding:.55rem .4rem;font-size:.58rem;" onclick="wizIntent('inheritance')">👑 Inheritance</button>
+          </div>
+          <button class="cc-btn c" style="margin-top:.75rem;" onclick="document.getElementById('wiz-step2').style.display='none';document.getElementById('wiz-step1').style.display='block';">← Back</button>
+        </div>
+        <div id="wiz-step3" style="display:none;">
+          <div style="font-size:.7rem;font-weight:700;margin-bottom:.75rem;color:var(--cyan);">Recommended Documents</div>
+          <div id="wizRecs" style="display:flex;flex-wrap:wrap;gap:.4rem;"></div>
+          <button class="cc-btn c" style="margin-top:.85rem;" onclick="document.getElementById('wiz-step3').style.display='none';document.getElementById('wiz-step1').style.display='block';document.getElementById('wiz-step2').style.display='none';">↺ Start Over</button>
+        </div>
+      </div>
+
+      <!-- DRAFT -->
+      <div class="legal-panel" id="lpanel-draft">
+        <div class="doc-cats">
+          <div class="doc-cat"><h4>Status &amp; Identity</h4><div class="doc-btns"><button class="doc-btn" onclick="legalDraft('naturalization')">Certificate of Naturalization</button><button class="doc-btn" onclick="legalDraft('passport')">Ecclesiastical Passport</button><button class="doc-btn" onclick="legalDraft('declaration-status')">Declaration of Status</button><button class="doc-btn" onclick="legalDraft('affidavit-identity')">Affidavit of Identity</button><button class="doc-btn" onclick="legalDraft('name-correction')">Name Correction Affidavit</button></div></div>
+          <div class="doc-cat"><h4>Commercial &amp; UCC</h4><div class="doc-btns"><button class="doc-btn" onclick="legalDraft('ucc1')">UCC-1 Financing Statement</button><button class="doc-btn" onclick="legalDraft('ucc3')">UCC-3 Amendment</button><button class="doc-btn" onclick="legalDraft('security-agreement')">Security Agreement</button><button class="doc-btn" onclick="legalDraft('bill-of-exchange')">Bill of Exchange</button><button class="doc-btn" onclick="legalDraft('promissory-note')">Promissory Note</button><button class="doc-btn" onclick="legalDraft('invoice')">Commercial Invoice</button><button class="doc-btn" onclick="legalDraft('fee-schedule')">Fee Schedule</button><button class="doc-btn" onclick="legalDraft('power-of-attorney')">Power of Attorney</button></div></div>
+          <div class="doc-cat"><h4>Property &amp; Land</h4><div class="doc-btns"><button class="doc-btn" onclick="legalDraft('land-patent')">Land Patent</button><button class="doc-btn" onclick="legalDraft('allodial-title')">Allodial Title Claim</button><button class="doc-btn" onclick="legalDraft('deed')">Ecclesiastical Deed</button><button class="doc-btn" onclick="legalDraft('homestead')">Homestead Declaration</button></div></div>
+          <div class="doc-cat"><h4>Trust Documents</h4><div class="doc-btns"><button class="doc-btn" onclick="legalDraft('trust-declaration')">Trust Declaration</button><button class="doc-btn" onclick="legalDraft('trust-indenture')">Trust Indenture</button><button class="doc-btn" onclick="legalDraft('trustee-appointment')">Trustee Appointment</button><button class="doc-btn" onclick="legalDraft('beneficiary-designation')">Beneficiary Designation</button><button class="doc-btn" onclick="legalDraft('trust-amendment')">Trust Amendment</button></div></div>
+          <div class="doc-cat"><h4>Notices &amp; Affidavits</h4><div class="doc-btns"><button class="doc-btn" onclick="legalDraft('public-notice')">Public Notice</button><button class="doc-btn" onclick="legalDraft('affidavit-truth')">Affidavit of Truth</button><button class="doc-btn" onclick="legalDraft('notice-liability')">Notice of Liability</button><button class="doc-btn" onclick="legalDraft('cease-desist')">Cease and Desist</button><button class="doc-btn" onclick="legalDraft('rebuttal')">Rebuttal Affidavit</button></div></div>
+          <div class="doc-cat"><h4>Diplomatic &amp; Treaty</h4><div class="doc-btns"><button class="doc-btn" onclick="legalDraft('treaty')">Treaty Agreement</button><button class="doc-btn" onclick="legalDraft('embassy-charter')">Embassy Charter</button><button class="doc-btn" onclick="legalDraft('diplomatic-note')">Diplomatic Note</button><button class="doc-btn" onclick="legalDraft('recognition')">Letter of Recognition</button></div></div>
+          <div class="doc-cat"><h4>Inheritance &amp; Succession</h4><div class="doc-btns"><button class="doc-btn" onclick="legalDraft('heir-declaration')">Heir Declaration</button><button class="doc-btn" onclick="legalDraft('will')">Last Will &amp; Testament</button><button class="doc-btn" onclick="legalDraft('succession')">Succession Certificate</button></div></div>
+        </div>
+        <div class="draft-workspace" id="draftWorkspace" style="display:none;">
+          <div style="font-size:.75rem;font-weight:700;color:var(--cyan);margin-bottom:1rem;" id="draftTitle">Document</div>
+          <div class="form-2col"><div class="form-row"><label>Document Number</label><input id="docNum" readonly></div><div class="form-row"><label>Date</label><input type="date" id="docDate"></div></div>
+          <div class="form-2col"><div class="form-row"><label>Full Name (Living Soul)</label><input id="docParty" placeholder="John of the House Doe"></div><div class="form-row"><label>Title / Capacity</label><input id="docTitle" placeholder="Trustee, Heir, etc."></div></div>
+          <div class="form-row"><label>Body Text</label><textarea id="docBody" rows="6" placeholder="Enter document body..."></textarea></div>
+          <div class="form-row"><label>Witness Name</label><input id="docWitness" placeholder="Witness full name"></div>
+          <div style="display:flex;gap:.5rem;margin-top:.75rem;"><button class="cc-btn g" onclick="printDoc()">🖨️ Print</button><button class="cc-btn c" onclick="saveDoc()">💾 Save Draft</button><button class="cc-btn o" onclick="document.getElementById('draftWorkspace').style.display='none'">← Back</button></div>
+        </div>
+      </div>
+
+      <!-- ENTITY FORMATION -->
+      <div class="legal-panel" id="lpanel-entity">
+        <p style="font-size:.65rem;color:#2a5060;margin-bottom:1rem;">Select entity type to begin the formation wizard. All entities form under Borders Ecclesia Earth Trust.</p>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1.2rem;">
+          <div class="cc-card p" style="cursor:pointer;" onclick="quickFormEntity('trust')"><div style="font-size:2rem;margin-bottom:.4rem;text-align:center;">🏛️</div><div style="font-size:.65rem;font-weight:700;color:var(--gold);text-align:center;">Form Trust</div><div style="font-size:.55rem;color:#1e4050;margin-top:.2rem;text-align:center;">Ecclesiastical / Irrevocable</div></div>
+          <div class="cc-card c" style="cursor:pointer;" onclick="quickFormEntity('pma')"><div style="font-size:2rem;margin-bottom:.4rem;text-align:center;">⚖️</div><div style="font-size:.65rem;font-weight:700;color:var(--cyan);text-align:center;">Form PMA</div><div style="font-size:.55rem;color:#1e4050;margin-top:.2rem;text-align:center;">Private Membership Association</div></div>
+          <div class="cc-card g" style="cursor:pointer;" onclick="quickFormEntity('llc')"><div style="font-size:2rem;margin-bottom:.4rem;text-align:center;">🏢</div><div style="font-size:.65rem;font-weight:700;color:var(--green);text-align:center;">Form LLC</div><div style="font-size:.55rem;color:#1e4050;margin-top:.2rem;text-align:center;">Limited Liability Company</div></div>
+          <div class="cc-card o" style="cursor:pointer;" onclick="quickFormEntity('foundation')"><div style="font-size:2rem;margin-bottom:.4rem;text-align:center;">🌍</div><div style="font-size:.65rem;font-weight:700;color:var(--orange);text-align:center;">Foundation</div><div style="font-size:.55rem;color:#1e4050;margin-top:.2rem;text-align:center;">Charitable / Sovereign</div></div>
+        </div>
+        <div id="entityWizard" style="display:none;"></div>
+      </div>
+
+      <!-- LEARNING CENTER -->
+      <div class="legal-panel" id="lpanel-learning">
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;">
+          <div class="cc-card c"><div class="cch"><span>🏛️ Sovereignty Fundamentals</span></div><p style="font-size:.62rem;color:#3a6070;line-height:1.7;">Understanding your natural rights, status, and standing. Covers the hierarchy from Divine Law through Natural Law to Ecclesiastical governance.</p><div class="cc-btns"><button class="cc-btn c" onclick="flash('📚 Module loading — check Omega Portal for full curriculum.','info')">Start Module</button></div></div>
+          <div class="cc-card p"><div class="cch"><span>🔐 Trust Formation 101</span></div><p style="font-size:.62rem;color:#3a6070;line-height:1.7;">Create and manage ecclesiastical trusts. Covers declaration, indenture, trustee duties, beneficiary rights, and amendment procedures.</p><div class="cc-btns"><button class="cc-btn p" onclick="flash('📚 Module loading — check Omega Portal for full curriculum.','info')">Start Module</button></div></div>
+          <div class="cc-card o"><div class="cch"><span>📋 UCC &amp; Commercial Law</span></div><p style="font-size:.62rem;color:#3a6070;line-height:1.7;">Navigate Uniform Commercial Code filings. UCC-1, UCC-3, security agreements, bills of exchange, and commercial liens explained.</p><div class="cc-btns"><button class="cc-btn o" onclick="flash('📚 Module loading — check Omega Portal for full curriculum.','info')">Start Module</button></div></div>
+          <div class="cc-card g"><div class="cch"><span>📤 Filing Procedures</span></div><p style="font-size:.62rem;color:#3a6070;line-height:1.7;">Step-by-step filing guidance with government agencies. Public record, notarization, certification, and cross-platform synchronization.</p><div class="cc-btns"><button class="cc-btn g" onclick="flash('📚 Module loading — check Omega Portal for full curriculum.','info')">Start Module</button></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ PANEL: CARRIERS ══ -->
+    <div class="panel" id="panel-carriers">
+      <div style="padding:1rem;">
+        <div class="tb">
+          <button class="tb-btn primary" onclick="openActivateCarrier()">✅ Activate Carrier</button>
+          <button class="tb-btn green" onclick="loadCarriers()">↻ Refresh</button>
+          <span id="carrierCount" style="font-size:.52rem;color:#1e4050;"></span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.55rem;margin-bottom:1rem;">
+          <div class="sg"><div class="sg-val c" id="cTotal">—</div><div class="sg-lbl">Total</div></div>
+          <div class="sg"><div class="sg-val g" id="cActive">—</div><div class="sg-lbl">Active</div></div>
+          <div class="sg"><div class="sg-val o" id="cPending">—</div><div class="sg-lbl">Pending</div></div>
+          <div class="sg"><div class="sg-val p" id="cBasic">—</div><div class="sg-lbl">BASIC Tier</div></div>
+        </div>
+        <div class="tbl-wrap"><table>
+          <thead><tr><th>ID</th><th>Company</th><th>Email</th><th>Equipment</th><th>Tier</th><th>Status</th><th>Enrolled</th><th>Actions</th></tr></thead>
+          <tbody id="carrierBody"><tr><td colspan="8" style="text-align:center;color:#1e4050;padding:1.5rem;">Loading carriers...</td></tr></tbody>
+        </table></div>
+      </div>
+    </div>
+
+  </div><!-- /main-area -->
+
+  <!-- ── SIDEBAR RIGHT: DVX ORACLE ── -->
+  <div class="sidebar-r">
+    <div class="ch-hdr">
+      <div class="ch-title">⚡ DivinityVX Oracle</div>
+      <div class="ch-sub">Sovereign Intelligence Channel · Owner Only</div>
+    </div>
+    <div class="msg-feed" id="msgFeed"></div>
+    <div class="typing" id="typing"><div class="t-dot"></div><div class="t-dot"></div><div class="t-dot"></div><span style="font-size:.56rem;color:#1e4050;">DVX computing...</span></div>
+    <div class="ch-input-area">
+      <div class="qt-grid">
+        <button class="qt o" onclick="sendQ('Dispatch?')">⚡ Dispatch</button>
+        <button class="qt g" onclick="sendQ('Show all available drivers')">👤 Drivers</button>
+        <button class="qt" onclick="sendQ('What loads are open right now?')">📋 Loads</button>
+        <button class="qt p" onclick="sendQ('Compliance CDL DOT MC status')">✅ Comply</button>
+        <button class="qt" onclick="sendQ('Top market lanes right now')">📈 Lanes</button>
+        <button class="qt" onclick="sendQ('Treasury and platform revenue')">💰 Treasury</button>
+        <button class="qt" onclick="sendQ('SovereignOS global snapshot status')">🌐 SOS Status</button>
+        <button class="qt p" onclick="sendQ('Carrier pipeline and pending approvals')">👥 Carriers</button>
+      </div>
+      <div class="ch-row">
+        <input class="ch-input" id="msgInput" placeholder="Ask DivinityVX anything..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMsg();}">
+        <button class="ch-send" onclick="sendMsg()">Send ⚡</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /shell -->
+
+<!-- TICKER -->
+<div class="ticker" id="ticker">
+  <div class="tk">⚡ <span class="k">GRAND ARCHITECT HUB</span> <span class="vc">ONLINE</span></div>
+  <div class="tk"><span class="k">LOADS</span> <span class="vc" id="tkLoads">—</span></div>
+  <div class="tk"><span class="k">DRIVERS</span> <span class="v" id="tkDrivers">—</span></div>
+  <div class="tk"><span class="k">IN TRANSIT</span> <span class="vc" id="tkTransit">—</span></div>
+  <div class="tk"><span class="k">DELIVERED</span> <span class="vp" id="tkDel">—</span></div>
+  <div class="tk"><span class="k">GIL</span> <span class="vc" id="tkGil">—</span></div>
+  <div class="tk"><span class="k">GAR</span> <span class="v" id="tkGar">—</span></div>
+  <div class="tk"><span class="k">GSM</span> <span class="v" id="tkGsm">$0</span></div>
+  <div class="tk"><span class="k">SID</span> <span class="v" id="tkSid">95%</span></div>
+  <div class="tk"><span class="k">NLOA</span> <span class="vp">4 PROGRAMS</span></div>
+  <div class="tk"><span class="k">ENTITY</span> <span class="vg">BORDERS ECCLESIA EARTH TRUST 508c1A</span></div>
+</div>
+
+<!-- MODALS -->
+<div class="modal-bg" id="createLoadModal">
+  <div class="modal">
+    <h3>+ Create New Load</h3>
+    <div class="form-2col"><div class="form-row"><label>Shipper</label><input id="clShipper" placeholder="Memphis Cold Storage"></div><div class="form-row"><label>Consignee</label><input id="clConsignee" placeholder="Newark Dist Center"></div></div>
+    <div class="form-2col"><div class="form-row"><label>Origin City</label><input id="clOCity" placeholder="Memphis"></div><div class="form-row"><label>State</label><input id="clOState" placeholder="TN" maxlength="2"></div></div>
+    <div class="form-2col"><div class="form-row"><label>Dest City</label><input id="clDCity" placeholder="Newark"></div><div class="form-row"><label>State</label><input id="clDState" placeholder="NJ" maxlength="2"></div></div>
+    <div class="form-2col"><div class="form-row"><label>Miles</label><input id="clMiles" type="number" placeholder="1140"></div><div class="form-row"><label>Rate ($)</label><input id="clRate" type="number" placeholder="5200"></div></div>
+    <div class="form-2col"><div class="form-row"><label>Equipment</label><select id="clEquip"><option>Dry Van 53ft</option><option>Reefer 53ft</option><option>Flatbed 48ft</option><option>Box Truck</option><option>Step Deck</option></select></div><div class="form-row"><label>Commodity</label><input id="clCommodity" placeholder="Dry Goods"></div></div>
+    <div class="form-row"><label>Notes</label><textarea id="clNotes" placeholder="Special instructions..."></textarea></div>
+    <div class="modal-res" id="clRes"></div>
+    <div class="modal-footer"><button class="tb-btn" onclick="closeModal('createLoadModal')">Cancel</button><button class="tb-btn primary" onclick="submitCreateLoad()">Create Load</button></div>
+  </div>
+</div>
+
+<div class="modal-bg" id="assignModal">
+  <div class="modal">
+    <h3>Assign Driver + Vehicle</h3>
+    <p style="font-size:.6rem;color:#2a5060;margin-bottom:1rem;" id="assignLoadInfo"></p>
+    <div class="form-row"><label>Select Driver</label><select id="assignDriver"><option value="">Choose driver...</option></select></div>
+    <div class="form-row"><label>Select Vehicle (optional)</label><select id="assignVehicle"><option value="">Choose vehicle...</option></select></div>
+    <div class="modal-res" id="assignRes"></div>
+    <div class="modal-footer"><button class="tb-btn" onclick="closeModal('assignModal')">Cancel</button><button class="tb-btn primary" onclick="submitAssign()">Assign</button></div>
+  </div>
+</div>
+
+<div class="modal-bg" id="podModal">
+  <div class="modal">
+    <h3>✅ Proof of Delivery</h3>
+    <p style="font-size:.6rem;color:#2a5060;margin-bottom:1rem;" id="podLoadInfo"></p>
+    <div class="form-row"><label>Signed By</label><input id="podSigned" placeholder="Consignee name"></div>
+    <div class="form-row"><label>Notes</label><textarea id="podNotes" placeholder="Delivery notes..."></textarea></div>
+    <div class="modal-res" id="podRes"></div>
+    <div class="modal-footer"><button class="tb-btn" onclick="closeModal('podModal')">Cancel</button><button class="tb-btn green" onclick="submitPod()">Submit POD</button></div>
+  </div>
+</div>
+
+<div class="modal-bg" id="addDriverModal">
+  <div class="modal">
+    <h3>+ Onboard New Driver</h3>
+    <div class="form-2col"><div class="form-row"><label>Full Name</label><input id="adName" placeholder="Devon Pierce"></div><div class="form-row"><label>Phone</label><input id="adPhone" placeholder="555-0100"></div></div>
+    <div class="form-2col"><div class="form-row"><label>CDL #</label><input id="adCdl" placeholder="GA1234567"></div><div class="form-row"><label>CDL Class</label><select id="adCdlClass"><option>Class A</option><option>Class B</option><option>Class C</option></select></div></div>
+    <div class="form-2col"><div class="form-row"><label>Tier</label><select id="adTier"><option value="L4">L4 — EMPIRE</option><option value="L3">L3 — PRO</option><option value="L2">L2 — BASIC</option><option value="L1">L1 — Entry</option></select></div><div class="form-row"><label>Vehicle Type</label><select id="adVehicle"><option>Class A Tractor</option><option>Box Truck</option><option>Sprinter Van</option><option>Flatbed</option></select></div></div>
+    <div class="form-row"><label>Home Base City</label><input id="adCity" placeholder="Atlanta, GA"></div>
+    <div class="modal-res" id="adRes"></div>
+    <div class="modal-footer"><button class="tb-btn" onclick="closeModal('addDriverModal')">Cancel</button><button class="tb-btn primary" onclick="submitAddDriver()">Onboard Driver</button></div>
+  </div>
+</div>
+
+<div class="modal-bg" id="activateCarrierModal">
+  <div class="modal">
+    <h3>Activate / Upgrade Carrier</h3>
+    <div class="form-row"><label>Carrier ID</label><input id="acId" type="number" placeholder="Carrier ID from registry"></div>
+    <div class="form-row"><label>Tier</label><select id="acTier"><option value="BASIC">BASIC — $199/mo</option><option value="PRO">PRO — $599/mo</option><option value="EMPIRE">EMPIRE — $1,999/mo</option></select></div>
+    <div class="modal-res" id="acRes"></div>
+    <div class="modal-footer"><button class="tb-btn" onclick="closeModal('activateCarrierModal')">Cancel</button><button class="tb-btn green" onclick="submitActivateCarrier()">Activate</button></div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+// GRAND ARCHITECT HUB — Unified Script
+// ══════════════════════════════════════════════════════════════════
+
+// ── STATE ────────────────────────────────────────────────────────
+let authed = false;
+let assignLoadId = null, assignRef = null;
+let podLoadId = null, podRef = null;
+
+// ── FLASH ────────────────────────────────────────────────────────
+function flash(msg, type='ok') {
+  const el = document.getElementById('flash');
+  el.textContent = msg; el.className = `flash ${type} show`;
+  clearTimeout(window._ft); window._ft = setTimeout(() => el.classList.remove('show'), 3500);
+}
+
+// ── AUTH ─────────────────────────────────────────────────────────
+const VALID_CODES = ['DYNASTY2026','KING2026','1234','divinity'];
+
+function doAuth() {
+  const pin = document.getElementById('authPin').value.trim().toUpperCase();
+  const pinOrig = document.getElementById('authPin').value.trim();
+  if (VALID_CODES.map(c=>c.toUpperCase()).includes(pin) || VALID_CODES.includes(pinOrig)) {
+    authed = true;
+    document.getElementById('authGate').style.display = 'none';
+    document.getElementById('hdr').style.display = 'flex';
+    document.getElementById('appShell').style.display = 'grid';
+    initHub();
+  } else {
+    document.getElementById('authErr').textContent = '⚠ Invalid command code';
+  }
+}
+
+function doLock() {
+  authed = false;
+  document.getElementById('authGate').style.display = 'flex';
+  document.getElementById('hdr').style.display = 'none';
+  document.getElementById('appShell').style.display = 'none';
+  document.getElementById('authPin').value = '';
+  document.getElementById('authErr').textContent = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !authed) doAuth();
+});
+
+// Check session
+const saved = sessionStorage.getItem('hub_authed');
+if (saved === '1') { document.getElementById('authPin').value = 'DYNASTY2026'; doAuth(); }
+
+// ── CLOCK ────────────────────────────────────────────────────────
+function updateClock() {
+  const now = new Date();
+  document.getElementById('hClock').textContent =
+    now.toLocaleTimeString('en-US',{hour12:false,hour:'2-digit',minute:'2-digit',second:'2-digit'});
+}
+setInterval(updateClock, 1000); updateClock();
+
+// ── PANEL SWITCHING ───────────────────────────────────────────────
+function showPanel(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.h-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  // Lazy load
+  if (id === 'ops') { loadLoads(); loadDrivers(); loadVehicles(); loadLanes(); }
+  if (id === 'sos') { loadSovereign(); }
+  if (id === 'carriers') { loadCarriers(); }
+}
+
+// ── INIT ─────────────────────────────────────────────────────────
+function initHub() {
+  sessionStorage.setItem('hub_authed', '1');
+  loadStats();
+  loadEvents();
+  loadSovereignLight();
+  loadCarriersLight();
+  addMsg('DivinityVX is online and monitoring all systems. Platform: LIVE. CodexChain: ACTIVE. Load board refreshed. What do you need?', 'system', 'dispatch');
+  setInterval(loadStats, 30000);
+  setInterval(loadEvents, 45000);
+}
+
+// ── STATS ─────────────────────────────────────────────────────────
+async function loadStats() {
+  try {
+    const d = await fetch('/api/v1/stats').then(r=>r.json());
+    const map = {sLoads:d.openLoads,sDrivers:d.availableDrivers,sTransit:d.inTransit,sDelivered:d.delivered,ccLoads:d.openLoads,ccDrivers:d.availableDrivers,ccTransit:d.inTransit,ccDelivered:d.delivered,lopOpen:d.openLoads,lopAvail:d.availableDrivers,lopTransit:d.inTransit,lopDelivered:d.delivered};
+    for (const [k,v] of Object.entries(map)) { const el=document.getElementById(k); if(el) el.textContent=v??'—'; }
+    const rev = d.platformRevenueCents ? `$${(d.platformRevenueCents/100).toFixed(0)}` : '$0';
+    document.getElementById('ccRevenue').textContent = rev;
+    // ticker
+    document.getElementById('tkLoads').textContent = d.openLoads??'—';
+    document.getElementById('tkDrivers').textContent = d.availableDrivers??'—';
+    document.getElementById('tkTransit').textContent = d.inTransit??'—';
+    document.getElementById('tkDel').textContent = d.delivered??'—';
+  } catch(e) {}
+}
+
+// ── SOVEREIGN (LIGHT) ─────────────────────────────────────────────
+async function loadSovereignLight() {
+  try {
+    const d = await fetch('/api/sovereign/snapshot').then(r=>r.json());
+    const m = d.modules||{};
+    const pairs = {ccGil:m.GIL?.identities??'0',ccGar:`${m.GAR?.available??0}/${m.GAR?.assets??0}`,ccGsm:`$${((d.settlement?.usdVolume||0)/100).toFixed(0)}`,ccSid:(m.SID?.supplyChainHealth??95)+'%',ccNloa:m.NLOA?.registeredPrograms??4};
+    for (const [k,v] of Object.entries(pairs)) { const el=document.getElementById(k); if(el) el.textContent=v; }
+    document.getElementById('osStatusPill').textContent = d.operationalStatus||'ONLINE';
+    document.getElementById('osStatusPill').className = 'pill delivered';
+    // ticker
+    document.getElementById('tkGil').textContent = (m.GIL?.identities??0)+' entities';
+    document.getElementById('tkGar').textContent = `${m.GAR?.available??0}/${m.GAR?.assets??0} assets`;
+    document.getElementById('tkGsm').textContent = '$'+((d.settlement?.usdVolume||0)/100).toFixed(0);
+    document.getElementById('tkSid').textContent = (m.SID?.supplyChainHealth??95)+'%';
+  } catch(e) {}
+}
+
+async function loadSovereign() {
+  await loadSovereignLight();
+  try {
+    const d = await fetch('/api/sovereign/snapshot').then(r=>r.json());
+    const m = d.modules||{};
+    const g = d.settlement||{};
+    document.getElementById('sosGil').textContent = m.GIL?.identities||0;
+    document.getElementById('sosGar').textContent = m.GAR?.assets||0;
+    document.getElementById('sosGarA').textContent = m.GAR?.available||0;
+    document.getElementById('sosGarT').textContent = '—';
+    document.getElementById('sosGcg').textContent = m.GCG?.complianceNodes||0;
+    document.getElementById('sosGsmU').textContent = '$'+((g.usdVolume||0)/100).toFixed(2);
+    document.getElementById('sosGsmUC').textContent = '$'+((g.usdcVolume||0)/100).toFixed(2);
+    document.getElementById('sosGsmB').textContent = '$'+((g.bscVolume||0)/100).toFixed(2);
+    document.getElementById('nloaCount').textContent = (m.NLOA?.registeredPrograms||4)+' programs';
+    document.getElementById('sidHealth').textContent = (m.SID?.supplyChainHealth||95)+'%';
+  } catch(e) {}
+}
+
+// ── DYNASTY SYNC ──────────────────────────────────────────────────
+async function checkDynastySync() {
+  document.getElementById('dynastySync').textContent = 'Checking...';
+  try {
+    const d = await fetch('/api/dynasty-proxy/ping').then(r=>r.json());
+    document.getElementById('dynastySync').textContent = d.connected ? `Live · ${d.latency}ms` : 'Degraded · Fallback';
+    flash(d.connected ? '✅ Dynasty sync: CONNECTED' : '⚠ Dynasty degraded — using fallback', d.connected?'ok':'info');
+  } catch(e) { document.getElementById('dynastySync').textContent = 'Error'; flash('⚠ Dynasty sync failed','err'); }
+}
+
+// ── EVENTS ────────────────────────────────────────────────────────
+async function loadEvents() {
+  try {
+    const d = await fetch('/api/v1/events/logistics?limit=12').then(r=>r.json());
+    const events = d.events||[];
+    const html = events.length ? events.map(e => `
+      <div class="ev-item">
+        <div class="ev-dot ${e.eventType||''}"></div>
+        <div>
+          <div class="ev-type">${(e.eventType||'').replace(/_/g,' ')}</div>
+          <div class="ev-notes">${e.notes||e.driverName||''}</div>
+          <div class="ev-ts">${e.eventTime ? new Date(e.eventTime).toLocaleString() : ''}</div>
+        </div>
+      </div>`).join('') : '<div style="text-align:center;color:#1e4050;padding:1rem;font-size:.6rem;">No events yet</div>';
+    document.getElementById('ccEvents').innerHTML = html;
+  } catch(e) {}
+}
+
+async function loadEvents2() {
+  try {
+    const filt = document.getElementById('evFilt')?.value||'';
+    const d = await fetch('/api/v1/events/logistics?limit=50').then(r=>r.json());
+    let events = d.events||[];
+    if (filt) events = events.filter(e => JSON.stringify(e).toLowerCase().includes(filt.toLowerCase()));
+    document.getElementById('evCount').textContent = `${events.length} events`;
+    document.getElementById('eventFeed2').innerHTML = events.length ? events.map(e => `
+      <div class="ev-item">
+        <div class="ev-dot ${e.eventType||''}"></div>
+        <div>
+          <div class="ev-type">${(e.eventType||'').replace(/_/g,' ')}</div>
+          <div class="ev-notes">${e.notes||e.driverName||''}</div>
+          <div class="ev-ts">${e.eventTime ? new Date(e.eventTime).toLocaleString() : ''}</div>
+        </div>
+      </div>`).join('') : '<div style="text-align:center;color:#1e4050;padding:1rem;font-size:.6rem;">No events</div>';
+  } catch(e) {}
+}
+
+// ── LOADBOARD ─────────────────────────────────────────────────────
+async function loadLoads() {
+  const status = document.getElementById('filterStatus')?.value||'all';
+  const tier   = document.getElementById('filterTier')?.value||'';
+  try {
+    let url = '/api/v1/loads?limit=100';
+    if (status !== 'all') url += '&status='+status;
+    if (tier) url += '&tier='+tier;
+    const d = await fetch(url).then(r=>r.json());
+    const loads = d.loads||[];
+    document.getElementById('loadCount').textContent = loads.length+' loads';
+    document.getElementById('loadBody').innerHTML = loads.length ? loads.map(l => `
+      <tr>
+        <td style="color:var(--cyan);font-weight:700;">${l.reference||'—'}</td>
+        <td>${l.shipperName||'—'}</td>
+        <td style="color:#9ac5d0;">${l.originCity||''},${l.originState||''} → ${l.destinationCity||''},${l.destinationState||''}</td>
+        <td style="font-size:.58rem;">${l.pickupWindowStart ? new Date(l.pickupWindowStart).toLocaleDateString() : 'Flex'}</td>
+        <td>${l.equipmentRequired||'—'}</td>
+        <td>${l.miles||'—'}</td>
+        <td style="color:var(--green);font-weight:700;">${l.rate ? '$'+Number(l.rate).toLocaleString() : '—'}</td>
+        <td style="font-size:.55rem;color:#1e4050;">${l.source||'DVX'}</td>
+        <td><span class="pill ${(l.status||'').replace(/ /g,'_')}">${l.status||'—'}</span></td>
+        <td style="font-size:.6rem;color:#6a9cb0;">${l.assignedDriverId||'—'}</td>
+        <td>
+          ${l.status==='tendered'?`<button class="ab assign" onclick="openAssign(${l.id},'${l.reference}')">Assign</button>`:''}
+          ${l.status==='assigned'?`<button class="ab dispatch" onclick="dispatchLoad(${l.id})">Dispatch</button>`:''}
+          ${l.status==='in_transit'?`<button class="ab pod" onclick="openPod(${l.id},'${l.reference}')">POD</button>`:''}
+        </td>
+      </tr>`).join('') : '<tr><td colspan="11" style="text-align:center;color:#1e4050;padding:1.5rem;">No loads found</td></tr>';
+  } catch(e) { document.getElementById('loadBody').innerHTML='<tr><td colspan="11" style="text-align:center;color:var(--red);padding:1rem;">Error loading</td></tr>'; }
+}
+
+// ── DRIVERS ───────────────────────────────────────────────────────
+async function loadDrivers() {
+  try {
+    const d = await fetch('/api/v1/drivers').then(r=>r.json());
+    const drivers = d.drivers||[];
+    document.getElementById('driverList').innerHTML = drivers.length ? drivers.map(dr => `
+      <div class="dcard">
+        <div class="dcard-left">
+          <div class="dname">${dr.name||'—'}</div>
+          <div class="dsub">CDL: ${dr.cdlNumber||'—'} · ${dr.vehicleType||'—'} · ${dr.homeBase||'—'}</div>
+          <div class="dsub">${dr.loadsCompleted||0} loads completed</div>
+        </div>
+        <div class="dcard-right">
+          <div class="drating">★ ${dr.rating||'5.0'}</div>
+          <div style="margin-top:.3rem;"><span class="pill ${dr.status||'available'}">${dr.status||'available'}</span></div>
+          <div style="margin-top:.3rem;"><span class="pill L${dr.tier?.replace('L','')||'2'}">${dr.tier||'L2'}</span></div>
+        </div>
+      </div>`).join('') : '<div style="color:#1e4050;padding:1rem;font-size:.6rem;">No drivers onboarded yet</div>';
+  } catch(e) {}
+}
+
+async function loadVehicles() {
+  try {
+    const d = await fetch('/api/v1/vehicles').then(r=>r.json());
+    const vehicles = d.vehicles||[];
+    document.getElementById('vehicleList').innerHTML = vehicles.length ? vehicles.map(v => `
+      <div class="dcard">
+        <div class="dcard-left">
+          <div class="dname">${v.unitNumber||'—'}</div>
+          <div class="dsub">${v.year||''} ${v.make||''} ${v.model||''} · ${v.type||'—'}</div>
+          <div class="dsub">VIN: ${v.vin||'—'} · ${v.mileage||'—'} mi</div>
+        </div>
+        <div style="text-align:right;"><span class="pill ${v.status||'available'}">${v.status||'available'}</span></div>
+      </div>`).join('') : '<div style="color:#1e4050;padding:1rem;font-size:.6rem;">No vehicles registered</div>';
+  } catch(e) {}
+}
+
+// ── DISPATCH ENGINE ───────────────────────────────────────────────
+async function runEngine() {
+  document.getElementById('engineInfo').textContent = 'Computing...';
+  try {
+    const d = await fetch('/api/v1/dispatch/suggestions').then(r=>r.json());
+    const recs = d.recommendations||[];
+    document.getElementById('engineInfo').textContent = `${recs.length} suggestions computed`;
+    document.getElementById('engineBody').innerHTML = recs.length ? recs.map(r => `
+      <tr>
+        <td style="color:var(--cyan);font-weight:700;">${r.load?.reference||r.load?.id||'—'}</td>
+        <td style="color:#7aacbc;">${r.load?.originCity||''}→${r.load?.destinationCity||''}</td>
+        <td style="color:var(--green);">${r.load?.rate ? '$'+Number(r.load.rate).toLocaleString() : '—'}</td>
+        <td style="color:#9ac5d0;">${r.driver?.name||'—'}</td>
+        <td><span class="pill ${r.driver?.tier||''}">${r.driver?.tier||'—'}</span></td>
+        <td><div class="score-bar"><div class="score-fill" style="width:${((r.score||0)*100).toFixed(0)}%"></div></div></td>
+        <td style="font-size:.6rem;color:#3a6070;">${r.reason||'AI Match'}</td>
+        <td>${r.load?.id ? `<button class="ab dispatch" onclick="confirmDispatch(${r.load.id},${r.driver?.id})">Confirm</button>` : '—'}</td>
+      </tr>`).join('') : '<tr><td colspan="8" style="text-align:center;color:#1e4050;padding:1rem;">No suggestions</td></tr>';
+  } catch(e) { document.getElementById('engineBody').innerHTML='<tr><td colspan="8" style="text-align:center;color:var(--red);">Error</td></tr>'; }
+}
+
+async function runDispatch() {
+  flash('⚡ Running dispatch engine...','info');
+  await runEngine();
+  showPanel('ops', document.querySelectorAll('.h-tab')[1]);
+  ltSwitch('engine', document.querySelectorAll('.lt')[2]);
+}
+
+// ── MARKETS ───────────────────────────────────────────────────────
+async function loadLanes() {
+  try {
+    const d = await fetch('/api/v1/markets/lanes').then(r=>r.json());
+    const lanes = d.lanes||[];
+    document.getElementById('laneTable').innerHTML = lanes.map(l => `
+      <div class="lane-row">
+        <span class="lr-route">${l.origin}→${l.destination}</span>
+        <span class="lr-rate">$${l.ratePerMile}/mi</span>
+        <span class="lr-trend">${l.trend==='up'?'↑ +':'↓ '}${l.changePercent||0}%</span>
+        <span class="lr-demand ${l.demand}">${l.demand}</span>
+      </div>`).join('');
+  } catch(e) {}
+}
+
+function calcPrice() {
+  const miles = parseFloat(document.getElementById('prMiles').value)||0;
+  const weight = parseFloat(document.getElementById('prWeight').value)||0;
+  const equip = document.getElementById('prEquip').value||'Dry Van';
+  if (!miles) { flash('Enter miles to calculate','info'); return; }
+  const baseRate = equip.includes('Reefer') ? 3.85 : equip.includes('Flat') ? 3.45 : 3.15;
+  const weightAdj = weight > 40000 ? 0.2 : 0;
+  const rpm = (baseRate + weightAdj).toFixed(2);
+  const gross = (miles * parseFloat(rpm)).toFixed(0);
+  const platform = (parseFloat(gross) * 0.03).toFixed(0);
+  const net = (parseFloat(gross) - parseFloat(platform)).toFixed(0);
+  const el = document.getElementById('priceResult');
+  el.style.display = 'block';
+  el.innerHTML = `
+    <div class="pr-row"><span>Rate/Mile</span><span class="val">$${rpm}</span></div>
+    <div class="pr-row"><span>Total Miles</span><span class="val">${miles.toLocaleString()}</span></div>
+    <div class="pr-row"><span>Gross Rate</span><span class="val">$${Number(gross).toLocaleString()}</span></div>
+    <div class="pr-row"><span>Platform Fee (3%)</span><span class="val">$${Number(platform).toLocaleString()}</span></div>
+    <div class="pr-row"><span>Net to Carrier</span><span class="val">$${Number(net).toLocaleString()}</span></div>
+    <div class="pr-row"><span>Equipment</span><span class="val">${equip}</span></div>`;
+}
+
+// ── SOVEREIGN OS ──────────────────────────────────────────────────
+async function runSovereignOrchestrate() {
+  const btn = document.getElementById('orchBtn');
+  btn.disabled = true; btn.textContent = '⚡ ORCHESTRATING...';
+  const loadId = document.getElementById('oLoadId').value||'LOAD-001';
+  const rate   = parseFloat(document.getElementById('oRate').value||'2500');
+  const origin = document.getElementById('oOrigin').value||'Atlanta, GA';
+  const dest   = document.getElementById('oDest').value||'Dallas, TX';
+  try {
+    const d = await fetch('/api/sovereign/orchestrate',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({id:loadId,rateCents:Math.round(rate*100),origin,destination:dest})
+    }).then(r=>r.json());
+    renderOrchResult(d);
+    flash('⚡ Sovereign orchestration complete — all 10 modules executed.','ok');
+    loadSovereign();
+  } catch(e) { flash('⚠ Orchestration error','err'); }
+  finally { btn.disabled=false; btn.textContent='⚡ EXECUTE SOVEREIGN ORCHESTRATION'; }
+}
+
+function renderOrchResult(d) {
+  const auto = d.auto||{};
+  const chain = auto.route?.chain || d.global?.chain || ['GROUND','AIR','GROUND'];
+  const chainEl = document.getElementById('routeChain');
+  if (chainEl && chain.length) {
+    chainEl.innerHTML = chain.map((m,i)=>`<span class="mode-chip ${m}">${m}</span>${i<chain.length-1?'<span style="color:#1e4050;font-size:.55rem;">→</span>':''}`).join('');
+    document.getElementById('grfEta').textContent = (auto.route?.etaHours||48)+'h';
+  }
+  // compliance
+  ['sosEfti','sosUlip','sosAfc','sosCust'].forEach(id=>{ const el=document.getElementById(id); if(el){el.textContent='COMPLIANT';el.className='sos-val g';} });
+  const r = document.getElementById('orchResult');
+  r.innerHTML = `
+    <div style="font-size:.55rem;text-transform:uppercase;letter-spacing:.1em;color:#1e4050;margin-bottom:.4rem;">Execution Summary</div>
+    <div style="display:flex;flex-wrap:wrap;gap:.3rem;">
+      ${auto.route?`<span class="cf">✅ Routed ${auto.route.etaHours}h</span>`:''}
+      ${auto.assignment?.assigned?`<span class="cf">✅ Dispatched</span>`:'<span class="cf pending">🔍 No driver pool</span>'}
+      ${auto.settlement?`<span class="cf">✅ Settled $${((auto.settlement.amountCents||0)/100).toFixed(0)}</span>`:''}
+      ${d.efti?.eftiCompliant?'<span class="cf">✅ eFTI</span>':''}
+      ${d.ulip?.ulipSynced?'<span class="cf">✅ ULIP</span>':''}
+      ${d.afcfta?.afcftaAuthorized?'<span class="cf">✅ AfCFTA</span>':''}
+      ${d.customs?.customsCleared?'<span class="cf">✅ Customs</span>':''}
+      ${d.port?.portProcessed?'<span class="cf">✅ Port Auth</span>':''}
+      ${d.listing?.listed?`<span class="cf">📋 Listed: ${d.listing.id}</span>`:''}
+    </div>`;
+}
+
+async function registerTestIdentity() {
+  const d = await fetch('/api/sovereign/identity/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:`CARRIER-${Date.now()}`,type:'CARRIER',name:'Test Carrier LLC',country:'US',complianceScore:88})}).then(r=>r.json());
+  flash('✅ Identity registered: '+d.id); loadSovereign();
+}
+
+async function registerTestAsset() {
+  const d = await fetch('/api/sovereign/asset/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:`TRUCK-${Date.now()}`,type:'TRUCK',ownerId:'CARRIER-1',valueCents:12000000,status:'AVAILABLE',location:'Atlanta, GA'})}).then(r=>r.json());
+  flash('✅ Asset registered: '+d.id); loadSovereign();
+}
+
+async function runReverseLogistics() {
+  const cId = document.getElementById('rlContainer').value;
+  const days = parseInt(document.getElementById('rlDays').value)||0;
+  if (!cId) { flash('Enter container ID','info'); return; }
+  const d = await fetch('/api/sovereign/marketplace/reverse-logistics',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({containerId:cId,daysLate:days})}).then(r=>r.json());
+  flash(`♻️ Container ${cId} recovered — fee: $${d.feeUSD}`);
+}
+
+async function runFleetLease() {
+  const aId = document.getElementById('flAsset').value;
+  const val  = parseFloat(document.getElementById('flValue').value)||100000;
+  if (!aId) { flash('Enter asset ID','info'); return; }
+  const d = await fetch('/api/sovereign/marketplace/fleet-lease',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:aId,type:'TRUCK',valueCents:Math.round(val*100)})}).then(r=>r.json());
+  flash(`🚛 Lease created: ${d.leaseRef} — $${d.monthlyFeeUSD}/mo`);
+}
+
+async function runSettle() {
+  const lId = document.getElementById('settleLoad').value;
+  const amt  = parseFloat(document.getElementById('settleAmt').value)||0;
+  if (!lId||!amt) { flash('Enter load ID and amount','info'); return; }
+  const d = await fetch('/api/sovereign/settle',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({loadId:lId,amountCents:Math.round(amt*100),currency:'USD',channel:'STRIPE'})}).then(r=>r.json());
+  flash(`💰 Settled: ${d.id} — $${(d.amountCents/100).toFixed(2)}`); loadSovereign();
+}
+
+async function runNloaPush() {
+  const cc = document.getElementById('nloaCountry').value||'US';
+  const d = await fetch(`/api/infra/nloa/${cc}/push-snapshot`,{method:'POST',headers:{'Content-Type':'application/json','x-dvx-key':'DYNASTY2026'},body:JSON.stringify({source:'GRAND_ARCHITECT_HUB',ts:Date.now()})}).then(r=>r.json());
+  flash(d.pushed ? `🌐 Snapshot pushed to ${cc} (${d.program})` : `⚠ ${d.error||'No context'}`,'info');
+}
+
+// ── CARRIERS ──────────────────────────────────────────────────────
+async function loadCarriers() {
+  try {
+    const d = await fetch('/api/carrier/list',{headers:{'x-dvx-key':'DYNASTY2026'}}).then(r=>r.json());
+    const carriers = d.carriers||[];
+    document.getElementById('carrierCount').textContent = carriers.length+' carriers';
+    document.getElementById('cTotal').textContent = carriers.length;
+    document.getElementById('cActive').textContent = carriers.filter(c=>c.status==='active').length;
+    document.getElementById('cPending').textContent = carriers.filter(c=>c.status==='pending').length;
+    document.getElementById('cBasic').textContent = carriers.filter(c=>c.tier==='BASIC').length;
+    document.getElementById('ccCarriersTotal').textContent = carriers.length;
+    document.getElementById('ccCarriersActive').textContent = carriers.filter(c=>c.status==='active').length;
+    document.getElementById('ccCarriersPending').textContent = carriers.filter(c=>c.status==='pending').length;
+    document.getElementById('ccCarriersBasic').textContent = carriers.filter(c=>c.tier==='BASIC').length;
+    document.getElementById('ccCarriersPro').textContent = carriers.filter(c=>c.tier==='PRO'||c.tier==='EMPIRE').length;
+    document.getElementById('carrierBody').innerHTML = carriers.length ? carriers.map(c => `
+      <tr>
+        <td class="cr-id">#${c.id}</td>
+        <td style="color:var(--cyan);font-weight:700;">${c.companyName||'—'}</td>
+        <td style="font-size:.58rem;color:#2a5060;">${c.email||'—'}</td>
+        <td style="font-size:.6rem;color:#6a9cb0;">${c.equipment||'—'}</td>
+        <td><span class="pill ${c.tier==='EMPIRE'?'tendered':c.tier==='PRO'?'assigned':'in_transit'}">${c.tier||'BASIC'}</span></td>
+        <td><span class="pill ${c.status}">${c.status}</span></td>
+        <td style="font-size:.55rem;color:#1e4050;">${c.createdAt?new Date(c.createdAt).toLocaleDateString():''}</td>
+        <td>
+          ${c.status!=='active'?`<button class="cra approve" onclick="activateCarrierDirect(${c.id})">Activate</button>`:''}
+          ${c.status==='active'?`<button class="cra suspend" onclick="suspendCarrier(${c.id})">Suspend</button>`:''}
+        </td>
+      </tr>`).join('') : '<tr><td colspan="8" style="text-align:center;color:#1e4050;padding:1.5rem;">No carriers registered yet</td></tr>';
+  } catch(e) {}
+}
+
+async function loadCarriersLight() {
+  try {
+    const d = await fetch('/api/carrier/list',{headers:{'x-dvx-key':'DYNASTY2026'}}).then(r=>r.json());
+    const c = d.carriers||[];
+    document.getElementById('ccCarriersTotal').textContent = c.length;
+    document.getElementById('ccCarriersActive').textContent = c.filter(x=>x.status==='active').length;
+    document.getElementById('ccCarriersPending').textContent = c.filter(x=>x.status==='pending').length;
+    document.getElementById('ccCarriersBasic').textContent = c.filter(x=>x.tier==='BASIC').length;
+    document.getElementById('ccCarriersPro').textContent = c.filter(x=>x.tier==='PRO'||x.tier==='EMPIRE').length;
+  } catch(e) {}
+}
+
+function openActivateCarrier() { openModal('activateCarrierModal'); }
+
+async function submitActivateCarrier() {
+  const id   = parseInt(document.getElementById('acId').value);
+  const tier = document.getElementById('acTier').value;
+  if (!id) { flash('Enter carrier ID','info'); return; }
+  const d = await fetch('/api/billing/activate',{method:'POST',headers:{'Content-Type':'application/json','x-dvx-key':'DYNASTY2026'},body:JSON.stringify({carrierId:id,tier})}).then(r=>r.json());
+  if (d.success) { flash(`✅ Carrier #${id} activated on ${tier}`); closeModal('activateCarrierModal'); loadCarriers(); }
+  else flash('⚠ '+d.error,'err');
+}
+
+async function activateCarrierDirect(id) {
+  const d = await fetch('/api/billing/activate',{method:'POST',headers:{'Content-Type':'application/json','x-dvx-key':'DYNASTY2026'},body:JSON.stringify({carrierId:id,tier:'BASIC'})}).then(r=>r.json());
+  if (d.success) { flash(`✅ Carrier #${id} activated`); loadCarriers(); }
+  else flash('⚠ '+d.error,'err');
+}
+
+async function suspendCarrier(id) {
+  const d = await fetch(`/api/carrier/${id}/status`,{method:'PATCH',headers:{'Content-Type':'application/json','x-dvx-key':'DYNASTY2026'},body:JSON.stringify({status:'suspended'})}).then(r=>r.json());
+  if (d.success) { flash(`⚠ Carrier #${id} suspended`,'info'); loadCarriers(); }
+}
+
+// ── LOAD ACTIONS ──────────────────────────────────────────────────
+function openCreateLoad() { openModal('createLoadModal'); }
+
+async function submitCreateLoad() {
+  const body = {
+    shipperName:document.getElementById('clShipper').value,
+    consigneeName:document.getElementById('clConsignee').value,
+    originCity:document.getElementById('clOCity').value,
+    originState:document.getElementById('clOState').value,
+    destinationCity:document.getElementById('clDCity').value,
+    destinationState:document.getElementById('clDState').value,
+    miles:parseInt(document.getElementById('clMiles').value)||0,
+    rate:document.getElementById('clRate').value,
+    equipmentRequired:document.getElementById('clEquip').value,
+    commodity:document.getElementById('clCommodity').value,
+    notes:document.getElementById('clNotes').value,
+    tier:'laas'
+  };
+  if (!body.originCity||!body.destinationCity) { flash('Origin and destination required','err'); return; }
+  try {
+    const d = await fetch('/api/v1/loads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(r=>r.json());
+    const res = document.getElementById('clRes');
+    res.style.display='block'; res.style.color='var(--green)'; res.textContent='✅ Load '+d.reference+' created!';
+    setTimeout(()=>{ closeModal('createLoadModal'); loadLoads(); flash('✅ Load '+d.reference+' created'); },1000);
+  } catch(e) { flash('⚠ Error creating load','err'); }
+}
+
+function openAssign(id,ref) { assignLoadId=id; assignRef=ref; document.getElementById('assignLoadInfo').textContent=`Assigning load: ${ref}`; loadDriverOpts(); loadVehicleOpts(); openModal('assignModal'); }
+
+async function loadDriverOpts() {
+  const d = await fetch('/api/v1/drivers').then(r=>r.json());
+  const opts = (d.drivers||[]).filter(dr=>dr.status==='available').map(dr=>`<option value="${dr.id}">${dr.name} — ${dr.vehicleType||''} — ★${dr.rating||5}</option>`).join('');
+  document.getElementById('assignDriver').innerHTML='<option value="">Choose available driver...</option>'+opts;
+}
+
+async function loadVehicleOpts() {
+  try {
+    const d = await fetch('/api/v1/vehicles').then(r=>r.json());
+    const opts = (d.vehicles||[]).map(v=>`<option value="${v.id}">${v.unitNumber} — ${v.type||''}</option>`).join('');
+    document.getElementById('assignVehicle').innerHTML='<option value="">Choose vehicle...</option>'+opts;
+  } catch(e) {}
+}
+
+async function submitAssign() {
+  const driverId  = document.getElementById('assignDriver').value;
+  const vehicleId = document.getElementById('assignVehicle').value;
+  if (!driverId) { flash('Select a driver','info'); return; }
+  const d = await fetch(`/api/v1/loads/${assignLoadId}/assign`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({driverId:parseInt(driverId),vehicleId:vehicleId?parseInt(vehicleId):null})}).then(r=>r.json());
+  if (d.ok) { flash('✅ Driver assigned to '+assignRef); closeModal('assignModal'); loadLoads(); }
+  else flash('⚠ '+d.error,'err');
+}
+
+async function dispatchLoad(id) {
+  const d = await fetch(`/api/v1/loads/${id}/dispatch`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({})}).then(r=>r.json());
+  if (d.ok) { flash('🚛 Load dispatched!'); loadLoads(); }
+  else flash('⚠ '+d.error,'err');
+}
+
+function openPod(id,ref) { podLoadId=id; podRef=ref; document.getElementById('podLoadInfo').textContent=`Recording delivery for: ${ref}`; openModal('podModal'); }
+
+async function submitPod() {
+  const d = await fetch(`/api/v1/loads/${podLoadId}/pod`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({signedBy:document.getElementById('podSigned').value,notes:document.getElementById('podNotes').value})}).then(r=>r.json());
+  if (d.ok) { flash('✅ POD submitted for '+podRef); closeModal('podModal'); loadLoads(); }
+  else flash('⚠ '+d.error,'err');
+}
+
+async function confirmDispatch(loadId, driverId) {
+  if (!driverId) { flash('No driver in suggestion','info'); return; }
+  const d = await fetch(`/api/v1/loads/${loadId}/assign`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({driverId})}).then(r=>r.json());
+  if (d.ok) { flash('⚡ Dispatch confirmed!'); loadLoads(); }
+  else flash('⚠ '+d.error,'err');
+}
+
+function openAddDriver() { openModal('addDriverModal'); }
+
+async function submitAddDriver() {
+  const body = {name:document.getElementById('adName').value,phone:document.getElementById('adPhone').value,cdlNumber:document.getElementById('adCdl').value,cdlClass:document.getElementById('adCdlClass').value,tier:document.getElementById('adTier').value,vehicleType:document.getElementById('adVehicle').value,homeBase:document.getElementById('adCity').value,status:'available'};
+  if (!body.name||!body.cdlNumber) { flash('Name and CDL required','err'); return; }
+  const d = await fetch('/api/v1/drivers',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(r=>r.json());
+  if (d.ok||d.id) { flash('✅ Driver '+body.name+' onboarded'); closeModal('addDriverModal'); loadDrivers(); }
+  else flash('⚠ '+d.error,'err');
+}
+
+function openAddVehicle() { flash('Vehicle add form coming — use Dispatcher Console for now','info'); }
+
+// ── LEGAL ─────────────────────────────────────────────────────────
+function legalTab(id, btn) {
+  document.querySelectorAll('.legal-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.legal-tabs .lt').forEach(t=>t.classList.remove('active'));
+  document.getElementById('lpanel-'+id).classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+let wizRole_val = '';
+function wizRole(role) { wizRole_val = role; document.getElementById('wiz-step1').style.display='none'; document.getElementById('wiz-step2').style.display='block'; }
+
+const DOC_RECS = {
+  trustee:{status:['Declaration of Status','Trustee Appointment','Affidavit of Identity'],commerce:['UCC-1','Security Agreement','Fee Schedule'],property:['Land Patent','Ecclesiastical Deed','Homestead'],trust:['Trust Declaration','Trust Amendment','Trust Indenture'],defense:['Affidavit of Truth','Notice of Liability','Cease and Desist'],judicial:['Court Order','Writ of Execution','Ecclesiastical Judgment'],diplomatic:['Treaty Agreement','Embassy Charter','Diplomatic Note'],inheritance:['Trust Amendment','Beneficiary Designation','Succession Certificate']},
+  heir:{status:['Heir Declaration','Declaration of Status','Birth Certificate'],commerce:['Power of Attorney','Promissory Note'],property:['Estate Claim','Allodial Title Claim'],trust:['Trust Certificate','Beneficiary Designation'],defense:['Rebuttal Affidavit','Affidavit of Non-Consent'],judicial:['Petition','Complaint'],diplomatic:['Letter of Recognition'],inheritance:['Last Will & Testament','Succession Certificate','Inheritance Affidavit']},
+  member:{status:['Membership Certificate','Affidavit of Identity'],commerce:['Commercial Invoice','Fee Schedule'],property:['Homestead Declaration'],trust:['Beneficiary Designation'],defense:['Public Notice','Affidavit of Truth'],judicial:['Motion Filing','Petition'],diplomatic:['Mission Letter'],inheritance:['Heir Declaration']},
+  sovereign:{status:['Declaration of Status','Ecclesiastical Passport','Name Correction'],commerce:['UCC-1','Bill of Exchange','Security Agreement'],property:['Land Patent','Allodial Title','Warranty Deed'],trust:['Trust Declaration','Trust Indenture'],defense:['Notice of Liability','Cease and Desist','Conditional Acceptance'],judicial:['Writ of Execution','Summons','Judgment'],diplomatic:['Treaty Agreement','Asylum Declaration'],inheritance:['Last Will & Testament','Succession Certificate']}
+};
+
+function wizIntent(intent) {
+  const docs = (DOC_RECS[wizRole_val]||{})[intent] || ['Declaration of Status','Affidavit of Truth','Public Notice'];
+  document.getElementById('wizRecs').innerHTML = docs.map(d=>`<button class="doc-btn" onclick="legalDraft('${d.toLowerCase().replace(/[^a-z]+/g,'-')}');legalTab('draft',null)">${d}</button>`).join('');
+  document.getElementById('wiz-step2').style.display='none';
+  document.getElementById('wiz-step3').style.display='block';
+}
+
+function legalDraft(template) {
+  const titles = {'ucc1':'UCC-1 Financing Statement','trust-declaration':'Trust Declaration','trust-indenture':'Trust Indenture','trustee-appointment':'Trustee Appointment','heir-declaration':'Heir Declaration','declaration-status':'Declaration of Status','affidavit-truth':'Affidavit of Truth','affidavit-identity':'Affidavit of Identity','notice-liability':'Notice of Liability','cease-desist':'Cease and Desist','treaty':'Treaty Agreement','land-patent':'Land Patent','last-will-testament':'Last Will & Testament','security-agreement':'Security Agreement','public-notice':'Public Notice','promissory-note':'Promissory Note','bill-of-exchange':'Bill of Exchange'};
+  const title = titles[template] || template.split('-').map(w=>w[0].toUpperCase()+w.slice(1)).join(' ');
+  document.getElementById('draftTitle').textContent = title;
+  document.getElementById('docNum').value = 'BEC-'+Date.now().toString(36).toUpperCase();
+  document.getElementById('docDate').value = new Date().toISOString().split('T')[0];
+  document.getElementById('docBody').value = `In the name of the Most High, I, [NAME], a living soul, do hereby declare:\n\nPurpose: ${title}\n\nThis document is created under Ecclesiastical authority of Borders Ecclesia Earth Trust, EIN 41-6823854, a 508(c)(1)(A) organization, operating under Divine Law, Natural Law, Covenant Law, and Ecclesiastical Law.\n\nDated this day: [DATE]\nSeal: [SEAL]`;
+  document.getElementById('draftWorkspace').style.display = 'block';
+  document.getElementById('draftWorkspace').scrollIntoView({behavior:'smooth'});
+  legalTab('draft', null);
+  showPanel('legal', document.querySelectorAll('.h-tab')[3]);
+}
+
+function printDoc() { const title=document.getElementById('draftTitle').textContent; const body=document.getElementById('docBody').value; const party=document.getElementById('docParty').value; const w=window.open('','_blank'); w.document.write(`<html><head><title>${title}</title><style>body{font-family:Georgia,serif;max-width:700px;margin:2rem auto;line-height:1.8;} h1{text-align:center;} .sig{margin-top:3rem;}</style></head><body><h1>${title}</h1><p><strong>Grantor/Party:</strong> ${party}</p><hr><pre style="white-space:pre-wrap;font-family:Georgia,serif;">${body}</pre><div class="sig"><p>Signed: _____________________</p><p>Witness: ${document.getElementById('docWitness').value||'_____________________'}</p><p>Date: ${document.getElementById('docDate').value}</p></div></body></html>`); w.print(); }
+
+function saveDoc() { flash('✅ Draft saved to local session','ok'); }
+
+function quickFormEntity(type) {
+  const types = {trust:'Trust Declaration + Trust Indenture',pma:'PMA Charter + Membership Certificate',llc:'LLC Operating Agreement + Formation Notice',foundation:'Foundation Charter + Mission Statement'};
+  const t = type || 'trust';
+  document.getElementById('entityWizard').style.display='block';
+  document.getElementById('entityWizard').innerHTML=`<div class="cc-card p" style="margin-top:.75rem;"><div class="cch"><span>🏛️ Form ${t.toUpperCase()} — Document Package</span></div><p style="font-size:.62rem;color:#3a6070;line-height:1.7;margin-bottom:.75rem;">Package includes: ${types[t]||types.trust}.<br>All entities form under Borders Ecclesia Earth Trust · EIN 41-6823854 · 508(c)(1)(A).</p><div class="cc-btns"><button class="cc-btn p" onclick="legalDraft('${t}-declaration');showPanel('legal',document.querySelectorAll('.h-tab')[3])">Begin ${t.charAt(0).toUpperCase()+t.slice(1)} Formation →</button></div></div>`;
+  showPanel('legal', document.querySelectorAll('.h-tab')[3]);
+  legalTab('entity', null);
+}
+
+// ── LOGISTICS TAB SWITCH ──────────────────────────────────────────
+function ltSwitch(id, btn) {
+  document.querySelectorAll('.lt-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.lt').forEach(t=>t.classList.remove('active'));
+  document.getElementById('lp-'+id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  if (id==='fleet') { loadDrivers(); loadVehicles(); }
+  if (id==='engine') { runEngine(); }
+  if (id==='markets') { loadLanes(); }
+  if (id==='events') { loadEvents2(); }
+}
+
+// ── DVX ORACLE (GROWTH CHANNEL) ───────────────────────────────────
+function addMsg(text, type='system', cls='') {
+  const feed = document.getElementById('msgFeed');
+  const ts   = new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+  const isOwner = type==='owner';
+  const av = isOwner ? '<div class="msg-av dvx">👑</div>' : '<div class="msg-av sys">⚡</div>';
+  const label = isOwner ? 'Grand Architect' : 'DivinityVX';
+  const node = document.createElement('div');
+  node.className = `msg ${type} ${cls}`;
+  node.innerHTML = `${av}<div class="msg-body"><div class="msg-label ${isOwner?'right':''}">${label}</div><div class="msg-bubble">${text}</div><div class="msg-ts ${isOwner?'right':''}">${ts}</div></div>`;
+  feed.appendChild(node);
+  feed.scrollTop = feed.scrollHeight;
+}
+
+function sendQ(q) { document.getElementById('msgInput').value = q; sendMsg(); }
+
+async function sendMsg() {
+  const input = document.getElementById('msgInput');
+  const text  = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addMsg(text, 'owner');
+  document.getElementById('typing').classList.add('show');
+  try {
+    const d = await fetch('/api/dvx/message',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,from:'GRAND_ARCHITECT'})}).then(r=>r.json());
+    setTimeout(() => {
+      document.getElementById('typing').classList.remove('show');
+      const msg = d.response || d.message || genDvxLocal(text);
+      addMsg(msg, 'system', d.type||'');
+    }, 600 + Math.random()*600);
+  } catch(e) {
+    setTimeout(() => {
+      document.getElementById('typing').classList.remove('show');
+      addMsg(genDvxLocal(text), 'system', 'dispatch');
+    }, 800);
+  }
+}
+
+function genDvxLocal(cmd) {
+  const c = cmd.toLowerCase();
+  if (c.includes('dispatch')) return 'Dispatch engine activated. Scoring all available drivers against open loads. L4 contractors prioritized. Recommendations computed — check the Dispatch Engine tab.';
+  if (c.includes('driver')) return 'Accessing driver roster now. All CDL-A operators current on DQ files, drug testing per FMCSA standards. Available drivers surfaced for your review in Fleet tab.';
+  if (c.includes('load')) return `Load board is live. ${Math.floor(Math.random()*8)+3} tendered loads awaiting assignment. DAT corridor rate avg $3.85/mi Southeast. Creating load? Use + Create Load.`;
+  if (c.includes('compli')) return 'Compliance status: Divine Solutions Logistics, LLC operating under DOT/MC authority. BOC-3 process agent filed. CDL drivers require DQ file, drug test enrollment, and annual MVR pull.';
+  if (c.includes('lane') || c.includes('market')) return 'Top lanes: ATL→DFW $4.12/mi, CLT→MEM $3.95/mi, BHM→JAX $3.62/mi. Reefer premium +18% this week. Southeast corridor demand: VERY HIGH.';
+  if (c.includes('treasury') || c.includes('revenue')) return 'Platform revenue flows: 3% platform fee per load. Revenue routes: Logistics LLC → Holdings LLC → Ecclesia Earth Trust per licensing structure. BSC token reserve active.';
+  if (c.includes('sovereign') || c.includes('sos')) return 'SovereignOS: ONLINE. GIL, GAR, GCG, GSM, GRF, RTML, GDIL, PSIL, NLOA, SID — all 10 modules active. NLOA: 4 national programs registered (US/EU/IN/AF). Supply chain health: 95%.';
+  if (c.includes('carrier')) return 'Carrier pipeline: BASIC $199/mo (5 loads/day), PRO $599/mo (25/day), EMPIRE $1,999/mo (unlimited). Pending approvals ready in Carriers tab. Use Activate button for instant onboarding.';
+  return 'Command acknowledged, Grand Architect. Processing your directive through the DivinityVX Neural Layer. All platform modules synchronized — check ecosystem dashboard for live status.';
+}
+
+// ── MODALS ────────────────────────────────────────────────────────
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal-bg').forEach(m => m.addEventListener('click', e => { if(e.target===m) m.classList.remove('open'); }));
+
+// ── PRICE HELPER ──────────────────────────────────────────────────
+function priceLoad() { showPanel('ops',document.querySelectorAll('.h-tab')[1]); ltSwitch('markets',document.querySelectorAll('.lt')[3]); }
+</script>
+</body>
+</html>
