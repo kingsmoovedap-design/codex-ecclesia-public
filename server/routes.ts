@@ -2415,6 +2415,329 @@ export function registerRoutes(app: Express) {
     }
   });
 
+  // ══════════════════════════════════════════════════════════════
+  //  SOVEREIGN OS — GIL · GAR · GCG · GSM · GRF · RTML · GDIL
+  //                 PSIL · NLOA · SID · DivinityVX · Marketplace
+  // ══════════════════════════════════════════════════════════════
+
+  let sovereignOS: any = null;
+
+  async function getSovereignOS() {
+    if (!sovereignOS) {
+      const { SovereignOS } = await import('../src/os/sovereign-os.js');
+      sovereignOS = new SovereignOS();
+    }
+    return sovereignOS;
+  }
+
+  // GET /api/sovereign/snapshot — full global health snapshot
+  app.get("/api/sovereign/snapshot", async (_req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      res.json(os.globalSnapshot());
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // GET /api/sovereign/status
+  app.get("/api/sovereign/status", async (_req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const snap = os.globalSnapshot();
+      res.json({ status: 'ONLINE', modules: Object.keys(snap.modules), ts: snap.ts, dynastyEntity: snap.dynastyEntity });
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // POST /api/sovereign/orchestrate — full sovereign orchestration on a load
+  app.post("/api/sovereign/orchestrate", async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const { id, rateCents, origin, destination } = req.body;
+      if (!id || !rateCents || !origin || !destination) {
+        return res.status(400).json({ error: 'id, rateCents, origin, destination required' });
+      }
+      const result = await os.orchestrate({ id, rateCents, origin, destination }, req.body.drivers || [], req.body.carriers || []);
+      emitEvent({ loadId: null, driverName: null, eventType: 'load_created', notes: `SovereignOS orchestrated ${id}: ${origin}→${destination} · $${(rateCents/100).toFixed(0)} · eFTI✓ ULIP✓ AfCFTA✓` });
+      res.json(result);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // POST /api/sovereign/orchestrate/societal — orchestration with RTML/SID/PSIL
+  app.post("/api/sovereign/orchestrate/societal", async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const { id, rateCents, origin, destination } = req.body;
+      if (!id || !rateCents) return res.status(400).json({ error: 'id, rateCents required' });
+      const load = {
+        id, rateCents,
+        origin: { lat: origin?.lat || 33.749, lng: origin?.lng || -84.388, label: origin?.label || origin || 'Atlanta, GA' },
+        destination: { lat: destination?.lat || 32.7767, lng: destination?.lng || -96.797, label: destination?.label || destination || 'Dallas, TX' },
+      };
+      const result = await os.orchestrateWithSocietalView(load);
+      res.json(result);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // POST /api/sovereign/identity/register — GIL identity registration
+  app.post("/api/sovereign/identity/register", async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const { id, type, name, country, complianceScore } = req.body;
+      if (!id || !type || !name || !country) return res.status(400).json({ error: 'id, type, name, country required' });
+      const profile = os.governance.registerIdentity({ id, type, name, country, complianceScore: complianceScore || 80 });
+      res.json(profile);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // GET /api/sovereign/identity/list
+  app.get("/api/sovereign/identity/list", async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const type = req.query.type as string;
+      const list = type ? os.gil.listByType(type) : os.gil.listAll();
+      res.json({ identities: list, total: list.length });
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // POST /api/sovereign/asset/register — GAR asset registration
+  app.post("/api/sovereign/asset/register", async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const { id, type, ownerId, valueCents, status, location } = req.body;
+      if (!id || !type || !ownerId) return res.status(400).json({ error: 'id, type, ownerId required' });
+      const asset = os.governance.registerAsset({ id, type, ownerId, valueCents: valueCents || 0, status: status || 'AVAILABLE', location: location || 'UNKNOWN' });
+      res.json(asset);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // PATCH /api/sovereign/asset/:id/status
+  app.patch("/api/sovereign/asset/:id/status", async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const asset = os.governance.updateAssetStatus(req.params.id, req.body.status);
+      if (!asset) return res.status(404).json({ error: 'Asset not found' });
+      res.json(asset);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // GET /api/sovereign/assets
+  app.get("/api/sovereign/assets", async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const ownerId = req.query.ownerId as string;
+      const list = ownerId ? os.gar.listByOwner(ownerId) : os.gar.listAll();
+      res.json({ assets: list, total: list.length });
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // POST /api/sovereign/compliance/upsert — GCG compliance node
+  app.post("/api/sovereign/compliance/upsert", async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const node = os.gcg.upsert(req.body);
+      const evaluated = os.gcg.evaluateLoad(node.id);
+      res.json(evaluated || node);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // GET /api/sovereign/compliance/:id/evaluate
+  app.get("/api/sovereign/compliance/:id/evaluate", async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const result = os.gcg.evaluateLoad(req.params.id);
+      if (!result) return res.status(404).json({ error: 'Compliance node not found' });
+      res.json(result);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // POST /api/sovereign/settle — GSM settlement
+  app.post("/api/sovereign/settle", async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const { loadId, payerId, payeeId, amountCents, currency, channel } = req.body;
+      if (!loadId || !amountCents) return res.status(400).json({ error: 'loadId, amountCents required' });
+      const event = os.gsm.settle({
+        loadId, payerId: payerId || 'SHIPPER-1', payeeId: payeeId || 'CARRIER-1',
+        amountCents, currency: currency || 'USD', channel: channel || 'STRIPE'
+      });
+      emitEvent({ loadId: null, driverName: null, eventType: 'payment_released', notes: `GSM settled load ${loadId} · $${(amountCents/100).toFixed(2)} ${currency||'USD'} via ${channel||'STRIPE'}` });
+      res.json(event);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // GET /api/sovereign/settlements
+  app.get("/api/sovereign/settlements", async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const loadId = req.query.loadId as string;
+      const list = loadId ? os.gsm.listByLoad(loadId) : os.gsm.recentEvents(50);
+      res.json({ settlements: list, total: list.length, totalVolumeUSD: (os.gsm.totalVolume() / 100).toFixed(2) });
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // POST /api/infra/gdil/ingest — government incident feed ingestion
+  app.post("/api/infra/gdil/ingest", requireOwner, async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const { source, incidents } = req.body;
+      if (!source || !Array.isArray(incidents)) return res.status(400).json({ error: 'source and incidents[] required' });
+      await os.gdil.ingestFeed(source, incidents);
+      res.json({ success: true, ingested: incidents.length, source });
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // GET /api/infra/gdil/incidents
+  app.get("/api/infra/gdil/incidents", async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const limit = parseInt(String(req.query.limit || '50'));
+      res.json({ incidents: os.gdil.getRecentIncidents(limit) });
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // POST /api/infra/rtml/traffic
+  app.post("/api/infra/rtml/traffic", async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const { origin, destination } = req.body;
+      const segments = await os.rtml.getTrafficBetween(
+        origin || { lat: 33.749, lng: -84.388 },
+        destination || { lat: 32.7767, lng: -96.797 }
+      );
+      res.json({ segments, ts: new Date().toISOString() });
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // POST /api/infra/psil/emergency-route
+  app.post("/api/infra/psil/emergency-route", async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const { from, to } = req.body;
+      const route = await os.psil.planEmergencyRoute(
+        from || { lat: 33.749, lng: -84.388 },
+        to || { lat: 32.7767, lng: -96.797 }
+      );
+      res.json(route);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // GET /api/infra/psil/active-routes
+  app.get("/api/infra/psil/active-routes", async (_req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      res.json({ routes: os.psil.getActiveRoutes() });
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // GET /api/infra/nloa/contexts
+  app.get("/api/infra/nloa/contexts", async (_req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      res.json({ contexts: os.nloa.listContexts() });
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // POST /api/infra/nloa/register
+  app.post("/api/infra/nloa/register", requireOwner, async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const { countryCode, programName, apiBaseUrl } = req.body;
+      if (!countryCode || !programName || !apiBaseUrl) return res.status(400).json({ error: 'countryCode, programName, apiBaseUrl required' });
+      const ctx = os.nloa.registerContext({ countryCode, programName, apiBaseUrl });
+      res.json(ctx);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // POST /api/infra/nloa/:countryCode/push-snapshot
+  app.post("/api/infra/nloa/:countryCode/push-snapshot", requireOwner, async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const result = await os.nloa.pushSupplyChainSnapshot(req.params.countryCode, req.body);
+      res.json(result);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // GET /api/infra/sid/snapshot
+  app.get("/api/infra/sid/snapshot", async (_req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const latest = os.sid.latestSnapshot();
+      if (!latest) return res.json({ message: 'No snapshots yet — run an orchestration first.' });
+      res.json(latest);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // POST /api/infra/sid/build — manual SID snapshot
+  app.post("/api/infra/sid/build", async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const incidents = os.gdil.getRecentIncidents(50);
+      const trafficSegments = await os.rtml.getTrafficBetween(
+        req.body.origin || { lat: 33.749, lng: -84.388 },
+        req.body.destination || { lat: 32.7767, lng: -96.797 }
+      );
+      const snapshot = await os.sid.buildSnapshot({
+        trafficSegments,
+        incidents,
+        activeEmergencyRoutes: os.psil.getActiveRoutes().length,
+        availableAssets: os.gar.listAvailable().length,
+      });
+      res.json(snapshot);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // GET /api/sovereign/marketplace/list-all
+  app.get("/api/sovereign/marketplace/list-all", async (_req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      res.json({ listings: os.marketplace.getListings(), auctions: os.auctions.getAuctions(), leases: os.fleet.getLeases() });
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // POST /api/sovereign/marketplace/reverse-logistics
+  app.post("/api/sovereign/marketplace/reverse-logistics", async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const { containerId, daysLate, location } = req.body;
+      if (!containerId) return res.status(400).json({ error: 'containerId required' });
+      const result = await os.reverse.recoverContainer({ id: containerId, daysLate: daysLate || 0, location });
+      emitEvent({ loadId: null, driverName: null, eventType: 'driver_onboarded', notes: `Reverse logistics: container ${containerId} recovered · ${daysLate||0} days late · fee $${result.feeUSD}` });
+      res.json(result);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // POST /api/sovereign/marketplace/fleet-lease
+  app.post("/api/sovereign/marketplace/fleet-lease", async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const { id, type, valueCents, ownerId } = req.body;
+      if (!id || !valueCents) return res.status(400).json({ error: 'id, valueCents required' });
+      const result = await os.fleet.lease({ id, type: type || 'TRUCK', valueCents, ownerId });
+      res.json(result);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // POST /api/sovereign/marketplace/auction
+  app.post("/api/sovereign/marketplace/auction", requireOwner, async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const { load, bidders } = req.body;
+      if (!load || !Array.isArray(bidders)) return res.status(400).json({ error: 'load and bidders[] required' });
+      const result = await os.auctions.runAuction(load, bidders);
+      res.json(result);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // POST /api/sovereign/marketplace/compliance-purchase
+  app.post("/api/sovereign/marketplace/compliance-purchase", async (req: Request, res: Response) => {
+    try {
+      const os = await getSovereignOS();
+      const { carrierId, carrierName, riskScore } = req.body;
+      if (!carrierId) return res.status(400).json({ error: 'carrierId required' });
+      const result = await os.compliance.purchaseCompliance({ id: carrierId, name: carrierName, riskScore: riskScore || 50 });
+      res.json(result);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
   function genDvxResponse(cmd: string): string {
     const c = cmd.toLowerCase();
     if (c.includes('dispatch') || c.includes('send')) return 'Dispatch command received. Locating optimal available contractor for the specified load. Will route through Divinity platform and confirm assignment. Stand by.';
