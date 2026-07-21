@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Omega Portal – Dashboard</title>
+  <link rel="stylesheet" href="omega.css">
+  <script src="../config.js"></script>
+</head>
+<body class="omega-body">
+  <header class="omega-header">
+    <div class="omega-header-inner">
+      <span class="omega-seal">☩</span>
+      <h1 id="omegaTitle">Omega Portal – Borders Dynasty</h1>
+      <button id="logoutBtn" class="omega-logout">Logout</button>
+    </div>
+  </header>
+
+  <main class="omega-main">
+    <section class="omega-panel">
+      <h2>Dynasty Overview</h2>
+      <ul class="omega-links">
+        <li><a href="../studio/index.html" target="_blank">Divine Living</a></li>
+        <li><a href="../events/index.html" target="_blank">Dynasty Party Co.</a></li>
+        <li><a href="../loadboard/index.html" target="_blank">Loadboard</a></li>
+        <li><a href="../driver-app/index.html" target="_blank">Driver App</a></li>
+        <li><a href="../fleet-rental/index.html" target="_blank">Fleet Rental</a></li>
+        <li><a href="../bailbonds/index.html" target="_blank">Dynasty Bail Bonds</a></li>
+      </ul>
+    </section>
+
+    <section class="omega-panel">
+      <h2>Coin &amp; Escrow</h2>
+      <p id="coinData">Loading coin config…</p>
+      <p id="escrowData">Loading escrow config…</p>
+      <p id="escrowNote" class="omega-note"></p>
+    </section>
+
+    <section class="omega-panel">
+      <h2>Logistics API</h2>
+      <p id="apiStatus">Checking API status…</p>
+      <button id="pingApiBtn" class="omega-btn">Ping Logistics API</button>
+    </section>
+
+    <section class="omega-panel">
+      <h2>Bail Cases</h2>
+      <p id="bailStatus">Loading bail cases…</p>
+      <div id="bailList"></div>
+    </section>
+  </main>
+
+  <script src="omega.js"></script>
+</body>
+</html>
