@@ -1,44 +1,29 @@
-const fs = require('fs');
-const path = require('path');
-const cheerio = require('cheerio');
+const fs = require("fs-extra");
+const glob = require("glob");
+const cheerio = require("cheerio");
 
-const CORE_DIR = path.join(__dirname, '..', 'core');
-const DEFAULT_DATE = '2025-01-01';
+async function injectMetadata() {
+  try {
+    const files = glob.sync("**/*.html", {
+      ignore: ["node_modules/**", "dist/**"]
+    });
 
-function injectMetadata(filePath) {
-  const html = fs.readFileSync(filePath, 'utf8');
-  const $ = cheerio.load(html);
+    for (const file of files) {
+      const html = await fs.readFile(file, "utf8");
+      const $ = cheerio.load(html);
 
-  const fileName = path.basename(filePath, path.extname(filePath));
-  const titleText = $('title').text().trim() || fileName.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+      $("head").prepend(`
+        <meta name="generator" content="Codex Ecclesia Engine v1.2">
+      `);
 
-  if (!$('title').length) {
-    $('head').prepend(`<title>${titleText}</title>`);
+      await fs.writeFile(file, $.html());
+    }
+
+    console.log("✅ Metadata injected into all HTML files");
+  } catch (err) {
+    console.error("❌ Error injecting metadata:", err);
+    process.exit(1);
   }
-
-  if (!$('meta[name="description"]').length) {
-    $('head').append(`<meta name="description" content="Placeholder summary for ${titleText}.">`);
-  }
-
-  if (!$('meta[name="keywords"]').length) {
-    const tags = fileName.toLowerCase().split(/[-_]/).join(', ');
-    $('head').append(`<meta name="keywords" content="${tags}">`);
-  }
-
-  if (!$('meta[name="date"]').length) {
-    $('head').append(`<meta name="date" content="${DEFAULT_DATE}">`);
-  }
-
-  fs.writeFileSync(filePath, $.html(), 'utf8');
-  console.log(`✅ Injected metadata into: ${filePath}`);
 }
 
-function processCoreScrolls() {
-  const files = fs.readdirSync(CORE_DIR).filter(f => f.endsWith('.html') || f.endsWith('.htm'));
-  files.forEach(file => {
-    const fullPath = path.join(CORE_DIR, file);
-    injectMetadata(fullPath);
-  });
-}
-
-processCoreScrolls();
+injectMetadata();

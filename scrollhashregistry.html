@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ScrollHashRegistry | CodexChain Ledger</title>
+  <meta name="description" content="Verify the authenticity of CodexChain scrolls and declarations via SHA-256 hash anchors and execution timestamps." />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header>
+    <h1>📖 ScrollHashRegistry</h1>
+    <p>CodexChain Ledger Anchors of the Borders Dynasty Ecclesia Earth Trust</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>🧾 Verified Scroll Hashes</h2>
+      <p style="text-align:center;">
+        Each scroll below has been hashed using SHA-256 and recorded in the CodexChain Ledger for divine audit and public witness.
+      </p>
+
+      <table id="scroll-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Scroll Title</th>
+            <th>File</th>
+            <th>SHA-256 Hash</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <p style="text-align:center; margin-top:2rem;">
+        All hashes are timestamped and stored in the <a href="../LEDGER/hashes/">CodexChain Hash Archive</a> for divine audit and international verification.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 Borders Ecclesia Earth Trust · All rights reserved under divine, sovereign, and ecclesiastical law.
+  </footer>
+
+  <script>
+    fetch('scrolls.json')
+      .then(response => response.json())
+      .then(data => {
+        const tbody = document.querySelector('#scroll-table tbody');
+        data.scrolls.forEach(scroll => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${scroll.date}</td>
+            <td>${scroll.title}</td>
+            <td><a href="${scroll.link}">View</a></td>
+            <td class="hash">${scroll.hash}</td>
+            <td class="status ${scroll.status.toLowerCase()}">${scroll.status}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      });
+  </script>
+</body>
+</html>

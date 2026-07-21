@@ -1,731 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DivinityVX — Sovereign Platform · Borders Dynasty</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="favicon.png">
-<script src="lib/dvx-nav.js"></script>
-<style>
-:root{--cyan:#00d4ff;--purple:#9b4dff;--gold:#ffd700;--green:#00ff88;--red:#ff3b6b;--orange:#ff8c00;--bg:#020b18;--panel:rgba(4,18,40,.96);--border:rgba(0,212,255,.14);}
-*{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--bg);font-family:'Courier New',monospace;color:#c5d8f0;min-height:100vh;overflow-x:hidden;padding-bottom:46px;}
-::-webkit-scrollbar{width:4px;height:4px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:rgba(0,212,255,.2);border-radius:2px;}
-
-/* ANIMATED GRID */
-.grid-bg{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(0,212,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.03) 1px,transparent 1px);background-size:56px 56px;animation:gridScroll 35s linear infinite;}
-@keyframes gridScroll{to{transform:translate(56px,56px);}}
-.scan{position:fixed;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,212,255,.005) 3px,rgba(0,212,255,.005) 4px);}
-/* radial glow spots */
-.glow-spot{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;}
-.glow-spot.a{width:500px;height:500px;top:-100px;left:-100px;background:radial-gradient(circle,rgba(155,77,255,.07) 0%,transparent 70%);}
-.glow-spot.b{width:400px;height:400px;bottom:-50px;right:-50px;background:radial-gradient(circle,rgba(0,212,255,.06) 0%,transparent 70%);}
-
-/* PAGE */
-.page{position:relative;z-index:2;max-width:1600px;margin:0 auto;padding:1rem 1.25rem 1.5rem;}
-
-/* ── HERO ── */
-.hero{position:relative;overflow:hidden;border-radius:6px;margin-bottom:1.1rem;padding:2rem 2.5rem;border:1px solid rgba(0,212,255,.18);background:linear-gradient(135deg,rgba(4,18,40,.98) 0%,rgba(10,5,30,.98) 60%,rgba(4,18,40,.98) 100%);}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(155,77,255,.1) 0%,transparent 60%);}
-.hero::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),var(--purple),transparent);}
-.hero-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
-.hero-l{}
-.hero-eyebrow{font-size:.55rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;}
-.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold);}
-.hero-title{font-size:2rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;line-height:1.05;margin-bottom:.5rem;}
-.hero-title .line1{background:linear-gradient(135deg,#fff 0%,var(--cyan) 60%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hero-title .line2{background:linear-gradient(135deg,var(--purple) 0%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:1.15rem;}
-.hero-sub{font-size:.62rem;color:#4a6580;text-transform:uppercase;letter-spacing:.12em;line-height:1.7;}
-.hero-sub strong{color:#6a8098;}
-.hero-r{display:flex;flex-direction:column;gap:.6rem;align-items:flex-end;}
-.hero-btns{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:flex-end;}
-.hbtn{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:.55rem 1.1rem;border-radius:3px;text-decoration:none;border:1px solid;transition:all .2s;cursor:pointer;font-family:inherit;white-space:nowrap;}
-.hbtn.primary{color:#020b18;background:var(--cyan);border-color:var(--cyan);box-shadow:0 0 14px rgba(0,212,255,.4);}
-.hbtn.primary:hover{box-shadow:0 0 28px rgba(0,212,255,.8);}
-.hbtn.purple{color:var(--purple);border-color:rgba(155,77,255,.45);background:rgba(155,77,255,.1);}
-.hbtn.purple:hover{background:rgba(155,77,255,.2);box-shadow:0 0 12px rgba(155,77,255,.3);}
-.hbtn.green{color:var(--green);border-color:rgba(0,255,136,.4);background:rgba(0,255,136,.06);}
-.hbtn.green:hover{background:rgba(0,255,136,.12);}
-.hbtn.gold{color:var(--gold);border-color:rgba(255,215,0,.4);background:rgba(255,215,0,.06);}
-.hbtn.gold:hover{background:rgba(255,215,0,.12);}
-.hero-status{display:flex;gap:1.2rem;font-size:.57rem;color:#3a5070;}
-.hs-item{display:flex;align-items:center;gap:.35rem;}
-.hs-dot{width:6px;height:6px;border-radius:50%;}
-.hs-dot.on{background:var(--green);box-shadow:0 0 6px rgba(0,255,136,.9);animation:hsBlink 2s ease-in-out infinite;}
-.hs-dot.cy{background:var(--cyan);box-shadow:0 0 6px rgba(0,212,255,.9);}
-.hs-dot.pu{background:var(--purple);box-shadow:0 0 6px rgba(155,77,255,.9);}
-@keyframes hsBlink{0%,100%{opacity:1;}50%{opacity:.4;}}
-
-/* ── STAT ROW ── */
-.stat-row{display:grid;grid-template-columns:repeat(5,1fr);gap:.85rem;margin-bottom:1.1rem;}
-.sc{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:.9rem 1.1rem;position:relative;overflow:hidden;transition:transform .2s;}
-.sc:hover{transform:translateY(-1px);}
-.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
-.sc.c::before{background:linear-gradient(90deg,var(--cyan),transparent);}
-.sc.g::before{background:linear-gradient(90deg,var(--green),transparent);}
-.sc.p::before{background:linear-gradient(90deg,var(--purple),transparent);}
-.sc.o::before{background:linear-gradient(90deg,var(--gold),transparent);}
-.sc.r::before{background:linear-gradient(90deg,var(--orange),transparent);}
-.sc-lbl{font-size:.55rem;text-transform:uppercase;letter-spacing:.12em;color:#2a4255;margin-bottom:.3rem;display:flex;align-items:center;gap:.3rem;}
-.dot5{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
-.dot5.c{background:var(--cyan);box-shadow:0 0 5px rgba(0,212,255,.9);}
-.dot5.g{background:var(--green);box-shadow:0 0 5px rgba(0,255,136,.9);}
-.dot5.p{background:var(--purple);box-shadow:0 0 5px rgba(155,77,255,.9);}
-.dot5.o{background:var(--gold);box-shadow:0 0 5px rgba(255,215,0,.9);}
-.dot5.r{background:var(--orange);box-shadow:0 0 5px rgba(255,140,0,.9);}
-.sc-num{font-size:1.8rem;font-weight:900;line-height:1;margin-bottom:.1rem;}
-.sc-num.c{color:var(--cyan);}
-.sc-num.g{color:var(--green);}
-.sc-num.p{color:var(--purple);}
-.sc-num.o{color:var(--gold);}
-.sc-num.r{color:var(--orange);}
-.sc-sub{font-size:.58rem;color:#3a5060;}
-
-/* ── MAIN GRID ── */
-.mgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
-.pnl{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:1rem;}
-.pnl.w2{grid-column:span 2;}
-.pnl.w3{grid-column:span 3;}
-.ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:.85rem;padding-bottom:.5rem;border-bottom:1px solid rgba(0,212,255,.08);}
-.ph-t{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#c5d8f0;display:flex;align-items:center;gap:.35rem;}
-.badge{font-size:.52rem;text-transform:uppercase;letter-spacing:.09em;padding:.1rem .42rem;border-radius:2px;border:1px solid;}
-.badge.live{color:var(--green);border-color:rgba(0,255,136,.35);background:rgba(0,255,136,.06);}
-.badge.rdy{color:var(--cyan);border-color:rgba(0,212,255,.35);background:rgba(0,212,255,.06);}
-.badge.chain{color:var(--purple);border-color:rgba(155,77,255,.3);background:rgba(155,77,255,.05);}
-.ph-a{font-size:.58rem;color:var(--cyan);text-decoration:none;text-transform:uppercase;letter-spacing:.07em;border:1px solid rgba(0,212,255,.2);padding:.16rem .42rem;border-radius:2px;transition:all .2s;}
-.ph-a:hover{background:rgba(0,212,255,.1);}
-
-/* ── COMMAND TILES ── */
-.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem;}
-.ctile{display:flex;flex-direction:column;align-items:flex-start;background:rgba(0,0,0,.3);border:1px solid rgba(0,212,255,.08);border-radius:4px;padding:.8rem .85rem .75rem;text-decoration:none;transition:all .2s;position:relative;overflow:hidden;}
-.ctile::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;}
-.ctile.c::before{background:var(--cyan);}
-.ctile.p::before{background:var(--purple);}
-.ctile.g::before{background:var(--green);}
-.ctile.o::before{background:var(--gold);}
-.ctile.r::before{background:var(--red);}
-.ctile:hover{transform:translateY(-2px);background:rgba(0,212,255,.04);border-color:rgba(0,212,255,.25);box-shadow:0 4px 16px rgba(0,212,255,.07);}
-.ct-ico{font-size:1.2rem;margin-bottom:.35rem;}
-.ct-lbl{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#c5d8f0;margin-bottom:.12rem;}
-.ct-desc{font-size:.56rem;color:#3a5060;line-height:1.4;}
-.ct-st{font-size:.52rem;text-transform:uppercase;letter-spacing:.07em;margin-top:.35rem;}
-.ct-st.live{color:var(--green);}
-.ct-st.rdy{color:var(--cyan);}
-.ct-st.ext{color:var(--gold);}
-
-/* ── LOAD BOARD ── */
-.lb-tabs{display:flex;gap:.3rem;margin-bottom:.6rem;}
-.lbt{font-size:.56rem;text-transform:uppercase;letter-spacing:.07em;padding:.26rem .6rem;border-radius:2px;border:1px solid rgba(0,212,255,.1);background:transparent;color:#2a4255;cursor:pointer;font-family:inherit;transition:all .15s;}
-.lbt.active,.lbt:hover{border-color:rgba(0,212,255,.35);color:var(--cyan);background:rgba(0,212,255,.07);}
-.ltbl{width:100%;border-collapse:collapse;font-size:.63rem;}
-.ltbl th{padding:.3rem .5rem;text-align:left;color:#1e3a4a;text-transform:uppercase;letter-spacing:.07em;font-size:.54rem;font-weight:400;border-bottom:1px solid rgba(0,212,255,.1);}
-.ltbl td{padding:.38rem .5rem;border-bottom:1px solid rgba(0,212,255,.04);color:#7aabb0;vertical-align:middle;}
-.ltbl tr:hover td{background:rgba(0,212,255,.025);}
-.ltbl tr:last-child td{border-bottom:none;}
-.pill{display:inline-block;font-size:.52rem;text-transform:uppercase;letter-spacing:.07em;padding:.09rem .36rem;border-radius:2px;font-weight:700;}
-.pill.tendered{color:var(--gold);background:rgba(255,215,0,.07);border:1px solid rgba(255,215,0,.2);}
-.pill.assigned{color:var(--purple);background:rgba(155,77,255,.07);border:1px solid rgba(155,77,255,.2);}
-.pill.in_transit{color:var(--cyan);background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.2);}
-.pill.delivered{color:var(--green);background:rgba(0,255,136,.07);border:1px solid rgba(0,255,136,.2);}
-.pill.open{color:var(--green);background:rgba(0,255,136,.07);border:1px solid rgba(0,255,136,.2);}
-
-/* ── DRIVERS ── */
-.drow{display:flex;align-items:center;justify-content:space-between;padding:.45rem 0;border-bottom:1px solid rgba(0,212,255,.05);}
-.drow:last-child{border-bottom:none;}
-.d-name{font-size:.68rem;color:#c5d8f0;font-weight:700;}
-.d-sub{font-size:.57rem;color:#2a4255;margin-top:.04rem;}
-.d-badge{font-size:.5rem;text-transform:uppercase;letter-spacing:.07em;padding:.1rem .35rem;border-radius:2px;}
-.d-badge.available{background:rgba(0,255,136,.07);color:var(--green);border:1px solid rgba(0,255,136,.2);}
-.d-badge.in_transit{background:rgba(0,212,255,.07);color:var(--cyan);border:1px solid rgba(0,212,255,.2);}
-.d-badge.off_duty{background:rgba(255,59,107,.06);color:var(--red);}
-.d-badge.assigned{background:rgba(155,77,255,.07);color:var(--purple);}
-
-/* ── DVX COMMS ── */
-.dvx-panel{background:var(--panel);border:1px solid rgba(155,77,255,.25);border-radius:4px;margin-bottom:1.1rem;overflow:hidden;box-shadow:0 0 40px rgba(155,77,255,.05);}
-.dvx-header{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1.1rem;background:rgba(155,77,255,.05);border-bottom:1px solid rgba(155,77,255,.15);}
-.dvx-h-l{display:flex;align-items:center;gap:.65rem;}
-.dvx-ai-ico{font-size:1.1rem;animation:dvxPulse 2s ease-in-out infinite;}
-@keyframes dvxPulse{0%,100%{filter:drop-shadow(0 0 4px rgba(155,77,255,.5));}50%{filter:drop-shadow(0 0 14px rgba(155,77,255,1));}}
-.dvx-title{font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;background:linear-gradient(90deg,var(--purple),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.dvx-sub{font-size:.54rem;color:#2a4050;text-transform:uppercase;letter-spacing:.1em;}
-.dvx-h-r{display:flex;align-items:center;gap:.6rem;}
-.dvx-online{display:flex;align-items:center;gap:.3rem;font-size:.57rem;color:var(--purple);}
-.dvx-online::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--purple);box-shadow:0 0 7px rgba(155,77,255,.9);animation:hsBlink 1.5s ease-in-out infinite;flex-shrink:0;}
-.dvx-feed{max-height:200px;overflow-y:auto;padding:.65rem 1.1rem;display:flex;flex-direction:column;gap:.45rem;}
-.dvx-msg{display:flex;gap:.6rem;animation:msgIn .3s ease-out;}
-@keyframes msgIn{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:none;}}
-.dvx-msg.from-arch{flex-direction:row-reverse;}
-.dvx-av{width:24px;height:24px;border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.75rem;}
-.from-dvx .dvx-av{background:rgba(155,77,255,.12);border:1px solid rgba(155,77,255,.25);}
-.from-arch .dvx-av{background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.2);}
-.dvx-mb{flex:1;max-width:88%;}
-.dvx-sender{font-size:.5rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.15rem;}
-.from-dvx .dvx-sender{color:var(--purple);}
-.from-arch .dvx-sender{color:var(--gold);text-align:right;}
-.dvx-text{font-size:.64rem;line-height:1.5;padding:.42rem .62rem;border-radius:3px;}
-.from-dvx .dvx-text{background:rgba(155,77,255,.06);border:1px solid rgba(155,77,255,.12);color:#c5d8f0;}
-.from-arch .dvx-text{background:rgba(255,215,0,.04);border:1px solid rgba(255,215,0,.12);color:#c5d8f0;text-align:right;}
-.dvx-ts{font-size:.5rem;color:#1a2840;margin-top:.12rem;}
-.from-arch .dvx-ts{text-align:right;}
-.dvx-tag{display:inline-block;font-size:.47rem;text-transform:uppercase;padding:.05rem .28rem;border-radius:2px;margin-left:.25rem;vertical-align:middle;}
-.tag-alert{color:var(--red);background:rgba(255,59,107,.08);border:1px solid rgba(255,59,107,.2);}
-.tag-action{color:var(--cyan);background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.16);}
-.tag-insight{color:var(--green);background:rgba(0,255,136,.06);border:1px solid rgba(0,255,136,.15);}
-.dvx-quick{display:flex;gap:.3rem;flex-wrap:wrap;padding:.4rem 1.1rem .5rem;}
-.dvxq{font-size:.53rem;color:#3a2560;border:1px solid rgba(155,77,255,.12);background:rgba(155,77,255,.03);padding:.17rem .48rem;border-radius:2px;cursor:pointer;font-family:inherit;transition:all .15s;}
-.dvxq:hover{color:var(--purple);border-color:rgba(155,77,255,.3);}
-.dvx-input-row{display:flex;gap:.5rem;padding:.55rem 1.1rem;border-top:1px solid rgba(155,77,255,.12);background:rgba(0,0,0,.2);}
-.dvx-inp{flex:1;background:rgba(0,0,0,.5);border:1px solid rgba(155,77,255,.18);color:#c5d8f0;font-family:'Courier New',monospace;font-size:.65rem;padding:.44rem .72rem;border-radius:3px;outline:none;}
-.dvx-inp:focus{border-color:var(--purple);box-shadow:0 0 8px rgba(155,77,255,.2);}
-.dvx-inp::placeholder{color:#1a2840;}
-.dvx-send{background:var(--purple);color:#fff;font-family:'Courier New',monospace;font-weight:900;font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;padding:.44rem .85rem;border:none;border-radius:3px;cursor:pointer;transition:all .2s;white-space:nowrap;}
-.dvx-send:hover{box-shadow:0 0 16px rgba(155,77,255,.6);}
-
-/* ── MARKET LANES ── */
-.lane-grid{display:flex;flex-direction:column;gap:.35rem;}
-.lane-row{display:flex;align-items:center;justify-content:space-between;padding:.42rem .55rem;background:rgba(0,0,0,.25);border:1px solid rgba(0,212,255,.07);border-radius:3px;font-size:.6rem;}
-.lane-name{color:#7aabb0;flex:1;min-width:0;}
-.lane-rpm{font-size:.72rem;font-weight:900;color:var(--green);margin:0 .6rem;}
-.lane-trend{font-size:.57rem;margin-right:.4rem;}
-.lane-dem{font-size:.5rem;text-transform:uppercase;letter-spacing:.07em;padding:.1rem .35rem;border-radius:2px;}
-.lane-dem.HIGH{background:rgba(255,140,0,.08);color:var(--orange);border:1px solid rgba(255,140,0,.2);}
-.lane-dem.VERYHIGH{background:rgba(255,59,107,.08);color:var(--red);border:1px solid rgba(255,59,107,.2);}
-.lane-dem.MEDIUM{background:rgba(0,212,255,.07);color:var(--cyan);border:1px solid rgba(0,212,255,.2);}
-
-/* ── CODEXCHAIN EVENTS ── */
-.ev-item{display:flex;gap:.6rem;padding:.42rem 0;border-bottom:1px solid rgba(0,212,255,.04);}
-.ev-item:last-child{border-bottom:none;}
-.ev-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:.3rem;}
-.ev-dot.dispatched,.ev-dot.pickup_departed{background:var(--cyan);}
-.ev-dot.driver_assigned,.ev-dot.driver_onboarded,.ev-dot.compliance_profile_updated{background:var(--purple);}
-.ev-dot.pod_submitted,.ev-dot.delivered{background:var(--green);}
-.ev-dot.load_created,.ev-dot.invoice_created{background:var(--gold);}
-.ev-dot.pickup_arrived,.ev-dot.delivery_arrived{background:var(--orange);}
-.ev-dot.token_minted{background:var(--gold);}
-.ev-body{}
-.ev-type{font-size:.55rem;text-transform:uppercase;letter-spacing:.07em;color:var(--cyan);}
-.ev-notes{font-size:.62rem;color:#6a9cb0;margin-top:.1rem;line-height:1.4;}
-.ev-ts{font-size:.52rem;color:#1a3040;margin-top:.1rem;}
-
-/* ── TREASURY STRIP ── */
-.treasury-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-bottom:1rem;}
-.ts-card{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:.7rem .9rem;text-align:center;}
-.ts-val{font-size:1.1rem;font-weight:900;line-height:1;}
-.ts-lbl{font-size:.5rem;text-transform:uppercase;letter-spacing:.09em;color:#2a4050;margin-top:.2rem;}
-
-/* ── DYNASTY STRUCTURE ── */
-.dynasty-chain{background:linear-gradient(135deg,rgba(155,77,255,.05),rgba(0,212,255,.04));border:1px solid rgba(155,77,255,.18);border-radius:4px;padding:.9rem 1rem;}
-.dc-title{font-size:.55rem;text-transform:uppercase;letter-spacing:.12em;color:var(--purple);margin-bottom:.65rem;}
-.dc-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.45rem;font-size:.6rem;}
-.dc-entity{background:rgba(0,0,0,.3);border:1px solid rgba(0,212,255,.12);border-radius:3px;padding:.22rem .55rem;color:#9abac5;line-height:1.3;}
-.dc-entity.gold{border-color:rgba(255,215,0,.25);color:var(--gold);}
-.dc-entity.cy{border-color:rgba(0,212,255,.2);color:var(--cyan);}
-.dc-entity.pu{border-color:rgba(155,77,255,.22);color:var(--purple);}
-.dc-entity.gr{border-color:rgba(0,255,136,.18);color:var(--green);}
-.dc-arrow{color:#1e3040;font-size:.8rem;}
-
-/* ── QUICK DISPATCH ── */
-.dform{display:flex;flex-direction:column;gap:.5rem;}
-.ds,.di{width:100%;background:rgba(0,0,0,.5);border:1px solid rgba(0,212,255,.15);color:#c5d8f0;font-family:'Courier New',monospace;font-size:.65rem;padding:.48rem .68rem;border-radius:3px;outline:none;}
-.ds:focus,.di:focus{border-color:var(--cyan);}
-.ds option{background:#020b18;}
-.dbtn{background:var(--green);color:#020b18;font-family:'Courier New',monospace;font-weight:900;font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;padding:.58rem;border:none;border-radius:3px;cursor:pointer;transition:all .2s;box-shadow:0 0 10px rgba(0,255,136,.3);}
-.dbtn:hover{box-shadow:0 0 22px rgba(0,255,136,.6);}
-
-/* ── ACTIVITY FEED ── */
-.fitem{display:flex;align-items:flex-start;gap:.6rem;padding:.4rem 0;border-bottom:1px solid rgba(0,212,255,.05);}
-.fitem:last-child{border-bottom:none;}
-.fdot{width:6px;height:6px;border-radius:50%;margin-top:.28rem;flex-shrink:0;}
-.fdot.c{background:var(--cyan);}.fdot.g{background:var(--green);}.fdot.o{background:var(--gold);}.fdot.p{background:var(--purple);}.fdot.r{background:var(--red);}
-.f-title{font-size:.65rem;color:#c5d8f0;}.f-ts{font-size:.55rem;color:#2a4255;margin-top:.04rem;}
-
-/* ── TIER CARDS ── */
-.tier-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;}
-.tcard{background:rgba(0,0,0,.3);border:1px solid rgba(0,212,255,.1);border-radius:4px;padding:.85rem .9rem;position:relative;overflow:hidden;transition:all .2s;cursor:default;}
-.tcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
-.tcard.basic::before{background:var(--cyan);}.tcard.pro::before{background:var(--purple);}.tcard.empire::before{background:var(--gold);}
-.tcard:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,212,255,.08);}
-.tc-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem;}
-.tc-name{font-size:.65rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;}
-.tc-name.basic{color:var(--cyan);}.tc-name.pro{color:var(--purple);}.tc-name.empire{color:var(--gold);}
-.tc-price{font-size:.85rem;font-weight:900;color:var(--green);}
-.tc-feats{font-size:.57rem;color:#3a5060;line-height:1.6;}
-.tc-cta{display:inline-block;margin-top:.5rem;font-size:.54rem;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;padding:.22rem .6rem;border-radius:2px;border:1px solid rgba(0,212,255,.2);color:var(--cyan);transition:all .15s;}
-.tc-cta:hover{background:rgba(0,212,255,.08);}
-
-/* ── BOTTOM TICKER ── */
-.ticker{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(2,11,24,.97);border-top:1px solid rgba(0,212,255,.1);padding:.28rem 1rem;display:flex;align-items:center;gap:1rem;overflow:hidden;}
-.tick-lbl{font-size:.55rem;color:var(--cyan);text-transform:uppercase;letter-spacing:.1em;font-weight:700;flex-shrink:0;}
-.tick-scroll{flex:1;overflow:hidden;}
-.tick-inner{display:flex;gap:2.5rem;animation:tickMove 50s linear infinite;white-space:nowrap;}
-@keyframes tickMove{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.tick-it{font-size:.58rem;color:#2a4255;flex-shrink:0;}
-.tick-it span{color:var(--cyan);}
-
-/* RESPONSIVE */
-@media(max-width:1200px){.stat-row{grid-template-columns:repeat(3,1fr);}.mgrid{grid-template-columns:1fr 1fr;}.pnl.w2{grid-column:span 2;}.pnl.w3{grid-column:span 2;}}
-@media(max-width:768px){.stat-row{grid-template-columns:repeat(2,1fr);}.mgrid{grid-template-columns:1fr;}.pnl.w2,.pnl.w3{grid-column:span 1;}.cgrid{grid-template-columns:repeat(2,1fr);}.tier-row{grid-template-columns:1fr;}.treasury-strip{grid-template-columns:repeat(2,1fr);}.hero-title{font-size:1.4rem;}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>☩ Codex Ecclesia</title>
+  <meta name="description" content="The sacred digital archive of the Ecclesia - Web3 DApp" />
+  <meta name="keywords" content="codex, ecclesia, scrolls, web3, defi, dynasty, blockchain" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="lib/shield.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
 </head>
 <body>
-<div class="grid-bg"></div>
-<div class="scan"></div>
-<div class="glow-spot a"></div>
-<div class="glow-spot b"></div>
+  <nav class="sacred-nav">
+    <a href="index.html">Home</a>
+    <a href="all-scrolls.html">All Scrolls</a>
+    <a href="codex-constitution.html">Constitution</a>
+    <a href="legal-definitions.html">Legal Definitions</a>
+    <a href="omega-portal.html" class="nav-highlight">☩ Omega Portal</a>
+    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="logistics-dynasty.html">🚚 Logistics</a>
+    <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="nav-dynasty">👑 Dynasty Dashboard</a>
+  </nav>
 
-<div class="page">
+  <header class="hero-section">
+    <div class="seal-icon-large">☩</div>
+    <h1>Codex Ecclesia</h1>
+    <p class="hero-tagline">A living archive of sacred scrolls, heirs, and trustees of the Ecclesia</p>
+    <p class="hero-subtitle">Web3 DApp on Sepolia Testnet</p>
+  </header>
 
-  <!-- ═══ HERO ═══ -->
-  <div class="hero">
-    <div class="hero-inner">
-      <div class="hero-l">
-        <div class="hero-eyebrow">Borders Dynasty · Sovereign Platform · Est. 2024</div>
-        <div class="hero-title">
-          <div class="line1">DivinityVX</div>
-          <div class="line2">Architect Command Hub</div>
-        </div>
-        <div class="hero-sub">
-          <strong>Borders Ecclesia Earth Trust</strong> · EIN 41-6823854 · 508(c)(1)(A)<br>
-          Divine Solutions Logistics, LLC · DOT/MC/BMC-84 · LaaS · MaaS · Compliance · CodexChain
-        </div>
-      </div>
-      <div class="hero-r">
-        <div class="hero-btns">
-          <a href="divinity-home.html" class="hbtn primary">⚡ My Private Home</a>
-          <a href="dispatcher-console.html" class="hbtn green">🗂 Dispatcher Console</a>
-          <a href="driver-app.html" class="hbtn purple">📱 Driver App</a>
-          <a href="carrier-enrollment.html" class="hbtn gold">📝 Enroll 1099</a>
-        </div>
-        <div class="hero-status">
-          <div class="hs-item"><div class="hs-dot on"></div>All Systems Live</div>
-          <div class="hs-item"><div class="hs-dot cy"></div>CodexChain Active</div>
-          <div class="hs-item"><div class="hs-dot pu"></div>DivinityVX Online</div>
-        </div>
-      </div>
-    </div>
+  <div class="search-section">
+    <input type="text" id="searchBox" placeholder="Search scrolls by title, category, or content..." class="search-input" />
   </div>
 
-  <!-- ═══ DVX COMMS ═══ -->
-  <div class="dvx-panel">
-    <div class="dvx-header">
-      <div class="dvx-h-l">
-        <span class="dvx-ai-ico">🧠</span>
-        <div>
-          <div class="dvx-title">DivinityVX Neural Link ↔ Grand Architect</div>
-          <div class="dvx-sub">AI Operations Intelligence · Live Channel · Dispatch · Compliance · Markets</div>
+  <section class="section-block coin-showcase">
+    <h2 class="section-title">Borders Sovereign Coin (BSC)</h2>
+    <p class="section-subtitle">The official cryptocurrency of the Borders Dynasty Nation</p>
+
+    <div class="coin-info-grid">
+      <div class="coin-stat">
+        <span class="stat-label">Symbol</span>
+        <span class="stat-value">BSC</span>
+      </div>
+      <div class="coin-stat">
+        <span class="stat-label">Network</span>
+        <span class="stat-value">Sepolia</span>
+      </div>
+      <div class="coin-stat">
+        <span class="stat-label">Standard</span>
+        <span class="stat-value">ERC-20</span>
+      </div>
+    </div>
+
+    <div class="contract-info">
+      <div class="contract-row">
+        <span class="contract-label">Contract Address:</span>
+        <code class="contract-hash" id="contractHash">Loading...</code>
+        <button class="copy-btn" onclick="TreasuryWidget.copyAddress('contractHash')">Copy</button>
+      </div>
+      <div class="contract-row">
+        <span class="contract-label">Treasury Wallet:</span>
+        <code class="contract-hash" id="walletAddress">Loading...</code>
+        <button class="copy-btn" onclick="TreasuryWidget.copyAddress('walletAddress')">Copy</button>
+      </div>
+    </div>
+
+    <div id="liveContractData" class="live-contract-data" style="display:none;">
+      <h4>Live Blockchain Data</h4>
+      <div class="live-stats">
+        <div class="live-stat">
+          <span class="live-label">Name:</span>
+          <span id="liveCoinName" class="live-value">--</span>
         </div>
-      </div>
-      <div class="dvx-h-r">
-        <span class="dvx-online">DVX Online</span>
-        <a href="divinity-home.html" style="font-size:.57rem;color:var(--purple);border:1px solid rgba(155,77,255,.25);padding:.17rem .52rem;border-radius:2px;text-decoration:none;transition:all .2s;">⚡ Private Home →</a>
-      </div>
-    </div>
-    <div class="dvx-feed" id="dvxFeed">
-      <div style="text-align:center;font-size:.62rem;color:#1e3040;padding:.75rem;">Connecting to DivinityVX Neural Layer...</div>
-    </div>
-    <div class="dvx-quick">
-      <button class="dvxq" onclick="dvxQuick('Status report — all ops')">Status Report</button>
-      <button class="dvxq" onclick="dvxQuick('Show available dispatch matches')">Dispatch Matches</button>
-      <button class="dvxq" onclick="dvxQuick('Rate check — current market')">Rate Check</button>
-      <button class="dvxq" onclick="dvxQuick('Show me open loads')">Open Loads</button>
-      <button class="dvxq" onclick="dvxQuick('Driver roster and CDL status')">Driver Roster</button>
-      <button class="dvxq" onclick="dvxQuick('Treasury balance and platform revenue')">Treasury</button>
-    </div>
-    <div class="dvx-input-row">
-      <input class="dvx-inp" id="dvxInput" placeholder="Command DivinityVX — dispatch, compliance, rates, drivers..." onkeydown="if(event.key==='Enter')sendDvx()">
-      <button class="dvx-send" onclick="sendDvx()">▶ Send</button>
-    </div>
-  </div>
-
-  <!-- ═══ STATS ═══ -->
-  <div class="stat-row">
-    <div class="sc c">
-      <div class="sc-lbl"><span class="dot5 c"></span>Open Loads</div>
-      <div class="sc-num c" id="sOpen">—</div>
-      <div class="sc-sub">Tendered · awaiting dispatch</div>
-    </div>
-    <div class="sc g">
-      <div class="sc-lbl"><span class="dot5 g"></span>Available Drivers</div>
-      <div class="sc-num g" id="sAvail">—</div>
-      <div class="sc-sub">CDL certified · ready</div>
-    </div>
-    <div class="sc c" style="--border-color:var(--cyan);">
-      <div class="sc-lbl"><span class="dot5 c"></span>In Transit</div>
-      <div class="sc-num c" id="sTransit">—</div>
-      <div class="sc-sub">Active loads on the road</div>
-    </div>
-    <div class="sc g">
-      <div class="sc-lbl"><span class="dot5 g"></span>Delivered</div>
-      <div class="sc-num g" id="sDelivered">—</div>
-      <div class="sc-sub">POD confirmed · CodexChain logged</div>
-    </div>
-    <div class="sc o">
-      <div class="sc-lbl"><span class="dot5 o"></span>Platform Revenue</div>
-      <div class="sc-num o" id="sRevenue">—</div>
-      <div class="sc-sub">Net delivered · BSC tokenized</div>
-    </div>
-  </div>
-
-  <!-- ═══ MAIN GRID ═══ -->
-  <div class="mgrid">
-
-    <!-- COMMAND TILES -->
-    <div class="pnl">
-      <div class="ph"><div class="ph-t">⚡ Platform Access</div><span class="badge live">⬤ All Online</span></div>
-      <div class="cgrid">
-        <a href="divinity-home.html" class="ctile p">
-          <span class="ct-ico">🏠</span><div class="ct-lbl">Divinity Home</div>
-          <div class="ct-desc">Private sovereign hub · dispatch oracle · growth channel</div>
-          <div class="ct-st live">⬤ Owner Only</div>
-        </a>
-        <a href="dispatcher-console.html" class="ctile g">
-          <span class="ct-ico">🗂</span><div class="ct-lbl">Dispatcher Console</div>
-          <div class="ct-desc">Full TMS · loadboard · fleet · dispatch engine</div>
-          <div class="ct-st live">⬤ Active</div>
-        </a>
-        <a href="driver-app.html" class="ctile c">
-          <span class="ct-ico">📱</span><div class="ct-lbl">Driver App</div>
-          <div class="ct-desc">Route · POD capture · compliance docs</div>
-          <div class="ct-st rdy">⬤ Mobile Ready</div>
-        </a>
-        <a href="carrier-enrollment.html" class="ctile p">
-          <span class="ct-ico">📝</span><div class="ct-lbl">Enroll 1099</div>
-          <div class="ct-desc">LaaS · MaaS · BASIC $199 · PRO $599 · EMPIRE $1999</div>
-          <div class="ct-st rdy">⬤ 3 Tiers Open</div>
-        </a>
-        <a href="omega-portal.html" class="ctile o">
-          <span class="ct-ico">☩</span><div class="ct-lbl">Omega Portal</div>
-          <div class="ct-desc">Filings · legal docs · trust instruments · 60+ templates</div>
-          <div class="ct-st rdy">⬤ Ready</div>
-        </a>
-        <a href="reverse-logistics-dashboard.html" class="ctile c">
-          <span class="ct-ico">♻</span><div class="ct-lbl">Rev. Logistics</div>
-          <div class="ct-desc">Containers · seizures · auction pipeline</div>
-          <div class="ct-st live">⬤ Active</div>
-        </a>
-        <a href="divinity-command.html" class="ctile p">
-          <span class="ct-ico">🧠</span><div class="ct-lbl">Command Center</div>
-          <div class="ct-desc">AI co-pilot · intelligence · registrations · token mgmt</div>
-          <div class="ct-st live">⬤ Online</div>
-        </a>
-        <a href="treasury-console.html" class="ctile o">
-          <span class="ct-ico">🏦</span><div class="ct-lbl">Treasury</div>
-          <div class="ct-desc">BSC coin · mint · buyback · Sepolia</div>
-          <div class="ct-st rdy">⬤ Sepolia Live</div>
-        </a>
-        <a href="https://borders-dynasty--kingsmoovedap.replit.app" class="ctile o" target="_blank">
-          <span class="ct-ico">👑</span><div class="ct-lbl">Dynasty HQ</div>
-          <div class="ct-desc">Nation dashboard · treasury · command</div>
-          <div class="ct-st ext">↗ External</div>
-        </a>
-      </div>
-    </div>
-
-    <!-- LIVE LOAD BOARD (v1 API) -->
-    <div class="pnl w2">
-      <div class="ph">
-        <div class="ph-t">🚚 Live Load Board <span id="loadBoardCount" style="font-size:.55rem;font-weight:400;color:#2a4255;margin-left:.4rem;"></span></div>
-        <div style="display:flex;gap:.4rem;align-items:center;">
-          <div class="lb-tabs">
-            <button class="lbt active" onclick="showLoads('all',this)">All</button>
-            <button class="lbt" onclick="showLoads('tendered',this)">Tendered</button>
-            <button class="lbt" onclick="showLoads('in_transit',this)">In Transit</button>
-            <button class="lbt" onclick="showLoads('delivered',this)">Delivered</button>
-          </div>
-          <a href="dispatcher-console.html" class="ph-a">Full Console →</a>
+        <div class="live-stat">
+          <span class="live-label">Symbol:</span>
+          <span id="liveCoinSymbol" class="live-value">--</span>
         </div>
-      </div>
-      <div style="overflow-x:auto;">
-        <table class="ltbl">
-          <thead><tr><th>Reference</th><th>Route</th><th>Equipment</th><th>Miles</th><th>Rate</th><th>Source</th><th>Status</th><th>Driver</th></tr></thead>
-          <tbody id="loadBoardBody"><tr><td colspan="8" style="padding:1rem;text-align:center;color:#2a4255;">Loading...</td></tr></tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- DRIVER ROSTER -->
-    <div class="pnl">
-      <div class="ph"><div class="ph-t">👤 Driver Roster</div><a href="dispatcher-console.html" class="ph-a">Fleet →</a></div>
-      <div id="driverRoster"></div>
-    </div>
-
-    <!-- QUICK DISPATCH -->
-    <div class="pnl">
-      <div class="ph"><div class="ph-t">📡 Quick Dispatch</div><span class="badge rdy">⬤ v1 API</span></div>
-      <div class="dform">
-        <select class="ds" id="qdDriver"><option value="">Select Available Driver...</option></select>
-        <select class="ds" id="qdLoad"><option value="">Select Tendered Load...</option></select>
-        <input type="text" class="di" id="qdNotes" placeholder="Dispatch notes (optional)">
-        <button class="dbtn" onclick="quickDispatch()">📡 DISPATCH NOW</button>
-        <div id="qdRes" style="font-size:.62rem;color:#4a6580;display:none;margin-top:.2rem;"></div>
-      </div>
-    </div>
-
-    <!-- MARKET LANES -->
-    <div class="pnl">
-      <div class="ph"><div class="ph-t">📈 Market Lanes</div><span class="badge live">⬤ MaS Engine</span></div>
-      <div class="lane-grid" id="laneGrid">
-        <div style="color:#2a4255;font-size:.62rem;padding:.5rem;">Loading market data...</div>
-      </div>
-    </div>
-
-    <!-- CODEXCHAIN EVENTS -->
-    <div class="pnl">
-      <div class="ph"><div class="ph-t">📡 CodexChain Events</div><span class="badge chain">⬤ Live Spine</span></div>
-      <div id="eventFeed"></div>
-    </div>
-
-    <!-- SERVICE TIERS -->
-    <div class="pnl w3">
-      <div class="ph"><div class="ph-t">💎 Downstream Partner Tiers</div><a href="carrier-enrollment.html" class="ph-a">Enroll Now →</a></div>
-      <div class="tier-row">
-        <div class="tcard basic">
-          <div class="tc-h"><div class="tc-name basic">BASIC</div><div class="tc-price">$199<span style="font-size:.55rem;color:#2a4050;">/mo</span></div></div>
-          <div class="tc-feats">Load access · Basic dispatch priority · Standard support<br>Target: Owner-operators, solo CDL drivers entering the network</div>
-          <a href="carrier-enrollment.html" class="tc-cta">Enroll →</a>
-        </div>
-        <div class="tcard pro">
-          <div class="tc-h"><div class="tc-name pro">PRO</div><div class="tc-price">$599<span style="font-size:.55rem;color:#2a4050;">/mo</span></div></div>
-          <div class="tc-feats">Priority dispatch · Compliance support (CDL/DOT/MC) · Reverse logistics access · Rate calculator<br>Target: Small carriers, 2–10 truck fleets, freight brokers starting out</div>
-          <a href="carrier-enrollment.html" class="tc-cta">Enroll →</a>
-        </div>
-        <div class="tcard empire">
-          <div class="tc-h"><div class="tc-name empire">EMPIRE</div><div class="tc-price">$1,999<span style="font-size:.55rem;color:#2a4050;">/mo</span></div></div>
-          <div class="tc-feats">Dedicated DivinityVX architect channel · Fleet-as-a-Service · Custom integrations · Micro-hub access (ATL / DFW / CLT / MEM / BHM) · Full CodexChain integration<br>Target: Enterprise carriers, 3PLs, freight networks</div>
-          <a href="carrier-enrollment.html" class="tc-cta">Enroll →</a>
+        <div class="live-stat">
+          <span class="live-label">Total Supply:</span>
+          <span id="liveTotalSupply" class="live-value">--</span>
         </div>
       </div>
     </div>
 
-    <!-- DYNASTY STRUCTURE + ACTIVITY -->
-    <div class="pnl">
-      <div class="ph"><div class="ph-t">⚖ Dynasty Structure</div></div>
-      <div class="dynasty-chain">
-        <div class="dc-title">Entity Chain — Revenue Flow</div>
-        <div class="dc-row"><div class="dc-entity gold">Borders Dynasty Irrevocable Trust</div><span style="font-size:.52rem;color:#1e3040;">IP Owner</span></div>
-        <div class="dc-row"><span class="dc-arrow">↓</span><div class="dc-entity cy">Borders Ecclesia Earth Trust · EIN 41-6823854 · 508(c)(1)(A)</div></div>
-        <div class="dc-row"><span class="dc-arrow">↓</span><div class="dc-entity pu">Divine Solutions Holdings, LLC</div></div>
-        <div class="dc-row"><span class="dc-arrow">↓</span><div class="dc-entity gr">Divine Solutions Logistics, LLC · Carrier · DOT/MC/BMC-84</div></div>
+    <div class="wallet-widget">
+      <h4>Wallet Connection</h4>
+      <div class="network-badge">
+        <span class="network-dot"></span>
+        <span class="network-name">Sepolia Testnet</span>
+      </div>
+      <div id="walletStatus"><span class="wallet-disconnected">Not connected</span></div>
+      <div id="walletBalanceDisplay" class="balance-display" style="display:none;">
+        <div class="balance-row">
+          <span class="balance-label">ETH Balance:</span>
+          <span id="ethBalance" class="balance-eth">0 ETH</span>
+        </div>
+        <div class="balance-row">
+          <span class="balance-label">BSC Balance:</span>
+          <span id="walletBalance" class="balance-value">0 BSC</span>
+        </div>
+      </div>
+      <button id="connectWalletBtn" class="coin-btn coin-btn-wallet" onclick="TreasuryWidget.connect()">Connect Wallet</button>
+    </div>
+
+    <div id="transferSection" class="transfer-section" style="display:none;">
+      <h4>Transfer BSC Tokens</h4>
+      <div class="transfer-form">
+        <div class="form-group">
+          <label for="transferRecipient">Recipient Address</label>
+          <input type="text" id="transferRecipient" placeholder="0x..." class="transfer-input" />
+        </div>
+        <div class="form-group">
+          <label for="transferAmount">Amount (BSC)</label>
+          <input type="number" id="transferAmount" placeholder="0.00" min="0" step="0.001" class="transfer-input" />
+        </div>
+        <button id="transferBtn" class="coin-btn coin-btn-transfer" onclick="TreasuryWidget.transfer()">Send BSC</button>
       </div>
     </div>
 
-    <!-- ACTIVITY FEED -->
-    <div class="pnl w2">
-      <div class="ph"><div class="ph-t">⚡ Platform Activity</div><span class="badge live">⬤ Live</span></div>
-      <div id="actFeed"></div>
+    <div id="defiSection" class="defi-section" style="display:none;">
+      <h4>DeFi Tools</h4>
+      <div class="defi-tabs">
+        <button class="defi-tab active" onclick="showDefiTab('approve')">Approve</button>
+        <button class="defi-tab" onclick="showDefiTab('allowance')">Check Allowance</button>
+      </div>
+      <div id="approveTab" class="defi-tab-content active">
+        <p class="defi-desc">Approve a spender to use your BSC tokens (required for DeFi protocols)</p>
+        <div class="form-group">
+          <label for="approveSpender">Spender Address</label>
+          <input type="text" id="approveSpender" placeholder="0x..." class="transfer-input" />
+        </div>
+        <div class="form-group">
+          <label for="approveAmount">Amount (leave empty for unlimited)</label>
+          <input type="text" id="approveAmount" placeholder="100 or 'max'" class="transfer-input" />
+        </div>
+        <button id="approveBtn" class="coin-btn coin-btn-defi" onclick="TreasuryWidget.approve()">Approve</button>
+      </div>
+      <div id="allowanceTab" class="defi-tab-content">
+        <p class="defi-desc">Check how much a spender is approved to use</p>
+        <div class="form-group">
+          <label for="checkAllowanceSpender">Spender Address</label>
+          <input type="text" id="checkAllowanceSpender" placeholder="0x..." class="transfer-input" oninput="TreasuryWidget.checkAllowance()" />
+        </div>
+        <div class="allowance-result">
+          <span class="allowance-label">Allowance:</span>
+          <span id="allowanceDisplay" class="allowance-value">--</span>
+        </div>
+      </div>
     </div>
 
-  </div><!-- /mgrid -->
-</div><!-- /page -->
+    <div class="coin-actions">
+      <button onclick="TreasuryWidget.openEtherscan()" class="coin-btn coin-btn-verify">View on Etherscan</button>
+      <a href="borders-sovereign-coin.html" class="coin-btn coin-btn-primary">BSC Details</a>
+      <a href="minting-altar.html" class="coin-btn coin-btn-secondary">Minting Altar</a>
+    </div>
 
-<!-- TICKER -->
-<div class="ticker">
-  <div class="tick-lbl">⚡</div>
-  <div class="tick-scroll"><div class="tick-inner" id="tickerInner"></div></div>
-</div>
-
-<script>
-// ── ACTIVITY ──────────────────────────────────────────────────────
-const evts = [];
-function addEvt(msg, col='c') {
-  evts.unshift({msg, col, ts: new Date().toLocaleTimeString()});
-  if (evts.length > 12) evts.pop();
-  document.getElementById('actFeed').innerHTML = evts.map(e =>
-    `<div class="fitem"><span class="fdot ${e.col}"></span><div><div class="f-title">${e.msg}</div><div class="f-ts">${e.ts}</div></div></div>`
-  ).join('');
-}
-
-// ── STATS ─────────────────────────────────────────────────────────
-let allDrivers = [], allLoads = [];
-
-async function loadStats() {
-  const [loads, drivers, treasury] = await Promise.all([
-    fetch('/api/v1/loads').then(r=>r.json()).catch(()=>[]),
-    fetch('/api/v1/drivers').then(r=>r.json()).catch(()=>[]),
-    fetch('/api/v1/treasury/balances').then(r=>r.json()).catch(()=>null)
-  ]);
-  allLoads = loads; allDrivers = drivers;
-  document.getElementById('sOpen').textContent = loads.filter(l=>l.status==='tendered').length;
-  document.getElementById('sAvail').textContent = drivers.filter(d=>d.status==='available').length;
-  document.getElementById('sTransit').textContent = loads.filter(l=>l.status==='in_transit').length;
-  document.getElementById('sDelivered').textContent = loads.filter(l=>l.status==='delivered').length;
-  if (treasury) document.getElementById('sRevenue').textContent = '$' + Number(treasury.fiatUSD).toLocaleString();
-  populateDispatchSelects();
-}
-
-// ── LOAD BOARD ────────────────────────────────────────────────────
-let currentFilter = 'all';
-
-function showLoads(filter, btn) {
-  currentFilter = filter;
-  document.querySelectorAll('.lbt').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderLoads();
-}
-
-function renderLoads() {
-  const ls = currentFilter === 'all' ? allLoads : allLoads.filter(l=>l.status===currentFilter);
-  document.getElementById('loadBoardCount').textContent = ls.length + ' loads';
-  const srcColor = s => s==='DIVINITY'?'var(--cyan)':s==='DAT'?'var(--gold)':s==='TRUCKSTOP'?'var(--purple)':'#3a5070';
-  document.getElementById('loadBoardBody').innerHTML = ls.map(l => {
-    const drv = l.assignedDriverId ? (allDrivers.find(d=>d.id===l.assignedDriverId)||{name:'#'+l.assignedDriverId}) : null;
-    return `<tr>
-      <td style="color:var(--cyan);font-weight:700;">${l.reference}</td>
-      <td style="font-size:.62rem;">${l.originCity},${l.originState} → ${l.destinationCity},${l.destinationState}</td>
-      <td style="font-size:.58rem;">${l.equipmentRequired||'—'}</td>
-      <td>${l.miles?l.miles.toLocaleString()+' mi':'—'}</td>
-      <td style="color:var(--green);font-weight:700;">${l.rate?'$'+Number(l.rate).toLocaleString():'—'}</td>
-      <td style="font-size:.55rem;color:${srcColor(l.source||'DIVINITY')};">${l.source||'DIVINITY'}</td>
-      <td><span class="pill ${l.status}">${l.status}</span></td>
-      <td style="font-size:.6rem;color:${drv?'var(--cyan)':'#2a4255'};">${drv?drv.name:'—'}</td>
-    </tr>`;
-  }).join('') || '<tr><td colspan="8" style="padding:1rem;text-align:center;color:#2a4255;">No loads in this status</td></tr>';
-}
-
-// ── DRIVER ROSTER ─────────────────────────────────────────────────
-function renderDrivers() {
-  document.getElementById('driverRoster').innerHTML = allDrivers.slice(0,6).map(d => `
-    <div class="drow">
-      <div>
-        <div class="d-name">${d.name}</div>
-        <div class="d-sub">Tier ${d.tier} · CDL ${d.cdlNumber||'N/A'} · ★${d.rating}</div>
+    <div class="coin-tech">
+      <h4>Technology Stack</h4>
+      <div class="tech-tags">
+        <span class="tech-tag">Solidity</span>
+        <span class="tech-tag">Hardhat</span>
+        <span class="tech-tag">Ethers.js</span>
+        <span class="tech-tag">MetaMask</span>
+        <span class="tech-tag">Web3</span>
+        <span class="tech-tag">DeFi</span>
       </div>
-      <span class="d-badge ${d.status}">${d.status.replace('_',' ')}</span>
-    </div>`).join('');
-}
+    </div>
+  </section>
 
-// ── DISPATCH ──────────────────────────────────────────────────────
-function populateDispatchSelects() {
-  const avail = allDrivers.filter(d=>d.status==='available');
-  const open  = allLoads.filter(l=>l.status==='tendered');
-  document.getElementById('qdDriver').innerHTML = '<option value="">Select Available Driver...</option>' +
-    avail.map(d=>`<option value="${d.id}">${d.name} (${d.tier})</option>`).join('');
-  document.getElementById('qdLoad').innerHTML = '<option value="">Select Tendered Load...</option>' +
-    open.map(l=>`<option value="${l.id}">${l.reference} · ${l.originCity},${l.originState}→${l.destinationCity},${l.destinationState} · $${Number(l.rate).toLocaleString()}</option>`).join('');
-}
-
-async function quickDispatch() {
-  const driverId = parseInt(document.getElementById('qdDriver').value);
-  const loadId   = parseInt(document.getElementById('qdLoad').value);
-  const notes    = document.getElementById('qdNotes').value;
-  const res = document.getElementById('qdRes');
-  if (!driverId||!loadId) { res.style.cssText='display:block;color:var(--red)'; res.textContent='⚠ Select driver and load'; return; }
-  res.style.cssText='display:block;color:#3a5060'; res.textContent='Assigning...';
-  const r1 = await fetch(`/api/v1/loads/${loadId}/assign`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({driverId})}).then(r=>r.json()).catch(()=>null);
-  if (!r1?.success) { res.style.color='var(--red)'; res.textContent='⚠ Assignment failed'; return; }
-  const r2 = await fetch(`/api/v1/loads/${loadId}/dispatch`,{method:'POST',headers:{'Content-Type':'application/json'}}).then(r=>r.json()).catch(()=>null);
-  if (r2?.success) {
-    res.style.color='var(--green)'; res.textContent='✅ Dispatched · CodexChain event logged';
-    addEvt(`Dispatch: ${r1.driver?.name||'Driver'} → load #${loadId}`, 'g');
-    loadStats().then(()=>{ renderLoads(); renderDrivers(); });
-  } else { res.style.color='var(--red)'; res.textContent='⚠ Dispatch failed — load assigned but not sent'; }
-}
-
-// ── MARKET LANES ──────────────────────────────────────────────────
-async function loadLanes() {
-  const d = await fetch('/api/v1/markets/lanes').then(r=>r.json()).catch(()=>null);
-  if (!d) return;
-  const trendColor = t => t.startsWith('+')?'var(--green)':'var(--red)';
-  document.getElementById('laneGrid').innerHTML = d.lanes.slice(0,6).map(l => `
-    <div class="lane-row">
-      <div class="lane-name">${l.lane}</div>
-      <div class="lane-rpm">$${l.avgRatePerMile.toFixed(2)}<span style="font-size:.52rem;color:#2a4050;">/mi</span></div>
-      <span class="lane-trend" style="color:${trendColor(l.trend)};">${l.trend}</span>
-      <span class="lane-dem ${l.demand.replace(' ','')}">${l.demand}</span>
-    </div>`).join('');
-  // update ticker
-  buildTicker(d.lanes);
-}
-
-// ── CODEXCHAIN EVENTS ─────────────────────────────────────────────
-async function loadEvents() {
-  const d = await fetch('/api/v1/events/logistics?limit=8').then(r=>r.json()).catch(()=>null);
-  if (!d) return;
-  document.getElementById('eventFeed').innerHTML = d.events.map(e => {
-    const ts = new Date(e.eventTime);
-    return `<div class="ev-item">
-      <div class="ev-dot ${e.eventType}"></div>
-      <div class="ev-body">
-        <div class="ev-type">${e.eventType.replace(/_/g,' ')}${e.loadId?' · Load #'+e.loadId:''}</div>
-        ${e.driverName?`<div style="font-size:.57rem;color:var(--cyan);">${e.driverName}</div>`:''}
-        <div class="ev-notes">${e.notes||''}</div>
-        <div class="ev-ts">${ts.toLocaleDateString()} ${ts.toLocaleTimeString()}</div>
+  <section class="section-block dynasty-integration">
+    <h2 class="section-title">👑 Dynasty Ecosystem</h2>
+    <p class="section-subtitle">Unified sovereign infrastructure connecting all Dynasty platforms</p>
+    <div class="dynasty-grid">
+      <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="dynasty-card">
+        <span class="dynasty-icon">⚒️</span>
+        <h3>Minting Forge</h3>
+        <p>Execute mint decrees and create new BSC tokens</p>
+      </a>
+      <a href="https://borders-dynasty--kingsmoovedap.replit.app" target="_blank" class="dynasty-card">
+        <span class="dynasty-icon">🛡️</span>
+        <h3>Security Guard</h3>
+        <p>Apply blacklist decrees and manage security</p>
+      </a>
+      <a href="omega-portal.html" class="dynasty-card">
+        <span class="dynasty-icon">📜</span>
+        <h3>Document Center</h3>
+        <p>Draft, file, and track all legal documents</p>
+      </a>
+      <a href="trustees-portal.html" class="dynasty-card">
+        <span class="dynasty-icon">⚖️</span>
+        <h3>Trustees Portal</h3>
+        <p>Trust administration and fiduciary learning</p>
+      </a>
+      <a href="heirs-portal.html" class="dynasty-card">
+        <span class="dynasty-icon">👑</span>
+        <h3>Heirs Portal</h3>
+        <p>Nation claiming and inheritance rights</p>
+      </a>
+      <a href="logistics-dynasty.html" class="dynasty-card">
+        <span class="dynasty-icon">🚚</span>
+        <h3>Logistics Dynasty</h3>
+        <p>Supply chain & logistics management platform</p>
+      </a>
+    </div>
+    <div class="dynasty-status">
+      <div class="status-item">
+        <span class="status-dot status-active"></span>
+        <span>QFS-Compliant Architecture</span>
       </div>
-    </div>`;
-  }).join('') || '<div style="color:#2a4255;font-size:.62rem;padding:.5rem;">No events yet</div>';
-}
-
-// ── TICKER ────────────────────────────────────────────────────────
-function buildTicker(lanes) {
-  const items = [
-    '<span>DIVINITYVX</span> Sovereign Platform Online',
-    '<span>CODEXCHAIN</span> Event Spine Active',
-    '<span>TRUST</span> Borders Ecclesia Earth Trust · EIN 41-6823854 · 508(c)(1)(A)',
-    '<span>CARRIER</span> Divine Solutions Logistics, LLC · DOT/MC/BMC-84',
-    '<span>BSC</span> 0x12efC9a5D115AE7833c9a6D79f1B3BA18Cde817c',
-    ...(lanes||[]).map(l=>`<span>${l.lane.split('→')[0].trim()}</span>→${l.lane.split('→')[1]?.trim()||''} · $${l.avgRatePerMile.toFixed(2)}/mi · ${l.trend}`),
-    '<span>TIERS</span> BASIC $199 · PRO $599 · EMPIRE $1,999/mo',
-    '<span>DISPATCH</span> LaaS · MaaS · Compliance-as-a-Service',
-  ];
-  const all = [...items,...items];
-  const el = document.getElementById('tickerInner');
-  if (el) el.innerHTML = all.map(t=>`<span class="tick-it">${t}</span>`).join('');
-}
-
-// ── DVX COMMS ─────────────────────────────────────────────────────
-let dvxMsgCount = 0;
-const archName = 'Grand Architect';
-
-function renderDvx(msgs) {
-  const feed = document.getElementById('dvxFeed');
-  if (!msgs.length) { feed.innerHTML = '<div style="text-align:center;font-size:.62rem;color:#1e3040;padding:.75rem;">No messages yet</div>'; return; }
-  feed.innerHTML = msgs.map(m => {
-    const isDvx = m.from === 'DIVINITYVX';
-    const tag = (m.type&&m.type!=='info'&&m.type!=='reply') ? `<span class="dvx-tag tag-${m.type}">${m.type}</span>` : '';
-    return `<div class="dvx-msg from-${isDvx?'dvx':'arch'}">
-      <div class="dvx-av">${isDvx?'🧠':'👑'}</div>
-      <div class="dvx-mb">
-        <div class="dvx-sender">${isDvx?'DivinityVX':archName}${tag}</div>
-        <div class="dvx-text">${m.message}</div>
-        <div class="dvx-ts">${new Date(m.createdAt).toLocaleTimeString()}</div>
+      <div class="status-item">
+        <span class="status-dot status-active"></span>
+        <span>ISO-20022 Ready</span>
       </div>
-    </div>`;
-  }).join('');
-  feed.scrollTop = feed.scrollHeight;
-}
+      <div class="status-item">
+        <span class="status-dot status-active"></span>
+        <span>Gold-Backed Sync</span>
+      </div>
+    </div>
+  </section>
 
-async function pollDvx() {
-  try {
-    const d = await fetch('/api/dvx/messages').then(r=>r.json());
-    renderDvx(d.messages||[]);
-    if (d.messages.length !== dvxMsgCount && dvxMsgCount > 0) addEvt('DivinityVX: new intelligence report', 'p');
-    dvxMsgCount = d.messages.length;
-  } catch(e) {}
-}
+  <section class="section-block">
+    <h2 class="section-title">Sovereign Archives</h2>
+    <p class="section-subtitle">Core documents of the Ecclesia</p>
+    <div class="quick-links">
+      <a href="omega-portal.html" class="quick-link">☩ Omega Portal</a>
+      <a href="codex-constitution.html" class="quick-link">📜 Constitution</a>
+      <a href="legal-definitions.html" class="quick-link">⚖️ Legal Definitions</a>
+      <a href="all-scrolls.html" class="quick-link">📚 All Scrolls</a>
+      <a href="codexchain-console.html" class="quick-link">🔗 CodexChain</a>
+      <a href="verify-scroll.html" class="quick-link">✓ Verify Scroll</a>
+    </div>
+  </section>
 
-async function sendDvx() {
-  const inp = document.getElementById('dvxInput');
-  if (!inp?.value.trim()) return;
-  const msg = inp.value.trim(); inp.value = '';
-  try {
-    const d = await fetch('/api/dvx/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg,type:'reply'})}).then(r=>r.json());
-    if (d.success) { addEvt('Command → DivinityVX: '+msg.slice(0,40), 'o'); setTimeout(pollDvx, 1500); }
-  } catch(e) {}
-}
+  <section class="section-block">
+    <h2 class="section-title">All Scrolls</h2>
+    <p class="section-subtitle">Complete archive of the Ecclesia</p>
+    <div class="category-filters" id="categoryFilters"></div>
+    <div class="scrolls-grid" id="allScrollsGrid"></div>
+    <p class="loading-text" id="loadingText">Loading scrolls...</p>
+  </section>
 
-function dvxQuick(cmd) { document.getElementById('dvxInput').value=cmd; sendDvx(); }
+  <footer class="sacred-footer">
+    <p>☩ Codex Ecclesia — Borders Ecclesia Earth Trust</p>
+    <p>Operating under 508(c)(1)(A) ecclesiastical exemption</p>
+    <p>© 2025 All Rights Reserved under Divine Law</p>
+  </footer>
 
-// ── INIT ──────────────────────────────────────────────────────────
-Promise.all([loadStats(), loadLanes(), loadEvents(), pollDvx()]).then(() => {
-  renderLoads(); renderDrivers();
-  addEvt('Platform initialized — DivinityVX · CodexChain · v1 API all online', 'c');
-  addEvt(`${allDrivers.filter(d=>d.status==='available').length} drivers available · ${allLoads.filter(l=>l.status==='tendered').length} loads open`, 'g');
-  addEvt('Divine Solutions Logistics, LLC · DOT/MC active', 'p');
-  addEvt('CodexChain event spine connected · events streaming', 'o');
-}).catch(()=>addEvt('Init error — check server', 'r'));
+  <script src="treasury-widget.js"></script>
+  <script>
+    async function loadScrolls() {
+      try {
+        const response = await fetch('codex.json');
+        const data = await response.json();
+        const grid = document.getElementById('allScrollsGrid');
+        const loadingText = document.getElementById('loadingText');
+        const searchBox = document.getElementById('searchBox');
+        const categoryFilters = document.getElementById('categoryFilters');
 
-setInterval(()=>{ loadStats().then(()=>{renderLoads();renderDrivers();}); loadEvents(); pollDvx(); }, 25000);
+        if (!data.scrolls || data.scrolls.length === 0) {
+          loadingText.textContent = 'No scrolls found.';
+          return;
+        }
+
+        loadingText.style.display = 'none';
+
+        const categories = [...new Set(data.scrolls.map(s => s.category || 'Uncategorized'))];
+        categoryFilters.innerHTML = '<button class="filter-btn active" data-category="all">All</button>' +
+          categories.map(cat => `<button class="filter-btn" data-category="${cat}">${cat}</button>`).join('');
+
+        function renderScrolls(scrolls) {
+          grid.innerHTML = scrolls.map(scroll => `
+            <a href="${scroll.url}" class="scroll-card">
+              <span class="scroll-icon">${scroll.icon || '📜'}</span>
+              <span class="scroll-title">${scroll.title || scroll.url}</span>
+              <span class="scroll-category">${scroll.category || 'Uncategorized'}</span>
+            </a>
+          `).join('');
+        }
+
+        renderScrolls(data.scrolls);
+
+        categoryFilters.addEventListener('click', (e) => {
+          if (e.target.classList.contains('filter-btn')) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+            const category = e.target.dataset.category;
+            if (category === 'all') {
+              renderScrolls(data.scrolls);
+            } else {
+              renderScrolls(data.scrolls.filter(s => s.category === category));
+            }
+          }
+        });
+
+        searchBox.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase();
+          const filtered = data.scrolls.filter(s =>
+            (s.title && s.title.toLowerCase().includes(query)) ||
+            (s.category && s.category.toLowerCase().includes(query)) ||
+            (s.url && s.url.toLowerCase().includes(query))
+          );
+          renderScrolls(filtered);
+        });
+
+      } catch (error) {
+        console.error('Failed to load scrolls:', error);
+        document.getElementById('loadingText').textContent = 'Failed to load scrolls.';
+      }
+    }
+
+    loadScrolls();
+  </script>
+<script type="module">
+  import { createDynastyHub } from './lib/dynasty-hub.js';
+  createDynastyHub({ position: 'bottom-right', collapsed: true });
 </script>
 </body>
 </html>

@@ -17,7 +17,9 @@
     "publish:scroll": "node scripts/publish-scroll.cjs",
     "lint": "htmlhint '**/*.html'",
     "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "deploy:bsc": "npx hardhat run scripts/deploy-bsc.js --network bsc",
+    "dev:fmv": "cd fmv-backend && npm install && npm start"
   },
   "dependencies": {
     "@types/express": "^5.0.6",
@@ -36,6 +38,9 @@
     "zod": "^4.3.4"
   },
   "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.0",
+    "dotenv": "^16.4.0",
     "htmlhint": "^1.1.5",
     "vite": "^5.0.0"
   }

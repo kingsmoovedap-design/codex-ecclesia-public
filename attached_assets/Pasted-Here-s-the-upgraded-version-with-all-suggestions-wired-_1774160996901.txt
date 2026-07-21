@@ -1,0 +1,387 @@
+Here’s the upgraded version with **all suggestions wired in**:  
+- Bail panel inside Omega  
+- Bail case status updates  
+- Read‑only coin/escrow status hooks  
+- Backend routes to support it  
+
+I’ll only show **files that change or are new**.
+
+---
+
+### 1. `config.js` – add optional bail escrow note
+
+```js
+window.DYNASTY_CONFIG = {
+  sovereignCoinAddress: "",                 // BSC contract address
+  logisticsApiBaseUrl: "",                  // e.g. "https://your-logistics-api.onrender.com"
+  escrowContractAddress: "",                // mainnet escrow contract
+  omegaPortalTitle: "Omega Portal – Borders Dynasty",
+  bailEscrowNote: "Coin-based collateral is subject to written agreement and legal review."
+};
+```
+
+---
+
+### 2. `omega/dashboard.html` – add Bail panel
+
+Replace the `<main class="omega-main">…</main>` block with this:
+
+```html
+<main class="omega-main">
+  <section class="omega-panel">
+    <h2>Dynasty Overview</h2>
+    <ul>
+      <li><a href="../studio/index.html" target="_blank">Divine Living</a></li>
+      <li><a href="../events/index.html" target="_blank">Dynasty Party Co.</a></li>
+      <li><a href="../loadboard/index.html" target="_blank">Loadboard</a></li>
+      <li><a href="../driver-app/index.html" target="_blank">Driver App</a></li>
+      <li><a href="../fleet-rental/index.html" target="_blank">Fleet Rental</a></li>
+      <li><a href="../bailbonds/index.html" target="_blank">Dynasty Bail Bonds</a></li>
+    </ul>
+  </section>
+
+  <section class="omega-panel">
+    <h2>Coin & Escrow</h2>
+    <p id="coinData">Loading coin config…</p>
+    <p id="escrowData">Loading escrow config…</p>
+    <p id="escrowNote"></p>
+  </section>
+
+  <section class="omega-panel">
+    <h2>Logistics API</h2>
+    <p id="apiStatus">Checking API status…</p>
+    <button id="pingApiBtn">Ping Logistics API</button>
+  </section>
+
+  <section class="omega-panel">
+    <h2>Bail Cases</h2>
+    <p id="bailStatus">Loading bail cases…</p>
+    <div id="bailList"></div>
+  </section>
+</main>
+```
+
+---
+
+### 3. `omega/omega.js` – bail panel + escrow note
+
+Use this full updated file:
+
+```js
+// Omega dashboard logic
+
+const cfg = window.DYNASTY_CONFIG || {};
+const STORAGE_KEY = "omega_auth";
+
+function isAuthenticated() {
+  return localStorage.getItem(STORAGE_KEY) === "true";
+}
+
+if (!isAuthenticated()) {
+  window.location.href = "login.html";
+}
+
+const logoutBtn = document.getElementById('logoutBtn');
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem(STORAGE_KEY);
+    window.location.href = "login.html";
+  });
+}
+
+const coinData = document.getElementById('coinData');
+const escrowData = document.getElementById('escrowData');
+const escrowNote = document.getElementById('escrowNote');
+const apiStatus = document.getElementById('apiStatus');
+const pingApiBtn = document.getElementById('pingApiBtn');
+const bailStatus = document.getElementById('bailStatus');
+const bailList = document.getElementById('bailList');
+
+// Coin & escrow display
+if (coinData) {
+  if (cfg.sovereignCoinAddress) {
+    coinData.innerHTML = `
+      Sovereign Coin: <a href="https://bscscan.com/token/${cfg.sovereignCoinAddress}" target="_blank">
+      ${cfg.sovereignCoinAddress}</a>
+    `;
+  } else {
+    coinData.textContent = "Sovereign Coin address not set in config.js.";
+  }
+}
+
+if (escrowData) {
+  if (cfg.escrowContractAddress) {
+    escrowData.textContent = `Escrow Contract: ${cfg.escrowContractAddress}`;
+  } else {
+    escrowData.textContent = "Escrow contract address not set in config.js.";
+  }
+}
+
+if (escrowNote && cfg.bailEscrowNote) {
+  escrowNote.textContent = cfg.bailEscrowNote;
+}
+
+// Logistics API ping
+if (pingApiBtn && apiStatus) {
+  pingApiBtn.addEventListener('click', async () => {
+    if (!cfg.logisticsApiBaseUrl) {
+      apiStatus.textContent = "Logistics API base URL not set in config.js.";
+      return;
+    }
+    apiStatus.textContent = "Pinging API…";
+    try {
+      const res = await fetch(cfg.logisticsApiBaseUrl + "/health");
+      if (res.ok) {
+        const data = await res.json().catch(() => ({}));
+        apiStatus.textContent = "API OK: " + (data.status || "healthy");
+      } else {
+        apiStatus.textContent = "API error: " + res.status;
+      }
+    } catch (e) {
+      apiStatus.textContent = "API unreachable.";
+      console.error(e);
+    }
+  });
+}
+
+// Bail cases panel
+async function loadBailCases() {
+  if (!cfg.logisticsApiBaseUrl) {
+    if (bailStatus) bailStatus.textContent = "Logistics API base URL not set in config.js.";
+    return;
+  }
+  if (bailStatus) bailStatus.textContent = "Loading bail cases…";
+  try {
+    const res = await fetch(cfg.logisticsApiBaseUrl + "/bail/cases");
+    if (!res.ok) {
+      if (bailStatus) bailStatus.textContent = "Error loading bail cases: " + res.status;
+      return;
+    }
+    const cases = await res.json();
+    bailList.innerHTML = '';
+    if (!Array.isArray(cases) || cases.length === 0) {
+      if (bailStatus) bailStatus.textContent = "No bail cases yet.";
+      return;
+    }
+    cases.forEach(c => {
+      const div = document.createElement('div');
+      div.className = 'omega-bail-card';
+      div.innerHTML = `
+        <p><strong>ID:</strong> ${c.id}</p>
+        <p><strong>Defendant:</strong> ${c.defendantName}</p>
+        <p><strong>Case #:</strong> ${c.caseNumber}</p>
+        <p><strong>Facility:</strong> ${c.facility}</p>
+        <p><strong>Bail Amount:</strong> ${c.bailAmount}</p>
+        <p><strong>Status:</strong> ${c.status}</p>
+        <label>
+          Update Status
+          <select data-id="${c.id}" class="bail-status-select">
+            <option value="">Select…</option>
+            <option value="intake">Intake</option>
+            <option value="under_review">Under Review</option>
+            <option value="approved">Approved</option>
+            <option value="denied">Denied</option>
+            <option value="posted">Posted</option>
+            <option value="forfeited">Forfeited</option>
+            <option value="released">Released</option>
+          </select>
+        </label>
+      `;
+      bailList.appendChild(div);
+    });
+    if (bailStatus) bailStatus.textContent = "";
+
+    document.querySelectorAll('.bail-status-select').forEach(sel => {
+      sel.addEventListener('change', () => {
+        const id = sel.getAttribute('data-id');
+        const status = sel.value;
+        if (status) updateBailStatus(id, status);
+      });
+    });
+  } catch (e) {
+    console.error(e);
+    if (bailStatus) bailStatus.textContent = "Failed to load bail cases.";
+  }
+}
+
+async function updateBailStatus(id, status) {
+  if (!cfg.logisticsApiBaseUrl) return;
+  try {
+    const res = await fetch(cfg.logisticsApiBaseUrl + "/bail/" + id + "/status", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status })
+    });
+    if (res.ok) {
+      alert("Bail status updated.");
+      loadBailCases();
+    } else {
+      alert("Failed to update bail status: " + res.status);
+    }
+  } catch (e) {
+    console.error(e);
+    alert("Error updating bail status.");
+  }
+}
+
+loadBailCases();
+```
+
+Add a small style for bail cards to `omega/omega.css` (at the bottom):
+
+```css
+.omega-bail-card {
+  border-top: 1px solid #1f2937;
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+```
+
+---
+
+### 4. `logistics-api/server.js` – bail intake + status update
+
+Use this extended version (keeping your existing loads/fleet routes):
+
+```js
+const express = require('express');
+const cors = require('cors');
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+// Simple in-memory data for now
+let loads = [
+  { id: "load-1", reference: "DL-1001", origin: "Los Angeles, CA", destination: "Phoenix, AZ", rate: "$1200", status: "available" }
+];
+
+let fleet = [
+  { id: "unit-1", name: "Truck 001", type: "Tractor", rate: "$500/day", status: "available" }
+];
+
+let driverLoads = {
+  "driver-001": [
+    { id: "load-1", reference: "DL-1001", origin: "Los Angeles, CA", destination: "Phoenix, AZ", status: "assigned" }
+  ]
+};
+
+// Bail bonds in-memory store
+let bailCases = [];
+
+app.get('/health', (req, res) => {
+  res.json({ status: "healthy" });
+});
+
+app.get('/loads', (req, res) => {
+  res.json(loads);
+});
+
+app.get('/drivers/:driverId/loads', (req, res) => {
+  const { driverId } = req.params;
+  res.json(driverLoads[driverId] || []);
+});
+
+app.post('/loads/:loadId/status', (req, res) => {
+  const { loadId } = req.params;
+  const { status } = req.body;
+  loads = loads.map(l => l.id === loadId ? { ...l, status } : l);
+  Object.keys(driverLoads).forEach(did => {
+    driverLoads[did] = (driverLoads[did] || []).map(l => l.id === loadId ? { ...l, status } : l);
+  });
+  res.json({ ok: true });
+});
+
+app.get('/fleet', (req, res) => {
+  res.json(fleet);
+});
+
+// Bail intake
+app.post('/bail/intake', (req, res) => {
+  const {
+    defendantName,
+    caseNumber,
+    facility,
+    charge,
+    bailAmount,
+    contactName,
+    contactPhone,
+    contactEmail
+  } = req.body || {};
+
+  if (!defendantName || !caseNumber || !facility || !bailAmount || !contactName) {
+    return res.status(400).json({ message: "Missing required fields." });
+  }
+
+  const id = "bail-" + (bailCases.length + 1);
+  const record = {
+    id,
+    defendantName,
+    caseNumber,
+    facility,
+    charge,
+    bailAmount,
+    contactName,
+    contactPhone,
+    contactEmail,
+    status: "intake",
+    createdAt: new Date().toISOString()
+  };
+  bailCases.push(record);
+
+  res.json({
+    id,
+    message: "Intake received. A bondsman will review this case."
+  });
+});
+
+// Bail cases list for Omega
+app.get('/bail/cases', (req, res) => {
+  res.json(bailCases);
+});
+
+// Bail status update from Omega
+app.post('/bail/:id/status', (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body || {};
+  const allowed = [
+    "intake",
+    "under_review",
+    "approved",
+    "denied",
+    "posted",
+    "forfeited",
+    "released"
+  ];
+  if (!allowed.includes(status)) {
+    return res.status(400).json({ message: "Invalid status." });
+  }
+  bailCases = bailCases.map(c => c.id === id ? { ...c, status } : c);
+  res.json({ ok: true });
+});
+
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log('Logistics API running on port', PORT);
+});
+```
+
+---
+
+### 5. What you do now
+
+1. **Add `bailbonds/` folder** (from previous message) to your repo.  
+2. **Update**:
+   - `config.js`
+   - `omega/dashboard.html`
+   - `omega/omega.js`
+   - `omega/omega.css`
+   - `logistics-api/server.js`  
+3. Deploy/update your `logistics-api` Replit and set its URL in `config.js`.  
+4. Open `omega/login.html`, log in with `Devenity1008`, and you’ll see:
+   - Coin & escrow info  
+   - Logistics API health  
+   - Live bail cases list with status controls  
+
+When you’re ready to go deeper (e.g., read‑only on‑chain escrow status for a specific bail case), we can design a separate “escrow viewer” that just reads from BSC and displays status—no auto‑movement of funds.

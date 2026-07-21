@@ -1,45 +1,29 @@
-const fs = require('fs-extra');
-const path = require('path');
-
-const BASE_URL = 'https://codex-ecclesia.org';
-const CODEX_PATH = path.join(__dirname, '../codex.json');
-const SITEMAP_PATH = path.join(__dirname, '../sitemap.xml');
+const fs = require("fs-extra");
+const glob = require("glob");
+const path = require("path");
+const { SitemapStream, streamToPromise } = require("sitemap");
 
 async function generateSitemap() {
   try {
-    const codex = await fs.readJson(CODEX_PATH);
+    const baseUrl = "https://kingsmoovedap-design.github.io/codex-ecclesia-public";
 
-    if (!Array.isArray(codex.scrolls)) {
-      throw new Error('codex.json must contain a "scrolls" array');
-    }
+    const pages = glob
+      .sync("**/*.html", { ignore: ["node_modules/**", "dist/**"] })
+      .map(file => `/${file}`);
 
-    const urls = codex.scrolls.map(entry => {
-      const loc = `${BASE_URL}/${entry.url.replace(/^\//, '')}`;
-      const lastmod = new Date(entry.created).toISOString().split('T')[0];
-      return `
-  <url>
-    <loc>${loc}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>`;
-    });
+    const sitemap = new SitemapStream({ hostname: baseUrl });
 
-    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>${BASE_URL}/</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-${urls.join('\n')}
-</urlset>`;
+    pages.forEach(page => sitemap.write({ url: page }));
+    sitemap.end();
 
-    await fs.writeFile(SITEMAP_PATH, sitemap.trim());
-    console.log(`Sitemap generated with ${urls.length + 1} entries.`);
+    const xml = await streamToPromise(sitemap);
+
+    await fs.ensureDir("dist");
+    await fs.writeFile("dist/sitemap.xml", xml.toString());
+
+    console.log("✅ sitemap.xml generated");
   } catch (err) {
-    console.error('Failed to generate sitemap:', err.message);
+    console.error("❌ Error generating sitemap:", err);
     process.exit(1);
   }
 }

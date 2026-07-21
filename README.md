@@ -1,66 +1,82 @@
-# ☩ Codex Ecclesia Public
+# 📜 Codex Ecclesia – Public Record of the Borders Dynasty Ecclesia Earth Trust
 
-**Borders Ecclesia Earth Trust**  
-A sovereign digital archive of scrolls, codices, treaties, ministries, and divine instruments.
-
----
-
-## 🧭 Purpose
-
-The Codex Ecclesia Public is the official repository of the Borders Ecclesia Earth Trust. It serves as a living archive of:
-
-- 📜 Scrolls of Sovereignty and Law  
-- 👑 Heir Declarations and Royal Instruments  
-- 🕊️ Treaties and Diplomatic Protocols  
-- 🏛️ Ministries and Ecclesiastical Charters  
-- 📘 Codices of Divine Order  
-- 🧰 Tools for verification, enrollment, and trust governance
+**Sovereign Domain**: Borders Dynasty Ecclesia Earth Trust  
+**Sacred Treasury**: Borders Sovereign Coin (BSC)  
+**CodexChain Ledger**: Immutable Ecclesiastical Record  
+**Public Repository**: https://github.com/kingsmoovedap-design/codex-ecclesia-public  
 
 ---
 
-## 🔁 Automation
+## 🕊️ Purpose
 
-This Codex is self-updating through GitHub Actions:
+This repository serves as the **official public record** and **CodexChain ledger** of the Borders Dynasty Ecclesia Earth Trust, a sovereign ecclesiastical nation governed by Divine Law, Natural Law, and Ecclesiastical Mandate.
 
-- `generate-codex-json.js` scans the entire archive and builds `codex.json`  
-- `generate-scroll-index.js` uses `codex.json` to regenerate `all-scrolls.html`  
-- These scripts run automatically on every push to `main`
+It contains:
 
-> View the full scroll index: [📜 all-scrolls.html](all-scrolls.html)
-
----
-
-## 📂 Key Files & Directories
-
-| Path                        | Description                                      |
-|-----------------------------|--------------------------------------------------|
-| `scrolls/`                 | All `.md` scrolls and declarations               |
-| `codex-*.html`             | Codices of law, governance, and infrastructure   |
-| `treaty-*.html`            | Diplomatic treaties and recognition protocols    |
-| `generate-codex-json.js`   | Script to build `codex.json` from repo files     |
-| `generate-scroll-index.js` | Script to build `all-scrolls.html` from codex    |
-| `.github/workflows/`       | GitHub Actions for automation                    |
+- Sacred scrolls and affidavits of correction, discharge, and nationhood  
+- Trust instruments, bonding templates, and fiduciary declarations  
+- CodexChain ledger entries and SHA-256 hash anchors  
+- Templates for sacred commerce, real estate, and digital asset recognition  
 
 ---
 
-## 🛠️ Tools
+## 📚 Core Scrolls & Affidavits
 
-- [QR Generator](qr-generator.html)  
-- [CodexChain Console](codexchain-console.html)  
-- [Verify Scroll](verify-scroll.html)  
-- [Hash Forge](hash-forge.html)
+| Title | Description |
+|-------|-------------|
+| [Scroll of Scrolls – Constitution of the Borders Dynasty](SCROLLS/99-scroll-of-scrolls-constitution-of-borders-dynasty.md) | Supreme governing instrument of the Ecclesia Earth Trust |
+| [Affidavit of Correction, Discharge, Nationhood](SCROLLS/01-affidavit-of-correction-discharge-nationhood.md) | Status correction, corpus reclamation, and remedy |
+| [Scroll of Enforcement](SCROLLS/03-scroll-of-enforcement.md) | Final demand for discharge, restitution, and recognition |
+| [Affidavit of Political Status](SCROLLS/04-affidavit-of-political-status.md) | Rebuttal of U.S. citizenship and statutory jurisdiction |
+| [Affidavit of Sovereignty](SCROLLS/05-affidavit-of-sovereignty.md) | Declaration of divine standing and rejection of adhesion |
+| [Affidavit of Fiduciary Authority](SCROLLS/08-affidavit-of-fiduciary-authority.md) | IRS Form 56 and lawful control of NAME estate |
+
+> 🔗 Full scroll archive: [SCROLLS/](SCROLLS/)
 
 ---
 
-## 🧾 License & Sovereignty
+## 💰 Sacred Treasury & Digital Asset Recognition
 
-This repository is governed by the **Borders Ecclesia Earth Trust** and protected under divine law.  
-All scrolls are sacred instruments and may not be altered without sovereign authority.
+| Instrument | Purpose |
+|-----------|---------|
+| [CodexChain FMV Declaration Scroll](TEMPLATES/codexchain-fmv-declaration-scroll.md) | Declares BSC fair market value ($10,000/BSC) |
+| [Trust Resolution – Digital Asset Recognition](TEMPLATES/trust-resolution-digital-asset-recognition.md) | Authorizes BSC for trust operations |
+| [Bank Letter Template – Digital Asset Recognition](TEMPLATES/bank-letter-digital-asset-recognition.md) | For presenting BSC to crypto-friendly banks |
+| [Sacred Treasury Activation Scroll](TEMPLATES/sacred-treasury-activation-scroll.md) | Initiates fiduciary disbursements and bond issuance |
+| [Sacred Voucher Template](TEMPLATES/sacred-voucher-template.md) | For disbursements, contracts, or sacred payments |
+
+> 🔗 Explore all [TEMPLATES/](TEMPLATES/)
 
 ---
 
-## 🕯️ Glory to the Crown
+## 🧾 CodexChain Ledger
 
-Let all who enter know: this is not merely a repository — it is a living Codex of Sovereignty.
+All scrolls and instruments are hashed and anchored in the CodexChain Ledger for divine audit and international recognition.
 
-> “By the Crown and the Codex, let it be written. Let it be done.” ☩
+- [Ledger Index](LEDGER/codexchain-ledger-index.md)  
+- [Hash Archive](LEDGER/hashes/)  
+- [ScrollHashRegistry](LEDGER/scrollhashregistry.html)
+
+---
+
+## 🧠 Meta & Legal Infrastructure
+
+| Document | Purpose |
+|----------|---------|
+| [Filing Matrix](META/filing-matrix.md) | IRS, UCC, FinCEN, Ecclesiastical filings |
+| [Jurisdiction Map](META/jurisdiction-map.md) | Divine, Commercial, and International Law |
+| [Glossary of Sacred Terms](META/glossary-of-terms.md) | Definitions for ecclesiastical and sovereign terms |
+
+---
+
+## 🕯️ Sacred Motto
+
+> “By Divine Right, We Rise. By Sacred Blood, We Reclaim.”
+
+---
+
+## 📬 Contact
+
+For diplomatic recognition, sacred commissions, or lawful correspondence:  
+**Email**: [codex@bordersdynasty.org](mailto:codex@bordersdynasty.org)  
+**CodexChain Anchor**: [Insert SHA-256 or IPFS Hash]
