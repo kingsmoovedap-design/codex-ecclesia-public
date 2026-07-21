@@ -1,0 +1,49 @@
+name: Update Dashboard Data
+
+on:
+  schedule:
+    - cron: '0 4 * * *'  # Runs daily at 4:00 UTC
+  workflow_dispatch:
+
+jobs:
+  update-dashboard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install jq
+        run: sudo apt-get install jq
+
+      - name: Generate dashboard-data.json
+        run: |
+          SCROLLS=$(jq '.scrolls | length' scrolls.json)
+          GRANTS=$(jq '.grants | length' grants.json 2>/dev/null || echo 0)
+          TRUSTS=5
+          LEDGER=37
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          cat <<EOF > omega-portal/dashboard-data.json
+          {
+            "stats": {
+              "totalScrolls": $SCROLLS,
+              "grantsIssued": $GRANTS,
+              "activeTrusts": $TRUSTS,
+              "ledgerAnchors": $LEDGER
+            },
+            "lastUpdated": "$TIMESTAMP"
+          }
+          EOF
+
+      - name: Commit and push
+        run: |
+          git config user.name "CodexChain Bot"
+          git config user.email "bot@codexchain.org"
+          git add omega-portal/dashboard-data.json
+          git commit -m "🔄 Auto-update dashboard metrics"
+          git push
