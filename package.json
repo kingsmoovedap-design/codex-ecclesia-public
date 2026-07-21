@@ -5,43 +5,33 @@
   "author": "Borders Ecclesia Earth Trust",
   "license": "MIT",
   "type": "module",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
-    "dev": "tsx --tsconfig tsconfig.json server/index.ts",
-    "dev:vite": "vite --host 0.0.0.0 --port 5000",
-    "build": "vite build && npm run generate:manifest && npm run generate:sitemap",
-    "preview": "vite preview",
-    "generate": "node scripts/generate-manifest.cjs && node scripts/generate-codex-json.cjs && node scripts/generate-scroll-index.cjs",
-    "inject": "node scripts/inject-metadata.cjs",
+    "dev": "vite --host 0.0.0.0 --port 5000",
+    "build": "vite build && node scripts/generate-all.cjs",
+    "generate": "node scripts/generate-all.cjs",
     "generate:manifest": "node scripts/generate-manifest.cjs",
     "generate:sitemap": "node scripts/generate-sitemap.cjs",
-    "publish:scroll": "node scripts/publish-scroll.cjs",
-    "lint": "htmlhint '**/*.html'",
-    "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio",
-    "deploy:bsc": "npx hardhat run scripts/deploy-bsc.js --network bsc",
-    "dev:fmv": "cd fmv-backend && npm install && npm start"
+    "generate:codex": "node scripts/generate-codex-json.cjs",
+    "generate:scrolls": "node scripts/generate-scroll-index.cjs",
+    "inject": "node scripts/inject-metadata.cjs",
+    "search": "node scripts/generate-search-index.cjs",
+    "validate": "node scripts/validate-codex.cjs",
+    "watch": "node scripts/watch.cjs"
   },
   "dependencies": {
-    "@types/express": "^5.0.6",
-    "@types/pg": "^8.16.0",
-    "cheerio": "^1.0.0-rc.12",
-    "drizzle-kit": "^0.31.8",
-    "drizzle-orm": "^0.45.1",
-    "drizzle-zod": "^0.8.3",
-    "express": "^5.2.1",
     "fs-extra": "^11.2.0",
     "glob": "^10.3.10",
+    "cheerio": "^1.0.0-rc.12",
     "js-yaml": "^4.1.0",
-    "pg": "^8.16.3",
-    "tsx": "^4.21.0",
     "xml2js": "^0.6.2",
-    "zod": "^4.3.4"
+    "sitemap": "^7.1.1"
   },
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
-    "hardhat": "^2.22.0",
-    "dotenv": "^16.4.0",
+    "vite": "^5.0.0",
     "htmlhint": "^1.1.5",
-    "vite": "^5.0.0"
+    "chokidar": "^3.5.3"
   }
 }
