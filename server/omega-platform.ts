@@ -118,6 +118,17 @@ export class OmegaPlatform {
     { id: "ZONE-DAL-02", name: "Dallas Freight Corridor", type: "FREIGHT", coverage: 88, policy: "verified-identity" },
     { id: "ZONE-SAV-03", name: "Savannah Port Gateway", type: "PORT", coverage: 91, policy: "customs-clearance" },
   ];
+  private incidents: Array<{ id: string; type: string; location: string; priority: "critical" | "high" | "routine"; status: "open" | "dispatched" | "resolved"; createdAt: string; responseEtaMinutes: number }> = [
+    { id: "INC-ATL-001", type: "Freight corridor obstruction", location: "I-75 · Atlanta", priority: "high", status: "dispatched", createdAt: now(), responseEtaMinutes: 18 },
+  ];
+  private missions: Array<{ id: string; title: string; source: string; status: "queued" | "active" | "complete"; priority: string; actions: string[]; createdAt: string }> = [
+    { id: "MISSION-001", title: "Maintain Savannah gateway continuity", source: "ConnectivityOS", status: "active", priority: "high", actions: ["Review node telemetry", "Confirm alternate corridor", "Notify logistics operators"], createdAt: now() },
+  ];
+  private vehicles = [
+    { id: "FLEET-07", name: "Borders Fleet 07", type: "Freight tractor", status: "available", location: "Atlanta, GA", inspection: "current", nextService: "2026-09-12", utilization: 74 },
+    { id: "FLEET-12", name: "Borders Fleet 12", type: "Secure delivery unit", status: "assigned", location: "Savannah, GA", inspection: "current", nextService: "2026-08-26", utilization: 61 },
+    { id: "LUX-001", name: "LuxuryOS Demonstrator", type: "Provenance vehicle", status: "in_build", location: "Factory workflow", inspection: "pending", nextService: "—", utilization: 18 },
+  ];
 
   constructor() {
     this.record("PLATFORM_BOOT", "OmegaPlatform", "Omega command plane initialized");
@@ -339,6 +350,169 @@ export class OmegaPlatform {
 
   connectivity() {
     return { zones: this.zones, credits: this.creditListings, meshNodes: [{ id: "MESH-ATL-01", zoneId: "ZONE-ATL-01", status: "online", utilization: 61 }, { id: "MESH-DAL-01", zoneId: "ZONE-DAL-02", status: "online", utilization: 47 }, { id: "MESH-SAV-01", zoneId: "ZONE-SAV-03", status: "degraded", utilization: 82 }] };
+  }
+
+  fabricOverview() {
+    return {
+      name: "Divinity Administrative Fabric",
+      mode: "operator",
+      description: "Internal coordination layer for the Borders Ecclesia operating system.",
+      layers: [
+        { id: "TRUST", name: "TrustOS", role: "Governance, policy, and continuity", status: "online" },
+        { id: "CIVILIZATION", name: "CivilizationOS", role: "Cross-domain modernization planning", status: "ready" },
+        { id: "PUBLIC", name: "PublicOS", role: "Scoped partner and community workflows", status: "ready" },
+        { id: "PRIVATE", name: "PrivateOS", role: "Commerce, fleet, and logistics execution", status: "online" },
+        { id: "FAMILY", name: "FamilyOS", role: "Continuity and succession planning", status: "standby" },
+        { id: "INTERPLANETARY", name: "InterplanetaryOS", role: "Future aerospace simulation rail", status: "dormant" },
+      ],
+      principles: [
+        { id: "DATA_MINIMIZATION", label: "Data minimization", score: 0.96 },
+        { id: "INCLUSION_BASELINE", label: "Inclusion baseline", score: 0.91 },
+        { id: "TRANSPARENCY", label: "Explainable decisions", score: 0.94 },
+        { id: "RESILIENCE", label: "Telemetry resilience", score: 0.89 },
+      ],
+      accessModes: [
+        { id: "DIVINITY_OPERATOR", label: "Divinity operator", scope: "Full internal control plane" },
+        { id: "NETWORK_PARTNER", label: "Network partner", scope: "Scoped loads, projects, and service status" },
+        { id: "PUBLIC_VIEWER", label: "Public viewer", scope: "High-level status and approved programs" },
+      ],
+      metrics: {
+        registeredServices: 18,
+        activeWorkflows: 7,
+        telemetryStreams: 12,
+        openMissions: this.missions.filter((mission) => mission.status !== "complete").length,
+      },
+    };
+  }
+
+  infrastructureDomains() {
+    return {
+      domains: [
+        { id: "WATER", name: "WaterOS", status: "online", coverage: "3 nodes", signal: "supply balanced", action: "Monitor supply and shortage events" },
+        { id: "WASTE", name: "WasteOS", status: "ready", coverage: "6 routes", signal: "routes optimized", action: "Coordinate collection missions" },
+        { id: "TELECOM", name: "TelecomOS", status: "online", coverage: "3 mesh zones", signal: "94% reach", action: "Protect critical connectivity" },
+        { id: "ATMOSPHERE", name: "AtmosphereOS", status: "watch", coverage: "regional", signal: "quality telemetry", action: "Review air-quality signal" },
+        { id: "OCEAN", name: "OceanOS", status: "standby", coverage: "planning rail", signal: "no active incidents", action: "Open maritime planning" },
+        { id: "HEALTH", name: "HealthOS", status: "ready", coverage: "partner network", signal: "capacity available", action: "Coordinate care response" },
+        { id: "EDUCATION", name: "EducationOS", status: "ready", coverage: "community network", signal: "programs active", action: "Review learning missions" },
+        { id: "SPACE", name: "SpaceOS", status: "dormant", coverage: "simulation only", signal: "future rail", action: "Run mission simulation" },
+      ],
+      nodes: [
+        { id: "WATER-ATL-01", domain: "WaterOS", location: "Atlanta", status: "online", capacity: "82%" },
+        { id: "TELECOM-SAV-03", domain: "TelecomOS", location: "Savannah Port", status: "degraded", capacity: "61%" },
+        { id: "HEALTH-DAL-02", domain: "HealthOS", location: "Dallas", status: "online", capacity: "76%" },
+      ],
+    };
+  }
+
+  listMissions() {
+    return this.missions;
+  }
+
+  createIncident(input: { type?: string; location?: string; priority?: string }) {
+    const priority = input.priority === "critical" || input.priority === "high" ? input.priority : "routine";
+    const incident = {
+      id: id("INC"),
+      type: input.type || "Unclassified service incident",
+      location: input.location || "Operations network",
+      priority,
+      status: "open" as const,
+      createdAt: now(),
+      responseEtaMinutes: priority === "critical" ? 8 : priority === "high" ? 18 : 45,
+    };
+    this.incidents.unshift(incident);
+    const mission = {
+      id: id("MISSION"),
+      title: `Respond: ${incident.type}`,
+      source: "EmergencyOS",
+      status: "queued" as const,
+      priority,
+      actions: ["Validate telemetry", "Assign response owner", "Publish status update"],
+      createdAt: now(),
+    };
+    this.missions.unshift(mission);
+    this.record("EMERGENCY_MISSION_CREATED", "EmergencyOS", `${incident.type} at ${incident.location}`, { incident, mission });
+    return { incident, mission };
+  }
+
+  incidentSnapshot() {
+    return { incidents: this.incidents, missions: this.missions, responseMode: "human-approved dispatch" };
+  }
+
+  fleetSnapshot() {
+    return {
+      vehicles: this.vehicles,
+      workflows: [
+        { id: "WF-LUX-CAR-MANUFACTURING", name: "Luxury vehicle manufacturing", steps: ["build.locked", "parts.allocated", "assembly.completed", "qa.passed", "delivery.requested"] },
+        { id: "WF-SECURE-DELIVERY", name: "Insured secure delivery", steps: ["route.planned", "inspection.current", "handoff.verified", "provenance.issued"] },
+      ],
+      marketplace: { listings: 1, provenanceLedger: "connected", secureRouting: true },
+    };
+  }
+
+  dispatchVehicle(vehicleId: string, loadId?: string) {
+    const vehicle = this.vehicles.find((item) => item.id === vehicleId);
+    if (!vehicle) return null;
+    vehicle.status = "assigned";
+    this.record("VEHICLE_DISPATCHED", "FleetOS", `${vehicle.name} dispatched${loadId ? ` for ${loadId}` : ""}`, { vehicleId, loadId });
+    return { vehicle, loadId: loadId || null, routeProfile: "insured-secure", status: "assigned" };
+  }
+
+  continuitySnapshot() {
+    return {
+      score: 86,
+      layers: [
+        { name: "Sovereign continuity", status: "active", detail: "Governance and ledger spine" },
+        { name: "Public continuity", status: "active", detail: "Partner service records" },
+        { name: "Private continuity", status: "active", detail: "Commerce and fleet operations" },
+        { name: "Family continuity", status: "planned", detail: "Succession and estate workflows" },
+        { name: "Interplanetary continuity", status: "dormant", detail: "Simulation rail only" },
+      ],
+      ledger: { entries: this.events.length, rail: "internal event spine", reconciliation: "current" },
+      wallet: { status: "connected", availableCredits: 27600, custody: "TreasuryOS" },
+      succession: { plans: 1, nextReview: "2026-09-01", status: "review required" },
+    };
+  }
+
+  modernizationOverview() {
+    return {
+      lifecycle: [
+        { id: "ASSESS", name: "Assess", status: "complete", score: 94 },
+        { id: "DESIGN", name: "Design", status: "complete", score: 88 },
+        { id: "PILOT", name: "Pilot", status: "active", score: 76 },
+        { id: "SCALE", name: "Scale", status: "queued", score: 0 },
+        { id: "REBALANCE", name: "Rebalance", status: "queued", score: 0 },
+      ],
+      graph: {
+        nodes: [
+          { id: "LOGISTICS", type: "CORRIDOR", impact: 0.88 },
+          { id: "TELECOM", type: "INFRASTRUCTURE", impact: 0.81 },
+          { id: "TREASURY", type: "FINANCE", impact: 0.77 },
+          { id: "PUBLIC_SAFETY", type: "PROGRAM", impact: 0.73 },
+        ],
+        edges: [["LOGISTICS", "TREASURY"], ["TELECOM", "PUBLIC_SAFETY"], ["LOGISTICS", "TELECOM"]],
+      },
+      stability: { reserveStatus: "stable", stressScore: 22, twinFederation: "3 corridors synchronized" },
+      dormantRails: ["SpaceOS", "LunarOS", "DeepSpaceOS"],
+    };
+  }
+
+  processTelemetry(input: { sourceId?: string; sourceType?: string; payload?: Record<string, unknown> }) {
+    const payload = input.payload || {};
+    const size = JSON.stringify(payload).length;
+    const compliant = size <= 65536;
+    const result = {
+      sourceId: input.sourceId || "local-console",
+      sourceType: input.sourceType || "LOGISTICS",
+      compliant,
+      score: compliant ? 1 : 0.5,
+      violations: compliant ? [] : [{ principleId: "DATA_MINIMIZATION", reason: "Telemetry payload exceeds 64KB." }],
+      anomaly: Object.keys(payload).length > 40 ? "review" : "none",
+      explanation: "Telemetry was checked for payload minimization, resilience signals, and operator-readable accountability.",
+      processedAt: now(),
+    };
+    this.record("TELEMETRY_PROCESSED", "Fabric Safety Pipeline", `Telemetry ${compliant ? "accepted" : "flagged"} from ${result.sourceId}`, result);
+    return result;
   }
 
   issueCredit(domain: string, amount: number) {

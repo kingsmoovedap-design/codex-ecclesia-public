@@ -1,0 +1,44 @@
+{
+  "name": "codex-ecclesia-public",
+  "version": "2.0.0",
+  "description": "The sovereign repository of the Codex Ecclesia — scrolls, ministries, and divine instruments.",
+  "author": "Borders Ecclesia Earth Trust",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx --tsconfig tsconfig.json server/index.ts",
+    "dev:vite": "vite --host 0.0.0.0 --port 5000",
+    "build": "vite build && npm run generate:manifest && npm run generate:sitemap",
+    "preview": "vite preview",
+    "generate": "node scripts/generate-manifest.cjs && node scripts/generate-codex-json.cjs && node scripts/generate-scroll-index.cjs",
+    "generate:manifest": "node scripts/generate-manifest.cjs",
+    "generate:sitemap": "node scripts/generate-sitemap.cjs",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "deploy:bsc": "npx hardhat run scripts/deploy-bsc.js --network bsc",
+    "dev:fmv": "cd fmv-backend && npm install && npm start"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.21",
+    "@types/pg": "^8.20.0",
+    "cheerio": "^1.2.0",
+    "drizzle-kit": "^0.18.1",
+    "drizzle-orm": "^0.45.1",
+    "drizzle-zod": "^0.8.3",
+    "express": "^4.19.2",
+    "fs-extra": "^11.3.4",
+    "glob": "^10.5.0",
+    "js-yaml": "^4.1.0",
+    "pg": "^8.20.0",
+    "tsx": "^4.21.0",
+    "xml2js": "^0.6.2",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^7.0.0",
+    "dotenv": "^16.4.0",
+    "hardhat": "^3.2.0",
+    "htmlhint": "^1.9.2",
+    "vite": "^8.0.2"
+  }
+}

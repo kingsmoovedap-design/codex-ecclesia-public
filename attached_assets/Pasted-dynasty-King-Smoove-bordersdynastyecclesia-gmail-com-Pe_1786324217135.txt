@@ -1,0 +1,1183 @@
+dynasty
+King Smoove
+​bordersdynastyecclesia@gmail.com​
+Perfect — let’s drop the geopolitical detour and get right back into infrastructure building, exactly where you left off.
+And since you’re building DynastyOS, a sovereign‑scale modernization OS, the next logical step is to expand your infrastructure layer with:
+Unified Infrastructure Graph (UIG)
+Infrastructure Engines (IEs)
+Infrastructure Simulation Stack (ISS)
+Infrastructure Modernization Cycles (IMCs)
+Infrastructure Safety Envelope (ISE)
+I’ll give you a full, technical, architecture‑level expansion you can plug directly into your existing Fabric.
+⭐ 1. Unified Infrastructure Graph (UIG)
+This is the single source of truth for all infrastructure assets.
+Purpose
+Represent corridors, logistics hubs, utilities, fuel networks, treasury nodes, SCX pools, modernization assets.
+Provide a graph‑based structure for simulation, routing, planning, and modernization cycles.
+Core Data Structure
+ts
+// infra/graph/UIGraph.ts
+export interface UIGNode {
+  id: string;
+  type: "CORRIDOR" | "LOGISTICS" | "UTILITY" | "FUEL" | "TREASURY" | "SCX" | "CITY" | "REGION";
+  sovereignId: string;
+  metrics: Record<string, number>;
+}
+
+export interface UIGEdge {
+  id: string;
+  from: string;
+  to: string;
+  capacity: number;
+  latency: number;
+  stability: number;
+}
+
+export interface UIGraph {
+  nodes: UIGNode[];
+  edges: UIGEdge[];
+}
+This becomes the backbone of DynastyOS.
+⭐ 2. Infrastructure Engines (IEs)
+These engines operate on the UIG.
+A. Corridor Engine
+Optimizes movement across corridors.
+ts
+// infra/engines/CorridorEngine.ts
+export class CorridorEngine {
+  optimize(graph: UIGraph) {
+    // compute optimal corridor flows
+  }
+}
+B. Logistics Engine
+Optimizes supply chain movement.
+C. Fuel Engine
+Optimizes energy distribution.
+D. Treasury Engine
+Optimizes liquidity and stabilization.
+E. SCX Engine
+Optimizes modernization credit flows.
+All engines plug into the Fabric Orchestrator.
+⭐ 3. Infrastructure Simulation Stack (ISS)
+This is where you simulate modernization cycles before execution.
+Components
+TwinBuilder — builds digital twins from UIG
+ScenarioRunner — runs modernization scenarios
+ImpactEvaluator — evaluates modernization impact
+RiskAnalyzer — evaluates risk
+Example
+ts
+// infra/sim/ScenarioRunner.ts
+export class ScenarioRunner {
+  run(graph: UIGraph, upgradePlan: any) {
+    // simulate modernization impact
+    return {
+      projectedEfficiency: 0.12,
+      projectedStability: 0.91,
+      projectedCost: 1_200_000
+    };
+  }
+}
+⭐ 4. Infrastructure Modernization Cycles (IMCs)
+This is the core modernization loop.
+Pipeline
+Telemetry ingestion
+Privacy layer
+NIMS compliance
+Simulation
+Optimization
+Execution
+Transparency logging
+Oversight review
+You already have this pipeline — now we extend it for infrastructure.
+IMC Engine
+ts
+// infra/imc/IMCEngine.ts
+export class IMCEngine {
+  constructor(
+    private corridor: CorridorEngine,
+    private logistics: LogisticsEngine,
+    private fuel: FuelEngine,
+    private treasury: TreasuryEngine,
+    private scx: SCXEngine,
+    private sim: ScenarioRunner
+  ) {}
+
+  async runCycle(graph: UIGraph) {
+    const corridorPlan = this.corridor.optimize(graph);
+    const logisticsPlan = this.logistics.optimize(graph);
+    const fuelPlan = this.fuel.optimize(graph);
+
+    const simResult = this.sim.run(graph, {
+      corridorPlan,
+      logisticsPlan,
+      fuelPlan
+    });
+
+    return {
+      corridorPlan,
+      logisticsPlan,
+      fuelPlan,
+      simResult
+    };
+  }
+}
+This is the infrastructure modernization brain.
+⭐ 5. Infrastructure Safety Envelope (ISE)
+This wraps all infrastructure operations in safety.
+Components
+Privacy — anonymize infrastructure telemetry
+Resilience — detect poisoning or corrupted telemetry
+Inclusion — ensure low‑data regions get modernization
+Transparency — log modernization decisions
+Oversight — human review
+ISE Wrapper
+ts
+// infra/safety/ISEWrapper.ts
+export class ISEWrapper {
+  constructor(
+    private privacy: TelemetryPrivacyService,
+    private resilience: TelemetryGuard,
+    private inclusion: InclusionEngine,
+    private transparency: ExplainabilityService,
+    private oversight: HumanReviewQueue
+  ) {}
+
+  async protect(env: any, modernizationResult: any) {
+    const anomaly = this.resilience.detectPoisoning(env);
+    if (anomaly) {
+      await this.oversight.enqueue({
+        id: anomaly.id,
+        sovereignId: env.sovereignId,
+        decisionId: "",
+        reason: anomaly.reason,
+        status: "OPEN"
+      });
+    }
+
+    const explanation = this.transparency.generateExplanation(
+      "IMCEngine",
+      env,
+      modernizationResult
+    );
+
+    return { anomaly, explanation };
+  }
+}
+⭐ 6. Full Infrastructure Flow (visual)
+Code
+Telemetry → Privacy → NIMS → UIG → Engines → Simulation → IMC → Transparency → Oversight
+This is the DynastyOS Infrastructure Loop.
+⭐ 7. What you can build next
+Here are your next logical steps:
+✔ UIG expansion (add more node types)
+✔ Infrastructure Marketplace (IMX)
+✔ Infrastructure Yield Curves
+✔ Infrastructure Liquidity Pools
+✔ Infrastructure Safety Dashboard
+✔ Infrastructure Twin Federation
+All of these plug directly into your existing Fabric.
+If you want, I can generate:
+Infrastructure Marketplace (IMX) architecture
+Infrastructure Yield Curve engine
+Infrastructure Liquidity Pool engine
+Infrastructure Twin Federation spec
+Infrastructure Operator Console
+Just tell me which one you want next.
+See my thinking
+Infrastructure Marketplace (IMX) architecture
+ts
+// imx/core/IMXTypes.ts
+export type IMXInstrumentType =
+  | "CORRIDOR_UPGRADE"
+  | "LOGISTICS_OPTIMIZATION"
+  | "FUEL_EFFICIENCY"
+  | "TREASURY_STABILIZATION"
+  | "SCX_LIQUIDITY";
+
+export interface IMXInstrument {
+  id: string;
+  type: IMXInstrumentType;
+  sovereignId: string;
+  underlyingNodeId: string; // UIG node
+  notional: number;
+  maturity: string; // ISO date
+  yieldCurveId: string;
+  liquidityPoolId: string;
+}
+ts
+// imx/core/IMXMarketplace.ts
+export class IMXMarketplace {
+  constructor(
+    private yieldEngine: YieldCurveEngine,
+    private poolEngine: LiquidityPoolEngine
+  ) {}
+
+  async listInstruments(sovereignId: string): Promise<IMXInstrument[]> {
+    // fetch from DB
+    return [];
+  }
+
+  async priceInstrument(inst: IMXInstrument) {
+    const yc = await this.yieldEngine.getCurve(inst.yieldCurveId);
+    return yc.price(inst);
+  }
+
+  async routeToPool(inst: IMXInstrument) {
+    return this.poolEngine.route(inst);
+  }
+}
+Infrastructure Yield Curve engine
+ts
+// imx/yield/YieldCurveEngine.ts
+export interface YieldPoint {
+  tenorDays: number;
+  rate: number;
+}
+
+export interface YieldCurve {
+  id: string;
+  sovereignId: string;
+  points: YieldPoint[];
+  price(inst: IMXInstrument): number;
+}
+
+export class YieldCurveEngine {
+  private curves = new Map<string, YieldCurve>();
+
+  registerCurve(curve: YieldCurve) {
+    this.curves.set(curve.id, curve);
+  }
+
+  async getCurve(id: string): Promise<YieldCurve> {
+    const curve = this.curves.get(id);
+    if (!curve) throw new Error("curve not found");
+    return curve;
+  }
+
+  buildFromTelemetry(telemetry: any): YieldCurve {
+    // derive rates from stability, efficiency, risk
+    return {
+      id: `yc-${Date.now()}`,
+      sovereignId: telemetry.sovereignId,
+      points: [{ tenorDays: 365, rate: 0.05 }],
+      price(inst) {
+        const base = inst.notional;
+        const r = this.points[0].rate;
+        return base / (1 + r);
+      }
+    };
+  }
+}
+Infrastructure Liquidity Pool engine
+ts
+// imx/liquidity/LiquidityPoolEngine.ts
+export interface LiquidityPool {
+  id: string;
+  sovereignId: string;
+  instrumentType: IMXInstrumentType;
+  totalLiquidity: number;
+  utilization: number;
+}
+
+export class LiquidityPoolEngine {
+  private pools = new Map<string, LiquidityPool>();
+
+  registerPool(pool: LiquidityPool) {
+    this.pools.set(pool.id, pool);
+  }
+
+  async route(inst: IMXInstrument) {
+    const pool = [...this.pools.values()].find(
+      p => p.sovereignId === inst.sovereignId && p.instrumentType === inst.type
+    );
+    if (!pool) throw new Error("no pool");
+    const available = pool.totalLiquidity * (1 - pool.utilization);
+    const filled = Math.min(available, inst.notional);
+    pool.utilization = (pool.utilization * pool.totalLiquidity + filled) / pool.totalLiquidity;
+    return { poolId: pool.id, filled };
+  }
+}
+Infrastructure Twin Federation spec
+ts
+// twin/federation/TwinFederation.ts
+export interface TwinModel {
+  id: string;
+  nodeId: string; // UIG node
+  sovereignId: string;
+  version: string;
+  state: Record<string, number>;
+}
+
+export interface TwinFederationLink {
+  id: string;
+  fromTwinId: string;
+  toTwinId: string;
+  couplingStrength: number;
+}
+
+export interface TwinFederation {
+  twins: TwinModel[];
+  links: TwinFederationLink[];
+}
+
+export class TwinFederationEngine {
+  constructor(private graph: UIGraph) {}
+
+  buildFederation(): TwinFederation {
+    const twins = this.graph.nodes.map(n => ({
+      id: `twin-${n.id}`,
+      nodeId: n.id,
+      sovereignId: n.sovereignId,
+      version: "1.0.0",
+      state: n.metrics
+    }));
+    const links = this.graph.edges.map(e => ({
+      id: `link-${e.id}`,
+      fromTwinId: `twin-${e.from}`,
+      toTwinId: `twin-${e.to}`,
+      couplingStrength: e.capacity
+    }));
+    return { twins, links };
+  }
+
+  propagateShock(fed: TwinFederation, twinId: string, delta: number) {
+    // simple propagation along links
+  }
+}
+Infrastructure Operator Console
+tsx
+// console/web/src/screens/InfrastructureConsole.tsx
+import React from "react";
+import { IMXMarketplaceView } from "./IMXMarketplaceView";
+import { YieldCurvesView } from "./YieldCurvesView";
+import { LiquidityPoolsView } from "./LiquidityPoolsView";
+import { TwinFederationView } from "./TwinFederationView";
+
+export function InfrastructureConsole() {
+  return (
+    <div className="infra-console">
+      <header>
+        <h1>Infrastructure Operator Console</h1>
+        <p>IMX • Yield Curves • Liquidity Pools • Twin Federation</p>
+      </header>
+      <main className="grid-2">
+        <IMXMarketplaceView />
+        <YieldCurvesView />
+        <LiquidityPoolsView />
+        <TwinFederationView />
+      </main>
+    </div>
+  );
+}
+tsx
+// console/web/src/screens/IMXMarketplaceView.tsx
+export function IMXMarketplaceView() {
+  return (
+    <section>
+      <h2>Infrastructure Marketplace (IMX)</h2>
+      <p>List and price modernization instruments per sovereign.</p>
+    </section>
+  );
+}
+You now have IMX, yield curves, liquidity pools, twin federation, and an operator console skeleton—all aligned with DynastyOS/Fabric.
+Absolutely, devenity — let’s continue the build‑out of the Infrastructure Layer of DynastyOS. You now have IMX, Yield Curves, Liquidity Pools, Twin Federation, and the Operator Console skeleton.
+Next, we expand the system with:
+Infrastructure Risk Engine
+Infrastructure Modernization Ledger (IML)
+Infrastructure Stability Index (ISI)
+Infrastructure Upgrade Compiler (IUC)
+Infrastructure Execution Engine (IEE)
+These components complete the modernization loop.
+I’ll continue exactly in the same technical, architectural style you’ve been using.
+⭐ 8. Infrastructure Risk Engine (IRE)
+This engine evaluates risk across corridors, logistics, fuel, treasury, and SCX nodes.
+ts
+// infra/risk/InfrastructureRiskEngine.ts
+export interface RiskReport {
+  nodeId: string;
+  sovereignId: string;
+  stability: number;
+  congestion: number;
+  liquidityRisk: number;
+  modernizationRisk: number;
+  composite: number;
+}
+
+export class InfrastructureRiskEngine {
+  compute(graph: UIGraph): RiskReport[] {
+    return graph.nodes.map(n => {
+      const stability = n.metrics.stability ?? 0.9;
+      const congestion = n.metrics.congestion ?? 0.2;
+      const liquidityRisk = n.metrics.liquidityRisk ?? 0.1;
+      const modernizationRisk = n.metrics.modRisk ?? 0.15;
+
+      const composite =
+        0.4 * (1 - stability) +
+        0.3 * congestion +
+        0.2 * liquidityRisk +
+        0.1 * modernizationRisk;
+
+      return {
+        nodeId: n.id,
+        sovereignId: n.sovereignId,
+        stability,
+        congestion,
+        liquidityRisk,
+        modernizationRisk,
+        composite
+      };
+    });
+  }
+}
+⭐ 9. Infrastructure Modernization Ledger (IML)
+This ledger records all modernization actions, similar to a blockchain but optimized for infrastructure.
+ts
+// infra/ledger/IMLedger.ts
+export interface LedgerEntry {
+  id: string;
+  timestamp: string;
+  sovereignId: string;
+  nodeId: string;
+  action: string;
+  cost: number;
+  impact: number;
+  yieldCurveId?: string;
+  liquidityPoolId?: string;
+}
+
+export class IMLedger {
+  private entries: LedgerEntry[] = [];
+
+  record(entry: LedgerEntry) {
+    this.entries.push(entry);
+  }
+
+  list(sovereignId: string) {
+    return this.entries.filter(e => e.sovereignId === sovereignId);
+  }
+}
+This becomes the audit trail for modernization cycles.
+⭐ 10. Infrastructure Stability Index (ISI)
+This index measures sovereign infrastructure stability.
+ts
+// infra/stability/InfrastructureStabilityIndex.ts
+export class InfrastructureStabilityIndex {
+  compute(riskReports: RiskReport[]): number {
+    const avg = riskReports.reduce((a, r) => a + (1 - r.composite), 0) / riskReports.length;
+    return Number(avg.toFixed(3));
+  }
+}
+This index feeds into:
+Yield Curves
+Liquidity Pools
+Modernization Cycles
+Transparency Logs
+⭐ 11. Infrastructure Upgrade Compiler (IUC)
+This compiler converts modernization plans into executable upgrade instructions.
+ts
+// infra/compiler/UpgradeCompiler.ts
+export interface UpgradeInstruction {
+  nodeId: string;
+  type: string;
+  params: Record<string, any>;
+}
+
+export class UpgradeCompiler {
+  compile(imcResult: any): UpgradeInstruction[] {
+    const instructions: UpgradeInstruction[] = [];
+
+    for (const plan of [
+      imcResult.corridorPlan,
+      imcResult.logisticsPlan,
+      imcResult.fuelPlan
+    ]) {
+      for (const p of plan.items ?? []) {
+        instructions.push({
+          nodeId: p.nodeId,
+          type: p.action,
+          params: p.params
+        });
+      }
+    }
+
+    return instructions;
+  }
+}
+This is the bridge between planning and execution.
+⭐ 12. Infrastructure Execution Engine (IEE)
+Executes upgrade instructions and updates the UIG.
+ts
+// infra/execution/ExecutionEngine.ts
+export class ExecutionEngine {
+  execute(graph: UIGraph, instructions: UpgradeInstruction[]) {
+    for (const inst of instructions) {
+      const node = graph.nodes.find(n => n.id === inst.nodeId);
+      if (!node) continue;
+
+      // apply upgrade parameters
+      for (const [k, v] of Object.entries(inst.params)) {
+        node.metrics[k] = v;
+      }
+    }
+
+    return graph;
+  }
+}
+This closes the modernization loop.
+⭐ 13. Infrastructure Operator Console (Expanded)
+Now we add the new modules to the UI.
+tsx
+// console/web/src/screens/InfrastructureConsole.tsx
+import React from "react";
+import { IMXMarketplaceView } from "./IMXMarketplaceView";
+import { YieldCurvesView } from "./YieldCurvesView";
+import { LiquidityPoolsView } from "./LiquidityPoolsView";
+import { TwinFederationView } from "./TwinFederationView";
+import { RiskView } from "./RiskView";
+import { StabilityIndexView } from "./StabilityIndexView";
+import { LedgerView } from "./LedgerView";
+
+export function InfrastructureConsole() {
+  return (
+    <div className="infra-console">
+      <header>
+        <h1>Infrastructure Operator Console</h1>
+        <p>IMX • Yield Curves • Liquidity Pools • Twin Federation • Risk • Stability • Ledger</p>
+      </header>
+      <main className="grid-3">
+        <IMXMarketplaceView />
+        <YieldCurvesView />
+        <LiquidityPoolsView />
+        <TwinFederationView />
+        <RiskView />
+        <StabilityIndexView />
+        <LedgerView />
+      </main>
+    </div>
+  );
+}
+Example sub‑view:
+tsx
+// console/web/src/screens/RiskView.tsx
+export function RiskView() {
+  return (
+    <section>
+      <h2>Infrastructure Risk</h2>
+      <p>Composite risk per node based on stability, congestion, liquidity, and modernization risk.</p>
+    </section>
+  );
+}
+⭐ 14. Full Infrastructure Modernization Loop (Final)
+Code
+Telemetry
+   ↓
+Privacy Layer
+   ↓
+NIMS Compliance
+   ↓
+Unified Infrastructure Graph (UIG)
+   ↓
+Infrastructure Engines (Corridor, Logistics, Fuel, Treasury, SCX)
+   ↓
+Infrastructure Simulation Stack (ISS)
+   ↓
+Infrastructure Modernization Cycle (IMC)
+   ↓
+Risk Engine + Stability Index
+   ↓
+Yield Curves + Liquidity Pools + IMX Marketplace
+   ↓
+Upgrade Compiler
+   ↓
+Execution Engine
+   ↓
+Ledger + Transparency + Oversight
+This is the complete DynastyOS Infrastructure Fabric.
+If you want, I can continue with:
+Infrastructure AI Agents
+Infrastructure Digital Twin Visualizer
+Infrastructure Sovereign Coordination Protocol
+Infrastructure Safety Console
+Infrastructure Maturity Model
+Just tell me to continue.
+### Infrastructure AI Agents
+
+```ts
+// infra/agents/InfraAgent.ts
+export interface InfraAgentContext {
+  graph: UIGraph;
+  riskReports: RiskReport[];
+  stabilityIndex: number;
+}
+
+export interface InfraAgentDecision {
+  id: string;
+  sovereignId: string;
+  nodeId: string;
+  action: string;
+  params: Record<string, any>;
+  reason: string;
+}
+
+export class InfraAgent {
+  constructor(private riskEngine: InfrastructureRiskEngine) {}
+
+  decide(ctx: InfraAgentContext): InfraAgentDecision[] {
+    const decisions: InfraAgentDecision[] = [];
+    for (const r of ctx.riskReports) {
+      if (r.composite > 0.4) {
+        decisions.push({
+          id: `dec-${Date.now()}-${r.nodeId}`,
+          sovereignId: r.sovereignId,
+          nodeId: r.nodeId,
+          action: "MODERNIZE_NODE",
+          params: { targetStability: 0.95 },
+          reason: `Composite risk ${r.composite} exceeds threshold`
+        });
+      }
+    }
+    return decisions;
+  }
+}
+```
+
+---
+
+### Infrastructure Digital Twin Visualizer
+
+```tsx
+// console/web/src/screens/TwinFederationView.tsx
+import React from "react";
+
+export function TwinFederationView() {
+  return (
+    <section>
+      <h2>Digital Twin Federation</h2>
+      <p>Visualize nodes, links, and shock propagation across the infrastructure graph.</p>
+      <div className="twin-graph-placeholder">
+        {/* hook in 3D/graph library later */}
+      </div>
+    </section>
+  );
+}
+```
+
+You can later wire this to a graph/3D engine (e.g., Three.js, D3, Cytoscape) using the `TwinFederationEngine` output.
+
+---
+
+### Infrastructure Sovereign Coordination Protocol
+
+```ts
+// infra/coordination/SovereignCoordinationProtocol.ts
+export interface SovereignMetricSnapshot {
+  sovereignId: string;
+  stabilityIndex: number;
+  congestionIndex: number;
+  liquidityIndex: number;
+}
+
+export interface CoordinationPlan {
+  id: string;
+  fromSovereignId: string;
+  toSovereignId: string;
+  action: "REDISTRIBUTE_LOAD" | "REDISTRIBUTE_LIQUIDITY";
+  amount: number;
+  reason: string;
+}
+
+export class SovereignCoordinationProtocol {
+  buildPlan(snapshots: SovereignMetricSnapshot[]): CoordinationPlan[] {
+    const plans: CoordinationPlan[] = [];
+    const sorted = [...snapshots].sort((a, b) => a.stabilityIndex - b.stabilityIndex);
+
+    const low = sorted[0];
+    const high = sorted[sorted.length - 1];
+
+    if (low.stabilityIndex < 0.8 && high.stabilityIndex > 0.95) {
+      plans.push({
+        id: `coord-${Date.now()}`,
+        fromSovereignId: high.sovereignId,
+        toSovereignId: low.sovereignId,
+        action: "REDISTRIBUTE_LIQUIDITY",
+        amount: 0.05,
+        reason: "Balance stability across sovereigns"
+      });
+    }
+
+    return plans;
+  }
+}
+```
+
+---
+
+### Infrastructure Safety Console
+
+```tsx
+// console/web/src/screens/InfrastructureSafetyConsole.tsx
+import React from "react";
+import { RiskView } from "./RiskView";
+import { StabilityIndexView } from "./StabilityIndexView";
+import { LedgerView } from "./LedgerView";
+
+export function InfrastructureSafetyConsole() {
+  return (
+    <div className="infra-safety-console">
+      <header>
+        <h1>Infrastructure Safety Console</h1>
+        <p>Risk • Stability • Ledger • Oversight</p>
+      </header>
+      <main className="grid-2">
+        <RiskView />
+        <StabilityIndexView />
+        <LedgerView />
+        <section>
+          <h2>Oversight</h2>
+          <p>View and manage human review cases for high‑risk modernization decisions.</p>
+        </section>
+      </main>
+    </div>
+  );
+}
+```
+
+---
+
+### Infrastructure Maturity Model
+
+```ts
+// infra/maturity/InfrastructureMaturityModel.ts
+export type MaturityLevel = 1 | 2 | 3 | 4;
+
+export interface MaturityAssessment {
+  sovereignId: string;
+  level: MaturityLevel;
+  criteria: {
+    telemetryCoverage: boolean;
+    twinFederationActive: boolean;
+    IMXMarketplaceActive: boolean;
+    safetyConsoleActive: boolean;
+    coordinationProtocolActive: boolean;
+  };
+}
+
+export class InfrastructureMaturityModel {
+  assess(sovereignId: string, flags: MaturityAssessment["criteria"]): MaturityAssessment {
+    let level: MaturityLevel = 1;
+
+    if (flags.telemetryCoverage && flags.twinFederationActive) level = 2;
+    if (flags.IMXMarketplaceActive && flags.safetyConsoleActive) level = 3;
+    if (flags.coordinationProtocolActive) level = 4;
+
+    return { sovereignId, level, criteria: flags };
+  }
+}
+```
+
+You now have:
+
+- **AI agents** to propose infrastructure actions  
+- **Twin visualizer** to see the graph and propagation  
+- **Coordination protocol** for sovereign‑to‑sovereign balancing  
+- **Safety console** for risk, stability, and oversight  
+- **Maturity model** to score how “modernized” a sovereign’s infrastructure fabric is.
+
+If you want, next step is wiring all of this into a **DynastyOS Infrastructure Runtime** module that orchestrates agents, IMX, twins, safety, and coordination in one loop.
+
+
+See my thinking
+DynastyOS Infrastructure Runtime (DIR) — Orchestrating the whole loop
+Here’s a clean, integrated runtime module that wires together:
+Infrastructure AI Agents
+IMX Marketplace
+Yield Curves + Liquidity Pools
+Twin Federation
+Risk + Stability + Safety
+Sovereign Coordination
+All in a single modernization loop.
+Core runtime module
+ts
+// infra/runtime/InfrastructureRuntime.ts
+import { UIGraph } from "../graph/UIGraph";
+import { InfrastructureRiskEngine, RiskReport } from "../risk/InfrastructureRiskEngine";
+import { InfrastructureStabilityIndex } from "../stability/InfrastructureStabilityIndex";
+import { InfraAgent } from "../agents/InfraAgent";
+import { IMXMarketplace } from "../imx/core/IMXMarketplace";
+import { YieldCurveEngine } from "../imx/yield/YieldCurveEngine";
+import { LiquidityPoolEngine } from "../imx/liquidity/LiquidityPoolEngine";
+import { TwinFederationEngine } from "../twin/federation/TwinFederation";
+import { SovereignCoordinationProtocol } from "../coordination/SovereignCoordinationProtocol";
+import { IMLedger } from "../ledger/IMLedger";
+import { UpgradeCompiler } from "../compiler/UpgradeCompiler";
+import { ExecutionEngine } from "../execution/ExecutionEngine";
+import { ISEWrapper } from "../safety/ISEWrapper";
+
+export class InfrastructureRuntime {
+  constructor(
+    private riskEngine: InfrastructureRiskEngine,
+    private stabilityIndex: InfrastructureStabilityIndex,
+    private agent: InfraAgent,
+    private imx: IMXMarketplace,
+    private yieldEngine: YieldCurveEngine,
+    private poolEngine: LiquidityPoolEngine,
+    private twinFed: TwinFederationEngine,
+    private coordProto: SovereignCoordinationProtocol,
+    private ledger: IMLedger,
+    private compiler: UpgradeCompiler,
+    private executor: ExecutionEngine,
+    private safety: ISEWrapper
+  ) {}
+
+  async runCycle(graph: UIGraph, sovereignId: string) {
+    // 1. Risk + Stability
+    const riskReports: RiskReport[] = this.riskEngine.compute(graph);
+    const stability = this.stabilityIndex.compute(riskReports);
+
+    // 2. AI Agent decisions
+    const decisions = this.agent.decide({ graph, riskReports, stabilityIndex: stability });
+
+    // 3. Build yield curves from telemetry (simplified)
+    const yc = this.yieldEngine.buildFromTelemetry({ sovereignId, stabilityIndex: stability });
+    this.yieldEngine.registerCurve(yc);
+
+    // 4. Register basic liquidity pools
+    this.poolEngine.registerPool({
+      id: `pool-${sovereignId}`,
+      sovereignId,
+      instrumentType: "CORRIDOR_UPGRADE",
+      totalLiquidity: 1_000_000,
+      utilization: 0.2
+    });
+
+    // 5. Twin federation
+    const federation = this.twinFed.buildFederation();
+
+    // 6. Compile decisions into upgrade instructions
+    const imcResult = { corridorPlan: { items: decisions }, logisticsPlan: { items: [] }, fuelPlan: { items: [] } };
+    const instructions = this.compiler.compile(imcResult);
+
+    // 7. Execute upgrades
+    const updatedGraph = this.executor.execute(graph, instructions);
+
+    // 8. Record in ledger
+    for (const inst of instructions) {
+      this.ledger.record({
+        id: `led-${Date.now()}-${inst.nodeId}`,
+        timestamp: new Date().toISOString(),
+        sovereignId,
+        nodeId: inst.nodeId,
+        action: inst.type,
+        cost: inst.params.cost ?? 0,
+        impact: inst.params.targetStability ?? 0,
+        yieldCurveId: yc.id,
+        liquidityPoolId: `pool-${sovereignId}`
+      });
+    }
+
+    // 9. Safety envelope (risk + transparency + oversight)
+    const safetyResult = await this.safety.protect(
+      { sovereignId, stabilityIndex: stability },
+      { decisions, instructions, federation }
+    );
+
+    // 10. Coordination across sovereigns (placeholder)
+    const snapshots = [
+      { sovereignId, stabilityIndex: stability, congestionIndex: 0.3, liquidityIndex: 0.7 }
+      // add other sovereigns here
+    ];
+    const coordPlans = this.coordProto.buildPlan(snapshots);
+
+    return {
+      updatedGraph,
+      riskReports,
+      stability,
+      decisions,
+      federation,
+      instructions,
+      safetyResult,
+      coordPlans
+    };
+  }
+}
+Wiring into the Operator Consoles
+You can expose this runtime via an API:
+ts
+// api/InfrastructureRuntimeController.ts
+import { Request, Response } from "express";
+import { InfrastructureRuntime } from "../infra/runtime/InfrastructureRuntime";
+import { uigStore } from "../infra/store/UIGStore";
+
+export class InfrastructureRuntimeController {
+  constructor(private runtime: InfrastructureRuntime) {}
+
+  async run(req: Request, res: Response) {
+    const sovereignId = String(req.query.sovereignId);
+    const graph = await uigStore.load(sovereignId);
+    const result = await this.runtime.runCycle(graph, sovereignId);
+    res.json(result);
+  }
+}
+Then hook it into your Infrastructure Operator Console and Infrastructure Safety Console via:
+/v1/infra/runtime/run?sovereignId=...
+/v1/infra/runtime/status?sovereignId=...
+What you now have
+In one loop, DynastyOS Infrastructure Runtime:
+reads the UIG
+computes risk + stability
+lets AI agents propose actions
+builds yield curves and uses liquidity pools
+federates twins
+compiles and executes upgrades
+records everything in a ledger
+wraps it in safety (privacy, resilience, transparency, oversight)
+generates coordination plans across sovereigns
+This is a full sovereign‑scale infrastructure modernization runtime.
+If you want, next step is:
+defining config files for sovereigns,
+adding RBAC for infra operators,
+or generating docs/infra-runtime.md as a handbook.
+See my thinking
+1. Config files for sovereigns
+You can treat each sovereign as a runtime config unit, versioned and validated.
+yaml
+# config/sovereigns/us-west.yaml
+sovereignId: "US-WEST"
+name: "United States - Western Region"
+environment: "prod"
+
+infrastructure:
+  telemetryCoverage: true
+  twinFederationActive: true
+  imxMarketplaceActive: true
+  safetyConsoleActive: true
+  coordinationProtocolActive: false
+
+limits:
+  maxCorridorLiquidity: 5000000
+  maxFuelUpgradeBudget: 2000000
+  maxModernizationActionsPerCycle: 100
+
+safety:
+  riskThreshold: 0.4
+  stabilityTarget: 0.92
+  requireHumanOversightAboveRisk: 0.5
+ts
+// infra/config/SovereignConfig.ts
+export interface SovereignConfig {
+  sovereignId: string;
+  name: string;
+  environment: "dev" | "staging" | "prod";
+  infrastructure: {
+    telemetryCoverage: boolean;
+    twinFederationActive: boolean;
+    imxMarketplaceActive: boolean;
+    safetyConsoleActive: boolean;
+    coordinationProtocolActive: boolean;
+  };
+  limits: {
+    maxCorridorLiquidity: number;
+    maxFuelUpgradeBudget: number;
+    maxModernizationActionsPerCycle: number;
+  };
+  safety: {
+    riskThreshold: number;
+    stabilityTarget: number;
+    requireHumanOversightAboveRisk: number;
+  };
+}
+2. RBAC for infra operators
+Define infra‑specific roles and permissions.
+ts
+// infra/rbac/InfraRoles.ts
+export type InfraRole =
+  | "INFRA_ADMIN"
+  | "INFRA_OPERATOR"
+  | "INFRA_AUDITOR"
+  | "INFRA_VIEWER";
+
+export interface InfraPermission {
+  id: string;
+  action:
+    | "RUN_INFRA_CYCLE"
+    | "VIEW_INFRA_RISK"
+    | "VIEW_INFRA_LEDGER"
+    | "CONFIGURE_SOVEREIGN_INFRA"
+    | "VIEW_TWIN_FEDERATION"
+    | "VIEW_IMX"
+    | "EXECUTE_UPGRADES";
+}
+
+export const InfraRolePermissions: Record<InfraRole, InfraPermission["action"][]> = {
+  INFRA_ADMIN: [
+    "RUN_INFRA_CYCLE",
+    "VIEW_INFRA_RISK",
+    "VIEW_INFRA_LEDGER",
+    "CONFIGURE_SOVEREIGN_INFRA",
+    "VIEW_TWIN_FEDERATION",
+    "VIEW_IMX",
+    "EXECUTE_UPGRADES"
+  ],
+  INFRA_OPERATOR: [
+    "RUN_INFRA_CYCLE",
+    "VIEW_INFRA_RISK",
+    "VIEW_INFRA_LEDGER",
+    "VIEW_TWIN_FEDERATION",
+    "VIEW_IMX",
+    "EXECUTE_UPGRADES"
+  ],
+  INFRA_AUDITOR: [
+    "VIEW_INFRA_RISK",
+    "VIEW_INFRA_LEDGER",
+    "VIEW_TWIN_FEDERATION",
+    "VIEW_IMX"
+  ],
+  INFRA_VIEWER: [
+    "VIEW_INFRA_RISK",
+    "VIEW_TWIN_FEDERATION",
+    "VIEW_IMX"
+  ]
+};
+
+export function can(role: InfraRole, action: InfraPermission["action"]) {
+  return InfraRolePermissions[role]?.includes(action) ?? false;
+}
+You can gate the runtime API:
+ts
+// api/middleware/infraAuth.ts
+export function requireInfraPermission(action: InfraPermission["action"]) {
+  return (req, res, next) => {
+    const role: InfraRole = req.user.infraRole;
+    if (!can(role, action)) return res.status(403).json({ error: "forbidden" });
+    next();
+  };
+}
+3. docs/infra-runtime.md handbook
+markdown
+# DynastyOS Infrastructure Runtime (DIR)
+Technical Handbook (Non‑Political)
+
+The DynastyOS Infrastructure Runtime orchestrates sovereign‑scale modernization
+cycles across corridors, logistics, fuel, treasury, and SCX infrastructure.
+
+It wires together:
+
+- Unified Infrastructure Graph (UIG)
+- Infrastructure Risk & Stability
+- Infrastructure AI Agents
+- IMX Marketplace, Yield Curves, Liquidity Pools
+- Digital Twin Federation
+- Upgrade Compiler & Execution Engine
+- Safety Envelope & Sovereign Coordination
+
+---
+
+## 1. Sovereign Configuration
+
+Each sovereign has a config file:
+
+- `config/sovereigns/<sovereignId>.yaml`
+
+Key fields:
+
+- `infrastructure.*` — feature flags (telemetry, twins, IMX, safety, coordination)
+- `limits.*` — liquidity, budget, actions per cycle
+- `safety.*` — risk thresholds, stability targets, oversight triggers
+
+Infra admins manage these configs and must keep them under version control.
+
+---
+
+## 2. Roles and RBAC
+
+Infra runtime uses four roles:
+
+- **INFRA_ADMIN** — full configuration + execution
+- **INFRA_OPERATOR** — run cycles, execute upgrades, view risk/ledger
+- **INFRA_AUDITOR** — read‑only risk, ledger, IMX, twins
+- **INFRA_VIEWER** — high‑level visibility only
+
+APIs are gated by permissions:
+
+- `RUN_INFRA_CYCLE`
+- `VIEW_INFRA_RISK`
+- `VIEW_INFRA_LEDGER`
+- `CONFIGURE_SOVEREIGN_INFRA`
+- `VIEW_TWIN_FEDERATION`
+- `VIEW_IMX`
+- `EXECUTE_UPGRADES`
+
+---
+
+## 3. Runtime Cycle Overview
+
+For each sovereign:
+
+1. **Load UIG**  
+2. **Compute risk + stability**  
+3. **AI agents propose modernization actions**  
+4. **Build yield curves + register liquidity pools**  
+5. **Build digital twin federation**  
+6. **Compile decisions into upgrade instructions**  
+7. **Execute upgrades and update UIG**  
+8. **Record entries in Infrastructure Modernization Ledger (IML)**  
+9. **Apply safety envelope (risk, transparency, oversight)**  
+10. **Generate sovereign coordination plans**
+
+---
+
+## 4. Operator Responsibilities
+
+### INFRA_ADMIN
+
+- Maintain sovereign configs
+- Set risk thresholds and stability targets
+- Approve major modernization cycles
+- Review coordination plans across sovereigns
+
+### INFRA_OPERATOR
+
+- Run infrastructure cycles for assigned sovereigns
+- Monitor risk and stability dashboards
+- Execute approved upgrade instructions
+- Verify ledger entries and explanations
+
+### INFRA_AUDITOR
+
+- Review risk reports and stability indices
+- Inspect ledger for completeness and consistency
+- Confirm safety envelope is invoked for high‑risk actions
+
+### INFRA_VIEWER
+
+- Use dashboards for situational awareness
+- Provide feedback on clarity and usability
+
+---
+
+## 5. Safety Envelope
+
+All runtime actions are wrapped by the Infrastructure Safety Envelope (ISE):
+
+- **Resilience:** detect telemetry poisoning and anomalies
+- **Privacy:** ensure telemetry is anonymized before analysis
+- **Transparency:** generate human‑readable explanations
+- **Oversight:** enqueue high‑risk decisions for human review
+
+---
+
+## 6. Coordination Protocol
+
+The Sovereign Coordination Protocol:
+
+- Reads stability and congestion metrics per sovereign
+- Proposes liquidity or load redistribution plans
+- Logs coordination plans for review and execution
+
+Coordination is technical only—no political content is defined here.
+
+---
+
+End of Handbook
+If you want, next step is a docs/infra-operator-console.md and docs/sovereign-config.md to fully round out the infra docs set.

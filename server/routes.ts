@@ -1,6 +1,7 @@
 import type { Express, Request, Response } from "express";
 import { storage } from "./storage.js";
 import { insertDocumentSchema, insertFilingSchema } from "../shared/schema.js";
+import { omegaPlatform } from "./omega-platform.js";
 
 export function registerRoutes(app: Express) {
   // CORS headers for cross-platform integration
@@ -527,6 +528,69 @@ export function registerRoutes(app: Express) {
       res.status(500).json({ error: "Failed to form entity" });
     }
   });
+
+  // Unified Omega command plane routes.
+  app.get("/api/omega/status", (_req, res) => res.json(omegaPlatform.status()));
+  app.get("/api/omega/overview", (_req, res) => res.json(omegaPlatform.overview()));
+  app.get("/api/omega/events", (req, res) => res.json({ events: omegaPlatform.events(Number(req.query.limit) || 25) }));
+  app.post("/api/omega/operation", (req, res) => res.json(omegaPlatform.orchestrate(req.body || {})));
+  app.post("/api/sovereign/orchestrate", (req, res) => res.json(omegaPlatform.orchestrate(req.body || {})));
+
+  app.get("/api/loads", (_req, res) => res.json(omegaPlatform.overview().loads));
+  app.post("/api/loads", (req, res) => res.status(201).json(omegaPlatform.createLoad(req.body || {})));
+  app.post("/api/loads/:id/assign", (req, res) => {
+    const load = omegaPlatform.assignLoad(req.params.id, String(req.body?.carrier || "Unassigned carrier"));
+    return load ? res.json(load) : res.status(404).json({ error: "Load not found" });
+  });
+
+  app.get("/api/digital-twin/snapshot", (_req, res) => res.json(omegaPlatform.twinSnapshot()));
+  app.post("/api/digital-twin/simulate", (req, res) => {
+    const type = ["REROUTE", "REPRICE", "INCENTIVES"].includes(req.body?.type) ? req.body.type : "REROUTE";
+    res.json(omegaPlatform.simulateTwin(type));
+  });
+
+  app.get("/api/nonprofit/projects", (_req, res) => res.json(omegaPlatform.getProjects()));
+  app.get("/api/nonprofit/projects/:projectId/eligibility", (req, res) => res.json(omegaPlatform.eligibility(req.params.projectId)));
+  app.get("/api/nonprofit/projects/:projectId/priorities", (req, res) => res.json(omegaPlatform.priorities(req.params.projectId)));
+  app.post("/api/nonprofit/projects/:projectId/partnerships", (req, res) => res.status(201).json(omegaPlatform.addPartner(req.params.projectId, String(req.body?.organization || "New partner"), String(req.body?.role || "Community partner"))));
+  app.get("/api/nonprofit/projects/:projectId/grant-package", (req, res) => res.json(omegaPlatform.grantPackage(req.params.projectId)));
+  app.get("/api/nonprofit/projects/:projectId/compliance", (req, res) => res.json(omegaPlatform.compliance(req.params.projectId)));
+
+  app.get("/api/life/dynasty/portfolio", (_req, res) => res.json(omegaPlatform.dynastyPortfolio()));
+  app.get("/api/life/market/listings", (_req, res) => res.json(omegaPlatform.marketListings()));
+  app.get("/api/life/risk/dashboard", (_req, res) => res.json(omegaPlatform.riskDashboard()));
+  app.post("/api/life/wealth/run", (_req, res) => res.json(omegaPlatform.runWealthCycle()));
+  app.get("/api/life/premium/cycle", (_req, res) => res.json(omegaPlatform.treasurySnapshot()));
+  app.get("/api/ecclesia/wealth", (_req, res) => res.json({
+    rail: "ECCLESIA",
+    reportingPeriod: new Date().toISOString().slice(0, 10),
+    dynasty: omegaPlatform.dynastyPortfolio().snapshot,
+    risk: omegaPlatform.riskDashboard(),
+    status: "internal reporting view",
+  }));
+  app.get("/api/treasury/life/snapshot", (_req, res) => res.json(omegaPlatform.treasurySnapshot()));
+
+  app.get("/api/connectivity/snapshot", (_req, res) => res.json(omegaPlatform.connectivity()));
+  app.get("/api/connectivity/zones", (_req, res) => res.json(omegaPlatform.connectivity().zones));
+  app.get("/api/connectivity/credits", (_req, res) => res.json(omegaPlatform.connectivity().credits));
+  app.get("/api/connectivity/mesh-nodes", (_req, res) => res.json(omegaPlatform.connectivity().meshNodes));
+  app.post("/api/treasury/credits/issue", (req, res) => res.status(201).json(omegaPlatform.issueCredit(String(req.body?.domain || "GENERAL"), Number(req.body?.amount || 1000))));
+  app.get("/api/treasury/credits", (_req, res) => res.json({ balance: 27600, listings: omegaPlatform.connectivity().credits, rail: "TREASURYOS" }));
+
+  // Administrative Fabric and Divinity operator routes.
+  app.get("/api/fabric/overview", (_req, res) => res.json(omegaPlatform.fabricOverview()));
+  app.get("/api/infrastructure/domains", (_req, res) => res.json(omegaPlatform.infrastructureDomains()));
+  app.get("/api/emergency/snapshot", (_req, res) => res.json(omegaPlatform.incidentSnapshot()));
+  app.post("/api/emergency/incidents", (req, res) => res.status(201).json(omegaPlatform.createIncident(req.body || {})));
+  app.get("/api/missions", (_req, res) => res.json(omegaPlatform.listMissions()));
+  app.get("/api/fleet/snapshot", (_req, res) => res.json(omegaPlatform.fleetSnapshot()));
+  app.post("/api/fleet/vehicles/:id/dispatch", (req, res) => {
+    const result = omegaPlatform.dispatchVehicle(req.params.id, req.body?.loadId);
+    return result ? res.json(result) : res.status(404).json({ error: "Vehicle not found" });
+  });
+  app.get("/api/continuity/snapshot", (_req, res) => res.json(omegaPlatform.continuitySnapshot()));
+  app.get("/api/modernization/overview", (_req, res) => res.json(omegaPlatform.modernizationOverview()));
+  app.post("/api/fabric/telemetry", (req, res) => res.json(omegaPlatform.processTelemetry(req.body || {})));
 
   app.get("/api/embed/script", (req: Request, res: Response) => {
     res.type("application/javascript");
